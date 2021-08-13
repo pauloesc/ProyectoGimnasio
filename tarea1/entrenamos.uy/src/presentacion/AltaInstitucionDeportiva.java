@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.Button;
 import java.awt.TextArea;
 
-//import excepciones.InstitucionRepetidaException;
+import excepciones.InstitucionDeportivaRepetidaException;
 //import logica.IctrlUsuarios;
 
 @SuppressWarnings("serial")
