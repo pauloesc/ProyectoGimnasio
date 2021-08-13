@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JDesktopPane;
 
 import javax.swing.JMenu;
 import java.awt.event.ActionEvent;
@@ -42,10 +43,11 @@ public class Principal {
      * Create the application.
      */
     public Principal() {
-        initialize();
         
-
-        entrenamosUy.getContentPane().setLayout(null);
+    	initialize();
+        
+        JDesktopPane desktopPane = new JDesktopPane();
+        entrenamosUy.add(desktopPane);
         
         // Se crean los tres InternalFrame y se incluyen al Frame principal ocultos.
         // De esta forma, no es necesario crear y destruir objetos lo que enlentece la ejecución.
@@ -59,9 +61,11 @@ public class Principal {
         consultaActividadDeportivaInternalFrame = new ConsultaActividadDeportiva();
         consultaActividadDeportivaInternalFrame.setVisible(false);
         
-        entrenamosUy.getContentPane().add(altaInstDeportivaInternalFrame);
-        entrenamosUy.getContentPane().add(altaActividadDeportivaInternalFrame);
-        entrenamosUy.getContentPane().add(consultaActividadDeportivaInternalFrame);
+        desktopPane.add(altaInstDeportivaInternalFrame);
+        desktopPane.add(altaActividadDeportivaInternalFrame);
+        desktopPane.add(consultaActividadDeportivaInternalFrame);
+        
+        
     }
 
     /**
