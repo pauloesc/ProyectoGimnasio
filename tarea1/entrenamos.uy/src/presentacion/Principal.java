@@ -17,7 +17,8 @@ import java.awt.event.ActionListener;
  */
 public class Principal {
 
-    private JFrame frmGestionDeUsuarios;
+    private JFrame entrenamosUy;
+    private AltaInstitucionDeportiva altaInstDeportivaInternalFrame;
 
     /**
      * Launch the application.
@@ -27,7 +28,7 @@ public class Principal {
             public void run() {
                 try {
                     Principal window = new Principal();
-                    window.frmGestionDeUsuarios.setVisible(true);
+                    window.entrenamosUy.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -42,7 +43,15 @@ public class Principal {
         initialize();
         
 
-        frmGestionDeUsuarios.getContentPane().setLayout(null);
+        entrenamosUy.getContentPane().setLayout(null);
+        
+        // Se crean los tres InternalFrame y se incluyen al Frame principal ocultos.
+        // De esta forma, no es necesario crear y destruir objetos lo que enlentece la ejecución.
+        // Cada InternalFrame usa un layout diferente, simplemente para mostrar distintas opciones.
+        altaInstDeportivaInternalFrame = new AltaInstitucionDeportiva();
+        altaInstDeportivaInternalFrame.setVisible(false);
+        
+        entrenamosUy.getContentPane().add(altaInstDeportivaInternalFrame);
 
     }
 
@@ -52,16 +61,16 @@ public class Principal {
     private void initialize() {
         
         // Se crea el Frame con las dimensiones indicadas.
-        frmGestionDeUsuarios = new JFrame();
-        frmGestionDeUsuarios.setTitle("entrenamos.uy - backend administrador");
-        frmGestionDeUsuarios.setBounds(100, 100, 850, 600);
-        frmGestionDeUsuarios.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    	entrenamosUy = new JFrame();
+    	entrenamosUy.setTitle("entrenamos.uy - backend administrador");
+    	entrenamosUy.setBounds(100, 100, 850, 600);
+        entrenamosUy.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Se crea una barra de menú (JMenuBar) con dos menú (JMenu) desplegables.
         // Cada menú contiene diferentes opciones (JMenuItem), los cuales tienen un 
         // evento asociado que permite realizar una acción una vez se seleccionan. 
         JMenuBar menuBar = new JMenuBar();
-        frmGestionDeUsuarios.setJMenuBar(menuBar);
+        entrenamosUy.setJMenuBar(menuBar);
 
         JMenu menuSistema = new JMenu("Sistema");
         menuBar.add(menuSistema);
@@ -70,8 +79,8 @@ public class Principal {
         menuSalir.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 // Salgo de la aplicación
-                frmGestionDeUsuarios.setVisible(false);
-                frmGestionDeUsuarios.dispose();
+            	entrenamosUy.setVisible(false);
+            	entrenamosUy.dispose();
             }
         });
         menuSistema.add(menuSalir);
@@ -114,7 +123,7 @@ public class Principal {
         menuItemRegistrarID.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Muestro el InternalFrame para registrar un usuario
-
+            	altaInstDeportivaInternalFrame.setVisible(true);
             }
         });
         menuInstDeportivas.add(menuItemRegistrarID);

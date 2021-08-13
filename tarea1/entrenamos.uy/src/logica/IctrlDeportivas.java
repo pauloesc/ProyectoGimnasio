@@ -7,7 +7,7 @@ package logica;
  * @author mbarrera
  *
  */
-public interface IctrlUsuarios {
+public interface IctrlDeportivas {
     
     /**
      * Registra al usuario en el sistema.
