@@ -1,5 +1,11 @@
 package presentacion;
 
+/**
+ * JInternalFrame del caso de uso Alta Institución Deportiva.
+ * @author mbarrera
+ *
+ */
+
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -10,9 +16,9 @@ import java.awt.Button;
 import java.awt.TextArea;
 
 import excepciones.InstitucionDeportivaRepetidaException;
-//import logica.IctrlUsuarios;
+//import logica.IctrlDeportivas;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({ "serial", "unused" })
 public class AltaInstitucionDeportiva extends JInternalFrame {
 	public AltaInstitucionDeportiva() {
 		setTitle("Alta de Institución Deportiva");

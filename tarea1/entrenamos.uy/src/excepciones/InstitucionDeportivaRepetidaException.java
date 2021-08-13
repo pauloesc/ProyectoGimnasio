@@ -1,9 +1,9 @@
 package excepciones;
 
 /**
- * Excepción utilizada para indicar la existencia de un usuario repetido en el sistema.
+ * Excepción utilizada para indicar la existencia de una institución deportiva repetida en el sistema.
  * 
- * @author TProg2017
+ * @author mbarrera
  *
  */
 @SuppressWarnings("serial")

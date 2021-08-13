@@ -19,7 +19,9 @@ public class Principal {
 
     private JFrame entrenamosUy;
     private AltaInstitucionDeportiva altaInstDeportivaInternalFrame;
-
+    private AltaActividadDeportiva altaActividadDeportivaInternalFrame;
+    private ConsultaActividadDeportiva consultaActividadDeportivaInternalFrame;
+    
     /**
      * Launch the application.
      */
@@ -51,8 +53,15 @@ public class Principal {
         altaInstDeportivaInternalFrame = new AltaInstitucionDeportiva();
         altaInstDeportivaInternalFrame.setVisible(false);
         
+        altaActividadDeportivaInternalFrame = new AltaActividadDeportiva();
+        altaActividadDeportivaInternalFrame.setVisible(false);
+        
+        consultaActividadDeportivaInternalFrame = new ConsultaActividadDeportiva();
+        consultaActividadDeportivaInternalFrame.setVisible(false);
+        
         entrenamosUy.getContentPane().add(altaInstDeportivaInternalFrame);
-
+        entrenamosUy.getContentPane().add(altaActividadDeportivaInternalFrame);
+        entrenamosUy.getContentPane().add(consultaActividadDeportivaInternalFrame);
     }
 
     /**
@@ -136,7 +145,7 @@ public class Principal {
         menuItemRegistrarAD.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Muestro el InternalFrame para registrar un usuario
-
+            	altaActividadDeportivaInternalFrame.setVisible(true);
             }
         });
         menuActDeportivas.add(menuItemRegistrarAD);
@@ -145,7 +154,7 @@ public class Principal {
         menuItemVerInfoAD.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Muestro el InternalFrame para ver información de un usuario
-
+            	consultaActividadDeportivaInternalFrame.setVisible(true);
             }
         });
         menuActDeportivas.add(menuItemVerInfoAD);
