@@ -26,6 +26,7 @@ import javax.swing.JTabbedPane;
 
 @SuppressWarnings({ "serial", "unused" })
 public class ConsultaActividadDeportiva extends JInternalFrame {
+	@SuppressWarnings("rawtypes")
 	public ConsultaActividadDeportiva() {
 		setTitle("Consulta de Actividad Deportiva");
 		setClosable(true);
@@ -60,7 +61,6 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 		textDescripcion.setBounds(133, 110, 280, 89);
 		getContentPane().add(textDescripcion);
 		
-		@SuppressWarnings("rawtypes")
 		JComboBox comboBoxInstDeportivas = new JComboBox();
 		comboBoxInstDeportivas.setBounds(195, 12, 218, 24);
 		getContentPane().add(comboBoxInstDeportivas);
