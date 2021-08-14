@@ -5,7 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JDesktopPane;
+
+import logica.Fabrica;
+import logica.IctrlDeportivas;
 
 import javax.swing.JMenu;
 import java.awt.event.ActionEvent;
@@ -45,14 +47,15 @@ public class Principal {
     public Principal() {
         
     	initialize();
-        
-        JDesktopPane desktopPane = new JDesktopPane();
-        entrenamosUy.add(desktopPane);
+    	
+        // Inicialización
+        Fabrica fabrica = Fabrica.getInstance();
+        IctrlDeportivas ICD = fabrica.getIctrlDeportivas();
         
         // Se crean los tres InternalFrame y se incluyen al Frame principal ocultos.
         // De esta forma, no es necesario crear y destruir objetos lo que enlentece la ejecución.
         // Cada InternalFrame usa un layout diferente, simplemente para mostrar distintas opciones.
-        altaInstDeportivaInternalFrame = new AltaInstitucionDeportiva();
+        altaInstDeportivaInternalFrame = new AltaInstitucionDeportiva(ICD);
         altaInstDeportivaInternalFrame.setVisible(false);
         
         altaActividadDeportivaInternalFrame = new AltaActividadDeportiva();
@@ -61,9 +64,11 @@ public class Principal {
         consultaActividadDeportivaInternalFrame = new ConsultaActividadDeportiva();
         consultaActividadDeportivaInternalFrame.setVisible(false);
         
-        desktopPane.add(altaInstDeportivaInternalFrame);
-        desktopPane.add(altaActividadDeportivaInternalFrame);
-        desktopPane.add(consultaActividadDeportivaInternalFrame);
+        entrenamosUy.getContentPane().setLayout(null);
+        
+        entrenamosUy.getContentPane().add(altaInstDeportivaInternalFrame);
+        entrenamosUy.getContentPane().add(altaActividadDeportivaInternalFrame);
+        entrenamosUy.getContentPane().add(consultaActividadDeportivaInternalFrame);
         
         
     }

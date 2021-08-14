@@ -1,5 +1,6 @@
 package logica;
 
+import controladores.ctrlDeportivas;
 /**
  * Fábrica para la construcción de un controlador de usuarios (uno distinto para cada invocación).
  * Se implementa en base al patrón Singleton.
@@ -23,5 +24,8 @@ public class Fabrica {
   //  public IctrlUsuario getIControladorUsuario() {
         //return new ctrlUsuario();
  //   }
+    public IctrlDeportivas getIctrlDeportivas() {
+    	return new ctrlDeportivas();
+    }
 
 }
