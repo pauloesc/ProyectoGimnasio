@@ -27,7 +27,7 @@ public class manejDeportivas {
         return instancia;
     }
 	
-    public void addIDeportiva(InstitucionDeportiva insdep) {
+    public void agregarInstitucion(InstitucionDeportiva insdep) {
         String nombre = insdep.getNombre();
         institucionesDeportivas.put(nombre, insdep);
     }

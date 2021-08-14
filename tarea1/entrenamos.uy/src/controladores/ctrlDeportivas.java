@@ -19,14 +19,14 @@ public class ctrlDeportivas implements IctrlDeportivas{
 	 public ctrlDeportivas() {
 	 }
 
-	public void altaInstDeportiva(String n, String de, String url) throws InstitucionDeportivaRepetidaException {
+	public void altaInstitucion(String n, String de, String url) throws InstitucionDeportivaRepetidaException {
 		manejDeportivas mD = manejDeportivas.getinstance();
         InstitucionDeportiva indep = mD.obtenerIDeportiva(n);
         if (indep != null)
             throw new InstitucionDeportivaRepetidaException("La institución deportiva " + n + " ya esta registrada.");
 
         indep = new InstitucionDeportiva(n, de, url);
-        mD.addIDeportiva(indep);
+        mD.agregarInstitucion(indep);
 	}
 
 	public void altaActividadDeportiva(String nid, String n, String de, Float dur, Float c, String fal)

@@ -112,7 +112,7 @@ public class AltaInstitucionDeportiva extends JInternalFrame {
 
         if (checkFormulario()) {
             try {
-                controlDeportivas.altaInstDeportiva(nombreID, desID, urlID);
+                controlDeportivas.altaInstitucion(nombreID, desID, urlID);
 
                 // Muestro éxito de la operación
                 JOptionPane.showMessageDialog(this, "La Institución Deportiva se ha registrado con éxito", "Alta Institución Deportiva",
