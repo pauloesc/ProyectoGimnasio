@@ -11,14 +11,18 @@ package manejadores;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+
+import logica.ActividadDeportiva;
 import logica.InstitucionDeportiva;
 
 public class manejDeportivas {
 	private Map<String, InstitucionDeportiva> institucionesDeportivas;
+	private Map<String, ActividadDeportiva> actividadesDeportivas;
     private static manejDeportivas instancia = null;
 
     private manejDeportivas() {
         institucionesDeportivas = new HashMap<String, InstitucionDeportiva>();
+        actividadesDeportivas = new HashMap<String, ActividadDeportiva>();
     }
     
     public static manejDeportivas getinstance() {
@@ -49,6 +53,10 @@ public class manejDeportivas {
 
             return institucionesdeportivas;
         }
+    }
+    
+    public ActividadDeportiva buscarActividad(String nom) {
+    	return actividadesDeportivas.get(nom);
     }
 
 }
