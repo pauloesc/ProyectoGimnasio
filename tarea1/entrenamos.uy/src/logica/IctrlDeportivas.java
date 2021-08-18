@@ -3,6 +3,7 @@ package logica;
 import excepciones.ActividadDeportivaRepetidaException;
 import excepciones.InstitucionDeportivaRepetidaException;
 import excepciones.ActividadDeportivaNoExisteException;
+import java.text.SimpleDateFormat;
 
 /**
  * Interface del Controlador de Actividades e Instituciones Deportivas
@@ -29,7 +30,7 @@ public interface IctrlDeportivas {
      * @param fal Fecha de alta de la Actividad Deportiva.
      * @throws ActividadDeportivaRepetidaException Si el nombre ya se encuentra registrado en el sistema.
      */
-    public abstract void altaActividadDeportiva(String nid, String n, String de, Float dur, Float c, String fal) throws ActividadDeportivaRepetidaException;
+    public abstract void altaActividadDeportiva(String nid, String n, String de, Float dur, Float c, SimpleDateFormat fal) throws ActividadDeportivaRepetidaException;
 
     /**
      * Consulta de Actividad Deportiva

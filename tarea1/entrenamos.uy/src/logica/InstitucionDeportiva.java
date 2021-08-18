@@ -33,11 +33,11 @@ public class InstitucionDeportiva {
         this.nombre = n;
     }
 
-    public void setApellido(String de) {
+    public void setDescripcion(String de) {
         this.descripcion = de;
     }
 
-    public void setCedulaIdentidad(String url) {
+    public void setURL(String url) {
         this.url = url;
     }
 
