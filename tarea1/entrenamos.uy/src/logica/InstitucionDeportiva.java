@@ -10,6 +10,7 @@ public class InstitucionDeportiva {
     private String nombre;
     private String descripcion;
     private String url;
+   // private Set()
 
     public InstitucionDeportiva(String n, String de, String url) {
         this.nombre = n;
