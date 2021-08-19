@@ -2,7 +2,6 @@ package logica;
 
 import java.text.SimpleDateFormat;
 
-import java.text.SimpleDateFormat;
 
 public class Cuponera {
 	private String nombre;
