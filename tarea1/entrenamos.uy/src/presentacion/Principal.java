@@ -58,7 +58,7 @@ public class Principal {
         altaInstDeportivaInternalFrame = new AltaInstitucionDeportiva(ICD);
         altaInstDeportivaInternalFrame.setVisible(false);
         
-        altaActividadDeportivaInternalFrame = new AltaActividadDeportiva();
+        altaActividadDeportivaInternalFrame = new AltaActividadDeportiva(ICD);
         altaActividadDeportivaInternalFrame.setVisible(false);
         
         consultaActividadDeportivaInternalFrame = new ConsultaActividadDeportiva();
@@ -140,7 +140,7 @@ public class Principal {
         JMenuItem menuItemRegistrarID = new JMenuItem("Alta de Institución Deportiva");
         menuItemRegistrarID.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Muestro el InternalFrame para registrar un usuario
+                // Muestro el InternalFrame para registrar una Institucion Deportiva
             	altaInstDeportivaInternalFrame.setVisible(true);
             }
         });
@@ -153,7 +153,8 @@ public class Principal {
         JMenuItem menuItemRegistrarAD = new JMenuItem("Alta de Actividad Deportiva");
         menuItemRegistrarAD.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Muestro el InternalFrame para registrar un usuario
+                // Muestro el InternalFrame para registrar una Actividad Deportiva
+            	altaActividadDeportivaInternalFrame.cargarInstituciones();
             	altaActividadDeportivaInternalFrame.setVisible(true);
             }
         });

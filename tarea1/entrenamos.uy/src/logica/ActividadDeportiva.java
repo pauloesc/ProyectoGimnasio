@@ -1,6 +1,6 @@
 package logica;
 
-import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Representa a una Actividad Deportiva en el sistema con nombre, descripcion, duracion, costo, fecha_alta.
@@ -13,10 +13,10 @@ public class ActividadDeportiva {
     private String descripcion;
     private Float duracion;
     private Float costo;
-    private SimpleDateFormat fecha_alta;
+    private Date fecha_alta;
     
 
-    public ActividadDeportiva(String n, String de, Float dur, Float cost, SimpleDateFormat fa) {
+    public ActividadDeportiva(String n, String de, Float dur, Float cost, Date fa) {
         this.nombre = n;
         this.descripcion = de;
         this.duracion = dur;
@@ -40,7 +40,7 @@ public class ActividadDeportiva {
         return costo;
     }
     
-    public SimpleDateFormat getFechaAlta() {
+    public Date getFechaAlta() {
         return fecha_alta;
     }
 
@@ -60,7 +60,7 @@ public class ActividadDeportiva {
         this.costo = cost;
     }
     
-    public void setFechaAlta(SimpleDateFormat fa) {
+    public void setFechaAlta(Date fa) {
         this.fecha_alta = fa;
     }
 
