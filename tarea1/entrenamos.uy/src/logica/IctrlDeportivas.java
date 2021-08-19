@@ -2,6 +2,9 @@ package logica;
 
 import excepciones.ActividadDeportivaRepetidaException;
 import excepciones.InstitucionDeportivaRepetidaException;
+
+import java.util.Set;
+
 import excepciones.ActividadDeportivaNoExisteException;
 
 /**
@@ -39,5 +42,8 @@ public interface IctrlDeportivas {
      * @throws ActividadDeportivaNoExisteException Si el nombre no está registrada en el sistema.
      */
     public abstract void /*DataActividadDeportiva*/ consultaActividadDeportiva(String nid, String n) throws ActividadDeportivaNoExisteException;
+    
+    public abstract Set<String> darNombreInstituciones();
+    // muestra los nombres de todas las instituciones deportivas, utilizado en varios CU
 
 }

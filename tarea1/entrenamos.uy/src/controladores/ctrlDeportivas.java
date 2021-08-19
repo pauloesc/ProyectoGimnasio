@@ -1,5 +1,7 @@
 package controladores;
 
+import java.util.Set;
+
 import excepciones.ActividadDeportivaNoExisteException;
 import excepciones.ActividadDeportivaRepetidaException;
 import excepciones.InstitucionDeportivaRepetidaException;
@@ -38,6 +40,11 @@ public class ctrlDeportivas implements IctrlDeportivas{
 	public void consultaActividadDeportiva(String nid, String n) throws ActividadDeportivaNoExisteException {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public Set<String> darNombreInstituciones() {
+		manejDeportivas mD = manejDeportivas.getinstance();
+		return mD.darNombreInstituciones();
 	}
 
 }
