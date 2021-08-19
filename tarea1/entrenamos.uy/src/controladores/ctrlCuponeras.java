@@ -1,14 +1,11 @@
-/**
- * 
- */
+
 package controladores;
 
-/**
- * @author mbarrera
- *
- */
-public class ctrlCuponeras {
-/**/
-/*Ale--*/
-/**/
+import logica.IctrlCuponeras;
+
+
+public class ctrlCuponeras implements IctrlCuponeras {
+	
+	public ctrlDeportivas() {
+	 }
 }
