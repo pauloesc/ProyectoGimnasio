@@ -8,6 +8,7 @@ import javax.swing.JMenuItem;
 
 import logica.Fabrica;
 import logica.IctrlDeportivas;
+import logica.IctrlCuponeras;
 
 import javax.swing.JMenu;
 import java.awt.event.ActionEvent;
@@ -24,7 +25,7 @@ public class Principal {
     private AltaInstitucionDeportiva altaInstDeportivaInternalFrame;
     private AltaActividadDeportiva altaActividadDeportivaInternalFrame;
     private ConsultaActividadDeportiva consultaActividadDeportivaInternalFrame;
-    
+    private CrearCuponera CrearCuponeraInternalFrame;
     /**
      * Launch the application.
      */
@@ -51,6 +52,7 @@ public class Principal {
         // Inicialización
         Fabrica fabrica = Fabrica.getInstance();
         IctrlDeportivas ICD = fabrica.getIctrlDeportivas();
+        IctrlCuponeras ICC=fabrica.get
         
         // Se crean los tres InternalFrame y se incluyen al Frame principal ocultos.
         // De esta forma, no es necesario crear y destruir objetos lo que enlentece la ejecución.
@@ -63,6 +65,9 @@ public class Principal {
         
         consultaActividadDeportivaInternalFrame = new ConsultaActividadDeportiva();
         consultaActividadDeportivaInternalFrame.setVisible(false);
+        
+        CrearCuponeraInternalFrame = new AltaInstitucionDeportiva(ICD);
+        CrearCuponeraInternalFrame.setVisible(false);
         
         entrenamosUy.getContentPane().setLayout(null);
         

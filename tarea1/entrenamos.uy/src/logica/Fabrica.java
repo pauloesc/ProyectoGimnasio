@@ -1,6 +1,8 @@
 package logica;
 
+import controladores.ctrlCuponeras;
 import controladores.ctrlDeportivas;
+
 /**
  * Fábrica para la construcción de un controlador de usuarios (uno distinto para cada invocación).
  * Se implementa en base al patrón Singleton.
@@ -28,4 +30,8 @@ public class Fabrica {
     	return new ctrlDeportivas();
     }
 
+    public IctrlCuponeras getIctrlCuponeras() {
+    	return new ctrlCuponeras();
+    } 
+    
 }

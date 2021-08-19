@@ -1,10 +1,7 @@
 package manejadores;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import logica.InstitucionDeportiva;
-import logica.ActividadDeportiva;
 import logica.Cuponera;
 
 public class manejCuponeras {
@@ -13,12 +10,12 @@ public class manejCuponeras {
     private static manejCuponeras instancia = null;
 
     private manejCuponeras() {
-        institucionesDeportivas = new HashMap<String, InstitucionDeportiva>();
+        Cuponeras = new HashMap<String, Cuponera>();
     }
     
-    public static manejDeportivas getinstance() {
+    public static manejCuponeras getinstance() {
         if (instancia == null)
-            instancia = new manejDeportivas();
+            instancia = new manejCuponeras();
         return instancia;
     }
 }
