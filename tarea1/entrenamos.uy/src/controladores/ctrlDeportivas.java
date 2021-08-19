@@ -47,4 +47,11 @@ public class ctrlDeportivas implements IctrlDeportivas{
 		return mD.darNombreInstituciones();
 	}
 
+	public Set<String> darNombresActividadesDeportivas(String inst) {
+		manejDeportivas mD = manejDeportivas.getinstance();
+		InstitucionDeportiva i = mD.obtenerIDeportiva(inst);
+		
+		return i.darNombresActividadesDeportivas();
+	}
+	
 }

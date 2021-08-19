@@ -66,6 +66,7 @@ public class Principal {
         consultaActividadDeportivaInternalFrame.setVisible(false);
         
         altaDictadoDeClasesInternalFrame = new AltaDictadoDeClases();
+        altaDictadoDeClasesInternalFrame.setLocation(106, 25);
         altaDictadoDeClasesInternalFrame.setVisible(false);
         
         
@@ -87,7 +88,7 @@ public class Principal {
         // Se crea el Frame con las dimensiones indicadas.
     	entrenamosUy = new JFrame();
     	entrenamosUy.setTitle("entrenamos.uy - backend administrador");
-    	entrenamosUy.setBounds(100, 100, 850, 600);
+    	entrenamosUy.setBounds(100, 100, 852, 641);
         entrenamosUy.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Se crea una barra de menú (JMenuBar) con dos menú (JMenu) desplegables.

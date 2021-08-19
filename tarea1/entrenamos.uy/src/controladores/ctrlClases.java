@@ -9,10 +9,11 @@ import java.util.Date;
 import excepciones.ClaseRepetidaException;
 import logica.ActividadDeportiva;
 import logica.Clase;
+import logica.IctrlClases;
 import manejadores.manejClases;
 import manejadores.manejDeportivas;
 
-public class ctrlClases {
+public class ctrlClases implements IctrlClases {
 	
 	private manejClases manejador;
 	

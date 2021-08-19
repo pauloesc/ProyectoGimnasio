@@ -46,4 +46,6 @@ public interface IctrlDeportivas {
     public abstract Set<String> darNombreInstituciones();
     // muestra los nombres de todas las instituciones deportivas, utilizado en varios CU
 
+    public abstract Set<String> darNombresActividadesDeportivas(String inst);
+    // muestra de las actividades deportivas de una institucion, utilizado en varios CU
 }
