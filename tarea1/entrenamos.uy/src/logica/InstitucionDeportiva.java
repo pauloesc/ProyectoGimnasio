@@ -1,5 +1,7 @@
 package logica;
 
+import java.util.Set;
+
 /**
  * Representa a una Institucion Deportiva en el sistema con nombre, descripcion y url.
  * @author mbarrera
@@ -10,7 +12,7 @@ public class InstitucionDeportiva {
     private String nombre;
     private String descripcion;
     private String url;
-   // private Set()
+    private Set<ActividadDeportiva> actividadesDeportivasInst;
 
     public InstitucionDeportiva(String n, String de, String url) {
         this.nombre = n;
@@ -40,6 +42,10 @@ public class InstitucionDeportiva {
 
     public void setURL(String url) {
         this.url = url;
+    }
+    
+    public void addActividadDeportiva(ActividadDeportiva act) {
+        this.actividadesDeportivasInst.add(act);
     }
 
 }

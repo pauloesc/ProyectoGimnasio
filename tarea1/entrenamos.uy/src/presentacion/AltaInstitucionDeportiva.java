@@ -99,7 +99,7 @@ public class AltaInstitucionDeportiva extends JInternalFrame {
 	}
 	
 	// Este método es invocado al querer registrar una Institucion Deportiva, funcionalidad
-    // provista por la operación del sistem altaInstDeportiva().
+    // provista por la operación del sistem altaInstitucion().
     // Previamente se hace una verificación de los campos, particularmente que no sean vacíos 
     // Tanto en caso de que haya un error (de verificación o de registro) o no, se despliega
     // un mensaje utilizando un panel de mensaje (JOptionPane).
