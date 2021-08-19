@@ -1,6 +1,8 @@
 package logica;
 
 import java.text.SimpleDateFormat;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 public class Cuponera {
@@ -47,6 +49,12 @@ public class Cuponera {
 		this.info = info;
 	}
 	
-	
+	public Set <String> getListaActividades(){
+		Set <String> resu = new HashSet<String>();
+		for (Iterator<InfoClases> iter=info.iterator();iter.hasNext();) {
+			resu.add(iter.next().getNombreActividadDeportiva());
+		}
+		return resu;  
+	}
 
 }
