@@ -7,7 +7,7 @@ import logica.IctrlDeportivas;
 import logica.InstitucionDeportiva;
 import logica.ActividadDeportiva;
 import manejadores.manejDeportivas;
-import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Controlador de Actividades e Instituciones Deportivas
@@ -30,7 +30,7 @@ public class ctrlDeportivas implements IctrlDeportivas{
         mD.agregarInstitucion(indep);
 	}
 
-	public void altaActividadDeportiva(String nid, String n, String de, Float dur, Float c, SimpleDateFormat fal) throws ActividadDeportivaRepetidaException {
+	public void altaActividadDeportiva(String nid, String n, String de, Float dur, Float c, Date fal) throws ActividadDeportivaRepetidaException {
 		manejDeportivas mD = manejDeportivas.getinstance();
         ActividadDeportiva actdep = mD.buscarActividad(n);
         if (actdep != null)

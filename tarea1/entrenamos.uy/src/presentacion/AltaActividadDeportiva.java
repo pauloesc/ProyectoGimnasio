@@ -20,7 +20,9 @@ import javax.swing.JComboBox;
 import javax.swing.SwingConstants;
 import javax.swing.JSpinner;
 import java.awt.Choice;
-//import logica.IctrlDeportivas;
+import com.toedter.calendar.JDateChooser;
+import logica.IctrlDeportivas;
+import com.toedter.calendar.JDayChooser;
 
 @SuppressWarnings({ "serial", "unused" })
 public class AltaActividadDeportiva extends JInternalFrame {
@@ -51,20 +53,6 @@ public class AltaActividadDeportiva extends JInternalFrame {
 		textDuracion.setBounds(133, 205, 93, 19);
 		getContentPane().add(textDuracion);
 		
-		Button buttonAceptar = new Button("Aceptar");
-		buttonAceptar.setBounds(133, 308, 100, 32);
-		getContentPane().add(buttonAceptar);
-		
-		Button buttonCancelar = new Button("Cancelar");
-		buttonCancelar.setBounds(251, 308, 100, 32);
-		buttonCancelar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                //limpiarFormulario();
-                setVisible(false);
-            }
-        });
-		getContentPane().add(buttonCancelar);
-		
 		TextArea textDescripcion = new TextArea();
 		textDescripcion.setBounds(133, 110, 280, 89);
 		getContentPane().add(textDescripcion);
@@ -93,16 +81,22 @@ public class AltaActividadDeportiva extends JInternalFrame {
 		lblFechaDeAlta.setBounds(34, 263, 95, 19);
 		getContentPane().add(lblFechaDeAlta);
 		
-		JSpinner dia = new JSpinner();
-		dia.setBounds(133, 263, 46, 20);
-		getContentPane().add(dia);
+		JDateChooser dateChooser = new JDateChooser();
+		dateChooser.setBounds(133, 263, 128, 19);
+		getContentPane().add(dateChooser);
 		
-		JSpinner mes = new JSpinner();
-		mes.setBounds(180, 263, 46, 20);
-		getContentPane().add(mes);
+		Button buttonAceptar = new Button("Aceptar");
+		buttonAceptar.setBounds(133, 308, 100, 32);
+		getContentPane().add(buttonAceptar);
 		
-		JSpinner ano = new JSpinner();
-		ano.setBounds(227, 263, 62, 20);
-		getContentPane().add(ano);
+		Button buttonCancelar = new Button("Cancelar");
+		buttonCancelar.setBounds(251, 308, 100, 32);
+		buttonCancelar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                //limpiarFormulario();
+                setVisible(false);
+            }
+        });
+		getContentPane().add(buttonCancelar);
 	}
 }
