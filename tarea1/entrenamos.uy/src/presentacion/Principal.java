@@ -24,6 +24,7 @@ public class Principal {
     private AltaInstitucionDeportiva altaInstDeportivaInternalFrame;
     private AltaActividadDeportiva altaActividadDeportivaInternalFrame;
     private ConsultaActividadDeportiva consultaActividadDeportivaInternalFrame;
+    private AltaDictadoDeClases altaDictadoDeClasesInternalFrame;
     
     /**
      * Launch the application.
@@ -64,11 +65,17 @@ public class Principal {
         consultaActividadDeportivaInternalFrame = new ConsultaActividadDeportiva(ICD);
         consultaActividadDeportivaInternalFrame.setVisible(false);
         
+        altaDictadoDeClasesInternalFrame = new AltaDictadoDeClases();
+        altaDictadoDeClasesInternalFrame.setLocation(106, 25);
+        altaDictadoDeClasesInternalFrame.setVisible(false);
+        
+        
         entrenamosUy.getContentPane().setLayout(null);
         
         entrenamosUy.getContentPane().add(altaInstDeportivaInternalFrame);
         entrenamosUy.getContentPane().add(altaActividadDeportivaInternalFrame);
         entrenamosUy.getContentPane().add(consultaActividadDeportivaInternalFrame);
+        entrenamosUy.getContentPane().add(altaDictadoDeClasesInternalFrame);
         
         
     }
@@ -81,7 +88,7 @@ public class Principal {
         // Se crea el Frame con las dimensiones indicadas.
     	entrenamosUy = new JFrame();
     	entrenamosUy.setTitle("entrenamos.uy - backend administrador");
-    	entrenamosUy.setBounds(100, 100, 850, 600);
+    	entrenamosUy.setBounds(100, 100, 852, 641);
         entrenamosUy.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Se crea una barra de menú (JMenuBar) con dos menú (JMenu) desplegables.
@@ -176,7 +183,8 @@ public class Principal {
         JMenuItem menuItemAltaClase = new JMenuItem("Alta de dictado de Clase");
         menuItemAltaClase.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Muestro el InternalFrame para registrar un usuario
+                // Muestro el InternalFrame para registrar una clase
+            	altaDictadoDeClasesInternalFrame.setVisible(true);
 
             }
         });
@@ -185,7 +193,7 @@ public class Principal {
         JMenuItem menuItemVerInfoClase = new JMenuItem("Consulta de dictado de Clase");
         menuItemVerInfoClase.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Muestro el InternalFrame para ver información de un usuario
+                // Muestro el InternalFrame para ver información de una clase
 
             }
         });

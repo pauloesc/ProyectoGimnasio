@@ -1,5 +1,7 @@
 package controladores;
 
+import java.util.Set;
+
 import excepciones.ActividadDeportivaNoExisteException;
 import excepciones.ActividadDeportivaRepetidaException;
 import excepciones.InstitucionDeportivaRepetidaException;
@@ -38,7 +40,7 @@ public class ctrlDeportivas implements IctrlDeportivas{
         ActividadDeportiva actdep = mD.buscarActividad(n);
         if (actdep != null)
             throw new ActividadDeportivaRepetidaException("La actividad deportiva " + n + " ya esta registrada.");
-
+		
         actdep = new ActividadDeportiva(n, de, dur, c, fal);
         mD.agregarActividad(actdep);
         InstitucionDeportiva indep = mD.buscarInstitucion(nid);
@@ -98,6 +100,18 @@ public class ctrlDeportivas implements IctrlDeportivas{
 		ActividadDeportiva actividad = mD.buscarActividad(n);
 		DataActividad dtact = new DataActividad(actividad.getNombre(), actividad.getDescripcion(), actividad.getDuracion(), actividad.getCosto(), actividad.getFechaAlta());
 		return dtact;	
+	}
+
+	public Set<String> darNombreInstituciones() {
+		manejDeportivas mD = manejDeportivas.getinstance();
+		return mD.darNombreInstituciones();
+	}
+
+	public Set<String> darNombresActividadesDeportivas(String inst) {
+		manejDeportivas mD = manejDeportivas.getinstance();
+		InstitucionDeportiva i = mD.buscarInstitucion(inst);
+		
+		return i.darNombresActividadesDeportivas();
 	}
 
 }

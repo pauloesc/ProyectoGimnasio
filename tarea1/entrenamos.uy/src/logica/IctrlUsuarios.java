@@ -1,5 +1,7 @@
 package logica;
 
+import java.util.Set;
+
 //import excepciones.UsuarioNoExisteException;
 //import excepciones.UsuarioRepetidoException;
 
@@ -9,6 +11,8 @@ package logica;
  */
 public interface IctrlUsuarios {
     
+	public abstract Set<String> mostrarNombreProfesoresDeInstitucion(String inst);
+	
     /**
      * Registra al usuario en el sistema.
      * @param n Nombre del usuario.
