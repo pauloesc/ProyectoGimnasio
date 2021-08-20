@@ -16,9 +16,11 @@ import java.util.Set;
 import logica.ActividadDeportiva;
 import logica.InstitucionDeportiva;
 
+
 public class manejDeportivas {
 	private Map<String, InstitucionDeportiva> institucionesDeportivas;
 	private Map<String, ActividadDeportiva> actividadesDeportivas;
+	
     private static manejDeportivas instancia = null;
 
     private manejDeportivas() {
@@ -37,11 +39,11 @@ public class manejDeportivas {
         institucionesDeportivas.put(nombre, insdep);
     }
 
-    public InstitucionDeportiva obtenerIDeportiva(String nombre) {
+    public InstitucionDeportiva buscarInstitucion(String nombre) {
         return ((InstitucionDeportiva) institucionesDeportivas.get(nombre));
     }
 
-    public InstitucionDeportiva[] getIDeportivas() {
+    public InstitucionDeportiva[] getInstituciones() {
         if (institucionesDeportivas.isEmpty())
             return null;
         else {
@@ -55,7 +57,31 @@ public class manejDeportivas {
             return institucionesdeportivas;
         }
     }
-    
+
+    public void agregarActividad(ActividadDeportiva actdep) {
+        String nombre = actdep.getNombre();
+        actividadesDeportivas.put(nombre, actdep);
+    }
+
+    public ActividadDeportiva buscarActividad(String nombre) {
+        return ((ActividadDeportiva) actividadesDeportivas.get(nombre));
+    }
+
+    public ActividadDeportiva[] getActividades() {
+        if (actividadesDeportivas.isEmpty())
+            return null;
+        else {
+            Collection<ActividadDeportiva> actdeps = actividadesDeportivas.values();
+            Object[] o = actdeps.toArray();
+            ActividadDeportiva[] actividadesdeportivas = new ActividadDeportiva[o.length];
+            for (int i = 0; i < o.length; i++) {
+                actividadesdeportivas[i] = (ActividadDeportiva) o[i];
+            }
+
+            return actividadesdeportivas;
+        }
+    }
+
     public ActividadDeportiva buscarActividad(String nom) {
     	return actividadesDeportivas.get(nom);
     }
@@ -63,5 +89,4 @@ public class manejDeportivas {
     public Set<String> darNombreInstituciones() {
     	return this.institucionesDeportivas.keySet();
     }
-    
 }

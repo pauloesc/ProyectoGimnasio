@@ -1,7 +1,6 @@
 package logica;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -14,13 +13,13 @@ public class InstitucionDeportiva {
     private String nombre;
     private String descripcion;
     private String url;
-    private Map<String,ActividadDeportiva> actividades;
+    private Set<ActividadDeportiva> actividadesDeportivasInst;
 
     public InstitucionDeportiva(String n, String de, String url) {
         this.nombre = n;
         this.descripcion = de;
         this.url = url;
-        this.actividades = new HashMap<String,ActividadDeportiva>();
+        this.actividadesDeportivasInst = new HashSet<ActividadDeportiva>();
     }
 
     public String getNombre() {
@@ -39,16 +38,37 @@ public class InstitucionDeportiva {
         this.nombre = n;
     }
 
-    public void setApellido(String de) {
+    public void setDescripcion(String de) {
         this.descripcion = de;
     }
 
-    public void setCedulaIdentidad(String url) {
+    public void setURL(String url) {
         this.url = url;
     }
-
     
-    public Set<String> darNombresActividadesDeportivas() {
-    	return actividades.keySet();
+    public void addActividadDeportiva(ActividadDeportiva act) {
+        this.actividadesDeportivasInst.add(act);
+    }
+
+	public ActividadDeportiva[] getActividades() {
+		if (actividadesDeportivasInst.isEmpty())
+            return null;
+        else {
+            Object[] o = actividadesDeportivasInst.toArray();
+            ActividadDeportiva[] actividadesdeportivas = new ActividadDeportiva[o.length];
+            for (int i = 0; i < o.length; i++) {
+                actividadesdeportivas[i] = (ActividadDeportiva) o[i];
+            }
+
+            return actividadesdeportivas;
+        }
+    }
+
+public Set<String> darNombresActividadesDeportivas() {
+	Set<String> res = new HashSet<String>();    	
+	for( Iterator<ActividadDeportiva> it = this.actividadesDeportivasInst.iterator(); it.hasNext();) { 
+	    String x = (String)it.next().getNombre();
+	    this.actividadesDeportivasInst.add(x);
+	}
     }
 }

@@ -18,6 +18,8 @@ import javax.swing.JTextArea;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import excepciones.InstitucionDeportivaRepetidaException;
 import logica.IctrlDeportivas;
@@ -63,6 +65,19 @@ public class AltaInstitucionDeportiva extends JInternalFrame {
 		getContentPane().add(lblDescripcion);
 		
 		txtDescripcion = new JTextArea();
+		txtDescripcion.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_TAB) {
+                    if (e.getModifiersEx() > 0) {
+                    	txtDescripcion.transferFocusBackward();
+                    } else {
+                    	txtDescripcion.transferFocus();
+                    }
+                    e.consume();
+                }
+			}
+		});
 		txtDescripcion.setBounds(130, 61, 280, 89);
 		txtDescripcion.setColumns(10);
 		txtDescripcion.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -99,7 +114,7 @@ public class AltaInstitucionDeportiva extends JInternalFrame {
 	}
 	
 	// Este método es invocado al querer registrar una Institucion Deportiva, funcionalidad
-    // provista por la operación del sistem altaInstDeportiva().
+    // provista por la operación del sistem altaInstitucion().
     // Previamente se hace una verificación de los campos, particularmente que no sean vacíos 
     // Tanto en caso de que haya un error (de verificación o de registro) o no, se despliega
     // un mensaje utilizando un panel de mensaje (JOptionPane).

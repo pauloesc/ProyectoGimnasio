@@ -9,22 +9,54 @@ package presentacion;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 import java.awt.Button;
 import java.awt.TextArea;
 
 import excepciones.ActividadDeportivaRepetidaException;
+import excepciones.InstitucionDeportivaRepetidaException;
+import excepciones.InstitucionDeportivaNoExisteException;
+
+import javax.swing.BorderFactory;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.SwingConstants;
 import javax.swing.JSpinner;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
 import java.awt.Choice;
-//import logica.IctrlDeportivas;
+import java.awt.Color;
+
+import com.toedter.calendar.JDateChooser;
+
+import datatypes.DataInstitucion;
+import logica.IctrlDeportivas;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 @SuppressWarnings({ "serial", "unused" })
 public class AltaActividadDeportiva extends JInternalFrame {
-	public AltaActividadDeportiva() {
+	
+    // Controlador de Deportivas que se utilizará para las acciones del JFrame
+    private IctrlDeportivas controlDeportivas;
+    
+    private JTextField txtNombre;
+    private JTextArea txtDescripcion;
+	private JComboBox<DataInstitucion> comboBoxInstDeportivas;
+    private JTextField txtDuracion;
+    private JTextField txtCosto;
+    private JDateChooser dateChooser;
+	
+	public AltaActividadDeportiva(IctrlDeportivas icd) {
+		
+		controlDeportivas = icd;
+		
 		setTitle("Alta de Actividad Deportiva");
 		setClosable(true);
 		getContentPane().setLayout(null);
@@ -35,43 +67,45 @@ public class AltaActividadDeportiva extends JInternalFrame {
 		lblNombre.setBounds(34, 80, 70, 19);
 		getContentPane().add(lblNombre);
 		
-		TextField textNombre = new TextField();
-		textNombre.setBounds(133, 80, 280, 19);
-		getContentPane().add(textNombre);
+		txtNombre = new JTextField();
+		txtNombre.setBounds(133, 80, 280, 19);
+		txtNombre.setBorder(BorderFactory.createLineBorder(Color.black));
+		getContentPane().add(txtNombre);
 		
-		JLabel lblDescripcin = new JLabel("Descripción:");
-		lblDescripcin.setBounds(34, 110, 95, 19);
-		getContentPane().add(lblDescripcin);
+		JLabel lblDescripcion = new JLabel("Descripción:");
+		lblDescripcion.setBounds(34, 110, 95, 19);
+		getContentPane().add(lblDescripcion);
 		
 		JLabel lblDuracion = new JLabel("Duración:");
 		lblDuracion.setBounds(34, 205, 70, 19);
 		getContentPane().add(lblDuracion);
 		
-		TextField textDuracion = new TextField();
-		textDuracion.setBounds(133, 205, 93, 19);
-		getContentPane().add(textDuracion);
+		txtDuracion = new JTextField();
+		txtDuracion.setBounds(133, 205, 93, 19);
+		txtDuracion.setBorder(BorderFactory.createLineBorder(Color.black));
+		getContentPane().add(txtDuracion);
 		
-		Button buttonAceptar = new Button("Aceptar");
-		buttonAceptar.setBounds(133, 308, 100, 32);
-		getContentPane().add(buttonAceptar);
+		txtDescripcion = new JTextArea();
+		txtDescripcion.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_TAB) {
+                    if (e.getModifiersEx() > 0) {
+                    	txtDescripcion.transferFocusBackward();
+                    } else {
+                    	txtDescripcion.transferFocus();
+                    }
+                    e.consume();
+                }
+			}
+		});
+		txtDescripcion.setBounds(133, 110, 280, 89);
+		txtDescripcion.setBorder(BorderFactory.createLineBorder(Color.black));
+		getContentPane().add(txtDescripcion);
 		
-		Button buttonCancelar = new Button("Cancelar");
-		buttonCancelar.setBounds(251, 308, 100, 32);
-		buttonCancelar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                //limpiarFormulario();
-                setVisible(false);
-            }
-        });
-		getContentPane().add(buttonCancelar);
-		
-		TextArea textDescripcion = new TextArea();
-		textDescripcion.setBounds(133, 110, 280, 89);
-		getContentPane().add(textDescripcion);
-		
-		@SuppressWarnings("rawtypes")
-		JComboBox comboBoxInstDeportivas = new JComboBox();
+		comboBoxInstDeportivas = new JComboBox<DataInstitucion>();
 		comboBoxInstDeportivas.setBounds(195, 40, 218, 24);
+		comboBoxInstDeportivas.setBorder(BorderFactory.createLineBorder(Color.black));
 		getContentPane().add(comboBoxInstDeportivas);
 		
 		JLabel lblInstDeportiva = new JLabel("Institución Deportiva:");
@@ -85,24 +119,144 @@ public class AltaActividadDeportiva extends JInternalFrame {
 		lblCosto.setBounds(34, 232, 70, 19);
 		getContentPane().add(lblCosto);
 		
-		TextField textCosto = new TextField();
-		textCosto.setBounds(133, 232, 93, 19);
-		getContentPane().add(textCosto);
+		txtCosto = new JTextField();
+		txtCosto.setBounds(133, 232, 93, 19);
+		txtCosto.setBorder(BorderFactory.createLineBorder(Color.black));
+		getContentPane().add(txtCosto);
 		
 		JLabel lblFechaDeAlta = new JLabel("Fecha Alta:");
 		lblFechaDeAlta.setBounds(34, 263, 95, 19);
 		getContentPane().add(lblFechaDeAlta);
 		
-		JSpinner dia = new JSpinner();
-		dia.setBounds(133, 263, 46, 20);
-		getContentPane().add(dia);
+		Button buttonAceptar = new Button("Aceptar");
+		buttonAceptar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+            	cmdRegistroADActionPerformed(arg0);
+            }
+        });
+		buttonAceptar.setBounds(133, 308, 100, 32);
+		getContentPane().add(buttonAceptar);
 		
-		JSpinner mes = new JSpinner();
-		mes.setBounds(180, 263, 46, 20);
-		getContentPane().add(mes);
+		Button buttonCancelar = new Button("Cancelar");
+		buttonCancelar.setBounds(251, 308, 100, 32);
+		buttonCancelar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                limpiarFormulario();
+                //setVisible(false);
+            }
+        });
+		getContentPane().add(buttonCancelar);
 		
-		JSpinner ano = new JSpinner();
-		ano.setBounds(227, 263, 62, 20);
-		getContentPane().add(ano);
+		dateChooser = new JDateChooser();
+		dateChooser.setBounds(133, 263, 128, 19);
+		dateChooser.setBorder(BorderFactory.createLineBorder(Color.black));
+		getContentPane().add(dateChooser);
 	}
+	
+	// Este método es invocado al querer registrar una Actividad Deportiva, funcionalidad
+    // provista por la operación del sistem altaActividadDeportiva().
+    // Previamente se hace una verificación de los campos, particularmente que no sean vacíos 
+    // Tanto en caso de que haya un error (de verificación o de registro) o no, se despliega
+    // un mensaje utilizando un panel de mensaje (JOptionPane).
+    protected void cmdRegistroADActionPerformed(ActionEvent arg0) {
+
+        // Obtengo datos de los controles Swing
+        String nombreID = comboBoxInstDeportivas.getSelectedItem().toString();
+        String nombre = txtNombre.getText();
+        String des = txtDescripcion.getText();
+        String dur = txtDuracion.getText();
+        String cost = txtCosto.getText();
+        Date fal = dateChooser.getDate();
+        
+        if (checkFormulario()) {
+            try {
+                controlDeportivas.altaActividadDeportiva(nombreID, nombre, des, Float.parseFloat(dur), Float.parseFloat(cost), fal);
+
+                // Muestro éxito de la operación
+                JOptionPane.showMessageDialog(this, "La Actividad Deportiva se ha registrado con éxito", "Alta Actividad Deportiva",
+                        JOptionPane.INFORMATION_MESSAGE);
+                
+                setVisible(false);
+                limpiarFormulario();
+
+            } catch (ActividadDeportivaRepetidaException e) {
+                // Muestro error de registro
+                JOptionPane.showMessageDialog(this, e.getMessage(), "Alta Actividad Deportiva", JOptionPane.ERROR_MESSAGE);
+                limpiarFormulario();
+            }
+        }
+    }
+	
+	// Permite validar la información introducida en los campos e indicar
+    // a través de un mensaje de error (JOptionPane) cuando algo sucede.
+    // Este tipo de chequeos se puede realizar de otras formas y con otras librerías de Java, 
+    // por ejemplo impidiendo que se escriban caracteres no numéricos al momento de escribir en
+    // en el campo de la cédula, o mostrando un mensaje de error apenas el foco pasa a otro campo.
+    private boolean checkFormulario() {
+    	String nombreID = String.valueOf(comboBoxInstDeportivas.getSelectedIndex());
+        String nombre = txtNombre.getText();
+        String des = txtDescripcion.getText();
+        String dur = txtDuracion.getText();
+        String cost = txtCosto.getText();
+        Date fal = dateChooser.getDate();
+        
+        boolean ret = true;
+
+        if (nombreID.isEmpty() || nombre.isEmpty() || des.isEmpty() || dur.isEmpty() || cost.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "Alta Actividad Deportiva",
+                    JOptionPane.ERROR_MESSAGE);
+            ret = false;
+        }
+        
+        if (ret){
+	        try {
+	            Float.parseFloat(dur);
+	        }
+	        catch (NumberFormatException e) {
+	    	    JOptionPane.showMessageDialog(this, "La duración debe ser un número", "Alta Actividad Deportiva",
+	    	    		JOptionPane.ERROR_MESSAGE);
+	            ret = false;
+	        }
+	        
+	        try {
+	            Float.parseFloat(cost);
+	        }
+	        catch (NumberFormatException e) {
+	    	    JOptionPane.showMessageDialog(this, "El costo debe ser un número", "Alta Actividad Deportiva",
+	    	    		JOptionPane.ERROR_MESSAGE);
+	            ret = false;
+	        }
+        }  
+        
+        return ret;
+    }
+    
+    // Método que permite cargar un nuevo modelo para el combo con las Instituciones Deportivas
+    // provistas por la operación del sistema getInstituciones(). 
+    // Se invoca el método antes de hacer visible el JInternalFrame
+    public void cargarInstituciones() {
+        DefaultComboBoxModel<DataInstitucion> modelo;
+        try {
+            modelo = new DefaultComboBoxModel<DataInstitucion>(controlDeportivas.getInstituciones());
+            modelo.setSelectedItem(null);
+            comboBoxInstDeportivas.setModel(modelo);
+        } catch (InstitucionDeportivaNoExisteException e) {
+        	JOptionPane.showMessageDialog(this, "No existen Instituciones Deportivas en el sistema.", "Alta Actividad Deportiva",
+    	    		JOptionPane.ERROR_MESSAGE);
+        	setVisible(false);
+        }
+
+    }
+    
+    // Permite borrar el contenido de un formulario antes de cerrarlo.
+    // Recordar que las ventanas no se destruyen, sino que simplemente 
+    // se ocultan, por lo que conviene borrar la información para que 
+    // no aparezca al mostrarlas nuevamente.
+    private void limpiarFormulario() {
+        txtNombre.setText("");
+        txtDescripcion.setText("");
+        txtDuracion.setText("");
+        txtCosto.setText("");
+        dateChooser.cleanup();
+    }
 }
