@@ -1,6 +1,6 @@
 package datatypes;
 
-public class InfoBasicaUser {
+public abstract class InfoBasicaUser {
 
 	private String nickname;
 	private String nombre;
