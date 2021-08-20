@@ -6,6 +6,7 @@ import excepciones.InstitucionDeportivaNoExisteException;
 import excepciones.ActividadDeportivaNoExisteException;
 import java.util.Date;
 
+import datatypes.DataActividad;
 import datatypes.DataInstitucion;
 
 /**
@@ -44,6 +45,10 @@ public interface IctrlDeportivas {
      */
     public abstract void /*DataActividadDeportiva*/ consultaActividadDeportiva(String nid, String n) throws ActividadDeportivaNoExisteException;
 
-	public abstract DataInstitucion[] getInstituciones() throws InstitucionDeportivaNoExisteException;;
+	public abstract DataInstitucion[] getInstituciones() throws InstitucionDeportivaNoExisteException;
+
+	public abstract DataActividad[] getActividades(String nid) throws ActividadDeportivaNoExisteException;
+
+	public abstract DataActividad getDataActividad(String n) throws ActividadDeportivaNoExisteException;
 
 }
