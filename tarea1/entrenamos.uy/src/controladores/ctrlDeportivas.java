@@ -109,7 +109,7 @@ public class ctrlDeportivas implements IctrlDeportivas{
 
 	public Set<String> darNombresActividadesDeportivas(String inst) {
 		manejDeportivas mD = manejDeportivas.getinstance();
-		InstitucionDeportiva i = mD.obtenerIDeportiva(inst);
+		InstitucionDeportiva i = mD.buscarInstitucion(inst);
 		
 		return i.darNombresActividadesDeportivas();
 	}

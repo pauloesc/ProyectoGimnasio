@@ -82,9 +82,7 @@ public class manejDeportivas {
         }
     }
 
-    public ActividadDeportiva buscarActividad(String nom) {
-    	return actividadesDeportivas.get(nom);
-    }
+  
 
     public Set<String> darNombreInstituciones() {
     	return this.institucionesDeportivas.keySet();
