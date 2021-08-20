@@ -15,16 +15,49 @@ public class Profesor extends Usuario {
 
 	public Profesor(InfoBasicaProfesor info) {
 		
-		Date temporal  = new Date();
 		super(	info.getNickname(),
 				info.getNombre(),
 				info.getApellido(),
 				info.getCorreo(),
-				temporal );
+				new Date() );
 		this.descripcion = info.getDesc();
 		this.bio = info.getBibliografia();
 		this.website = info.getUrl();
 	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public String getBio() {
+		return bio;
+	}
+
+	public void setBio(String bio) {
+		this.bio = bio;
+	}
+
+	public String getWebsite() {
+		return website;
+	}
+
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+
+	public InstitucionDeportiva getInst() {
+		return inst;
+	}
+
+	public void setInst(InstitucionDeportiva inst) {
+		this.inst = inst;
+	}
+	
+	
 	
 	
 	

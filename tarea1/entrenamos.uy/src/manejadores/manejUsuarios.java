@@ -66,7 +66,10 @@ public class manejUsuarios {
 		Usuario userCreado;
 		//si es profesor
 		if( info.getClass() == InfoBasicaProfesor.class ) {
-			userCreado = Profesor(info);
+			
+			
+			InfoBasicaProfesor dd = (InfoBasicaProfesor)info;
+			userCreado = Profesor(dd);
 		}
 		else {
 			userCreado = Socio(info);

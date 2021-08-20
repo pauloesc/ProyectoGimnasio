@@ -22,5 +22,53 @@ public class Usuario {
 		this.email = email;
 		FNacimiento = fNacimiento;
 	}
+
+
+	public String getNombre() {
+		return nombre;
+	}
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
+	public String getApellido() {
+		return apellido;
+	}
+
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+	public Date getFNacimiento() {
+		return FNacimiento;
+	}
+
+
+	public void setFNacimiento(Date fNacimiento) {
+		FNacimiento = fNacimiento;
+	}
+
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	
+	
+	
 	
 }
