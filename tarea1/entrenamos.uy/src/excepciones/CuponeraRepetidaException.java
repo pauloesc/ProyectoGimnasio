@@ -7,9 +7,9 @@ package excepciones;
  *
  */
 @SuppressWarnings("serial")
-public class CuponeraNoExisteException extends Exception {
+public class CuponeraRepetidaException extends Exception {
 
-    public CuponeraNoExisteException(String string) {
+    public CuponeraRepetidaException(String string) {
         super(string);
     }
 }

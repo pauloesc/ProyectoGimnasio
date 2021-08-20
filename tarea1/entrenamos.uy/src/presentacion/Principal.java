@@ -52,7 +52,7 @@ public class Principal {
         // Inicialización
         Fabrica fabrica = Fabrica.getInstance();
         IctrlDeportivas ICD = fabrica.getIctrlDeportivas();
-        IctrlCuponeras ICC=fabrica.get
+        IctrlCuponeras ICC=fabrica.getIctrlCuponeras();
         
         // Se crean los tres InternalFrame y se incluyen al Frame principal ocultos.
         // De esta forma, no es necesario crear y destruir objetos lo que enlentece la ejecución.
@@ -66,7 +66,7 @@ public class Principal {
         consultaActividadDeportivaInternalFrame = new ConsultaActividadDeportiva();
         consultaActividadDeportivaInternalFrame.setVisible(false);
         
-        CrearCuponeraInternalFrame = new AltaInstitucionDeportiva(ICD);
+        CrearCuponeraInternalFrame = new CrearCuponera(ICC);
         CrearCuponeraInternalFrame.setVisible(false);
         
         entrenamosUy.getContentPane().setLayout(null);
@@ -74,7 +74,7 @@ public class Principal {
         entrenamosUy.getContentPane().add(altaInstDeportivaInternalFrame);
         entrenamosUy.getContentPane().add(altaActividadDeportivaInternalFrame);
         entrenamosUy.getContentPane().add(consultaActividadDeportivaInternalFrame);
-        
+        entrenamosUy.getContentPane().add(CrearCuponeraInternalFrame);
         
     }
 
@@ -212,7 +212,7 @@ public class Principal {
         menuItemRegistrarCuponera.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Muestro el InternalFrame para registrar un usuario
-
+            	CrearCuponeraInternalFrame.setVisible(true);
             }
         });
         menuCuponeras.add(menuItemRegistrarCuponera);

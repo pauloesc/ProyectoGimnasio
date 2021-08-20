@@ -28,6 +28,7 @@ public class CrearCuponera extends JInternalFrame {
 	private JTextField textdescrip;
 	private JDateChooser dateChooserini;
 	private JDateChooser dateChooserfin;
+	private JDateChooser dateChooseralta;
 	private JTextField txtDes;
 	
 	public CrearCuponera(IctrlCuponeras icc) {
@@ -35,7 +36,7 @@ public class CrearCuponera extends JInternalFrame {
 		setTitle("Crear Cuponera de Actividades Deportivas");
 		setClosable(true);
 		getContentPane().setLayout(null);
-		setBounds(10, 5, 459, 432);
+		setBounds(10, 5, 459, 454);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		
 		JLabel lblNombre = new JLabel("Nombre:");
@@ -59,29 +60,41 @@ public class CrearCuponera extends JInternalFrame {
 		getContentPane().add(lblPeriodoDeVigencia);
 		
 		JLabel lblFechaDeInicio = new JLabel("Fecha inicio:");
-		lblFechaDeInicio.setBounds(23, 191, 126, 15);
+		lblFechaDeInicio.setBounds(23, 187, 126, 15);
 		getContentPane().add(lblFechaDeInicio);
 		
 		JLabel lblFechaDeI = new JLabel("Fecha fin:");
-		lblFechaDeI.setBounds(23, 222, 76, 15);
+		lblFechaDeI.setBounds(23, 221, 76, 15);
 		getContentPane().add(lblFechaDeI);
 		
+		JLabel lblFechaAlta = new JLabel("Fecha alta:");
+		lblFechaAlta.setBounds(23, 315, 95, 15);
+		getContentPane().add(lblFechaAlta);
+		
+		
 		dateChooserini = new JDateChooser();
-		dateChooserini.setBounds(125, 218, 128, 19);
+		dateChooserini.setBounds(125, 186, 128, 19);
 		dateChooserini.setBorder(BorderFactory.createLineBorder(Color.black));
 		getContentPane().add(dateChooserini);
 		
 		dateChooserfin = new JDateChooser();
-		dateChooserfin.setBounds(125, 187, 128, 19);
+		dateChooserfin.setBounds(125, 221, 128, 19);
 		dateChooserfin.setBorder(BorderFactory.createLineBorder(Color.black));
 		getContentPane().add(dateChooserfin);
 		
+		dateChooseralta = new JDateChooser();
+		dateChooseralta.setBounds(125, 315, 128, 19);
+		dateChooseralta.setBorder(BorderFactory.createLineBorder(Color.black));
+		getContentPane().add(dateChooseralta);
+		
+		
+		
 		JLabel lblDescuento = new JLabel("Descuento:");
-		lblDescuento.setBounds(23, 273, 110, 19);
+		lblDescuento.setBounds(23, 265, 110, 19);
 		getContentPane().add(lblDescuento);
 		
 		txtDes = new JTextField();
-		txtDes.setBounds(125, 273, 93, 19);
+		txtDes.setBounds(125, 265, 93, 19);
 		txtDes.setBorder(BorderFactory.createLineBorder(Color.black));
 		getContentPane().add(txtDes);
 		
@@ -91,7 +104,7 @@ public class CrearCuponera extends JInternalFrame {
 				/*cmdRegistroADActionPerformed(arg0)*/
 			}
 		});
-		buttonAceptar.setBounds(125, 337, 100, 32);
+		buttonAceptar.setBounds(125, 365, 100, 32);
 		getContentPane().add(buttonAceptar);
 		
 		Button buttonCancelar = new Button("Cancelar");
@@ -100,7 +113,7 @@ public class CrearCuponera extends JInternalFrame {
 				 limpiarFormulario();
 			}
 		});
-		buttonCancelar.setBounds(237, 337, 100, 32);
+		buttonCancelar.setBounds(240, 365, 100, 32);
 		getContentPane().add(buttonCancelar);	
 	}
 	
@@ -110,6 +123,7 @@ public class CrearCuponera extends JInternalFrame {
         String des = textdescrip.getText();
         Date ini = dateChooserini.getDate();
         Date fin = dateChooserfin.getDate();
+        Date alta= dateChooseralta.getDate();
         Float desc = Float.parseFloat(txtDes.getText());
         
         if (checkFormulario()) {

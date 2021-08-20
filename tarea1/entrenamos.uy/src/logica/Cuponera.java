@@ -1,5 +1,6 @@
 package logica;
 
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -8,16 +9,18 @@ import java.util.Set;
 public class Cuponera {
 	private String nombre;
 	private String descripcion;
-	private SimpleDateFormat fecha_ini;
-	private SimpleDateFormat fecha_fin;
+	private Date fecha_ini;
+	private Date fecha_fin;
+	private Date fecha_alta;
 	private Float descuento;
 	private Set <InfoClases> info;
 
-	public Cuponera(String nom, String des, SimpleDateFormat ini, SimpleDateFormat fin, Float disc) {
+	public Cuponera(String nom, String des, Date ini, Date fin, Date alta, Float disc) {
 		this.nombre = nom;
 		this.descripcion = des;
 		this.fecha_ini = ini;
 		this.fecha_fin = fin;
+		this.fecha_alta = alta;
 		this.descuento = disc;
 	}
 
@@ -29,11 +32,11 @@ public class Cuponera {
 		return nombre;
 	}
 
-	public SimpleDateFormat getFecha_ini() {
+	public Date getFecha_ini() {
 		return fecha_ini;
 	}
 
-	public SimpleDateFormat getFecha_fin() {
+	public Date getFecha_fin() {
 		return fecha_fin;
 	}
 
@@ -55,6 +58,14 @@ public class Cuponera {
 			resu.add(iter.next().getNombreActividadDeportiva());
 		}
 		return resu;  
+	}
+
+	public Date getFecha_alta() {
+		return fecha_alta;
+	}
+
+	public void setFecha_alta(Date fecha_alta) {
+		this.fecha_alta = fecha_alta;
 	}
 
 }
