@@ -61,7 +61,7 @@ public class Principal {
         altaActividadDeportivaInternalFrame = new AltaActividadDeportiva(ICD);
         altaActividadDeportivaInternalFrame.setVisible(false);
         
-        consultaActividadDeportivaInternalFrame = new ConsultaActividadDeportiva();
+        consultaActividadDeportivaInternalFrame = new ConsultaActividadDeportiva(ICD);
         consultaActividadDeportivaInternalFrame.setVisible(false);
         
         entrenamosUy.getContentPane().setLayout(null);
@@ -163,7 +163,8 @@ public class Principal {
         JMenuItem menuItemVerInfoAD = new JMenuItem("Consulta de Actividad Deportiva");
         menuItemVerInfoAD.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Muestro el InternalFrame para ver información de un usuario
+                // Muestro el InternalFrame para ver información de una Actividad Deportiva
+            	consultaActividadDeportivaInternalFrame.cargarInstituciones();
             	consultaActividadDeportivaInternalFrame.setVisible(true);
             }
         });

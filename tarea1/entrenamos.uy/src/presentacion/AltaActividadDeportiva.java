@@ -203,7 +203,7 @@ public class AltaActividadDeportiva extends JInternalFrame {
         boolean ret = true;
 
         if (nombreID.isEmpty() || nombre.isEmpty() || des.isEmpty() || dur.isEmpty() || cost.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "Alta Institución Deportiva",
+            JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "Alta Actividad Deportiva",
                     JOptionPane.ERROR_MESSAGE);
             ret = false;
         }
@@ -213,7 +213,7 @@ public class AltaActividadDeportiva extends JInternalFrame {
 	            Float.parseFloat(dur);
 	        }
 	        catch (NumberFormatException e) {
-	    	    JOptionPane.showMessageDialog(this, "La duración debe ser un número", "Alta Institución Deportiva",
+	    	    JOptionPane.showMessageDialog(this, "La duración debe ser un número", "Alta Actividad Deportiva",
 	    	    		JOptionPane.ERROR_MESSAGE);
 	            ret = false;
 	        }
@@ -222,7 +222,7 @@ public class AltaActividadDeportiva extends JInternalFrame {
 	            Float.parseFloat(cost);
 	        }
 	        catch (NumberFormatException e) {
-	    	    JOptionPane.showMessageDialog(this, "El costo debe ser un número", "Alta Institución Deportiva",
+	    	    JOptionPane.showMessageDialog(this, "El costo debe ser un número", "Alta Actividad Deportiva",
 	    	    		JOptionPane.ERROR_MESSAGE);
 	            ret = false;
 	        }
@@ -241,7 +241,7 @@ public class AltaActividadDeportiva extends JInternalFrame {
             modelo.setSelectedItem(null);
             comboBoxInstDeportivas.setModel(modelo);
         } catch (InstitucionDeportivaNoExisteException e) {
-        	JOptionPane.showMessageDialog(this, "No existen Instituciones Deportivas en el sistema.", "Alta Institución Deportiva",
+        	JOptionPane.showMessageDialog(this, "No existen Instituciones Deportivas en el sistema.", "Alta Actividad Deportiva",
     	    		JOptionPane.ERROR_MESSAGE);
         	setVisible(false);
         }

@@ -50,4 +50,18 @@ public class InstitucionDeportiva {
         this.actividadesDeportivasInst.add(act);
     }
 
+	public ActividadDeportiva[] getActividades() {
+		if (actividadesDeportivasInst.isEmpty())
+            return null;
+        else {
+            Object[] o = actividadesDeportivasInst.toArray();
+            ActividadDeportiva[] actividadesdeportivas = new ActividadDeportiva[o.length];
+            for (int i = 0; i < o.length; i++) {
+                actividadesdeportivas[i] = (ActividadDeportiva) o[i];
+            }
+
+            return actividadesdeportivas;
+        }
+	}
+
 }
