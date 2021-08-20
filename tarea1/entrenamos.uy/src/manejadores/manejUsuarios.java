@@ -63,13 +63,11 @@ public class manejUsuarios {
 		boolean dispC = DisponibleCorreo(info.getCorreo());
 		
 		
-		Usuario userCreado;
-		//si es profesor
 		if( info.getClass() == InfoBasicaProfesor.class ) {
 			
 			
 			InfoBasicaProfesor dd = (InfoBasicaProfesor)info;
-			userCreado = Profesor(dd);
+			Profesor prof = Profesor(dd);
 		}
 		else {
 			userCreado = Socio(info);
@@ -91,13 +89,19 @@ public class manejUsuarios {
 	}
 	
 	public boolean DisponibleCorreo(String correo) {
-		Usuario e = this.usuarios.get(nickname);
-		if(e == null) {
-			return true;
+
+		Usuario usr;
+		boolean dispC = true;
+		
+		for (Iterator<Map.Entry<String, Usuario>> entries = usuarios.entrySet().iterator(); entries.hasNext(); ) {
+		    Map.Entry<String, Usuario> entry = entries.next();
+		    usr = entry.getValue();
+		    
+		    if ( usr.getEmail().equals(correo) ) {
+		    	dispC = false;
+		    }
 		}
-		else {
-			return false;
-		}
+		return dispC;
 	}
 	
 	

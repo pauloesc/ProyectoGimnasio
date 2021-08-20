@@ -3,6 +3,8 @@ package logica;
 import datatypes.InfoBasicaProfesor;
 import java.util.Date;
 
+import manejadores.manejDeportivas;
+
 public class Profesor extends Usuario {
 	private String descripcion;
 	private String bio;
@@ -24,7 +26,24 @@ public class Profesor extends Usuario {
 		this.bio = info.getBibliografia();
 		this.website = info.getUrl();
 	}
+	
+	
 
+	public Profesor(String nickname, String nombre, String apellido, String email, Date fNacimiento, String descripcion,
+			String bio, String website, String inst) {
+		super(nickname, nombre, apellido, email, fNacimiento);
+		this.descripcion = descripcion;
+		this.bio = bio;
+		this.website = website;
+		asociarInstitucion(inst);
+	}
+
+	public void asociarInstitucion(String nomInst) {
+		
+		manejDeportivas ee =  manejDeportivas.getinstance();
+		this.inst = ee.buscarInstitucion(nomInst);
+	}
+	
 	public String getDescripcion() {
 		return descripcion;
 	}

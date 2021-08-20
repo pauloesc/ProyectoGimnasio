@@ -1,14 +1,14 @@
 package datatypes;
-
+import java.util.Date;
 public abstract class InfoBasicaUser {
 
 	private String nickname;
 	private String nombre;
 	private String apellido;
 	private String correo;
-	private String fechaNac;
+	private Date fechaNac;
 
-	public InfoBasicaUser(String nickname, String nombre, String apellido, String correo, String fechaNac) {
+	public InfoBasicaUser(String nickname, String nombre, String apellido, String correo, Date fechaNac) {
 		this.nickname = nickname;
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -48,11 +48,11 @@ public abstract class InfoBasicaUser {
 		this.correo = correo;
 	}
 
-	public String getFechaNac() {
+	public Date getFechaNac() {
 		return fechaNac;
 	}
 
-	public void setFechaNac(String fechaNac) {
+	public void setFechaNac(Date fechaNac) {
 		this.fechaNac = fechaNac;
 	}
     

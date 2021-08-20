@@ -1,6 +1,7 @@
 package logica;
 
 import java.util.Date;
+import datatypes.InfoBasicaUser;
 
 public class Usuario {
 	private String nickname;
@@ -23,6 +24,13 @@ public class Usuario {
 		FNacimiento = fNacimiento;
 	}
 
+	public Usuario(InfoBasicaUser info) {
+		this.nickname = info.getNickname();
+		this.nombre = info.getNombre();
+		this.apellido = info.getApellido();
+		this.email = info.getCorreo();
+		FNacimiento = info.getFechaNac();
+	}
 
 	public String getNombre() {
 		return nombre;
