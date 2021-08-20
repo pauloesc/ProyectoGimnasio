@@ -21,6 +21,7 @@ public class manejDeportivas {
 
     private manejDeportivas() {
         institucionesDeportivas = new HashMap<String, InstitucionDeportiva>();
+        actividadesDeportivas = new HashMap<String, ActividadDeportiva>();
     }
     
     public static manejDeportivas getinstance() {

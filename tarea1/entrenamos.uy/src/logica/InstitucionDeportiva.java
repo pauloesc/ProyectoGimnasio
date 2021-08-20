@@ -1,5 +1,6 @@
 package logica;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -18,6 +19,7 @@ public class InstitucionDeportiva {
         this.nombre = n;
         this.descripcion = de;
         this.url = url;
+        this.actividadesDeportivasInst = new HashSet<ActividadDeportiva>();
     }
 
     public String getNombre() {
