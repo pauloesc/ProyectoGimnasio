@@ -37,6 +37,8 @@ import com.toedter.calendar.JDateChooser;
 
 import datatypes.DataInstitucion;
 import logica.IctrlDeportivas;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 @SuppressWarnings({ "serial", "unused" })
 public class AltaActividadDeportiva extends JInternalFrame {
@@ -84,6 +86,19 @@ public class AltaActividadDeportiva extends JInternalFrame {
 		getContentPane().add(txtDuracion);
 		
 		txtDescripcion = new JTextArea();
+		txtDescripcion.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_TAB) {
+                    if (e.getModifiersEx() > 0) {
+                    	txtDescripcion.transferFocusBackward();
+                    } else {
+                    	txtDescripcion.transferFocus();
+                    }
+                    e.consume();
+                }
+			}
+		});
 		txtDescripcion.setBounds(133, 110, 280, 89);
 		txtDescripcion.setBorder(BorderFactory.createLineBorder(Color.black));
 		getContentPane().add(txtDescripcion);
@@ -113,11 +128,6 @@ public class AltaActividadDeportiva extends JInternalFrame {
 		lblFechaDeAlta.setBounds(34, 263, 95, 19);
 		getContentPane().add(lblFechaDeAlta);
 		
-		dateChooser = new JDateChooser();
-		dateChooser.setBounds(133, 263, 128, 19);
-		dateChooser.setBorder(BorderFactory.createLineBorder(Color.black));
-		getContentPane().add(dateChooser);
-		
 		Button buttonAceptar = new Button("Aceptar");
 		buttonAceptar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
@@ -136,6 +146,11 @@ public class AltaActividadDeportiva extends JInternalFrame {
             }
         });
 		getContentPane().add(buttonCancelar);
+		
+		dateChooser = new JDateChooser();
+		dateChooser.setBounds(133, 263, 128, 19);
+		dateChooser.setBorder(BorderFactory.createLineBorder(Color.black));
+		getContentPane().add(dateChooser);
 	}
 	
 	// Este método es invocado al querer registrar una Actividad Deportiva, funcionalidad
@@ -146,16 +161,16 @@ public class AltaActividadDeportiva extends JInternalFrame {
     protected void cmdRegistroADActionPerformed(ActionEvent arg0) {
 
         // Obtengo datos de los controles Swing
-        String nombreID = String.valueOf(comboBoxInstDeportivas.getSelectedIndex());
+        String nombreID = comboBoxInstDeportivas.getSelectedItem().toString();
         String nombre = txtNombre.getText();
         String des = txtDescripcion.getText();
-        Float dur = Float.parseFloat(txtDuracion.getText());
-        Float cost = Float.parseFloat(txtCosto.getText());
+        String dur = txtDuracion.getText();
+        String cost = txtCosto.getText();
         Date fal = dateChooser.getDate();
         
         if (checkFormulario()) {
             try {
-                controlDeportivas.altaActividadDeportiva(nombreID, nombre, des, dur, cost, fal);
+                controlDeportivas.altaActividadDeportiva(nombreID, nombre, des, Float.parseFloat(dur), Float.parseFloat(cost), fal);
 
                 // Muestro éxito de la operación
                 JOptionPane.showMessageDialog(this, "La Actividad Deportiva se ha registrado con éxito", "Alta Actividad Deportiva",
@@ -193,23 +208,25 @@ public class AltaActividadDeportiva extends JInternalFrame {
             ret = false;
         }
         
-        try {
-            Float.parseFloat(dur);
-        }
-        catch (NumberFormatException e) {
-    	    JOptionPane.showMessageDialog(this, "La duración debe ser un número", "Alta Institución Deportiva",
-    	    		JOptionPane.ERROR_MESSAGE);
-            ret = false;
-        }
-        
-        try {
-            Float.parseFloat(cost);
-        }
-        catch (NumberFormatException e) {
-    	    JOptionPane.showMessageDialog(this, "El costo debe ser un número", "Alta Institución Deportiva",
-    	    		JOptionPane.ERROR_MESSAGE);
-            ret = false;
-        }
+        if (ret){
+	        try {
+	            Float.parseFloat(dur);
+	        }
+	        catch (NumberFormatException e) {
+	    	    JOptionPane.showMessageDialog(this, "La duración debe ser un número", "Alta Institución Deportiva",
+	    	    		JOptionPane.ERROR_MESSAGE);
+	            ret = false;
+	        }
+	        
+	        try {
+	            Float.parseFloat(cost);
+	        }
+	        catch (NumberFormatException e) {
+	    	    JOptionPane.showMessageDialog(this, "El costo debe ser un número", "Alta Institución Deportiva",
+	    	    		JOptionPane.ERROR_MESSAGE);
+	            ret = false;
+	        }
+        }  
         
         return ret;
     }
@@ -221,10 +238,12 @@ public class AltaActividadDeportiva extends JInternalFrame {
         DefaultComboBoxModel<DataInstitucion> modelo;
         try {
             modelo = new DefaultComboBoxModel<DataInstitucion>(controlDeportivas.getInstituciones());
+            modelo.setSelectedItem(null);
             comboBoxInstDeportivas.setModel(modelo);
         } catch (InstitucionDeportivaNoExisteException e) {
         	JOptionPane.showMessageDialog(this, "No existen Instituciones Deportivas en el sistema.", "Alta Institución Deportiva",
     	    		JOptionPane.ERROR_MESSAGE);
+        	setVisible(false);
         }
 
     }
@@ -239,6 +258,5 @@ public class AltaActividadDeportiva extends JInternalFrame {
         txtDuracion.setText("");
         txtCosto.setText("");
         dateChooser.cleanup();
-        comboBoxInstDeportivas.setSelectedIndex(0);
     }
 }
