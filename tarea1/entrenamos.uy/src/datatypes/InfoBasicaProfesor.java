@@ -1,4 +1,6 @@
 package datatypes;
+import java.util.Date;
+
 
 public class InfoBasicaProfesor extends InfoBasicaUser {
 
@@ -7,7 +9,7 @@ public class InfoBasicaProfesor extends InfoBasicaUser {
 	private String url;
 	
 	
-	public InfoBasicaProfesor(String nickname, String nombre, String apellido, String correo, String fechaNac, String des, String bibliografia, String url ) {
+	public InfoBasicaProfesor(String nickname, String nombre, String apellido, String correo, Date fechaNac, String des, String bibliografia, String url ) {
 		super(nickname, nombre, apellido, correo, fechaNac);
 		
 		this.desc = des;

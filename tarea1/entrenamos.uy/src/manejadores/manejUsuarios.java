@@ -9,7 +9,6 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-import logica.Clase;
 import logica.Profesor;
 import logica.Usuario;
 
@@ -62,18 +61,20 @@ public class manejUsuarios {
 		boolean dispN = DisponibleNickname(info.getNickname());
 		boolean dispC = DisponibleCorreo(info.getCorreo());
 		
+		if ( !(dispN & dispC) ) {
+			//lanzar excepcion
+		}
+		
+		Usuario userCreado = null;
 		
 		if( info.getClass() == InfoBasicaProfesor.class ) {
-			
-			
-			InfoBasicaProfesor dd = (InfoBasicaProfesor)info;
-			Profesor prof = Profesor(dd);
+			//falta crear profesor
 		}
 		else {
-			userCreado = Socio(info);
+			//falta crear socio
 		}
 		
-		this.usuarios.put(userCreado.getNickname(), userCreado)
+		this.usuarios.put(userCreado.getNickname(), userCreado);
 		
 	}
 	
