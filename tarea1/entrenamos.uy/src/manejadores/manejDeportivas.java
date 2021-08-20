@@ -82,8 +82,6 @@ public class manejDeportivas {
         }
     }
 
-  
-
     public Set<String> darNombreInstituciones() {
     	return this.institucionesDeportivas.keySet();
     }
