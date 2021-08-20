@@ -13,6 +13,9 @@ import logica.Clase;
 import logica.Profesor;
 import logica.Usuario;
 
+import datatypes.InfoBasicaUser;
+import datatypes.InfoBasicaProfesor;
+
 public class manejUsuarios {
 
 	private static manejUsuarios instance = null;
@@ -53,4 +56,47 @@ public class manejUsuarios {
 	
 		return res;
 	}
+	
+	public void CrearUsuario(InfoBasicaUser info) {
+		
+		boolean dispN = DisponibleNickname(info.getNickname());
+		boolean dispC = DisponibleCorreo(info.getCorreo());
+		
+		
+		Usuario userCreado;
+		//si es profesor
+		if( info.getClass() == InfoBasicaProfesor.class ) {
+			userCreado = Profesor(info);
+		}
+		else {
+			userCreado = Socio(info);
+		}
+		
+		this.usuarios.put(userCreado.getNickname(), userCreado)
+		
+	}
+	
+	
+	public boolean DisponibleNickname(String nickname) {
+		Usuario e = this.usuarios.get(nickname);
+		if(e == null) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public boolean DisponibleCorreo(String correo) {
+		Usuario e = this.usuarios.get(nickname);
+		if(e == null) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	
+	
 }

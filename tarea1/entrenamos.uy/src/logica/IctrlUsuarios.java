@@ -45,7 +45,6 @@ public interface IctrlUsuarios {
 	public abstract void ActualizarInformacionUsuario(InfoBasicaUser actualizacion);
 	public abstract InfoBasicaUser InformacionBasicaUsuario(String usuario);
 	public abstract Set<String> UsuariosEnSistemaNickName();
-	
 	//fincreado
 	
 }
