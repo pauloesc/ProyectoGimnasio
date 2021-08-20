@@ -6,56 +6,133 @@ import javax.swing.JLabel;
 
 import logica.IctrlCuponeras;
 import javax.swing.JMenuBar;
+import javax.swing.JTextField;
+import javax.swing.BorderFactory;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.TextField;
 import java.util.Date;
 import com.toedter.calendar.JDateChooser;
+import javax.swing.JButton;
+import java.awt.Button;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class CrearCuponera extends JInternalFrame {
 	
 	private IctrlCuponeras controlCuponeras;
+	private JTextField textNombre;
+	private JTextField textdescrip;
+	private JDateChooser dateChooserini;
+	private JDateChooser dateChooserfin;
+	private JTextField txtDes;
 	
 	public CrearCuponera(IctrlCuponeras icc) {
 		controlCuponeras=icc;
 		setTitle("Crear Cuponera de Actividades Deportivas");
 		setClosable(true);
 		getContentPane().setLayout(null);
-		setBounds(10, 5, 459, 542);
+		setBounds(10, 5, 459, 432);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		
 		JLabel lblNombre = new JLabel("Nombre:");
 		lblNombre.setBounds(23, 25, 70, 19);
 		getContentPane().add(lblNombre);
 		
-		TextField textNombre = new TextField();
+		textNombre = new JTextField();
 		textNombre.setBounds(125, 25, 280, 19);
 		getContentPane().add(textNombre);
 		
 		JLabel lblDescripcion = new JLabel("Descripción:");
-		lblDescripcion.setBounds(22, 67, 95, 19);
+		lblDescripcion.setBounds(23, 56, 95, 19);
 		getContentPane().add(lblDescripcion);
 		
-		TextField textNombre = new TextField();
-		textNombre.setBounds(125, 67, 280, 85);
-		getContentPane().add(textNombre);
+		textdescrip = new JTextField();
+		textdescrip.setBounds(125, 56, 280, 85);
+		getContentPane().add(textdescrip);
 		
 		JLabel lblPeriodoDeVigencia = new JLabel("Periodo de vigencia");
-		lblPeriodoDeVigencia.setBounds(23, 172, 179, 15);
+		lblPeriodoDeVigencia.setBounds(23, 155, 179, 15);
 		getContentPane().add(lblPeriodoDeVigencia);
 		
 		JLabel lblFechaDeInicio = new JLabel("Fecha inicio:");
-		lblFechaDeInicio.setBounds(23, 199, 126, 15);
+		lblFechaDeInicio.setBounds(23, 191, 126, 15);
 		getContentPane().add(lblFechaDeInicio);
 		
 		JLabel lblFechaDeI = new JLabel("Fecha fin:");
-		lblFechaDeI.setBounds(23, 242, 76, 15);
+		lblFechaDeI.setBounds(23, 222, 76, 15);
 		getContentPane().add(lblFechaDeI);
 		
+		dateChooserini = new JDateChooser();
+		dateChooserini.setBounds(125, 218, 128, 19);
+		dateChooserini.setBorder(BorderFactory.createLineBorder(Color.black));
+		getContentPane().add(dateChooserini);
 		
+		dateChooserfin = new JDateChooser();
+		dateChooserfin.setBounds(125, 187, 128, 19);
+		dateChooserfin.setBorder(BorderFactory.createLineBorder(Color.black));
+		getContentPane().add(dateChooserfin);
+		
+		JLabel lblDescuento = new JLabel("Descuento:");
+		lblDescuento.setBounds(23, 273, 110, 19);
+		getContentPane().add(lblDescuento);
+		
+		txtDes = new JTextField();
+		txtDes.setBounds(125, 273, 93, 19);
+		txtDes.setBorder(BorderFactory.createLineBorder(Color.black));
+		getContentPane().add(txtDes);
+		
+		Button buttonAceptar = new Button("Aceptar");
+		buttonAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				/*cmdRegistroADActionPerformed(arg0)*/
+			}
+		});
+		buttonAceptar.setBounds(125, 337, 100, 32);
+		getContentPane().add(buttonAceptar);
+		
+		Button buttonCancelar = new Button("Cancelar");
+		buttonCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 limpiarFormulario();
+			}
+		});
+		buttonCancelar.setBounds(237, 337, 100, 32);
+		getContentPane().add(buttonCancelar);	
 	}
+	
+	protected void cmdRegistroADActionPerformed(ActionEvent arg0) {
+
+        String nombre = textNombre.getText();
+        String des = textdescrip.getText();
+        Date ini = dateChooserini.getDate();
+        Date fin = dateChooserfin.getDate();
+        Float desc = Float.parseFloat(txtDes.getText());
+        
+        if (checkFormulario()) {
+            try {
+                controlCuponeras.altaActividadDeportiva(nombreID, nombre, des, dur, cost, fal);
+
+                // Muestro éxito de la operación
+                JOptionPane.showMessageDialog(this, "La Actividad Deportiva se ha registrado con éxito", "Alta Actividad Deportiva",
+                        JOptionPane.INFORMATION_MESSAGE);
+                
+                setVisible(false);
+                limpiarFormulario();
+
+            } catch (ActividadDeportivaRepetidaException e) {
+                // Muestro error de registro
+                JOptionPane.showMessageDialog(this, e.getMessage(), "Alta Actividad Deportiva", JOptionPane.ERROR_MESSAGE);
+                limpiarFormulario();
+            }
+        }
+    }
+	
+	
+	
 }
 
 //** package presentacion;
