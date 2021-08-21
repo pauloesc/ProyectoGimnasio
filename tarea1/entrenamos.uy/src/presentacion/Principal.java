@@ -25,6 +25,7 @@ public class Principal {
     private AltaActividadDeportiva altaActividadDeportivaInternalFrame;
     private ConsultaActividadDeportiva consultaActividadDeportivaInternalFrame;
     private AltaDictadoDeClases altaDictadoDeClasesInternalFrame;
+    private ConsultaDictadoDeClases consultaDictadoDeClasesFrame;
     
     /**
      * Launch the application.
@@ -69,6 +70,8 @@ public class Principal {
         altaDictadoDeClasesInternalFrame.setLocation(106, 25);
         altaDictadoDeClasesInternalFrame.setVisible(false);
         
+        consultaDictadoDeClasesFrame = new ConsultaDictadoDeClases();
+        consultaDictadoDeClasesFrame.setVisible(false);
         
         entrenamosUy.getContentPane().setLayout(null);
         
@@ -76,6 +79,8 @@ public class Principal {
         entrenamosUy.getContentPane().add(altaActividadDeportivaInternalFrame);
         entrenamosUy.getContentPane().add(consultaActividadDeportivaInternalFrame);
         entrenamosUy.getContentPane().add(altaDictadoDeClasesInternalFrame);
+        entrenamosUy.getContentPane().add(consultaDictadoDeClasesFrame);
+
         
         
     }
@@ -196,6 +201,9 @@ public class Principal {
         menuItemVerInfoClase.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Muestro el InternalFrame para ver información de una clase
+            	consultaDictadoDeClasesFrame.cargarFormulario();
+            	consultaDictadoDeClasesFrame.setVisible(true);
+            	
 
             }
         });
