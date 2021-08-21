@@ -33,19 +33,25 @@ import java.awt.event.ItemEvent;
 import javax.swing.JButton;
 import com.toedter.calendar.JDateChooser;
 
+import datatypes.DtClase;
 import excepciones.ClaseRepetidaException;
 
-public class AltaDictadoDeClases extends JInternalFrame {
+public class ConsultaDictadoDeClases extends JInternalFrame {
 	private JTextField NombreClase;
 	private JTextField Smin;
 	private JTextField Smax;
 	private JTextField url;
 	private JComboBox<String> comboBoxInstituciones;
-	private JComboBox<String> comboBoxProfesor;
+	private JComboBox<String> comboBoxClase;
 	JComboBox<String> comboBoxActividadDeportiva;
 	
 	private IctrlDeportivas ID;
 	private IctrlUsuarios IU;
+	private IctrlClases IC;
+	private JTextField Sactuales;
+	private JTextField nomProfesor;
+	private JTextField Finicio;
+	private JTextField Falta;
 
 	/**
 	 * Launch the application.
@@ -54,7 +60,7 @@ public class AltaDictadoDeClases extends JInternalFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AltaDictadoDeClases frame = new AltaDictadoDeClases();
+					ConsultaDictadoDeClases frame = new ConsultaDictadoDeClases();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -69,22 +75,18 @@ public class AltaDictadoDeClases extends JInternalFrame {
 	
 	
 	
-	public AltaDictadoDeClases() {
+	public ConsultaDictadoDeClases() {
 		Fabrica fab = Fabrica.getInstance();
 		ID = fab.getIctrlDeportivas();
 		IU = fab.getIctrlUsuarios();
-		
-		JDateChooser dateChooserInicio = new JDateChooser();
-		JDateChooser dateChooserAlta = new JDateChooser();
-		dateChooserInicio.setEnabled(true);
-		dateChooserAlta.setEnabled(true);
+		IC = fab.getIctrlClases();
 		
 		
 		setTitle("Alta dictado de clases");
-		setBounds(100, 100, 499, 546);
+		setBounds(100, 100, 518, 563);
 		
 		comboBoxInstituciones = new JComboBox();	
-		comboBoxProfesor = new JComboBox();	
+		comboBoxClase = new JComboBox();	
 		comboBoxActividadDeportiva = new JComboBox();
 		
 		
@@ -108,20 +110,37 @@ public class AltaDictadoDeClases extends JInternalFrame {
 
 					}
 					
-					comboBoxProfesor.removeAllItems();
-					Set<String> profes = IU.mostrarNombreProfesoresDeInstitucion(insti);
-					for( Iterator<String> itt = profes.iterator(); itt.hasNext();) { 
-					    String x = (String)itt.next();
-					    comboBoxProfesor.addItem(x);
-
-					}
+					
 					
 					comboBoxActividadDeportiva.setEnabled(true);
-					comboBoxProfesor.setEnabled(true);
+					
 				}
 				
 			}
 		});
+		
+		
+		// cuando se carga la actividad deportiva se cargan las clases
+		comboBoxActividadDeportiva.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String act = (String)comboBoxActividadDeportiva.getSelectedItem();
+				if (act != null) {
+					
+					comboBoxClase.removeAllItems();
+					Set<String> clases = IC.mostrarClasesDeActividadDeportiva(act);
+					
+					for( Iterator<String> itt = clases.iterator(); itt.hasNext();) { 
+					    String x = (String)itt.next();
+					    comboBoxClase.addItem(x);
+	
+					}
+					
+					comboBoxClase.setEnabled(true);
+				}
+			}
+		});
+		
 		
 		
 		
@@ -129,7 +148,7 @@ public class AltaDictadoDeClases extends JInternalFrame {
 		
 		JLabel lblInstitucion = new JLabel("Institucion deportiva");
 		
-		JLabel lblProfesor = new JLabel("Profesor");
+		JLabel lblProfesor = new JLabel("Clase");
 		
 		JLabel lblNombreDeLa = new JLabel("Nombre de la clase");
 		
@@ -145,15 +164,19 @@ public class AltaDictadoDeClases extends JInternalFrame {
 		JLabel lblFechaDeAlta = new JLabel("Fecha de alta");
 		
 		NombreClase = new JTextField();
+		NombreClase.setEditable(false);
 		NombreClase.setColumns(10);
 		
 		Smin = new JTextField();
+		Smin.setEditable(false);
 		Smin.setColumns(10);
 		
 		Smax = new JTextField();
+		Smax.setEditable(false);
 		Smax.setColumns(10);
 		
 		url = new JTextField();
+		url.setEditable(false);
 		url.setColumns(10);
 		
 		
@@ -165,24 +188,26 @@ public class AltaDictadoDeClases extends JInternalFrame {
 		//botones aceptar y cancelar
 		
 		
-		JButton btnCancelar = new JButton("Cancelar");
+		JButton btnCancelar = new JButton("Salir");
 		btnCancelar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				comboBoxProfesor.removeAllItems();
+				comboBoxClase.removeAllItems();
 				comboBoxActividadDeportiva.removeAllItems();
 				comboBoxInstituciones.removeAllItems();
 				
-				comboBoxProfesor.setEnabled(false);
+				comboBoxClase.setEnabled(false);
 				comboBoxActividadDeportiva.setEnabled(false);
 								
 				NombreClase.setText("");
+				nomProfesor.setText("");
 				Smin.setText("");
+				Sactuales.setText("");
 				Smax.setText("");
 				url.setText("");
+				Finicio.setText("");
+				Falta.setText("");
 				
-				dateChooserInicio.setCalendar(null);
-				dateChooserAlta.setCalendar(null);
 				
 				setVisible(false);
 				
@@ -191,42 +216,66 @@ public class AltaDictadoDeClases extends JInternalFrame {
 		
 		
 		
-		JButton btnAceptar = new JButton("Aceptar");
-		btnAceptar.addMouseListener(new MouseAdapter() {
+		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
-					String nom = NombreClase.getText();
-					Date Finicio = dateChooserInicio.getDate();
-					String prof = (String) comboBoxProfesor.getSelectedItem();
-					String ur = url.getText();
-					Date Falta = dateChooserAlta.getDate();
+					
+					String clas = (String) comboBoxClase.getSelectedItem();
 					String nomAct = (String) comboBoxActividadDeportiva.getSelectedItem();
+					String inst = (String) comboBoxInstituciones.getSelectedItem();
 					
 					//comprobar que todos los campos tengan algo
 				
-					if ((nom.isBlank()) || (Finicio == null) || (prof == null) || (ur.isBlank()) || (Falta == null) || (nomAct == null)){
+					if ((clas == null) || (nomAct == null) || (inst == null)){
 						JOptionPane.showMessageDialog(null, "Error, ningun campo puede quedar vacio");
 					} else {
-						int min = Integer.parseInt(Smin.getText());
-						int max = Integer.parseInt(Smax.getText());
+					
+						DtClase res = IC.darDtClase(clas);
 						
-						Fabrica fab = Fabrica.getInstance();
-						IctrlClases ic = fab.getIctrlClases();
+						NombreClase.setText(res.getNombre());
+						nomProfesor.setText(res.getNomProfesor());
+						Smin.setText(Integer.toString(res.getMinSocios()));
+						Sactuales.setText(Integer.toString(res.getActualSocios()));
+						Smax.setText(Integer.toString(res.getMaxSocios()));
+						url.setText(res.getUrl());
 						
-						ic.crearClase(nom, Finicio, prof, min, max, ur, Falta, nomAct);
+						// mostrar las fechas
+						String ini = Integer.toString(res.getFecha().getDay()) + "/" + Integer.toString(res.getFecha().getMonth()) + "/" + Integer.toString(res.getFecha().getYear());
+						String reg = Integer.toString(res.getFechaReg().getDay()) + "/" + Integer.toString(res.getFechaReg().getMonth()) + "/" + Integer.toString(res.getFechaReg().getYear());
 						
-						JOptionPane.showMessageDialog(null, "Clase creada con éxito");
+						Finicio.setText(ini);
+						Falta.setText(reg);
 					}
 						
-					
-				} catch (ClaseRepetidaException ee) {
-					JOptionPane.showMessageDialog(null, "Error, nombre de la clase existente");
+		
 				} catch(Exception ee) {
-					JOptionPane.showMessageDialog(null, "Error, debe ingresar numeros en los campos 'socios maximos' y 'socios minimos' ");
+					// no puede caer nunca aca, por ahora
+					JOptionPane.showMessageDialog(null, "Error");
 				}
 			}
 		});
+		
+		JLabel lblSociosActuales = new JLabel("Socios actuales");
+		
+		Sactuales = new JTextField();
+		Sactuales.setEditable(false);
+		Sactuales.setColumns(10);
+		
+		JLabel lblNombreDelProfesor = new JLabel("Nombre del profesor");
+		
+		nomProfesor = new JTextField();
+		nomProfesor.setEditable(false);
+		nomProfesor.setColumns(10);
+		
+		Finicio = new JTextField();
+		Finicio.setEditable(false);
+		Finicio.setColumns(10);
+		
+		Falta = new JTextField();
+		Falta.setEditable(false);
+		Falta.setColumns(10);
 		
 		
 		
@@ -245,38 +294,37 @@ public class AltaDictadoDeClases extends JInternalFrame {
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(34)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblNombreDeLa)
 								.addComponent(lblProfesor)
-								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-									.addComponent(lblSociosMinimos)
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(lblUrl)
-										.addComponent(lblSociosMaximos)
-										.addComponent(lblFechaDeInicio)
-										.addComponent(lblFechaDeAlta))))))
-					.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(lblFechaDeInicio)
+								.addComponent(lblUrl)
+								.addComponent(lblSociosMaximos)
+								.addComponent(lblSociosActuales)
+								.addComponent(lblSociosMinimos)
+								.addComponent(lblNombreDelProfesor)
+								.addComponent(lblNombreDeLa)
+								.addComponent(lblFechaDeAlta))))
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-							.addComponent(comboBoxProfesor, Alignment.LEADING, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addComponent(comboBoxActividadDeportiva, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addComponent(comboBoxInstituciones, 0, 262, Short.MAX_VALUE))
+						.addComponent(Falta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addGroup(groupLayout.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addComponent(dateChooserInicio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnAceptar)
-								.addComponent(dateChooserAlta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-										.addComponent(Smin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addComponent(NombreClase, GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
-										.addComponent(Smax, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addComponent(url)))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(43)
-									.addComponent(btnCancelar)))))
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+									.addComponent(comboBoxClase, Alignment.LEADING, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addComponent(comboBoxActividadDeportiva, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addComponent(comboBoxInstituciones, 0, 262, Short.MAX_VALUE)
+									.addComponent(btnBuscar))
+								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+									.addComponent(url, Alignment.LEADING)
+									.addComponent(Smax, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addComponent(Sactuales, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addComponent(Smin, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addComponent(NombreClase, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+									.addComponent(nomProfesor, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addGroup(groupLayout.createSequentialGroup()
+										.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
+										.addGap(17)))))
+						.addComponent(Finicio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(54, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -291,39 +339,48 @@ public class AltaDictadoDeClases extends JInternalFrame {
 						.addComponent(lblActividadDeportiva))
 					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(comboBoxProfesor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxClase, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblProfesor))
-					.addGap(57)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+					.addGap(18)
+					.addComponent(btnBuscar)
+					.addGap(45)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addComponent(lblNombreDeLa)
 						.addComponent(NombreClase, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblNombreDelProfesor)
+						.addComponent(nomProfesor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(37)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addComponent(lblSociosMinimos)
 						.addComponent(Smin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(lblSociosActuales)
+						.addComponent(Sactuales, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addComponent(lblSociosMaximos)
 						.addComponent(Smax, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addComponent(lblUrl)
 						.addComponent(url, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(lblFechaDeInicio)
+						.addComponent(Finicio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblFechaDeInicio)
-							.addGap(18)
-							.addComponent(lblFechaDeAlta))
+							.addGap(16)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblFechaDeAlta)
+								.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(dateChooserInicio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addComponent(dateChooserAlta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addPreferredGap(ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnAceptar)
-						.addComponent(btnCancelar))
-					.addGap(38))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(Falta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addGap(14))
 		);
 		getContentPane().setLayout(groupLayout);
 
@@ -346,5 +403,4 @@ public class AltaDictadoDeClases extends JInternalFrame {
 		
 		
 	}
-	
 }

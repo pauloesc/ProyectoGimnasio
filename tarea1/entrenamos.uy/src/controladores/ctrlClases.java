@@ -5,7 +5,9 @@ package controladores;
 
 
 import java.util.Date;
+import java.util.Set;
 
+import datatypes.DtClase;
 import excepciones.ClaseRepetidaException;
 import logica.ActividadDeportiva;
 import logica.Clase;
@@ -34,5 +36,16 @@ public class ctrlClases implements IctrlClases {
 		ActividadDeportiva ad = MD.buscarActividad(nomAct);
 		
 		ad.addClase(c);
+	}
+	
+	public Set<String> mostrarClasesDeActividadDeportiva(String nomAct) {
+		manejDeportivas md = manejDeportivas.getinstance();
+		ActividadDeportiva ad = md.buscarActividad(nomAct);
+		return ad.darNombreClases();
+	}
+	
+	public DtClase darDtClase(String nomClas) {
+		Clase c = manejador.findClase(nomClas);
+		return c.darDtClase();
 	}
 }

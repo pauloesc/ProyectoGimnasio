@@ -2,6 +2,7 @@ package logica;
 
 import java.util.Date;
 
+import datatypes.DtClase;
 import manejadores.manejUsuarios;
 
 public class Clase {
@@ -30,5 +31,12 @@ public class Clase {
 
 	public String getNombre() {	
 		return nombre;
+	}
+	
+	
+	
+	public DtClase darDtClase() {
+		Usuario prof = (Usuario)this.profesor;
+		return new DtClase(this.fechaInicio, this.nombre, this.minSocios, this.actualSocios, this.maxSocios, this.url, this.fechaReg, prof.getNickname());
 	}
 }
