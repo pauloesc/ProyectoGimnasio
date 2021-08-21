@@ -52,9 +52,17 @@ import datatypes.InfoBasicaSocio;
 import excepciones.UsuarioDisponibilidadException;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
+
+import java.awt.event.*;
+import java.awt.*;
+
+import javax.swing.DefaultComboBoxModel;
+import java.util.Vector;
 
 @SuppressWarnings({ "serial", "unused" })
-public class AltaUsuario extends JInternalFrame {
+public class AltaUsuario extends JInternalFrame{
 	
     // Controlador de Deportivas que se utilizará para las acciones del JFrame
     private IctrlUsuarios controlUsuario;
@@ -67,8 +75,11 @@ public class AltaUsuario extends JInternalFrame {
     private JTextField txtDescripcion;
     private JTextField txtBibliografia;
     private JTextField txtWeb;
-	
-	public AltaUsuario(IctrlUsuarios icu) {
+    private JButton btnAltaUsuario;
+    private JDateChooser dateChooserInicio;
+
+    
+	public AltaUsuario(IctrlUsuarios icu)  {
 		
 		controlUsuario = icu;
 		
@@ -79,7 +90,7 @@ public class AltaUsuario extends JInternalFrame {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] {0, 165, 160, 50, 0};
 		gridBagLayout.rowHeights = new int[] {25, 0, 30, 0, 30, 0, 30, 0, 30, 0, 30, 0, 30, 0, 30, 0, 30, 0, 30, 0, 30, 0, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0};
+		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		getContentPane().setLayout(gridBagLayout);
 		
@@ -159,39 +170,46 @@ public class AltaUsuario extends JInternalFrame {
 		gbc_lblFechaNacimiento.gridy = 9;
 		getContentPane().add(lblFechaNacimiento, gbc_lblFechaNacimiento);
 		
-		JCheckBox chckbxProfesor = new JCheckBox("Profesor");
-		chckbxProfesor.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-				boolean estado = true;//chckbxProfesor.isSelected();
-				
-				//comboBox.setEditable(estado);
-				//txtDescripcion.setEditable(estado);
-				//txtDescripcion.setEnabled(estado);
-				//txtBibliografia.setEditable(estado);
-				//txtWeb.setEditable(estado);
-				
-				txtDescripcion.setEditable(true);
-				txtDescripcion.setEnabled(true);
-				
-				
-			}
-		});
+		chckbxProfesor = new JCheckBox("Profesor");
+		
+		
 		chckbxProfesor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+			
+				boolean estado  = chckbxProfesor.isSelected();
+				txtBibliografia.setEditable(estado);
+				txtBibliografia.setEnabled(estado);
+				txtDescripcion.setEnabled(estado);
+				txtDescripcion.setEditable(estado);
+				txtWeb.setEditable(estado);
+				txtWeb.setEnabled(estado);
+				comboBox.setEditable(estado);
+				comboBox.setEnabled(estado);
 				
-				boolean estado = false;//chckbxProfesor.isSelected();
 				
-				//comboBox.setEditable(estado);
-				//txtDescripcion.setEditable(estado);
-				//txtBibliografia.setEditable(estado);
-				//txtWeb.setEditable(estado);
+				//Vector<String> vector= new Vector<>();
+				//vector.add("hola1");
+				//vector.add("hola2");
+				//vector.add("hola3");
 				
-				txtDescripcion.setEditable(true);
-				txtDescripcion.setEnabled(true);
+				Vector<String> vector2;
+				vector2 = icu.InstitucionesEnSistema();
+				DefaultComboBoxModel<String> model;
+				model = new DefaultComboBoxModel<String>(vector2);
+				comboBox.setModel(model);
+				
 			}
 		});
+		
+		dateChooserInicio = new JDateChooser();
+		GridBagConstraints gbc_dateChooserInicio = new GridBagConstraints();
+		gbc_dateChooserInicio.fill = GridBagConstraints.HORIZONTAL;
+		gbc_dateChooserInicio.insets = new Insets(0, 0, 5, 6);
+		gbc_dateChooserInicio.gridx = 2;
+		gbc_dateChooserInicio.gridy = 9;
+		getContentPane().add(dateChooserInicio, gbc_dateChooserInicio);
+
+		
 		GridBagConstraints gbc_chckbxProfesor = new GridBagConstraints();
 		gbc_chckbxProfesor.anchor = GridBagConstraints.WEST;
 		gbc_chckbxProfesor.insets = new Insets(0, 0, 5, 5);
@@ -207,7 +225,7 @@ public class AltaUsuario extends JInternalFrame {
 		gbc_lblInstitucion.gridy = 13;
 		getContentPane().add(lblInstitucion, gbc_lblInstitucion);
 		
-		JComboBox comboBox = new JComboBox();
+		comboBox = new JComboBox();
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
 		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
@@ -224,15 +242,17 @@ public class AltaUsuario extends JInternalFrame {
 		getContentPane().add(lblDescripcion, gbc_lblDescripcion);
 		
 		txtDescripcion = new JTextField();
-		txtDescripcion.setEditable(false);
 		txtDescripcion.setEnabled(false);
+		txtDescripcion.setEditable(false);
 		GridBagConstraints gbc_txtDescripcion = new GridBagConstraints();
-		gbc_txtDescripcion.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtDescripcion.insets = new Insets(0, 0, 5, 5);
+		gbc_txtDescripcion.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtDescripcion.gridx = 2;
 		gbc_txtDescripcion.gridy = 15;
 		getContentPane().add(txtDescripcion, gbc_txtDescripcion);
 		txtDescripcion.setColumns(10);
+		
+		
 		
 		JLabel lblBiografia = new JLabel("Biografia");
 		GridBagConstraints gbc_lblBiografia = new GridBagConstraints();
@@ -272,15 +292,14 @@ public class AltaUsuario extends JInternalFrame {
 		getContentPane().add(txtWeb, gbc_txtWeb);
 		txtWeb.setColumns(10);
 		
-		JButton btnAltaUsuario = new JButton("Alta Usuario");
+		btnAltaUsuario = new JButton("Alta Usuario");		
 		btnAltaUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
+
 				if ( checkFormulario() ) {
-					
-					Date fechaNac = new Date();
-					
+										
 					InfoBasicaUser i;
+					
 					if( chckbxProfesor.isSelected() ) {
 						
 						i = new InfoBasicaProfesor(
@@ -288,7 +307,8 @@ public class AltaUsuario extends JInternalFrame {
 								txtNombre.getText(),
 								txtApellido.getText(),
 								txtCorreo.getText(),
-								fechaNac,
+								dateChooserInicio.getDate(),
+								comboBox.getSelectedItem().toString(),
 								txtDescripcion.getText(),
 								txtBibliografia.getText(),
 								txtWeb.getText());
@@ -299,13 +319,16 @@ public class AltaUsuario extends JInternalFrame {
 								txtNombre.getText(),
 								txtApellido.getText(),
 								txtCorreo.getText(),
-								fechaNac);
+								dateChooserInicio.getDate());
 					}
 						icu.altaUsuario(i);				
 				}
+				
 			}
 		});
+
 		GridBagConstraints gbc_btnAltaUsuario = new GridBagConstraints();
+		gbc_btnAltaUsuario.anchor = GridBagConstraints.WEST;
 		gbc_btnAltaUsuario.insets = new Insets(0, 0, 0, 5);
 		gbc_btnAltaUsuario.gridx = 1;
 		gbc_btnAltaUsuario.gridy = 21;
@@ -315,6 +338,7 @@ public class AltaUsuario extends JInternalFrame {
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				limpiarFormulario();
+				setVisible(false);
 				
 			}
 		});
@@ -362,10 +386,25 @@ public class AltaUsuario extends JInternalFrame {
     	txtNombre.setText("");
     	txtApellido.setText("");
     	txtCorreo.setText("");
+    	dateChooserInicio.setCalendar(null);
     	chckbxProfesor.setSelected(false);
     	comboBox.removeAllItems();
     	txtDescripcion.setText("");
     	txtBibliografia.setText("");
     	txtWeb.setText("");
+    	
+    	comboBox.setEditable(false);
+    	comboBox.setEnabled(false);
+		txtBibliografia.setEditable(false);
+		txtBibliografia.setEnabled(false);
+		txtDescripcion.setEnabled(false);
+		txtDescripcion.setEditable(false);
+		txtWeb.setEditable(false);
+		txtWeb.setEnabled(false);
+		comboBox.setEditable(false);
+		comboBox.setEnabled(false);
+    	
+    	
     }
+    
 }

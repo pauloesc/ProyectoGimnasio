@@ -2,6 +2,7 @@ package logica;
 import java.util.Set;
 import datatypes.InfoBasicaUser;
 import datatypes.InformacionActividad;
+import java.util.Vector;
 
 //import excepciones.UsuarioNoExisteException;
 //import excepciones.UsuarioRepetidoException;
@@ -40,7 +41,7 @@ public interface IctrlUsuarios {
 	
 	//creado por Paulo
 	public abstract void altaUsuario(InfoBasicaUser user);
-	public abstract Set<String> InstitucionesEnSistema();
+	public abstract Vector<String> InstitucionesEnSistema();
 	public abstract InformacionActividad InformacionActividad(String usuario);
 	public abstract void ActualizarInformacionUsuario(InfoBasicaUser actualizacion);
 	public abstract InfoBasicaUser InformacionBasicaUsuario(String usuario);

@@ -10,6 +10,11 @@ import datatypes.InformacionActividad;
 import logica.IctrlUsuarios;
 import manejadores.manejUsuarios;
 
+import java.util.Vector;
+
+import manejadores.manejDeportivas;
+import java.util.Iterator;
+
 /**
  * @author mbarrera
  *
@@ -37,7 +42,22 @@ public class ctrlUsuarios implements IctrlUsuarios {
 	}
 	
 
-	public Set<String> InstitucionesEnSistema() {
+	public Vector<String> InstitucionesEnSistema() {
+		
+		manejDeportivas md = manejDeportivas.getinstance();
+		Set<String> set;
+		set = md.darNombreInstituciones();
+		Iterator<String> iterate_value = set.iterator();
+		
+		Vector<String> vector = new Vector<String>();
+		
+		while(iterate_value.hasNext()){
+			
+			String e = iterate_value.next().toString();
+			vector.add(e);
+		}
+		
+		return vector;
 		
 	}
 	

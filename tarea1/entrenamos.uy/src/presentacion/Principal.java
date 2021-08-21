@@ -8,10 +8,13 @@ import javax.swing.JMenuItem;
 
 import logica.Fabrica;
 import logica.IctrlDeportivas;
+import logica.IctrlUsuarios;
 
 import javax.swing.JMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+
 
 /**
  * Clase principal (Frame) con el método Main.
@@ -25,6 +28,7 @@ public class Principal {
     private AltaActividadDeportiva altaActividadDeportivaInternalFrame;
     private ConsultaActividadDeportiva consultaActividadDeportivaInternalFrame;
     private AltaDictadoDeClases altaDictadoDeClasesInternalFrame;
+    private AltaUsuario AltaUsuarioInternalFrame;
     
     /**
      * Launch the application.
@@ -53,6 +57,8 @@ public class Principal {
         Fabrica fabrica = Fabrica.getInstance();
         IctrlDeportivas ICD = fabrica.getIctrlDeportivas();
         
+        IctrlUsuarios ICU = fabrica.getIctrlUsuarios();
+        
         // Se crean los tres InternalFrame y se incluyen al Frame principal ocultos.
         // De esta forma, no es necesario crear y destruir objetos lo que enlentece la ejecución.
         // Cada InternalFrame usa un layout diferente, simplemente para mostrar distintas opciones.
@@ -69,6 +75,9 @@ public class Principal {
         altaDictadoDeClasesInternalFrame.setLocation(106, 25);
         altaDictadoDeClasesInternalFrame.setVisible(false);
         
+        AltaUsuarioInternalFrame = new AltaUsuario(ICU);
+        AltaUsuarioInternalFrame.setVisible(false);
+        
         
         entrenamosUy.getContentPane().setLayout(null);
         
@@ -76,7 +85,7 @@ public class Principal {
         entrenamosUy.getContentPane().add(altaActividadDeportivaInternalFrame);
         entrenamosUy.getContentPane().add(consultaActividadDeportivaInternalFrame);
         entrenamosUy.getContentPane().add(altaDictadoDeClasesInternalFrame);
-        
+        entrenamosUy.getContentPane().add(AltaUsuarioInternalFrame);
         
     }
 
@@ -117,7 +126,7 @@ public class Principal {
         menuItemRegistrar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Muestro el InternalFrame para registrar un usuario
-
+            	AltaUsuarioInternalFrame.setVisible(true);
             }
         });
         menuUsuarios.add(menuItemRegistrar);
