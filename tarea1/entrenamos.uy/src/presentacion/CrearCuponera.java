@@ -5,33 +5,34 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 
 import logica.IctrlCuponeras;
-import javax.swing.JMenuBar;
+
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.BorderFactory;
-import javax.swing.JCheckBox;
 import javax.swing.JFrame;
-
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.TextField;
 import java.util.Date;
 import com.toedter.calendar.JDateChooser;
-import javax.swing.JButton;
+import excepciones.CuponeraRepetidaException;
+
 import java.awt.Button;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import javax.swing.JTextArea;
+@SuppressWarnings({ "serial" })
 public class CrearCuponera extends JInternalFrame {
 	
 	private IctrlCuponeras controlCuponeras;
 	private JTextField textNombre;
-	private JTextField textdescrip;
+	private JTextArea textdescrip;
 	private JDateChooser dateChooserini;
 	private JDateChooser dateChooserfin;
 	private JDateChooser dateChooseralta;
 	private JTextField txtDes;
 	
 	public CrearCuponera(IctrlCuponeras icc) {
+		
 		controlCuponeras=icc;
 		setTitle("Crear Cuponera de Actividades Deportivas");
 		setClosable(true);
@@ -51,8 +52,11 @@ public class CrearCuponera extends JInternalFrame {
 		lblDescripcion.setBounds(23, 56, 95, 19);
 		getContentPane().add(lblDescripcion);
 		
-		textdescrip = new JTextField();
+		textdescrip = new JTextArea();
+		textdescrip.setWrapStyleWord(true);
+		textdescrip.setLineWrap(true);
 		textdescrip.setBounds(125, 56, 280, 85);
+		textdescrip.setBorder(BorderFactory.createLineBorder(Color.black));
 		getContentPane().add(textdescrip);
 		
 		JLabel lblPeriodoDeVigencia = new JLabel("Periodo de vigencia");
@@ -101,7 +105,7 @@ public class CrearCuponera extends JInternalFrame {
 		Button buttonAceptar = new Button("Aceptar");
 		buttonAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				/*cmdRegistroADActionPerformed(arg0)*/
+				cmdRegistroADActionPerformed(arg0);
 			}
 		});
 		buttonAceptar.setBounds(125, 365, 100, 32);
@@ -111,10 +115,13 @@ public class CrearCuponera extends JInternalFrame {
 		buttonCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 limpiarFormulario();
+				 setVisible(false);
 			}
 		});
 		buttonCancelar.setBounds(240, 365, 100, 32);
 		getContentPane().add(buttonCancelar);	
+		
+			
 	}
 	
 	protected void cmdRegistroADActionPerformed(ActionEvent arg0) {
@@ -124,27 +131,73 @@ public class CrearCuponera extends JInternalFrame {
         Date ini = dateChooserini.getDate();
         Date fin = dateChooserfin.getDate();
         Date alta= dateChooseralta.getDate();
-        Float desc = Float.parseFloat(txtDes.getText());
+        String desc = txtDes.getText();
         
         if (checkFormulario()) {
             try {
-                controlCuponeras.altaActividadDeportiva(nombreID, nombre, des, dur, cost, fal);
+                controlCuponeras.registrarCuponera(nombre, des, ini, fin, Float.parseFloat(desc), alta);
 
                 // Muestro éxito de la operación
-                JOptionPane.showMessageDialog(this, "La Actividad Deportiva se ha registrado con éxito", "Alta Actividad Deportiva",
+                JOptionPane.showMessageDialog(this, "La cuponera se ha registrado con éxito", "Crear Cuponera de Actividades Deportivas",
                         JOptionPane.INFORMATION_MESSAGE);
                 
                 setVisible(false);
                 limpiarFormulario();
 
-            } catch (ActividadDeportivaRepetidaException e) {
+            } catch (CuponeraRepetidaException e) {
                 // Muestro error de registro
-                JOptionPane.showMessageDialog(this, e.getMessage(), "Alta Actividad Deportiva", JOptionPane.ERROR_MESSAGE);
-                limpiarFormulario();
+                JOptionPane.showMessageDialog(this, e.getMessage(), "Crear Cuponera de Actividades Deportivas", JOptionPane.ERROR_MESSAGE);
+                
             }
         }
     }
 	
-	
-	
+	private boolean checkFormulario() {
+    	
+        String nombre = textNombre.getText();
+        String des = textdescrip.getText();
+        String desc = txtDes.getText();
+        Date ini = dateChooserini.getDate();
+        Date fin = dateChooserfin.getDate();
+        
+        boolean ret = true;
+
+        if (nombre.isEmpty() || des.isEmpty() || desc.isEmpty() ) {
+            JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "Crear Cuponera de Actividades Deportivas",
+                    JOptionPane.ERROR_MESSAGE);
+            ret = false;
+        }
+        
+	    if (ini.after(fin)) {
+	         JOptionPane.showMessageDialog(this, "Error en la fechas, fecha de inicio superior a fecha fin", "Crear Cuponera de Actividades Deportivas",
+	    	    		JOptionPane.ERROR_MESSAGE);
+	            ret = false;	
+	        }
+	        
+        if (ret){
+	        try {
+	            Float.parseFloat(desc);
+	        }
+	        catch (NumberFormatException e) {
+	    	    JOptionPane.showMessageDialog(this, "El descuento debe ser un número", "Crear Cuponera de Actividades Deportivas",
+	    	    		JOptionPane.ERROR_MESSAGE);
+	            ret = false;
+	        }
+	        
+	        }   
+          
+        
+        return ret;
+    }
+    
+    private void limpiarFormulario() {
+        textNombre.setText("");
+        textdescrip.setText("");
+        txtDes.setText("");
+        dateChooserini.setCalendar(null);
+        dateChooserfin.setCalendar(null);
+        dateChooseralta.setCalendar(null);
+    }
 }
+
+
