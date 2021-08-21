@@ -30,7 +30,7 @@ public class ctrlUsuarios implements IctrlUsuarios {
 	public void altaUsuario(InfoBasicaUser user) {
 		
 		//traigo el controlador 
-		this.ctrlUsuarios();
+		//this.ctrlUsuarios();
 		
 		this.manejador.CrearUsuario(user);
 		
