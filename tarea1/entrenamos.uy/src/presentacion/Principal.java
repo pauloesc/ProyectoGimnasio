@@ -184,7 +184,9 @@ public class Principal {
         menuItemAltaClase.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Muestro el InternalFrame para registrar una clase
+            	altaDictadoDeClasesInternalFrame.cargarFormulario();
             	altaDictadoDeClasesInternalFrame.setVisible(true);
+            	
 
             }
         });

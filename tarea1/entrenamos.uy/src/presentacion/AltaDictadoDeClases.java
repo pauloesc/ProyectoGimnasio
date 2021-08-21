@@ -8,6 +8,9 @@ import java.util.Set;
 import javax.swing.JInternalFrame;
 import javax.swing.JComboBox;
 import java.awt.BorderLayout;
+import java.awt.Color;
+
+import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
@@ -37,9 +40,12 @@ public class AltaDictadoDeClases extends JInternalFrame {
 	private JTextField Smin;
 	private JTextField Smax;
 	private JTextField url;
+	private JComboBox<String> comboBoxInstituciones;
+	private JComboBox<String> comboBoxProfesor;
+	JComboBox<String> comboBoxActividadDeportiva;
+	
 	private IctrlDeportivas ID;
 	private IctrlUsuarios IU;
-	private boolean buscado; //para no repetir la busqueda de instituciones muchas veces
 
 	/**
 	 * Launch the application.
@@ -68,65 +74,23 @@ public class AltaDictadoDeClases extends JInternalFrame {
 		ID = fab.getIctrlDeportivas();
 		IU = fab.getIctrlUsuarios();
 		
+		JDateChooser dateChooserInicio = new JDateChooser();
+		JDateChooser dateChooserAlta = new JDateChooser();
+		dateChooserInicio.setEnabled(true);
+		dateChooserAlta.setEnabled(true);
 		
-		this.buscado = false; 
 		
 		setTitle("Alta dictado de clases");
 		setBounds(100, 100, 499, 546);
 		
-		JComboBox<String> comboBoxInstituciones = new JComboBox();	
-		comboBoxInstituciones.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				if (!buscado) {
-					Set<String> nombInst = ID.darNombreInstituciones();
-					
-					comboBoxInstituciones.removeAllItems();
-					
-					for( Iterator<String> it = nombInst.iterator(); it.hasNext();) { 
-						    String x = (String)it.next();
-						    comboBoxInstituciones.addItem(x);
-					}
-					
-						    
-				}
-				buscado = true;
-			}
-			
-			
-		});
-		
-		JComboBox<String> comboBoxProfesor = new JComboBox();	
-		JComboBox<String> comboBoxActividadDeportiva = new JComboBox();
-		comboBoxProfesor.setEnabled(false);
-		comboBoxActividadDeportiva.setEnabled(false);
-		
-		
-
-		
-		
-		 
-		comboBoxActividadDeportiva.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String act = (String) comboBoxActividadDeportiva.getSelectedItem();
-				
-				if (act != null) {
-					
-						Set<String> profes = IU.mostrarNombreProfesoresDeInstitucion((String)comboBoxInstituciones.getSelectedItem());
-						for( Iterator<String> it = profes.iterator(); it.hasNext();) { 
-						    String x = (String)it.next();
-						    comboBoxProfesor.addItem(x);
-	
-						}
-						
-						comboBoxProfesor.setEnabled(true);
-					
-				}
-			}
-		});
+		comboBoxInstituciones = new JComboBox();	
+		comboBoxProfesor = new JComboBox();	
+		comboBoxActividadDeportiva = new JComboBox();
 		
 		
 		
+		
+		//cuando se selecciona una institucion se cargan las actividades deportivas y los profesores
 		
 		comboBoxInstituciones.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -136,6 +100,7 @@ public class AltaDictadoDeClases extends JInternalFrame {
 				
 				if (insti != null) {
 					
+					comboBoxActividadDeportiva.removeAllItems();
 					Set<String> act = ID.darNombresActividadesDeportivas(insti);
 					for( Iterator<String> it = act.iterator(); it.hasNext();) { 
 					    String x = (String)it.next();
@@ -143,7 +108,16 @@ public class AltaDictadoDeClases extends JInternalFrame {
 
 					}
 					
+					comboBoxProfesor.removeAllItems();
+					Set<String> profes = IU.mostrarNombreProfesoresDeInstitucion(insti);
+					for( Iterator<String> itt = profes.iterator(); itt.hasNext();) { 
+					    String x = (String)itt.next();
+					    comboBoxProfesor.addItem(x);
+
+					}
+					
 					comboBoxActividadDeportiva.setEnabled(true);
+					comboBoxProfesor.setEnabled(true);
 				}
 				
 			}
@@ -172,33 +146,23 @@ public class AltaDictadoDeClases extends JInternalFrame {
 		
 		NombreClase = new JTextField();
 		NombreClase.setColumns(10);
-		NombreClase.setEditable(false);
 		
 		Smin = new JTextField();
 		Smin.setColumns(10);
-		Smin.setEditable(false);
 		
 		Smax = new JTextField();
 		Smax.setColumns(10);
-		Smax.setEditable(false);
 		
 		url = new JTextField();
 		url.setColumns(10);
-		url.setEditable(false);
 		
 		
 		
-		comboBoxProfesor.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (comboBoxProfesor.getSelectedItem() != null) {
-					NombreClase.setEditable(true);
-					Smin.setEditable(true);
-					Smax.setEditable(true);
-					url.setEditable(true);
-				}
-			}
-		});
 		
+		
+		
+		
+		//botones aceptar y cancelar
 		
 		
 		JButton btnCancelar = new JButton("Cancelar");
@@ -211,22 +175,21 @@ public class AltaDictadoDeClases extends JInternalFrame {
 				
 				comboBoxProfesor.setEnabled(false);
 				comboBoxActividadDeportiva.setEnabled(false);
+								
+				NombreClase.setText("");
+				Smin.setText("");
+				Smax.setText("");
+				url.setText("");
 				
-				buscado = false;
-				
-				NombreClase.setEditable(false);
-				Smin.setEditable(false);
-				Smax.setEditable(false);
-				url.setEditable(false);
+				dateChooserInicio.setCalendar(null);
+				dateChooserAlta.setCalendar(null);
 				
 				setVisible(false);
 				
 			}
 		});
 		
-		JDateChooser dateChooserInicio = new JDateChooser();
 		
-		JDateChooser dateChooserAlta = new JDateChooser();
 		
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.addMouseListener(new MouseAdapter() {
@@ -241,7 +204,8 @@ public class AltaDictadoDeClases extends JInternalFrame {
 					String nomAct = (String) comboBoxActividadDeportiva.getSelectedItem();
 					
 					//comprobar que todos los campos tengan algo
-					if (nom.isEmpty() || (Finicio == null) || prof.isEmpty() || ur.isEmpty() || (Falta == null) || nomAct.isEmpty()){
+				
+					if ((nom.isBlank()) || (Finicio == null) || (prof == null) || (ur.isBlank()) || (Falta == null) || (nomAct == null)){
 						JOptionPane.showMessageDialog(null, "Error, ningun campo puede quedar vacio");
 					} else {
 						int min = Integer.parseInt(Smin.getText());
@@ -266,8 +230,6 @@ public class AltaDictadoDeClases extends JInternalFrame {
 		
 		
 		
-		dateChooserInicio.setEnabled(false);
-		dateChooserAlta.setEnabled(false);
 		
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
@@ -370,4 +332,19 @@ public class AltaDictadoDeClases extends JInternalFrame {
 		
 		
 	}
+
+	public void cargarFormulario() {
+		
+		//INSTITUCIONES
+		Set<String> nombInst = ID.darNombreInstituciones();
+		comboBoxInstituciones.removeAllItems();
+		
+		for( Iterator<String> it = nombInst.iterator(); it.hasNext();) { 
+			    String x = (String)it.next();
+			    comboBoxInstituciones.addItem(x);
+		}
+		
+		
+	}
+	
 }
