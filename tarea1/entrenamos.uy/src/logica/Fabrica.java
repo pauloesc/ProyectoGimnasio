@@ -1,5 +1,6 @@
 package logica;
 
+import controladores.ctrlCuponeras;
 import controladores.ctrlClases;
 import controladores.ctrlDeportivas;
 import controladores.ctrlUsuarios;
@@ -31,6 +32,10 @@ public class Fabrica {
     	return (IctrlDeportivas) new ctrlDeportivas();
     }
 
+    public IctrlCuponeras getIctrlCuponeras() {
+    	return new ctrlCuponeras();
+    } 
+    
     public IctrlClases getIctrlClases() {
     	return (IctrlClases) new ctrlClases();
     }

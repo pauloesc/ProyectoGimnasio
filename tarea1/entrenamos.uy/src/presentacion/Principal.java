@@ -7,6 +7,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import logica.Fabrica;
+import logica.IctrlCuponeras;
 import logica.IctrlDeportivas;
 
 import javax.swing.JMenu;
@@ -25,7 +26,9 @@ public class Principal {
     private AltaActividadDeportiva altaActividadDeportivaInternalFrame;
     private ConsultaActividadDeportiva consultaActividadDeportivaInternalFrame;
     private AltaDictadoDeClases altaDictadoDeClasesInternalFrame;
+    private CrearCuponera CrearCuponeraInternalFrame;
     private ConsultaDictadoDeClases consultaDictadoDeClasesFrame;
+    
     
     /**
      * Launch the application.
@@ -53,6 +56,7 @@ public class Principal {
         // Inicialización
         Fabrica fabrica = Fabrica.getInstance();
         IctrlDeportivas ICD = fabrica.getIctrlDeportivas();
+        IctrlCuponeras ICC =fabrica.getIctrlCuponeras();
         
         // Se crean los tres InternalFrame y se incluyen al Frame principal ocultos.
         // De esta forma, no es necesario crear y destruir objetos lo que enlentece la ejecución.
@@ -66,6 +70,9 @@ public class Principal {
         consultaActividadDeportivaInternalFrame = new ConsultaActividadDeportiva(ICD);
         consultaActividadDeportivaInternalFrame.setVisible(false);
         
+        CrearCuponeraInternalFrame = new CrearCuponera(ICC);
+        CrearCuponeraInternalFrame.setVisible(false);
+        
         altaDictadoDeClasesInternalFrame = new AltaDictadoDeClases();
         altaDictadoDeClasesInternalFrame.setLocation(106, 25);
         altaDictadoDeClasesInternalFrame.setVisible(false);
@@ -78,6 +85,7 @@ public class Principal {
         entrenamosUy.getContentPane().add(altaInstDeportivaInternalFrame);
         entrenamosUy.getContentPane().add(altaActividadDeportivaInternalFrame);
         entrenamosUy.getContentPane().add(consultaActividadDeportivaInternalFrame);
+        entrenamosUy.getContentPane().add(CrearCuponeraInternalFrame);
         entrenamosUy.getContentPane().add(altaDictadoDeClasesInternalFrame);
         entrenamosUy.getContentPane().add(consultaDictadoDeClasesFrame);
 
@@ -191,7 +199,7 @@ public class Principal {
                 // Muestro el InternalFrame para registrar una clase
             	altaDictadoDeClasesInternalFrame.cargarFormulario();
             	altaDictadoDeClasesInternalFrame.setVisible(true);
-            	
+
 
             }
         });
@@ -226,7 +234,7 @@ public class Principal {
         menuItemRegistrarCuponera.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Muestro el InternalFrame para registrar un usuario
-
+            	CrearCuponeraInternalFrame.setVisible(true);
             }
         });
         menuCuponeras.add(menuItemRegistrarCuponera);
