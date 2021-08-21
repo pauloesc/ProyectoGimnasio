@@ -159,10 +159,11 @@ public class CrearCuponera extends JInternalFrame {
         String desc = txtDes.getText();
         Date ini = dateChooserini.getDate();
         Date fin = dateChooserfin.getDate();
+        Date alta= dateChooseralta.getDate();
         
         boolean ret = true;
 
-        if (nombre.isEmpty() || des.isEmpty() || desc.isEmpty() ) {
+        if (nombre.isEmpty() || des.isEmpty() || desc.isEmpty()|| ini==null || fin==null || alta==null) {
             JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "Crear Cuponera de Actividades Deportivas",
                     JOptionPane.ERROR_MESSAGE);
             ret = false;
@@ -170,6 +171,12 @@ public class CrearCuponera extends JInternalFrame {
         
 	    if (ini.after(fin)) {
 	         JOptionPane.showMessageDialog(this, "Error en la fechas, fecha de inicio superior a fecha fin", "Crear Cuponera de Actividades Deportivas",
+	    	    		JOptionPane.ERROR_MESSAGE);
+	            ret = false;	
+	        }
+	    
+	    if (alta.after(ini)) {
+	         JOptionPane.showMessageDialog(this, "Error en la fechas, fecha de alta superior a fecha inicio", "Crear Cuponera de Actividades Deportivas",
 	    	    		JOptionPane.ERROR_MESSAGE);
 	            ret = false;	
 	        }
