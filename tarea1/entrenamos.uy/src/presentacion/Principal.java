@@ -8,7 +8,6 @@ import javax.swing.JMenuItem;
 
 import logica.Fabrica;
 import logica.IctrlDeportivas;
-import logica.IctrlCuponeras;
 
 import javax.swing.JMenu;
 import java.awt.event.ActionEvent;
@@ -25,7 +24,8 @@ public class Principal {
     private AltaInstitucionDeportiva altaInstDeportivaInternalFrame;
     private AltaActividadDeportiva altaActividadDeportivaInternalFrame;
     private ConsultaActividadDeportiva consultaActividadDeportivaInternalFrame;
-    private CrearCuponera CrearCuponeraInternalFrame;
+    private AltaDictadoDeClases altaDictadoDeClasesInternalFrame;
+    
     /**
      * Launch the application.
      */
@@ -63,11 +63,16 @@ public class Principal {
         altaActividadDeportivaInternalFrame = new AltaActividadDeportiva(ICD);
         altaActividadDeportivaInternalFrame.setVisible(false);
         
-        consultaActividadDeportivaInternalFrame = new ConsultaActividadDeportiva();
+        consultaActividadDeportivaInternalFrame = new ConsultaActividadDeportiva(ICD);
         consultaActividadDeportivaInternalFrame.setVisible(false);
         
         CrearCuponeraInternalFrame = new CrearCuponera(ICC);
         CrearCuponeraInternalFrame.setVisible(false);
+        
+        altaDictadoDeClasesInternalFrame = new AltaDictadoDeClases();
+        altaDictadoDeClasesInternalFrame.setLocation(106, 25);
+        altaDictadoDeClasesInternalFrame.setVisible(false);
+        
         
         entrenamosUy.getContentPane().setLayout(null);
         
@@ -75,6 +80,8 @@ public class Principal {
         entrenamosUy.getContentPane().add(altaActividadDeportivaInternalFrame);
         entrenamosUy.getContentPane().add(consultaActividadDeportivaInternalFrame);
         entrenamosUy.getContentPane().add(CrearCuponeraInternalFrame);
+        entrenamosUy.getContentPane().add(altaDictadoDeClasesInternalFrame);
+        
         
     }
 
@@ -86,7 +93,7 @@ public class Principal {
         // Se crea el Frame con las dimensiones indicadas.
     	entrenamosUy = new JFrame();
     	entrenamosUy.setTitle("entrenamos.uy - backend administrador");
-    	entrenamosUy.setBounds(100, 100, 850, 600);
+    	entrenamosUy.setBounds(100, 100, 852, 641);
         entrenamosUy.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Se crea una barra de menú (JMenuBar) con dos menú (JMenu) desplegables.
@@ -168,7 +175,8 @@ public class Principal {
         JMenuItem menuItemVerInfoAD = new JMenuItem("Consulta de Actividad Deportiva");
         menuItemVerInfoAD.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Muestro el InternalFrame para ver información de un usuario
+                // Muestro el InternalFrame para ver información de una Actividad Deportiva
+            	consultaActividadDeportivaInternalFrame.cargarInstituciones();
             	consultaActividadDeportivaInternalFrame.setVisible(true);
             }
         });
@@ -180,7 +188,8 @@ public class Principal {
         JMenuItem menuItemAltaClase = new JMenuItem("Alta de dictado de Clase");
         menuItemAltaClase.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Muestro el InternalFrame para registrar un usuario
+                // Muestro el InternalFrame para registrar una clase
+            	altaDictadoDeClasesInternalFrame.setVisible(true);
 
             }
         });
@@ -189,7 +198,7 @@ public class Principal {
         JMenuItem menuItemVerInfoClase = new JMenuItem("Consulta de dictado de Clase");
         menuItemVerInfoClase.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Muestro el InternalFrame para ver información de un usuario
+                // Muestro el InternalFrame para ver información de una clase
 
             }
         });

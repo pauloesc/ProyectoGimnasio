@@ -6,7 +6,11 @@ import excepciones.InstitucionDeportivaNoExisteException;
 import excepciones.ActividadDeportivaNoExisteException;
 import java.util.Date;
 
+import datatypes.DataActividad;
 import datatypes.DataInstitucion;
+import java.util.Set;
+
+
 
 /**
  * Interface del Controlador de Actividades e Instituciones Deportivas
@@ -44,6 +48,16 @@ public interface IctrlDeportivas {
      */
     public abstract void /*DataActividadDeportiva*/ consultaActividadDeportiva(String nid, String n) throws ActividadDeportivaNoExisteException;
 
-	public abstract DataInstitucion[] getInstituciones() throws InstitucionDeportivaNoExisteException;;
+	public abstract DataInstitucion[] getInstituciones() throws InstitucionDeportivaNoExisteException;
 
+	public abstract DataActividad[] getActividades(String nid) throws ActividadDeportivaNoExisteException;
+
+	public abstract DataActividad getDataActividad(String n) throws ActividadDeportivaNoExisteException;
+
+	public abstract Set<String> darNombreInstituciones();
+    // muestra los nombres de todas las instituciones deportivas, utilizado en varios CU
+
+    public abstract Set<String> darNombresActividadesDeportivas(String inst);
+    // muestra de las actividades deportivas de una institucion, utilizado en varios CU
 }
+

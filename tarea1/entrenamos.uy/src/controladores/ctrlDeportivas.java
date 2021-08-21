@@ -1,5 +1,7 @@
 package controladores;
 
+import java.util.Set;
+
 import excepciones.ActividadDeportivaNoExisteException;
 import excepciones.ActividadDeportivaRepetidaException;
 import excepciones.InstitucionDeportivaRepetidaException;
@@ -7,6 +9,7 @@ import excepciones.InstitucionDeportivaNoExisteException;
 import logica.IctrlDeportivas;
 import logica.InstitucionDeportiva;
 import logica.ActividadDeportiva;
+import datatypes.DataActividad;
 import datatypes.DataInstitucion;
 import manejadores.manejDeportivas;
 import java.util.Date;
@@ -37,7 +40,7 @@ public class ctrlDeportivas implements IctrlDeportivas{
         ActividadDeportiva actdep = mD.buscarActividad(n);
         if (actdep != null)
             throw new ActividadDeportivaRepetidaException("La actividad deportiva " + n + " ya esta registrada.");
-
+		
         actdep = new ActividadDeportiva(n, de, dur, c, fal);
         mD.agregarActividad(actdep);
         InstitucionDeportiva indep = mD.buscarInstitucion(nid);
@@ -69,5 +72,46 @@ public class ctrlDeportivas implements IctrlDeportivas{
             throw new InstitucionDeportivaNoExisteException("No existen Instituciones Deportivas registradas");
 
     }
+
+	public DataActividad[] getActividades(String nid) throws ActividadDeportivaNoExisteException {
+        manejDeportivas mD = manejDeportivas.getinstance();
+        InstitucionDeportiva indep = mD.buscarInstitucion(nid);
+        ActividadDeportiva[] actsdeps = indep.getActividades();
+
+        if (actsdeps != null) {
+            DataActividad[] dad = new DataActividad[actsdeps.length];
+            ActividadDeportiva actividad;
+
+            // Para separar lógica de presentación, no se deben devolver las Actividades,
+            // sino los DataActividad asociados a la Institución seleccionada.
+            for (int i = 0; i < actsdeps.length; i++) {
+                actividad = actsdeps[i];
+                dad[i] = new DataActividad(actividad.getNombre(), actividad.getDescripcion(), actividad.getDuracion(), actividad.getCosto(), actividad.getFechaAlta());
+            }
+
+            return dad;
+        } else
+            throw new ActividadDeportivaNoExisteException("No existen Actividades Deportivas en el sistema para la Institucón Deportiva seleccionada.");
+
+    }
+
+	public DataActividad getDataActividad(String n) throws ActividadDeportivaNoExisteException {
+		manejDeportivas mD = manejDeportivas.getinstance();
+		ActividadDeportiva actividad = mD.buscarActividad(n);
+		DataActividad dtact = new DataActividad(actividad.getNombre(), actividad.getDescripcion(), actividad.getDuracion(), actividad.getCosto(), actividad.getFechaAlta());
+		return dtact;	
+	}
+
+	public Set<String> darNombreInstituciones() {
+		manejDeportivas mD = manejDeportivas.getinstance();
+		return mD.darNombreInstituciones();
+	}
+
+	public Set<String> darNombresActividadesDeportivas(String inst) {
+		manejDeportivas mD = manejDeportivas.getinstance();
+		InstitucionDeportiva i = mD.buscarInstitucion(inst);
+		
+		return i.darNombresActividadesDeportivas();
+	}
 
 }

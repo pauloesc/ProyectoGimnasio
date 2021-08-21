@@ -1,5 +1,7 @@
 package logica;
 
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 /**
@@ -18,6 +20,7 @@ public class InstitucionDeportiva {
         this.nombre = n;
         this.descripcion = de;
         this.url = url;
+        this.actividadesDeportivasInst = new HashSet<ActividadDeportiva>();
     }
 
     public String getNombre() {
@@ -48,4 +51,26 @@ public class InstitucionDeportiva {
         this.actividadesDeportivasInst.add(act);
     }
 
+	public ActividadDeportiva[] getActividades() {
+		if (actividadesDeportivasInst.isEmpty())
+            return null;
+        else {
+            Object[] o = actividadesDeportivasInst.toArray();
+            ActividadDeportiva[] actividadesdeportivas = new ActividadDeportiva[o.length];
+            for (int i = 0; i < o.length; i++) {
+                actividadesdeportivas[i] = (ActividadDeportiva) o[i];
+            }
+
+            return actividadesdeportivas;
+        }
+    }
+
+	public Set<String> darNombresActividadesDeportivas() {
+		Set<String> res = new HashSet<String>();    	
+		for( Iterator<ActividadDeportiva> it = this.actividadesDeportivasInst.iterator(); it.hasNext();) { 
+		    String x = (String)it.next().getNombre();
+		    res.add(x);
+		}
+		return res;
+    }
 }
