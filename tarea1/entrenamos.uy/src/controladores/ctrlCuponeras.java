@@ -4,6 +4,7 @@ package controladores;
 import java.util.Date;
 import java.util.Set;
 
+import excepciones.CuponeraNoExisteException;
 import excepciones.CuponeraRepetidaException;
 import logica.Cuponera;
 import logica.InstitucionDeportiva;
@@ -30,9 +31,13 @@ public class ctrlCuponeras implements IctrlCuponeras {
         return false;
 	}
 
-	public Set<String> listarCuponeras() {
+	public Set<String> listarCuponeras() throws CuponeraNoExisteException {
 		manejCuponeras mC = manejCuponeras.getinstance();
-		return mC.listarcuponeras();
+		Set<String> resu=mC.listarcuponeras();
+		if (resu.size()==0)
+			throw new CuponeraNoExisteException("No existen Cuponeras registradas");
+
+		return resu;
 	}
 	
 	public Set<String> listarActividadesfaltantes(String nomcup, String nominst) {

@@ -249,6 +249,7 @@ public class Principal {
             public void actionPerformed(ActionEvent e) {
                 // Muestro el InternalFrame para ver la lista de todos los usuarios,
                 // cargando previamente la lista
+            	AgregarActividadaCuponeraInternalFrame.cargarCuponeras();
             	AgregarActividadaCuponeraInternalFrame.setVisible(true);
             }
         });

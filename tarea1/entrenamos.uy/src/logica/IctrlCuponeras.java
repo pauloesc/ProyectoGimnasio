@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Set;
 
 import datatypes.DataCuponera;
+import excepciones.CuponeraNoExisteException;
 import excepciones.CuponeraRepetidaException;
 
 
@@ -11,7 +12,7 @@ import excepciones.CuponeraRepetidaException;
 public interface IctrlCuponeras {
 	
 	public abstract boolean registrarCuponera(String nombre, String descrip, Date fecha_ini, Date fecha_fin, Float descuento, Date fecha_alta) throws CuponeraRepetidaException;
-	public abstract Set<String> listarCuponeras();
+	public abstract Set<String> listarCuponeras() throws CuponeraNoExisteException;
 	
 	public abstract Set<String> listarActividadesfaltantes(String nomcup, String nominst);
 	
