@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+
 public class Cuponera {
 	private String nombre;
 	private String descripcion;
@@ -67,4 +68,8 @@ public class Cuponera {
 		this.fecha_alta = fecha_alta;
 	}
 
+	public void agregarActividad (ActividadDeportiva act, int numclase) {
+		InfoClases nueva=new InfoClases (act, numclase);
+		info.add(nueva);
+	}
 }

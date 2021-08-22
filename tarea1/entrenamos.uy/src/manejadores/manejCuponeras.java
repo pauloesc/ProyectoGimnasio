@@ -3,6 +3,8 @@ package manejadores;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+
 import logica.Cuponera;
 
 public class manejCuponeras {
@@ -29,5 +31,13 @@ public class manejCuponeras {
 		Cuponera cupo; 
 		cupo= new Cuponera(nom, des, ini,fin, disc, alta);
 		Cuponeras.put(nom, cupo);
+	}
+	
+	public Set<String> listarcuponeras(){
+		return this.Cuponeras.keySet();
+	}
+	
+	public Cuponera getCuponera(String nombre) {
+	    return this.Cuponeras.get(nombre);	
 	}
 }
