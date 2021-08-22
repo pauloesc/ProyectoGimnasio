@@ -2,11 +2,14 @@ package manejadores;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
 import datatypes.DataCuponera;
 import logica.Cuponera;
+
 
 public class manejCuponeras {
 	private Map<String, Cuponera> Cuponeras;
@@ -48,4 +51,17 @@ public class manejCuponeras {
 		return cup.getDataCuponera();
 		
 	}
+	public Set<Cuponera> getCuponerasDeActividad(String actividad){
+		Set<Cuponera> resu= new HashSet<Cuponera>();
+		for (Iterator<String> iter=Cuponeras.keySet().iterator();iter.hasNext();) {
+			Cuponera cup=Cuponeras.get(iter.next());
+			Set<String> list=cup.getListaActividades();
+			if (list.contains(actividad)) {
+			    resu.add(cup);
+			}
+		}
+		
+		return resu;
+	}
+	
 }
