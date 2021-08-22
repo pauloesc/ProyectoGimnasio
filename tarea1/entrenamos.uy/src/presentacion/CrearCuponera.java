@@ -46,6 +46,7 @@ public class CrearCuponera extends JInternalFrame {
 		
 		textNombre = new JTextField();
 		textNombre.setBounds(125, 25, 280, 19);
+		textNombre.setBorder(BorderFactory.createLineBorder(Color.black));
 		getContentPane().add(textNombre);
 		
 		JLabel lblDescripcion = new JLabel("Descripción:");
