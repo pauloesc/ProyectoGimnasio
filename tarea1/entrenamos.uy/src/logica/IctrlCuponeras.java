@@ -3,6 +3,7 @@ package logica;
 import java.util.Date;
 import java.util.Set;
 
+import datatypes.DataCuponera;
 import excepciones.CuponeraRepetidaException;
 
 
@@ -16,6 +17,6 @@ public interface IctrlCuponeras {
 	
 	public void agregarActividad(String nomcup,String act,int numclase) ;
 
-
+	public abstract DataCuponera mostrarCuponera (String nomCup); 
 
 }

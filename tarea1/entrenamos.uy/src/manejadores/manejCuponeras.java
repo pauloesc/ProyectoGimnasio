@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import datatypes.DataCuponera;
 import logica.Cuponera;
 
 public class manejCuponeras {
@@ -39,5 +40,12 @@ public class manejCuponeras {
 	
 	public Cuponera getCuponera(String nombre) {
 	    return this.Cuponeras.get(nombre);	
+	}
+
+	
+	public DataCuponera mostrarCuponera(String nomCup) {
+		Cuponera cup=Cuponeras.get(nomCup);
+		return cup.getDataCuponera();
+		
 	}
 }

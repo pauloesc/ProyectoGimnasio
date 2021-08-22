@@ -11,6 +11,7 @@ import logica.ActividadDeportiva;
 import logica.IctrlCuponeras;
 import manejadores.manejCuponeras;
 import manejadores.manejDeportivas;
+import datatypes.DataCuponera;
 
 
 
@@ -53,4 +54,11 @@ public class ctrlCuponeras implements IctrlCuponeras {
 		ActividadDeportiva activ = mD.buscarActividad(act);
 		cup.agregarActividad(activ, numclase);
 	}
+	
+	public DataCuponera mostrarCuponera (String nomCup) {
+		manejCuponeras mC = manejCuponeras.getinstance();
+		return mC.mostrarCuponera(nomCup);		
+	}
+	
+	
 }

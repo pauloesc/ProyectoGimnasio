@@ -1,11 +1,9 @@
 package datatypes;
 
 import java.util.Date;
-import java.util.Map;
+import java.util.HashSet;
 import java.util.Set;
 
-
-import logica.InfoClases;
 
 
 public class DataCuponera {
@@ -20,7 +18,26 @@ public class DataCuponera {
 	private Set<ParActividad> clases;
 	
 	
-
+	 public DataCuponera() {
+	        this.setNombre(new String());
+	        this.setDescripcion(new String());
+	        this.setDescuento((float) 0);
+	        this.setFecha_ini(new Date());
+	        this.setFecha_fin(new Date());
+	        this.setFecha_alta(new Date());
+	        this.setClases(new HashSet<ParActividad>());
+	    }
+	
+	public DataCuponera(String nombre, String descripcion, Date fecha_ini, Date fecha_fin, Float descuento,
+			Date fecha_alta, Set<ParActividad> clases) {
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.fecha_ini = fecha_ini;
+		this.fecha_fin = fecha_fin;
+		this.descuento = descuento;
+		this.fecha_alta = fecha_alta;
+		this.clases = clases;
+	}
 	public String getNombre() {
 		return nombre;
 	}
@@ -68,11 +85,11 @@ public class DataCuponera {
 		this.fecha_alta = fecha_alta;
 	}
 	
-	public Map<String,int> getClases() {
+	public Set<ParActividad> getClases() {
 		return clases;
 	}
 	
-	public void setClases(Map<String,int> clases) {
+	public void setClases(Set<ParActividad> clases) {
 		this.clases = clases;
 	}
 }
