@@ -26,7 +26,7 @@ public class ctrlClases implements IctrlClases {
 	public void crearClase(String nombre, Date Finicio, String prof, int Smin, int Smax, String url, Date FechaAlta, String nomAct) throws ClaseRepetidaException {
 		Clase c = manejador.findClase(nombre);
 		
-		if (c == null) {
+		if (c != null) {
 			throw new ClaseRepetidaException("Nombre existente");
 		}
 	
