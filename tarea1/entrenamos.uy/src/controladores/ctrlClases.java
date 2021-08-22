@@ -36,6 +36,7 @@ public class ctrlClases implements IctrlClases {
 		ActividadDeportiva ad = MD.buscarActividad(nomAct);
 		
 		ad.addClase(c);
+		manejador.agregarClase(c);
 	}
 	
 	public Set<String> mostrarClasesDeActividadDeportiva(String nomAct) {
