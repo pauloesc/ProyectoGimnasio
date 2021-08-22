@@ -15,12 +15,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-
-/**
- * Clase principal (Frame) con el método Main.
- * @author mbarrera
- *
- */
 public class Principal {
 
     private JFrame entrenamosUy;
