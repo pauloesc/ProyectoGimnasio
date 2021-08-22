@@ -26,7 +26,7 @@ public class Principal {
     private CrearCuponera CrearCuponeraInternalFrame;
     private ConsultaDictadoDeClases consultaDictadoDeClasesFrame;
     private AltaUsuario AltaUsuarioInternalFrame;
-    
+    //hola
     
     /**
      * Launch the application.
