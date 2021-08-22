@@ -15,10 +15,8 @@ import java.util.Vector;
 import manejadores.manejDeportivas;
 import java.util.Iterator;
 
-/**
- * @author mbarrera
- *
- */
+import excepciones.UsuarioDisponibilidadException;
+
 public class ctrlUsuarios implements IctrlUsuarios {
 	
 	private manejUsuarios manejador;
@@ -32,12 +30,14 @@ public class ctrlUsuarios implements IctrlUsuarios {
 	}
 
 	//paulo
-	public void altaUsuario(InfoBasicaUser user) {
+	public void altaUsuario(InfoBasicaUser user) throws UsuarioDisponibilidadException {
 		
-		//traigo el controlador 
-		//this.ctrlUsuarios();
-		
-		this.manejador.CrearUsuario(user);
+		//cuando se crea el controlador ya ahi se trae el manejador  
+		try{
+			this.manejador.CrearUsuario(user);
+		}catch(UsuarioDisponibilidadException e){
+			throw e;
+		}
 		
 	}
 	
@@ -63,6 +63,9 @@ public class ctrlUsuarios implements IctrlUsuarios {
 	
 	public InformacionActividad InformacionActividad(String usuario) {
 		
+		InformacionActividad IA = null;
+		return IA;
+		
 	}
 	
 	public void ActualizarInformacionUsuario(InfoBasicaUser actualizacion){
@@ -71,9 +74,14 @@ public class ctrlUsuarios implements IctrlUsuarios {
 	
 	public InfoBasicaUser InformacionBasicaUsuario(String usuario) {
 		
+		InfoBasicaUser IBU = null;
+		return IBU;
+		
 	}
 	
-	public Set<String> UsuariosEnSistemaNickName(){
+	public Vector<String> UsuariosEnSistemaNickName(){
+		
+		return this.manejador.usuariosNickName();
 		
 	}
 	

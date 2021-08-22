@@ -2,11 +2,11 @@ package logica;
 
 import java.util.Date;
 
-import datatypes.InfoBasicaProfesor;
+import datatypes.InfoBasicaSocio;
 
 public class Socio extends Usuario {
 
-	public Socio(InfoBasicaProfesor info) {
+	public Socio(InfoBasicaSocio info) {
 		
 		super(	info.getNickname(),
 				info.getNombre(),

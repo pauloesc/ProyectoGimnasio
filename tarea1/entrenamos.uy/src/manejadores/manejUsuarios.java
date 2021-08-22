@@ -11,9 +11,15 @@ import java.util.Set;
 
 import logica.Profesor;
 import logica.Usuario;
+import logica.Socio;
 
 import datatypes.InfoBasicaUser;
+import excepciones.UsuarioDisponibilidadException;
 import datatypes.InfoBasicaProfesor;
+import datatypes.InfoBasicaSocio;
+
+import java.util.Vector;
+
 
 public class manejUsuarios {
 
@@ -56,22 +62,27 @@ public class manejUsuarios {
 		return res;
 	}
 	
-	public void CrearUsuario(InfoBasicaUser info) {
+	public void CrearUsuario(InfoBasicaUser info) throws UsuarioDisponibilidadException {
 		
 		boolean dispN = DisponibleNickname(info.getNickname());
 		boolean dispC = DisponibleCorreo(info.getCorreo());
 		
-		if ( !(dispN & dispC) ) {
-			//lanzar excepcion
+		if ( !dispC ) {			
+			throw new UsuarioDisponibilidadException("No esta disponible el correo: " + info.getCorreo() );
 		}
+		if ( !dispN ) {			
+			throw new UsuarioDisponibilidadException("No esta disponible el nickname: " + info.getNickname());
+		}
+		
 		
 		Usuario userCreado = null;
 		
 		if( info.getClass() == InfoBasicaProfesor.class ) {
-			//falta crear profesor
+			
+			userCreado = new Profesor( (InfoBasicaProfesor)info );
 		}
 		else {
-			//falta crear socio
+			userCreado = new Socio( (InfoBasicaSocio)info );
 		}
 		
 		this.usuarios.put(userCreado.getNickname(), userCreado);
@@ -105,6 +116,23 @@ public class manejUsuarios {
 		return dispC;
 	}
 	
+	
+	public Vector<String> usuariosNickName(){
+		
+		Vector<String> vec= new Vector<>();
+		
+		Iterator<Map.Entry<String,Usuario>> usr = this.usuarios.entrySet().iterator();
+		
+		while(usr.hasNext()){
+			Map.Entry<String, Usuario> entry = usr.next();
+			Usuario u = entry.getValue();
+			
+			vec.add(u.getNickname());
+		}
+		
+		return vec;
+		
+	}
 	
 	
 }

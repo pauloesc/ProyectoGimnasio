@@ -1,6 +1,7 @@
 package logica;
 
 import datatypes.InfoBasicaProfesor;
+import datatypes.InfoBasicaUser;
 import java.util.Date;
 
 import manejadores.manejDeportivas;
@@ -25,6 +26,7 @@ public class Profesor extends Usuario {
 		this.descripcion = info.getDesc();
 		this.bio = info.getBibliografia();
 		this.website = info.getUrl();
+		this.asociarInstitucion(info.getInstitucion());
 	}
 	
 	

@@ -50,6 +50,7 @@ import datatypes.InfoBasicaUser;
 import datatypes.InfoBasicaProfesor;
 import datatypes.InfoBasicaSocio;
 import excepciones.UsuarioDisponibilidadException;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ItemListener;
@@ -60,6 +61,9 @@ import java.awt.*;
 
 import javax.swing.DefaultComboBoxModel;
 import java.util.Vector;
+
+import javax.swing.JOptionPane;
+
 
 @SuppressWarnings({ "serial", "unused" })
 public class AltaUsuario extends JInternalFrame{
@@ -81,6 +85,8 @@ public class AltaUsuario extends JInternalFrame{
     
 	public AltaUsuario(IctrlUsuarios icu)  {
 		
+		//esto es:
+		//cuando se llama al a la ventana el programa principal le pasa el controlador
 		controlUsuario = icu;
 		
 		setTitle("Alta Usuario");
@@ -185,13 +191,7 @@ public class AltaUsuario extends JInternalFrame{
 				txtWeb.setEnabled(estado);
 				comboBox.setEditable(estado);
 				comboBox.setEnabled(estado);
-				
-				
-				//Vector<String> vector= new Vector<>();
-				//vector.add("hola1");
-				//vector.add("hola2");
-				//vector.add("hola3");
-				
+							
 				Vector<String> vector2;
 				vector2 = icu.InstitucionesEnSistema();
 				DefaultComboBoxModel<String> model;
@@ -296,34 +296,7 @@ public class AltaUsuario extends JInternalFrame{
 		btnAltaUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				if ( checkFormulario() ) {
-										
-					InfoBasicaUser i;
-					
-					if( chckbxProfesor.isSelected() ) {
-						
-						i = new InfoBasicaProfesor(
-								txtNickName.getText(),
-								txtNombre.getText(),
-								txtApellido.getText(),
-								txtCorreo.getText(),
-								dateChooserInicio.getDate(),
-								comboBox.getSelectedItem().toString(),
-								txtDescripcion.getText(),
-								txtBibliografia.getText(),
-								txtWeb.getText());
-						
-					}else {
-						i = new InfoBasicaSocio(
-								txtNickName.getText(),
-								txtNombre.getText(),
-								txtApellido.getText(),
-								txtCorreo.getText(),
-								dateChooserInicio.getDate());
-					}
-						icu.altaUsuario(i);				
-				}
-				
+				ProcesoCargaUsuario(e);	
 			}
 		});
 
@@ -407,4 +380,44 @@ public class AltaUsuario extends JInternalFrame{
     	
     }
     
+    protected void ProcesoCargaUsuario(ActionEvent arg0) {
+    	
+        if (checkFormulario()) {
+        	
+			InfoBasicaUser i;
+			
+			if( chckbxProfesor.isSelected() ) {
+				
+				i = new InfoBasicaProfesor(
+						txtNickName.getText(),
+						txtNombre.getText(),
+						txtApellido.getText(),
+						txtCorreo.getText(),
+						dateChooserInicio.getDate(),
+						comboBox.getSelectedItem().toString(),
+						txtDescripcion.getText(),
+						txtBibliografia.getText(),
+						txtWeb.getText());
+				
+			}else {
+				i = new InfoBasicaSocio(
+						txtNickName.getText(),
+						txtNombre.getText(),
+						txtApellido.getText(),
+						txtCorreo.getText(),
+						dateChooserInicio.getDate());
+			}
+        	
+            try {
+            	controlUsuario.altaUsuario(i);
+                JOptionPane.showMessageDialog(this, "El Usuario se ha creado con éxito", "Registrar Usuario",
+                        JOptionPane.INFORMATION_MESSAGE);
+                limpiarFormulario();
+                setVisible(false);
+
+            } catch (UsuarioDisponibilidadException ee) {
+                JOptionPane.showMessageDialog(this, ee.getMessage(), "Registrar Usuario", JOptionPane.ERROR_MESSAGE);
+            }
+        }	
+    }
 }
