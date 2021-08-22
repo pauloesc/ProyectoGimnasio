@@ -26,6 +26,7 @@ public class Principal {
     private CrearCuponera CrearCuponeraInternalFrame;
     private ConsultaDictadoDeClases consultaDictadoDeClasesFrame;
     private AltaUsuario AltaUsuarioInternalFrame;
+    private AgregarActividadaCuponera AgregarActividadaCuponeraInternalFrame;
     
     
     /**
@@ -82,6 +83,8 @@ public class Principal {
         AltaUsuarioInternalFrame = new AltaUsuario(ICU);
         AltaUsuarioInternalFrame.setVisible(false);
         
+        AgregarActividadaCuponeraInternalFrame = new AgregarActividadaCuponera(ICC);
+        AgregarActividadaCuponeraInternalFrame.setVisible(false);
         
         entrenamosUy.getContentPane().setLayout(null);
         
@@ -92,7 +95,7 @@ public class Principal {
         entrenamosUy.getContentPane().add(altaDictadoDeClasesInternalFrame);
         entrenamosUy.getContentPane().add(consultaDictadoDeClasesFrame);
         entrenamosUy.getContentPane().add(AltaUsuarioInternalFrame);
-        
+        entrenamosUy.getContentPane().add(AgregarActividadaCuponeraInternalFrame);
     }
 
     /**
@@ -246,7 +249,7 @@ public class Principal {
             public void actionPerformed(ActionEvent e) {
                 // Muestro el InternalFrame para ver la lista de todos los usuarios,
                 // cargando previamente la lista
-
+            	AgregarActividadaCuponeraInternalFrame.setVisible(true);
             }
         });
         menuCuponeras.add(menuAgregaADCuponera);
