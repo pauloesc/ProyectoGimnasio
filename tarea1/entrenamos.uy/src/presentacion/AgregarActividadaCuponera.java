@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import datatypes.DataInstitucion;
 import excepciones.ActividadDeportivaNoExisteException;
 import excepciones.CuponeraNoExisteException;
+import excepciones.CuponeraRepetidaException;
 import excepciones.InstitucionDeportivaNoExisteException;
 
 import java.awt.Button;
@@ -23,6 +24,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.Date;
 
 @SuppressWarnings({ "serial" })
 public class AgregarActividadaCuponera extends JInternalFrame {
@@ -48,7 +50,6 @@ public class AgregarActividadaCuponera extends JInternalFrame {
 		setTitle("Agregar Actividad Deportiva a Cuponera");
 		setClosable(true);
 		setBounds(10, 5, 516, 309);
-		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
 		JLabel lblCuponeras = new JLabel("Cuponeras:");
@@ -132,7 +133,31 @@ public class AgregarActividadaCuponera extends JInternalFrame {
 	}
 	
 	
-	
+	protected void cmdAgregarActionPerformed(ActionEvent arg0) {
+
+		String nomins=comboBoxInstituciones.getSelectedItem().toString();
+		String nomcups=comboBoxCuponeras.getSelectedItem().toString();
+        String nomact=comoboBoxActividades.get
+        String desc = txtDes.getText();
+        
+        if (checkFormulario()) {
+            try {
+                controlCuponeras.registrarCuponera(nombre, des, ini, fin, Float.parseFloat(desc), alta);
+
+                // Muestro éxito de la operación
+                JOptionPane.showMessageDialog(this, "La cuponera se ha registrado con éxito", "Crear Cuponera de Actividades Deportivas",
+                        JOptionPane.INFORMATION_MESSAGE);
+                
+                setVisible(false);
+                limpiarFormulario();
+
+            } catch (CuponeraRepetidaException e) {
+                // Muestro error de registro
+                JOptionPane.showMessageDialog(this, e.getMessage(), "Crear Cuponera de Actividades Deportivas", JOptionPane.ERROR_MESSAGE);
+                
+            }
+        }
+    }
 	
 	
 	
@@ -148,9 +173,9 @@ public class AgregarActividadaCuponera extends JInternalFrame {
             modelo3.setSelectedItem(null);
             comboBoxDeportivas.setModel(modelo3);
         } catch (ActividadDeportivaNoExisteException e) {
-        	JOptionPane.showMessageDialog(this, e.getMessage(), "Agregar Actividad Deportiva a Cuponera",
+        	comboBoxDeportivas.setSelectedItem(null);
+        	JOptionPane.showMessageDialog(this, "No hay actividades deportivas disponibles para agregar", "Agregar Actividad Deportiva a Cuponera",
     	    		JOptionPane.ERROR_MESSAGE);
-        	setVisible(false);
         }
 
     }
