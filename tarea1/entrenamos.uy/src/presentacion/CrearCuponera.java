@@ -9,7 +9,6 @@ import logica.IctrlCuponeras;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.BorderFactory;
-import javax.swing.JFrame;
 import java.awt.Color;
 import java.util.Date;
 import com.toedter.calendar.JDateChooser;
@@ -116,7 +115,7 @@ public class CrearCuponera extends JInternalFrame {
 				cmdRegistroADActionPerformed(arg0);
 			}
 		});
-		buttonAceptar.setBounds(125, 365, 100, 32);
+		buttonAceptar.setBounds(187, 365, 100, 32);
 		getContentPane().add(buttonAceptar);
 		
 		Button buttonCancelar = new Button("Cancelar");
@@ -126,7 +125,7 @@ public class CrearCuponera extends JInternalFrame {
 				 setVisible(false);
 			}
 		});
-		buttonCancelar.setBounds(240, 365, 100, 32);
+		buttonCancelar.setBounds(305, 365, 100, 32);
 		getContentPane().add(buttonCancelar);	
 		
 			

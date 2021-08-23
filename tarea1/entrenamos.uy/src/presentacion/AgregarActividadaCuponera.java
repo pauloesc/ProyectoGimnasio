@@ -13,6 +13,7 @@ import excepciones.ActividadDeportivaNoExisteException;
 import excepciones.CuponeraNoExisteException;
 import excepciones.InstitucionDeportivaNoExisteException;
 
+import java.awt.Button;
 import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
@@ -20,6 +21,8 @@ import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 @SuppressWarnings({ "serial" })
 public class AgregarActividadaCuponera extends JInternalFrame {
@@ -32,13 +35,19 @@ public class AgregarActividadaCuponera extends JInternalFrame {
 	private JTextField txtnumClases;
 	
 	public AgregarActividadaCuponera(IctrlCuponeras ICC, IctrlDeportivas IDD) {
+		addKeyListener(new KeyAdapter() {
+			public void keyPressed(KeyEvent e) {
+				limpiarFormulario();
+				 setVisible(false);
+			}
+		});
 	
 		controlCuponeras=ICC;
 		controlDeportivas=IDD;
 		
 		setTitle("Agregar Actividad Deportiva a Cuponera");
 		setClosable(true);
-		setBounds(10, 5, 516, 335);
+		setBounds(10, 5, 516, 309);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
@@ -96,10 +105,29 @@ public class AgregarActividadaCuponera extends JInternalFrame {
 		txtnumClases = new JTextField();
 		txtnumClases.setEditable(false);
 		txtnumClases.setEnabled(false);
-		txtnumClases.setBounds(264, 165, 85, 20);
+		txtnumClases.setBounds(252, 163, 90, 26);
 		txtnumClases.setBorder(BorderFactory.createLineBorder(Color.black));
 		getContentPane().add(txtnumClases);
 		txtnumClases.setColumns(10);
+		
+		Button buttonAceptar = new Button("Aceptar");
+		buttonAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				cmdAgregarActionPerformed(arg0);
+			}
+		});
+		buttonAceptar.setBounds(252, 223, 100, 32);
+		getContentPane().add(buttonAceptar);
+		
+		Button buttonCancelar = new Button("Cancelar");
+		buttonCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 limpiarFormulario();
+				 setVisible(false);
+			}
+		});
+		buttonCancelar.setBounds(369, 223, 100, 32);
+		getContentPane().add(buttonCancelar);	
 		
 	}
 	
@@ -156,6 +184,8 @@ public class AgregarActividadaCuponera extends JInternalFrame {
         }
 
     }
-
+	 private void limpiarFormulario() {
+	        
+	    }
     
 }
