@@ -20,6 +20,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JTextArea;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
 @SuppressWarnings({ "serial" })
 public class CrearCuponera extends JInternalFrame {
 	
@@ -32,13 +34,18 @@ public class CrearCuponera extends JInternalFrame {
 	private JTextField txtDes;
 	
 	public CrearCuponera(IctrlCuponeras icc) {
+		addInternalFrameListener(new InternalFrameAdapter() {
+			public void internalFrameClosing(InternalFrameEvent e) {
+				limpiarFormulario();
+				 setVisible(false);
+			}
+		});
 		
 		controlCuponeras=icc;
 		setTitle("Crear Cuponera de Actividades Deportivas");
 		setClosable(true);
 		getContentPane().setLayout(null);
 		setBounds(10, 5, 459, 454);
-		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		
 		JLabel lblNombre = new JLabel("Nombre:");
 		lblNombre.setBounds(23, 25, 70, 19);

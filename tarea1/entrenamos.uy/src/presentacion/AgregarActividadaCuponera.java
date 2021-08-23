@@ -52,7 +52,7 @@ public class AgregarActividadaCuponera extends JInternalFrame {
 				comboBoxInstituciones.setEnabled(true);
 			}
 		});
-		comboBoxCuponeras.setBounds(167, 26, 237, 20);
+		comboBoxCuponeras.setBounds(167, 26, 237, 26);
 		comboBoxCuponeras.setBorder(BorderFactory.createLineBorder(Color.black));
 		getContentPane().add(comboBoxCuponeras);
 		
@@ -70,7 +70,7 @@ public class AgregarActividadaCuponera extends JInternalFrame {
 			}
 		});
 		comboBoxInstituciones.setBorder(BorderFactory.createLineBorder(Color.black));
-		comboBoxInstituciones.setBounds(167, 66, 237, 20);
+		comboBoxInstituciones.setBounds(167, 66, 237, 26);
 		getContentPane().add(comboBoxInstituciones);
 		
 		JLabel lblActividades = new JLabel("Actividades Deportivas :");
@@ -78,9 +78,15 @@ public class AgregarActividadaCuponera extends JInternalFrame {
 		getContentPane().add(lblActividades);
 		
 		comboBoxDeportivas = new JComboBox<String>();
+		comboBoxDeportivas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtnumClases.setEditable(true);
+				txtnumClases.setEnabled(true);
+			}
+		});
 		comboBoxDeportivas.setEnabled(false);
 		comboBoxDeportivas.setBorder(BorderFactory.createLineBorder(Color.black));
-		comboBoxDeportivas.setBounds(221, 113, 237, 20);
+		comboBoxDeportivas.setBounds(221, 113, 237, 26);
 		getContentPane().add(comboBoxDeportivas);
 		
 		JLabel lblNmeroDeClases = new JLabel("Número de clases disponibles:");
@@ -95,9 +101,12 @@ public class AgregarActividadaCuponera extends JInternalFrame {
 		getContentPane().add(txtnumClases);
 		txtnumClases.setColumns(10);
 		
-
-		
 	}
+	
+	
+	
+	
+	
 	
 	protected void cargarDerportivas(ActionEvent ele) {
 		String nomins=comboBoxInstituciones.getSelectedItem().toString();
