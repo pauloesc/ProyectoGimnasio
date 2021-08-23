@@ -25,6 +25,7 @@ public class Cuponera {
 		this.fecha_fin = fin;
 		this.descuento = disc;
 		this.fecha_alta = alta;
+		this.info = new HashSet<InfoClases>();
 	}
 
 	public String getDescripcion() {

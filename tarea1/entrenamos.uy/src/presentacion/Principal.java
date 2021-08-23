@@ -83,7 +83,7 @@ public class Principal {
         AltaUsuarioInternalFrame = new AltaUsuario(ICU);
         AltaUsuarioInternalFrame.setVisible(false);
         
-        AgregarActividadaCuponeraInternalFrame = new AgregarActividadaCuponera(ICC);
+        AgregarActividadaCuponeraInternalFrame = new AgregarActividadaCuponera(ICC,ICD);
         AgregarActividadaCuponeraInternalFrame.setVisible(false);
         
         entrenamosUy.getContentPane().setLayout(null);
@@ -250,6 +250,7 @@ public class Principal {
                 // Muestro el InternalFrame para ver la lista de todos los usuarios,
                 // cargando previamente la lista
             	AgregarActividadaCuponeraInternalFrame.cargarCuponeras();
+            	AgregarActividadaCuponeraInternalFrame.cargarInstituciones();
             	AgregarActividadaCuponeraInternalFrame.setVisible(true);
             }
         });

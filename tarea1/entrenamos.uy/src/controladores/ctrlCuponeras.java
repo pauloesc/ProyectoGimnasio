@@ -4,6 +4,7 @@ package controladores;
 import java.util.Date;
 import java.util.Set;
 
+import excepciones.ActividadDeportivaNoExisteException;
 import excepciones.CuponeraNoExisteException;
 import excepciones.CuponeraRepetidaException;
 import logica.Cuponera;
@@ -40,15 +41,19 @@ public class ctrlCuponeras implements IctrlCuponeras {
 		return resu;
 	}
 	
-	public Set<String> listarActividadesfaltantes(String nomcup, String nominst) {
+	public Set<String> listarActividadesfaltantes(String nomcup, String nominst) throws ActividadDeportivaNoExisteException{
 		manejCuponeras mC = manejCuponeras.getinstance();
 		Cuponera cup = mC.getCuponera(nomcup);
 		Set <String> ListAct=cup.getListaActividades();
 		manejDeportivas mD= manejDeportivas.getinstance();
 		InstitucionDeportiva inst = mD.buscarInstitucion(nominst);
 		Set <String> ListInst = inst.darNombresActividadesDeportivas();
-		ListInst.removeAll(ListAct);
-		
+		if ((ListAct!=null) && (ListInst!=null)) 
+			ListInst.removeAll(ListAct);
+	
+		if (ListInst.size()==0) {
+			throw new ActividadDeportivaNoExisteException("Todas las actividades deportivas de la instituciòn fueron agregadas"); 
+		}
 		return ListInst;
 	}
 	
