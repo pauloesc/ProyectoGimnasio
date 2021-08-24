@@ -27,6 +27,7 @@ public class Principal {
     private ConsultaDictadoDeClases consultaDictadoDeClasesFrame;
     private AltaUsuario AltaUsuarioInternalFrame;
     private AgregarActividadaCuponera AgregarActividadaCuponeraInternalFrame;
+    private ConsultarCuponera ConsultarCuponeraInternalFrame;
     
     
     /**
@@ -86,6 +87,11 @@ public class Principal {
         AgregarActividadaCuponeraInternalFrame = new AgregarActividadaCuponera(ICC,ICD);
         AgregarActividadaCuponeraInternalFrame.setVisible(false);
         
+        ConsultarCuponeraInternalFrame= new ConsultarCuponera(ICC,ICD);
+        ConsultarCuponeraInternalFrame.setVisible(false);
+        
+        
+        
         entrenamosUy.getContentPane().setLayout(null);
         
         entrenamosUy.getContentPane().add(altaInstDeportivaInternalFrame);
@@ -96,6 +102,7 @@ public class Principal {
         entrenamosUy.getContentPane().add(consultaDictadoDeClasesFrame);
         entrenamosUy.getContentPane().add(AltaUsuarioInternalFrame);
         entrenamosUy.getContentPane().add(AgregarActividadaCuponeraInternalFrame);
+        entrenamosUy.getContentPane().add(ConsultarCuponeraInternalFrame);
     }
 
     /**
@@ -260,7 +267,8 @@ public class Principal {
         menuItemVerInfoCuponera.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Muestro el InternalFrame para ver información de un usuario
-
+            	ConsultarCuponeraInternalFrame.cargarCuponeras();
+            	ConsultarCuponeraInternalFrame.setVisible(true);
             }
         });
         menuCuponeras.add(menuItemVerInfoCuponera);
