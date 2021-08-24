@@ -170,8 +170,7 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
             modelo.setSelectedItem(null);
             comboBoxInstDeportivas.setModel(modelo);
         } catch (InstitucionDeportivaNoExisteException e) {
-        	JOptionPane.showMessageDialog(this, "No existen Instituciones Deportivas en el sistema.", "Consulta Actividad Deportiva",
-    	    		JOptionPane.ERROR_MESSAGE);
+        	JOptionPane.showMessageDialog(this, e.getMessage(), "Consulta Actividad Deportiva", JOptionPane.ERROR_MESSAGE);
         	setVisible(false);
         }
 
@@ -187,9 +186,7 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
             modelo.setSelectedItem(null);
             comboBoxActDeportivas.setModel(modelo);
         } catch (ActividadDeportivaNoExisteException e) {
-        	JOptionPane.showMessageDialog(this, "No existen Actividades Deportivas en el sistema para la Institucón Deportiva seleccionada.", "Consulta Actividad Deportiva",
-    	    		JOptionPane.ERROR_MESSAGE);
-        	setVisible(false);
+        	JOptionPane.showMessageDialog(this, e.getMessage(), "Consulta Actividad Deportiva", JOptionPane.ERROR_MESSAGE);
         }
 
     }

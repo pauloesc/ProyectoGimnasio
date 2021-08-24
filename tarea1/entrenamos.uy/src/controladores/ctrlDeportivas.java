@@ -114,4 +114,31 @@ public class ctrlDeportivas implements IctrlDeportivas{
 		return i.darNombresActividadesDeportivas();
 	}
 
+	public void cargarDatosDeportiva() {
+		
+		//cargo instituciones deportivas
+		try {
+			altaInstitucion("Instituto Natural", "Clases de gimnasia, aeróbica, spinning y yoga.", "https://www.inatural.com");
+			altaInstitucion("Fuerza Bruta", "Gimnasio especializado en el desarrollo de la musculatura.", "https://www.musculos.com/");
+			altaInstitucion("Telón", "Actividades deportivas para todas las edades.", "https://telon.com.uy");
+			altaInstitucion("Olympic", "Gimnasia y Aparatos", "https://www.olympic21.com/");
+		} catch (InstitucionDeportivaRepetidaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		//carto actividades deportivas
+		try {
+			altaActividadDeportiva("Fuerza Bruta", "Aparatos y pesas", "Clases de aparatos, pesas y calistenia.", 90f, 550f, new Date());
+			altaActividadDeportiva("Telón", "Voleibol", "Voleibol en todas sus formas.", 120f, 750f, new Date());
+			altaActividadDeportiva("Instituto Natural", "Aeróbica", "Para cuidar el aparato cardiovascular.", 110f, 800f, new Date());
+			altaActividadDeportiva("Fuerza Bruta", "Kickboxing ", "En busca del nuevo campeón de boxeo.", 100f, 980f, new Date());
+			altaActividadDeportiva("Telón", "Atletismo", "100m , 200m, postas y carreras con obstaculos.", 150f, 500f, new Date());
+			altaActividadDeportiva("Telón", "Basquetbol", "Espectáculo conmemorando los 30 años de Violeta. ", 80f, 450f, new Date());
+		} catch (ActividadDeportivaRepetidaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 }
