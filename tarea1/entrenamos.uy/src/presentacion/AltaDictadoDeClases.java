@@ -205,7 +205,7 @@ public class AltaDictadoDeClases extends JInternalFrame {
 					
 					//comprobar que todos los campos tengan algo
 				
-					if ((nom.isBlank()) || (Finicio == null) || (prof == null) || (ur.isBlank()) || (Falta == null) || (nomAct == null)){
+					if ((nom.isEmpty()) || (Finicio == null) || (prof == null) || (ur.isEmpty()) || (Falta == null) || (nomAct == null)){
 						JOptionPane.showMessageDialog(null, "Error, ningun campo puede quedar vacio");
 					} else {
 						int min = Integer.parseInt(Smin.getText());
