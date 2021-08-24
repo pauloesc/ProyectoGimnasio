@@ -50,4 +50,6 @@ public interface IctrlUsuarios {
 	public abstract Vector<String> UsuariosEnSistemaNickName();
 	//fincreado
 	
+	public abstract Set<String> MostrarCuponerasDisponibles(String nick, String actDept);
+	
 }

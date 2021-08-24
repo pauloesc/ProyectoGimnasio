@@ -113,5 +113,13 @@ public class ctrlDeportivas implements IctrlDeportivas{
 		
 		return i.darNombresActividadesDeportivas();
 	}
+	
+	public Set<String> mostrarClasesVigentesDeActividadDeportiva(String nomAct) {
+		manejDeportivas mD = manejDeportivas.getinstance();
+		ActividadDeportiva ac = mD.buscarActividad(nomAct);
+		
+		return ac.darNombreClasesVigentes();
+
+    }
 
 }

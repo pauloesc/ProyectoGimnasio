@@ -134,5 +134,8 @@ public class manejUsuarios {
 		
 	}
 	
+	public Usuario findUsuario(String nick) {
+		return usuarios.get(nick);
+	}
 	
 }

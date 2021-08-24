@@ -59,5 +59,7 @@ public interface IctrlDeportivas {
 
     public abstract Set<String> darNombresActividadesDeportivas(String inst);
     // muestra de las actividades deportivas de una institucion, utilizado en varios CU
+    
+    public abstract Set<String> mostrarClasesVigentesDeActividadDeportiva(String nomAct);
 }
 
