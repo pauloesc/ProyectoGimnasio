@@ -46,7 +46,7 @@ public interface IctrlDeportivas {
      * @param n Nombre de la Actividad Deportiva.
      * @throws ActividadDeportivaNoExisteException Si el nombre no está registrada en el sistema.
      */
-    public abstract void /*DataActividadDeportiva*/ consultaActividadDeportiva(String nid, String n) throws ActividadDeportivaNoExisteException;
+   // public abstract void /*DataActividadDeportiva*/ consultaActividadDeportiva(String nid, String n) throws ActividadDeportivaNoExisteException;
 
 	public abstract DataInstitucion[] getInstituciones() throws InstitucionDeportivaNoExisteException;
 
@@ -59,5 +59,7 @@ public interface IctrlDeportivas {
 
     public abstract Set<String> darNombresActividadesDeportivas(String inst);
     // muestra de las actividades deportivas de una institucion, utilizado en varios CU
+    
+    public abstract void cargarDatosDeportiva();
 }
 

@@ -27,6 +27,7 @@ public class Principal {
     private ConsultaDictadoDeClases consultaDictadoDeClasesFrame;
     private AltaUsuario AltaUsuarioInternalFrame;
     private AgregarActividadaCuponera AgregarActividadaCuponeraInternalFrame;
+    private IctrlDeportivas ICD;
     
     
     /**
@@ -54,7 +55,7 @@ public class Principal {
     	
         // Inicialización
         Fabrica fabrica = Fabrica.getInstance();
-        IctrlDeportivas ICD = fabrica.getIctrlDeportivas();
+        ICD = fabrica.getIctrlDeportivas();
         IctrlCuponeras ICC =fabrica.getIctrlCuponeras();
         
         IctrlUsuarios ICU = fabrica.getIctrlUsuarios();
@@ -102,6 +103,7 @@ public class Principal {
      * Initialize the contents of the frame.
      */
     private void initialize() {
+    	
         
         // Se crea el Frame con las dimensiones indicadas.
     	entrenamosUy = new JFrame();
@@ -117,6 +119,14 @@ public class Principal {
 
         JMenu menuSistema = new JMenu("Sistema");
         menuBar.add(menuSistema);
+        
+        JMenuItem menuDatosPrueba = new JMenuItem("Cargar datos de prueba");
+        menuDatosPrueba.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+                ICD.cargarDatosDeportiva();
+            }
+        });
+        menuSistema.add(menuDatosPrueba);
 
         JMenuItem menuSalir = new JMenuItem("Salir");
         menuSalir.addActionListener(new ActionListener() {
@@ -127,6 +137,7 @@ public class Principal {
             }
         });
         menuSistema.add(menuSalir);
+      
 
         JMenu menuUsuarios = new JMenu("Usuarios");
         menuBar.add(menuUsuarios);
