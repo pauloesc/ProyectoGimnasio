@@ -4,14 +4,12 @@ import javax.swing.JInternalFrame;
 import logica.IctrlCuponeras;
 import logica.IctrlDeportivas;
 
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import datatypes.DataInstitucion;
 import excepciones.ActividadDeportivaNoExisteException;
 import excepciones.CuponeraNoExisteException;
-import excepciones.CuponeraRepetidaException;
 import excepciones.InstitucionDeportivaNoExisteException;
 
 import java.awt.Button;
@@ -20,11 +18,13 @@ import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.util.Date;
+
+
 
 @SuppressWarnings({ "serial" })
 public class AgregarActividadaCuponera extends JInternalFrame {
@@ -37,8 +37,8 @@ public class AgregarActividadaCuponera extends JInternalFrame {
 	private JTextField txtnumClases;
 	
 	public AgregarActividadaCuponera(IctrlCuponeras ICC, IctrlDeportivas IDD) {
-		addKeyListener(new KeyAdapter() {
-			public void keyPressed(KeyEvent e) {
+		addInternalFrameListener(new InternalFrameAdapter() {
+			public void internalFrameClosing(InternalFrameEvent e) {
 				limpiarFormulario();
 				 setVisible(false);
 			}
@@ -135,30 +135,50 @@ public class AgregarActividadaCuponera extends JInternalFrame {
 	
 	protected void cmdAgregarActionPerformed(ActionEvent arg0) {
 
-		String nomins=comboBoxInstituciones.getSelectedItem().toString();
 		String nomcups=comboBoxCuponeras.getSelectedItem().toString();
-        String nomact=comoboBoxActividades.get
-        String desc = txtDes.getText();
+        String nomact=comboBoxDeportivas.getSelectedItem().toString();
+        String numClases = txtnumClases.getText();
         
         if (checkFormulario()) {
-            try {
-                controlCuponeras.registrarCuponera(nombre, des, ini, fin, Float.parseFloat(desc), alta);
-
+                controlCuponeras.agregarActividad(nomcups, nomact, Integer.parseInt(numClases));
                 // Muestro éxito de la operación
-                JOptionPane.showMessageDialog(this, "La cuponera se ha registrado con éxito", "Crear Cuponera de Actividades Deportivas",
+                JOptionPane.showMessageDialog(this, "La actividad deportiva se ha agregado con éxito", "Agregar actividad deportiva a cuponera",
                         JOptionPane.INFORMATION_MESSAGE);
                 
                 setVisible(false);
                 limpiarFormulario();
 
-            } catch (CuponeraRepetidaException e) {
-                // Muestro error de registro
-                JOptionPane.showMessageDialog(this, e.getMessage(), "Crear Cuponera de Actividades Deportivas", JOptionPane.ERROR_MESSAGE);
-                
-            }
+            } 
         }
+    
+	private boolean checkFormulario() {
+    	
+		String numClases = txtnumClases.getText();
+        
+        boolean ret = true;
+
+        if (numClases.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "Agregar actividades deportivas a cuponera",
+                    JOptionPane.ERROR_MESSAGE);
+            ret = false;
+        }
+        
+	        
+        if (ret){
+	        try {
+	        	Integer.parseInt(numClases);
+	        }
+	        catch (NumberFormatException e) {
+	    	    JOptionPane.showMessageDialog(this, "El numero de clases debe ser un numero entero", "Agregar actividades deportivas a cuponeras",
+	    	    		JOptionPane.ERROR_MESSAGE);
+	            ret = false;
+	        }
+	        
+	        }   
+          
+        
+        return ret;
     }
-	
 	
 	
 	protected void cargarDerportivas(ActionEvent ele) {
@@ -210,7 +230,12 @@ public class AgregarActividadaCuponera extends JInternalFrame {
 
     }
 	 private void limpiarFormulario() {
-	        
+		 comboBoxInstituciones.setEnabled(false);
+		 comboBoxDeportivas.setSelectedItem(null);
+		 comboBoxDeportivas.setEnabled(false);
+		 txtnumClases.setText("");
+		 txtnumClases.setEditable(false);
+		 txtnumClases.setEnabled(false);
 	    }
     
 }
