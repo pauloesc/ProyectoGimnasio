@@ -7,23 +7,27 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import logica.Fabrica;
+import logica.IctrlCuponeras;
 import logica.IctrlDeportivas;
+import logica.IctrlUsuarios;
 
 import javax.swing.JMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * Clase principal (Frame) con el método Main.
- * @author mbarrera
- *
- */
+
 public class Principal {
 
     private JFrame entrenamosUy;
     private AltaInstitucionDeportiva altaInstDeportivaInternalFrame;
     private AltaActividadDeportiva altaActividadDeportivaInternalFrame;
     private ConsultaActividadDeportiva consultaActividadDeportivaInternalFrame;
+    private AltaDictadoDeClases altaDictadoDeClasesInternalFrame;
+    private CrearCuponera CrearCuponeraInternalFrame;
+    private ConsultaDictadoDeClases consultaDictadoDeClasesFrame;
+    private AltaUsuario AltaUsuarioInternalFrame;
+    private AgregarActividadaCuponera AgregarActividadaCuponeraInternalFrame;
+    
     
     /**
      * Launch the application.
@@ -51,6 +55,9 @@ public class Principal {
         // Inicialización
         Fabrica fabrica = Fabrica.getInstance();
         IctrlDeportivas ICD = fabrica.getIctrlDeportivas();
+        IctrlCuponeras ICC =fabrica.getIctrlCuponeras();
+        
+        IctrlUsuarios ICU = fabrica.getIctrlUsuarios();
         
         // Se crean los tres InternalFrame y se incluyen al Frame principal ocultos.
         // De esta forma, no es necesario crear y destruir objetos lo que enlentece la ejecución.
@@ -64,13 +71,31 @@ public class Principal {
         consultaActividadDeportivaInternalFrame = new ConsultaActividadDeportiva(ICD);
         consultaActividadDeportivaInternalFrame.setVisible(false);
         
+        CrearCuponeraInternalFrame = new CrearCuponera(ICC);
+        CrearCuponeraInternalFrame.setVisible(false);
+        
+        altaDictadoDeClasesInternalFrame = new AltaDictadoDeClases();
+        altaDictadoDeClasesInternalFrame.setLocation(106, 25);
+        altaDictadoDeClasesInternalFrame.setVisible(false);
+        
+        consultaDictadoDeClasesFrame = new ConsultaDictadoDeClases();
+        consultaDictadoDeClasesFrame.setVisible(false);
+        AltaUsuarioInternalFrame = new AltaUsuario(ICU);
+        AltaUsuarioInternalFrame.setVisible(false);
+        
+        AgregarActividadaCuponeraInternalFrame = new AgregarActividadaCuponera(ICC,ICD);
+        AgregarActividadaCuponeraInternalFrame.setVisible(false);
+        
         entrenamosUy.getContentPane().setLayout(null);
         
         entrenamosUy.getContentPane().add(altaInstDeportivaInternalFrame);
         entrenamosUy.getContentPane().add(altaActividadDeportivaInternalFrame);
         entrenamosUy.getContentPane().add(consultaActividadDeportivaInternalFrame);
-        
-        
+        entrenamosUy.getContentPane().add(CrearCuponeraInternalFrame);
+        entrenamosUy.getContentPane().add(altaDictadoDeClasesInternalFrame);
+        entrenamosUy.getContentPane().add(consultaDictadoDeClasesFrame);
+        entrenamosUy.getContentPane().add(AltaUsuarioInternalFrame);
+        entrenamosUy.getContentPane().add(AgregarActividadaCuponeraInternalFrame);
     }
 
     /**
@@ -81,7 +106,7 @@ public class Principal {
         // Se crea el Frame con las dimensiones indicadas.
     	entrenamosUy = new JFrame();
     	entrenamosUy.setTitle("entrenamos.uy - backend administrador");
-    	entrenamosUy.setBounds(100, 100, 850, 600);
+    	entrenamosUy.setBounds(100, 100, 852, 641);
         entrenamosUy.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Se crea una barra de menú (JMenuBar) con dos menú (JMenu) desplegables.
@@ -110,7 +135,7 @@ public class Principal {
         menuItemRegistrar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Muestro el InternalFrame para registrar un usuario
-
+            	AltaUsuarioInternalFrame.setVisible(true);
             }
         });
         menuUsuarios.add(menuItemRegistrar);
@@ -176,7 +201,10 @@ public class Principal {
         JMenuItem menuItemAltaClase = new JMenuItem("Alta de dictado de Clase");
         menuItemAltaClase.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Muestro el InternalFrame para registrar un usuario
+                // Muestro el InternalFrame para registrar una clase
+            	altaDictadoDeClasesInternalFrame.cargarFormulario();
+            	altaDictadoDeClasesInternalFrame.setVisible(true);
+
 
             }
         });
@@ -185,7 +213,10 @@ public class Principal {
         JMenuItem menuItemVerInfoClase = new JMenuItem("Consulta de dictado de Clase");
         menuItemVerInfoClase.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Muestro el InternalFrame para ver información de un usuario
+                // Muestro el InternalFrame para ver información de una clase
+            	consultaDictadoDeClasesFrame.cargarFormulario();
+            	consultaDictadoDeClasesFrame.setVisible(true);
+            	
 
             }
         });
@@ -208,7 +239,7 @@ public class Principal {
         menuItemRegistrarCuponera.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Muestro el InternalFrame para registrar un usuario
-
+            	CrearCuponeraInternalFrame.setVisible(true);
             }
         });
         menuCuponeras.add(menuItemRegistrarCuponera);
@@ -218,7 +249,9 @@ public class Principal {
             public void actionPerformed(ActionEvent e) {
                 // Muestro el InternalFrame para ver la lista de todos los usuarios,
                 // cargando previamente la lista
-
+            	AgregarActividadaCuponeraInternalFrame.cargarCuponeras();
+            	AgregarActividadaCuponeraInternalFrame.cargarInstituciones();
+            	AgregarActividadaCuponeraInternalFrame.setVisible(true);
             }
         });
         menuCuponeras.add(menuAgregaADCuponera);

@@ -1,5 +1,6 @@
 package manejadores;
 
+
 /**
  * Clase que conserva la colección global de Actividades e Instituciones Deportivas del sistema.
  * Se identifican por su nombre.
@@ -10,8 +11,11 @@ package manejadores;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import logica.InstitucionDeportiva;
+import java.util.Set;
+
 import logica.ActividadDeportiva;
+import logica.InstitucionDeportiva;
+
 
 public class manejDeportivas {
 	private Map<String, InstitucionDeportiva> institucionesDeportivas;
@@ -53,7 +57,7 @@ public class manejDeportivas {
             return institucionesdeportivas;
         }
     }
-    
+
     public void agregarActividad(ActividadDeportiva actdep) {
         String nombre = actdep.getNombre();
         actividadesDeportivas.put(nombre, actdep);
@@ -77,4 +81,8 @@ public class manejDeportivas {
             return actividadesdeportivas;
         }
     }
-	}
+
+    public Set<String> darNombreInstituciones() {
+    	return this.institucionesDeportivas.keySet();
+    }
+}

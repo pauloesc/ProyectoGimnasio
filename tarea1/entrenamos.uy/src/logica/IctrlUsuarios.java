@@ -1,4 +1,10 @@
 package logica;
+import java.util.Set;
+import datatypes.InfoBasicaUser;
+import datatypes.InformacionActividad;
+import excepciones.UsuarioDisponibilidadException;
+
+import java.util.Vector;
 
 //import excepciones.UsuarioNoExisteException;
 //import excepciones.UsuarioRepetidoException;
@@ -9,6 +15,8 @@ package logica;
  */
 public interface IctrlUsuarios {
     
+	public abstract Set<String> mostrarNombreProfesoresDeInstitucion(String inst);
+	
     /**
      * Registra al usuario en el sistema.
      * @param n Nombre del usuario.
@@ -32,4 +40,14 @@ public interface IctrlUsuarios {
      * @throws UsuarioNoExisteException Si no existen usuarios registrados en el sistema.
      */
   //  public abstract DataUsuario[] getUsuarios() throws UsuarioNoExisteException;
+	
+	//creado por Paulo
+	public abstract void altaUsuario(InfoBasicaUser user) throws UsuarioDisponibilidadException;
+	public abstract Vector<String> InstitucionesEnSistema();
+	public abstract InformacionActividad InformacionActividad(String usuario);
+	public abstract void ActualizarInformacionUsuario(InfoBasicaUser actualizacion);
+	public abstract InfoBasicaUser InformacionBasicaUsuario(String usuario);
+	public abstract Vector<String> UsuariosEnSistemaNickName();
+	//fincreado
+	
 }

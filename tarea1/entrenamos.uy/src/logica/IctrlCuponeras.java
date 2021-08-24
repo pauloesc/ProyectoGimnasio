@@ -1,35 +1,24 @@
 package logica;
 
-//import excepciones.UsuarioNoExisteException;
-//import excepciones.UsuarioRepetidoException;
+import java.util.Date;
+import java.util.Set;
 
-/**
- * @author mbarrera
- *
- */
+import datatypes.DataCuponera;
+import excepciones.ActividadDeportivaNoExisteException;
+import excepciones.CuponeraNoExisteException;
+import excepciones.CuponeraRepetidaException;
+
+
+
 public interface IctrlCuponeras {
-    
-    /**
-     * Registra al usuario en el sistema.
-     * @param n Nombre del usuario.
-     * @param ap Apellido del usuario.
-     * @param ci Cédula del usuario.
-     * @throws UsuarioRepetidoException Si la cédula del usuario se encuentra registrada en el sistema.
-     */
-  //  public abstract void registrarUsuario(String n, String ap, String ci) throws UsuarioRepetidoException;
+	
+	public abstract boolean registrarCuponera(String nombre, String descrip, Date fecha_ini, Date fecha_fin, Float descuento, Date fecha_alta) throws CuponeraRepetidaException;
+	public abstract Set<String> listarCuponeras() throws CuponeraNoExisteException;
+	
+	public abstract Set<String> listarActividadesfaltantes(String nomcup, String nominst)throws ActividadDeportivaNoExisteException;
+	
+	public abstract void agregarActividad(String nomcup,String act,int numclase) ;
 
-    /**
-     * Retorna la información de un usuario con la cédula indicada.
-     * @param ci Cédula del usuario.
-     * @return Información del usuario.
-     * @throws UsuarioNoExisteException Si la cédula del usuario no está registrada en el sistema.
-     */
-  //  public abstract DataUsuario verInfoUsuario(String ci) throws UsuarioNoExisteException;
+	public abstract DataCuponera mostrarCuponera (String nomCup); 
 
-    /**
-     * Retorna la información de todos los usuarios registrados en el sistema.
-     * @return Información de los usuarios del sistema.
-     * @throws UsuarioNoExisteException Si no existen usuarios registrados en el sistema.
-     */
-  //  public abstract DataUsuario[] getUsuarios() throws UsuarioNoExisteException;
 }

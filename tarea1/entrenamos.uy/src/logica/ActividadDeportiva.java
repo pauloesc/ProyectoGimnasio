@@ -1,6 +1,9 @@
 package logica;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Representa a una Actividad Deportiva en el sistema con nombre, descripcion, duracion, costo, fecha_alta.
@@ -8,6 +11,7 @@ import java.util.Date;
  */
 
 public class ActividadDeportiva {
+	private Map<String,Clase> clases;
 
     private String nombre;
     private String descripcion;
@@ -22,8 +26,17 @@ public class ActividadDeportiva {
         this.duracion = dur;
         this.costo = cost;
         this.fecha_alta = fa;
+        this.clases = new HashMap<String,Clase>();
     }
 
+    public void addClase(Clase c) {
+	clases.put(c.getNombre(),c);
+    }
+
+    public Set<String> darNombreClases() {
+    	return clases.keySet();
+    }
+    
     public String getNombre() {
         return nombre;
     }

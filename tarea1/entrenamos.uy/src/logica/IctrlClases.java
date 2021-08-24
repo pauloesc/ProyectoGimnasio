@@ -1,5 +1,11 @@
 package logica;
 
+import java.util.Date;
+import java.util.Set;
+
+import datatypes.DtClase;
+import excepciones.ClaseRepetidaException;
+
 //import excepciones.UsuarioNoExisteException;
 //import excepciones.UsuarioRepetidoException;
 
@@ -8,28 +14,10 @@ package logica;
  *
  */
 public interface IctrlClases {
-    
-    /**
-     * Registra al usuario en el sistema.
-     * @param n Nombre del usuario.
-     * @param ap Apellido del usuario.
-     * @param ci Cédula del usuario.
-     * @throws UsuarioRepetidoException Si la cédula del usuario se encuentra registrada en el sistema.
-     */
-  //  public abstract void registrarUsuario(String n, String ap, String ci) throws UsuarioRepetidoException;
-
-    /**
-     * Retorna la información de un usuario con la cédula indicada.
-     * @param ci Cédula del usuario.
-     * @return Información del usuario.
-     * @throws UsuarioNoExisteException Si la cédula del usuario no está registrada en el sistema.
-     */
-  //  public abstract DataUsuario verInfoUsuario(String ci) throws UsuarioNoExisteException;
-
-    /**
-     * Retorna la información de todos los usuarios registrados en el sistema.
-     * @return Información de los usuarios del sistema.
-     * @throws UsuarioNoExisteException Si no existen usuarios registrados en el sistema.
-     */
-  //  public abstract DataUsuario[] getUsuarios() throws UsuarioNoExisteException;
+ 
+	public abstract void crearClase(String nombre, Date Finicio, String prof, int Smin, int Smax, String url, Date FechaAlta, String nomAct) throws ClaseRepetidaException;
+	
+	public abstract Set<String> mostrarClasesDeActividadDeportiva(String nomAct);
+	
+	public abstract DtClase darDtClase(String nomClas);
 }

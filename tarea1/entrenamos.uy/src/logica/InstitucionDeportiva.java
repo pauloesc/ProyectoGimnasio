@@ -1,6 +1,7 @@
 package logica;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 /**
@@ -62,6 +63,14 @@ public class InstitucionDeportiva {
 
             return actividadesdeportivas;
         }
-	}
+    }
 
+	public Set<String> darNombresActividadesDeportivas() {
+		Set<String> res = new HashSet<String>();    	
+		for( Iterator<ActividadDeportiva> it = this.actividadesDeportivasInst.iterator(); it.hasNext();) { 
+		    String x = (String)it.next().getNombre();
+		    res.add(x);
+		}
+		return res;
+    }
 }
