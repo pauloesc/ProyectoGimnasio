@@ -12,6 +12,9 @@ import logica.ActividadDeportiva;
 import datatypes.DataActividad;
 import datatypes.DataInstitucion;
 import manejadores.manejDeportivas;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -47,10 +50,10 @@ public class ctrlDeportivas implements IctrlDeportivas{
         indep.addActividadDeportiva(actdep);
 	}
 
-	public void consultaActividadDeportiva(String nid, String n) throws ActividadDeportivaNoExisteException {
+//	public void consultaActividadDeportiva(String nid, String n) throws ActividadDeportivaNoExisteException {
 		// TODO Auto-generated method stub
 		
-	}
+//	}
 	
 	public DataInstitucion[] getInstituciones() throws InstitucionDeportivaNoExisteException {
         manejDeportivas mD = manejDeportivas.getinstance();
@@ -126,15 +129,26 @@ public class ctrlDeportivas implements IctrlDeportivas{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		Date f1 = null, f2 = null, f3 = null, f4 = null, f5 = null, f6 = null;
+		try {
+			f1 = new SimpleDateFormat("dd/MM/yy").parse("31/03/21");
+			f2 = new SimpleDateFormat("dd/MM/yy").parse("20/04/21");
+			f3 = new SimpleDateFormat("dd/MM/yy").parse("30/05/21");
+			f4 = new SimpleDateFormat("dd/MM/yy").parse("07/06/21");
+			f5 = new SimpleDateFormat("dd/MM/yy").parse("08/07/21");
+			f6 = new SimpleDateFormat("dd/MM/yy").parse("31/07/21");
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		//carto actividades deportivas
 		try {
-			altaActividadDeportiva("Fuerza Bruta", "Aparatos y pesas", "Clases de aparatos, pesas y calistenia.", 90f, 550f, new Date());
-			altaActividadDeportiva("Telón", "Voleibol", "Voleibol en todas sus formas.", 120f, 750f, new Date());
-			altaActividadDeportiva("Instituto Natural", "Aeróbica", "Para cuidar el aparato cardiovascular.", 110f, 800f, new Date());
-			altaActividadDeportiva("Fuerza Bruta", "Kickboxing ", "En busca del nuevo campeón de boxeo.", 100f, 980f, new Date());
-			altaActividadDeportiva("Telón", "Atletismo", "100m , 200m, postas y carreras con obstaculos.", 150f, 500f, new Date());
-			altaActividadDeportiva("Telón", "Basquetbol", "Espectáculo conmemorando los 30 años de Violeta. ", 80f, 450f, new Date());
+			altaActividadDeportiva("Fuerza Bruta", "Aparatos y pesas", "Clases de aparatos, pesas y calistenia.", 90f, 550f, f1);
+			altaActividadDeportiva("Telón", "Voleibol", "Voleibol en todas sus formas.", 120f, 750f, f2);
+			altaActividadDeportiva("Instituto Natural", "Aeróbica", "Para cuidar el aparato cardiovascular.", 110f, 800f, f3);
+			altaActividadDeportiva("Fuerza Bruta", "Kickboxing ", "En busca del nuevo campeón de boxeo.", 100f, 980f, f4);
+			altaActividadDeportiva("Telón", "Atletismo", "100m , 200m, postas y carreras con obstaculos.", 150f, 500f, f5);
+			altaActividadDeportiva("Telón", "Basquetbol", "Espectáculo conmemorando los 30 años de Violeta. ", 80f, 450f, f6);
 		} catch (ActividadDeportivaRepetidaException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

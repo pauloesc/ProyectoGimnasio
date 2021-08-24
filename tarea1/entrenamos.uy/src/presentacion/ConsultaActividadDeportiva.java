@@ -39,6 +39,9 @@ import javax.swing.JTextField;
 
 import logica.IctrlDeportivas;
 import java.awt.event.ItemListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.awt.event.ItemEvent;
 
 @SuppressWarnings({ "serial", "unused" })
@@ -195,13 +198,21 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
     // provistos por la operación del sistema getDataActividad().
     // Se invoca el método luego de haber seleccionado la Institución Deportiva y la Actividad Deportiva
     public void cargarDatosActividad(String n) {
+    	
+        Date date = null;  
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");  
+    
         try {
             DataActividad act = controlDeportivas.getDataActividad(n);
             txtNombre.setText(act.getNombre());
             txtDescripcion.setText(act.getDescripcion());
             txtDuracion.setText(act.getDuracion().toString());
             txtCosto.setText(act.getCosto().toString());
-            txtFechaAlta.setText(act.getFechaAlta().toString());            
+            
+            date = act.getFechaAlta();
+            String strDate = dateFormat.format(date);
+            
+            txtFechaAlta.setText(strDate);            
         } catch (ActividadDeportivaNoExisteException e) {
         	JOptionPane.showMessageDialog(this, "No existen datos en el sistema para la Actividad Deportiva seleccionada.", "Consulta Actividad Deportiva",
     	    		JOptionPane.ERROR_MESSAGE);

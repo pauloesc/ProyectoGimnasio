@@ -1,6 +1,3 @@
-/**
- * 
- */
 package tests;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,7 +15,7 @@ import logica.InstitucionDeportiva;
 import logica.ActividadDeportiva;
 
 /**
- * 
+ * Test en JUnit del manejador Deportivas
  * @author mbarrera
  *
  */
