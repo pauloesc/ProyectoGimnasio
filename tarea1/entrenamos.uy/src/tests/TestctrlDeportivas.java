@@ -9,7 +9,7 @@ import datatypes.DataInstitucion;
 import excepciones.InstitucionDeportivaNoExisteException;
 import excepciones.InstitucionDeportivaRepetidaException;
 import logica.Fabrica;
-import logica.IctrlDeportivas;
+import logica.IctrlIDeportivas;
 
 /**
  * Test en JUnit del Controlador de Instituciones y Actividades Deportivas
@@ -18,12 +18,12 @@ import logica.IctrlDeportivas;
 
 class TestctrlDeportivas {
 
-	private static IctrlDeportivas ctrlDeportivas;
+	private static IctrlIDeportivas ctrlDeportivas;
 	
 	@BeforeAll
 	public static void iniciar() {
 		Fabrica fabrica = Fabrica.getInstance();
-		ctrlDeportivas = fabrica.getIctrlDeportivas();
+	//	ctrlDeportivas = fabrica.getIctrlDeportivas();
 	}
 
 	@Test

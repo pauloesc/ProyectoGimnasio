@@ -23,7 +23,8 @@ import datatypes.DataInstitucion;
 import datatypes.DataActividad;
 import excepciones.ActividadDeportivaNoExisteException;
 import excepciones.InstitucionDeportivaNoExisteException;
-import logica.IctrlDeportivas;
+import logica.IctrlADeportivas;
+import logica.IctrlIDeportivas;
 
 import javax.swing.JSpinner;
 import javax.swing.JComponent;
@@ -37,7 +38,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import logica.IctrlDeportivas;
+import logica.IctrlIDeportivas;
 import java.awt.event.ItemListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -48,8 +49,9 @@ import java.awt.event.ItemEvent;
 public class ConsultaActividadDeportiva extends JInternalFrame {
 	
 	// Controlador de Deportivas que se utilizará para las acciones del JFrame
-    private IctrlDeportivas controlDeportivas;
-	
+    private IctrlIDeportivas controlIDeportivas;
+    private IctrlADeportivas controlADeportivas;
+    
 	private JComboBox<DataInstitucion> comboBoxInstDeportivas;
 	private JComboBox<DataActividad> comboBoxActDeportivas;
 	private JTextField txtNombre;
@@ -58,9 +60,10 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
     private JTextField txtCosto;
     private JTextField txtFechaAlta;
     
-	public ConsultaActividadDeportiva(IctrlDeportivas icd) {
+	public ConsultaActividadDeportiva(IctrlIDeportivas icid, IctrlADeportivas icad) {
 		
-		controlDeportivas = icd;
+		controlIDeportivas = icid;
+		controlADeportivas = icad;
 		
 		setTitle("Consulta de Actividad Deportiva");
 		setClosable(true);
@@ -169,7 +172,7 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
     public void cargarInstituciones() {
         DefaultComboBoxModel<DataInstitucion> modelo;
         try {
-            modelo = new DefaultComboBoxModel<DataInstitucion>(controlDeportivas.getInstituciones());
+            modelo = new DefaultComboBoxModel<DataInstitucion>(controlIDeportivas.getInstituciones());
             modelo.setSelectedItem(null);
             comboBoxInstDeportivas.setModel(modelo);
         } catch (InstitucionDeportivaNoExisteException e) {
@@ -185,7 +188,7 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
     public void cargarActividades(String nid) {
         DefaultComboBoxModel<DataActividad> modelo;
         try {
-            modelo = new DefaultComboBoxModel<DataActividad>(controlDeportivas.getActividades(nid));
+            modelo = new DefaultComboBoxModel<DataActividad>(controlADeportivas.getActividades(nid));
             modelo.setSelectedItem(null);
             comboBoxActDeportivas.setModel(modelo);
         } catch (ActividadDeportivaNoExisteException e) {
@@ -203,7 +206,7 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");  
     
         try {
-            DataActividad act = controlDeportivas.getDataActividad(n);
+            DataActividad act = controlADeportivas.getDataActividad(n);
             txtNombre.setText(act.getNombre());
             txtDescripcion.setText(act.getDescripcion());
             txtDuracion.setText(act.getDuracion().toString());

@@ -2,7 +2,7 @@ package manejadores;
 
 
 /**
- * Clase que conserva la colección global de Actividades e Instituciones Deportivas del sistema.
+ * Clase que conserva la colección global de Instituciones Deportivas del sistema.
  * Se identifican por su nombre.
  * Se implementa en base al patrón Singleton.
  * @author mbarrera
@@ -17,20 +17,18 @@ import logica.ActividadDeportiva;
 import logica.InstitucionDeportiva;
 
 
-public class manejDeportivas {
+public class manejIDeportivas {
 	private Map<String, InstitucionDeportiva> institucionesDeportivas;
-	private Map<String, ActividadDeportiva> actividadesDeportivas;
 	
-    private static manejDeportivas instancia = null;
+    private static manejIDeportivas instancia = null;
 
-    private manejDeportivas() {
+    private manejIDeportivas() {
         institucionesDeportivas = new HashMap<String, InstitucionDeportiva>();
-        actividadesDeportivas = new HashMap<String, ActividadDeportiva>();
     }
     
-    public static manejDeportivas getinstance() {
+    public static manejIDeportivas getinstance() {
         if (instancia == null)
-            instancia = new manejDeportivas();
+            instancia = new manejIDeportivas();
         return instancia;
     }
 	
@@ -55,30 +53,6 @@ public class manejDeportivas {
             }
 
             return institucionesdeportivas;
-        }
-    }
-
-    public void agregarActividad(ActividadDeportiva actdep) {
-        String nombre = actdep.getNombre();
-        actividadesDeportivas.put(nombre, actdep);
-    }
-
-    public ActividadDeportiva buscarActividad(String nombre) {
-        return ((ActividadDeportiva) actividadesDeportivas.get(nombre));
-    }
-
-    public ActividadDeportiva[] getActividades() {
-        if (actividadesDeportivas.isEmpty())
-            return null;
-        else {
-            Collection<ActividadDeportiva> actdeps = actividadesDeportivas.values();
-            Object[] o = actdeps.toArray();
-            ActividadDeportiva[] actividadesdeportivas = new ActividadDeportiva[o.length];
-            for (int i = 0; i < o.length; i++) {
-                actividadesdeportivas[i] = (ActividadDeportiva) o[i];
-            }
-
-            return actividadesdeportivas;
         }
     }
 

@@ -13,7 +13,7 @@ import logica.ActividadDeportiva;
 import logica.Clase;
 import logica.IctrlClases;
 import manejadores.manejClases;
-import manejadores.manejDeportivas;
+import manejadores.manejADeportivas;
 
 public class ctrlClases implements IctrlClases {
 	
@@ -32,7 +32,7 @@ public class ctrlClases implements IctrlClases {
 	
 		c = new Clase(nombre, Finicio, prof, Smin, Smax, url, FechaAlta);
 		
-		manejDeportivas MD = manejDeportivas.getinstance();
+		manejADeportivas MD = manejADeportivas.getinstance();
 		ActividadDeportiva ad = MD.buscarActividad(nomAct);
 		
 		ad.addClase(c);
@@ -40,7 +40,7 @@ public class ctrlClases implements IctrlClases {
 	}
 	
 	public Set<String> mostrarClasesDeActividadDeportiva(String nomAct) {
-		manejDeportivas md = manejDeportivas.getinstance();
+		manejADeportivas md = manejADeportivas.getinstance();
 		ActividadDeportiva ad = md.buscarActividad(nomAct);
 		return ad.darNombreClases();
 	}
