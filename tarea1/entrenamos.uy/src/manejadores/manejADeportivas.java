@@ -55,4 +55,8 @@ public class manejADeportivas {
             return actividadesdeportivas;
         }
     }
+    
+    public float getPrecio(String actDep) {
+    	return actividadesDeportivas.get(actDep).getCosto();
+    }
 }

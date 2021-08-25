@@ -1,6 +1,7 @@
 package presentacion;
 
 import java.awt.EventQueue;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Set;
@@ -95,7 +96,7 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 		
 		
 		
-		//cuando se selecciona una institucion se cargan las actividades deportivas y los profesores
+		//cuando se selecciona una institucion se cargan las actividades deportivas
 		
 		comboBoxInstituciones.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -116,6 +117,7 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 					
 					
 					comboBoxActividadDeportiva.setEnabled(true);
+					comboBoxActividadDeportiva.setSelectedItem(null);
 					
 				}
 				
@@ -140,6 +142,7 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 					}
 					
 					comboBoxClase.setEnabled(true);
+					comboBoxClase.setSelectedItem(null);
 				}
 			}
 		});
@@ -244,9 +247,19 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 						Smax.setText(Integer.toString(res.getMaxSocios()));
 						url.setText(res.getUrl());
 						
-						// mostrar las fechas
-						String ini = Integer.toString(res.getFecha().getDay()) + "/" + Integer.toString(res.getFecha().getMonth()) + "/" + Integer.toString(res.getFecha().getYear());
-						String reg = Integer.toString(res.getFechaReg().getDay()) + "/" + Integer.toString(res.getFechaReg().getMonth()) + "/" + Integer.toString(res.getFechaReg().getYear());
+						// mostrar las fechas, por alguna razon andan mal las operaciones de Date
+						//String ini = Integer.toString(res.getFecha().getDay()) + "/" + Integer.toString(res.getFecha().getMonth()) + "/" + Integer.toString(res.getFecha().getYear());
+						//String reg = Integer.toString(res.getFechaReg().getDay()) + "/" + Integer.toString(res.getFechaReg().getMonth()) + "/" + Integer.toString(res.getFechaReg().getYear());
+						
+						Calendar c = Calendar.getInstance();
+						c.setTime(res.getFecha());
+						
+						Calendar r = Calendar.getInstance();
+						r.setTime(res.getFechaReg());
+						
+						String ini = Integer.toString(c.get(Calendar.DATE)) + "/" + Integer.toString(c.get(Calendar.MONTH)+1) + "/" + Integer.toString(c.get(Calendar.YEAR));
+						String reg = Integer.toString(r.get(Calendar.DATE)) + "/" + Integer.toString(r.get(Calendar.MONTH)+1) + "/" + Integer.toString(r.get(Calendar.YEAR));
+						
 						
 						Finicio.setText(ini);
 						Falta.setText(reg);
@@ -403,6 +416,8 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 			    String x = (String)it.next();
 			    comboBoxInstituciones.addItem(x);
 		}
+		
+		comboBoxInstituciones.setSelectedItem(null);
 		
 		
 	}

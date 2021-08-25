@@ -1,5 +1,6 @@
 package logica;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import datatypes.DtClase;
@@ -34,9 +35,33 @@ public class Clase {
 	}
 	
 	
+	public void sumarMiembroAClase() {
+		actualSocios++;
+	}
 	
 	public DtClase darDtClase() {
 		Usuario prof = (Usuario)this.profesor;
 		return new DtClase(this.fechaInicio, this.nombre, this.minSocios, this.actualSocios, this.maxSocios, this.url, this.fechaReg, prof.getNickname());
 	}
+	
+	public boolean esVigente() {
+		// fecha actual
+		Calendar fechaActual = Calendar.getInstance();  
+		Date act = fechaActual.getTime();
+		 
+		return ((!act.after(fechaInicio)));
+	}
+
+	public Date getFechaInicio() {
+		return fechaInicio;
+	}
+
+	public int getActualSocios() {
+		return actualSocios;
+	}
+
+	public int getMaxSocios() {
+		return maxSocios;
+	}
+
 }
