@@ -9,8 +9,9 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import excepciones.CuponeraNoExisteException;
+import logica.IctrlADeportivas;
 import logica.IctrlCuponeras;
-import logica.IctrlDeportivas;
+import logica.IctrlIDeportivas;
 import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
@@ -24,7 +25,8 @@ import javax.swing.JLabel;
 public class ConsultarCuponera extends JInternalFrame {
 	
 	private IctrlCuponeras controlCuponeras;
-	private IctrlDeportivas controlDeportivas;
+	private IctrlIDeportivas controlIDeportivas;
+	private IctrlADeportivas controlADeportivas;
 	private JComboBox<String> comboBoxCuponeras;
 	private JTextField txtNombre;
     private JTextArea txtDescripcion;
@@ -35,11 +37,12 @@ public class ConsultarCuponera extends JInternalFrame {
     private JLabel lblFin;
     private JTextField textField;
 	
-	public ConsultarCuponera(IctrlCuponeras ICC, IctrlDeportivas IDD) {
+	public ConsultarCuponera(IctrlCuponeras ICC, IctrlIDeportivas IID, IctrlADeportivas IAD) {
 	
 		controlCuponeras=ICC;
-		controlDeportivas=IDD;
-	
+		controlIDeportivas=IID;
+		controlADeportivas=IAD;
+		
 		setTitle("Consultar Cuponera");
 		setBounds(10, 5, 502, 526);
 		setClosable(true);

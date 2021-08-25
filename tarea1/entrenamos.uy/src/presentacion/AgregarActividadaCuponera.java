@@ -1,8 +1,10 @@
 package presentacion;
 
 import javax.swing.JInternalFrame;
+
+import logica.IctrlADeportivas;
 import logica.IctrlCuponeras;
-import logica.IctrlDeportivas;
+import logica.IctrlIDeportivas;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -30,13 +32,14 @@ import java.awt.event.ActionEvent;
 public class AgregarActividadaCuponera extends JInternalFrame {
 
 	private IctrlCuponeras controlCuponeras;
-	private IctrlDeportivas controlDeportivas;
+	private IctrlIDeportivas controlIDeportivas;
+	private IctrlADeportivas controlADeportivas;
 	private JComboBox<String> comboBoxCuponeras;
 	private JComboBox<DataInstitucion> comboBoxInstituciones;
 	private JComboBox<String> comboBoxDeportivas;
 	private JTextField txtnumClases;
 	
-	public AgregarActividadaCuponera(IctrlCuponeras ICC, IctrlDeportivas IDD) {
+	public AgregarActividadaCuponera(IctrlCuponeras ICC, IctrlIDeportivas IID, IctrlADeportivas IAD) {
 		addInternalFrameListener(new InternalFrameAdapter() {
 			public void internalFrameClosing(InternalFrameEvent e) {
 				limpiarFormulario();
@@ -45,7 +48,8 @@ public class AgregarActividadaCuponera extends JInternalFrame {
 		});
 	
 		controlCuponeras=ICC;
-		controlDeportivas=IDD;
+		controlIDeportivas=IID;
+		controlADeportivas=IAD;
 		
 		setTitle("Agregar Actividad Deportiva a Cuponera");
 		setClosable(true);
@@ -224,7 +228,7 @@ public class AgregarActividadaCuponera extends JInternalFrame {
 	public void cargarInstituciones() {
         DefaultComboBoxModel<DataInstitucion> modelo2;
         try {
-            modelo2 = new DefaultComboBoxModel<DataInstitucion>(controlDeportivas.getInstituciones());
+            modelo2 = new DefaultComboBoxModel<DataInstitucion>(controlIDeportivas.getInstituciones());
             modelo2.setSelectedItem(null);
             comboBoxInstituciones.setModel(modelo2);
         } catch (InstitucionDeportivaNoExisteException e) {
