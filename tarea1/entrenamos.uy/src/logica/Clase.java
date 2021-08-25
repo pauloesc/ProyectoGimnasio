@@ -35,6 +35,9 @@ public class Clase {
 	}
 	
 	
+	public void sumarMiembroAClase() {
+		actualSocios++;
+	}
 	
 	public DtClase darDtClase() {
 		Usuario prof = (Usuario)this.profesor;

@@ -19,9 +19,10 @@ import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import logica.Fabrica;
+import logica.IctrlADeportivas;
 import logica.IctrlClases;
 import logica.IctrlCuponeras;
-import logica.IctrlDeportivas;
+import logica.IctrlIDeportivas;
 import logica.IctrlUsuarios;
 
 import javax.swing.JOptionPane;
@@ -36,7 +37,9 @@ import javax.swing.JButton;
 import com.toedter.calendar.JDateChooser;
 
 import datatypes.DtClase;
+import excepciones.ClaseLlenaException;
 import excepciones.ClaseRepetidaException;
+import excepciones.ClaseYaCompradaException;
 import excepciones.CuponeraNoExisteException;
 
 import javax.swing.JCheckBox;
@@ -50,7 +53,8 @@ public class RegistroDictadoDeClases extends JInternalFrame {
 	private JComboBox<String> comboBoxCuponera;
 	private JDateChooser dateChooserRegistro;
 	
-	private IctrlDeportivas ID;
+	private IctrlADeportivas IAD;
+	private IctrlIDeportivas IID;
 	private IctrlUsuarios IU;
 	private IctrlClases IC;
 	private IctrlCuponeras ICUP;
@@ -79,7 +83,8 @@ public class RegistroDictadoDeClases extends JInternalFrame {
 	
 	public RegistroDictadoDeClases() {
 		Fabrica fab = Fabrica.getInstance();
-		ID = fab.getIctrlDeportivas();
+		IAD = fab.getIctrlADeportivas();
+		IID = fab.getIctrlIDeportivas();
 		IU = fab.getIctrlUsuarios();
 		IC = fab.getIctrlClases();
 		ICUP = fab.getIctrlCuponeras();
@@ -110,7 +115,7 @@ public class RegistroDictadoDeClases extends JInternalFrame {
 				if (insti != null) {
 					
 					comboBoxActividadDeportiva.removeAllItems();
-					Set<String> act = ID.darNombresActividadesDeportivas(insti);
+					Set<String> act = IAD.darNombresActividadesDeportivas(insti);
 					for( Iterator<String> it = act.iterator(); it.hasNext();) { 
 					    String x = (String)it.next();
 					    comboBoxActividadDeportiva.addItem(x);
@@ -136,7 +141,7 @@ public class RegistroDictadoDeClases extends JInternalFrame {
 				if (act != null) {
 					
 					comboBoxClase.removeAllItems();
-					Set<String> clases = ID.mostrarClasesVigentesDeActividadDeportiva(act);
+					Set<String> clases = IAD.mostrarClasesVigentesDeActividadDeportiva(act);
 					
 					for( Iterator<String> itt = clases.iterator(); itt.hasNext();) { 
 					    String x = (String)itt.next();
@@ -158,6 +163,7 @@ public class RegistroDictadoDeClases extends JInternalFrame {
 					
 					if ((comboBoxSocio.getSelectedItem() == null) || (comboBoxActividadDeportiva.getSelectedItem() == null)) {
 						JOptionPane.showMessageDialog(null, "Primero se debe seleccionar el socio y la actividad deportiva");
+						chckbxCuponera.setSelected(false);
 					} else {
 						Set<String> cup = IU.MostrarCuponerasDisponibles((String)comboBoxSocio.getSelectedItem(),(String)comboBoxActividadDeportiva.getSelectedItem());
 						if (cup.size() == 0) {
@@ -215,6 +221,31 @@ public class RegistroDictadoDeClases extends JInternalFrame {
 		});
 		
 		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				boolean cup = chckbxCuponera.isSelected();
+				String nick = (String)comboBoxSocio.getSelectedItem();
+				String act = (String)comboBoxActividadDeportiva.getSelectedItem();
+				String clas = (String)comboBoxClase.getSelectedItem();
+				String nomCup = (String)comboBoxCuponera.getSelectedItem();
+				Date fechaRg = dateChooserRegistro.getDate();
+				
+				if ((nick == null) || (act == null) || (clas == null) || (fechaRg == null) || ((cup) && (nomCup == null))) {
+					JOptionPane.showMessageDialog(null, "Error, ningun campo puede quedar vacio");
+				} else {
+			
+					try {
+						IC.registrarSocioAClase(nick, act, clas, cup, nomCup, fechaRg);
+						JOptionPane.showMessageDialog(null, "Registro exitoso");
+					} catch (ClaseYaCompradaException e2) {
+						JOptionPane.showMessageDialog(null, "Error, el socio ya posee esta clase");
+					} catch (ClaseLlenaException e1) {
+						JOptionPane.showMessageDialog(null, "Error, la calse está llena");
+					}
+				}
+			}
+		});
 		
 		
 		
@@ -296,7 +327,7 @@ public class RegistroDictadoDeClases extends JInternalFrame {
 	public void cargarFormulario() {
 		
 		//INSTITUCIONES
-		Set<String> nombInst = ID.darNombreInstituciones();
+		Set<String> nombInst = IID.darNombreInstituciones();
 		comboBoxInstituciones.removeAllItems();
 		
 		for( Iterator<String> it = nombInst.iterator(); it.hasNext();) { 
@@ -306,13 +337,13 @@ public class RegistroDictadoDeClases extends JInternalFrame {
 		comboBoxInstituciones.setSelectedItem(null);
 		
 		//SOCIOS
-		Vector<String> nomSoc = IU.UsuariosEnSistemaNickName();
+		Set<String> nomSoc = IU.mostrarNicknameSocios();
 		comboBoxSocio.removeAllItems();
 		
-		for(int i = 0; i < nomSoc.size(); i++) { 
-			  
-			    comboBoxSocio.addItem(nomSoc.get(i));
-		}
+		for( Iterator<String> it = nomSoc.iterator(); it.hasNext();) { 
+		    String x = (String)it.next();
+		    comboBoxSocio.addItem(x);
+	}
 		comboBoxSocio.setSelectedItem(null);
 		
 	}

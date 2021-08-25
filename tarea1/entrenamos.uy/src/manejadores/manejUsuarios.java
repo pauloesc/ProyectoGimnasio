@@ -9,6 +9,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+import logica.Clase;
 import logica.Profesor;
 import logica.Usuario;
 import logica.Socio;
@@ -138,4 +139,13 @@ public class manejUsuarios {
 		return usuarios.get(nick);
 	}
 	
+	public Set<String> mostrarNicknameSocios() {
+		Set<String> res = new HashSet<String>();
+		for (Usuario u : usuarios.values()) {	
+			if (u.getClass() == Socio.class) {
+				res.add(u.getNickname());
+			}
+    	} 
+		return res;
+	}
 }

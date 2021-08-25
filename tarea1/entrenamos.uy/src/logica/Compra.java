@@ -27,4 +27,14 @@ public class Compra {
 		public Date vencimientoCuponera() {
 			return cup.getFecha_fin();
 		}
+		
+		public Float getDescuento() {
+			return cup.getDescuento();
+		}
+		
+		public void descontarClase(String actDept) {
+			Integer Cclas = cantClases.get(actDept);
+			cantClases.remove(actDept);
+			cantClases.put(actDept, Cclas);
+		}
 }

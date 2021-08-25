@@ -12,5 +12,21 @@ public class Registro {
 	private Clase clase;
 	private Compra compra;
 	
+	public Registro(Clase c, Float pr, Date f) {
+		this.fecha = f;
+		this.costo = pr;
+		this.clase = c;
+		this.compra = null;
+		
+	}
 	
+	public String getNombreClase() {
+		return clase.getNombre();
+	}
+	
+	public void aplicarDescuento(float desc, Clase c) {
+		this.clase = c;
+		//aplica el descuento al precio total, desc es un porcentaje 
+		this.costo = ((100-desc)*this.costo)/100;
+	}
 }

@@ -13,19 +13,10 @@ import java.util.Set;
 
 
 /**
- * Interface del Controlador de Actividades e Instituciones Deportivas
+ * Interface del Controlador de Actividades Deportivas
  * @author mbarrera
  */
-public interface IctrlDeportivas {
-    
-    /**
-     * Alta de Institución Deportiva
-     * @param n Nombre de la Institución Deportiva.
-     * @param de Descripción de la Institución Deportiva.
-     * @param url URL de la Institución Deportiva.
-     * @throws InstitucionDeportivaRepetidaException Si el nombre ya se encuentra registrado en el sistema.
-     */
-    public abstract void altaInstitucion(String n, String de, String url) throws InstitucionDeportivaRepetidaException;
+public interface IctrlADeportivas {
     
     /**
      * Alta de Actividad Deportiva
@@ -46,19 +37,17 @@ public interface IctrlDeportivas {
      * @param n Nombre de la Actividad Deportiva.
      * @throws ActividadDeportivaNoExisteException Si el nombre no está registrada en el sistema.
      */
-    public abstract void /*DataActividadDeportiva*/ consultaActividadDeportiva(String nid, String n) throws ActividadDeportivaNoExisteException;
-
-	public abstract DataInstitucion[] getInstituciones() throws InstitucionDeportivaNoExisteException;
+   // public abstract void /*DataActividadDeportiva*/ consultaActividadDeportiva(String nid, String n) throws ActividadDeportivaNoExisteException;
 
 	public abstract DataActividad[] getActividades(String nid) throws ActividadDeportivaNoExisteException;
 
 	public abstract DataActividad getDataActividad(String n) throws ActividadDeportivaNoExisteException;
 
-	public abstract Set<String> darNombreInstituciones();
-    // muestra los nombres de todas las instituciones deportivas, utilizado en varios CU
-
+	
     public abstract Set<String> darNombresActividadesDeportivas(String inst);
     // muestra de las actividades deportivas de una institucion, utilizado en varios CU
+    
+    public abstract void cargarDatosADeportivas();
     
     public abstract Set<String> mostrarClasesVigentesDeActividadDeportiva(String nomAct);
 }

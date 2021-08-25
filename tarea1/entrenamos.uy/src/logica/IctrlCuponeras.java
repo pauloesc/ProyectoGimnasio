@@ -5,6 +5,7 @@ import java.util.Set;
 
 import datatypes.DataCuponera;
 import excepciones.ActividadDeportivaNoExisteException;
+import excepciones.ActividadDeportivaRepetidaException;
 import excepciones.CuponeraNoExisteException;
 import excepciones.CuponeraRepetidaException;
 
@@ -17,7 +18,7 @@ public interface IctrlCuponeras {
 	
 	public abstract Set<String> listarActividadesfaltantes(String nomcup, String nominst)throws ActividadDeportivaNoExisteException;
 	
-	public abstract void agregarActividad(String nomcup,String act,int numclase) ;
+	public abstract void agregarActividad(String nomcup,String act,int numclase)throws ActividadDeportivaRepetidaException ;
 
 	public abstract DataCuponera mostrarCuponera (String nomCup); 
 

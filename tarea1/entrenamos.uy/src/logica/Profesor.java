@@ -4,7 +4,8 @@ import datatypes.InfoBasicaProfesor;
 import datatypes.InfoBasicaUser;
 import java.util.Date;
 
-import manejadores.manejDeportivas;
+import manejadores.manejADeportivas;
+import manejadores.manejIDeportivas;
 
 public class Profesor extends Usuario {
 	private String descripcion;
@@ -42,8 +43,8 @@ public class Profesor extends Usuario {
 
 	public void asociarInstitucion(String nomInst) {
 		
-		manejDeportivas ee =  manejDeportivas.getinstance();
-		this.inst = ee.buscarInstitucion(nomInst);
+		manejIDeportivas mID = manejIDeportivas.getinstance();
+		this.inst = mID.buscarInstitucion(nomInst);
 	}
 	
 	public String getDescripcion() {

@@ -1,8 +1,9 @@
 package logica;
 
 import controladores.ctrlCuponeras;
+import controladores.ctrlIDeportivas;
 import controladores.ctrlClases;
-import controladores.ctrlDeportivas;
+import controladores.ctrlADeportivas;
 import controladores.ctrlUsuarios;
 /**
  * Fábrica para la construcción de un controlador de usuarios (uno distinto para cada invocación).
@@ -28,10 +29,14 @@ public class Fabrica {
         return (IctrlUsuarios) new ctrlUsuarios();
     }
     
-    public IctrlDeportivas getIctrlDeportivas() {
-    	return (IctrlDeportivas) new ctrlDeportivas();
+    public IctrlADeportivas getIctrlADeportivas() {
+    	return (IctrlADeportivas) new ctrlADeportivas();
     }
 
+    public IctrlIDeportivas getIctrlIDeportivas() {
+    	return (IctrlIDeportivas) new ctrlIDeportivas();
+    }
+    
     public IctrlCuponeras getIctrlCuponeras() {
     	return new ctrlCuponeras();
     } 
