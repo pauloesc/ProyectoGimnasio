@@ -22,14 +22,14 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import excepciones.InstitucionDeportivaRepetidaException;
-import logica.IctrlDeportivas;
+import logica.IctrlIDeportivas;
 
 
 @SuppressWarnings({ "serial" })
 public class AltaInstitucionDeportiva extends JInternalFrame {
 	
     // Controlador de Deportivas que se utilizará para las acciones del JFrame
-    private IctrlDeportivas controlDeportivas;
+    private IctrlIDeportivas controlDeportivas;
     
     private JTextField txtNombre;
     private JTextArea txtDescripcion;
@@ -40,7 +40,7 @@ public class AltaInstitucionDeportiva extends JInternalFrame {
     private JButton btnAceptar;
     private JButton btnCancelar;
     
-	public AltaInstitucionDeportiva(IctrlDeportivas icd) {
+	public AltaInstitucionDeportiva(IctrlIDeportivas icd) {
 		
 		controlDeportivas = icd;
 		

@@ -7,8 +7,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import logica.Fabrica;
+import logica.IctrlADeportivas;
 import logica.IctrlCuponeras;
-import logica.IctrlDeportivas;
+import logica.IctrlIDeportivas;
 import logica.IctrlUsuarios;
 
 import javax.swing.JMenu;
@@ -28,7 +29,8 @@ public class Principal {
     private AltaUsuario AltaUsuarioInternalFrame;
     private AgregarActividadaCuponera AgregarActividadaCuponeraInternalFrame;
     private ConsultarCuponera ConsultarCuponeraInternalFrame;
-    private IctrlDeportivas ICD;
+    private IctrlIDeportivas ICID;
+    private IctrlADeportivas ICAD;
     
     
     /**
@@ -56,21 +58,21 @@ public class Principal {
     	
         // Inicialización
         Fabrica fabrica = Fabrica.getInstance();
-        ICD = fabrica.getIctrlDeportivas();
+        ICAD = fabrica.getIctrlADeportivas();
+        ICID = fabrica.getIctrlIDeportivas();
         IctrlCuponeras ICC =fabrica.getIctrlCuponeras();
-        
         IctrlUsuarios ICU = fabrica.getIctrlUsuarios();
         
         // Se crean los tres InternalFrame y se incluyen al Frame principal ocultos.
         // De esta forma, no es necesario crear y destruir objetos lo que enlentece la ejecución.
         // Cada InternalFrame usa un layout diferente, simplemente para mostrar distintas opciones.
-        altaInstDeportivaInternalFrame = new AltaInstitucionDeportiva(ICD);
+        altaInstDeportivaInternalFrame = new AltaInstitucionDeportiva(ICID);
         altaInstDeportivaInternalFrame.setVisible(false);
         
-        altaActividadDeportivaInternalFrame = new AltaActividadDeportiva(ICD);
+        altaActividadDeportivaInternalFrame = new AltaActividadDeportiva(ICAD, ICID);
         altaActividadDeportivaInternalFrame.setVisible(false);
         
-        consultaActividadDeportivaInternalFrame = new ConsultaActividadDeportiva(ICD);
+        consultaActividadDeportivaInternalFrame = new ConsultaActividadDeportiva(ICID, ICAD);
         consultaActividadDeportivaInternalFrame.setVisible(false);
         
         CrearCuponeraInternalFrame = new CrearCuponera(ICC);
@@ -85,10 +87,10 @@ public class Principal {
         AltaUsuarioInternalFrame = new AltaUsuario(ICU);
         AltaUsuarioInternalFrame.setVisible(false);
         
-        AgregarActividadaCuponeraInternalFrame = new AgregarActividadaCuponera(ICC,ICD);
+        AgregarActividadaCuponeraInternalFrame = new AgregarActividadaCuponera(ICC, ICID, ICAD);
         AgregarActividadaCuponeraInternalFrame.setVisible(false);
         
-        ConsultarCuponeraInternalFrame= new ConsultarCuponera(ICC,ICD);
+        ConsultarCuponeraInternalFrame= new ConsultarCuponera(ICC,ICID,ICAD);
         ConsultarCuponeraInternalFrame.setVisible(false);
         
         
@@ -130,7 +132,8 @@ public class Principal {
         JMenuItem menuDatosPrueba = new JMenuItem("Cargar datos de prueba");
         menuDatosPrueba.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                ICD.cargarDatosDeportiva();
+            	ICID.cargarDatosIDeportivas();
+                ICAD.cargarDatosADeportivas();   
             }
         });
         menuSistema.add(menuDatosPrueba);

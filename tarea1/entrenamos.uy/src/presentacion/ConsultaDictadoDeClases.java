@@ -18,8 +18,9 @@ import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import logica.Fabrica;
+import logica.IctrlADeportivas;
 import logica.IctrlClases;
-import logica.IctrlDeportivas;
+import logica.IctrlIDeportivas;
 import logica.IctrlUsuarios;
 
 import javax.swing.JOptionPane;
@@ -45,7 +46,8 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 	private JComboBox<String> comboBoxClase;
 	JComboBox<String> comboBoxActividadDeportiva;
 	
-	private IctrlDeportivas ID;
+	private IctrlADeportivas IAD;
+	private IctrlIDeportivas IID;
 	private IctrlUsuarios IU;
 	private IctrlClases IC;
 	private JTextField Sactuales;
@@ -77,7 +79,8 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 	
 	public ConsultaDictadoDeClases() {
 		Fabrica fab = Fabrica.getInstance();
-		ID = fab.getIctrlDeportivas();
+		IAD = fab.getIctrlADeportivas();
+		IID = fab.getIctrlIDeportivas();
 		IU = fab.getIctrlUsuarios();
 		IC = fab.getIctrlClases();
 		
@@ -103,7 +106,7 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 				if (insti != null) {
 					
 					comboBoxActividadDeportiva.removeAllItems();
-					Set<String> act = ID.darNombresActividadesDeportivas(insti);
+					Set<String> act = IAD.darNombresActividadesDeportivas(insti);
 					for( Iterator<String> it = act.iterator(); it.hasNext();) { 
 					    String x = (String)it.next();
 					    comboBoxActividadDeportiva.addItem(x);
@@ -393,7 +396,7 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 	public void cargarFormulario() {
 		
 		//INSTITUCIONES
-		Set<String> nombInst = ID.darNombreInstituciones();
+		Set<String> nombInst = IID.darNombreInstituciones();
 		comboBoxInstituciones.removeAllItems();
 		
 		for( Iterator<String> it = nombInst.iterator(); it.hasNext();) { 

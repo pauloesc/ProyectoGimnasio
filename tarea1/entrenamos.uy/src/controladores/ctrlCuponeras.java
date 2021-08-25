@@ -15,7 +15,8 @@ import logica.InstitucionDeportiva;
 import logica.ActividadDeportiva;
 import logica.IctrlCuponeras;
 import manejadores.manejCuponeras;
-import manejadores.manejDeportivas;
+import manejadores.manejIDeportivas;
+import manejadores.manejADeportivas;
 import datatypes.DataCuponera;
 
 
@@ -48,8 +49,8 @@ public class ctrlCuponeras implements IctrlCuponeras {
 		manejCuponeras mC = manejCuponeras.getinstance();
 		Cuponera cup = mC.getCuponera(nomcup);
 		Set <String> ListAct=cup.getListaActividades();
-		manejDeportivas mD= manejDeportivas.getinstance();
-		InstitucionDeportiva inst = mD.buscarInstitucion(nominst);
+		manejIDeportivas mID = manejIDeportivas.getinstance();
+		InstitucionDeportiva inst = mID.buscarInstitucion(nominst);
 		Set <String> ListInst = inst.darNombresActividadesDeportivas();
 		if ((ListAct!=null) && (ListInst!=null)) 
 			ListInst.removeAll(ListAct);
@@ -63,7 +64,7 @@ public class ctrlCuponeras implements IctrlCuponeras {
 	public void agregarActividad(String nomcup,String act,int numclase) throws ActividadDeportivaRepetidaException {
 		manejCuponeras mC = manejCuponeras.getinstance();
 		Cuponera cup = mC.getCuponera(nomcup);
-		manejDeportivas mD= manejDeportivas.getinstance();
+		manejADeportivas mD= manejADeportivas.getinstance();
 		ActividadDeportiva activ = mD.buscarActividad(act);
 		if (cup.getListaActividades().contains(act))
 			throw new ActividadDeportivaRepetidaException("La actividad deportiva ya ha sido registrada en la cuponera");

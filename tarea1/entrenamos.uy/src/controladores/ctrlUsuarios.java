@@ -12,7 +12,9 @@ import manejadores.manejUsuarios;
 
 import java.util.Vector;
 
-import manejadores.manejDeportivas;
+import manejadores.manejADeportivas;
+import manejadores.manejIDeportivas;
+
 import java.util.Iterator;
 
 import excepciones.UsuarioDisponibilidadException;
@@ -44,9 +46,9 @@ public class ctrlUsuarios implements IctrlUsuarios {
 
 	public Vector<String> InstitucionesEnSistema() {
 		
-		manejDeportivas md = manejDeportivas.getinstance();
+		manejIDeportivas mID = manejIDeportivas.getinstance();
 		Set<String> set;
-		set = md.darNombreInstituciones();
+		set = mID.darNombreInstituciones();
 		Iterator<String> iterate_value = set.iterator();
 		
 		Vector<String> vector = new Vector<String>();
