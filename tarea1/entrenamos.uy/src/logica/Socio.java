@@ -3,6 +3,7 @@ package logica;
 import java.util.Date;
 
 import datatypes.InfoBasicaSocio;
+import datatypes.InfoBasicaUser;
 
 public class Socio extends Usuario {
 
@@ -19,6 +20,18 @@ public class Socio extends Usuario {
 			String bio, String website, String inst) {
 		super(nickname, nombre, apellido, email, fNacimiento);
 
+	}
+	
+	@Override
+	public InfoBasicaUser Informacion() {	
+		InfoBasicaUser rt = new InfoBasicaSocio(
+			this.getNickname(),
+			this.getNombre(),
+			this.getApellido(),
+			this.getEmail(),
+			this.getFNacimiento()
+			);
+			return rt;
 	}
 	
 }

@@ -74,9 +74,7 @@ public class ctrlUsuarios implements IctrlUsuarios {
 	
 	public InfoBasicaUser InformacionBasicaUsuario(String usuario) {
 		
-		InfoBasicaUser IBU = null;
-		return IBU;
-		
+		return this.manejador.InformacionBasicaUsuario(usuario);		
 	}
 	
 	public Vector<String> UsuariosEnSistemaNickName(){

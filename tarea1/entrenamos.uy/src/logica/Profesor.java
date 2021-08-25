@@ -1,6 +1,7 @@
 package logica;
 
 import datatypes.InfoBasicaProfesor;
+import datatypes.InfoBasicaSocio;
 import datatypes.InfoBasicaUser;
 import java.util.Date;
 
@@ -22,11 +23,13 @@ public class Profesor extends Usuario {
 				info.getNombre(),
 				info.getApellido(),
 				info.getCorreo(),
-				new Date() );
+				info.getFechaNac() );
 		this.descripcion = info.getDesc();
 		this.bio = info.getBibliografia();
 		this.website = info.getUrl();
-		this.asociarInstitucion(info.getInstitucion());
+		
+		manejDeportivas ee =  manejDeportivas.getinstance();
+		this.inst = ee.buscarInstitucion(info.getInstitucion());
 	}
 	
 	
@@ -37,13 +40,8 @@ public class Profesor extends Usuario {
 		this.descripcion = descripcion;
 		this.bio = bio;
 		this.website = website;
-		asociarInstitucion(inst);
-	}
-
-	public void asociarInstitucion(String nomInst) {
-		
 		manejDeportivas ee =  manejDeportivas.getinstance();
-		this.inst = ee.buscarInstitucion(nomInst);
+		this.inst = ee.buscarInstitucion(inst);
 	}
 	
 	public String getDescripcion() {
@@ -79,7 +77,20 @@ public class Profesor extends Usuario {
 	}
 	
 	
-	
-	
+	@Override
+	public InfoBasicaUser Informacion() {	
+		InfoBasicaUser rt = new InfoBasicaProfesor(
+			this.getNickname(),
+			this.getNombre(),
+			this.getApellido(),
+			this.getEmail(),
+			this.getFNacimiento(),
+			this.getNombreInstitucion(),
+			this.getDescripcion(),
+			this.getBio(),
+			this.getWebsite()
+			);
+			return rt;
+	}
 	
 }

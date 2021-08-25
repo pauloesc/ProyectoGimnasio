@@ -3,7 +3,7 @@ package logica;
 import java.util.Date;
 import datatypes.InfoBasicaUser;
 
-public class Usuario {
+public abstract class Usuario {
 	private String nickname;
 	private String nombre;
 	private String apellido;
@@ -77,6 +77,6 @@ public class Usuario {
 	}
 	
 	
-	
+	public abstract InfoBasicaUser Informacion();
 	
 }

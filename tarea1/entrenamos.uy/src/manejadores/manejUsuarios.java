@@ -134,5 +134,10 @@ public class manejUsuarios {
 		
 	}
 	
+	public InfoBasicaUser InformacionBasicaUsuario(String usuario) {
+		
+		Usuario e = this.usuarios.get(usuario);
+		return  e.Informacion();
+	}
 	
 }
