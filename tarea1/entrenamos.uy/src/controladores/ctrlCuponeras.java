@@ -115,9 +115,8 @@ public class ctrlCuponeras implements IctrlCuponeras {
 			agregarActividad("Pelota", "Basquetbol", 18);
 			agregarActividad("Gimnasia", "Aeróbica", 2);
 			agregarActividad("Gimnasia", "Aparatos y pesas", 8);
-		
-		
-			
+		    agregarActividad ("Músculos", "Kickboxing", 11);
+		    agregarActividad ("Músculos", "Aparatos y pesas", 12);
 		} catch (ActividadDeportivaRepetidaException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

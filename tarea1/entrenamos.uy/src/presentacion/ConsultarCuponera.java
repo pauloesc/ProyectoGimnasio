@@ -154,10 +154,10 @@ public class ConsultarCuponera extends JInternalFrame {
         txtFechaIni.setText(strDateini);   
         date = dat.getFecha_fin();
         String strDatefin = dateFormat.format(date);
-        txtFechaIni.setText(strDatefin);   
+        textFechafin.setText(strDatefin);   
         date = dat.getFecha_alta(); 
         String strDatealta = dateFormat.format(date);
-        txtFechaIni.setText(strDatealta); 
+        txtFechaAlta.setText(strDatealta); 
         
 	    } catch (CuponeraNoExisteException e) {
     	JOptionPane.showMessageDialog(this, "No existen datos en el sistema para la Cuponera seleccionada.", "Consulta Cuponera",
@@ -181,8 +181,6 @@ public class ConsultarCuponera extends JInternalFrame {
     	    		JOptionPane.ERROR_MESSAGE);
         	setVisible(false);
         }
-
-    
 	}
 }
 	
