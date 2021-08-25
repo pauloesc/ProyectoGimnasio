@@ -9,9 +9,9 @@ import javax.swing.JOptionPane;
 
 import datatypes.DataInstitucion;
 import excepciones.ActividadDeportivaNoExisteException;
+import excepciones.ActividadDeportivaRepetidaException;
 import excepciones.CuponeraNoExisteException;
 import excepciones.InstitucionDeportivaNoExisteException;
-
 import java.awt.Button;
 import java.awt.Color;
 import javax.swing.BorderFactory;
@@ -140,6 +140,7 @@ public class AgregarActividadaCuponera extends JInternalFrame {
         String numClases = txtnumClases.getText();
         
         if (checkFormulario()) {
+        	try {
                 controlCuponeras.agregarActividad(nomcups, nomact, Integer.parseInt(numClases));
                 // Muestro éxito de la operación
                 JOptionPane.showMessageDialog(this, "La actividad deportiva se ha agregado con éxito", "Agregar actividad deportiva a cuponera",
@@ -147,7 +148,11 @@ public class AgregarActividadaCuponera extends JInternalFrame {
                 
                 setVisible(false);
                 limpiarFormulario();
-
+        	   }catch (ActividadDeportivaRepetidaException e) {
+                   // Muestro error de registro
+                   JOptionPane.showMessageDialog(this,"La actividad deportiva ya existe en la cuponera", "Agregar actividades deportivas a cuponera", JOptionPane.ERROR_MESSAGE);
+                   
+               }
             } 
         }
     
