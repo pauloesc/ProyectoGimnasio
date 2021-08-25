@@ -12,10 +12,10 @@ import excepciones.ActividadDeportivaNoExisteException;
 import excepciones.ActividadDeportivaRepetidaException;
 import excepciones.CuponeraNoExisteException;
 import excepciones.InstitucionDeportivaNoExisteException;
-import java.awt.Button;
 import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.event.InternalFrameAdapter;
@@ -111,7 +111,7 @@ public class AgregarActividadaCuponera extends JInternalFrame {
 		getContentPane().add(txtnumClases);
 		txtnumClases.setColumns(10);
 		
-		Button buttonAceptar = new Button("Aceptar");
+		JButton buttonAceptar = new JButton("Aceptar");
 		buttonAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				cmdAgregarActionPerformed(arg0);
@@ -120,7 +120,7 @@ public class AgregarActividadaCuponera extends JInternalFrame {
 		buttonAceptar.setBounds(252, 223, 100, 32);
 		getContentPane().add(buttonAceptar);
 		
-		Button buttonCancelar = new Button("Cancelar");
+		JButton buttonCancelar = new JButton("Cancelar");
 		buttonCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 limpiarFormulario();
