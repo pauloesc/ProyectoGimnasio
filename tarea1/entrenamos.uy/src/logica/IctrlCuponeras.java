@@ -20,6 +20,7 @@ public interface IctrlCuponeras {
 	
 	public abstract void agregarActividad(String nomcup,String act,int numclase)throws ActividadDeportivaRepetidaException ;
 
-	public abstract DataCuponera mostrarCuponera (String nomCup); 
+	public abstract DataCuponera mostrarCuponera (String nomCup)throws CuponeraNoExisteException; 
 
+	public abstract void cargarDatosCuponeras();
 }

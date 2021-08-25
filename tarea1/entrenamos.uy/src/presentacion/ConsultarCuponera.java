@@ -8,11 +8,19 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import datatypes.DataCuponera;
+import excepciones.ActividadDeportivaNoExisteException;
 import excepciones.CuponeraNoExisteException;
 import logica.IctrlADeportivas;
 import logica.IctrlCuponeras;
 import logica.IctrlIDeportivas;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 
@@ -35,7 +43,7 @@ public class ConsultarCuponera extends JInternalFrame {
     private JTextField txtFechaAlta;
     private JLabel lblPeriodoDeVigencia;
     private JLabel lblFin;
-    private JTextField textField;
+    private JTextField textFechafin;
 	
 	public ConsultarCuponera(IctrlCuponeras ICC, IctrlIDeportivas IID, IctrlADeportivas IAD) {
 	
@@ -53,10 +61,11 @@ public class ConsultarCuponera extends JInternalFrame {
 		getContentPane().add(lblCuponeras);
 		
 		comboBoxCuponeras = new JComboBox<String>();
-		/*comboBoxCuponeras.addActionListener(new ActionListener() {
+		comboBoxCuponeras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				cargardatoscuponeras(comboBoxCuponeras.getSelectedItem().toString());
 			}
-		});*/
+		});
 		comboBoxCuponeras.setBounds(133, 32, 298, 26);
 		comboBoxCuponeras.setBorder(BorderFactory.createLineBorder(Color.black));
 		getContentPane().add(comboBoxCuponeras);
@@ -116,11 +125,11 @@ public class ConsultarCuponera extends JInternalFrame {
 		lblFin.setBounds(307, 210, 23, 21);
 		getContentPane().add(lblFin);
 		
-		textField = new JTextField();
-		textField.setEditable(false);
-		textField.setBorder(BorderFactory.createLineBorder(Color.black));
-		textField.setBounds(338, 209, 93, 23);
-		getContentPane().add(textField);
+		textFechafin = new JTextField();
+		textFechafin.setEditable(false);
+		textFechafin.setBorder(BorderFactory.createLineBorder(Color.black));
+		textFechafin.setBounds(338, 209, 93, 23);
+		getContentPane().add(textFechafin);
 		
 		
 		
@@ -129,6 +138,33 @@ public class ConsultarCuponera extends JInternalFrame {
 		
 	} 
 
+	
+	protected void cargardatoscuponeras(String nomb) {
+		
+		Date date = null;  
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");  
+		
+		try {	
+		DataCuponera dat= controlCuponeras.mostrarCuponera(nomb);
+		txtNombre.setText(dat.getNombre());
+		txtDescripcion.setText(dat.getDescripcion());
+		txtDescuento.setText(dat.getDescuento().toString());
+		date = dat.getFecha_ini();
+        String strDateini = dateFormat.format(date);
+        txtFechaIni.setText(strDateini);   
+        date = dat.getFecha_fin();
+        String strDatefin = dateFormat.format(date);
+        txtFechaIni.setText(strDatefin);   
+        date = dat.getFecha_alta(); 
+        String strDatealta = dateFormat.format(date);
+        txtFechaIni.setText(strDatealta); 
+        
+	    } catch (CuponeraNoExisteException e) {
+    	JOptionPane.showMessageDialog(this, "No existen datos en el sistema para la Cuponera seleccionada.", "Consulta Cuponera",
+	    		JOptionPane.ERROR_MESSAGE);
+    	setVisible(false);
+	    }
+	}
 	
 	
 	public void cargarCuponeras() {
@@ -141,7 +177,7 @@ public class ConsultarCuponera extends JInternalFrame {
             modelo.setSelectedItem(null);
             comboBoxCuponeras.setModel(modelo);
         } catch (CuponeraNoExisteException e) {
-        	JOptionPane.showMessageDialog(this, "No existen Cuponeras en el sistema.", "Agregar Actividad Deportiva a Cuponera",
+        	JOptionPane.showMessageDialog(this, "No existen Cuponeras en el sistema.", "Consultar Cuponera",
     	    		JOptionPane.ERROR_MESSAGE);
         	setVisible(false);
         }

@@ -58,8 +58,10 @@ public class Cuponera {
 	
 	public Set <String> getListaActividades(){
 		Set <String> resu = new HashSet<String>();
+		if (!info.isEmpty()) {
 		for (Iterator<InfoClases> iter=info.iterator();iter.hasNext();) {
 			resu.add(iter.next().getNombreActividadDeportiva());
+		}
 		}
 		return resu;  
 	}

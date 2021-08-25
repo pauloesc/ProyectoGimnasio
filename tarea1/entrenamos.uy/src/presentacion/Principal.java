@@ -32,7 +32,7 @@ public class Principal {
     private RegistroDictadoDeClases RegistroDictadoDeClasesFrame;    
     private IctrlIDeportivas ICID;
     private IctrlADeportivas ICAD;
-    
+    private IctrlCuponeras ICC;
     
     /**
      * Launch the application.
@@ -61,7 +61,7 @@ public class Principal {
         Fabrica fabrica = Fabrica.getInstance();
         ICAD = fabrica.getIctrlADeportivas();
         ICID = fabrica.getIctrlIDeportivas();
-        IctrlCuponeras ICC =fabrica.getIctrlCuponeras();
+        ICC =fabrica.getIctrlCuponeras();
         
         IctrlUsuarios ICU = fabrica.getIctrlUsuarios();
         
@@ -136,7 +136,8 @@ public class Principal {
         menuDatosPrueba.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
             	ICID.cargarDatosIDeportivas();
-                ICAD.cargarDatosADeportivas();   
+                ICAD.cargarDatosADeportivas();
+                ICC.cargarDatosCuponeras();
             }
         });
         menuSistema.add(menuDatosPrueba);
