@@ -72,7 +72,7 @@ public class Principal {
         altaActividadDeportivaInternalFrame = new AltaActividadDeportiva(ICAD, ICID);
         altaActividadDeportivaInternalFrame.setVisible(false);
         
-        consultaActividadDeportivaInternalFrame = new ConsultaActividadDeportiva(ICID, ICAD);
+        consultaActividadDeportivaInternalFrame = new ConsultaActividadDeportiva(ICID, ICAD, ICC);
         consultaActividadDeportivaInternalFrame.setVisible(false);
         
         CrearCuponeraInternalFrame = new CrearCuponera(ICC);

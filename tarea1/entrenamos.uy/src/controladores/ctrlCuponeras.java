@@ -4,6 +4,7 @@ package controladores;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import excepciones.ActividadDeportivaNoExisteException;
@@ -17,6 +18,7 @@ import logica.IctrlCuponeras;
 import manejadores.manejCuponeras;
 import manejadores.manejIDeportivas;
 import manejadores.manejADeportivas;
+import datatypes.DataActividad;
 import datatypes.DataCuponera;
 
 
@@ -75,6 +77,20 @@ public class ctrlCuponeras implements IctrlCuponeras {
 		manejCuponeras mC = manejCuponeras.getinstance();
 		return mC.mostrarCuponera(nomCup);		
 	}
+	
+	public DataCuponera[] getCuponerasActividad(String nac) throws CuponeraNoExisteException {
+        manejCuponeras mC = manejCuponeras.getinstance();
+        Set<Cuponera> cuponeras = mC.getCuponerasDeActividad(nac);
+        if (!cuponeras.isEmpty()) {
+     
+        	DataCuponera[] dcu = new DataCuponera[cuponeras.size()];
+        	dcu = cuponeras.toArray(dcu);
+
+            return dcu;
+        } else
+            throw new CuponeraNoExisteException("No existen Cuponeras en el sistema para la Actividad Deportiva seleccionada.");
+
+    }
 	
 	public void cargarDatosCuponeras() {
 		

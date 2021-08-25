@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+import datatypes.DataActividad;
 import datatypes.DataCuponera;
 import logica.Cuponera;
 
@@ -51,6 +52,7 @@ public class manejCuponeras {
 		return cup.getDataCuponera();
 		
 	}
+	
 	public Set<Cuponera> getCuponerasDeActividad(String actividad){
 		Set<Cuponera> resu= new HashSet<Cuponera>();
 		for (Iterator<String> iter=Cuponeras.keySet().iterator();iter.hasNext();) {

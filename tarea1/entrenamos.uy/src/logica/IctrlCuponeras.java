@@ -21,5 +21,7 @@ public interface IctrlCuponeras {
 	public abstract void agregarActividad(String nomcup,String act,int numclase)throws ActividadDeportivaRepetidaException ;
 
 	public abstract DataCuponera mostrarCuponera (String nomCup); 
+	
+	public abstract DataCuponera[] getCuponerasActividad(String nac) throws CuponeraNoExisteException;
 
 }
