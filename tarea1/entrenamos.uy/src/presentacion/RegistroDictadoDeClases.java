@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.Vector;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JComboBox;
@@ -19,6 +20,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import logica.Fabrica;
 import logica.IctrlClases;
+import logica.IctrlCuponeras;
 import logica.IctrlDeportivas;
 import logica.IctrlUsuarios;
 
@@ -35,23 +37,23 @@ import com.toedter.calendar.JDateChooser;
 
 import datatypes.DtClase;
 import excepciones.ClaseRepetidaException;
+import excepciones.CuponeraNoExisteException;
+
+import javax.swing.JCheckBox;
 
 public class RegistroDictadoDeClases extends JInternalFrame {
-	private JTextField NombreClase;
-	private JTextField Smin;
-	private JTextField Smax;
-	private JTextField url;
 	private JComboBox<String> comboBoxInstituciones;
 	private JComboBox<String> comboBoxClase;
-	JComboBox<String> comboBoxActividadDeportiva;
+	private JComboBox<String> comboBoxActividadDeportiva;
+	private JComboBox<String> comboBoxSocio;
+	private JCheckBox chckbxCuponera;
+	private JComboBox<String> comboBoxCuponera;
+	private JDateChooser dateChooserRegistro;
 	
 	private IctrlDeportivas ID;
 	private IctrlUsuarios IU;
 	private IctrlClases IC;
-	private JTextField Sactuales;
-	private JTextField nomProfesor;
-	private JTextField Finicio;
-	private JTextField Falta;
+	private IctrlCuponeras ICUP;
 
 	/**
 	 * Launch the application.
@@ -80,19 +82,24 @@ public class RegistroDictadoDeClases extends JInternalFrame {
 		ID = fab.getIctrlDeportivas();
 		IU = fab.getIctrlUsuarios();
 		IC = fab.getIctrlClases();
+		ICUP = fab.getIctrlCuponeras();
 		
 		
-		setTitle("Alta dictado de clases");
-		setBounds(100, 100, 518, 563);
+		setTitle("Registro a dictado de clase");
+		setBounds(100, 100, 518, 484);
 		
 		comboBoxInstituciones = new JComboBox();	
 		comboBoxClase = new JComboBox();	
 		comboBoxActividadDeportiva = new JComboBox();
+		comboBoxSocio = new JComboBox();
+		chckbxCuponera = new JCheckBox("Cuponera");
+		comboBoxCuponera = new JComboBox();
+		dateChooserRegistro = new JDateChooser();
 		
 		
+		comboBoxCuponera.setEnabled(false);
 		
-		
-		//cuando se selecciona una institucion se cargan las actividades deportivas y los profesores
+		//cuando se selecciona una institucion se cargan las actividades deportivas
 		
 		comboBoxInstituciones.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -113,6 +120,7 @@ public class RegistroDictadoDeClases extends JInternalFrame {
 					
 					
 					comboBoxActividadDeportiva.setEnabled(true);
+					comboBoxActividadDeportiva.setSelectedItem(null);
 					
 				}
 				
@@ -120,7 +128,7 @@ public class RegistroDictadoDeClases extends JInternalFrame {
 		});
 		
 		
-		// cuando se carga la actividad deportiva se cargan las clases
+		// cuando se carga la actividad deportiva se cargan las clases vigentes
 		comboBoxActividadDeportiva.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -128,7 +136,7 @@ public class RegistroDictadoDeClases extends JInternalFrame {
 				if (act != null) {
 					
 					comboBoxClase.removeAllItems();
-					Set<String> clases = IC.mostrarClasesDeActividadDeportiva(act);
+					Set<String> clases = ID.mostrarClasesVigentesDeActividadDeportiva(act);
 					
 					for( Iterator<String> itt = clases.iterator(); itt.hasNext();) { 
 					    String x = (String)itt.next();
@@ -137,47 +145,47 @@ public class RegistroDictadoDeClases extends JInternalFrame {
 					}
 					
 					comboBoxClase.setEnabled(true);
+					comboBoxClase.setSelectedItem(null);
+				}
+			}
+		});
+		
+		
+		// seleccion si es con cuponera
+		chckbxCuponera.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (chckbxCuponera.isSelected()) {
+					
+					if ((comboBoxSocio.getSelectedItem() == null) || (comboBoxActividadDeportiva.getSelectedItem() == null)) {
+						JOptionPane.showMessageDialog(null, "Primero se debe seleccionar el socio y la actividad deportiva");
+					} else {
+						Set<String> cup = IU.MostrarCuponerasDisponibles((String)comboBoxSocio.getSelectedItem(),(String)comboBoxActividadDeportiva.getSelectedItem());
+						if (cup.size() == 0) {
+							JOptionPane.showMessageDialog(null, "El socio no tiene cuponeras disponibles para esta actividad");
+							chckbxCuponera.setSelected(false);
+						} else {
+							for( Iterator<String> itt = cup.iterator(); itt.hasNext();) { 
+							    String x = (String)itt.next();
+							    comboBoxCuponera.addItem(x);
+							}
+							comboBoxCuponera.setEnabled(true);
+						}
+					}
+					
+				} else {
+					comboBoxCuponera.removeAllItems();
+					comboBoxCuponera.setEnabled(false);
 				}
 			}
 		});
 		
 		
 		
-		
 		JLabel lblActividadDeportiva = new JLabel("Actividad deportiva");
-		
 		JLabel lblInstitucion = new JLabel("Institucion deportiva");
-		
-		JLabel lblProfesor = new JLabel("Clases vigentes");
-		
-		JLabel lblNombreDeLa = new JLabel("Nombre de la clase");
-		
-		
-		JLabel lblSociosMinimos = new JLabel("Socios minimos");
-		
-		JLabel lblSociosMaximos = new JLabel("Socios maximos");
-		
-		JLabel lblUrl = new JLabel("url");
-		
-		JLabel lblFechaDeInicio = new JLabel("Fecha de inicio");
-		
-		JLabel lblFechaDeAlta = new JLabel("Fecha de alta");
-		
-		NombreClase = new JTextField();
-		NombreClase.setEditable(false);
-		NombreClase.setColumns(10);
-		
-		Smin = new JTextField();
-		Smin.setEditable(false);
-		Smin.setColumns(10);
-		
-		Smax = new JTextField();
-		Smax.setEditable(false);
-		Smax.setColumns(10);
-		
-		url = new JTextField();
-		url.setEditable(false);
-		url.setColumns(10);
+		JLabel lblProfesor = new JLabel("Clase vigente");
+		JLabel lblSocioARegistrar = new JLabel("Socio a registrar");
+		JLabel lblFechaDeRegistro = new JLabel("Fecha de registro");
 		
 		
 		
@@ -188,7 +196,7 @@ public class RegistroDictadoDeClases extends JInternalFrame {
 		//botones aceptar y cancelar
 		
 		
-		JButton btnCancelar = new JButton("Salir");
+		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -199,14 +207,6 @@ public class RegistroDictadoDeClases extends JInternalFrame {
 				comboBoxClase.setEnabled(false);
 				comboBoxActividadDeportiva.setEnabled(false);
 								
-				NombreClase.setText("");
-				nomProfesor.setText("");
-				Smin.setText("");
-				Sactuales.setText("");
-				Smax.setText("");
-				url.setText("");
-				Finicio.setText("");
-				Falta.setText("");
 				
 				
 				setVisible(false);
@@ -214,68 +214,10 @@ public class RegistroDictadoDeClases extends JInternalFrame {
 			}
 		});
 		
+		JButton btnAceptar = new JButton("Aceptar");
 		
 		
-		JButton btnBuscar = new JButton("Buscar");
-		btnBuscar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				try {
-					
-					String clas = (String) comboBoxClase.getSelectedItem();
-					String nomAct = (String) comboBoxActividadDeportiva.getSelectedItem();
-					String inst = (String) comboBoxInstituciones.getSelectedItem();
-					
-					//comprobar que todos los campos tengan algo
-				
-					if ((clas == null) || (nomAct == null) || (inst == null)){
-						JOptionPane.showMessageDialog(null, "Error, ningun campo puede quedar vacio");
-					} else {
-					
-						DtClase res = IC.darDtClase(clas);
-						
-						NombreClase.setText(res.getNombre());
-						nomProfesor.setText(res.getNomProfesor());
-						Smin.setText(Integer.toString(res.getMinSocios()));
-						Sactuales.setText(Integer.toString(res.getActualSocios()));
-						Smax.setText(Integer.toString(res.getMaxSocios()));
-						url.setText(res.getUrl());
-						
-						// mostrar las fechas
-						String ini = Integer.toString(res.getFecha().getDay()) + "/" + Integer.toString(res.getFecha().getMonth()) + "/" + Integer.toString(res.getFecha().getYear());
-						String reg = Integer.toString(res.getFechaReg().getDay()) + "/" + Integer.toString(res.getFechaReg().getMonth()) + "/" + Integer.toString(res.getFechaReg().getYear());
-						
-						Finicio.setText(ini);
-						Falta.setText(reg);
-					}
-						
 		
-				} catch(Exception ee) {
-					// no puede caer nunca aca, por ahora
-					JOptionPane.showMessageDialog(null, "Error");
-				}
-			}
-		});
-		
-		JLabel lblSociosActuales = new JLabel("Socios actuales");
-		
-		Sactuales = new JTextField();
-		Sactuales.setEditable(false);
-		Sactuales.setColumns(10);
-		
-		JLabel lblNombreDelProfesor = new JLabel("Nombre del profesor");
-		
-		nomProfesor = new JTextField();
-		nomProfesor.setEditable(false);
-		nomProfesor.setColumns(10);
-		
-		Finicio = new JTextField();
-		Finicio.setEditable(false);
-		Finicio.setColumns(10);
-		
-		Falta = new JTextField();
-		Falta.setEditable(false);
-		Falta.setColumns(10);
 		
 		
 		
@@ -284,47 +226,31 @@ public class RegistroDictadoDeClases extends JInternalFrame {
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+							.addGap(215)
+							.addComponent(btnAceptar)
+							.addPreferredGap(ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+							.addComponent(btnCancelar))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(lblInstitucion))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(20)
-							.addComponent(lblActividadDeportiva))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(34)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblInstitucion)
+								.addComponent(lblActividadDeportiva)
 								.addComponent(lblProfesor)
-								.addComponent(lblFechaDeInicio)
-								.addComponent(lblUrl)
-								.addComponent(lblSociosMaximos)
-								.addComponent(lblSociosActuales)
-								.addComponent(lblSociosMinimos)
-								.addComponent(lblNombreDelProfesor)
-								.addComponent(lblNombreDeLa)
-								.addComponent(lblFechaDeAlta))))
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(Falta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-									.addComponent(comboBoxClase, Alignment.LEADING, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addComponent(comboBoxActividadDeportiva, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addComponent(comboBoxInstituciones, 0, 262, Short.MAX_VALUE)
-									.addComponent(btnBuscar))
-								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-									.addComponent(url, Alignment.LEADING)
-									.addComponent(Smax, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addComponent(Sactuales, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addComponent(Smin, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addComponent(NombreClase, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
-									.addComponent(nomProfesor, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addGroup(groupLayout.createSequentialGroup()
-										.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
-										.addGap(17)))))
-						.addComponent(Finicio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(54, Short.MAX_VALUE))
+								.addComponent(chckbxCuponera)
+								.addComponent(lblSocioARegistrar)
+								.addComponent(lblFechaDeRegistro))
+							.addGap(21)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(dateChooserRegistro, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+									.addComponent(comboBoxCuponera, 0, 262, Short.MAX_VALUE)
+									.addComponent(comboBoxSocio, 0, 262, Short.MAX_VALUE)
+									.addComponent(comboBoxClase, 0, 262, Short.MAX_VALUE)
+									.addComponent(comboBoxActividadDeportiva, 0, 262, Short.MAX_VALUE)
+									.addComponent(comboBoxInstituciones, 0, 262, Short.MAX_VALUE)))))
+					.addContainerGap(66, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -334,53 +260,30 @@ public class RegistroDictadoDeClases extends JInternalFrame {
 						.addComponent(lblInstitucion)
 						.addComponent(comboBoxInstituciones, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(comboBoxActividadDeportiva, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblActividadDeportiva))
 					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(comboBoxClase, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblProfesor))
-					.addGap(18)
-					.addComponent(btnBuscar)
-					.addGap(45)
+					.addGap(63)
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(lblNombreDeLa)
-						.addComponent(NombreClase, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNombreDelProfesor)
-						.addComponent(nomProfesor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(lblSocioARegistrar)
+						.addComponent(comboBoxSocio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(37)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(chckbxCuponera)
+						.addComponent(comboBoxCuponera, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(39)
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(lblSociosMinimos)
-						.addComponent(Smin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(lblSociosActuales)
-						.addComponent(Sactuales, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(lblSociosMaximos)
-						.addComponent(Smax, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(lblUrl)
-						.addComponent(url, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(lblFechaDeInicio)
-						.addComponent(Finicio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(16)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblFechaDeAlta)
-								.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(Falta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addGap(14))
+						.addComponent(lblFechaDeRegistro)
+						.addComponent(dateChooserRegistro, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(51)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+						.addComponent(btnAceptar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(btnCancelar, GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
+					.addGap(97))
 		);
 		getContentPane().setLayout(groupLayout);
 
@@ -400,7 +303,17 @@ public class RegistroDictadoDeClases extends JInternalFrame {
 			    String x = (String)it.next();
 			    comboBoxInstituciones.addItem(x);
 		}
+		comboBoxInstituciones.setSelectedItem(null);
 		
+		//SOCIOS
+		Vector<String> nomSoc = IU.UsuariosEnSistemaNickName();
+		comboBoxSocio.removeAllItems();
+		
+		for(int i = 0; i < nomSoc.size(); i++) { 
+			  
+			    comboBoxSocio.addItem(nomSoc.get(i));
+		}
+		comboBoxSocio.setSelectedItem(null);
 		
 	}
 }

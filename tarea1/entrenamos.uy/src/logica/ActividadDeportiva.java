@@ -45,15 +45,14 @@ public class ActividadDeportiva {
     	
     	if (!clases.isEmpty()) {
 	    	for (Clase c : clases.values()) {	
-	    		// falta chequear que este en fecha
-	    		if (c.getMaxSocios() > c.getActualSocios()) {
+
+	    		if (c.esVigente()) {
 	    			res.add(c.getNombre());
 	    		}
 	    	}
     	}
     	
     	return res;
-   
     }
     
     public String getNombre() {

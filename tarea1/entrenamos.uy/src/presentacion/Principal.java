@@ -27,6 +27,7 @@ public class Principal {
     private ConsultaDictadoDeClases consultaDictadoDeClasesFrame;
     private AltaUsuario AltaUsuarioInternalFrame;
     private AgregarActividadaCuponera AgregarActividadaCuponeraInternalFrame;
+    private RegistroDictadoDeClases RegistroDictadoDeClasesFrame;
     
     
     /**
@@ -86,6 +87,9 @@ public class Principal {
         AgregarActividadaCuponeraInternalFrame = new AgregarActividadaCuponera(ICC,ICD);
         AgregarActividadaCuponeraInternalFrame.setVisible(false);
         
+        RegistroDictadoDeClasesFrame = new RegistroDictadoDeClases();
+        RegistroDictadoDeClasesFrame.setVisible(false);
+        
         entrenamosUy.getContentPane().setLayout(null);
         
         entrenamosUy.getContentPane().add(altaInstDeportivaInternalFrame);
@@ -96,6 +100,7 @@ public class Principal {
         entrenamosUy.getContentPane().add(consultaDictadoDeClasesFrame);
         entrenamosUy.getContentPane().add(AltaUsuarioInternalFrame);
         entrenamosUy.getContentPane().add(AgregarActividadaCuponeraInternalFrame);
+        entrenamosUy.getContentPane().add(RegistroDictadoDeClasesFrame);
     }
 
     /**
@@ -225,8 +230,8 @@ public class Principal {
         JMenuItem menuItemRegistrarClase = new JMenuItem("Registro a dictado de Clase");
         menuItemRegistrarClase.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Muestro el InternalFrame para ver la lista de todos los usuarios,
-                // cargando previamente la lista
+            	RegistroDictadoDeClasesFrame.cargarFormulario();
+            	RegistroDictadoDeClasesFrame.setVisible(true);
 
             }
         });

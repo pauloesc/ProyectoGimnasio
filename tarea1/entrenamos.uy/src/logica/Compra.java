@@ -19,4 +19,12 @@ public class Compra {
 		public String getNombreCuponera() {
 			return cup.getNombre();
 		}
+		
+		public Date comienzoCuponera() {
+			return cup.getFecha_ini();
+		}
+		
+		public Date vencimientoCuponera() {
+			return cup.getFecha_fin();
+		}
 }

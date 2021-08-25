@@ -118,6 +118,8 @@ public class AltaDictadoDeClases extends JInternalFrame {
 					
 					comboBoxActividadDeportiva.setEnabled(true);
 					comboBoxProfesor.setEnabled(true);
+					comboBoxActividadDeportiva.setSelectedItem(null);
+					comboBoxProfesor.setSelectedItem(null);
 				}
 				
 			}
@@ -344,6 +346,7 @@ public class AltaDictadoDeClases extends JInternalFrame {
 			    comboBoxInstituciones.addItem(x);
 		}
 		
+		comboBoxInstituciones.setSelectedItem(null);
 		
 	}
 	

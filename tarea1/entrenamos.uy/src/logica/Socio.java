@@ -1,5 +1,6 @@
 package logica;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -35,11 +36,15 @@ public class Socio extends Usuario {
 	
 	public Set<String> mostrarNombreCuponerasDisponibles(String actDept) {
 		Set<String> res = new HashSet<String>();
+		 Calendar fechaActual = Calendar.getInstance();  
+		 Date act = fechaActual.getTime();
 		
 		for( Iterator<Compra> it = compCup.iterator(); it.hasNext();) { 
 		    Compra c = it.next();
-		   // falta chequear que la cuponera esté vigente
-		    if (c.clasesDisponibles(actDept) > 0) {
+		    
+		    
+		   
+		    if ((c.clasesDisponibles(actDept) > 0) && (!c.comienzoCuponera().after(act)) && (!c.vencimientoCuponera().before(act))) {
 		    	res.add(c.getNombreCuponera());
 		    }
 
