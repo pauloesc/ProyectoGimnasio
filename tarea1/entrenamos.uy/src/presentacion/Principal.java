@@ -29,6 +29,7 @@ public class Principal {
     private AltaUsuario AltaUsuarioInternalFrame;
     private AgregarActividadaCuponera AgregarActividadaCuponeraInternalFrame;
     private ConsultarCuponera ConsultarCuponeraInternalFrame;
+    private RegistroDictadoDeClases RegistroDictadoDeClasesFrame;    
     private IctrlIDeportivas ICID;
     private IctrlADeportivas ICAD;
     
@@ -61,6 +62,7 @@ public class Principal {
         ICAD = fabrica.getIctrlADeportivas();
         ICID = fabrica.getIctrlIDeportivas();
         IctrlCuponeras ICC =fabrica.getIctrlCuponeras();
+        
         IctrlUsuarios ICU = fabrica.getIctrlUsuarios();
         
         // Se crean los tres InternalFrame y se incluyen al Frame principal ocultos.
@@ -90,10 +92,11 @@ public class Principal {
         AgregarActividadaCuponeraInternalFrame = new AgregarActividadaCuponera(ICC, ICID, ICAD);
         AgregarActividadaCuponeraInternalFrame.setVisible(false);
         
-        ConsultarCuponeraInternalFrame= new ConsultarCuponera(ICC,ICID,ICAD);
+        RegistroDictadoDeClasesFrame = new RegistroDictadoDeClases();
+        RegistroDictadoDeClasesFrame.setVisible(false);
+
+	ConsultarCuponeraInternalFrame= new ConsultarCuponera(ICC,ICID,ICAD);
         ConsultarCuponeraInternalFrame.setVisible(false);
-        
-        
         
         entrenamosUy.getContentPane().setLayout(null);
         
@@ -105,14 +108,14 @@ public class Principal {
         entrenamosUy.getContentPane().add(consultaDictadoDeClasesFrame);
         entrenamosUy.getContentPane().add(AltaUsuarioInternalFrame);
         entrenamosUy.getContentPane().add(AgregarActividadaCuponeraInternalFrame);
-        entrenamosUy.getContentPane().add(ConsultarCuponeraInternalFrame);
+        entrenamosUy.getContentPane().add(ConsultarCuponeraInternalFrame);        
+        entrenamosUy.getContentPane().add(RegistroDictadoDeClasesFrame);
     }
 
     /**
      * Initialize the contents of the frame.
      */
     private void initialize() {
-    	
         
         // Se crea el Frame con las dimensiones indicadas.
     	entrenamosUy = new JFrame();
@@ -128,7 +131,7 @@ public class Principal {
 
         JMenu menuSistema = new JMenu("Sistema");
         menuBar.add(menuSistema);
-        
+
         JMenuItem menuDatosPrueba = new JMenuItem("Cargar datos de prueba");
         menuDatosPrueba.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
@@ -147,7 +150,7 @@ public class Principal {
             }
         });
         menuSistema.add(menuSalir);
-      
+
 
         JMenu menuUsuarios = new JMenu("Usuarios");
         menuBar.add(menuUsuarios);
@@ -246,8 +249,8 @@ public class Principal {
         JMenuItem menuItemRegistrarClase = new JMenuItem("Registro a dictado de Clase");
         menuItemRegistrarClase.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Muestro el InternalFrame para ver la lista de todos los usuarios,
-                // cargando previamente la lista
+            	RegistroDictadoDeClasesFrame.cargarFormulario();
+            	RegistroDictadoDeClasesFrame.setVisible(true);
 
             }
         });

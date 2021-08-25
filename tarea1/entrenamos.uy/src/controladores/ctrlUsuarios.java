@@ -8,6 +8,7 @@ import java.util.Set;
 import datatypes.InfoBasicaUser;
 import datatypes.InformacionActividad;
 import logica.IctrlUsuarios;
+import logica.Socio;
 import manejadores.manejUsuarios;
 
 import java.util.Vector;
@@ -86,7 +87,17 @@ public class ctrlUsuarios implements IctrlUsuarios {
 		return this.manejador.usuariosNickName();
 		
 	}
-	
 	//paulo
+	
+	
+	public Set<String> MostrarCuponerasDisponibles(String nick, String actDept) {
+		Socio s = (Socio) manejador.findUsuario(nick);
+		
+		return s.mostrarNombreCuponerasDisponibles(actDept); 
+	}
+	
+	public Set<String> mostrarNicknameSocios() {
+		return manejador.mostrarNicknameSocios();
+	}
 	
 }
