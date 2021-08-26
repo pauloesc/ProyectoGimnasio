@@ -80,6 +80,14 @@ public class ctrlADeportivas implements IctrlADeportivas{
 		
 		return i.darNombresActividadesDeportivas();
 	}
+	
+	public Set<String> mostrarClasesVigentesDeActividadDeportiva(String nomAct) {
+		manejADeportivas mD = manejADeportivas.getinstance();
+		ActividadDeportiva ac = mD.buscarActividad(nomAct);
+		
+		return ac.darNombreClasesVigentes();
+
+    }
 
 	public void cargarDatosADeportivas() {
 	
@@ -100,7 +108,7 @@ public class ctrlADeportivas implements IctrlADeportivas{
 			altaActividadDeportiva("Fuerza Bruta", "Aparatos y pesas", "Clases de aparatos, pesas y calistenia.", 90f, 550f, f1);
 			altaActividadDeportiva("Telón", "Voleibol", "Voleibol en todas sus formas.", 120f, 750f, f2);
 			altaActividadDeportiva("Instituto Natural", "Aeróbica", "Para cuidar el aparato cardiovascular.", 110f, 800f, f3);
-			altaActividadDeportiva("Fuerza Bruta", "Kickboxing ", "En busca del nuevo campeón de boxeo.", 100f, 980f, f4);
+			altaActividadDeportiva("Fuerza Bruta", "Kickboxing", "En busca del nuevo campeón de boxeo.", 100f, 980f, f4);
 			altaActividadDeportiva("Telón", "Atletismo", "100m , 200m, postas y carreras con obstaculos.", 150f, 500f, f5);
 			altaActividadDeportiva("Telón", "Basquetbol", "Espectáculo conmemorando los 30 años de Violeta. ", 80f, 450f, f6);
 		} catch (ActividadDeportivaRepetidaException e) {

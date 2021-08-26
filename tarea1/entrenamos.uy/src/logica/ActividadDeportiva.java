@@ -2,8 +2,12 @@ package logica;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+
+import datatypes.DtActividadesDeportivas;
 
 /**
  * Representa a una Actividad Deportiva en el sistema con nombre, descripcion, duracion, costo, fecha_alta.
@@ -35,6 +39,22 @@ public class ActividadDeportiva {
 
     public Set<String> darNombreClases() {
     	return clases.keySet();
+    }
+    
+    public Set<String> darNombreClasesVigentes(){
+    	
+    	Set<String> res = new HashSet<String>();
+    	
+    	if (!clases.isEmpty()) {
+	    	for (Clase c : clases.values()) {	
+
+	    		if (c.esVigente()) {
+	    			res.add(c.getNombre());
+	    		}
+	    	}
+    	}
+    	
+    	return res;
     }
     
     public String getNombre() {
@@ -77,4 +97,23 @@ public class ActividadDeportiva {
         this.fecha_alta = fa;
     }
 
+    public DtActividadesDeportivas InformacionProfesor(String usuario) {
+    	
+    	DtActividadesDeportivas i = new DtActividadesDeportivas( this.nombre, this.descripcion, this.duracion, this.costo, this.fecha_alta );
+    	
+    	Iterator<Map.Entry<String,Clase>> Iter =  this.clases.entrySet().iterator();
+    	
+    	while (Iter.hasNext()) {
+    	    Map.Entry<String, Clase> datos = Iter.next();
+    	    
+    	    Clase c = datos.getValue();
+    	    
+    	    if (c.EsDeProfesor(usuario)) {
+    	    	i.agregarDtClase(c.darDtClase());
+    	    }
+    	    
+    	}
+    	return i;
+    }
+    
 }

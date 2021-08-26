@@ -29,9 +29,11 @@ public class Principal {
     private AltaUsuario AltaUsuarioInternalFrame;
     private AgregarActividadaCuponera AgregarActividadaCuponeraInternalFrame;
     private ConsultarCuponera ConsultarCuponeraInternalFrame;
+    private RegistroDictadoDeClases RegistroDictadoDeClasesFrame;    
     private IctrlIDeportivas ICID;
     private IctrlADeportivas ICAD;
-    
+    private IctrlCuponeras ICC;
+    private ConsultaUsuario ConsultaUsuarioInternalFrame;
     
     /**
      * Launch the application.
@@ -60,7 +62,8 @@ public class Principal {
         Fabrica fabrica = Fabrica.getInstance();
         ICAD = fabrica.getIctrlADeportivas();
         ICID = fabrica.getIctrlIDeportivas();
-        IctrlCuponeras ICC =fabrica.getIctrlCuponeras();
+        ICC =fabrica.getIctrlCuponeras();
+        
         IctrlUsuarios ICU = fabrica.getIctrlUsuarios();
         
         // Se crean los tres InternalFrame y se incluyen al Frame principal ocultos.
@@ -90,9 +93,13 @@ public class Principal {
         AgregarActividadaCuponeraInternalFrame = new AgregarActividadaCuponera(ICC, ICID, ICAD);
         AgregarActividadaCuponeraInternalFrame.setVisible(false);
         
-        ConsultarCuponeraInternalFrame= new ConsultarCuponera(ICC,ICID,ICAD);
+        RegistroDictadoDeClasesFrame = new RegistroDictadoDeClases();
+        RegistroDictadoDeClasesFrame.setVisible(false);
+
+	ConsultarCuponeraInternalFrame= new ConsultarCuponera(ICC,ICID,ICAD);
         ConsultarCuponeraInternalFrame.setVisible(false);
-        
+        ConsultaUsuarioInternalFrame = new ConsultaUsuario(ICU);
+        ConsultaUsuarioInternalFrame.setVisible(false);
         
         
         entrenamosUy.getContentPane().setLayout(null);
@@ -105,14 +112,15 @@ public class Principal {
         entrenamosUy.getContentPane().add(consultaDictadoDeClasesFrame);
         entrenamosUy.getContentPane().add(AltaUsuarioInternalFrame);
         entrenamosUy.getContentPane().add(AgregarActividadaCuponeraInternalFrame);
-        entrenamosUy.getContentPane().add(ConsultarCuponeraInternalFrame);
+        entrenamosUy.getContentPane().add(ConsultarCuponeraInternalFrame);        
+        entrenamosUy.getContentPane().add(RegistroDictadoDeClasesFrame);
+        entrenamosUy.getContentPane().add(ConsultaUsuarioInternalFrame);
     }
 
     /**
      * Initialize the contents of the frame.
      */
     private void initialize() {
-    	
         
         // Se crea el Frame con las dimensiones indicadas.
     	entrenamosUy = new JFrame();
@@ -128,12 +136,13 @@ public class Principal {
 
         JMenu menuSistema = new JMenu("Sistema");
         menuBar.add(menuSistema);
-        
+
         JMenuItem menuDatosPrueba = new JMenuItem("Cargar datos de prueba");
         menuDatosPrueba.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
             	ICID.cargarDatosIDeportivas();
-                ICAD.cargarDatosADeportivas();   
+                ICAD.cargarDatosADeportivas();
+                ICC.cargarDatosCuponeras();
             }
         });
         menuSistema.add(menuDatosPrueba);
@@ -147,7 +156,7 @@ public class Principal {
             }
         });
         menuSistema.add(menuSalir);
-      
+
 
         JMenu menuUsuarios = new JMenu("Usuarios");
         menuBar.add(menuUsuarios);
@@ -165,7 +174,10 @@ public class Principal {
         menuItemVerInfo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Muestro el InternalFrame para ver información de un usuario
-
+            	ConsultaUsuarioInternalFrame.CargarDatos();
+            	ConsultaUsuarioInternalFrame.setVisible(true);
+            	
+            	
             }
         });
         menuUsuarios.add(menuItemVerInfo);
@@ -246,8 +258,8 @@ public class Principal {
         JMenuItem menuItemRegistrarClase = new JMenuItem("Registro a dictado de Clase");
         menuItemRegistrarClase.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Muestro el InternalFrame para ver la lista de todos los usuarios,
-                // cargando previamente la lista
+            	RegistroDictadoDeClasesFrame.cargarFormulario();
+            	RegistroDictadoDeClasesFrame.setVisible(true);
 
             }
         });

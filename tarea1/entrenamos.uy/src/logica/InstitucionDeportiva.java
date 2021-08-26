@@ -4,6 +4,10 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import datatypes.DtActividadesDeportivas;
+import datatypes.InfoActividadProfe;
+import datatypes.InformacionActividad;
+
 /**
  * Representa a una Institucion Deportiva en el sistema con nombre, descripcion y url.
  * @author mbarrera
@@ -73,4 +77,22 @@ public class InstitucionDeportiva {
 		}
 		return res;
     }
+	
+	public InformacionActividad InformacionProfesor(String usuario) {
+		
+		InformacionActividad i = new InfoActividadProfe( this.nombre, this.descripcion, this.url );
+	
+		Iterator<ActividadDeportiva> info = this.actividadesDeportivasInst.iterator();
+	
+		while(info.hasNext()) {
+			
+			ActividadDeportiva aux = info.next();
+			DtActividadesDeportivas aux_ad = aux.InformacionProfesor(usuario);
+			
+			i.agregarInfo(aux_ad);
+		}
+				
+		return i;		
+	}
+	
 }

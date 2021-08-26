@@ -9,11 +9,13 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+import logica.Clase;
 import logica.Profesor;
 import logica.Usuario;
 import logica.Socio;
 
 import datatypes.InfoBasicaUser;
+import datatypes.InformacionActividad;
 import excepciones.UsuarioDisponibilidadException;
 import datatypes.InfoBasicaProfesor;
 import datatypes.InfoBasicaSocio;
@@ -134,5 +136,27 @@ public class manejUsuarios {
 		
 	}
 	
+	public Usuario findUsuario(String nick) {
+		return usuarios.get(nick);
+	}
+	public InfoBasicaUser InformacionBasicaUsuario(String usuario) {
+		
+		Usuario e = this.usuarios.get(usuario);
+		return  e.Informacion();
+	}
 	
+	public InformacionActividad InformacionActividad(String usuario) {
+		Usuario e = this.usuarios.get(usuario);
+		return  e.InformacionActividad(usuario);
+	}
+	
+	public Set<String> mostrarNicknameSocios() {
+		Set<String> res = new HashSet<String>();
+		for (Usuario u : usuarios.values()) {	
+			if (u.getClass() == Socio.class) {
+				res.add(u.getNickname());
+			}
+    	} 
+		return res;
+	}
 }

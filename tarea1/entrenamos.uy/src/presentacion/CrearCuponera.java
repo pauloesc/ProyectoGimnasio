@@ -9,12 +9,12 @@ import logica.IctrlCuponeras;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
+
 import java.awt.Color;
 import java.util.Date;
 import com.toedter.calendar.JDateChooser;
 import excepciones.CuponeraRepetidaException;
-
-import java.awt.Button;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -109,7 +109,7 @@ public class CrearCuponera extends JInternalFrame {
 		txtDes.setBorder(BorderFactory.createLineBorder(Color.black));
 		getContentPane().add(txtDes);
 		
-		Button buttonAceptar = new Button("Aceptar");
+		JButton buttonAceptar = new JButton("Aceptar");
 		buttonAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				cmdRegistroADActionPerformed(arg0);
@@ -118,7 +118,7 @@ public class CrearCuponera extends JInternalFrame {
 		buttonAceptar.setBounds(187, 365, 100, 32);
 		getContentPane().add(buttonAceptar);
 		
-		Button buttonCancelar = new Button("Cancelar");
+		JButton buttonCancelar = new JButton("Cancelar");
 		buttonCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 limpiarFormulario();

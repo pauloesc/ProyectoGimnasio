@@ -58,8 +58,10 @@ public class Cuponera {
 	
 	public Set <String> getListaActividades(){
 		Set <String> resu = new HashSet<String>();
+		if (!info.isEmpty()) {
 		for (Iterator<InfoClases> iter=info.iterator();iter.hasNext();) {
 			resu.add(iter.next().getNombreActividadDeportiva());
+		}
 		}
 		return resu;  
 	}
@@ -81,11 +83,14 @@ public class Cuponera {
 	public DataCuponera getDataCuponera() {
 		Set <ParActividad> grupo= new HashSet<ParActividad>();
 		
+		if (!info.isEmpty()) {
 		for (Iterator<InfoClases> iter=info.iterator();iter.hasNext();) {
-			String nom=iter.next().getNombreActividadDeportiva();
-			int    n=iter.next().getCantidad();
+			InfoClases it=iter.next();
+			String nom=it.getNombreActividadDeportiva();
+			int    n=it.getCantidad();
 			ParActividad nuevo= new ParActividad (nom,n);
 			grupo.add(nuevo);
+		}
 		}
 		DataCuponera resu= new DataCuponera(nombre,descripcion,fecha_ini,fecha_fin, descuento, fecha_alta, grupo);
 		return resu;
