@@ -9,7 +9,7 @@ import java.util.Date;
 
 import manejadores.manejADeportivas;
 import manejadores.manejIDeportivas;
-import manejadores.manejDeportivas;
+import manejadores.manejIDeportivas;
 
 public class Profesor extends Usuario {
 	private String descripcion;
@@ -32,7 +32,7 @@ public class Profesor extends Usuario {
 		this.bio = info.getBibliografia();
 		this.website = info.getUrl();
 		
-		manejDeportivas ee =  manejDeportivas.getinstance();
+		manejIDeportivas ee =  manejIDeportivas.getinstance();
 		this.inst = ee.buscarInstitucion(info.getInstitucion());
 	}
 	
@@ -44,7 +44,7 @@ public class Profesor extends Usuario {
 		this.descripcion = descripcion;
 		this.bio = bio;
 		this.website = website;
-		manejDeportivas ee =  manejDeportivas.getinstance();
+		manejIDeportivas ee =  manejIDeportivas.getinstance();
 		this.inst = ee.buscarInstitucion(inst);
 	}
 	
