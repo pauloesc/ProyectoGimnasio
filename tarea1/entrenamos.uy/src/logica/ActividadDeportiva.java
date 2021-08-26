@@ -25,12 +25,14 @@ public class ActividadDeportiva {
     
 
     public ActividadDeportiva(String n, String de, Float dur, Float cost, Date fa) {
-        this.nombre = n;
-        this.descripcion = de;
-        this.duracion = dur;
-        this.costo = cost;
-        this.fecha_alta = fa;
+    	this.setNombre(n);
+        this.setDescripcion(de);
+        this.setDuracion(dur);
+        this.setCosto(cost);
+        this.setFechaAlta(fa);
         this.clases = new HashMap<String,Clase>();
+        
+        
     }
 
     public void addClase(Clase c) {
