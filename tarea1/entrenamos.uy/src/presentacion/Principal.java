@@ -146,8 +146,9 @@ public class Principal {
             	ICID.cargarDatosIDeportivas();
                 ICAD.cargarDatosADeportivas();
                 ICC.cargarDatosCuponeras();
-                // cargar profesores antes de las clases
+                // cargar profesores y socios antes de las clases
                 ICCL.cargarDatosClases();
+                ICCL.cargarRegistroAClases();
                 
             }
         });
