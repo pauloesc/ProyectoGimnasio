@@ -14,6 +14,7 @@ import logica.Usuario;
 import logica.Socio;
 
 import datatypes.InfoBasicaUser;
+import datatypes.InformacionActividad;
 import excepciones.UsuarioDisponibilidadException;
 import datatypes.InfoBasicaProfesor;
 import datatypes.InfoBasicaSocio;
@@ -138,6 +139,11 @@ public class manejUsuarios {
 		
 		Usuario e = this.usuarios.get(usuario);
 		return  e.Informacion();
+	}
+	
+	public InformacionActividad InformacionActividad(String usuario) {
+		Usuario e = this.usuarios.get(usuario);
+		return  e.InformacionActividad(usuario);
 	}
 	
 }

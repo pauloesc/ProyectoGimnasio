@@ -63,9 +63,8 @@ public class ctrlUsuarios implements IctrlUsuarios {
 	
 	public InformacionActividad InformacionActividad(String usuario) {
 		
-		InformacionActividad IA = null;
-		return IA;
-		
+		return this.manejador.InformacionActividad(usuario);
+
 	}
 	
 	public void ActualizarInformacionUsuario(InfoBasicaUser actualizacion){

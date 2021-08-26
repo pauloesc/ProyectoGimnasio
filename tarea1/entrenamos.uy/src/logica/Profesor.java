@@ -3,6 +3,8 @@ package logica;
 import datatypes.InfoBasicaProfesor;
 import datatypes.InfoBasicaSocio;
 import datatypes.InfoBasicaUser;
+import datatypes.InformacionActividad;
+
 import java.util.Date;
 
 import manejadores.manejDeportivas;
@@ -91,6 +93,11 @@ public class Profesor extends Usuario {
 			this.getWebsite()
 			);
 			return rt;
+	}
+	
+	@Override
+	public InformacionActividad InformacionActividad(String usuario) {
+		return this.inst.InformacionProfesor(usuario);
 	}
 	
 }

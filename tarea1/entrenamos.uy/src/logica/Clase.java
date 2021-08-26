@@ -39,4 +39,8 @@ public class Clase {
 		Usuario prof = (Usuario)this.profesor;
 		return new DtClase(this.fechaInicio, this.nombre, this.minSocios, this.actualSocios, this.maxSocios, this.url, this.fechaReg, prof.getNickname());
 	}
+	
+	public boolean EsDeProfesor(String usuario) {
+		return (usuario == this.profesor.getNickname());
+	}
 }
