@@ -16,15 +16,20 @@ import java.awt.TextArea;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
 import javax.swing.SwingConstants;
 
 import datatypes.DataInstitucion;
+import datatypes.DtClase;
 import datatypes.DataActividad;
+import datatypes.DataCuponera;
 import excepciones.ActividadDeportivaNoExisteException;
+import excepciones.CuponeraNoExisteException;
 import excepciones.InstitucionDeportivaNoExisteException;
 import logica.IctrlADeportivas;
 import logica.IctrlIDeportivas;
+import logica.IctrlCuponeras;
 
 import javax.swing.JSpinner;
 import javax.swing.JComponent;
@@ -38,7 +43,6 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import logica.IctrlIDeportivas;
 import java.awt.event.ItemListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -51,19 +55,22 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 	// Controlador de Deportivas que se utilizará para las acciones del JFrame
     private IctrlIDeportivas controlIDeportivas;
     private IctrlADeportivas controlADeportivas;
+    private IctrlCuponeras controlCuponeras;
     
 	private JComboBox<DataInstitucion> comboBoxInstDeportivas;
 	private JComboBox<DataActividad> comboBoxActDeportivas;
+	private JList<DataCuponera> listCuponeras;
 	private JTextField txtNombre;
     private JTextArea txtDescripcion;
     private JTextField txtDuracion;
     private JTextField txtCosto;
     private JTextField txtFechaAlta;
     
-	public ConsultaActividadDeportiva(IctrlIDeportivas icid, IctrlADeportivas icad) {
+	public ConsultaActividadDeportiva(IctrlIDeportivas icid, IctrlADeportivas icad, IctrlCuponeras icup) {
 		
 		controlIDeportivas = icid;
 		controlADeportivas = icad;
+		controlCuponeras = icup;
 		
 		setTitle("Consulta de Actividad Deportiva");
 		setClosable(true);
@@ -158,10 +165,10 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 		tabbedPane.setBounds(34, 294, 384, 205);
 		getContentPane().add(tabbedPane);
 		
-		JList listClases = new JList();
+		JList<DtClase> listClases = new JList<DtClase>();
 		tabbedPane.addTab("Clases", null, listClases, null);
 		
-		JList listCuponeras = new JList();
+		listCuponeras = new JList<DataCuponera>();
 		tabbedPane.addTab("Cuponeras", null, listCuponeras, null);
 		
 	}
@@ -217,10 +224,23 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
             
             txtFechaAlta.setText(strDate);            
         } catch (ActividadDeportivaNoExisteException e) {
-        	JOptionPane.showMessageDialog(this, "No existen datos en el sistema para la Actividad Deportiva seleccionada.", "Consulta Actividad Deportiva",
-    	    		JOptionPane.ERROR_MESSAGE);
+        	JOptionPane.showMessageDialog(this, e.getMessage(), "Consulta Actividad Deportiva",	JOptionPane.ERROR_MESSAGE);
         	setVisible(false);
         }
-
+        
+        DefaultListModel<DataCuponera> modeloCuponeras;
+        DataCuponera[] dcu;
+        modeloCuponeras = new DefaultListModel<DataCuponera>();
+		try {
+			dcu = controlCuponeras.getCuponerasActividad(n);
+			for(int i = 0; i < dcu.length; i++)
+	            modeloCuponeras.addElement(dcu[i]);
+		} catch (CuponeraNoExisteException e) {
+			e.printStackTrace();
+		}
+        
+        listCuponeras.setModel(modeloCuponeras);
+        
+        
     }
 }

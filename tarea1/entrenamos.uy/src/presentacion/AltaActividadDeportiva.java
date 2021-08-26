@@ -24,6 +24,7 @@ import excepciones.InstitucionDeportivaNoExisteException;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.SwingConstants;
 import javax.swing.JSpinner;
@@ -131,7 +132,7 @@ public class AltaActividadDeportiva extends JInternalFrame {
 		lblFechaDeAlta.setBounds(34, 263, 95, 19);
 		getContentPane().add(lblFechaDeAlta);
 		
-		Button buttonAceptar = new Button("Aceptar");
+		JButton buttonAceptar = new JButton("Aceptar");
 		buttonAceptar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
             	cmdRegistroADActionPerformed(arg0);
@@ -140,12 +141,12 @@ public class AltaActividadDeportiva extends JInternalFrame {
 		buttonAceptar.setBounds(133, 308, 100, 32);
 		getContentPane().add(buttonAceptar);
 		
-		Button buttonCancelar = new Button("Cancelar");
+		JButton buttonCancelar = new JButton("Cancelar");
 		buttonCancelar.setBounds(251, 308, 100, 32);
 		buttonCancelar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 limpiarFormulario();
-                //setVisible(false);
+                setVisible(false);
             }
         });
 		getContentPane().add(buttonCancelar);
@@ -244,7 +245,7 @@ public class AltaActividadDeportiva extends JInternalFrame {
             modelo.setSelectedItem(null);
             comboBoxInstDeportivas.setModel(modelo);
         } catch (InstitucionDeportivaNoExisteException e) {
-        	JOptionPane.showMessageDialog(this, "No existen Instituciones Deportivas en el sistema.", "Alta Actividad Deportiva",
+        	JOptionPane.showMessageDialog(this, e.getMessage(), "Alta Actividad Deportiva",
     	    		JOptionPane.ERROR_MESSAGE);
         	setVisible(false);
         }

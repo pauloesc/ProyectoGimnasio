@@ -44,7 +44,6 @@ public class ctrlADeportivas implements IctrlADeportivas{
 	}
 
 	public DataActividad[] getActividades(String nid) throws ActividadDeportivaNoExisteException {
-        manejADeportivas mD = manejADeportivas.getinstance();
         manejIDeportivas mID = manejIDeportivas.getinstance();
         InstitucionDeportiva indep = mID.buscarInstitucion(nid);
         ActividadDeportiva[] actsdeps = indep.getActividades();
