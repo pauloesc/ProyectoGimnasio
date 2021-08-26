@@ -160,12 +160,16 @@ public class ConsultaUsuario extends JInternalFrame{
 				
 				if( infoActividad.getClass() == InfoActividadSocio.class ) {
 					
-					
+					InfoActividadSocio oo = (InfoActividadSocio) infoActividad;
+					oo.imp();
 					
 				}
 				//si es InfoActividadProfesor
 				else {
 				
+					InfoActividadProfe oo = (InfoActividadProfe) infoActividad;
+					oo.imp();
+					
 				}
 				
 			}
