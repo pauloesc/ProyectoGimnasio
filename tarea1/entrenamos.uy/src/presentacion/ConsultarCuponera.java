@@ -64,6 +64,7 @@ public class ConsultarCuponera extends JInternalFrame {
     private JTextField textFechafin;
     private JScrollPane scrollPane;
     private JList<String> list;
+    private JList<Integer> list_1;
 
 	
 	public ConsultarCuponera(IctrlCuponeras ICC, IctrlIDeportivas IID, IctrlADeportivas IAD) {
@@ -176,14 +177,15 @@ public class ConsultarCuponera extends JInternalFrame {
 		scrollPane.setViewportView(list);
 		
 		JLabel lblNmeroDeClases = new JLabel("Número de clases:");
-		lblNmeroDeClases.setBounds(284, 306, 147, 26);
+		lblNmeroDeClases.setBounds(271, 306, 147, 26);
 		getContentPane().add(lblNmeroDeClases);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(271, 341, 119, 151);
+		scrollPane_1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane_1.setBounds(271, 341, 147, 151);
 		getContentPane().add(scrollPane_1);
 		
-		JList list_1 = new JList();
+		list_1 = new JList<Integer>();
 		list_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane_1.setViewportView(list_1);
 		
@@ -220,15 +222,19 @@ public class ConsultarCuponera extends JInternalFrame {
         
         
         DefaultListModel<String> modelo;
+        DefaultListModel<Integer> modelo2;
         modelo= new DefaultListModel<String>();
+        modelo2= new DefaultListModel<Integer>();
         Set<ParActividad> res=dat.getClases();
         if (!res.isEmpty()) {
     		for (Iterator<ParActividad> iter=res.iterator();iter.hasNext();) {
     			ParActividad it=iter.next();
     			modelo.addElement(it.getNombre());
+    			modelo2.addElement(it.getNumclase());
     		}
 	    } 
         list.setModel(modelo);
+        list_1.setModel(modelo2);
 		}catch (CuponeraNoExisteException e) {
     	JOptionPane.showMessageDialog(this, "No existen datos en el sistema para la Cuponera seleccionada.", "Consulta Cuponera",
 	    		JOptionPane.ERROR_MESSAGE);
