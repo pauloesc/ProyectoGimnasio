@@ -18,8 +18,9 @@ import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import logica.Fabrica;
+import logica.IctrlADeportivas;
 import logica.IctrlClases;
-import logica.IctrlDeportivas;
+import logica.IctrlIDeportivas;
 import logica.IctrlUsuarios;
 
 import javax.swing.JOptionPane;
@@ -44,7 +45,8 @@ public class AltaDictadoDeClases extends JInternalFrame {
 	private JComboBox<String> comboBoxProfesor;
 	JComboBox<String> comboBoxActividadDeportiva;
 	
-	private IctrlDeportivas ID;
+	private IctrlADeportivas IAD;
+	private IctrlIDeportivas IID;
 	private IctrlUsuarios IU;
 
 	/**
@@ -71,7 +73,8 @@ public class AltaDictadoDeClases extends JInternalFrame {
 	
 	public AltaDictadoDeClases() {
 		Fabrica fab = Fabrica.getInstance();
-		ID = fab.getIctrlDeportivas();
+		IAD = fab.getIctrlADeportivas();
+		IID = fab.getIctrlIDeportivas();
 		IU = fab.getIctrlUsuarios();
 		
 		JDateChooser dateChooserInicio = new JDateChooser();
@@ -101,7 +104,7 @@ public class AltaDictadoDeClases extends JInternalFrame {
 				if (insti != null) {
 					
 					comboBoxActividadDeportiva.removeAllItems();
-					Set<String> act = ID.darNombresActividadesDeportivas(insti);
+					Set<String> act = IAD.darNombresActividadesDeportivas(insti);
 					for( Iterator<String> it = act.iterator(); it.hasNext();) { 
 					    String x = (String)it.next();
 					    comboBoxActividadDeportiva.addItem(x);
@@ -118,6 +121,8 @@ public class AltaDictadoDeClases extends JInternalFrame {
 					
 					comboBoxActividadDeportiva.setEnabled(true);
 					comboBoxProfesor.setEnabled(true);
+					comboBoxActividadDeportiva.setSelectedItem(null);
+					comboBoxProfesor.setSelectedItem(null);
 				}
 				
 			}
@@ -205,7 +210,7 @@ public class AltaDictadoDeClases extends JInternalFrame {
 					
 					//comprobar que todos los campos tengan algo
 				
-					if ((nom.isBlank()) || (Finicio == null) || (prof == null) || (ur.isBlank()) || (Falta == null) || (nomAct == null)){
+					if ((nom.isEmpty()) || (Finicio == null) || (prof == null) || (ur.isEmpty()) || (Falta == null) || (nomAct == null)){
 						JOptionPane.showMessageDialog(null, "Error, ningun campo puede quedar vacio");
 					} else {
 						int min = Integer.parseInt(Smin.getText());
@@ -336,7 +341,7 @@ public class AltaDictadoDeClases extends JInternalFrame {
 	public void cargarFormulario() {
 		
 		//INSTITUCIONES
-		Set<String> nombInst = ID.darNombreInstituciones();
+		Set<String> nombInst = IID.darNombreInstituciones();
 		comboBoxInstituciones.removeAllItems();
 		
 		for( Iterator<String> it = nombInst.iterator(); it.hasNext();) { 
@@ -344,6 +349,7 @@ public class AltaDictadoDeClases extends JInternalFrame {
 			    comboBoxInstituciones.addItem(x);
 		}
 		
+		comboBoxInstituciones.setSelectedItem(null);
 		
 	}
 	

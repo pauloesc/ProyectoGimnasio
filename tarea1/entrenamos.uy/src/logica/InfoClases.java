@@ -1,9 +1,15 @@
 package logica;
 
 
+
 public class InfoClases {
 	private int cantidad;
 	private ActividadDeportiva act;
+	
+	public InfoClases(ActividadDeportiva act, int cant) {
+		this.act = act;
+		this.cantidad = cant;
+	}
 	
 	public int getCantidad() {
 		return cantidad;

@@ -5,6 +5,10 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import datatypes.DataCuponera;
+import datatypes.ParActividad;
+
+
 public class Cuponera {
 	private String nombre;
 	private String descripcion;
@@ -21,6 +25,7 @@ public class Cuponera {
 		this.fecha_fin = fin;
 		this.descuento = disc;
 		this.fecha_alta = alta;
+		this.info = new HashSet<InfoClases>();
 	}
 
 	public String getDescripcion() {
@@ -53,8 +58,10 @@ public class Cuponera {
 	
 	public Set <String> getListaActividades(){
 		Set <String> resu = new HashSet<String>();
+		if (!info.isEmpty()) {
 		for (Iterator<InfoClases> iter=info.iterator();iter.hasNext();) {
 			resu.add(iter.next().getNombreActividadDeportiva());
+		}
 		}
 		return resu;  
 	}
@@ -67,4 +74,25 @@ public class Cuponera {
 		this.fecha_alta = fecha_alta;
 	}
 
+	public void agregarActividad (ActividadDeportiva act, int numclase) {
+		InfoClases nueva=new InfoClases (act, numclase);
+		info.add(nueva);
+	}
+
+	
+	public DataCuponera getDataCuponera() {
+		Set <ParActividad> grupo= new HashSet<ParActividad>();
+		
+		if (!info.isEmpty()) {
+		for (Iterator<InfoClases> iter=info.iterator();iter.hasNext();) {
+			InfoClases it=iter.next();
+			String nom=it.getNombreActividadDeportiva();
+			int    n=it.getCantidad();
+			ParActividad nuevo= new ParActividad (nom,n);
+			grupo.add(nuevo);
+		}
+		}
+		DataCuponera resu= new DataCuponera(nombre,descripcion,fecha_ini,fecha_fin, descuento, fecha_alta, grupo);
+		return resu;
+	}
 }

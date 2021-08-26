@@ -1,6 +1,7 @@
 package presentacion;
 
 import java.awt.EventQueue;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Set;
@@ -18,8 +19,9 @@ import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import logica.Fabrica;
+import logica.IctrlADeportivas;
 import logica.IctrlClases;
-import logica.IctrlDeportivas;
+import logica.IctrlIDeportivas;
 import logica.IctrlUsuarios;
 
 import javax.swing.JOptionPane;
@@ -45,7 +47,8 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 	private JComboBox<String> comboBoxClase;
 	JComboBox<String> comboBoxActividadDeportiva;
 	
-	private IctrlDeportivas ID;
+	private IctrlADeportivas IAD;
+	private IctrlIDeportivas IID;
 	private IctrlUsuarios IU;
 	private IctrlClases IC;
 	private JTextField Sactuales;
@@ -77,7 +80,8 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 	
 	public ConsultaDictadoDeClases() {
 		Fabrica fab = Fabrica.getInstance();
-		ID = fab.getIctrlDeportivas();
+		IAD = fab.getIctrlADeportivas();
+		IID = fab.getIctrlIDeportivas();
 		IU = fab.getIctrlUsuarios();
 		IC = fab.getIctrlClases();
 		
@@ -92,7 +96,7 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 		
 		
 		
-		//cuando se selecciona una institucion se cargan las actividades deportivas y los profesores
+		//cuando se selecciona una institucion se cargan las actividades deportivas
 		
 		comboBoxInstituciones.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -103,7 +107,7 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 				if (insti != null) {
 					
 					comboBoxActividadDeportiva.removeAllItems();
-					Set<String> act = ID.darNombresActividadesDeportivas(insti);
+					Set<String> act = IAD.darNombresActividadesDeportivas(insti);
 					for( Iterator<String> it = act.iterator(); it.hasNext();) { 
 					    String x = (String)it.next();
 					    comboBoxActividadDeportiva.addItem(x);
@@ -113,6 +117,7 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 					
 					
 					comboBoxActividadDeportiva.setEnabled(true);
+					comboBoxActividadDeportiva.setSelectedItem(null);
 					
 				}
 				
@@ -137,6 +142,7 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 					}
 					
 					comboBoxClase.setEnabled(true);
+					comboBoxClase.setSelectedItem(null);
 				}
 			}
 		});
@@ -241,9 +247,19 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 						Smax.setText(Integer.toString(res.getMaxSocios()));
 						url.setText(res.getUrl());
 						
-						// mostrar las fechas
-						String ini = Integer.toString(res.getFecha().getDay()) + "/" + Integer.toString(res.getFecha().getMonth()) + "/" + Integer.toString(res.getFecha().getYear());
-						String reg = Integer.toString(res.getFechaReg().getDay()) + "/" + Integer.toString(res.getFechaReg().getMonth()) + "/" + Integer.toString(res.getFechaReg().getYear());
+						// mostrar las fechas, por alguna razon andan mal las operaciones de Date
+						//String ini = Integer.toString(res.getFecha().getDay()) + "/" + Integer.toString(res.getFecha().getMonth()) + "/" + Integer.toString(res.getFecha().getYear());
+						//String reg = Integer.toString(res.getFechaReg().getDay()) + "/" + Integer.toString(res.getFechaReg().getMonth()) + "/" + Integer.toString(res.getFechaReg().getYear());
+						
+						Calendar c = Calendar.getInstance();
+						c.setTime(res.getFecha());
+						
+						Calendar r = Calendar.getInstance();
+						r.setTime(res.getFechaReg());
+						
+						String ini = Integer.toString(c.get(Calendar.DATE)) + "/" + Integer.toString(c.get(Calendar.MONTH)+1) + "/" + Integer.toString(c.get(Calendar.YEAR));
+						String reg = Integer.toString(r.get(Calendar.DATE)) + "/" + Integer.toString(r.get(Calendar.MONTH)+1) + "/" + Integer.toString(r.get(Calendar.YEAR));
+						
 						
 						Finicio.setText(ini);
 						Falta.setText(reg);
@@ -393,13 +409,15 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 	public void cargarFormulario() {
 		
 		//INSTITUCIONES
-		Set<String> nombInst = ID.darNombreInstituciones();
+		Set<String> nombInst = IID.darNombreInstituciones();
 		comboBoxInstituciones.removeAllItems();
 		
 		for( Iterator<String> it = nombInst.iterator(); it.hasNext();) { 
 			    String x = (String)it.next();
 			    comboBoxInstituciones.addItem(x);
 		}
+		
+		comboBoxInstituciones.setSelectedItem(null);
 		
 		
 	}

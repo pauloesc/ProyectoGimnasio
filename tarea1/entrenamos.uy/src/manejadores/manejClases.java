@@ -29,4 +29,8 @@ public class manejClases {
 	public Clase findClase(String c) {
 		return clases.get(c);
 	}
+	
+	public void agregarClase(Clase c) {
+		clases.put(c.getNombre(), c);
+	}
 }

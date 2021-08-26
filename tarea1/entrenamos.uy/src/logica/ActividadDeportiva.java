@@ -2,6 +2,8 @@ package logica;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -35,6 +37,22 @@ public class ActividadDeportiva {
 
     public Set<String> darNombreClases() {
     	return clases.keySet();
+    }
+    
+    public Set<String> darNombreClasesVigentes(){
+    	
+    	Set<String> res = new HashSet<String>();
+    	
+    	if (!clases.isEmpty()) {
+	    	for (Clase c : clases.values()) {	
+
+	    		if (c.esVigente()) {
+	    			res.add(c.getNombre());
+	    		}
+	    	}
+    	}
+    	
+    	return res;
     }
     
     public String getNombre() {

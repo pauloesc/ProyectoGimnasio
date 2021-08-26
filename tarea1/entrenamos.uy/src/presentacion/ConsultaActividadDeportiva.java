@@ -23,7 +23,8 @@ import datatypes.DataInstitucion;
 import datatypes.DataActividad;
 import excepciones.ActividadDeportivaNoExisteException;
 import excepciones.InstitucionDeportivaNoExisteException;
-import logica.IctrlDeportivas;
+import logica.IctrlADeportivas;
+import logica.IctrlIDeportivas;
 
 import javax.swing.JSpinner;
 import javax.swing.JComponent;
@@ -37,16 +38,20 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import logica.IctrlDeportivas;
+import logica.IctrlIDeportivas;
 import java.awt.event.ItemListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.awt.event.ItemEvent;
 
 @SuppressWarnings({ "serial", "unused" })
 public class ConsultaActividadDeportiva extends JInternalFrame {
 	
 	// Controlador de Deportivas que se utilizará para las acciones del JFrame
-    private IctrlDeportivas controlDeportivas;
-	
+    private IctrlIDeportivas controlIDeportivas;
+    private IctrlADeportivas controlADeportivas;
+    
 	private JComboBox<DataInstitucion> comboBoxInstDeportivas;
 	private JComboBox<DataActividad> comboBoxActDeportivas;
 	private JTextField txtNombre;
@@ -55,9 +60,10 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
     private JTextField txtCosto;
     private JTextField txtFechaAlta;
     
-	public ConsultaActividadDeportiva(IctrlDeportivas icd) {
+	public ConsultaActividadDeportiva(IctrlIDeportivas icid, IctrlADeportivas icad) {
 		
-		controlDeportivas = icd;
+		controlIDeportivas = icid;
+		controlADeportivas = icad;
 		
 		setTitle("Consulta de Actividad Deportiva");
 		setClosable(true);
@@ -166,12 +172,11 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
     public void cargarInstituciones() {
         DefaultComboBoxModel<DataInstitucion> modelo;
         try {
-            modelo = new DefaultComboBoxModel<DataInstitucion>(controlDeportivas.getInstituciones());
+            modelo = new DefaultComboBoxModel<DataInstitucion>(controlIDeportivas.getInstituciones());
             modelo.setSelectedItem(null);
             comboBoxInstDeportivas.setModel(modelo);
         } catch (InstitucionDeportivaNoExisteException e) {
-        	JOptionPane.showMessageDialog(this, "No existen Instituciones Deportivas en el sistema.", "Consulta Actividad Deportiva",
-    	    		JOptionPane.ERROR_MESSAGE);
+        	JOptionPane.showMessageDialog(this, e.getMessage(), "Consulta Actividad Deportiva", JOptionPane.ERROR_MESSAGE);
         	setVisible(false);
         }
 
@@ -183,13 +188,11 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
     public void cargarActividades(String nid) {
         DefaultComboBoxModel<DataActividad> modelo;
         try {
-            modelo = new DefaultComboBoxModel<DataActividad>(controlDeportivas.getActividades(nid));
+            modelo = new DefaultComboBoxModel<DataActividad>(controlADeportivas.getActividades(nid));
             modelo.setSelectedItem(null);
             comboBoxActDeportivas.setModel(modelo);
         } catch (ActividadDeportivaNoExisteException e) {
-        	JOptionPane.showMessageDialog(this, "No existen Actividades Deportivas en el sistema para la Institucón Deportiva seleccionada.", "Consulta Actividad Deportiva",
-    	    		JOptionPane.ERROR_MESSAGE);
-        	setVisible(false);
+        	JOptionPane.showMessageDialog(this, e.getMessage(), "Consulta Actividad Deportiva", JOptionPane.ERROR_MESSAGE);
         }
 
     }
@@ -198,13 +201,21 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
     // provistos por la operación del sistema getDataActividad().
     // Se invoca el método luego de haber seleccionado la Institución Deportiva y la Actividad Deportiva
     public void cargarDatosActividad(String n) {
+    	
+        Date date = null;  
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");  
+    
         try {
-            DataActividad act = controlDeportivas.getDataActividad(n);
+            DataActividad act = controlADeportivas.getDataActividad(n);
             txtNombre.setText(act.getNombre());
             txtDescripcion.setText(act.getDescripcion());
             txtDuracion.setText(act.getDuracion().toString());
             txtCosto.setText(act.getCosto().toString());
-            txtFechaAlta.setText(act.getFechaAlta().toString());            
+            
+            date = act.getFechaAlta();
+            String strDate = dateFormat.format(date);
+            
+            txtFechaAlta.setText(strDate);            
         } catch (ActividadDeportivaNoExisteException e) {
         	JOptionPane.showMessageDialog(this, "No existen datos en el sistema para la Actividad Deportiva seleccionada.", "Consulta Actividad Deportiva",
     	    		JOptionPane.ERROR_MESSAGE);

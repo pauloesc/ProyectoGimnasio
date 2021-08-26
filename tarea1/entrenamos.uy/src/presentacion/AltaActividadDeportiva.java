@@ -36,15 +36,17 @@ import java.awt.Color;
 import com.toedter.calendar.JDateChooser;
 
 import datatypes.DataInstitucion;
-import logica.IctrlDeportivas;
+import logica.IctrlADeportivas;
+import logica.IctrlIDeportivas;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 @SuppressWarnings({ "serial", "unused" })
 public class AltaActividadDeportiva extends JInternalFrame {
 	
-    // Controlador de Deportivas que se utilizará para las acciones del JFrame
-    private IctrlDeportivas controlDeportivas;
+    // Controlador de Actividades Deportivas que se utilizará para las acciones del JFrame
+    private IctrlADeportivas controlADeportivas;
+    private IctrlIDeportivas controlIDeportivas;
     
     private JTextField txtNombre;
     private JTextArea txtDescripcion;
@@ -53,9 +55,10 @@ public class AltaActividadDeportiva extends JInternalFrame {
     private JTextField txtCosto;
     private JDateChooser dateChooser;
 	
-	public AltaActividadDeportiva(IctrlDeportivas icd) {
+	public AltaActividadDeportiva(IctrlADeportivas icad, IctrlIDeportivas icid) {
 		
-		controlDeportivas = icd;
+		controlADeportivas = icad;
+		controlIDeportivas = icid;
 		
 		setTitle("Alta de Actividad Deportiva");
 		setClosable(true);
@@ -170,7 +173,7 @@ public class AltaActividadDeportiva extends JInternalFrame {
         
         if (checkFormulario()) {
             try {
-                controlDeportivas.altaActividadDeportiva(nombreID, nombre, des, Float.parseFloat(dur), Float.parseFloat(cost), fal);
+                controlADeportivas.altaActividadDeportiva(nombreID, nombre, des, Float.parseFloat(dur), Float.parseFloat(cost), fal);
 
                 // Muestro éxito de la operación
                 JOptionPane.showMessageDialog(this, "La Actividad Deportiva se ha registrado con éxito", "Alta Actividad Deportiva",
@@ -237,7 +240,7 @@ public class AltaActividadDeportiva extends JInternalFrame {
     public void cargarInstituciones() {
         DefaultComboBoxModel<DataInstitucion> modelo;
         try {
-            modelo = new DefaultComboBoxModel<DataInstitucion>(controlDeportivas.getInstituciones());
+            modelo = new DefaultComboBoxModel<DataInstitucion>(controlIDeportivas.getInstituciones());
             modelo.setSelectedItem(null);
             comboBoxInstDeportivas.setModel(modelo);
         } catch (InstitucionDeportivaNoExisteException e) {

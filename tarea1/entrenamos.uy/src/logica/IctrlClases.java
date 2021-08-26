@@ -4,7 +4,9 @@ import java.util.Date;
 import java.util.Set;
 
 import datatypes.DtClase;
+import excepciones.ClaseLlenaException;
 import excepciones.ClaseRepetidaException;
+import excepciones.ClaseYaCompradaException;
 
 //import excepciones.UsuarioNoExisteException;
 //import excepciones.UsuarioRepetidoException;
@@ -20,4 +22,6 @@ public interface IctrlClases {
 	public abstract Set<String> mostrarClasesDeActividadDeportiva(String nomAct);
 	
 	public abstract DtClase darDtClase(String nomClas);
+	
+	public void registrarSocioAClase(String nick, String actDep, String clas, boolean cuponera, String nomCuponera, Date fechaReg) throws ClaseYaCompradaException, ClaseLlenaException;
 }

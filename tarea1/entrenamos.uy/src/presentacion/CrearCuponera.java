@@ -9,17 +9,18 @@ import logica.IctrlCuponeras;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.BorderFactory;
-import javax.swing.JFrame;
+import javax.swing.JButton;
+
 import java.awt.Color;
 import java.util.Date;
 import com.toedter.calendar.JDateChooser;
 import excepciones.CuponeraRepetidaException;
-
-import java.awt.Button;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JTextArea;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
 @SuppressWarnings({ "serial" })
 public class CrearCuponera extends JInternalFrame {
 	
@@ -32,13 +33,18 @@ public class CrearCuponera extends JInternalFrame {
 	private JTextField txtDes;
 	
 	public CrearCuponera(IctrlCuponeras icc) {
+		addInternalFrameListener(new InternalFrameAdapter() {
+			public void internalFrameClosing(InternalFrameEvent e) {
+				limpiarFormulario();
+				 setVisible(false);
+			}
+		});
 		
 		controlCuponeras=icc;
 		setTitle("Crear Cuponera de Actividades Deportivas");
 		setClosable(true);
 		getContentPane().setLayout(null);
 		setBounds(10, 5, 459, 454);
-		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		
 		JLabel lblNombre = new JLabel("Nombre:");
 		lblNombre.setBounds(23, 25, 70, 19);
@@ -46,6 +52,7 @@ public class CrearCuponera extends JInternalFrame {
 		
 		textNombre = new JTextField();
 		textNombre.setBounds(125, 25, 280, 19);
+		textNombre.setBorder(BorderFactory.createLineBorder(Color.black));
 		getContentPane().add(textNombre);
 		
 		JLabel lblDescripcion = new JLabel("Descripción:");
@@ -102,23 +109,23 @@ public class CrearCuponera extends JInternalFrame {
 		txtDes.setBorder(BorderFactory.createLineBorder(Color.black));
 		getContentPane().add(txtDes);
 		
-		Button buttonAceptar = new Button("Aceptar");
+		JButton buttonAceptar = new JButton("Aceptar");
 		buttonAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				cmdRegistroADActionPerformed(arg0);
 			}
 		});
-		buttonAceptar.setBounds(125, 365, 100, 32);
+		buttonAceptar.setBounds(187, 365, 100, 32);
 		getContentPane().add(buttonAceptar);
 		
-		Button buttonCancelar = new Button("Cancelar");
+		JButton buttonCancelar = new JButton("Cancelar");
 		buttonCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 limpiarFormulario();
 				 setVisible(false);
 			}
 		});
-		buttonCancelar.setBounds(240, 365, 100, 32);
+		buttonCancelar.setBounds(305, 365, 100, 32);
 		getContentPane().add(buttonCancelar);	
 		
 			
