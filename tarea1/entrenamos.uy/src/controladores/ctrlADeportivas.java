@@ -4,14 +4,10 @@ import java.util.Set;
 
 import excepciones.ActividadDeportivaNoExisteException;
 import excepciones.ActividadDeportivaRepetidaException;
-import excepciones.InstitucionDeportivaRepetidaException;
-import excepciones.InstitucionDeportivaNoExisteException;
-import logica.IctrlIDeportivas;
 import logica.InstitucionDeportiva;
 import logica.ActividadDeportiva;
 import logica.IctrlADeportivas;
 import datatypes.DataActividad;
-import datatypes.DataInstitucion;
 import manejadores.manejADeportivas;
 import manejadores.manejIDeportivas;
 
@@ -44,7 +40,6 @@ public class ctrlADeportivas implements IctrlADeportivas{
 	}
 
 	public DataActividad[] getActividades(String nid) throws ActividadDeportivaNoExisteException {
-        manejADeportivas mD = manejADeportivas.getinstance();
         manejIDeportivas mID = manejIDeportivas.getinstance();
         InstitucionDeportiva indep = mID.buscarInstitucion(nid);
         ActividadDeportiva[] actsdeps = indep.getActividades();
@@ -75,7 +70,6 @@ public class ctrlADeportivas implements IctrlADeportivas{
 
 
 	public Set<String> darNombresActividadesDeportivas(String inst) {
-		manejADeportivas mAD = manejADeportivas.getinstance();
 		manejIDeportivas mID = manejIDeportivas.getinstance();
 		InstitucionDeportiva i = mID.buscarInstitucion(inst);
 		
@@ -101,7 +95,6 @@ public class ctrlADeportivas implements IctrlADeportivas{
 			f5 = new SimpleDateFormat("dd/MM/yy").parse("08/07/21");
 			f6 = new SimpleDateFormat("dd/MM/yy").parse("31/07/21");
 		} catch (ParseException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		//carto actividades deportivas
@@ -113,7 +106,6 @@ public class ctrlADeportivas implements IctrlADeportivas{
 			altaActividadDeportiva("Telón", "Atletismo", "100m , 200m, postas y carreras con obstaculos.", 150f, 500f, f5);
 			altaActividadDeportiva("Telón", "Basquetbol", "Espectáculo conmemorando los 30 años de Violeta. ", 80f, 450f, f6);
 		} catch (ActividadDeportivaRepetidaException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

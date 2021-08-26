@@ -24,4 +24,7 @@ public interface IctrlClases {
 	public abstract DtClase darDtClase(String nomClas);
 	
 	public void registrarSocioAClase(String nick, String actDep, String clas, boolean cuponera, String nomCuponera, Date fechaReg) throws ClaseYaCompradaException, ClaseLlenaException;
+
+	public abstract void cargarDatosClases();
+	public abstract void cargarRegistroAClases();
 }

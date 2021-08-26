@@ -8,6 +8,7 @@ import javax.swing.JMenuItem;
 
 import logica.Fabrica;
 import logica.IctrlADeportivas;
+import logica.IctrlClases;
 import logica.IctrlCuponeras;
 import logica.IctrlIDeportivas;
 import logica.IctrlUsuarios;
@@ -33,6 +34,8 @@ public class Principal {
     private IctrlIDeportivas ICID;
     private IctrlADeportivas ICAD;
     private IctrlCuponeras ICC;
+    private IctrlClases ICCL;
+    private ConsultaUsuario ConsultaUsuarioInternalFrame;
     
     /**
      * Launch the application.
@@ -62,6 +65,7 @@ public class Principal {
         ICAD = fabrica.getIctrlADeportivas();
         ICID = fabrica.getIctrlIDeportivas();
         ICC =fabrica.getIctrlCuponeras();
+        ICCL = fabrica.getIctrlClases();
         
         IctrlUsuarios ICU = fabrica.getIctrlUsuarios();
         
@@ -74,7 +78,7 @@ public class Principal {
         altaActividadDeportivaInternalFrame = new AltaActividadDeportiva(ICAD, ICID);
         altaActividadDeportivaInternalFrame.setVisible(false);
         
-        consultaActividadDeportivaInternalFrame = new ConsultaActividadDeportiva(ICID, ICAD);
+        consultaActividadDeportivaInternalFrame = new ConsultaActividadDeportiva(ICID, ICAD, ICC);
         consultaActividadDeportivaInternalFrame.setVisible(false);
         
         CrearCuponeraInternalFrame = new CrearCuponera(ICC);
@@ -97,6 +101,9 @@ public class Principal {
 
 	ConsultarCuponeraInternalFrame= new ConsultarCuponera(ICC,ICID,ICAD);
         ConsultarCuponeraInternalFrame.setVisible(false);
+        ConsultaUsuarioInternalFrame = new ConsultaUsuario(ICU);
+        ConsultaUsuarioInternalFrame.setVisible(false);
+        
         
         entrenamosUy.getContentPane().setLayout(null);
         
@@ -110,6 +117,7 @@ public class Principal {
         entrenamosUy.getContentPane().add(AgregarActividadaCuponeraInternalFrame);
         entrenamosUy.getContentPane().add(ConsultarCuponeraInternalFrame);        
         entrenamosUy.getContentPane().add(RegistroDictadoDeClasesFrame);
+        entrenamosUy.getContentPane().add(ConsultaUsuarioInternalFrame);
     }
 
     /**
@@ -138,6 +146,10 @@ public class Principal {
             	ICID.cargarDatosIDeportivas();
                 ICAD.cargarDatosADeportivas();
                 ICC.cargarDatosCuponeras();
+                // cargar profesores y socios antes de las clases
+                ICCL.cargarDatosClases();
+                ICCL.cargarRegistroAClases();
+                
             }
         });
         menuSistema.add(menuDatosPrueba);
@@ -169,7 +181,10 @@ public class Principal {
         menuItemVerInfo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Muestro el InternalFrame para ver información de un usuario
-
+            	ConsultaUsuarioInternalFrame.CargarDatos();
+            	ConsultaUsuarioInternalFrame.setVisible(true);
+            	
+            	
             }
         });
         menuUsuarios.add(menuItemVerInfo);

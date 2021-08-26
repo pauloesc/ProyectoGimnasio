@@ -7,6 +7,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+import datatypes.DtActividadesDeportivas;
+
 /**
  * Representa a una Actividad Deportiva en el sistema con nombre, descripcion, duracion, costo, fecha_alta.
  * @author mbarrera
@@ -23,12 +25,14 @@ public class ActividadDeportiva {
     
 
     public ActividadDeportiva(String n, String de, Float dur, Float cost, Date fa) {
-        this.nombre = n;
-        this.descripcion = de;
-        this.duracion = dur;
-        this.costo = cost;
-        this.fecha_alta = fa;
+    	this.setNombre(n);
+        this.setDescripcion(de);
+        this.setDuracion(dur);
+        this.setCosto(cost);
+        this.setFechaAlta(fa);
         this.clases = new HashMap<String,Clase>();
+        
+        
     }
 
     public void addClase(Clase c) {
@@ -95,4 +99,23 @@ public class ActividadDeportiva {
         this.fecha_alta = fa;
     }
 
+    public DtActividadesDeportivas InformacionProfesor(String usuario) {
+    	
+    	DtActividadesDeportivas i = new DtActividadesDeportivas( this.nombre, this.descripcion, this.duracion, this.costo, this.fecha_alta );
+    	
+    	Iterator<Map.Entry<String,Clase>> Iter =  this.clases.entrySet().iterator();
+    	
+    	while (Iter.hasNext()) {
+    	    Map.Entry<String, Clase> datos = Iter.next();
+    	    
+    	    Clase c = datos.getValue();
+    	    
+    	    if (c.EsDeProfesor(usuario)) {
+    	    	i.agregarDtClase(c.darDtClase());
+    	    }
+    	    
+    	}
+    	return i;
+    }
+    
 }

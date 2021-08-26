@@ -7,8 +7,13 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import java.util.Vector;
 
+import datatypes.DtClase;
+import datatypes.InfoActividadSocio;
 import datatypes.InfoBasicaSocio;
+import datatypes.InfoBasicaUser;
+import datatypes.InformacionActividad;
 import excepciones.ClaseLlenaException;
 import excepciones.ClaseRepetidaException;
 import excepciones.ClaseYaCompradaException;
@@ -17,6 +22,8 @@ public class Socio extends Usuario {
 	private Map<String,Compra> compCup;
 	private Set<Registro> regs;
 
+	private Vector<Registro> registros = new Vector<Registro>();
+	
 	public Socio(InfoBasicaSocio info) {
 		
 		super(	info.getNickname(),
@@ -78,4 +85,32 @@ public class Socio extends Usuario {
 		
 	}
 	
+	@Override
+	public InfoBasicaUser Informacion() {	
+		InfoBasicaUser rt = new InfoBasicaSocio(
+			this.getNickname(),
+			this.getNombre(),
+			this.getApellido(),
+			this.getEmail(),
+			this.getFNacimiento()
+			);
+			return rt;
+	}
+	
+	@Override
+	public InformacionActividad InformacionActividad(String usuario) {
+		
+		InformacionActividad i = new InfoActividadSocio();
+		
+		Iterator<Registro> regs = registros.iterator();
+		
+		while(regs.hasNext()){
+			
+			Registro aux = regs.next();
+			DtClase claseInfo = aux.ActividadSocio();
+			i.agregarInfo(claseInfo);
+			
+		}
+		return i;
+	}
 }
