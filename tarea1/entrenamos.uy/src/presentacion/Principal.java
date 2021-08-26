@@ -8,6 +8,7 @@ import javax.swing.JMenuItem;
 
 import logica.Fabrica;
 import logica.IctrlADeportivas;
+import logica.IctrlClases;
 import logica.IctrlCuponeras;
 import logica.IctrlIDeportivas;
 import logica.IctrlUsuarios;
@@ -33,6 +34,7 @@ public class Principal {
     private IctrlIDeportivas ICID;
     private IctrlADeportivas ICAD;
     private IctrlCuponeras ICC;
+    private IctrlClases ICCL;
     private ConsultaUsuario ConsultaUsuarioInternalFrame;
     
     /**
@@ -63,6 +65,7 @@ public class Principal {
         ICAD = fabrica.getIctrlADeportivas();
         ICID = fabrica.getIctrlIDeportivas();
         ICC =fabrica.getIctrlCuponeras();
+        ICCL = fabrica.getIctrlClases();
         
         IctrlUsuarios ICU = fabrica.getIctrlUsuarios();
         
@@ -143,6 +146,9 @@ public class Principal {
             	ICID.cargarDatosIDeportivas();
                 ICAD.cargarDatosADeportivas();
                 ICC.cargarDatosCuponeras();
+                // cargar profesores antes de las clases
+                ICCL.cargarDatosClases();
+                
             }
         });
         menuSistema.add(menuDatosPrueba);
