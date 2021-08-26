@@ -27,6 +27,7 @@ import datatypes.DataCuponera;
 import excepciones.ActividadDeportivaNoExisteException;
 import excepciones.CuponeraNoExisteException;
 import excepciones.InstitucionDeportivaNoExisteException;
+import logica.Cuponera;
 import logica.IctrlADeportivas;
 import logica.IctrlIDeportivas;
 import logica.IctrlCuponeras;
@@ -47,6 +48,8 @@ import java.awt.event.ItemListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.Set;
 import java.awt.event.ItemEvent;
 
 @SuppressWarnings({ "serial", "unused" })
@@ -59,7 +62,7 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
     
 	private JComboBox<DataInstitucion> comboBoxInstDeportivas;
 	private JComboBox<DataActividad> comboBoxActDeportivas;
-	private JList<DataCuponera> listCuponeras;
+	private JList<String> listCuponeras;
 	private JTextField txtNombre;
     private JTextArea txtDescripcion;
     private JTextField txtDuracion;
@@ -168,7 +171,7 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 		JList<DtClase> listClases = new JList<DtClase>();
 		tabbedPane.addTab("Clases", null, listClases, null);
 		
-		listCuponeras = new JList<DataCuponera>();
+		listCuponeras = new JList<String>();
 		tabbedPane.addTab("Cuponeras", null, listCuponeras, null);
 		
 	}
@@ -228,13 +231,15 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
         	setVisible(false);
         }
         
-        DefaultListModel<DataCuponera> modeloCuponeras;
-        DataCuponera[] dcu;
-        modeloCuponeras = new DefaultListModel<DataCuponera>();
+        DefaultListModel<String> modeloCuponeras;
+        Set<String> dcu;
+        modeloCuponeras = new DefaultListModel<String>();
 		try {
 			dcu = controlCuponeras.getCuponerasActividad(n);
-			for(int i = 0; i < dcu.length; i++)
-	            modeloCuponeras.addElement(dcu[i]);
+			Iterator<String> it = dcu.iterator();
+			while(it.hasNext()){            	
+	               modeloCuponeras.addElement(it.next());
+	            }
 		} catch (CuponeraNoExisteException e) {
 			e.printStackTrace();
 		}
