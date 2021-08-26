@@ -64,4 +64,8 @@ public class Clase {
 		return maxSocios;
 	}
 
+	
+	public boolean EsDeProfesor(String usuario) {
+		return (usuario == this.profesor.getNickname());
+	}
 }

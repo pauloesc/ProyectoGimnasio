@@ -66,9 +66,8 @@ public class ctrlUsuarios implements IctrlUsuarios {
 	
 	public InformacionActividad InformacionActividad(String usuario) {
 		
-		InformacionActividad IA = null;
-		return IA;
-		
+		return this.manejador.InformacionActividad(usuario);
+
 	}
 	
 	public void ActualizarInformacionUsuario(InfoBasicaUser actualizacion){
@@ -77,9 +76,7 @@ public class ctrlUsuarios implements IctrlUsuarios {
 	
 	public InfoBasicaUser InformacionBasicaUsuario(String usuario) {
 		
-		InfoBasicaUser IBU = null;
-		return IBU;
-		
+		return this.manejador.InformacionBasicaUsuario(usuario);		
 	}
 	
 	public Vector<String> UsuariosEnSistemaNickName(){

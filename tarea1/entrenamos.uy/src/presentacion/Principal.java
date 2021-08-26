@@ -33,6 +33,7 @@ public class Principal {
     private IctrlIDeportivas ICID;
     private IctrlADeportivas ICAD;
     private IctrlCuponeras ICC;
+    private ConsultaUsuario ConsultaUsuarioInternalFrame;
     
     /**
      * Launch the application.
@@ -97,6 +98,9 @@ public class Principal {
 
 	ConsultarCuponeraInternalFrame= new ConsultarCuponera(ICC,ICID,ICAD);
         ConsultarCuponeraInternalFrame.setVisible(false);
+        ConsultaUsuarioInternalFrame = new ConsultaUsuario(ICU);
+        ConsultaUsuarioInternalFrame.setVisible(false);
+        
         
         entrenamosUy.getContentPane().setLayout(null);
         
@@ -110,6 +114,7 @@ public class Principal {
         entrenamosUy.getContentPane().add(AgregarActividadaCuponeraInternalFrame);
         entrenamosUy.getContentPane().add(ConsultarCuponeraInternalFrame);        
         entrenamosUy.getContentPane().add(RegistroDictadoDeClasesFrame);
+        entrenamosUy.getContentPane().add(ConsultaUsuarioInternalFrame);
     }
 
     /**
@@ -169,7 +174,10 @@ public class Principal {
         menuItemVerInfo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Muestro el InternalFrame para ver información de un usuario
-
+            	ConsultaUsuarioInternalFrame.CargarDatos();
+            	ConsultaUsuarioInternalFrame.setVisible(true);
+            	
+            	
             }
         });
         menuUsuarios.add(menuItemVerInfo);
