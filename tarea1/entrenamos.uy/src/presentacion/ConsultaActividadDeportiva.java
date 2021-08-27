@@ -90,7 +90,13 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
     
     
 	public ConsultaActividadDeportiva(IctrlIDeportivas icid, IctrlADeportivas icad, IctrlCuponeras icup, IctrlClases icla, ConsultaDictadoDeClases consultaClase, ConsultarCuponera consultaCuponera) {
-		
+		addInternalFrameListener(new InternalFrameAdapter() {
+			@Override
+			public void internalFrameClosing(InternalFrameEvent e) {
+				limpiarFormulario();
+				setVisible(false);
+			}
+		});
 		nolimpio = true;
 		
 		controlIDeportivas = icid;
@@ -105,6 +111,8 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);;
 		getContentPane().setLayout(null);
 		setBounds(10, 5, 459, 589);
+		
+		
 
 		
 		JLabel lblInstDeportiva = new JLabel("Institución Deportiva:");
@@ -203,7 +211,7 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 		listClases.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent arg0) {
 				if (nolimpio) {
-					//frameClases.cargardatoscuponeras(listClases.getSelectedValue());
+					frameClases.cargarDatosClase(listClases.getSelectedValue());
 					frameClases.setVisible(true);
 					frameClases.toFront();
 					toBack();

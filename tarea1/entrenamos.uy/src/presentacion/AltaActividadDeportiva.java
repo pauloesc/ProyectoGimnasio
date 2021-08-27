@@ -27,6 +27,8 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.SwingConstants;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
 import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -66,6 +68,14 @@ public class AltaActividadDeportiva extends JInternalFrame {
 		getContentPane().setLayout(null);
 		setBounds(20, 50, 462, 411);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		
+		addInternalFrameListener(new InternalFrameAdapter() {
+			@Override
+			public void internalFrameClosing(InternalFrameEvent e) {
+				limpiarFormulario();
+				setVisible(false);
+			}
+		});
 		
 		JLabel lblNombre = new JLabel("Nombre:");
 		lblNombre.setBounds(34, 80, 70, 19);
