@@ -22,6 +22,7 @@ import logica.IctrlUsuarios;
 import datatypes.DtClase;
 import datatypes.InfoBasicaProfesor;
 import excepciones.ClaseLlenaException;
+import excepciones.ClaseNoExisteException;
 import excepciones.ClaseRepetidaException;
 import excepciones.ClaseYaCompradaException;
 
@@ -95,7 +96,7 @@ class TestctrlClases {
 	}
 
 	@Test
-	void claseDeActividadDeportiva() {
+	void claseDeActividadDeportiva() throws ClaseNoExisteException {
 		Set<String> res = IC.mostrarClasesDeActividadDeportiva("Aparatos y pesas");
 		Set<String> verdadero = new HashSet<String>();
 	
