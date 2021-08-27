@@ -525,8 +525,12 @@ public class ConsultaUsuario extends JInternalFrame{
     
     private void llamarCasoUsoConsultaAcDeportiva() {
 		DtActividadesDeportivas selected = list.getSelectedValue();
+		Principal instancia = Principal.getInstance();
+		String actDep = selected.getNombre();
+		instancia.consultaActividadDeportivaInternalFrame.cargarDatosActividad(actDep);
+		instancia.consultaActividadDeportivaInternalFrame.setVisible(true);
 		//String inst = this.txtInstitucion.toString();
-		//String actDep = selected.getNombre();
+		
 
     }
     

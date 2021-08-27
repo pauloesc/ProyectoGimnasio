@@ -20,12 +20,14 @@ import java.awt.event.ActionListener;
 
 
 public class Principal {
+	
+	public static Principal instancia = null;
 
     private JFrame entrenamosUy;
     private JDesktopPane desktopPane;
     private AltaInstitucionDeportiva altaInstDeportivaInternalFrame;
     private AltaActividadDeportiva altaActividadDeportivaInternalFrame;
-    private ConsultaActividadDeportiva consultaActividadDeportivaInternalFrame;
+    public ConsultaActividadDeportiva consultaActividadDeportivaInternalFrame;
     private AltaDictadoDeClases altaDictadoDeClasesInternalFrame;
     private CrearCuponera CrearCuponeraInternalFrame;
     private ConsultaDictadoDeClases consultaDictadoDeClasesFrame;
@@ -47,7 +49,7 @@ public class Principal {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    Principal window = new Principal();
+                    Principal window = Principal.getInstance();
                     window.entrenamosUy.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -56,6 +58,13 @@ public class Principal {
         });
     }
 
+    public static Principal getInstance() {
+    	if (instancia == null)
+    		instancia = new Principal();
+    	
+		return instancia;
+	}
+	
     /**
      * Create the application.
      */
@@ -63,11 +72,12 @@ public class Principal {
         
     	initialize();
     	
+    	
         // Inicialización
         Fabrica fabrica = Fabrica.getInstance();
         ICAD = fabrica.getIctrlADeportivas();
         ICID = fabrica.getIctrlIDeportivas();
-        ICC =fabrica.getIctrlCuponeras();
+        ICC = fabrica.getIctrlCuponeras();
         ICCL = fabrica.getIctrlClases();
         IU = fabrica.getIctrlUsuarios();
         
