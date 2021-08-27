@@ -27,6 +27,7 @@ import datatypes.DataActividad;
 import datatypes.DataCuponera;
 import excepciones.ActividadDeportivaNoExisteException;
 import excepciones.ClaseLlenaException;
+import excepciones.ClaseNoExisteException;
 import excepciones.CuponeraNoExisteException;
 import excepciones.InstitucionDeportivaNoExisteException;
 import logica.Cuponera;
@@ -61,6 +62,7 @@ import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import javax.swing.JButton;
 
 @SuppressWarnings({ "serial", "unused" })
 public class ConsultaActividadDeportiva extends JInternalFrame {
@@ -88,16 +90,6 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
     
     
 	public ConsultaActividadDeportiva(IctrlIDeportivas icid, IctrlADeportivas icad, IctrlCuponeras icup, IctrlClases icla, ConsultaDictadoDeClases consultaClase, ConsultarCuponera consultaCuponera) {
-		addComponentListener(new ComponentAdapter() {
-			public void componentHidden(ComponentEvent e) {
-				limpiarFormulario();
-			}
-		});
-		addInternalFrameListener(new InternalFrameAdapter() {
-			public void internalFrameClosed(InternalFrameEvent e) {
-				limpiarFormulario();
-			}
-		});
 		
 		nolimpio = true;
 		
@@ -109,10 +101,10 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 		frameClases = consultaClase;
 		
 		setTitle("Consulta de Actividad Deportiva");
-		setClosable(true);
+		setClosable(false);
 		getContentPane().setLayout(null);
-		setBounds(10, 5, 459, 542);
-		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		setBounds(10, 5, 459, 589);
+
 		
 		JLabel lblInstDeportiva = new JLabel("Institución Deportiva:");
 		lblInstDeportiva.setVerticalAlignment(SwingConstants.TOP);
@@ -232,6 +224,16 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 		});
 		tabbedPane.addTab("Cuponeras", null, listCuponeras, null);
 		
+		JButton btnSalir = new JButton("Salir");
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				limpiarFormulario();
+				setVisible(false);
+			}
+		});
+		btnSalir.setBounds(296, 520, 117, 25);
+		getContentPane().add(btnSalir);
+		
 	}
 	
 	// Método que permite cargar un nuevo modelo para el combo con las Instituciones Deportivas
@@ -298,18 +300,23 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 	               modeloCuponeras.addElement(it.next());
 	            }
 		} catch (CuponeraNoExisteException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(this, e.getMessage(), "Consulta Actividad Deportiva",	JOptionPane.ERROR_MESSAGE);
 		}
         
         listCuponeras.setModel(modeloCuponeras);
         
         Set<String> dcla;
         modeloClases = new DefaultListModel<String>();
-        dcla = controlClases.mostrarClasesDeActividadDeportiva(n);
-        Iterator<String> it = dcla.iterator();
-        while(it.hasNext()){            	
-        	modeloClases.addElement(it.next());
+        try {
+			dcla = controlClases.mostrarClasesDeActividadDeportiva(n);
+	        Iterator<String> it = dcla.iterator();
+	        while(it.hasNext()){            	
+	        	modeloClases.addElement(it.next());
+			}
+		} catch (ClaseNoExisteException e) {
+			JOptionPane.showMessageDialog(this, e.getMessage(), "Consulta Actividad Deportiva",	JOptionPane.ERROR_MESSAGE);
 		}
+
         
         listClases.setModel(modeloClases);
         
@@ -328,6 +335,10 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
         txtFechaAlta.setText("");
         listClases.removeAll();
         listCuponeras.removeAll();
+        if (modeloClases != null) {
+            modeloClases.clear();
+            modeloCuponeras.clear();
+        }
         comboBoxActDeportivas.removeActionListener(comboBoxActDeportivas);
         comboBoxInstDeportivas.removeActionListener(comboBoxActDeportivas);
         comboBoxActDeportivas.setSelectedItem(null);

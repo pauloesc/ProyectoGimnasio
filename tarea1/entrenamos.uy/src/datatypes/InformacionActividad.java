@@ -9,4 +9,7 @@ public class InformacionActividad {
 		vector.add(o);
 	}
  	
+	public Vector<Object> obtenerVector() {
+		return this.vector;
+	}
 }

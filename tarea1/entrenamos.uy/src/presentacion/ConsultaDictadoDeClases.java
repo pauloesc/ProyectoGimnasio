@@ -36,6 +36,7 @@ import javax.swing.JButton;
 import com.toedter.calendar.JDateChooser;
 
 import datatypes.DtClase;
+import excepciones.ClaseNoExisteException;
 import excepciones.ClaseRepetidaException;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
@@ -88,7 +89,7 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 				setVisible(false);
 			}
 		});
-		setClosable(true);
+		setClosable(false);
 		Fabrica fab = Fabrica.getInstance();
 		IAD = fab.getIctrlADeportivas();
 		IID = fab.getIctrlIDeportivas();
@@ -143,13 +144,18 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 				if (act != null) {
 					
 					comboBoxClase.removeAllItems();
-					Set<String> clases = IC.mostrarClasesDeActividadDeportiva(act);
-					
-					for( Iterator<String> itt = clases.iterator(); itt.hasNext();) { 
-					    String x = (String)itt.next();
-					    comboBoxClase.addItem(x);
-	
+					Set<String> clases;
+					try {
+						clases = IC.mostrarClasesDeActividadDeportiva(act);
+						for( Iterator<String> itt = clases.iterator(); itt.hasNext();) { 
+						    String x = (String)itt.next();
+						    comboBoxClase.addItem(x);
+						}
+					} catch (ClaseNoExisteException e1) {
+						
 					}
+					
+					
 					
 					comboBoxClase.setEnabled(true);
 					comboBoxClase.setSelectedItem(null);

@@ -5,6 +5,7 @@ import java.util.Set;
 
 import datatypes.DtClase;
 import excepciones.ClaseLlenaException;
+import excepciones.ClaseNoExisteException;
 import excepciones.ClaseRepetidaException;
 import excepciones.ClaseYaCompradaException;
 
@@ -19,7 +20,7 @@ public interface IctrlClases {
  
 	public abstract void crearClase(String nombre, Date Finicio, String prof, int Smin, int Smax, String url, Date FechaAlta, String nomAct, Integer ho, Integer mi) throws ClaseRepetidaException;
 	
-	public abstract Set<String> mostrarClasesDeActividadDeportiva(String nomAct);
+	public abstract Set<String> mostrarClasesDeActividadDeportiva(String nomAct) throws ClaseNoExisteException;
 	
 	public abstract DtClase darDtClase(String nomClas);
 	
