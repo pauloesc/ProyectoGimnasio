@@ -2,6 +2,8 @@ package tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Arrays;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -32,9 +34,9 @@ class TestctrlIDeportivas {
 	{
 		try 
 		{
-			ctrlIDeportivas.altaInstitucion("Instituto prueba", "Es una prueba", "https://test.com.uy");
-			DataInstitucion dataInst = ctrlIDeportivas.getInstitucion("Instituto prueba");
-			assertEquals(dataInst.getNombre(), "Instituto prueba");
+			ctrlIDeportivas.altaInstitucion("Instituto prueba 2", "Es una prueba", "https://test.com.uy");
+			DataInstitucion dataInst = ctrlIDeportivas.getInstitucion("Instituto prueba 2");
+			assertEquals(dataInst.getNombre(), "Instituto prueba 2");
 			assertEquals(dataInst.getDescripcion(), "Es una prueba");
 			assertEquals(dataInst.getURL(), "https://test.com.uy");
 		}
@@ -50,6 +52,7 @@ class TestctrlIDeportivas {
 		}
 	}
 
+	@Test
 	void testAltaInstitucionRepetidaException()
 	{
 		try
@@ -68,27 +71,32 @@ class TestctrlIDeportivas {
 		);
 	}
 	
+	@Test
 	void testGetInstitucionesOK()
 	{
 		try
 		{
 			DataInstitucion[] dataInstituciones = ctrlIDeportivas.getInstituciones();
 			
-			assertEquals(dataInstituciones[0].getNombre(), "Instituto Natural");
-			assertEquals(dataInstituciones[0].getDescripcion(), "Clases de gimnasia, aeróbica, spinning y yoga.");
-			assertEquals(dataInstituciones[0].getURL(), "https://www.inatural.com");
+			assertTrue(Arrays.asList(dataInstituciones).contains(new DataInstitucion(
+					"Instituto Natural", "Clases de gimnasia, aeróbica, spinning y yoga.", "https://www.inatural.com")));
 			
-			assertEquals(dataInstituciones[1].getNombre(), "Fuerza Bruta");
-			assertEquals(dataInstituciones[1].getDescripcion(), "Gimnasio especializado en el desarrollo de la musculatura.");
-			assertEquals(dataInstituciones[1].getURL(), "https://www.musculos.com/");
+			assertTrue(Arrays.asList(dataInstituciones).contains(new DataInstitucion(
+					"Fuerza Bruta", "Gimnasio especializado en el desarrollo de la musculatura.", "https://www.musculos.com/")));
 			
-			assertEquals(dataInstituciones[2].getNombre(), "Telón");
-			assertEquals(dataInstituciones[2].getDescripcion(), "Actividades deportivas para todas las edades.");
-			assertEquals(dataInstituciones[2].getURL(), "https://telon.com.uy");
+			assertTrue(Arrays.asList(dataInstituciones).contains(new DataInstitucion(
+					"Telón", "Actividades deportivas para todas las edades.", "https://telon.com.uy")));
 			
-			assertEquals(dataInstituciones[3].getNombre(), "Olympic");
-			assertEquals(dataInstituciones[3].getDescripcion(), "Gimnasia y Aparatos");
-			assertEquals(dataInstituciones[3].getURL(), "https://www.olympic21.com/");
+			assertTrue(Arrays.asList(dataInstituciones).contains(new DataInstitucion(
+					"Olympic", "Gimnasia y Aparatos", "https://www.olympic21.com/")));
+			
+			assertTrue(Arrays.asList(dataInstituciones).contains(new DataInstitucion(
+					"Instituto prueba", "Es una prueba", "https://test.com.uy")));
+			
+			assertTrue(Arrays.asList(dataInstituciones).contains(new DataInstitucion(
+					"Instituto prueba 2", "Es una prueba", "https://test.com.uy")));
+			
+			assertEquals(dataInstituciones.length, 6);
 		}
 		catch (InstitucionDeportivaNoExisteException e)
 		{
@@ -97,6 +105,7 @@ class TestctrlIDeportivas {
 		}
 	}
 	
+	@Test
 	void testGetInstitucionOK()
 	{
 		try
@@ -114,6 +123,7 @@ class TestctrlIDeportivas {
 		}
 	}
 	
+	@Test
 	void testGetInstitucionNoExiste()
 	{
 		assertThrows(InstitucionDeportivaNoExisteException.class, () ->
