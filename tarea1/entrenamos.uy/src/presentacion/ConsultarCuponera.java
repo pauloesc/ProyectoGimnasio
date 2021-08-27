@@ -19,6 +19,7 @@ import logica.IctrlIDeportivas;
 import logica.InfoClases;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
@@ -69,7 +70,7 @@ public class ConsultarCuponera extends JInternalFrame {
     private JList<String> list;
     private JList<Integer> list_1;
     private JTable table;
-    
+    private ConsultaActividadDeportiva consultaActividadDeportivaInternalFrame;
 
 	
 	public ConsultarCuponera(IctrlCuponeras ICC, IctrlIDeportivas IID, IctrlADeportivas IAD) {
@@ -205,21 +206,49 @@ public class ConsultarCuponera extends JInternalFrame {
 		JButton btnBsqueda = new JButton("Búsqueda");
 		btnBsqueda.setBounds(30, 470, 117, 25);
 		getContentPane().add(btnBsqueda);
+		btnBsqueda.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				boolean es=activar();
+				if (es) {
+					String val=String.valueOf(table.getValueAt(table.getSelectedRow(), 0));	
+					System.out.println(val);
+				}
+			}
+		});
+		
+		
 		
 		JButton btnSalir = new JButton("Salir");
 		btnSalir.setBounds(299, 470, 117, 25);
 		getContentPane().add(btnSalir);
-		
-		
-	
-		
-	
-		
-		
-		
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 limpiarFormulario();
+				 setVisible(false);
+			}
+		});		
 		
 	} 
 
+	
+	
+	
+	protected boolean activar() {
+		
+		boolean resu=false;
+		int num=table.getSelectedRow();
+		if (num==-1) { JOptionPane.showMessageDialog(this, "Debe seleccionar una actividad deportiva", "Consultar cuponera",
+                JOptionPane.ERROR_MESSAGE);
+		}
+		else {
+		/*String val=String.valueOf(table.getValueAt(num, 0));
+		System.out.println(val);		
+		ac=val;*/
+		resu=true;
+		}
+		return resu;
+	}
+	
 	
 	protected void cargardatoscuponeras(String nomb) {
 		
