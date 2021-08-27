@@ -8,6 +8,8 @@ import java.util.Set;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 
@@ -18,6 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import logica.DtClase;
 import logica.Fabrica;
 import logica.IctrlADeportivas;
 import logica.IctrlClases;
@@ -35,7 +38,6 @@ import java.awt.event.ItemEvent;
 import javax.swing.JButton;
 import com.toedter.calendar.JDateChooser;
 
-import datatypes.DtClase;
 import excepciones.ClaseNoExisteException;
 import excepciones.ClaseRepetidaException;
 import javax.swing.event.InternalFrameAdapter;
@@ -89,7 +91,8 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 				setVisible(false);
 			}
 		});
-		setClosable(false);
+		setClosable(true);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		Fabrica fab = Fabrica.getInstance();
 		IAD = fab.getIctrlADeportivas();
 		IID = fab.getIctrlIDeportivas();

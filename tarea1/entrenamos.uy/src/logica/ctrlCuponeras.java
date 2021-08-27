@@ -1,5 +1,5 @@
 
-package controladores;
+package logica;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -12,15 +12,6 @@ import excepciones.ActividadDeportivaNoExisteException;
 import excepciones.ActividadDeportivaRepetidaException;
 import excepciones.CuponeraNoExisteException;
 import excepciones.CuponeraRepetidaException;
-import logica.Cuponera;
-import logica.InstitucionDeportiva;
-import logica.ActividadDeportiva;
-import logica.IctrlCuponeras;
-import manejadores.manejCuponeras;
-import manejadores.manejIDeportivas;
-import manejadores.manejADeportivas;
-import datatypes.DataActividad;
-import datatypes.DataCuponera;
 
 
 

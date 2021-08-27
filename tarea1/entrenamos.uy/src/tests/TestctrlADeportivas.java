@@ -11,9 +11,9 @@ import java.text.SimpleDateFormat;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import datatypes.DataActividad;
 import excepciones.ActividadDeportivaNoExisteException;
 import excepciones.ActividadDeportivaRepetidaException;
+import logica.DataActividad;
 import logica.Fabrica;
 import logica.IctrlADeportivas;
 import logica.IctrlIDeportivas;

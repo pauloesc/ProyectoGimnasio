@@ -1,8 +1,6 @@
 package logica;
 
 import java.util.Date;
-import datatypes.InfoBasicaUser;
-import datatypes.InformacionActividad;
 
 public abstract class Usuario {
 	private String nickname;

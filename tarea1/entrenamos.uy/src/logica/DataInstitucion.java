@@ -1,4 +1,4 @@
-package datatypes;
+package logica;
 
 /**
  * Datatype para transportar la información de una Institucion Deportiva entre capa lógica y de presentación.

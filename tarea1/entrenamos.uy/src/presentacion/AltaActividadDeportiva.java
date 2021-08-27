@@ -36,7 +36,7 @@ import java.awt.Color;
 
 import com.toedter.calendar.JDateChooser;
 
-import datatypes.DataInstitucion;
+import logica.DataInstitucion;
 import logica.IctrlADeportivas;
 import logica.IctrlIDeportivas;
 import java.awt.event.KeyAdapter;

@@ -3,7 +3,6 @@ package logica;
 import java.util.Date;
 import java.util.Set;
 
-import datatypes.DataCuponera;
 import excepciones.ActividadDeportivaNoExisteException;
 import excepciones.ActividadDeportivaRepetidaException;
 import excepciones.CuponeraNoExisteException;

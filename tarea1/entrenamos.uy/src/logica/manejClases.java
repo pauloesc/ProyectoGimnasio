@@ -1,12 +1,10 @@
 /**
  * 
  */
-package manejadores;
+package logica;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import logica.Clase;
 
 public class manejClases {
 	

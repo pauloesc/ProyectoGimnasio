@@ -46,9 +46,9 @@ import javax.swing.JRadioButton;
 import javax.swing.JCheckBox;
 
 import logica.IctrlUsuarios;
-import datatypes.InfoBasicaUser;
-import datatypes.InfoBasicaProfesor;
-import datatypes.InfoBasicaSocio;
+import logica.InfoBasicaProfesor;
+import logica.InfoBasicaSocio;
+import logica.InfoBasicaUser;
 import excepciones.UsuarioDisponibilidadException;
 
 import java.awt.event.MouseAdapter;

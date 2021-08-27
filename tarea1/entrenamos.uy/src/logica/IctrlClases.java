@@ -3,7 +3,6 @@ package logica;
 import java.util.Date;
 import java.util.Set;
 
-import datatypes.DtClase;
 import excepciones.ClaseLlenaException;
 import excepciones.ClaseNoExisteException;
 import excepciones.ClaseRepetidaException;

@@ -14,13 +14,13 @@ import java.util.Set;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import logica.DtClase;
 import logica.Fabrica;
 import logica.IctrlADeportivas;
 import logica.IctrlClases;
 import logica.IctrlIDeportivas;
 import logica.IctrlUsuarios;
-import datatypes.DtClase;
-import datatypes.InfoBasicaProfesor;
+import logica.InfoBasicaProfesor;
 import excepciones.ClaseLlenaException;
 import excepciones.ClaseNoExisteException;
 import excepciones.ClaseRepetidaException;

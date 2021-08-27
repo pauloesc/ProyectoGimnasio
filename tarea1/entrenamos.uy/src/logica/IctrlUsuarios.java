@@ -1,7 +1,6 @@
 package logica;
 import java.util.Set;
-import datatypes.InfoBasicaUser;
-import datatypes.InformacionActividad;
+
 import excepciones.UsuarioDisponibilidadException;
 
 import java.util.Vector;

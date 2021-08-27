@@ -1,15 +1,9 @@
-package controladores;
+package logica;
 
 import java.util.Set;
 
 import excepciones.ActividadDeportivaNoExisteException;
 import excepciones.ActividadDeportivaRepetidaException;
-import logica.InstitucionDeportiva;
-import logica.ActividadDeportiva;
-import logica.IctrlADeportivas;
-import datatypes.DataActividad;
-import manejadores.manejADeportivas;
-import manejadores.manejIDeportivas;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

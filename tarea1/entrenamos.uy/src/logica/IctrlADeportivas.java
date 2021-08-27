@@ -5,9 +5,6 @@ import excepciones.InstitucionDeportivaRepetidaException;
 import excepciones.InstitucionDeportivaNoExisteException;
 import excepciones.ActividadDeportivaNoExisteException;
 import java.util.Date;
-
-import datatypes.DataActividad;
-import datatypes.DataInstitucion;
 import java.util.Set;
 
 

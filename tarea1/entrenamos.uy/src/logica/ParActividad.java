@@ -1,4 +1,4 @@
-package datatypes;
+package logica;
 
 
 public class ParActividad {

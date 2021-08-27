@@ -7,9 +7,9 @@ import java.util.Arrays;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import datatypes.DataInstitucion;
 import excepciones.InstitucionDeportivaNoExisteException;
 import excepciones.InstitucionDeportivaRepetidaException;
+import logica.DataInstitucion;
 import logica.Fabrica;
 import logica.IctrlIDeportivas;
 

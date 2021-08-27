@@ -1,4 +1,4 @@
-package datatypes;
+package logica;
 import java.util.Vector;
 
 public class InformacionActividad {

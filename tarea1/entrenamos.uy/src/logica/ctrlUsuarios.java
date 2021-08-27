@@ -1,23 +1,10 @@
 /**
  * 
  */
-package controladores;
+package logica;
 
 import java.util.Set;
-
-import datatypes.InfoBasicaProfesor;
-import datatypes.InfoBasicaSocio;
-import datatypes.InfoBasicaUser;
-import datatypes.InformacionActividad;
-import logica.IctrlUsuarios;
-import logica.Socio;
-import manejadores.manejUsuarios;
-
 import java.util.Vector;
-
-import manejadores.manejADeportivas;
-import manejadores.manejIDeportivas;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
