@@ -53,5 +53,30 @@ public class DataInstitucion {
     private void setURL(String url) {
         this.url = url;
     }
-
+    
+    @Override
+    public boolean equals(Object o)
+    {
+        if (o == this) 
+            return true;
+        
+        if (!(o instanceof DataInstitucion)) {
+            return false;
+        }
+        
+        DataInstitucion dataInst = (DataInstitucion)o;
+        if (nombre == dataInst.getNombre() && descripcion == dataInst.getDescripcion() && url == dataInst.getURL())
+        	return true;
+        else
+        	return false;
+    }
+    
+    @Override
+    public int hashCode() {
+        int res = 17;
+        res = 31 * res + nombre.hashCode();
+        res = 31 * res + descripcion.hashCode();
+        res = 31 * res + url.hashCode();
+        return res;
+    }
 }
