@@ -100,7 +100,7 @@ public class Principal {
         RegistroDictadoDeClasesFrame = new RegistroDictadoDeClases();
         RegistroDictadoDeClasesFrame.setVisible(false);
 
-        ConsultarCuponeraInternalFrame= new ConsultarCuponera(ICC,ICID,ICAD);
+        ConsultarCuponeraInternalFrame= new ConsultarCuponera(ICC,ICID,ICAD,consultaActividadDeportivaInternalFrame);
         ConsultarCuponeraInternalFrame.setVisible(false);
         
         ConsultaUsuarioInternalFrame = new ConsultaUsuario(ICU);

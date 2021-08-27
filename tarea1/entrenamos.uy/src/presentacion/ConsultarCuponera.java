@@ -44,6 +44,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.JTextPane;
 import javax.swing.JSplitPane;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 
 
 /**
@@ -70,10 +71,12 @@ public class ConsultarCuponera extends JInternalFrame {
     private JList<String> list;
     private JList<Integer> list_1;
     private JTable table;
-    private ConsultaActividadDeportiva consultaActividadDeportivaInternalFrame;
+    private ConsultaActividadDeportiva framedeportivas;
 
 	
-	public ConsultarCuponera(IctrlCuponeras ICC, IctrlIDeportivas IID, IctrlADeportivas IAD) {
+	public ConsultarCuponera(IctrlCuponeras ICC, IctrlIDeportivas IID, IctrlADeportivas IAD, ConsultaActividadDeportiva consultaDeportiva ) {
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		setClosable(true);
 		addInternalFrameListener(new InternalFrameAdapter() {
 			@Override
 			public void internalFrameClosing(InternalFrameEvent e) {
@@ -85,10 +88,10 @@ public class ConsultarCuponera extends JInternalFrame {
 		controlCuponeras=ICC;
 		controlIDeportivas=IID;
 		controlADeportivas=IAD;
+		framedeportivas= consultaDeportiva;
 		
 		setTitle("Consultar Cuponera");
 		setBounds(100, 5, 487, 545);
-		setClosable(true);
 		
 		JLabel lblCuponeras = new JLabel("Cuponeras:");
 		lblCuponeras.setBounds(30, 33, 99, 15);
@@ -211,6 +214,7 @@ public class ConsultarCuponera extends JInternalFrame {
 				boolean es=activar();
 				if (es) {
 					String val=String.valueOf(table.getValueAt(table.getSelectedRow(), 0));	
+					framedeportivas.setVisible(true);
 					System.out.println(val);
 				}
 			}
