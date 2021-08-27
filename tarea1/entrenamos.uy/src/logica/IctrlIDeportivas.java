@@ -27,6 +27,8 @@ public interface IctrlIDeportivas {
      */
     public abstract void altaInstitucion(String n, String de, String url) throws InstitucionDeportivaRepetidaException;
     
+    public abstract DataInstitucion getInstitucion(String nombre) throws InstitucionDeportivaNoExisteException;
+    
 	public abstract DataInstitucion[] getInstituciones() throws InstitucionDeportivaNoExisteException;
 
 	public abstract Set<String> darNombreInstituciones();

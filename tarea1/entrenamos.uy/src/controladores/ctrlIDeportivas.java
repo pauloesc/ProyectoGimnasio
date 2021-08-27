@@ -59,6 +59,15 @@ public class ctrlIDeportivas implements IctrlIDeportivas{
             throw new InstitucionDeportivaNoExisteException("No existen Instituciones Deportivas registradas");
 
     }
+	
+	public DataInstitucion getInstitucion(String nombre) throws InstitucionDeportivaNoExisteException
+	{
+		InstitucionDeportiva institucion = manejIDeportivas.getinstance().buscarInstitucion(nombre);
+		if (institucion == null)
+			throw new InstitucionDeportivaNoExisteException("No existe institucion " + nombre);
+		
+		return new DataInstitucion(institucion.getNombre(), institucion.getDescripcion(), institucion.getURL());
+	}
 
 	public Set<String> darNombreInstituciones() {
 		manejIDeportivas mID = manejIDeportivas.getinstance();
