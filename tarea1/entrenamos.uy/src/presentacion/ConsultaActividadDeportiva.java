@@ -66,7 +66,8 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
     private IctrlADeportivas controlADeportivas;
     private IctrlCuponeras controlCuponeras;
     private IctrlClases controlClases;
-    
+    private ConsultarCuponera frameCuponeras;
+    private ConsultaDictadoDeClases frameClases;
 	private JComboBox<DataInstitucion> comboBoxInstDeportivas;
 	private JComboBox<DataActividad> comboBoxActDeportivas;
 	private JList<String> listCuponeras;
@@ -79,12 +80,14 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
     
     
     
-	public ConsultaActividadDeportiva(IctrlIDeportivas icid, IctrlADeportivas icad, IctrlCuponeras icup, IctrlClases icla) {
+	public ConsultaActividadDeportiva(IctrlIDeportivas icid, IctrlADeportivas icad, IctrlCuponeras icup, IctrlClases icla, ConsultaDictadoDeClases consultaClase, ConsultarCuponera consultaCuponera) {
 		
 		controlIDeportivas = icid;
 		controlADeportivas = icad;
 		controlCuponeras = icup;
 		controlClases = icla;
+		frameCuponeras = consultaCuponera;
+		frameClases = consultaClase;
 		
 		setTitle("Consulta de Actividad Deportiva");
 		setClosable(true);
@@ -180,12 +183,23 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 		getContentPane().add(tabbedPane);
 		
 		listClases = new JList<String>();
+		listClases.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent arg0) {
+				//frameClases.cargardatoscuponeras(listClases.getSelectedValue());
+				frameClases.setVisible(true);
+				frameClases.toFront();
+				toBack();
+			}
+		});
 		tabbedPane.addTab("Clases", null, listClases, null);
 		
 		listCuponeras = new JList<String>();
 		listCuponeras.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent arg0) {
-					
+				frameCuponeras.cargardatoscuponeras(listCuponeras.getSelectedValue());
+				frameCuponeras.setVisible(true);
+				frameCuponeras.toFront();
+				toBack();
 			}
 		});
 		tabbedPane.addTab("Cuponeras", null, listCuponeras, null);

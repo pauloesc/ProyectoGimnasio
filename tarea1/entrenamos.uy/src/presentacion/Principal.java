@@ -78,9 +78,6 @@ public class Principal {
         altaActividadDeportivaInternalFrame = new AltaActividadDeportiva(ICAD, ICID);
         altaActividadDeportivaInternalFrame.setVisible(false);
         
-        consultaActividadDeportivaInternalFrame = new ConsultaActividadDeportiva(ICID, ICAD, ICC, ICCL);
-        consultaActividadDeportivaInternalFrame.setVisible(false);
-        
         CrearCuponeraInternalFrame = new CrearCuponera(ICC);
         CrearCuponeraInternalFrame.setVisible(false);
         
@@ -101,10 +98,13 @@ public class Principal {
 
         ConsultarCuponeraInternalFrame= new ConsultarCuponera(ICC,ICID,ICAD);
         ConsultarCuponeraInternalFrame.setVisible(false);
+        
         ConsultaUsuarioInternalFrame = new ConsultaUsuario(ICU);
         ConsultaUsuarioInternalFrame.setVisible(false);
         
-        
+        consultaActividadDeportivaInternalFrame = new ConsultaActividadDeportiva(ICID, ICAD, ICC, ICCL, consultaDictadoDeClasesFrame, ConsultarCuponeraInternalFrame);
+        consultaActividadDeportivaInternalFrame.setVisible(false);
+             
         entrenamosUy.getContentPane().setLayout(null);
         
         entrenamosUy.getContentPane().add(altaInstDeportivaInternalFrame);
