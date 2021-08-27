@@ -47,19 +47,20 @@ import javax.swing.JScrollBar;
 import javax.swing.JRadioButton;
 import javax.swing.JCheckBox;
 
+import logica.DtActividadesDeportivas;
+import logica.DtClase;
 import logica.Fabrica;
 import logica.IctrlADeportivas;
 import logica.IctrlClases;
 import logica.IctrlCuponeras;
 import logica.IctrlIDeportivas;
 import logica.IctrlUsuarios;
-import datatypes.InfoBasicaUser;
-import datatypes.DtActividadesDeportivas;
-import datatypes.DtClase;
-import datatypes.InfoActividadProfe;
-import datatypes.InfoActividadSocio;
-import datatypes.InfoBasicaProfesor;
-import datatypes.InfoBasicaSocio;
+import logica.InfoActividadProfe;
+import logica.InfoActividadSocio;
+import logica.InfoBasicaProfesor;
+import logica.InfoBasicaSocio;
+import logica.InfoBasicaUser;
+import logica.InformacionActividad;
 import excepciones.UsuarioDisponibilidadException;
 
 import java.awt.event.MouseAdapter;
@@ -77,8 +78,6 @@ import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
-
-import datatypes.InformacionActividad;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
 

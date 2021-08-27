@@ -3,9 +3,6 @@ package logica;
 import java.util.Calendar;
 import java.util.Date;
 
-import datatypes.DtClase;
-import manejadores.manejUsuarios;
-
 public class Clase {
 	private Date fechaInicio;
 	private String nombre;

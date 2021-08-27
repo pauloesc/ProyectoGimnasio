@@ -4,19 +4,20 @@ package presentacion;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import datatypes.DataCuponera;
-import datatypes.ParActividad;
 import excepciones.ActividadDeportivaNoExisteException;
 import excepciones.CuponeraNoExisteException;
+import logica.DataCuponera;
 import logica.IctrlADeportivas;
 import logica.IctrlCuponeras;
 import logica.IctrlIDeportivas;
 import logica.InfoClases;
+import logica.ParActividad;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -88,7 +89,8 @@ public class ConsultarCuponera extends JInternalFrame {
 		
 		setTitle("Consultar Cuponera");
 		setBounds(100, 5, 487, 545);
-		setClosable(false);
+		setClosable(true);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		
 		JLabel lblCuponeras = new JLabel("Cuponeras:");
 		lblCuponeras.setBounds(30, 33, 99, 15);

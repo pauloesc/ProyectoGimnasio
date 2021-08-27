@@ -1,7 +1,7 @@
 /**
  * 
  */
-package manejadores;
+package logica;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -9,16 +9,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-import logica.Clase;
-import logica.Profesor;
-import logica.Usuario;
-import logica.Socio;
-
-import datatypes.InfoBasicaUser;
-import datatypes.InformacionActividad;
 import excepciones.UsuarioDisponibilidadException;
-import datatypes.InfoBasicaProfesor;
-import datatypes.InfoBasicaSocio;
 
 import java.util.Vector;
 

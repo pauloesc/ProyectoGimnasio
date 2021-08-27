@@ -5,8 +5,6 @@ package logica;
 
 import java.util.Date;
 
-import datatypes.DtClase;
-
 public class Registro {
 	
 	private Date fecha;

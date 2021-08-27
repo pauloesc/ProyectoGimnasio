@@ -1,10 +1,5 @@
 package logica;
 
-import controladores.ctrlCuponeras;
-import controladores.ctrlIDeportivas;
-import controladores.ctrlClases;
-import controladores.ctrlADeportivas;
-import controladores.ctrlUsuarios;
 /**
  * Fábrica para la construcción de un controlador de usuarios (uno distinto para cada invocación).
  * Se implementa en base al patrón Singleton.

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package datatypes;
+package logica;
 
 import java.util.Date;
 

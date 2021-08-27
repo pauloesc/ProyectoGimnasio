@@ -1,15 +1,6 @@
 package logica;
 
-import datatypes.InfoBasicaProfesor;
-import datatypes.InfoBasicaSocio;
-import datatypes.InfoBasicaUser;
-import datatypes.InformacionActividad;
-
 import java.util.Date;
-
-import manejadores.manejADeportivas;
-import manejadores.manejIDeportivas;
-import manejadores.manejIDeportivas;
 
 public class Profesor extends Usuario {
 	private String descripcion;

@@ -1,4 +1,4 @@
-package manejadores;
+package logica;
 
 
 /**
@@ -12,9 +12,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
-
-import logica.ActividadDeportiva;
-import logica.InstitucionDeportiva;
 
 
 public class manejIDeportivas {

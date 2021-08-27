@@ -4,10 +4,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import datatypes.DtActividadesDeportivas;
-import datatypes.InfoActividadProfe;
-import datatypes.InformacionActividad;
-
 /**
  * Representa a una Institucion Deportiva en el sistema con nombre, descripcion y url.
  * @author mbarrera

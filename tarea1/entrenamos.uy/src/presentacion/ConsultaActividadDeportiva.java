@@ -21,16 +21,16 @@ import javax.swing.JComboBox;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
-import datatypes.DataInstitucion;
-import datatypes.DtClase;
-import datatypes.DataActividad;
-import datatypes.DataCuponera;
 import excepciones.ActividadDeportivaNoExisteException;
 import excepciones.ClaseLlenaException;
 import excepciones.ClaseNoExisteException;
 import excepciones.CuponeraNoExisteException;
 import excepciones.InstitucionDeportivaNoExisteException;
 import logica.Cuponera;
+import logica.DataActividad;
+import logica.DataCuponera;
+import logica.DataInstitucion;
+import logica.DtClase;
 import logica.IctrlADeportivas;
 import logica.IctrlClases;
 import logica.IctrlIDeportivas;
@@ -101,7 +101,8 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 		frameClases = consultaClase;
 		
 		setTitle("Consulta de Actividad Deportiva");
-		setClosable(false);
+		setClosable(true);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);;
 		getContentPane().setLayout(null);
 		setBounds(10, 5, 459, 589);
 

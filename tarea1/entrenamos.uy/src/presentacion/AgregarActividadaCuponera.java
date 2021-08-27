@@ -2,6 +2,7 @@ package presentacion;
 
 import javax.swing.JInternalFrame;
 
+import logica.DataInstitucion;
 import logica.IctrlADeportivas;
 import logica.IctrlCuponeras;
 import logica.IctrlIDeportivas;
@@ -9,7 +10,6 @@ import logica.IctrlIDeportivas;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-import datatypes.DataInstitucion;
 import excepciones.ActividadDeportivaNoExisteException;
 import excepciones.ActividadDeportivaRepetidaException;
 import excepciones.CuponeraNoExisteException;

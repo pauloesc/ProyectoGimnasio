@@ -1,7 +1,7 @@
 /**
  * 
  */
-package controladores;
+package logica;
 
 
 import java.text.ParseException;
@@ -9,19 +9,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Set;
 
-import datatypes.DtClase;
 import excepciones.ClaseLlenaException;
 import excepciones.ClaseNoExisteException;
 import excepciones.ClaseRepetidaException;
 import excepciones.ClaseYaCompradaException;
 import excepciones.CuponeraNoExisteException;
-import logica.ActividadDeportiva;
-import logica.Clase;
-import logica.IctrlClases;
-import logica.Socio;
-import manejadores.manejClases;
-import manejadores.manejUsuarios;
-import manejadores.manejADeportivas;
 
 public class ctrlClases implements IctrlClases {
 	

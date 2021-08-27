@@ -19,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import logica.DtClase;
 import logica.Fabrica;
 import logica.IctrlADeportivas;
 import logica.IctrlClases;
@@ -37,7 +38,6 @@ import java.awt.event.ItemEvent;
 import javax.swing.JButton;
 import com.toedter.calendar.JDateChooser;
 
-import datatypes.DtClase;
 import excepciones.ClaseLlenaException;
 import excepciones.ClaseRepetidaException;
 import excepciones.ClaseYaCompradaException;

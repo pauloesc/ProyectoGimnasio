@@ -9,11 +9,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
 
-import datatypes.DtClase;
-import datatypes.InfoActividadSocio;
-import datatypes.InfoBasicaSocio;
-import datatypes.InfoBasicaUser;
-import datatypes.InformacionActividad;
 import excepciones.ClaseLlenaException;
 import excepciones.ClaseRepetidaException;
 import excepciones.ClaseYaCompradaException;
