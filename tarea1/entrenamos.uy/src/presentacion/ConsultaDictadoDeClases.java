@@ -96,8 +96,8 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 		IC = fab.getIctrlClases();
 		
 		
-		setTitle("Alta dictado de clases");
-		setBounds(100, 100, 518, 563);
+		setTitle("Consulta de dictado de clases");
+		setBounds(120, 50, 518, 563);
 		
 		comboBoxInstituciones = new JComboBox();	
 		comboBoxClase = new JComboBox();	

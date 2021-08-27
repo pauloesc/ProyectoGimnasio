@@ -2,6 +2,7 @@ package presentacion;
 
 import java.awt.EventQueue;
 
+import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -21,6 +22,7 @@ import java.awt.event.ActionListener;
 public class Principal {
 
     private JFrame entrenamosUy;
+    private JDesktopPane desktopPane;
     private AltaInstitucionDeportiva altaInstDeportivaInternalFrame;
     private AltaActividadDeportiva altaActividadDeportivaInternalFrame;
     private ConsultaActividadDeportiva consultaActividadDeportivaInternalFrame;
@@ -107,19 +109,19 @@ public class Principal {
         consultaActividadDeportivaInternalFrame = new ConsultaActividadDeportiva(ICID, ICAD, ICC, ICCL, consultaDictadoDeClasesFrame, ConsultarCuponeraInternalFrame);
         consultaActividadDeportivaInternalFrame.setVisible(false);
              
-        entrenamosUy.getContentPane().setLayout(null);
+        desktopPane.setLayout(null);
         
-        entrenamosUy.getContentPane().add(altaInstDeportivaInternalFrame);
-        entrenamosUy.getContentPane().add(altaActividadDeportivaInternalFrame);
-        entrenamosUy.getContentPane().add(consultaActividadDeportivaInternalFrame);
-        entrenamosUy.getContentPane().add(CrearCuponeraInternalFrame);
-        entrenamosUy.getContentPane().add(altaDictadoDeClasesInternalFrame);
-        entrenamosUy.getContentPane().add(consultaDictadoDeClasesFrame);
-        entrenamosUy.getContentPane().add(AltaUsuarioInternalFrame);
-        entrenamosUy.getContentPane().add(AgregarActividadaCuponeraInternalFrame);
-        entrenamosUy.getContentPane().add(ConsultarCuponeraInternalFrame);        
-        entrenamosUy.getContentPane().add(RegistroDictadoDeClasesFrame);
-        entrenamosUy.getContentPane().add(ConsultaUsuarioInternalFrame);
+        desktopPane.add(altaInstDeportivaInternalFrame);
+        desktopPane.add(altaActividadDeportivaInternalFrame);
+        desktopPane.add(consultaActividadDeportivaInternalFrame);
+        desktopPane.add(CrearCuponeraInternalFrame);
+        desktopPane.add(altaDictadoDeClasesInternalFrame);
+        desktopPane.add(consultaDictadoDeClasesFrame);
+        desktopPane.add(AltaUsuarioInternalFrame);
+        desktopPane.add(AgregarActividadaCuponeraInternalFrame);
+        desktopPane.add(ConsultarCuponeraInternalFrame);        
+        desktopPane.add(RegistroDictadoDeClasesFrame);
+        desktopPane.add(ConsultaUsuarioInternalFrame);
     }
 
     /**
@@ -130,8 +132,11 @@ public class Principal {
         // Se crea el Frame con las dimensiones indicadas.
     	entrenamosUy = new JFrame();
     	entrenamosUy.setTitle("entrenamos.uy - backend administrador");
-    	entrenamosUy.setBounds(100, 100, 852, 641);
+    	entrenamosUy.setBounds(100, 100, 900, 700);
         entrenamosUy.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        desktopPane = new JDesktopPane();
+        entrenamosUy.add(desktopPane);
 
         // Se crea una barra de menú (JMenuBar) con dos menú (JMenu) desplegables.
         // Cada menú contiene diferentes opciones (JMenuItem), los cuales tienen un 
