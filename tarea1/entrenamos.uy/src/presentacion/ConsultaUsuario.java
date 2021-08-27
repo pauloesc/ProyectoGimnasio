@@ -469,10 +469,8 @@ public class ConsultaUsuario extends JInternalFrame{
 		JButton btnConsultarClases = new JButton("Consulta \nde Dictado de Clases");
 		btnConsultarClases.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				DtClase selected = list_1.getSelectedValue();
-				
-				
+								
+				llamarCasoUsoConsultaDictadoClase(); 
 			}
 		});
 		GridBagConstraints gbc_btnConsultarClases = new GridBagConstraints();
@@ -532,6 +530,17 @@ public class ConsultaUsuario extends JInternalFrame{
 		
 
     }
+    
+	private void llamarCasoUsoConsultaDictadoClase() {
+		
+		DtClase selected = list_1.getSelectedValue();
+		String nomClase = selected.getNombre();
+		
+		Principal instancia = Principal.getInstance();
+		instancia.consultaDictadoDeClasesFrame.cargarDatosClase(nomClase);
+		instancia.consultaDictadoDeClasesFrame.setVisible(true);
+		
+	}
     
 
 }

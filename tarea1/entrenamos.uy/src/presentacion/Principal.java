@@ -30,7 +30,7 @@ public class Principal {
     public ConsultaActividadDeportiva consultaActividadDeportivaInternalFrame;
     private AltaDictadoDeClases altaDictadoDeClasesInternalFrame;
     private CrearCuponera CrearCuponeraInternalFrame;
-    private ConsultaDictadoDeClases consultaDictadoDeClasesFrame;
+    public ConsultaDictadoDeClases consultaDictadoDeClasesFrame;
     private AltaUsuario AltaUsuarioInternalFrame;
     private AgregarActividadaCuponera AgregarActividadaCuponeraInternalFrame;
     private ConsultarCuponera ConsultarCuponeraInternalFrame;
