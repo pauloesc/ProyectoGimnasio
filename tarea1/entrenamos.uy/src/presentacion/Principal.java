@@ -35,6 +35,7 @@ public class Principal {
     private IctrlADeportivas ICAD;
     private IctrlCuponeras ICC;
     private IctrlClases ICCL;
+    private IctrlUsuarios IU;
     private ConsultaUsuario ConsultaUsuarioInternalFrame;
     
     /**
@@ -66,6 +67,7 @@ public class Principal {
         ICID = fabrica.getIctrlIDeportivas();
         ICC =fabrica.getIctrlCuponeras();
         ICCL = fabrica.getIctrlClases();
+        IU = fabrica.getIctrlUsuarios();
         
         IctrlUsuarios ICU = fabrica.getIctrlUsuarios();
         
@@ -146,7 +148,7 @@ public class Principal {
             	ICID.cargarDatosIDeportivas();
                 ICAD.cargarDatosADeportivas();
                 ICC.cargarDatosCuponeras();
-                // cargar profesores y socios antes de las clases
+                IU.cargarUsuarios();
                 ICCL.cargarDatosClases();
                 ICCL.cargarRegistroAClases();
                 
