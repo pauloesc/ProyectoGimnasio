@@ -230,51 +230,8 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 		btnBuscar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				try {
-					
-					String clas = (String) comboBoxClase.getSelectedItem();
-					String nomAct = (String) comboBoxActividadDeportiva.getSelectedItem();
-					String inst = (String) comboBoxInstituciones.getSelectedItem();
-					
-					//comprobar que todos los campos tengan algo
-				
-					if ((clas == null) || (nomAct == null) || (inst == null)){
-						JOptionPane.showMessageDialog(null, "Error, ningun campo puede quedar vacio");
-					} else {
-					
-						DtClase res = IC.darDtClase(clas);
-						
-						NombreClase.setText(res.getNombre());
-						nomProfesor.setText(res.getNomProfesor());
-						Smin.setText(Integer.toString(res.getMinSocios()));
-						Sactuales.setText(Integer.toString(res.getActualSocios()));
-						Smax.setText(Integer.toString(res.getMaxSocios()));
-						url.setText(res.getUrl());
-						
-						// mostrar las fechas, por alguna razon andan mal las operaciones de Date
-						//String ini = Integer.toString(res.getFecha().getDay()) + "/" + Integer.toString(res.getFecha().getMonth()) + "/" + Integer.toString(res.getFecha().getYear());
-						//String reg = Integer.toString(res.getFechaReg().getDay()) + "/" + Integer.toString(res.getFechaReg().getMonth()) + "/" + Integer.toString(res.getFechaReg().getYear());
-						
-						Calendar c = Calendar.getInstance();
-						c.setTime(res.getFecha());
-						
-						Calendar r = Calendar.getInstance();
-						r.setTime(res.getFechaReg());
-						
-						String ini = Integer.toString(c.get(Calendar.DATE)) + "/" + Integer.toString(c.get(Calendar.MONTH)+1) + "/" + Integer.toString(c.get(Calendar.YEAR)) + "  " +Integer.toString(res.getHora()) + ":" + Integer.toString(res.getMinuto());
-						String reg = Integer.toString(r.get(Calendar.DATE)) + "/" + Integer.toString(r.get(Calendar.MONTH)+1) + "/" + Integer.toString(r.get(Calendar.YEAR));
-						
-					
-						
-						Finicio.setText(ini);
-						Falta.setText(reg);
-					}
-						
-		
-				} catch(Exception ee) {
-					// no puede caer nunca aca, por ahora
-					JOptionPane.showMessageDialog(null, "Error");
-				}
+				String clas = (String) comboBoxClase.getSelectedItem();
+				cargarDatosClase(clas);
 			}
 		});
 		
@@ -426,7 +383,57 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 		
 		
 	}
+	
+	
+	public void cargarDatosClase(String clas) {
+		try {
+			
+			
+			String nomAct = (String) comboBoxActividadDeportiva.getSelectedItem();
+			String inst = (String) comboBoxInstituciones.getSelectedItem();
+			
+			//comprobar que todos los campos tengan algo
+		
+			if ((clas == null) || (nomAct == null) || (inst == null)){
+				JOptionPane.showMessageDialog(null, "Error, ningun campo puede quedar vacio");
+			} else {
+			
+				DtClase res = IC.darDtClase(clas);
+				
+				NombreClase.setText(res.getNombre());
+				nomProfesor.setText(res.getNomProfesor());
+				Smin.setText(Integer.toString(res.getMinSocios()));
+				Sactuales.setText(Integer.toString(res.getActualSocios()));
+				Smax.setText(Integer.toString(res.getMaxSocios()));
+				url.setText(res.getUrl());
+				
+				// mostrar las fechas, por alguna razon andan mal las operaciones de Date
+				//String ini = Integer.toString(res.getFecha().getDay()) + "/" + Integer.toString(res.getFecha().getMonth()) + "/" + Integer.toString(res.getFecha().getYear());
+				//String reg = Integer.toString(res.getFechaReg().getDay()) + "/" + Integer.toString(res.getFechaReg().getMonth()) + "/" + Integer.toString(res.getFechaReg().getYear());
+				
+				Calendar c = Calendar.getInstance();
+				c.setTime(res.getFecha());
+				
+				Calendar r = Calendar.getInstance();
+				r.setTime(res.getFechaReg());
+				
+				String ini = Integer.toString(c.get(Calendar.DATE)) + "/" + Integer.toString(c.get(Calendar.MONTH)+1) + "/" + Integer.toString(c.get(Calendar.YEAR)) + "  " +Integer.toString(res.getHora()) + ":" + Integer.toString(res.getMinuto());
+				String reg = Integer.toString(r.get(Calendar.DATE)) + "/" + Integer.toString(r.get(Calendar.MONTH)+1) + "/" + Integer.toString(r.get(Calendar.YEAR));
+				
+			
+				
+				Finicio.setText(ini);
+				Falta.setText(reg);
+			}
+				
 
+		} catch(Exception ee) {
+			// no puede caer nunca aca, por ahora
+			JOptionPane.showMessageDialog(null, "Error");
+		}
+	}
+
+	
 	public void limpiarFormulario() {
 		comboBoxClase.removeAllItems();
 		comboBoxActividadDeportiva.removeAllItems();
