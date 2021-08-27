@@ -87,7 +87,7 @@ public class ConsultarCuponera extends JInternalFrame {
 		controlADeportivas=IAD;
 		
 		setTitle("Consultar Cuponera");
-		setBounds(10, 5, 487, 545);
+		setBounds(100, 5, 487, 545);
 		setClosable(true);
 		
 		JLabel lblCuponeras = new JLabel("Cuponeras:");

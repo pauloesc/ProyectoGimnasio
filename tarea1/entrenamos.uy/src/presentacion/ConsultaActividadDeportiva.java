@@ -57,6 +57,10 @@ import java.util.Set;
 import java.awt.event.ItemEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 @SuppressWarnings({ "serial", "unused" })
 public class ConsultaActividadDeportiva extends JInternalFrame {
@@ -77,10 +81,25 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
     private JTextField txtDuracion;
     private JTextField txtCosto;
     private JTextField txtFechaAlta;
+    private DefaultListModel<String> modeloCuponeras;
+    private DefaultListModel<String> modeloClases;
+    private Boolean nolimpio;
     
     
     
 	public ConsultaActividadDeportiva(IctrlIDeportivas icid, IctrlADeportivas icad, IctrlCuponeras icup, IctrlClases icla, ConsultaDictadoDeClases consultaClase, ConsultarCuponera consultaCuponera) {
+		addComponentListener(new ComponentAdapter() {
+			public void componentHidden(ComponentEvent e) {
+				limpiarFormulario();
+			}
+		});
+		addInternalFrameListener(new InternalFrameAdapter() {
+			public void internalFrameClosed(InternalFrameEvent e) {
+				limpiarFormulario();
+			}
+		});
+		
+		nolimpio = true;
 		
 		controlIDeportivas = icid;
 		controlADeportivas = icad;
@@ -102,12 +121,15 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 		getContentPane().add(lblInstDeportiva);
 		
 		comboBoxInstDeportivas = new JComboBox<DataInstitucion>();
-		lblInstDeportiva.setLabelFor(comboBoxInstDeportivas);
-		comboBoxInstDeportivas.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
-				cargarActividades(comboBoxInstDeportivas.getSelectedItem().toString());
+		comboBoxInstDeportivas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (nolimpio) {
+					cargarActividades(comboBoxInstDeportivas.getSelectedItem().toString());
+					comboBoxActDeportivas.setEnabled(true);
+				}
 			}
 		});
+		lblInstDeportiva.setLabelFor(comboBoxInstDeportivas);
 		comboBoxInstDeportivas.setBounds(195, 12, 218, 24);
 		getContentPane().add(comboBoxInstDeportivas);
 		lblInstDeportiva.setLabelFor(comboBoxInstDeportivas);
@@ -119,12 +141,14 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 		getContentPane().add(lblActDeportiva);
 		
 		comboBoxActDeportivas = new JComboBox<DataActividad>();
-		lblActDeportiva.setLabelFor(comboBoxActDeportivas);
-		comboBoxActDeportivas.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
-				cargarDatosActividad(comboBoxActDeportivas.getSelectedItem().toString());
+		comboBoxActDeportivas.setEnabled(false);
+		comboBoxActDeportivas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (nolimpio)
+					cargarDatosActividad(comboBoxActDeportivas.getSelectedItem().toString());
 			}
 		});
+		lblActDeportiva.setLabelFor(comboBoxActDeportivas);
 		comboBoxActDeportivas.setBounds(195, 44, 218, 24);
 		getContentPane().add(comboBoxActDeportivas);
 		
@@ -185,10 +209,12 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 		listClases = new JList<String>();
 		listClases.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent arg0) {
-				//frameClases.cargardatoscuponeras(listClases.getSelectedValue());
-				frameClases.setVisible(true);
-				frameClases.toFront();
-				toBack();
+				if (nolimpio) {
+					//frameClases.cargardatoscuponeras(listClases.getSelectedValue());
+					frameClases.setVisible(true);
+					frameClases.toFront();
+					toBack();
+				}
 			}
 		});
 		tabbedPane.addTab("Clases", null, listClases, null);
@@ -196,10 +222,12 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 		listCuponeras = new JList<String>();
 		listCuponeras.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent arg0) {
-				frameCuponeras.cargardatoscuponeras(listCuponeras.getSelectedValue());
-				frameCuponeras.setVisible(true);
-				frameCuponeras.toFront();
-				toBack();
+				if (nolimpio) {
+					frameCuponeras.cargardatoscuponeras(listCuponeras.getSelectedValue());
+					frameCuponeras.setVisible(true);
+					frameCuponeras.toFront();
+					toBack();
+				}
 			}
 		});
 		tabbedPane.addTab("Cuponeras", null, listCuponeras, null);
@@ -261,7 +289,6 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
         	setVisible(false);
         }
         
-        DefaultListModel<String> modeloCuponeras;
         Set<String> dcu;
         modeloCuponeras = new DefaultListModel<String>();
 		try {
@@ -276,7 +303,6 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
         
         listCuponeras.setModel(modeloCuponeras);
         
-        DefaultListModel<String> modeloClases;
         Set<String> dcla;
         modeloClases = new DefaultListModel<String>();
         dcla = controlClases.mostrarClasesDeActividadDeportiva(n);
@@ -287,5 +313,25 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
         
         listClases.setModel(modeloClases);
         
+    }
+    
+    // Permite borrar el contenido de un formulario antes de cerrarlo.
+    // Recordar que las ventanas no se destruyen, sino que simplemente 
+    // se ocultan, por lo que conviene borrar la información para que 
+    // no aparezca al mostrarlas nuevamente.
+    private void limpiarFormulario() {
+    	nolimpio = false;
+        txtNombre.setText("");
+        txtDescripcion.setText("");
+        txtDuracion.setText("");
+        txtCosto.setText("");
+        txtFechaAlta.setText("");
+        listClases.removeAll();
+        listCuponeras.removeAll();
+        comboBoxActDeportivas.removeActionListener(comboBoxActDeportivas);
+        comboBoxInstDeportivas.removeActionListener(comboBoxActDeportivas);
+        comboBoxActDeportivas.setSelectedItem(null);
+        comboBoxInstDeportivas.setSelectedItem(null);
+        nolimpio = true;
     }
 }
