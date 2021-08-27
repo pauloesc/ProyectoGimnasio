@@ -37,6 +37,8 @@ import com.toedter.calendar.JDateChooser;
 
 import datatypes.DtClase;
 import excepciones.ClaseRepetidaException;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
 
 public class ConsultaDictadoDeClases extends JInternalFrame {
 	private JTextField NombreClase;
@@ -79,6 +81,14 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 	
 	
 	public ConsultaDictadoDeClases() {
+		addInternalFrameListener(new InternalFrameAdapter() {
+			@Override
+			public void internalFrameClosed(InternalFrameEvent e) {
+				limpiarFormulario();
+				setVisible(false);
+			}
+		});
+		setClosable(true);
 		Fabrica fab = Fabrica.getInstance();
 		IAD = fab.getIctrlADeportivas();
 		IID = fab.getIctrlIDeportivas();
@@ -198,23 +208,8 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 		btnCancelar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				comboBoxClase.removeAllItems();
-				comboBoxActividadDeportiva.removeAllItems();
-				comboBoxInstituciones.removeAllItems();
 				
-				comboBoxClase.setEnabled(false);
-				comboBoxActividadDeportiva.setEnabled(false);
-								
-				NombreClase.setText("");
-				nomProfesor.setText("");
-				Smin.setText("");
-				Sactuales.setText("");
-				Smax.setText("");
-				url.setText("");
-				Finicio.setText("");
-				Falta.setText("");
-				
-				
+				limpiarFormulario();
 				setVisible(false);
 				
 			}
@@ -257,9 +252,10 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 						Calendar r = Calendar.getInstance();
 						r.setTime(res.getFechaReg());
 						
-						String ini = Integer.toString(c.get(Calendar.DATE)) + "/" + Integer.toString(c.get(Calendar.MONTH)+1) + "/" + Integer.toString(c.get(Calendar.YEAR));
+						String ini = Integer.toString(c.get(Calendar.DATE)) + "/" + Integer.toString(c.get(Calendar.MONTH)+1) + "/" + Integer.toString(c.get(Calendar.YEAR)) + "  " +Integer.toString(res.getHora()) + ":" + Integer.toString(res.getMinuto());
 						String reg = Integer.toString(r.get(Calendar.DATE)) + "/" + Integer.toString(r.get(Calendar.MONTH)+1) + "/" + Integer.toString(r.get(Calendar.YEAR));
 						
+					
 						
 						Finicio.setText(ini);
 						Falta.setText(reg);
@@ -421,4 +417,23 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 		
 		
 	}
+
+	public void limpiarFormulario() {
+		comboBoxClase.removeAllItems();
+		comboBoxActividadDeportiva.removeAllItems();
+		comboBoxInstituciones.removeAllItems();
+		
+		comboBoxClase.setEnabled(false);
+		comboBoxActividadDeportiva.setEnabled(false);
+						
+		NombreClase.setText("");
+		nomProfesor.setText("");
+		Smin.setText("");
+		Sactuales.setText("");
+		Smax.setText("");
+		url.setText("");
+		Finicio.setText("");
+		Falta.setText("");
+	}
+	
 }
