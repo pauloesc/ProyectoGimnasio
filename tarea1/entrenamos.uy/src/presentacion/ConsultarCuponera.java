@@ -45,6 +45,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.JTextPane;
 import javax.swing.JSplitPane;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 
 
 /**
@@ -68,13 +69,13 @@ public class ConsultarCuponera extends JInternalFrame {
     private JLabel lblFin;
     private JTextField textFechafin;
     private JScrollPane scrollPane_2;
-    private JList<String> list;
-    private JList<Integer> list_1;
     private JTable table;
-    private ConsultaActividadDeportiva consultaActividadDeportivaInternalFrame;
+    private ConsultaActividadDeportiva framedeportivas;
 
 	
-	public ConsultarCuponera(IctrlCuponeras ICC, IctrlIDeportivas IID, IctrlADeportivas IAD) {
+	public ConsultarCuponera(IctrlCuponeras ICC, IctrlIDeportivas IID, IctrlADeportivas IAD ) {
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		setClosable(true);
 		addInternalFrameListener(new InternalFrameAdapter() {
 			@Override
 			public void internalFrameClosing(InternalFrameEvent e) {
@@ -213,7 +214,10 @@ public class ConsultarCuponera extends JInternalFrame {
 				boolean es=activar();
 				if (es) {
 					String val=String.valueOf(table.getValueAt(table.getSelectedRow(), 0));	
-					System.out.println(val);
+					Principal instancia = Principal.getInstance();
+					instancia.consultaActividadDeportivaInternalFrame.cargarDatosActividad(val);
+					instancia.consultaActividadDeportivaInternalFrame.setVisible(true);
+					
 				}
 			}
 		});
