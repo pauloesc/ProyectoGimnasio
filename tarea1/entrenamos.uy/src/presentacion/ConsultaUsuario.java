@@ -15,12 +15,14 @@ import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
+import java.util.Iterator;
 import java.awt.Button;
 import java.awt.TextArea;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
+import javax.swing.JDesktopPane;
 import javax.swing.SwingConstants;
 import javax.swing.JSpinner;
 import javax.swing.JTextArea;
@@ -45,8 +47,15 @@ import javax.swing.JScrollBar;
 import javax.swing.JRadioButton;
 import javax.swing.JCheckBox;
 
+import logica.Fabrica;
+import logica.IctrlADeportivas;
+import logica.IctrlClases;
+import logica.IctrlCuponeras;
+import logica.IctrlIDeportivas;
 import logica.IctrlUsuarios;
 import datatypes.InfoBasicaUser;
+import datatypes.DtActividadesDeportivas;
+import datatypes.DtClase;
 import datatypes.InfoActividadProfe;
 import datatypes.InfoActividadSocio;
 import datatypes.InfoBasicaProfesor;
@@ -70,11 +79,13 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 
 import datatypes.InformacionActividad;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.ListSelectionEvent;
 
 
 @SuppressWarnings({ "serial", "unused" })
 public class ConsultaUsuario extends JInternalFrame{
-	
+		
     // Controlador de Deportivas que se utilizará para las acciones del JFrame
     private IctrlUsuarios controlUsuario;
     
@@ -89,24 +100,29 @@ public class ConsultaUsuario extends JInternalFrame{
     private JTextField txtWeb;
     private JDateChooser dateChooserInicio;
     
-    private JList<String> list;
-    private JList<String> list_1;
+    private JList<DtActividadesDeportivas> list;
+    private JList<DtClase> list_1;
 
     
 	public ConsultaUsuario(IctrlUsuarios icu)  {
+		
 		
 		//esto es:
 		//cuando se llama al a la ventana el programa principal le pasa el controlador
 		controlUsuario = icu;
 		
+        setResizable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setClosable(true);
 		setTitle("Consulta de usuario");
-		setClosable(true);
-		setBounds(20, 50, 764, 663);
+		setBounds(20, 50, 918, 663);
+		
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[] {0, 165, 160, 57, 246, 0};
+		gridBagLayout.columnWidths = new int[] {165, 220, 57, 340, 0};
 		gridBagLayout.rowHeights = new int[] {25, 0, 30, 0, 30, 0, 30, 0, 30, 0, 30, 0, 30, 0, 30, 0, 30, 0, 30, 0, 30, 0, 0};
-		gridBagLayout.columnWeights = new double[]{1.0, 0.0, 1.0, 0.0, 0.0, 0.0};
+		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0};
 		gridBagLayout.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		getContentPane().setLayout(gridBagLayout);
 		
@@ -114,7 +130,7 @@ public class ConsultaUsuario extends JInternalFrame{
 		GridBagConstraints gbc_lblNombre = new GridBagConstraints();
 		gbc_lblNombre.anchor = GridBagConstraints.WEST;
 		gbc_lblNombre.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNombre.gridx = 1;
+		gbc_lblNombre.gridx = 0;
 		gbc_lblNombre.gridy = 1;
 		getContentPane().add(lblNombre, gbc_lblNombre);
 		
@@ -145,9 +161,7 @@ public class ConsultaUsuario extends JInternalFrame{
 				}
 				//si es profe
 				else {
-					//casteo
 					InfoBasicaProfesor ee = (InfoBasicaProfesor) i ;
-					
 					//caro en la presentacion datos especificos del profesor
 					txtInstitucion.setText( ee.getInstitucion() );
 					txtBibliografia.setText( ee.getDesc() );
@@ -155,36 +169,74 @@ public class ConsultaUsuario extends JInternalFrame{
 					txtWeb.setText( ee.getUrl() );
 				}
 				
-				InformacionActividad infoActividad = null; 
-				infoActividad = controlUsuario.InformacionActividad(nick);
+				
+				
+				
+				
+				
+				
+				InformacionActividad infoActividad = controlUsuario.InformacionActividad(nick);
 				
 				if( infoActividad.getClass() == InfoActividadSocio.class ) {
 					
 					InfoActividadSocio oo = (InfoActividadSocio) infoActividad;
-					oo.imp();
+					Vector<DtClase> vec = new Vector<DtClase>();
+					Vector<Object> vecGenerico = oo.obtenerVector();
 					
-				}
+					
+					Iterator<Object> iterat = vecGenerico.iterator();
+					while( iterat.hasNext() ) {
+						Object aux =  iterat.next( );
+						vec.add( (DtClase) aux );
+					}
+					
+					
+					DefaultListModel<DtClase> modell = new DefaultListModel<DtClase>();
+					Iterator<DtClase> iterat2 = vec.iterator();
+					while( iterat2.hasNext() ) {
+						modell.addElement(iterat2.next());
+					}
+					list_1.setModel(modell);
+					
+					}
+				
+				
 				//si es InfoActividadProfesor
 				else {
-				
 					InfoActividadProfe oo = (InfoActividadProfe) infoActividad;
-					oo.imp();
+					Vector<DtActividadesDeportivas> vec = new Vector<DtActividadesDeportivas>();
+					Vector<Object> vecGenerico = oo.obtenerVector();
+					
+					
+					Iterator<Object> iterat = vecGenerico.iterator();
+					while( iterat.hasNext() ) {
+						Object aux =  iterat.next( );
+						vec.add( (DtActividadesDeportivas) aux );
+					}
+					
+					
+					DefaultListModel<DtActividadesDeportivas> modell = new DefaultListModel<DtActividadesDeportivas>();
+					Iterator<DtActividadesDeportivas> iterat2 = vec.iterator();
+					while( iterat2.hasNext() ) {
+						modell.addElement(iterat2.next());
+					}
+					list.setModel(modell);
 					
 				}
-				
+					
 			}
 		});
 		GridBagConstraints gbc_comboBoxNicks = new GridBagConstraints();
 		gbc_comboBoxNicks.fill = GridBagConstraints.HORIZONTAL;
 		gbc_comboBoxNicks.insets = new Insets(0, 0, 5, 5);
-		gbc_comboBoxNicks.gridx = 2;
+		gbc_comboBoxNicks.gridx = 1;
 		gbc_comboBoxNicks.gridy = 1;
 		getContentPane().add(comboBoxNicks, gbc_comboBoxNicks);
 		
-		JLabel lblActividadesDeportivas = new JLabel("Actividades Deportivas");
+		JLabel lblActividadesDeportivas = new JLabel("Actividades Deportivas (Nombre)");
 		GridBagConstraints gbc_lblActividadesDeportivas = new GridBagConstraints();
 		gbc_lblActividadesDeportivas.insets = new Insets(0, 0, 5, 5);
-		gbc_lblActividadesDeportivas.gridx = 4;
+		gbc_lblActividadesDeportivas.gridx = 3;
 		gbc_lblActividadesDeportivas.gridy = 1;
 		getContentPane().add(lblActividadesDeportivas, gbc_lblActividadesDeportivas);
 		
@@ -194,46 +246,38 @@ public class ConsultaUsuario extends JInternalFrame{
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 		gbc_scrollPane.insets = new Insets(0, 0, 5, 5);
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
-		gbc_scrollPane.gridx = 4;
+		gbc_scrollPane.gridx = 3;
 		gbc_scrollPane.gridy = 2;
 		gbc_scrollPane.gridheight=6;
 		getContentPane().add(scrollPane, gbc_scrollPane);
 		
 		
 		
-		list = new JList<String>();
+		list = new JList<DtActividadesDeportivas>();
+		list.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			
+				DtActividadesDeportivas selected = list.getSelectedValue();
+				Vector<DtClase> vec = selected.getClases();
+				DefaultListModel<DtClase> modell = new DefaultListModel<DtClase>();
+				Iterator<DtClase> i = vec.iterator();
+				while( i.hasNext() ) {
+					modell.addElement(i.next());
+				}
+				list_1.setModel(modell);
+				
+			}
+		});
+
 		scrollPane.setViewportView(list);
 		
-		DefaultListModel<String> model = new DefaultListModel<String>();
-		model.addElement("one");
-		model.addElement("two");
-		model.addElement("three");
-		model.addElement("one");
-		model.addElement("two");
-		model.addElement("three");
-		model.addElement("one");
-		model.addElement("two");
-		model.addElement("three");
-		model.addElement("one");
-		model.addElement("two");
-		model.addElement("three");
-		model.addElement("one");
-		model.addElement("two");
-		model.addElement("three");
-		model.addElement("one");
-		model.addElement("two");
-		model.addElement("three");
-		model.addElement("one");
-		model.addElement("two");
-		model.addElement("three");
-		
-		list.setModel(model);
 			
 		JLabel lblNewLabel = new JLabel("Nombre");
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.anchor = GridBagConstraints.WEST;
 		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel.gridx = 1;
+		gbc_lblNewLabel.gridx = 0;
 		gbc_lblNewLabel.gridy = 3;
 		getContentPane().add(lblNewLabel, gbc_lblNewLabel);
 		
@@ -243,7 +287,7 @@ public class ConsultaUsuario extends JInternalFrame{
 		GridBagConstraints gbc_txtNombre = new GridBagConstraints();
 		gbc_txtNombre.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtNombre.insets = new Insets(0, 0, 5, 5);
-		gbc_txtNombre.gridx = 2;
+		gbc_txtNombre.gridx = 1;
 		gbc_txtNombre.gridy = 3;
 		getContentPane().add(txtNombre, gbc_txtNombre);
 		txtNombre.setColumns(10);
@@ -252,7 +296,7 @@ public class ConsultaUsuario extends JInternalFrame{
 		GridBagConstraints gbc_lblApellido = new GridBagConstraints();
 		gbc_lblApellido.anchor = GridBagConstraints.WEST;
 		gbc_lblApellido.insets = new Insets(0, 0, 5, 5);
-		gbc_lblApellido.gridx = 1;
+		gbc_lblApellido.gridx = 0;
 		gbc_lblApellido.gridy = 5;
 		getContentPane().add(lblApellido, gbc_lblApellido);
 		
@@ -261,7 +305,7 @@ public class ConsultaUsuario extends JInternalFrame{
 		GridBagConstraints gbc_txtApellido = new GridBagConstraints();
 		gbc_txtApellido.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtApellido.insets = new Insets(0, 0, 5, 5);
-		gbc_txtApellido.gridx = 2;
+		gbc_txtApellido.gridx = 1;
 		gbc_txtApellido.gridy = 5;
 		getContentPane().add(txtApellido, gbc_txtApellido);
 		txtApellido.setColumns(10);
@@ -270,7 +314,7 @@ public class ConsultaUsuario extends JInternalFrame{
 		GridBagConstraints gbc_lblCorreo = new GridBagConstraints();
 		gbc_lblCorreo.anchor = GridBagConstraints.WEST;
 		gbc_lblCorreo.insets = new Insets(0, 0, 5, 5);
-		gbc_lblCorreo.gridx = 1;
+		gbc_lblCorreo.gridx = 0;
 		gbc_lblCorreo.gridy = 7;
 		getContentPane().add(lblCorreo, gbc_lblCorreo);
 		
@@ -279,24 +323,24 @@ public class ConsultaUsuario extends JInternalFrame{
 		GridBagConstraints gbc_txtCorreo = new GridBagConstraints();
 		gbc_txtCorreo.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtCorreo.insets = new Insets(0, 0, 5, 5);
-		gbc_txtCorreo.gridx = 2;
+		gbc_txtCorreo.gridx = 1;
 		gbc_txtCorreo.gridy = 7;
 		getContentPane().add(txtCorreo, gbc_txtCorreo);
 		txtCorreo.setColumns(10);
 		
-		JButton btnConsultarActividad = new JButton("Consultar");
+		JButton btnConsultarActividad = new JButton("Consulta  de  Actividad  Deportiva");
 		btnConsultarActividad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				String selected = list.getSelectedValue();
-				System.out.println(selected);
-				
+
+				llamarCasoUsoConsultaAcDeportiva();
 			}
 		});
+		
+		
 		GridBagConstraints gbc_btnConsultarActividad = new GridBagConstraints();
 		gbc_btnConsultarActividad.anchor = GridBagConstraints.EAST;
 		gbc_btnConsultarActividad.insets = new Insets(0, 0, 5, 5);
-		gbc_btnConsultarActividad.gridx = 4;
+		gbc_btnConsultarActividad.gridx = 3;
 		gbc_btnConsultarActividad.gridy = 8;
 		getContentPane().add(btnConsultarActividad, gbc_btnConsultarActividad);
 		
@@ -304,7 +348,7 @@ public class ConsultaUsuario extends JInternalFrame{
 		GridBagConstraints gbc_lblFechaNacimiento = new GridBagConstraints();
 		gbc_lblFechaNacimiento.anchor = GridBagConstraints.WEST;
 		gbc_lblFechaNacimiento.insets = new Insets(0, 0, 5, 5);
-		gbc_lblFechaNacimiento.gridx = 1;
+		gbc_lblFechaNacimiento.gridx = 0;
 		gbc_lblFechaNacimiento.gridy = 9;
 		getContentPane().add(lblFechaNacimiento, gbc_lblFechaNacimiento);
 		
@@ -312,14 +356,14 @@ public class ConsultaUsuario extends JInternalFrame{
 		GridBagConstraints gbc_dateChooserInicio = new GridBagConstraints();
 		gbc_dateChooserInicio.fill = GridBagConstraints.HORIZONTAL;
 		gbc_dateChooserInicio.insets = new Insets(0, 0, 5, 6);
-		gbc_dateChooserInicio.gridx = 2;
+		gbc_dateChooserInicio.gridx = 1;
 		gbc_dateChooserInicio.gridy = 9;
 		getContentPane().add(dateChooserInicio, gbc_dateChooserInicio);
 		
-		JLabel lblClases = new JLabel("Clases");
+		JLabel lblClases = new JLabel("Clases (Nombre)");
 		GridBagConstraints gbc_lblClases = new GridBagConstraints();
 		gbc_lblClases.insets = new Insets(0, 0, 5, 5);
-		gbc_lblClases.gridx = 4;
+		gbc_lblClases.gridx = 3;
 		gbc_lblClases.gridy = 10;
 		getContentPane().add(lblClases, gbc_lblClases);
 		
@@ -327,7 +371,7 @@ public class ConsultaUsuario extends JInternalFrame{
 		GridBagConstraints gbc_lblInstitucion = new GridBagConstraints();
 		gbc_lblInstitucion.anchor = GridBagConstraints.WEST;
 		gbc_lblInstitucion.insets = new Insets(0, 0, 5, 5);
-		gbc_lblInstitucion.gridx = 1;
+		gbc_lblInstitucion.gridx = 0;
 		gbc_lblInstitucion.gridy = 11;
 		getContentPane().add(lblInstitucion, gbc_lblInstitucion);
 		
@@ -336,7 +380,7 @@ public class ConsultaUsuario extends JInternalFrame{
 		GridBagConstraints gbc_txtInstitucion = new GridBagConstraints();
 		gbc_txtInstitucion.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtInstitucion.insets = new Insets(0, 0, 5, 5);
-		gbc_txtInstitucion.gridx = 2;
+		gbc_txtInstitucion.gridx = 1;
 		gbc_txtInstitucion.gridy = 11;
 		getContentPane().add(txtInstitucion, gbc_txtInstitucion);
 		txtInstitucion.setColumns(10);
@@ -345,45 +389,24 @@ public class ConsultaUsuario extends JInternalFrame{
 		GridBagConstraints gbc_scrollPane_1 = new GridBagConstraints();
 		gbc_scrollPane_1.insets = new Insets(0, 0, 5, 5);
 		gbc_scrollPane_1.fill = GridBagConstraints.BOTH;
-		gbc_scrollPane_1.gridx = 4;
+		gbc_scrollPane_1.gridx = 3;
 		gbc_scrollPane_1.gridy = 11;
 		gbc_scrollPane_1.gridheight = 6;
 		getContentPane().add(scrollPane_1, gbc_scrollPane_1);
 		
-		list_1 = new JList<String>();
+		list_1 = new JList<DtClase>();
 		scrollPane_1.setViewportView(list_1);
 		
-		DefaultListModel<String> modell = new DefaultListModel<String>();
-		modell.addElement("one");
-		modell.addElement("two");
-		modell.addElement("three");
-		modell.addElement("one");
-		modell.addElement("two");
-		modell.addElement("three");
-		modell.addElement("one");
-		modell.addElement("two");
-		modell.addElement("three");
-		modell.addElement("one");
-		modell.addElement("two");
-		modell.addElement("three");
-		modell.addElement("one");
-		modell.addElement("two");
-		modell.addElement("three");
-		modell.addElement("one");
-		modell.addElement("two");
-		modell.addElement("three");
-		modell.addElement("one");
-		modell.addElement("two");
-		modell.addElement("three");
-		
-		list_1.setModel(modell);
+		//DefaultListModel<String> modell = new DefaultListModel<String>();
+		//modell.addElement("one");
+		//list_1.setModel(modell);
 		
 		
 		JLabel lblDescripcion = new JLabel("Descripcion");
 		GridBagConstraints gbc_lblDescripcion = new GridBagConstraints();
 		gbc_lblDescripcion.anchor = GridBagConstraints.WEST;
 		gbc_lblDescripcion.insets = new Insets(0, 0, 5, 5);
-		gbc_lblDescripcion.gridx = 1;
+		gbc_lblDescripcion.gridx = 0;
 		gbc_lblDescripcion.gridy = 13;
 		getContentPane().add(lblDescripcion, gbc_lblDescripcion);
 		
@@ -392,7 +415,7 @@ public class ConsultaUsuario extends JInternalFrame{
 		GridBagConstraints gbc_txtDescripcion = new GridBagConstraints();
 		gbc_txtDescripcion.insets = new Insets(0, 0, 5, 5);
 		gbc_txtDescripcion.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtDescripcion.gridx = 2;
+		gbc_txtDescripcion.gridx = 1;
 		gbc_txtDescripcion.gridy = 13;
 		getContentPane().add(txtDescripcion, gbc_txtDescripcion);
 		txtDescripcion.setColumns(10);
@@ -403,7 +426,7 @@ public class ConsultaUsuario extends JInternalFrame{
 		GridBagConstraints gbc_lblBiografia = new GridBagConstraints();
 		gbc_lblBiografia.anchor = GridBagConstraints.WEST;
 		gbc_lblBiografia.insets = new Insets(0, 0, 5, 5);
-		gbc_lblBiografia.gridx = 1;
+		gbc_lblBiografia.gridx = 0;
 		gbc_lblBiografia.gridy = 15;
 		getContentPane().add(lblBiografia, gbc_lblBiografia);
 		
@@ -412,7 +435,7 @@ public class ConsultaUsuario extends JInternalFrame{
 		GridBagConstraints gbc_txtBibliografia = new GridBagConstraints();
 		gbc_txtBibliografia.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtBibliografia.insets = new Insets(0, 0, 5, 5);
-		gbc_txtBibliografia.gridx = 2;
+		gbc_txtBibliografia.gridx = 1;
 		gbc_txtBibliografia.gridy = 15;
 		getContentPane().add(txtBibliografia, gbc_txtBibliografia);
 		txtBibliografia.setColumns(10);
@@ -421,7 +444,7 @@ public class ConsultaUsuario extends JInternalFrame{
 		GridBagConstraints gbc_lblWeburl = new GridBagConstraints();
 		gbc_lblWeburl.anchor = GridBagConstraints.WEST;
 		gbc_lblWeburl.insets = new Insets(0, 0, 5, 5);
-		gbc_lblWeburl.gridx = 1;
+		gbc_lblWeburl.gridx = 0;
 		gbc_lblWeburl.gridy = 17;
 		getContentPane().add(lblWeburl, gbc_lblWeburl);
 		
@@ -430,7 +453,7 @@ public class ConsultaUsuario extends JInternalFrame{
 		GridBagConstraints gbc_txtWeb = new GridBagConstraints();
 		gbc_txtWeb.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtWeb.insets = new Insets(0, 0, 5, 5);
-		gbc_txtWeb.gridx = 2;
+		gbc_txtWeb.gridx = 1;
 		gbc_txtWeb.gridy = 17;
 		getContentPane().add(txtWeb, gbc_txtWeb);
 		txtWeb.setColumns(10);
@@ -444,18 +467,30 @@ public class ConsultaUsuario extends JInternalFrame{
 			}
 		});
 		
-		JButton btnConsultarClases = new JButton("Consultar");
+		JButton btnConsultarClases = new JButton("Consulta \nde Dictado de Clases");
+		btnConsultarClases.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				DtClase selected = list_1.getSelectedValue();
+				
+				
+			}
+		});
 		GridBagConstraints gbc_btnConsultarClases = new GridBagConstraints();
 		gbc_btnConsultarClases.anchor = GridBagConstraints.EAST;
 		gbc_btnConsultarClases.insets = new Insets(0, 0, 5, 5);
-		gbc_btnConsultarClases.gridx = 4;
+		gbc_btnConsultarClases.gridx = 3;
 		gbc_btnConsultarClases.gridy = 17;
 		getContentPane().add(btnConsultarClases, gbc_btnConsultarClases);
 		GridBagConstraints gbc_btnCancelar = new GridBagConstraints();
+		gbc_btnCancelar.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnCancelar.insets = new Insets(0, 0, 0, 5);
-		gbc_btnCancelar.gridx = 2;
+		gbc_btnCancelar.gridx = 1;
 		gbc_btnCancelar.gridy = 21;
 		getContentPane().add(btnCancelar, gbc_btnCancelar);
+		
+
+		
 	}
 	
 	// Permite validar la información introducida en los campos e indicar
@@ -487,4 +522,13 @@ public class ConsultaUsuario extends JInternalFrame{
 		
 		//comboBoxNicks.setSelectedIndex(-1);
     }
+    
+    private void llamarCasoUsoConsultaAcDeportiva() {
+		DtActividadesDeportivas selected = list.getSelectedValue();
+		//String inst = this.txtInstitucion.toString();
+		//String actDep = selected.getNombre();
+
+    }
+    
+
 }
