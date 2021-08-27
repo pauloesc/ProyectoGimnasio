@@ -31,6 +31,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JList;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
@@ -40,6 +41,8 @@ import javax.swing.JScrollBar;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.ListSelectionModel;
 import javax.swing.JTextPane;
+import javax.swing.JSplitPane;
+import javax.swing.JButton;
 
 
 /**
@@ -62,9 +65,11 @@ public class ConsultarCuponera extends JInternalFrame {
     private JLabel lblPeriodoDeVigencia;
     private JLabel lblFin;
     private JTextField textFechafin;
-    private JScrollPane scrollPane;
+    private JScrollPane scrollPane_2;
     private JList<String> list;
     private JList<Integer> list_1;
+    private JTable table;
+    
 
 	
 	public ConsultarCuponera(IctrlCuponeras ICC, IctrlIDeportivas IID, IctrlADeportivas IAD) {
@@ -81,7 +86,7 @@ public class ConsultarCuponera extends JInternalFrame {
 		controlADeportivas=IAD;
 		
 		setTitle("Consultar Cuponera");
-		setBounds(10, 5, 487, 595);
+		setBounds(10, 5, 487, 545);
 		setClosable(true);
 		
 		JLabel lblCuponeras = new JLabel("Cuponeras:");
@@ -146,8 +151,8 @@ public class ConsultarCuponera extends JInternalFrame {
 		textFechafin.setBorder(BorderFactory.createLineBorder(Color.black));
 		
 		
-		JLabel lblActividadesDeportivas = new JLabel("Actividades Deportivas: ");
-		lblActividadesDeportivas.setBounds(30, 310, 196, 19);
+		JLabel lblActividadesDeportivas = new JLabel("Actividades deportivas incluidas: ");
+		lblActividadesDeportivas.setBounds(30, 310, 265, 19);
 		getContentPane().setLayout(null);
 		
 		getContentPane().add(lblCuponeras);
@@ -166,10 +171,10 @@ public class ConsultarCuponera extends JInternalFrame {
 		getContentPane().add(txtFechaAlta);
 		getContentPane().add(lblActividadesDeportivas);
 		
-		scrollPane = new JScrollPane();
+		/*scrollPane = new JScrollPane();
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-		scrollPane.setBounds(30, 341, 241, 151);
+		scrollPane.setBounds(30, 341, 241, 41);
 		getContentPane().add(scrollPane);
 		
 		list = new JList<String>();
@@ -182,12 +187,28 @@ public class ConsultarCuponera extends JInternalFrame {
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane_1.setBounds(271, 341, 147, 151);
+		scrollPane_1.setBounds(271, 341, 147, 41);
 		getContentPane().add(scrollPane_1);
 		
 		list_1 = new JList<Integer>();
 		list_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		scrollPane_1.setViewportView(list_1);
+		scrollPane_1.setViewportView(list_1); */
+		
+		scrollPane_2 = new JScrollPane();
+		scrollPane_2.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane_2.setBounds(30, 343, 386, 115);
+		getContentPane().add(scrollPane_2);
+		
+		table = new JTable();
+		scrollPane_2.setViewportView(table);
+		
+		JButton btnBsqueda = new JButton("Búsqueda");
+		btnBsqueda.setBounds(30, 470, 117, 25);
+		getContentPane().add(btnBsqueda);
+		
+		JButton btnSalir = new JButton("Salir");
+		btnSalir.setBounds(299, 470, 117, 25);
+		getContentPane().add(btnSalir);
 		
 		
 	
@@ -221,7 +242,22 @@ public class ConsultarCuponera extends JInternalFrame {
         txtFechaAlta.setText(strDatealta); 
         
         
-        DefaultListModel<String> modelo;
+        DefaultTableModel modelo;
+        modelo= new DefaultTableModel();
+        String[] columnName= {"Actividad Deportiva","Número de clases"};
+        modelo.setColumnIdentifiers(columnName);
+        
+        Set<ParActividad> res=dat.getClases();
+        if (!res.isEmpty()) {
+    		for (Iterator<ParActividad> iter=res.iterator();iter.hasNext();) {
+    			ParActividad it=iter.next();
+    			Object[] sen= {it.getNombre(), it.getNumclase()};
+    		    modelo.addRow(sen);
+    			
+    		}
+	    } 
+        table.setModel(modelo);
+        /*DefaultListModel<String> modelo;
         DefaultListModel<Integer> modelo2;
         modelo= new DefaultListModel<String>();
         modelo2= new DefaultListModel<Integer>();
@@ -234,7 +270,7 @@ public class ConsultarCuponera extends JInternalFrame {
     		}
 	    } 
         list.setModel(modelo);
-        list_1.setModel(modelo2);
+        list_1.setModel(modelo2);*/
 		}catch (CuponeraNoExisteException e) {
     	JOptionPane.showMessageDialog(this, "No existen datos en el sistema para la Cuponera seleccionada.", "Consulta Cuponera",
 	    		JOptionPane.ERROR_MESSAGE);
@@ -266,6 +302,9 @@ public class ConsultarCuponera extends JInternalFrame {
         txtFechaIni.setText("");
         textFechafin.setText("");
         txtFechaAlta.setText("");
+        DefaultTableModel modelo1= new DefaultTableModel();
+        table.setModel(modelo1);
+        
     }
 }
 	
