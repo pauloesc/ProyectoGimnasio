@@ -231,7 +231,17 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String clas = (String) comboBoxClase.getSelectedItem();
-				cargarDatosClase(clas);
+				String nomAct = (String) comboBoxActividadDeportiva.getSelectedItem();
+				String inst = (String) comboBoxInstituciones.getSelectedItem();
+				
+				//comprobar que todos los campos tengan algo
+			
+				if ((clas == null) || (nomAct == null) || (inst == null)){
+					JOptionPane.showMessageDialog(null, "Error, ningun campo puede quedar vacio");
+				} else { 
+					cargarDatosClase(clas);
+				}
+				
 			}
 		});
 		
@@ -394,9 +404,6 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 			
 			//comprobar que todos los campos tengan algo
 		
-			if ((clas == null) || (nomAct == null) || (inst == null)){
-				JOptionPane.showMessageDialog(null, "Error, ningun campo puede quedar vacio");
-			} else {
 			
 				DtClase res = IC.darDtClase(clas);
 				
@@ -424,7 +431,7 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 				
 				Finicio.setText(ini);
 				Falta.setText(reg);
-			}
+			
 				
 
 		} catch(Exception ee) {
