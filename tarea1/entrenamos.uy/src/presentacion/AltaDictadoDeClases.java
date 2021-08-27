@@ -35,6 +35,8 @@ import javax.swing.JButton;
 import com.toedter.calendar.JDateChooser;
 
 import excepciones.ClaseRepetidaException;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
 
 public class AltaDictadoDeClases extends JInternalFrame {
 	private JTextField NombreClase;
@@ -44,10 +46,14 @@ public class AltaDictadoDeClases extends JInternalFrame {
 	private JComboBox<String> comboBoxInstituciones;
 	private JComboBox<String> comboBoxProfesor;
 	JComboBox<String> comboBoxActividadDeportiva;
+	JDateChooser dateChooserInicio;
+	JDateChooser dateChooserAlta;
 	
 	private IctrlADeportivas IAD;
 	private IctrlIDeportivas IID;
 	private IctrlUsuarios IU;
+	private JTextField textFieldHora;
+	private JTextField textFieldMinuto;
 
 	/**
 	 * Launch the application.
@@ -72,24 +78,44 @@ public class AltaDictadoDeClases extends JInternalFrame {
 	
 	
 	public AltaDictadoDeClases() {
+		addInternalFrameListener(new InternalFrameAdapter() {
+			@Override
+			public void internalFrameClosed(InternalFrameEvent e) {
+				limpiarFormulario();
+				setVisible(false);
+			}
+		});
+		setClosable(true);
+		
+		setTitle("Alta dictado de clases");
+		setBounds(100, 100, 499, 546);
+		
 		Fabrica fab = Fabrica.getInstance();
 		IAD = fab.getIctrlADeportivas();
 		IID = fab.getIctrlIDeportivas();
 		IU = fab.getIctrlUsuarios();
 		
-		JDateChooser dateChooserInicio = new JDateChooser();
-		JDateChooser dateChooserAlta = new JDateChooser();
+		dateChooserInicio = new JDateChooser();
+		dateChooserAlta = new JDateChooser();
 		dateChooserInicio.setEnabled(true);
 		dateChooserAlta.setEnabled(true);
 		
 		
-		setTitle("Alta dictado de clases");
-		setBounds(100, 100, 499, 546);
+		
 		
 		comboBoxInstituciones = new JComboBox();	
 		comboBoxProfesor = new JComboBox();	
 		comboBoxActividadDeportiva = new JComboBox();
 		
+		JLabel lblHora = new JLabel("Hora");
+		
+		JLabel lblMinuto = new JLabel("Minuto");
+		
+		textFieldHora = new JTextField();
+		textFieldHora.setColumns(10);
+		
+		textFieldMinuto = new JTextField();
+		textFieldMinuto.setColumns(10);
 		
 		
 		
@@ -174,21 +200,7 @@ public class AltaDictadoDeClases extends JInternalFrame {
 		btnCancelar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				comboBoxProfesor.removeAllItems();
-				comboBoxActividadDeportiva.removeAllItems();
-				comboBoxInstituciones.removeAllItems();
-				
-				comboBoxProfesor.setEnabled(false);
-				comboBoxActividadDeportiva.setEnabled(false);
-								
-				NombreClase.setText("");
-				Smin.setText("");
-				Smax.setText("");
-				url.setText("");
-				
-				dateChooserInicio.setCalendar(null);
-				dateChooserAlta.setCalendar(null);
-				
+				limpiarFormulario();
 				setVisible(false);
 				
 			}
@@ -208,30 +220,43 @@ public class AltaDictadoDeClases extends JInternalFrame {
 					Date Falta = dateChooserAlta.getDate();
 					String nomAct = (String) comboBoxActividadDeportiva.getSelectedItem();
 					
+					Integer min = Integer.parseInt(Smin.getText());
+					Integer max = Integer.parseInt(Smax.getText());
+					Integer ho = Integer.parseInt(textFieldHora.getText());
+					Integer mi = Integer.parseInt(textFieldMinuto.getText());
+					
 					//comprobar que todos los campos tengan algo
 				
-					if ((nom.isEmpty()) || (Finicio == null) || (prof == null) || (ur.isEmpty()) || (Falta == null) || (nomAct == null)){
+					if ((nom.isEmpty()) || (Finicio == null) || (prof == null) || (ur.isEmpty()) || (Falta == null) || (nomAct == null) || (min == null) || (max == null) || (ho == null) || (mi == null)){
 						JOptionPane.showMessageDialog(null, "Error, ningun campo puede quedar vacio");
 					} else {
-						int min = Integer.parseInt(Smin.getText());
-						int max = Integer.parseInt(Smax.getText());
 						
-						Fabrica fab = Fabrica.getInstance();
-						IctrlClases ic = fab.getIctrlClases();
+						if ((ho < 0) || (ho >= 24) || (mi < 0) || (mi >= 60)) {
+							JOptionPane.showMessageDialog(null, "Error, ponga bien la hora");
 						
-						ic.crearClase(nom, Finicio, prof, min, max, ur, Falta, nomAct);
-						
-						JOptionPane.showMessageDialog(null, "Clase creada con éxito");
+						} else {
+							Fabrica fab = Fabrica.getInstance();
+							IctrlClases ic = fab.getIctrlClases();
+								
+							ic.crearClase(nom, Finicio, prof, min, max, ur, Falta, nomAct, ho, mi);
+							
+							limpiarFormulario();
+							setVisible(false);
+							JOptionPane.showMessageDialog(null, "Clase creada con éxito");
+							
+						}
 					}
 						
 					
 				} catch (ClaseRepetidaException ee) {
 					JOptionPane.showMessageDialog(null, "Error, nombre de la clase existente");
 				} catch(Exception ee) {
-					JOptionPane.showMessageDialog(null, "Error, debe ingresar numeros en los campos 'socios maximos' y 'socios minimos' ");
+					JOptionPane.showMessageDialog(null, "Error, ingrese numeros donde corresponde ");
 				}
 			}
 		});
+		
+		
 		
 		
 		
@@ -280,7 +305,18 @@ public class AltaDictadoDeClases extends JInternalFrame {
 										.addComponent(url)))
 								.addGroup(groupLayout.createSequentialGroup()
 									.addGap(43)
-									.addComponent(btnCancelar)))))
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+										.addComponent(btnCancelar)
+										.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+												.addComponent(lblMinuto)
+												.addComponent(lblHora))
+											.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+												.addComponent(textFieldHora, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
+												.addComponent(textFieldMinuto, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE))
+											.addGap(40)))))
+							.addPreferredGap(ComponentPlacement.RELATED, 9, Short.MAX_VALUE)))
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
@@ -321,9 +357,17 @@ public class AltaDictadoDeClases extends JInternalFrame {
 							.addGap(18)
 							.addComponent(lblFechaDeAlta))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(dateChooserInicio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+									.addComponent(lblHora)
+									.addComponent(textFieldHora, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addComponent(dateChooserInicio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 							.addGap(18)
-							.addComponent(dateChooserAlta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addComponent(dateChooserAlta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+									.addComponent(lblMinuto)
+									.addComponent(textFieldMinuto, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))))
 					.addPreferredGap(ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnAceptar)
@@ -350,6 +394,26 @@ public class AltaDictadoDeClases extends JInternalFrame {
 		}
 		
 		comboBoxInstituciones.setSelectedItem(null);
+		
+	}
+	
+	public void limpiarFormulario() {
+		comboBoxProfesor.removeAllItems();
+		comboBoxActividadDeportiva.removeAllItems();
+		comboBoxInstituciones.removeAllItems();
+		
+		comboBoxProfesor.setEnabled(false);
+		comboBoxActividadDeportiva.setEnabled(false);
+						
+		NombreClase.setText("");
+		Smin.setText("");
+		Smax.setText("");
+		url.setText("");
+		textFieldHora.setText("");
+		textFieldMinuto.setText("");
+		
+		dateChooserInicio.setCalendar(null);
+		dateChooserAlta.setCalendar(null);
 		
 	}
 	

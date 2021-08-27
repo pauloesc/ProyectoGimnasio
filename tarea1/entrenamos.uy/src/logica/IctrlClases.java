@@ -17,7 +17,7 @@ import excepciones.ClaseYaCompradaException;
  */
 public interface IctrlClases {
  
-	public abstract void crearClase(String nombre, Date Finicio, String prof, int Smin, int Smax, String url, Date FechaAlta, String nomAct) throws ClaseRepetidaException;
+	public abstract void crearClase(String nombre, Date Finicio, String prof, int Smin, int Smax, String url, Date FechaAlta, String nomAct, Integer ho, Integer mi) throws ClaseRepetidaException;
 	
 	public abstract Set<String> mostrarClasesDeActividadDeportiva(String nomAct);
 	
