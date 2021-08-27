@@ -182,6 +182,7 @@ public class ConsultarCuponera extends JInternalFrame {
         	setVisible(false);
         }
 	}
+
 }
 	
 	

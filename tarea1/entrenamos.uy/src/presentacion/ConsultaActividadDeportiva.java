@@ -19,16 +19,19 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 
 import datatypes.DataInstitucion;
 import datatypes.DtClase;
 import datatypes.DataActividad;
 import datatypes.DataCuponera;
 import excepciones.ActividadDeportivaNoExisteException;
+import excepciones.ClaseLlenaException;
 import excepciones.CuponeraNoExisteException;
 import excepciones.InstitucionDeportivaNoExisteException;
 import logica.Cuponera;
 import logica.IctrlADeportivas;
+import logica.IctrlClases;
 import logica.IctrlIDeportivas;
 import logica.IctrlCuponeras;
 
@@ -36,6 +39,7 @@ import javax.swing.JSpinner;
 import javax.swing.JComponent;
 import java.awt.Choice;
 import java.awt.Color;
+import java.awt.Container;
 
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -51,6 +55,8 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.Set;
 import java.awt.event.ItemEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.ListSelectionEvent;
 
 @SuppressWarnings({ "serial", "unused" })
 public class ConsultaActividadDeportiva extends JInternalFrame {
@@ -59,21 +65,26 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
     private IctrlIDeportivas controlIDeportivas;
     private IctrlADeportivas controlADeportivas;
     private IctrlCuponeras controlCuponeras;
+    private IctrlClases controlClases;
     
 	private JComboBox<DataInstitucion> comboBoxInstDeportivas;
 	private JComboBox<DataActividad> comboBoxActDeportivas;
 	private JList<String> listCuponeras;
+	private JList<String> listClases;
 	private JTextField txtNombre;
     private JTextArea txtDescripcion;
     private JTextField txtDuracion;
     private JTextField txtCosto;
     private JTextField txtFechaAlta;
     
-	public ConsultaActividadDeportiva(IctrlIDeportivas icid, IctrlADeportivas icad, IctrlCuponeras icup) {
+    
+    
+	public ConsultaActividadDeportiva(IctrlIDeportivas icid, IctrlADeportivas icad, IctrlCuponeras icup, IctrlClases icla) {
 		
 		controlIDeportivas = icid;
 		controlADeportivas = icad;
 		controlCuponeras = icup;
+		controlClases = icla;
 		
 		setTitle("Consulta de Actividad Deportiva");
 		setClosable(true);
@@ -168,10 +179,15 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 		tabbedPane.setBounds(34, 294, 384, 205);
 		getContentPane().add(tabbedPane);
 		
-		JList<DtClase> listClases = new JList<DtClase>();
+		listClases = new JList<String>();
 		tabbedPane.addTab("Clases", null, listClases, null);
 		
 		listCuponeras = new JList<String>();
+		listCuponeras.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent arg0) {
+					
+			}
+		});
 		tabbedPane.addTab("Cuponeras", null, listCuponeras, null);
 		
 	}
@@ -246,6 +262,16 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
         
         listCuponeras.setModel(modeloCuponeras);
         
+        DefaultListModel<String> modeloClases;
+        Set<String> dcla;
+        modeloClases = new DefaultListModel<String>();
+        dcla = controlClases.mostrarClasesDeActividadDeportiva(n);
+        Iterator<String> it = dcla.iterator();
+        while(it.hasNext()){            	
+        	modeloClases.addElement(it.next());
+		}
+        
+        listClases.setModel(modeloClases);
         
     }
 }
