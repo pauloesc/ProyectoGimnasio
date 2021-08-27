@@ -68,13 +68,11 @@ public class ConsultarCuponera extends JInternalFrame {
     private JLabel lblFin;
     private JTextField textFechafin;
     private JScrollPane scrollPane_2;
-    private JList<String> list;
-    private JList<Integer> list_1;
     private JTable table;
     private ConsultaActividadDeportiva framedeportivas;
 
 	
-	public ConsultarCuponera(IctrlCuponeras ICC, IctrlIDeportivas IID, IctrlADeportivas IAD, ConsultaActividadDeportiva consultaDeportiva ) {
+	public ConsultarCuponera(IctrlCuponeras ICC, IctrlIDeportivas IID, IctrlADeportivas IAD ) {
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setClosable(true);
 		addInternalFrameListener(new InternalFrameAdapter() {
@@ -88,14 +86,10 @@ public class ConsultarCuponera extends JInternalFrame {
 		controlCuponeras=ICC;
 		controlIDeportivas=IID;
 		controlADeportivas=IAD;
-		framedeportivas= consultaDeportiva;
 		
 		setTitle("Consultar Cuponera");
 		setBounds(100, 5, 487, 545);
-<<<<<<< HEAD
-=======
-		setClosable(false);
->>>>>>> refs/heads/mas15
+
 		
 		JLabel lblCuponeras = new JLabel("Cuponeras:");
 		lblCuponeras.setBounds(30, 33, 99, 15);
@@ -218,8 +212,10 @@ public class ConsultarCuponera extends JInternalFrame {
 				boolean es=activar();
 				if (es) {
 					String val=String.valueOf(table.getValueAt(table.getSelectedRow(), 0));	
-					framedeportivas.setVisible(true);
-					System.out.println(val);
+					Principal instancia = Principal.getInstance();
+					instancia.consultaActividadDeportivaInternalFrame.cargarDatosActividad(val);
+					instancia.consultaActividadDeportivaInternalFrame.setVisible(true);
+					
 				}
 			}
 		});
