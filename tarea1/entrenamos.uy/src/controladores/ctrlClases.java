@@ -29,14 +29,14 @@ public class ctrlClases implements IctrlClases {
 		this.manejador = manejClases.getInstance();
 	}
 	
-	public void crearClase(String nombre, Date Finicio, String prof, int Smin, int Smax, String url, Date FechaAlta, String nomAct) throws ClaseRepetidaException {
+	public void crearClase(String nombre, Date Finicio, String prof, int Smin, int Smax, String url, Date FechaAlta, String nomAct, Integer ho, Integer mi) throws ClaseRepetidaException {
 		Clase c = manejador.findClase(nombre);
 		
 		if (c != null) {
 			throw new ClaseRepetidaException("Nombre existente");
 		}
 	
-		c = new Clase(nombre, Finicio, prof, Smin, Smax, url, FechaAlta);
+		c = new Clase(nombre, Finicio, prof, Smin, Smax, url, FechaAlta, ho, mi);
 		
 		manejADeportivas MD = manejADeportivas.getinstance();
 		ActividadDeportiva ad = MD.buscarActividad(nomAct);
@@ -112,23 +112,23 @@ public class ctrlClases implements IctrlClases {
 			fr16 = new SimpleDateFormat("dd/MM/yy").parse("31/07/21");
 			fr17 = new SimpleDateFormat("dd/MM/yy").parse("31/07/21");
 			
-			crearClase("Calistenia",f1,"viktor",1,5,"https://www.musculos.com/Calistenia",fr1,"Aparatos y pesas");
-			crearClase("Peso libre",f2,"viktor",1,5,"https://www.musculos.com/pesolibre",fr2,"Aparatos y pesas");
-			crearClase("Aparatos",f3,"viktor",1,7,"https://www.musculos.com/aparatos",fr3,"Aparatos y pesas");
-			crearClase("Voleibol",f4,"denis",10,21,"https://telon.com.uy/voley",fr4,"Voleibol");
-			crearClase("Braza",f5,"Nelson",2,6,"https://telon.com.uy/natacionB",fr5,"Voleibol");
-			crearClase("Mariposa",f6,"Nelson",2,6,"https://telon.com.uy/natacionM",fr6,"Voleibol");
-			crearClase("Aeróbica niños",f7,"clazar",5,10,"https://www.inatural.com/aeroni",fr7,"Aeróbica");
-			crearClase("Aeróbico adulto mayor",f8,"clazar",5,12,"https://www.inatural.com/aeroam",fr8,"Aeróbica");
-			crearClase("Aeróbica",f9,"clazar",5,20,"https://www.inatural.com/aerogral",fr9,"Aeróbica");
-			crearClase("Boxeo I",f10,"TheBoss",1,4,"https://www.musculos.com/boxeo1",fr10,"Kickboxing");
-			crearClase("Boxeo II",f11,"TheBoss",2,2,"https://www.musculos.com/boxeo2",fr11,"Kickboxing");
-			crearClase("Músculos para boxeo",f12,"viktor",1,5,"https://www.musculos.com/muscbox",fr12,"Kickboxing");
-			crearClase("100 M",f13,"lale",3,10,"https://telon.com.uy/100m",fr13,"Atletismo");
-			crearClase("200 M",f14,"lale",3,10,"https://telon.com.uy/200m",fr14,"Atletismo");
-			crearClase("Posta",f15,"lale",8,16,"https://telon.com.uy/posta",fr15,"Atletismo");
-			crearClase("Basquet I",f16,"aldo",10,15,"https://telon.com.uy/bball1",fr16,"Basquetbol");
-			crearClase("Basquet II",f17,"aldo",10,10,"https://telon.com.uy/bball2",fr17,"Basquetbol");
+			crearClase("Calistenia",f1,"viktor",1,5,"https://www.musculos.com/Calistenia",fr1,"Aparatos y pesas",15,30);
+			crearClase("Peso libre",f2,"viktor",1,5,"https://www.musculos.com/pesolibre",fr2,"Aparatos y pesas",17,00);
+			crearClase("Aparatos",f3,"viktor",1,7,"https://www.musculos.com/aparatos",fr3,"Aparatos y pesas",18,00);
+			crearClase("Voleibol",f4,"denis",10,21,"https://telon.com.uy/voley",fr4,"Voleibol",19,00);
+			crearClase("Braza",f5,"Nelson",2,6,"https://telon.com.uy/natacionB",fr5,"Voleibol",20,00);
+			crearClase("Mariposa",f6,"Nelson",2,6,"https://telon.com.uy/natacionM",fr6,"Voleibol",17,45);
+			crearClase("Aeróbica niños",f7,"clazar",5,10,"https://www.inatural.com/aeroni",fr7,"Aeróbica",16,30);
+			crearClase("Aeróbico adulto mayor",f8,"clazar",5,12,"https://www.inatural.com/aeroam",fr8,"Aeróbica",19,30);
+			crearClase("Aeróbica",f9,"clazar",5,20,"https://www.inatural.com/aerogral",fr9,"Aeróbica",20,00);
+			crearClase("Boxeo I",f10,"TheBoss",1,4,"https://www.musculos.com/boxeo1",fr10,"Kickboxing",19,30);
+			crearClase("Boxeo II",f11,"TheBoss",2,2,"https://www.musculos.com/boxeo2",fr11,"Kickboxing",17,00);
+			crearClase("Músculos para boxeo",f12,"viktor",1,5,"https://www.musculos.com/muscbox",fr12,"Kickboxing",20,00);
+			crearClase("100 M",f13,"lale",3,10,"https://telon.com.uy/100m",fr13,"Atletismo",19,00);
+			crearClase("200 M",f14,"lale",3,10,"https://telon.com.uy/200m",fr14,"Atletismo",18,30);
+			crearClase("Posta",f15,"lale",8,16,"https://telon.com.uy/posta",fr15,"Atletismo",17,45);
+			crearClase("Basquet I",f16,"aldo",10,15,"https://telon.com.uy/bball1",fr16,"Basquetbol",21,00);
+			crearClase("Basquet II",f17,"aldo",10,10,"https://telon.com.uy/bball2",fr17,"Basquetbol",21,00);
 			
 		} catch (Exception e) {
 			// errores al ingresar las fechas o al registrar clases

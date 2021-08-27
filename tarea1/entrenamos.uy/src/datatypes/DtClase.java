@@ -14,9 +14,11 @@ public class DtClase {
 	private String url;
 	private Date fechaReg;
 	private String nomProfesor;
+	private int hora;
+	private int minuto;
 	
 	
-	public DtClase(Date fecha, String nombre, int minSocios, int actualSocios, int maxSocios, String url, Date fechaReg, String nomProfesor) {
+	public DtClase(Date fecha, String nombre, int minSocios, int actualSocios, int maxSocios, String url, Date fechaReg, String nomProfesor, int hor, int min) {
 		this.fecha = fecha;
 		this.nombre = nombre;
 		this.minSocios = minSocios;
@@ -25,6 +27,8 @@ public class DtClase {
 		this.url = url;
 		this.fechaReg = fechaReg;
 		this.nomProfesor = nomProfesor;
+		this.hora = hor;
+		this.minuto = min;
 	}
 
 
@@ -61,7 +65,14 @@ public class DtClase {
 	public String getNomProfesor() {
 		return nomProfesor;
 	}
+	
+	public Integer getHora() {
+		return hora;
+	}
 
+	public Integer getMinuto() {
+		return minuto;
+	}
 
 	public void imp() {
 		System.out.println("Nombre - clase: "+this.nombre );
