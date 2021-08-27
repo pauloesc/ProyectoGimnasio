@@ -11,8 +11,10 @@ import java.util.Set;
 
 import datatypes.DtClase;
 import excepciones.ClaseLlenaException;
+import excepciones.ClaseNoExisteException;
 import excepciones.ClaseRepetidaException;
 import excepciones.ClaseYaCompradaException;
+import excepciones.CuponeraNoExisteException;
 import logica.ActividadDeportiva;
 import logica.Clase;
 import logica.IctrlClases;
@@ -45,10 +47,13 @@ public class ctrlClases implements IctrlClases {
 		manejador.agregarClase(c);
 	}
 	
-	public Set<String> mostrarClasesDeActividadDeportiva(String nomAct) {
+	public Set<String> mostrarClasesDeActividadDeportiva(String nomAct) throws ClaseNoExisteException {
 		manejADeportivas md = manejADeportivas.getinstance();
 		ActividadDeportiva ad = md.buscarActividad(nomAct);
-		return ad.darNombreClases();
+		if (!ad.darNombreClases().isEmpty())
+			return ad.darNombreClases();
+		else 
+			throw new ClaseNoExisteException("No existen Clases en el sistema para la Actividad Deportiva seleccionada.");
 	}
 	
 	public DtClase darDtClase(String nomClas) {

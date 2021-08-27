@@ -88,7 +88,7 @@ public class ConsultarCuponera extends JInternalFrame {
 		
 		setTitle("Consultar Cuponera");
 		setBounds(100, 5, 487, 545);
-		setClosable(true);
+		setClosable(false);
 		
 		JLabel lblCuponeras = new JLabel("Cuponeras:");
 		lblCuponeras.setBounds(30, 33, 99, 15);
