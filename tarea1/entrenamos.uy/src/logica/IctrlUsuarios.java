@@ -53,4 +53,6 @@ public interface IctrlUsuarios {
 	public abstract Set<String> MostrarCuponerasDisponibles(String nick, String actDept);
 	public abstract Set<String> mostrarNicknameSocios();
 	
+	public abstract void cargarUsuarios();
+	
 }
