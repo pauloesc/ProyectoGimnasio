@@ -5,6 +5,7 @@ import java.util.Set;
 import excepciones.ActividadDeportivaNoExisteException;
 import excepciones.ActividadDeportivaRepetidaException;
 
+import java.io.PrintStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -100,7 +101,7 @@ public class ctrlADeportivas implements IctrlADeportivas{
 			altaActividadDeportiva("Telón", "Atletismo", "100m , 200m, postas y carreras con obstaculos.", 150f, 500f, f5);
 			altaActividadDeportiva("Telón", "Basquetbol", "Espectáculo conmemorando los 30 años de Violeta. ", 80f, 450f, f6);
 		} catch (ActividadDeportivaRepetidaException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 
