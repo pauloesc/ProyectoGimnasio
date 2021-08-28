@@ -17,9 +17,9 @@ public class InstitucionDeportiva {
     private Set<ActividadDeportiva> actividadesDeportivasInst;
 
     public InstitucionDeportiva(String n, String de, String url) {
-        this.nombre = n;
-        this.descripcion = de;
-        this.url = url;
+        this.setNombre(n);
+        this.setDescripcion(de);
+        this.setURL(url);
         this.actividadesDeportivasInst = new HashSet<ActividadDeportiva>();
     }
 
