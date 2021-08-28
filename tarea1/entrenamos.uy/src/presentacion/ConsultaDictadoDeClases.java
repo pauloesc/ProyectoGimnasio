@@ -84,6 +84,8 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 	
 	
 	public ConsultaDictadoDeClases() {
+		
+		
 		addInternalFrameListener(new InternalFrameAdapter() {
 			@Override
 			public void internalFrameClosed(InternalFrameEvent e) {
@@ -91,6 +93,7 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 				setVisible(false);
 			}
 		});
+		
 		setClosable(true);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		Fabrica fab = Fabrica.getInstance();
