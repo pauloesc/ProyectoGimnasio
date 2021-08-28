@@ -63,6 +63,8 @@ import javax.swing.DefaultComboBoxModel;
 import java.util.Vector;
 
 import javax.swing.JOptionPane;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
 
 
 @SuppressWarnings({ "serial", "unused" })
@@ -84,6 +86,12 @@ public class AltaUsuario extends JInternalFrame{
 
     
 	public AltaUsuario(IctrlUsuarios icu)  {
+		addInternalFrameListener(new InternalFrameAdapter() {
+			@Override
+			public void internalFrameClosing(InternalFrameEvent e) {
+				limpiarFormulario();
+			}
+		});
 		
 		//esto es:
 		//cuando se llama al a la ventana el programa principal le pasa el controlador
@@ -196,6 +204,7 @@ public class AltaUsuario extends JInternalFrame{
 				vector2 = icu.InstitucionesEnSistema();
 				DefaultComboBoxModel<String> model;
 				model = new DefaultComboBoxModel<String>(vector2);
+				model.setSelectedItem(null);
 				comboBox.setModel(model);
 				
 			}
@@ -225,7 +234,7 @@ public class AltaUsuario extends JInternalFrame{
 		gbc_lblInstitucion.gridy = 13;
 		getContentPane().add(lblInstitucion, gbc_lblInstitucion);
 		
-		comboBox = new JComboBox();
+		comboBox = new JComboBox<String>();
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
 		gbc_comboBox.insets = new Insets(0, 0, 5, 5);

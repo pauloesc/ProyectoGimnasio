@@ -80,6 +80,8 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
 
 
 @SuppressWarnings({ "serial", "unused" })
@@ -105,6 +107,17 @@ public class ConsultaUsuario extends JInternalFrame{
 
     
 	public ConsultaUsuario(IctrlUsuarios icu)  {
+		addInternalFrameListener(new InternalFrameAdapter() {
+			@Override
+			public void internalFrameClosing(InternalFrameEvent e) {
+				
+				limpiarFormulario();
+				LimpiarListas();
+				setVisible(false);
+				
+				
+			}
+		});
 		
 		
 		//esto es:
@@ -202,14 +215,7 @@ public class ConsultaUsuario extends JInternalFrame{
 						
 					}
 					
-					if( vec.isEmpty() ) {
-						System.out.println("es vacio vector dtclases");
-					}
-					
-					if( vecGenerico.isEmpty() ) {
-						System.out.println("es vacio vector objects");
-					}
-					
+
 					DefaultListModel<DtClase> modell = new DefaultListModel<DtClase>();
 					Iterator<DtClase> iterat2 = vec.iterator();
 					while( iterat2.hasNext() ) {
@@ -537,6 +543,7 @@ public class ConsultaUsuario extends JInternalFrame{
 		vector = controlUsuario.UsuariosEnSistemaNickName();
 		DefaultComboBoxModel<String> model;
 		model = new DefaultComboBoxModel<String>(vector);
+		model.setSelectedItem(null);
 		comboBoxNicks.setModel(model);
 		
 		//comboBoxNicks.setSelectedIndex(-1);
