@@ -1,5 +1,6 @@
 package tests;
 
+import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Date;
@@ -11,9 +12,10 @@ import java.text.SimpleDateFormat;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import excepciones.ActividadDeportivaNoExisteException;
-import excepciones.ActividadDeportivaRepetidaException;
-import logica.DataActividad;
+import excepciones.CuponeraNoExisteException;
+import excepciones.CuponeraRepetidaException;
+import logica.DataCuponera;
+import logica.DtClase;
 import logica.Fabrica;
 import logica.IctrlCuponeras;
 
@@ -21,98 +23,76 @@ import logica.IctrlCuponeras;
 
 class TestctrlCuponeras {
 
-	private static IctrlADeportivas ctrlADeportivas;
-	private static IctrlIDeportivas ctrlIDeportivas;
+	private static IctrlCuponeras ctrlCuponeras;
 	
+
 	@BeforeAll
 	public static void iniciar() {
 		Fabrica fabrica = Fabrica.getInstance();
-		ctrlADeportivas = fabrica.getIctrlADeportivas();
-		ctrlIDeportivas = fabrica.getIctrlIDeportivas();
-		ctrlIDeportivas.cargarDatosIDeportivas();
-		ctrlADeportivas.cargarDatosADeportivas();
+		ctrlCuponeras = fabrica.getIctrlCuponeras();
+	
 	}
 
 	@Test
-	void testAltaActividadDeportivaOK() {
-		Date f1 = null;
+	void testregistrarCuponeraExito() {
+		
+		Date fi=null;
+		Date ff=null;
+		Date fa=null;
 		try {
-			f1 = new SimpleDateFormat("dd/MM/yy").parse("08/12/20");
+			fi = new SimpleDateFormat("dd/MM/yy").parse("01/08/21");
+			ff = new SimpleDateFormat("dd/MM/yy").parse("31/08/21");
+			fa=  new SimpleDateFormat("dd/MM/yy").parse("01/07/21");
 		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		
 		try {
-			ctrlADeportivas.altaActividadDeportiva("Instituto Natural", "Arqueria", "Tiro con arco", 120f, 900f, f1);
-			DataActividad dact = ctrlADeportivas.getDataActividad("Arqueria");
-			assertEquals(dact.getNombre(), "Arqueria");
-			assertEquals(dact.getDescripcion(), "Tiro con arco");
-			assertEquals(dact.getDuracion(), 120f);
-			assertEquals(dact.getCosto(), 900f);
-			assertEquals(dact.getFechaAlta(), f1);
-		} catch (ActividadDeportivaRepetidaException e) {
-			fail(e.getMessage());
-			e.printStackTrace();
-		} catch (ActividadDeportivaNoExisteException e) {
-			fail(e.getMessage());
+			ctrlCuponeras.registrarCuponera("social","Deportes y Socialización",fi,ff,20f,fa);
+		} catch (CuponeraRepetidaException e) {
 			e.printStackTrace();
 		}
-	}
-
-	@Test
-	void testAltaActividadDeportivaRepetida() {
-		Date f2 = null;
+		
+		  DataCuponera res=new DataCuponera();
 		try {
-			f2 = new SimpleDateFormat("dd/MM/yy").parse("07/07/21");
-		} catch (ParseException e1) {
-			e1.printStackTrace();
-		}
-		try {
-			ctrlADeportivas.altaActividadDeportiva("Telón", "Nado Sincronizado", "Equipo olimpico", 180f, 1500f, f2);
-		} catch (ActividadDeportivaRepetidaException e) {
-			fail(e.getMessage());
+			 res= ctrlCuponeras.mostrarCuponera("social");
+		} catch (CuponeraNoExisteException e) {
 			e.printStackTrace();
+		}	
+			
+			assertEquals(res.getNombre(), "social", "El nombre de la cuponera no es correcto");
+			assertEquals(res.getDescripcion(), "Deportes y Socialización","Las descripción no es la correcta") ;
+			assertEquals(res.getFecha_ini(), fi, "La fecha inicial no es la correcta");
+			assertEquals(res.getFecha_fin(), ff, "La fecha final no es la correcta");
+			assertEquals(res.getDescuento(), 20f, "El descuento no es el correcto");
+			assertEquals(res.getFecha_alta(), fa, "La fecha de alta no es la correcta");
+			
+			
 		} 
-		assertThrows(ActividadDeportivaRepetidaException.class, () -> {ctrlADeportivas.altaActividadDeportiva("Olympic", "Nado Sincronizado", "Equipo olimpico", 180f, 1500f, new SimpleDateFormat("dd/MM/yy").parse("07/07/21"));});
-	}
-
 
 	@Test
-	void testGetActividadesOK() throws ActividadDeportivaNoExisteException {
-		DataActividad d1 = new DataActividad();
-		d1 = ctrlADeportivas.getDataActividad("Aparatos y pesas");
-		DataActividad d2 = ctrlADeportivas.getDataActividad("Kickboxing");
-		try {
-			DataActividad[] dact = ctrlADeportivas.getActividades("Fuerza Bruta");
-			assertEquals(dact[0].getNombre(), d1.getNombre());
-			assertEquals(dact[1].getNombre(), d2.getNombre());
-		} catch (ActividadDeportivaNoExisteException e) {
-			e.printStackTrace();
-		}
-	}
+void testregistrarCuponeraRepite() {
 	
-	@Test
-	void testGetActividadesNoExiste() {
-		assertThrows(ActividadDeportivaNoExisteException.class, () -> {ctrlADeportivas.getActividades("Olympic");});
+	Date fi=null;
+	Date ff=null;
+	Date fa=null;
+	try {
+		fi = new SimpleDateFormat("dd/MM/yy").parse("02/08/21");
+		ff = new SimpleDateFormat("dd/MM/yy").parse("31/08/21");
+		fa=  new SimpleDateFormat("dd/MM/yy").parse("01/07/21");
+	} catch (ParseException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
 	}
-	
-	@Test
-	void testGetDataActividadNoExiste() {
-		assertThrows(ActividadDeportivaNoExisteException.class, () -> {ctrlADeportivas.getActividades("Olympic");});
+	try {
+		ctrlCuponeras.registrarCuponera("Flexibilidad","Actividades de flexibilidad",fi,ff,20f,fa);
+	} catch (CuponeraRepetidaException e) {
+		e.printStackTrace();
 	}
-	
-	@Test
-	void testMostrarClasesVigentesDeActividadDeportiva() {
-		
-		Set<String> setA;
-		Set<String> nomin;
-		
-		nomin = ctrlADeportivas.darNombresActividadesDeportivas("Instituto Natural");
-		setA = new HashSet<String>();
-		setA.add("Aeróbica");
-		setA.add("Arqueria");
-		
-		assertEquals(setA, nomin);
-		
-	}
+	assertThrows(CuponeraRepetidaException.class, () -> {ctrlCuponeras.registrarCuponera("Flexibilidad","Actividades de flexibilidad",new SimpleDateFormat("dd/MM/yy").parse("02/08/21"),new SimpleDateFormat("dd/MM/yy").parse("31/08/21"),20f,new SimpleDateFormat("dd/MM/yy").parse("01/07/21"));});
 
 }
+}
+
+
