@@ -17,6 +17,7 @@ import excepciones.ActividadDeportivaRepetidaException;
 import logica.DataActividad;
 import logica.Fabrica;
 import logica.IctrlADeportivas;
+import logica.IctrlClases;
 import logica.IctrlIDeportivas;
 import logica.manejIDeportivas;
 import presentacion.Principal;
@@ -81,22 +82,6 @@ class TestctrlADeportivas {
 		} 
 		assertThrows(ActividadDeportivaRepetidaException.class, () -> {ctrlADeportivas.altaActividadDeportiva("Olympic", "Nado Sincronizado", "Equipo olimpico", 180f, 1500f, new SimpleDateFormat("dd/MM/yy").parse("07/07/21"));});
 	}
-
-
-	@Test
-	void testGetActividadesOK() throws ActividadDeportivaNoExisteException {
-		/*DataActividad d1 = new DataActividad();
-		d1 = ctrlADeportivas.getDataActividad("Aeróbica");
-		DataActividad d2 = new DataActividad();
-		d2 = ctrlADeportivas.getDataActividad("Kickboxing");
-		try {
-			DataActividad[] dact = ctrlADeportivas.getActividades("Fuerza Bruta");
-			assertEquals(dact[0].getNombre(), "Kickboxing");
-			assertEquals(dact[1].getNombre(), "Aparatos y pesas");
-		} catch (ActividadDeportivaNoExisteException e) {
-			e.printStackTrace();
-		}*/
-	}
 	
 	@Test
 	void testGetActividadesNoExiste() {
@@ -109,7 +94,7 @@ class TestctrlADeportivas {
 	}
 	
 	@Test
-	void testMostrarClasesVigentesDeActividadDeportiva() {
+	void testdarNombresActividadesDeportivas() {
 		
 		Set<String> setA;
 		Set<String> nomin;
@@ -121,6 +106,31 @@ class TestctrlADeportivas {
 		
 		assertEquals(setA, nomin);
 		
+	}
+	
+	@Test
+	void testmostrarClasesVigentesDeActividadDeportivaVacio() {
+		
+		Set<String> setA = new HashSet<String>();
+		Set<String> clasesVigentes;
+		
+		clasesVigentes = ctrlADeportivas.mostrarClasesVigentesDeActividadDeportiva("Arqueria");
+		
+		assertEquals(setA, clasesVigentes);
+	}
+	
+	@Test
+	void testmostrarClasesVigentesDeActividadDeportivaOK() {
+		
+		Set<String> setA = new HashSet<String>();
+		Set<String> clasesVigentes;
+		
+		
+		
+		clasesVigentes = ctrlADeportivas.mostrarClasesVigentesDeActividadDeportiva("Basquetbol");
+
+		
+		assertEquals(setA, clasesVigentes);
 	}
 
 }
