@@ -31,17 +31,14 @@ class TestctrlADeportivas {
 
 	private static IctrlADeportivas ctrlADeportivas;
 	private static IctrlIDeportivas ctrlIDeportivas;
-	private static IctrlClases ctrlClases;
 	
 	@BeforeAll
 	public static void iniciar() {
 		Fabrica fabrica = Fabrica.getInstance();
 		ctrlADeportivas = fabrica.getIctrlADeportivas();
 		ctrlIDeportivas = fabrica.getIctrlIDeportivas();
-		ctrlClases = fabrica.getIctrlClases();
 		ctrlIDeportivas.cargarDatosIDeportivas();
 		ctrlADeportivas.cargarDatosADeportivas();
-		ctrlClases.cargarDatosClases();
 	}
 
 	@Test
@@ -128,9 +125,10 @@ class TestctrlADeportivas {
 		Set<String> setA = new HashSet<String>();
 		Set<String> clasesVigentes;
 		
+		
+		
 		clasesVigentes = ctrlADeportivas.mostrarClasesVigentesDeActividadDeportiva("Basquetbol");
-		setA.add("Basquet I");
-		setA.add("Basquet II");
+
 		
 		assertEquals(setA, clasesVigentes);
 	}
