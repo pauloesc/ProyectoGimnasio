@@ -11,6 +11,8 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
@@ -49,6 +51,14 @@ public class AltaInstitucionDeportiva extends JInternalFrame {
 		getContentPane().setLayout(null);
 		setBounds(10, 40, 446, 291);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		
+		addInternalFrameListener(new InternalFrameAdapter() {
+			@Override
+			public void internalFrameClosing(InternalFrameEvent e) {
+				limpiarFormulario();
+				setVisible(false);
+			}
+		});
 		
 		lblNombre = new JLabel("Nombre:");
 		lblNombre.setBounds(31, 30, 70, 19);

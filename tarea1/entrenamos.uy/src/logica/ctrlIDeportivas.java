@@ -76,8 +76,7 @@ public class ctrlIDeportivas implements IctrlIDeportivas{
 			altaInstitucion("Telón", "Actividades deportivas para todas las edades.", "https://telon.com.uy");
 			altaInstitucion("Olympic", "Gimnasia y Aparatos", "https://www.olympic21.com/");
 		} catch (InstitucionDeportivaRepetidaException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 
