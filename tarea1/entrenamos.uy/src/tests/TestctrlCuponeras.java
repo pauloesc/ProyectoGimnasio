@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -13,6 +14,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import excepciones.ActividadDeportivaRepetidaException;
 import excepciones.CuponeraNoExisteException;
 import excepciones.CuponeraRepetidaException;
 import logica.Cuponera;
@@ -22,6 +24,8 @@ import logica.Fabrica;
 import logica.IctrlADeportivas;
 import logica.IctrlCuponeras;
 import logica.IctrlIDeportivas;
+import logica.InfoClases;
+import logica.ParActividad;
 
 
 
@@ -145,8 +149,67 @@ void testregistrarCuponeraRepite() {
 }
 
 
+	/* agregarActividad(String nomcup,String act,int numclase) throws ActividadDeportivaRepetidaException*/
 	
+	@Test
+	void testagregarActividad() {
+		Date fi=null;
+		Date ff=null;
+		Date fa=null;
+		try {
+			fi = new SimpleDateFormat("dd/MM/yy").parse("05/08/21");
+			ff = new SimpleDateFormat("dd/MM/yy").parse("31/08/21");
+			fa=  new SimpleDateFormat("dd/MM/yy").parse("01/07/21");
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	
+		try {
+			ctrlCuponeras.registrarCuponera("Baile2","Actividades2",fi,ff,10f,fa);
+		}catch (CuponeraRepetidaException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			ctrlCuponeras.agregarActividad("Baile2","Voleibol", 20);	
+		}catch (ActividadDeportivaRepetidaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		DataCuponera res=new DataCuponera();
+			try {
+				 res= ctrlCuponeras.mostrarCuponera("Baile2");
+			} catch (CuponeraNoExisteException e) {
+				e.printStackTrace();
+			}	
+		
+		Set<ParActividad> cont=res.getClases();
+		String contenidonombre = null;
+		int contenidonum = 0;
+		if (!cont.isEmpty()) {
+			Iterator<ParActividad> iter=cont.iterator();
+		    boolean encontre=false;
+			while (!encontre && iter.hasNext()) {
+				ParActividad it=iter.next();
+				if (it.getNombre()=="Voleibol" && it.getNumclase()==20){
+				   contenidonombre=it.getNombre();
+				   contenidonum = it.getNumclase();
+				   encontre=true;
+				}
+				
+			}
+		}
+		
+			assertEquals(contenidonombre, "Voleibol", "El nombre de la actividad es correcto");
+			assertEquals(contenidonum, 20, "El numero de clases es correcto");
+			assertEquals(res.getNombre(), "Baile2", "El nombre de la cuponera es correcto");
+			
+	}
+		
+		
+		
 	
 	
 	
