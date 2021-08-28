@@ -16,8 +16,6 @@ import excepciones.ClaseYaCompradaException;
 public class Socio extends Usuario {
 	private Map<String,Compra> compCup;
 	private Set<Registro> regs;
-
-	private Vector<Registro> registros = new Vector<Registro>();
 	
 	public Socio(InfoBasicaSocio info) {
 		
@@ -25,7 +23,7 @@ public class Socio extends Usuario {
 				info.getNombre(),
 				info.getApellido(),
 				info.getCorreo(),
-				new Date() );
+				info.getFechaNac() );
 		
 		compCup = new HashMap<String,Compra>();
 		regs = new HashSet<Registro>();
@@ -95,17 +93,13 @@ public class Socio extends Usuario {
 	@Override
 	public InformacionActividad InformacionActividad(String usuario) {
 		
-		InformacionActividad i = new InfoActividadSocio();
-		
-		Iterator<Registro> regs = registros.iterator();
-		
-		while(regs.hasNext()){
-			
-			Registro aux = regs.next();
+		InformacionActividad i = new InfoActividadSocio();		
+		for( Iterator<Registro> it = regs.iterator(); it.hasNext();) { 
+			Registro aux = it.next();
 			DtClase claseInfo = aux.ActividadSocio();
 			i.agregarInfo(claseInfo);
-			
 		}
+		
 		return i;
 	}
 }
