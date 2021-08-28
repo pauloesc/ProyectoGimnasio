@@ -98,6 +98,7 @@ public class ConsultaUsuario extends JInternalFrame{
     private JTextField txtBibliografia;
     private JTextField txtWeb;
     private JDateChooser dateChooserInicio;
+    private JButton btnConsultarActividad;
     
     private JList<DtActividadesDeportivas> list;
     private JList<DtClase> list_1;
@@ -143,6 +144,7 @@ public class ConsultaUsuario extends JInternalFrame{
 
 				//antes de cargarle datos me aseguro que este en condiciones 
 				limpiarFormulario();
+				LimpiarListas();
 		    	
 				String nick = comboBoxNicks.getSelectedItem().toString();
 			
@@ -157,9 +159,19 @@ public class ConsultaUsuario extends JInternalFrame{
 						
 				//si es socio
 				if ( i.getClass()  == InfoBasicaSocio.class ) {
+					
+					list.setEnabled(false);
+					btnConsultarActividad.setEnabled(false);
+
+					
 				}
 				//si es profe
 				else {
+					
+					//habilita los campos
+					list.setEnabled(true);
+					btnConsultarActividad.setEnabled(true);
+					
 					InfoBasicaProfesor ee = (InfoBasicaProfesor) i ;
 					//caro en la presentacion datos especificos del profesor
 					txtInstitucion.setText( ee.getInstitucion() );
@@ -187,8 +199,16 @@ public class ConsultaUsuario extends JInternalFrame{
 					while( iterat.hasNext() ) {
 						Object aux =  iterat.next( );
 						vec.add( (DtClase) aux );
+						
 					}
 					
+					if( vec.isEmpty() ) {
+						System.out.println("es vacio vector dtclases");
+					}
+					
+					if( vecGenerico.isEmpty() ) {
+						System.out.println("es vacio vector objects");
+					}
 					
 					DefaultListModel<DtClase> modell = new DefaultListModel<DtClase>();
 					Iterator<DtClase> iterat2 = vec.iterator();
@@ -199,6 +219,7 @@ public class ConsultaUsuario extends JInternalFrame{
 					
 					}
 				
+					
 				
 				//si es InfoActividadProfesor
 				else {
@@ -327,7 +348,7 @@ public class ConsultaUsuario extends JInternalFrame{
 		getContentPane().add(txtCorreo, gbc_txtCorreo);
 		txtCorreo.setColumns(10);
 		
-		JButton btnConsultarActividad = new JButton("Consulta  de  Actividad  Deportiva");
+		btnConsultarActividad = new JButton("Consulta  de  Actividad  Deportiva");
 		btnConsultarActividad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -462,6 +483,7 @@ public class ConsultaUsuario extends JInternalFrame{
 			public void actionPerformed(ActionEvent e) {
 				limpiarFormulario();
 				setVisible(false);
+				LimpiarListas();
 				
 			}
 		});
@@ -542,5 +564,12 @@ public class ConsultaUsuario extends JInternalFrame{
 		
 	}
     
+	private void LimpiarListas() {
+		DefaultListModel<DtActividadesDeportivas> m1 = new DefaultListModel<DtActividadesDeportivas>();
+		DefaultListModel<DtClase> m2 = new DefaultListModel<DtClase>();
+		this.list.setModel(m1);
+		this.list_1.setModel(m2);
+	}
 
+	
 }
