@@ -46,6 +46,7 @@ import excepciones.CuponeraNoExisteException;
 import javax.swing.JCheckBox;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
+import javax.swing.JFrame;
 
 public class RegistroDictadoDeClases extends JInternalFrame {
 	private JComboBox<String> comboBoxInstituciones;
@@ -90,14 +91,20 @@ public class RegistroDictadoDeClases extends JInternalFrame {
 	
 	
 	public RegistroDictadoDeClases() {
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		
+		
 		addInternalFrameListener(new InternalFrameAdapter() {
 			@Override
 			public void internalFrameClosed(InternalFrameEvent e) {
-				limpiarFormulario();
-				setVisible(false);
+				//limpiarFormulario();
+				//setVisible(false);
 			}
 		});
+		
+	
 		setClosable(true);
+		
 		Fabrica fab = Fabrica.getInstance();
 		IAD = fab.getIctrlADeportivas();
 		IID = fab.getIctrlIDeportivas();
