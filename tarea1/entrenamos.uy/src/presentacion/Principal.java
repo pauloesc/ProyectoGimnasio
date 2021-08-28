@@ -236,8 +236,8 @@ public class Principal {
         menuItemRegistrarAD.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Muestro el InternalFrame para registrar una Actividad Deportiva
-            	altaActividadDeportivaInternalFrame.cargarInstituciones();
             	altaActividadDeportivaInternalFrame.setVisible(true);
+            	altaActividadDeportivaInternalFrame.cargarInstituciones();
             }
         });
         menuActDeportivas.add(menuItemRegistrarAD);
@@ -246,8 +246,8 @@ public class Principal {
         menuItemVerInfoAD.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Muestro el InternalFrame para ver información de una Actividad Deportiva
-            	consultaActividadDeportivaInternalFrame.cargarInstituciones();
             	consultaActividadDeportivaInternalFrame.setVisible(true);
+            	consultaActividadDeportivaInternalFrame.cargarInstituciones();
             }
         });
         menuActDeportivas.add(menuItemVerInfoAD);
