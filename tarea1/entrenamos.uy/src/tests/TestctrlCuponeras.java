@@ -145,6 +145,13 @@ void testregistrarCuponeraRepite() {
 }
 
 
+	
+	
+	
+	
+	
+	
+	
 	 
 	
 	@AfterAll

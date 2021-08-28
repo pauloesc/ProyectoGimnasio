@@ -25,6 +25,7 @@ import javax.swing.event.InternalFrameEvent;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JFrame;
 
 
 
@@ -40,6 +41,7 @@ public class AgregarActividadaCuponera extends JInternalFrame {
 	private JTextField txtnumClases;
 	
 	public AgregarActividadaCuponera(IctrlCuponeras ICC, IctrlIDeportivas IID, IctrlADeportivas IAD) {
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		addInternalFrameListener(new InternalFrameAdapter() {
 			public void internalFrameClosing(InternalFrameEvent e) {
 				limpiarFormulario();
