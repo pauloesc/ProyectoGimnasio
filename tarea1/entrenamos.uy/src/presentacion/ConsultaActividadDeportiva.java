@@ -358,4 +358,31 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
         comboBoxInstDeportivas.setSelectedItem(null);
         nolimpio = true;
     }
+    
+	/*
+	 * Obtiene nombre institucion a partir del nombre de la activdad pasado por parametro. Retorna null si no existe insitucion
+	 * con esa actividad.
+	 */
+    public String obtenerInstitucion(String nombreAct)
+    {
+    	try
+    	{
+    		DataInstitucion[] instituciones = controlIDeportivas.getInstituciones();
+    		for (DataInstitucion institucion : instituciones)
+    		{
+    			Set<String> nombresActividades = controlADeportivas.darNombresActividadesDeportivas(institucion.getNombre());
+    			for (String nombre : nombresActividades)
+    			{
+    				if (nombre == nombreAct)
+    					return institucion.getNombre();
+    			}
+    		}
+    	}
+    	catch (InstitucionDeportivaNoExisteException e)
+    	{
+    		JOptionPane.showMessageDialog(this, e.getMessage(), "Consulta Actividad Deportiva",	JOptionPane.ERROR_MESSAGE);
+    		return null;
+    	}
+    	return null;
+    }
 }
