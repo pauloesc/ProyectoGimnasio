@@ -37,6 +37,7 @@ import com.toedter.calendar.JDateChooser;
 import excepciones.ClaseRepetidaException;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
+import javax.swing.JFrame;
 
 public class AltaDictadoDeClases extends JInternalFrame {
 	private JTextField NombreClase;
@@ -78,6 +79,7 @@ public class AltaDictadoDeClases extends JInternalFrame {
 	
 	
 	public AltaDictadoDeClases() {
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		addInternalFrameListener(new InternalFrameAdapter() {
 			@Override
 			public void internalFrameClosed(InternalFrameEvent e) {

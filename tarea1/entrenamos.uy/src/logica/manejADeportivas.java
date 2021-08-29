@@ -56,4 +56,9 @@ public class manejADeportivas {
     public float getPrecio(String actDep) {
     	return actividadesDeportivas.get(actDep).getCosto();
     }
+    public void EliminarManjeador() {
+		instancia.actividadesDeportivas.clear();
+		instancia=null;
+	}
+	
 }

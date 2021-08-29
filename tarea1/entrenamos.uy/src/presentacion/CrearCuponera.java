@@ -21,6 +21,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
+import javax.swing.JFrame;
 @SuppressWarnings({ "serial" })
 public class CrearCuponera extends JInternalFrame {
 	
@@ -33,6 +34,7 @@ public class CrearCuponera extends JInternalFrame {
 	private JTextField txtDes;
 	
 	public CrearCuponera(IctrlCuponeras icc) {
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		addInternalFrameListener(new InternalFrameAdapter() {
 			public void internalFrameClosing(InternalFrameEvent e) {
 				limpiarFormulario();
