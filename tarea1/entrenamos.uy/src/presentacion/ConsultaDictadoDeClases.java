@@ -465,6 +465,17 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 		btnBuscar.setEnabled(false);
 	}
 
+	public String ClaseAsociadaAInstitucion(String clase) {
+		Set<String> inst = IID.darNombreInstituciones();
+		for( String i : inst ) {
+			
+			if( buscaractividad(i,clase) != null ) {
+				return i;
+			}
+		}
+		return null;
+	}
+	
 	public String buscaractividad (String inst, String clase) {
 		Set <String>  actdep= IAD.darNombresActividadesDeportivas(inst);
 		
