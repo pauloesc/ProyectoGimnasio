@@ -285,14 +285,15 @@ public class ConsultaUsuario extends JInternalFrame{
 			public void mouseClicked(MouseEvent e) {
 			
 				DtActividadesDeportivas selected = list.getSelectedValue();
-				Vector<DtClase> vec = selected.getClases();
-				DefaultListModel<DtClase> modell = new DefaultListModel<DtClase>();
-				Iterator<DtClase> i = vec.iterator();
-				while( i.hasNext() ) {
-					modell.addElement(i.next());
+				if (selected != null) {
+					Vector<DtClase> vec = selected.getClases();
+					DefaultListModel<DtClase> modell = new DefaultListModel<DtClase>();
+					Iterator<DtClase> i = vec.iterator();
+					while( i.hasNext() ) {
+						modell.addElement(i.next());
+					}
+					list_1.setModel(modell);
 				}
-				list_1.setModel(modell);
-				
 			}
 		});
 
@@ -551,24 +552,24 @@ public class ConsultaUsuario extends JInternalFrame{
     
     private void llamarCasoUsoConsultaAcDeportiva() {
 		DtActividadesDeportivas selected = list.getSelectedValue();
-		Principal instancia = Principal.getInstance();
-		String actDep = selected.getNombre();
-		instancia.consultaActividadDeportivaInternalFrame.cargarDatosActividad(actDep);
-		instancia.consultaActividadDeportivaInternalFrame.setVisible(true);
-		//String inst = this.txtInstitucion.toString();
-		
-
+		if( selected != null) {
+			Principal instancia = Principal.getInstance();
+			String actDep = selected.getNombre();
+			instancia.consultaActividadDeportivaInternalFrame.cargarDatosActividad(actDep);
+			instancia.consultaActividadDeportivaInternalFrame.setVisible(true);
+			//String inst = this.txtInstitucion.toString();
+		}
     }
     
 	private void llamarCasoUsoConsultaDictadoClase() {
 		
 		DtClase selected = list_1.getSelectedValue();
-		String nomClase = selected.getNombre();
-		
-		Principal instancia = Principal.getInstance();
-		instancia.consultaDictadoDeClasesFrame.cargarDatosClase(nomClase);
-		instancia.consultaDictadoDeClasesFrame.setVisible(true);
-		
+		if( selected != null ) {
+			String nomClase = selected.getNombre();
+			Principal instancia = Principal.getInstance();
+			instancia.consultaDictadoDeClasesFrame.cargarDatosClase(nomClase);
+			instancia.consultaDictadoDeClasesFrame.setVisible(true);
+		}
 	}
     
 	private void LimpiarListas() {
