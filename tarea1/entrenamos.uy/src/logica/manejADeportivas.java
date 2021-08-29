@@ -38,7 +38,7 @@ public class manejADeportivas {
         return ((ActividadDeportiva) actividadesDeportivas.get(nombre));
     }
 
-    public ActividadDeportiva[] getActividades() {
+  /*  public ActividadDeportiva[] getActividades() {
         if (actividadesDeportivas.isEmpty())
             return null;
         else {
@@ -51,7 +51,7 @@ public class manejADeportivas {
 
             return actividadesdeportivas;
         }
-    }
+    }*/
     
     public float getPrecio(String actDep) {
     	return actividadesDeportivas.get(actDep).getCosto();

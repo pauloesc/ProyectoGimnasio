@@ -63,6 +63,8 @@ import javax.swing.event.InternalFrameEvent;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 @SuppressWarnings({ "serial", "unused" })
 public class ConsultaActividadDeportiva extends JInternalFrame {
@@ -208,8 +210,9 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 		getContentPane().add(tabbedPane);
 		
 		listClases = new JList<String>();
-		listClases.addListSelectionListener(new ListSelectionListener() {
-			public void valueChanged(ListSelectionEvent arg0) {
+		listClases.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
 				if (nolimpio) {
 					frameClases.cargarDatosClase(listClases.getSelectedValue());
 					frameClases.setVisible(true);
@@ -221,8 +224,9 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 		tabbedPane.addTab("Clases", null, listClases, null);
 		
 		listCuponeras = new JList<String>();
-		listCuponeras.addListSelectionListener(new ListSelectionListener() {
-			public void valueChanged(ListSelectionEvent arg0) {
+		listCuponeras.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
 				if (nolimpio) {
 					frameCuponeras.cargardatoscuponeras(listCuponeras.getSelectedValue());
 					frameCuponeras.setVisible(true);
