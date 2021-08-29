@@ -86,15 +86,16 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 	
 	
 	public ConsultaDictadoDeClases() {
-		
-		
 		addInternalFrameListener(new InternalFrameAdapter() {
 			@Override
-			public void internalFrameClosed(InternalFrameEvent e) {
-				limpiarFormulario();
+			public void internalFrameClosing(InternalFrameEvent e) {
 				setVisible(false);
+				limpiarFormulario();
 			}
 		});
+		
+		
+		
 		
 		setClosable(true);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);

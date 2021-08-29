@@ -91,16 +91,16 @@ public class RegistroDictadoDeClases extends JInternalFrame {
 	
 	
 	public RegistroDictadoDeClases() {
+		addInternalFrameListener(new InternalFrameAdapter() {
+			@Override
+			public void internalFrameClosing(InternalFrameEvent e) {
+				setVisible(false);
+				limpiarFormulario();
+			}
+		});
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		
 		
-		addInternalFrameListener(new InternalFrameAdapter() {
-			@Override
-			public void internalFrameClosed(InternalFrameEvent e) {
-				//limpiarFormulario();
-				//setVisible(false);
-			}
-		});
 		
 	
 		setClosable(true);
