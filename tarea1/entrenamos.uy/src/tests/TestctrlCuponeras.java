@@ -152,7 +152,7 @@ void testregistrarCuponeraRepite() {
 	/* agregarActividad(String nomcup,String act,int numclase) throws ActividadDeportivaRepetidaException*/
 	
 	@Test
-	void testagregarActividad() {
+	void testagregarActividadExito() {
 		Date fi=null;
 		Date ff=null;
 		Date fa=null;
@@ -207,7 +207,37 @@ void testregistrarCuponeraRepite() {
 			assertEquals(res.getNombre(), "Baile2", "El nombre de la cuponera es correcto");
 			
 	}
+	@Test
+	void testagregarActividadFail() {
+		Date fi=null;
+		Date ff=null;
+		Date fa=null;
+		try {
+			fi = new SimpleDateFormat("dd/MM/yy").parse("05/08/21");
+			ff = new SimpleDateFormat("dd/MM/yy").parse("31/08/21");
+			fa=  new SimpleDateFormat("dd/MM/yy").parse("01/07/21");
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	
+		try {
+			ctrlCuponeras.registrarCuponera("Baile3","Actividades2",fi,ff,10f,fa);
+		}catch (CuponeraRepetidaException e) {
+			e.printStackTrace();
+		}
 		
+		try {
+			ctrlCuponeras.agregarActividad("Baile3","Voleibol", 20);	
+			
+		}catch (ActividadDeportivaRepetidaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		assertThrows(ActividadDeportivaRepetidaException.class, () -> {ctrlCuponeras.agregarActividad("Baile3","Voleibol", 20);});
+		
+	}
 		
 		
 	
