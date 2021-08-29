@@ -61,5 +61,10 @@ public class manejCuponeras {
 		
 		return resu;
 	}
+	public void EliminarManjeador() {
+		instancia.Cuponeras.clear();
+		instancia=null;
+	}
+	
 	
 }

@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import excepciones.ActividadDeportivaRepetidaException;
 import excepciones.CuponeraNoExisteException;
 import excepciones.CuponeraRepetidaException;
+import excepciones.InstitucionDeportivaRepetidaException;
 import logica.Cuponera;
 import logica.DataCuponera;
 import logica.DtClase;
@@ -26,28 +27,35 @@ import logica.IctrlCuponeras;
 import logica.IctrlIDeportivas;
 import logica.InfoClases;
 import logica.ParActividad;
+import logica.manejADeportivas;
+import logica.manejCuponeras;
 
 
 
 class TestctrlCuponeras {
 
 	private static IctrlCuponeras ctrlCuponeras;
+	private static IctrlADeportivas ctrlDeportivas;
+	private static IctrlIDeportivas ctrlInsti;
 	
-
 	@BeforeAll
 	public static void iniciar() {
 		Fabrica fabrica = Fabrica.getInstance();
-		IctrlIDeportivas IID = fabrica.getIctrlIDeportivas();
-		IctrlADeportivas IAD = fabrica.getIctrlADeportivas();
+		ctrlInsti = fabrica.getIctrlIDeportivas();
+		ctrlDeportivas = fabrica.getIctrlADeportivas();
 		ctrlCuponeras = fabrica.getIctrlCuponeras();
-		IID.cargarDatosIDeportivas();
-		IAD.cargarDatosADeportivas();
+		ctrlInsti.cargarDatosIDeportivas();
+		ctrlDeportivas.cargarDatosADeportivas();
+		ctrlCuponeras.cargarDatosCuponeras();
+		manejCuponeras.getinstance().EliminarManjeador();
+		manejADeportivas.getinstance().EliminarManjeador();
 	
 	}
 
 	@Test
 	void testlistarCuponeraFal(){
 		
+		manejCuponeras.getinstance().EliminarManjeador();
 		assertThrows(CuponeraNoExisteException.class, () ->{ctrlCuponeras.listarCuponeras();});
 	
 }
@@ -55,7 +63,7 @@ class TestctrlCuponeras {
 	
 	@Test
 	void testregistrarCuponeraExito() {
-		
+		manejCuponeras.getinstance().EliminarManjeador();
 		Date fi=null;
 		Date ff=null;
 		Date fa=null;
@@ -93,7 +101,7 @@ class TestctrlCuponeras {
 
 	@Test
 void testregistrarCuponeraRepite() {
-	
+		manejCuponeras.getinstance().EliminarManjeador();
 	Date fi=null;
 	Date ff=null;
 	Date fa=null;
@@ -149,11 +157,10 @@ void testregistrarCuponeraRepite() {
 }
 
 
-	/* agregarActividad(String nomcup,String act,int numclase) throws ActividadDeportivaRepetidaException*/
-	
+
 	@Test
 	void testagregarActividadExito() {
-		Date fi=null;
+		manejCuponeras.getinstance().EliminarManjeador();Date fi=null;
 		Date ff=null;
 		Date fa=null;
 		try {
@@ -172,11 +179,24 @@ void testregistrarCuponeraRepite() {
 		}
 		
 		try {
-			ctrlCuponeras.agregarActividad("Baile2","Voleibol", 20);	
+			ctrlInsti.altaInstitucion("Ald", "deporte","url");
+		} catch (InstitucionDeportivaRepetidaException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			ctrlDeportivas.altaActividadDeportiva("Ald", "Volei", "dep", 30f, 300f, fi);
+		} catch (ActividadDeportivaRepetidaException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			ctrlCuponeras.agregarActividad("Baile2","Volei", 20);	
 		}catch (ActividadDeportivaRepetidaException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		
 		DataCuponera res=new DataCuponera();
 			try {
@@ -193,7 +213,7 @@ void testregistrarCuponeraRepite() {
 		    boolean encontre=false;
 			while (!encontre && iter.hasNext()) {
 				ParActividad it=iter.next();
-				if (it.getNombre()=="Voleibol" && it.getNumclase()==20){
+				if (it.getNombre()=="Volei" && it.getNumclase()==20){
 				   contenidonombre=it.getNombre();
 				   contenidonum = it.getNumclase();
 				   encontre=true;
@@ -202,13 +222,14 @@ void testregistrarCuponeraRepite() {
 			}
 		}
 		
-			assertEquals(contenidonombre, "Voleibol", "El nombre de la actividad es correcto");
+			assertEquals(contenidonombre, "Volei", "El nombre de la actividad es correcto");
 			assertEquals(contenidonum, 20, "El numero de clases es correcto");
 			assertEquals(res.getNombre(), "Baile2", "El nombre de la cuponera es correcto");
 			
 	}
 	@Test
 	void testagregarActividadFail() {
+		manejCuponeras.getinstance().EliminarManjeador();
 		Date fi=null;
 		Date ff=null;
 		Date fa=null;
@@ -228,14 +249,14 @@ void testregistrarCuponeraRepite() {
 		}
 		
 		try {
-			ctrlCuponeras.agregarActividad("Baile3","Voleibol", 20);	
+			ctrlCuponeras.agregarActividad("Baile3","Volei", 20);	
 			
 		}catch (ActividadDeportivaRepetidaException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		assertThrows(ActividadDeportivaRepetidaException.class, () -> {ctrlCuponeras.agregarActividad("Baile3","Voleibol", 20);});
+		assertThrows(ActividadDeportivaRepetidaException.class, () -> {ctrlCuponeras.agregarActividad("Baile3","Volei", 20);});
 		
 	}
 		
@@ -247,12 +268,8 @@ void testregistrarCuponeraRepite() {
 	
 	 
 	
-	@AfterAll
-	public static void fin() {
-		ctrlCuponeras.cargarDatosCuponeras();
-	}
 	
-
 	
 }
+
 
