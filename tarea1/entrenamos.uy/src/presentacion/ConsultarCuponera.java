@@ -278,7 +278,13 @@ public class ConsultarCuponera extends JInternalFrame {
         
         
         DefaultTableModel modelo;
-        modelo= new DefaultTableModel();
+        modelo= new DefaultTableModel() {
+        	@Override 
+        	public boolean isCellEditable (int row, int colunm) {
+        		return false;
+        	}
+        }
+        ;
         String[] columnName= {"Actividad Deportiva","Número de clases"};
         modelo.setColumnIdentifiers(columnName);
         
