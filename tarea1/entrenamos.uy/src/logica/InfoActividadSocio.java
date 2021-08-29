@@ -18,4 +18,17 @@ public class InfoActividadSocio extends InformacionActividad {
 			uu.imp();	
 		}	
 	}
+	
+	public boolean SonIguales( InfoBasicaSocio i ) {
+
+		InfoBasicaUser aux = (InfoBasicaUser)i;
+		
+		if( (i.SonIguales(aux))) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	} 
+	
 }

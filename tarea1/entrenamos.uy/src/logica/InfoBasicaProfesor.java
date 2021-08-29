@@ -60,4 +60,22 @@ public class InfoBasicaProfesor extends InfoBasicaUser {
 		this.institucion = institucion;
 	}
 	
+	public boolean SonIguales( InfoBasicaProfesor i ) {
+
+		InfoBasicaUser aux = (InfoBasicaUser)i;
+		
+		if( (i.SonIguales(aux))& 
+			(this.getInstitucion() == i.getInstitucion())&
+			(this.getDesc() == i.getDesc())&
+			(this.getBibliografia() == i.getBibliografia())&
+			(this.getUrl() == i.getUrl())) {
+			
+			return true;
+		}
+		else {
+			return false;
+		}
+	} 
+		
+	
 }

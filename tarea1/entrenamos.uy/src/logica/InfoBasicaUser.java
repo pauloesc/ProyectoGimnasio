@@ -56,5 +56,21 @@ public abstract class InfoBasicaUser {
 		this.fechaNac = fechaNac;
 	}
     
+	
+	public boolean SonIguales( InfoBasicaUser i ) {
+		
+		if(
+		(this.apellido == i.getApellido())&
+		(this.correo == i.getCorreo())&
+		(this.fechaNac == i.getFechaNac())&
+		(this.nickname == i.getNickname())&
+		(this.nombre == i.getNombre())){
+			return true;
+		}
+		
+		else {
+			return false;
+			}
+	}
     
 }

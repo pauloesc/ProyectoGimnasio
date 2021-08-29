@@ -150,4 +150,10 @@ public class manejUsuarios {
     	} 
 		return res;
 	}
+	
+	public void ElimiarManjeador() {
+		manejUsuarios.instance=null;
+		usuarios.clear();
+	}
+	
 }

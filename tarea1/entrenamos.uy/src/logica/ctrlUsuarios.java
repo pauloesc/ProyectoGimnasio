@@ -164,4 +164,9 @@ public class ctrlUsuarios implements IctrlUsuarios {
 			
 		}
 	}
+	
+	public void ElimiarManjeador() {
+		manejador.ElimiarManjeador();
+		this.manejador=null;
+	}
 }
