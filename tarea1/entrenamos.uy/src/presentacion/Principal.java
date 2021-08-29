@@ -42,6 +42,8 @@ public class Principal {
     private IctrlUsuarios IU;
     private ConsultaUsuario ConsultaUsuarioInternalFrame;
     
+    private ModificarUsuario ModificarUsuarioInternalFrame ;
+    
     /**
      * Launch the application.
      */
@@ -67,6 +69,7 @@ public class Principal {
 	
     /**
      * Create the application.
+     * @wbp.parser.entryPoint
      */
     public Principal() {
         
@@ -118,7 +121,10 @@ public class Principal {
         
         consultaActividadDeportivaInternalFrame = new ConsultaActividadDeportiva(ICID, ICAD, ICC, ICCL, consultaDictadoDeClasesFrame, ConsultarCuponeraInternalFrame);
         consultaActividadDeportivaInternalFrame.setVisible(false);
-             
+        
+        ModificarUsuarioInternalFrame = new ModificarUsuario(ICU);
+        ModificarUsuarioInternalFrame.setVisible(false);
+        
         desktopPane.setLayout(null);
         
         desktopPane.add(altaInstDeportivaInternalFrame);
@@ -132,6 +138,7 @@ public class Principal {
         desktopPane.add(ConsultarCuponeraInternalFrame);        
         desktopPane.add(RegistroDictadoDeClasesFrame);
         desktopPane.add(ConsultaUsuarioInternalFrame);
+        desktopPane.add(ModificarUsuarioInternalFrame);
     }
 
     /**
@@ -146,7 +153,7 @@ public class Principal {
         entrenamosUy.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         desktopPane = new JDesktopPane();
-        entrenamosUy.add(desktopPane);
+        entrenamosUy.getContentPane().add(desktopPane);
 
         // Se crea una barra de menú (JMenuBar) con dos menú (JMenu) desplegables.
         // Cada menú contiene diferentes opciones (JMenuItem), los cuales tienen un 
@@ -209,8 +216,8 @@ public class Principal {
         JMenuItem menuItemModificaUsuario = new JMenuItem("Modificar Datos de Usuario");
         menuItemModificaUsuario.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Muestro el InternalFrame para ver la lista de todos los usuarios,
-                // cargando previamente la lista
+            	ModificarUsuarioInternalFrame.CargarDatos();
+            	ModificarUsuarioInternalFrame.setVisible(true);
 
             }
         });

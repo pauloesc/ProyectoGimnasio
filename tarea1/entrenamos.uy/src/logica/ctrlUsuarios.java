@@ -62,6 +62,7 @@ public class ctrlUsuarios implements IctrlUsuarios {
 	}
 	
 	public void ActualizarInformacionUsuario(InfoBasicaUser actualizacion){
+		this.manejador.ActualizarInformacionUsuario(actualizacion);
 		
 	}
 	
