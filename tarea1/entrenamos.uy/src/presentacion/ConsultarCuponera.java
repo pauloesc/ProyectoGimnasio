@@ -215,6 +215,7 @@ public class ConsultarCuponera extends JInternalFrame {
 				if (es) {
 					String val=String.valueOf(table.getValueAt(table.getSelectedRow(), 0));	
 					Principal instancia = Principal.getInstance();
+					instancia.consultaActividadDeportivaInternalFrame.cargarCombo(val);
 					instancia.consultaActividadDeportivaInternalFrame.cargarDatosActividad(val);
 					instancia.consultaActividadDeportivaInternalFrame.setVisible(true);
 					

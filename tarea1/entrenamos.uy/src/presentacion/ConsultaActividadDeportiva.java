@@ -385,4 +385,29 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
     	}
     	return null;
     }
+
+    public void cargarCombo(String act) {
+    	
+    	String inst= obtenerInstitucion(act);
+    	 DefaultComboBoxModel<DataInstitucion> modelo2;
+         try {
+             modelo2 = new DefaultComboBoxModel<DataInstitucion>();
+             modelo2.setSelectedItem(controlIDeportivas.getInstitucion(inst));
+             comboBoxInstDeportivas.setModel(modelo2);
+         } catch (InstitucionDeportivaNoExisteException e) {
+         	JOptionPane.showMessageDialog(this, e.getMessage(), "Consulta Actividad Deportiva", JOptionPane.ERROR_MESSAGE);
+         	setVisible(false);
+         }
+
+         DefaultComboBoxModel<DataActividad> modelo3;
+         try {
+             modelo3 = new DefaultComboBoxModel<DataActividad>();
+             modelo3.setSelectedItem(controlADeportivas.getDataActividad(act));
+             comboBoxActDeportivas.setModel(modelo3);
+         } catch (ActividadDeportivaNoExisteException e) {
+         	JOptionPane.showMessageDialog(this, e.getMessage(), "Consulta Actividad Deportiva", JOptionPane.ERROR_MESSAGE);
+         }
+    	
+    }
+
 }
