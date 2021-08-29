@@ -19,9 +19,12 @@ import excepciones.CuponeraRepetidaException;
 import excepciones.InstitucionDeportivaRepetidaException;
 import excepciones.UsuarioDisponibilidadException;
 import logica.Cuponera;
+import logica.InfoActividadProfe;
+import logica.InfoActividadSocio;
 import logica.InfoBasicaProfesor;
 import logica.InfoBasicaSocio;
 import logica.InfoBasicaUser;
+import logica.InformacionActividad;
 import logica.ctrlCuponeras;
 import logica.ctrlIDeportivas;
 import logica.ctrlUsuarios;
@@ -280,7 +283,67 @@ class ctrlUsuariosTest {
 	 */
 	@Test
 	void testInformacionActividad() {
-		fail("Not yet implemented");
+		
+		ctrlUsuarios cu = new ctrlUsuarios();
+		
+		ctrlIDeportivas cid = new ctrlIDeportivas();
+		
+		//cargo institucion para usuarios
+		try {
+			cid.altaInstitucion("inst1", "desc inst 1", "url inst 1");
+		} catch (InstitucionDeportivaRepetidaException e) {
+			
+		}
+		
+		//creo profes
+		InfoBasicaProfesor p1 = new InfoBasicaProfesor(	"nick p1",		"nombre p1",
+													"apellido p1",	"correo p1",
+													new Date(), 	"inst1",
+													"descp p1", 	"bibliog p1",
+													"url p1" );
+		
+		InfoBasicaProfesor p2 = new InfoBasicaProfesor(	"nick p2",		"nombre p2",
+													"apellido p2",	"correo p2",
+													new Date(), 	"inst1",
+													"descp p2", 	"bibliog p2",
+													"url p2" );
+		//creo socios
+		InfoBasicaSocio s1 = new InfoBasicaSocio(	"nick s1",		"nombre s1",
+													"apellido s1",	"correo s1",
+													new Date() );
+		
+		InfoBasicaSocio s2 = new InfoBasicaSocio(	"nick s2",		"nombre s2",
+													"apellido s2",	"correo s2",
+													new Date());
+		
+		try {
+			cu.altaUsuario(p1);
+			cu.altaUsuario(p2);
+			cu.altaUsuario(s1);
+			cu.altaUsuario(s2);
+		}catch(UsuarioDisponibilidadException e){
+			
+		}
+		
+		//como solo estan cargados los profesores y los socios
+		//tiene que ser vacia la actividad
+		 InformacionActividad info_p1 = cu.InformacionActividad("nick p1");
+		 InformacionActividad info_p2 = cu.InformacionActividad("nick p2");
+		 //compruebo que sea vacia la info.
+		 assertTrue( info_p1.obtenerVector().isEmpty() );
+		 assertTrue( info_p2.obtenerVector().isEmpty() );
+		 
+		 InformacionActividad info_s1 = cu.InformacionActividad("nick p1");
+		 InformacionActividad info_s2 = cu.InformacionActividad("nick p2");
+		 //compruebo que sea vacia la info.
+		 assertTrue( info_s1.obtenerVector().isEmpty() );
+		 assertTrue( info_s2.obtenerVector().isEmpty() );
+		 
+		
+			manejIDeportivas.ElimiarManjeador();
+			cu.ElimiarManjeador();
+			cu=null;
+			cid = null;
 	}
 
 	/**
@@ -288,7 +351,96 @@ class ctrlUsuariosTest {
 	 */
 	@Test
 	void testActualizarInformacionUsuario() {
-		fail("Not yet implemented");
+		
+		//preparacion de datos
+		ctrlUsuarios cu = new ctrlUsuarios();
+		ctrlIDeportivas cid = new ctrlIDeportivas();
+		
+		//creo las instituciones
+		try {
+		cid.altaInstitucion("inst1", "desc1", "url1");
+		cid.altaInstitucion("inst2", "desc2", "url2");
+		cid.altaInstitucion("inst3", "desc3", "url3");
+		}
+		catch( InstitucionDeportivaRepetidaException e) {
+			
+		}
+		
+		//creo profes y los asocio a inst1
+		InfoBasicaProfesor p1 = new InfoBasicaProfesor(	"nick p1",		"nombre p1",
+													"apellido p1",	"correo p1",
+													new Date(), 	"inst1",
+													"descp p1", 	"bibliog p1",
+													"url p1" );
+		
+		InfoBasicaProfesor p2 = new InfoBasicaProfesor(	"nick p2",		"nombre p2",
+													"apellido p2",	"correo p2",
+													new Date(), 	"inst1",
+													"descp p2", 	"bibliog p2",
+													"url p2" );
+		
+		//creo socios
+		InfoBasicaSocio s1 = new InfoBasicaSocio(	"nick s1",		"nombre s1",
+													"apellido s1",	"correo s1",
+													new Date() );
+		
+		InfoBasicaSocio s2 = new InfoBasicaSocio(	"nick s2",		"nombre s2",
+													"apellido s2",	"correo s2",
+													new Date());
+		
+		try {
+			cu.altaUsuario(p1);
+			cu.altaUsuario(p2);
+			cu.altaUsuario(s1);
+			cu.altaUsuario(s2);
+		}catch(UsuarioDisponibilidadException e){
+			
+		}
+		
+		//cambio la info del profesor p1
+		InfoBasicaProfesor p1M = new InfoBasicaProfesor("nick p1",		"nombre p1M",
+														"apellido p1M",	"correo p1",
+														new Date(), 	"inst1",
+														"descp p1M", 	"bibliog p1M",
+														"url p1M" );
+		
+		InfoBasicaProfesor p2M = new InfoBasicaProfesor("nick p2",		"nombre p2M",
+														"apellido p2M",	"correo p2",
+														new Date(), 	"inst1",
+														"descp p2M", 	"bibliog p2M",
+														"url p2M" );
+		
+		//modifico socios
+		InfoBasicaSocio s1M = new InfoBasicaSocio(	"nick s1",		"nombre s1M",
+													"apellido s1M",	"correo s1",
+													new Date() );
+		
+		InfoBasicaSocio s2M = new InfoBasicaSocio(	"nick s2",		"nombre s2M",
+													"apellido s2M",	"correo s2",
+													new Date());
+		
+		
+		cu.ActualizarInformacionUsuario(p1M);
+		cu.ActualizarInformacionUsuario(p2M);
+		cu.ActualizarInformacionUsuario(s1M);
+		cu.ActualizarInformacionUsuario(s2M);
+		
+		//traigo la info desde el sistema
+		InfoBasicaUser p1M_Respuesta = cu.InformacionBasicaUsuario("nick p1");
+		InfoBasicaUser p2M_Respuesta = cu.InformacionBasicaUsuario("nick p2");
+		InfoBasicaUser s1M_Respuesta = cu.InformacionBasicaUsuario("nick s1");
+		InfoBasicaUser s2M_Respuesta = cu.InformacionBasicaUsuario("nick s2");
+
+		assertTrue( p1M.SonIguales( (InfoBasicaProfesor)p1M_Respuesta  ), "Info diferente" );
+		assertTrue( p2M.SonIguales( (InfoBasicaProfesor)p2M_Respuesta  ), "Info diferente" );
+		assertTrue( s1M.SonIguales( (InfoBasicaSocio)s1M_Respuesta  ), "Info diferente" );
+		assertTrue( s2M.SonIguales( (InfoBasicaSocio)s2M_Respuesta  ), "Info diferente" );
+		
+		manejIDeportivas.ElimiarManjeador();
+		cu.ElimiarManjeador();
+		cu=null;
+		cid = null;
+		
 	}
 
 	/**
