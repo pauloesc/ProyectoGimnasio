@@ -14,6 +14,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 
 import javax.swing.BorderFactory;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
@@ -60,6 +61,7 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 	private JTextField nomProfesor;
 	private JTextField Finicio;
 	private JTextField Falta;
+	private JButton btnBuscar;
 
 	/**
 	 * Launch the application.
@@ -229,7 +231,7 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 		
 		
 		
-		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar = new JButton("Buscar");
 		btnBuscar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -443,12 +445,36 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 		}
 	}
 
+	public void cargarCombo(String clase, String actividad, String institucion)
+	{
+		// Set comboBoxInstituciones, comboBoxActividadDeportiva y comboBoxClase. Disable btnBuscar
+		DefaultComboBoxModel<String> modeloClase = new DefaultComboBoxModel<String>();
+		modeloClase.setSelectedItem(clase);
+		comboBoxClase.setModel(modeloClase);
+		comboBoxClase.setEnabled(false);
+		
+		DefaultComboBoxModel<String> modeloActividad = new DefaultComboBoxModel<String>();
+		modeloActividad.setSelectedItem(actividad);
+		comboBoxActividadDeportiva.setModel(modeloActividad);
+		comboBoxActividadDeportiva.setEnabled(false);
+		
+		DefaultComboBoxModel<String> modeloInstitucion = new DefaultComboBoxModel<String>();
+		modeloInstitucion.setSelectedItem(institucion);
+		comboBoxInstituciones.setModel(modeloInstitucion);
+		comboBoxInstituciones.setEnabled(false);
+		
+		btnBuscar.setEnabled(false);
+	}
 	
 	public void limpiarFormulario() {
 		comboBoxClase.removeAllItems();
+		comboBoxClase.setModel(new DefaultComboBoxModel<String>());
 		comboBoxActividadDeportiva.removeAllItems();
+		comboBoxActividadDeportiva.setModel(new DefaultComboBoxModel<String>());
 		comboBoxInstituciones.removeAllItems();
+		comboBoxInstituciones.setModel(new DefaultComboBoxModel<String>());
 		
+		comboBoxInstituciones.setEnabled(true);
 		comboBoxClase.setEnabled(false);
 		comboBoxActividadDeportiva.setEnabled(false);
 						
@@ -460,6 +486,8 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 		url.setText("");
 		Finicio.setText("");
 		Falta.setText("");
+		
+		btnBuscar.setEnabled(true);
 	}
 	
 }

@@ -215,6 +215,8 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				if (nolimpio) {
 					frameClases.cargarDatosClase(listClases.getSelectedValue());
+					frameClases.cargarCombo(listClases.getSelectedValue(), ((DataActividad)comboBoxActDeportivas.getSelectedItem()).getNombre()
+							, ((DataInstitucion)comboBoxInstDeportivas.getSelectedItem()).getNombre());
 					frameClases.setVisible(true);
 					frameClases.toFront();
 					toBack();
