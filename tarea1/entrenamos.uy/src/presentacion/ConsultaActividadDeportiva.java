@@ -358,10 +358,25 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
         comboBoxInstDeportivas.removeActionListener(comboBoxActDeportivas);
         comboBoxActDeportivas.setSelectedItem(null);
         comboBoxInstDeportivas.setSelectedItem(null);
+        comboBoxActDeportivas.setModel(new DefaultComboBoxModel<DataActividad>());
+        comboBoxInstDeportivas.setModel(new DefaultComboBoxModel<DataInstitucion>());
         nolimpio = true;
     }
     
-	/*
+    //Permite cargar los combobox con string
+    public void cargarComboboxes(String ninst, String nact) throws ActividadDeportivaNoExisteException, InstitucionDeportivaNoExisteException {
+    	DataInstitucion d1 = controlIDeportivas.getInstitucion(ninst);
+    	DataActividad a1 = controlADeportivas.getDataActividad(nact);
+    	comboBoxInstDeportivas.addItem(d1);
+    	comboBoxInstDeportivas.setSelectedItem(d1);
+    	comboBoxInstDeportivas.setEnabled(false);
+    	comboBoxActDeportivas.addItem(a1);
+    	comboBoxActDeportivas.setSelectedItem(a1);
+    	comboBoxActDeportivas.setEnabled(false);
+  	
+    }
+    
+    /*
 	 * Obtiene nombre institucion a partir del nombre de la activdad pasado por parametro. Retorna null si no existe insitucion
 	 * con esa actividad.
 	 */
@@ -390,7 +405,7 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 
     public void cargarCombo(String act) {
     	
-    	String inst= obtenerInstitucion(act);
+    	 String inst = obtenerInstitucion(act);
     	 DefaultComboBoxModel<DataInstitucion> modelo2;
          try {
              modelo2 = new DefaultComboBoxModel<DataInstitucion>();

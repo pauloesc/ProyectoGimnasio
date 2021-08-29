@@ -61,6 +61,8 @@ import logica.InfoBasicaProfesor;
 import logica.InfoBasicaSocio;
 import logica.InfoBasicaUser;
 import logica.InformacionActividad;
+import excepciones.ActividadDeportivaNoExisteException;
+import excepciones.InstitucionDeportivaNoExisteException;
 import excepciones.UsuarioDisponibilidadException;
 
 import java.awt.event.MouseAdapter;
@@ -358,7 +360,15 @@ public class ConsultaUsuario extends JInternalFrame{
 		btnConsultarActividad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				llamarCasoUsoConsultaAcDeportiva();
+				try {
+					llamarCasoUsoConsultaAcDeportiva();
+				} catch (ActividadDeportivaNoExisteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (InstitucionDeportivaNoExisteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		
@@ -549,13 +559,15 @@ public class ConsultaUsuario extends JInternalFrame{
 		//comboBoxNicks.setSelectedIndex(-1);
     }
     
-    private void llamarCasoUsoConsultaAcDeportiva() {
+    private void llamarCasoUsoConsultaAcDeportiva() throws ActividadDeportivaNoExisteException, InstitucionDeportivaNoExisteException {
 		DtActividadesDeportivas selected = list.getSelectedValue();
 		Principal instancia = Principal.getInstance();
 		String actDep = selected.getNombre();
+		String inst = txtInstitucion.getText().toString();
 		instancia.consultaActividadDeportivaInternalFrame.cargarDatosActividad(actDep);
+		instancia.consultaActividadDeportivaInternalFrame.cargarComboboxes(inst, actDep);
 		instancia.consultaActividadDeportivaInternalFrame.setVisible(true);
-		//String inst = this.txtInstitucion.toString();
+
 		
 
     }

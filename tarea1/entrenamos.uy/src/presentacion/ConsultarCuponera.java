@@ -344,6 +344,8 @@ public class ConsultarCuponera extends JInternalFrame {
         txtFechaIni.setText("");
         textFechafin.setText("");
         txtFechaAlta.setText("");
+        DefaultComboBoxModel<String> modelo2=new DefaultComboBoxModel<String>();
+        comboBoxCuponeras.setModel(modelo2);
         DefaultTableModel modelo1= new DefaultTableModel();
         table.setModel(modelo1);
         

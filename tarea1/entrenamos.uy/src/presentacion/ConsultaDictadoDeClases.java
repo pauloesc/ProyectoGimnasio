@@ -444,7 +444,6 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 			JOptionPane.showMessageDialog(null, "Error");
 		}
 	}
-
 	public void cargarCombo(String clase, String actividad, String institucion)
 	{
 		// Set comboBoxInstituciones, comboBoxActividadDeportiva y comboBoxClase. Disable btnBuscar
@@ -464,6 +463,25 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 		comboBoxInstituciones.setEnabled(false);
 		
 		btnBuscar.setEnabled(false);
+	}
+
+	public String buscaractividad (String inst, String clase) {
+		Set <String>  actdep= IAD.darNombresActividadesDeportivas(inst);
+		
+		for (String act :actdep) {
+			Set<String> clas = null;
+			try {
+				clas = IC.mostrarClasesDeActividadDeportiva(act);
+			} catch (ClaseNoExisteException e) {
+			}
+			for (String c: clas) {
+				if (c==clase) {
+					return act;
+				} 
+			}
+			
+		}
+		return null;
 	}
 	
 	public void limpiarFormulario() {
