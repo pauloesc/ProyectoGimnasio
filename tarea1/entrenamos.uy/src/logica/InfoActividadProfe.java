@@ -25,26 +25,5 @@ public class InfoActividadProfe extends InformacionActividad {
 	public String getUrl() {
 		return url;
 	}
-
-	
-	public void imp() {
-		
-		System.out.println("info de institucion");
-		System.out.println("Nombre: " + this.nombre);
-		System.out.println("descripcion" + this.desc);
-		System.out.println("web" +this.url);
-		System.out.println("info de institucion");
-		
-		Iterator<Object> ff = this.vector.iterator();
-		
-		while(ff.hasNext()) {
-		
-			DtActividadesDeportivas uu = (DtActividadesDeportivas) ff.next();
-			
-			uu.imp();
-			
-		}
-		
-	}
 	
 }
