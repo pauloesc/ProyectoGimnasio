@@ -229,7 +229,6 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				if (nolimpio) {
 					frameCuponeras.cargardatoscuponeras(listCuponeras.getSelectedValue());
-					
 					frameCuponeras.setVisible(true);
 					frameCuponeras.toFront();
 					toBack();
@@ -374,4 +373,56 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
     	comboBoxActDeportivas.setEnabled(false);
   	
     }
+    
+    /*
+	 * Obtiene nombre institucion a partir del nombre de la activdad pasado por parametro. Retorna null si no existe insitucion
+	 * con esa actividad.
+	 */
+    public String obtenerInstitucion(String nombreAct)
+    {
+    	try
+    	{
+    		DataInstitucion[] instituciones = controlIDeportivas.getInstituciones();
+    		for (DataInstitucion institucion : instituciones)
+    		{
+    			Set<String> nombresActividades = controlADeportivas.darNombresActividadesDeportivas(institucion.getNombre());
+    			for (String nombre : nombresActividades)
+    			{
+    				if (nombre == nombreAct)
+    					return institucion.getNombre();
+    			}
+    		}
+    	}
+    	catch (InstitucionDeportivaNoExisteException e)
+    	{
+    		JOptionPane.showMessageDialog(this, e.getMessage(), "Consulta Actividad Deportiva",	JOptionPane.ERROR_MESSAGE);
+    		return null;
+    	}
+    	return null;
+    }
+
+    public void cargarCombo(String act) {
+    	
+    	 String inst = obtenerInstitucion(act);
+    	 DefaultComboBoxModel<DataInstitucion> modelo2;
+         try {
+             modelo2 = new DefaultComboBoxModel<DataInstitucion>();
+             modelo2.setSelectedItem(controlIDeportivas.getInstitucion(inst));
+             comboBoxInstDeportivas.setModel(modelo2);
+         } catch (InstitucionDeportivaNoExisteException e) {
+         	JOptionPane.showMessageDialog(this, e.getMessage(), "Consulta Actividad Deportiva", JOptionPane.ERROR_MESSAGE);
+         	setVisible(false);
+         }
+
+         DefaultComboBoxModel<DataActividad> modelo3;
+         try {
+             modelo3 = new DefaultComboBoxModel<DataActividad>();
+             modelo3.setSelectedItem(controlADeportivas.getDataActividad(act));
+             comboBoxActDeportivas.setModel(modelo3);
+         } catch (ActividadDeportivaNoExisteException e) {
+         	JOptionPane.showMessageDialog(this, e.getMessage(), "Consulta Actividad Deportiva", JOptionPane.ERROR_MESSAGE);
+         }
+    	
+    }
+
 }
