@@ -123,7 +123,7 @@ public class ModificarUsuario extends JInternalFrame{
         setIconifiable(true);
         setMaximizable(true);
         setClosable(true);
-		setTitle("Consulta de usuario");
+		setTitle("Modificar usuario");
 		setBounds(20, 50, 918, 663);
 		
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);

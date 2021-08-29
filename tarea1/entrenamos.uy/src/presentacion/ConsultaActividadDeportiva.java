@@ -229,6 +229,7 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				if (nolimpio) {
 					frameCuponeras.cargardatoscuponeras(listCuponeras.getSelectedValue());
+					
 					frameCuponeras.setVisible(true);
 					frameCuponeras.toFront();
 					toBack();
@@ -356,6 +357,21 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
         comboBoxInstDeportivas.removeActionListener(comboBoxActDeportivas);
         comboBoxActDeportivas.setSelectedItem(null);
         comboBoxInstDeportivas.setSelectedItem(null);
+        comboBoxActDeportivas.setModel(new DefaultComboBoxModel<DataActividad>());
+        comboBoxInstDeportivas.setModel(new DefaultComboBoxModel<DataInstitucion>());
         nolimpio = true;
+    }
+    
+    //Permite cargar los combobox con string
+    public void cargarComboboxes(String ninst, String nact) throws ActividadDeportivaNoExisteException, InstitucionDeportivaNoExisteException {
+    	DataInstitucion d1 = controlIDeportivas.getInstitucion(ninst);
+    	DataActividad a1 = controlADeportivas.getDataActividad(nact);
+    	comboBoxInstDeportivas.addItem(d1);
+    	comboBoxInstDeportivas.setSelectedItem(d1);
+    	comboBoxInstDeportivas.setEnabled(false);
+    	comboBoxActDeportivas.addItem(a1);
+    	comboBoxActDeportivas.setSelectedItem(a1);
+    	comboBoxActDeportivas.setEnabled(false);
+  	
     }
 }
