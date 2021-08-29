@@ -40,8 +40,7 @@ public class Principal {
     private IctrlCuponeras ICC;
     private IctrlClases ICCL;
     private IctrlUsuarios IU;
-    private ConsultaUsuario ConsultaUsuarioInternalFrame;
-    
+    private ConsultaUsuario ConsultaUsuarioInternalFrame;  
     private ModificarUsuario ModificarUsuarioInternalFrame ;
     
     /**

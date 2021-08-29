@@ -215,6 +215,7 @@ public class ConsultarCuponera extends JInternalFrame {
 				if (es) {
 					String val=String.valueOf(table.getValueAt(table.getSelectedRow(), 0));	
 					Principal instancia = Principal.getInstance();
+					instancia.consultaActividadDeportivaInternalFrame.cargarCombo(val);
 					instancia.consultaActividadDeportivaInternalFrame.cargarDatosActividad(val);
 					instancia.consultaActividadDeportivaInternalFrame.setVisible(true);
 					
@@ -278,7 +279,13 @@ public class ConsultarCuponera extends JInternalFrame {
         
         
         DefaultTableModel modelo;
-        modelo= new DefaultTableModel();
+        modelo= new DefaultTableModel() {
+        	@Override 
+        	public boolean isCellEditable (int row, int colunm) {
+        		return false;
+        	}
+        }
+        ;
         String[] columnName= {"Actividad Deportiva","Número de clases"};
         modelo.setColumnIdentifiers(columnName);
         
@@ -337,6 +344,8 @@ public class ConsultarCuponera extends JInternalFrame {
         txtFechaIni.setText("");
         textFechafin.setText("");
         txtFechaAlta.setText("");
+        DefaultComboBoxModel<String> modelo2=new DefaultComboBoxModel<String>();
+        comboBoxCuponeras.setModel(modelo2);
         DefaultTableModel modelo1= new DefaultTableModel();
         table.setModel(modelo1);
         
