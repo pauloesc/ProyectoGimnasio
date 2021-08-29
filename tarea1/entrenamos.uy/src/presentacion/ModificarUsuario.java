@@ -168,11 +168,25 @@ public class ModificarUsuario extends JInternalFrame{
 					
 					esProfesor=false;
 					
+					txtBibliografia.setEnabled(false);
+					txtBibliografia.setEditable(false);
+					txtDescripcion.setEnabled(false);
+					txtDescripcion.setEditable(false);
+					txtWeb.setEnabled(false);
+					txtWeb.setEditable(false);
+					
 				}
 				//si es profe
 				else {
 					esProfesor=true;
 
+					txtBibliografia.setEnabled(true);
+					txtBibliografia.setEditable(true);
+					txtDescripcion.setEnabled(true);
+					txtDescripcion.setEditable(true);
+					txtWeb.setEnabled(true);
+					txtWeb.setEditable(true);
+					
 					InfoBasicaProfesor ee = (InfoBasicaProfesor) i ;
 					//caro en la presentacion datos especificos del profesor
 					txtBibliografia.setText( ee.getDesc() );

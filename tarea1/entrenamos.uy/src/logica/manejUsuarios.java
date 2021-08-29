@@ -3,6 +3,7 @@
  */
 package logica;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -158,8 +159,28 @@ public class manejUsuarios {
 	
 	public void ActualizarInformacionUsuario(InfoBasicaUser actualizacion){
 		
+		Usuario u = findUsuario( actualizacion.getNickname() );
 		
+		u.setNombre(actualizacion.getNombre());
+		u.setApellido(actualizacion.getApellido());
+		u.setEmail(actualizacion.getCorreo());
+		u.setFNacimiento(actualizacion.getFechaNac());
+	
+		
+		if ( actualizacion.getClass() == InfoBasicaProfesor.class ) {
+		
+			if( u.getClass() == Profesor.class ) {
+				
+				InfoBasicaProfesor aux_actualizacion = (InfoBasicaProfesor)actualizacion;
+				
+				Profesor auxP = (Profesor)u;
+				auxP.setBio(aux_actualizacion.getBibliografia());
+				auxP.setDescripcion(aux_actualizacion.getDesc());
+				auxP.setWebsite(aux_actualizacion.getUrl());
+				
+			}
+			
+		}
 		
 	}
-	
 }
