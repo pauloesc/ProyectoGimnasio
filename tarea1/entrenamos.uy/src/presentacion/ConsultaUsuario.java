@@ -569,6 +569,11 @@ public class ConsultaUsuario extends JInternalFrame{
 			Principal instancia = Principal.getInstance();
 			instancia.consultaDictadoDeClasesFrame.cargarDatosClase(nomClase);
 			instancia.consultaDictadoDeClasesFrame.setVisible(true);
+			
+			//String inst = this.txtInstitucion.getText();
+			//String actD = 
+			
+			//instancia.consultaDictadoDeClasesFrame.cargarCombo(  );
 		}
 	}
     
