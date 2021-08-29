@@ -443,6 +443,34 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 		}
 	}
 
+	public String buscaractividad (String inst, String clase) {
+		Set <String>  actdep= IAD.darNombresActividadesDeportivas(inst);
+		
+		for (String act :actdep) {
+			Set<String> clas = null;
+			try {
+				clas = IC.mostrarClasesDeActividadDeportiva(act);
+			} catch (ClaseNoExisteException e) {
+			}
+			for (String c: clas) {
+				if (c==clase) {
+					return act;
+				} 
+			}
+			
+		}
+		return null;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	public void limpiarFormulario() {
 		comboBoxClase.removeAllItems();
