@@ -30,15 +30,6 @@ public class Socio extends Usuario {
 	
 	}
 		
-	public Socio(String nickname, String nombre, String apellido, String email, Date fNacimiento, String descripcion,
-			String bio, String website, String inst) {
-		super(nickname, nombre, apellido, email, fNacimiento);
-		
-		compCup = new HashMap<String,Compra>();
-		regs = new HashSet<Registro>();
-
-	}
-	
 	public Set<String> mostrarNombreCuponerasDisponibles(String actDept) {
 		Set<String> res = new HashSet<String>();
 		 Calendar fechaActual = Calendar.getInstance();  

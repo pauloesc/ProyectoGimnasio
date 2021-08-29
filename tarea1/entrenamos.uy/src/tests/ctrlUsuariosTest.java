@@ -19,9 +19,12 @@ import excepciones.CuponeraRepetidaException;
 import excepciones.InstitucionDeportivaRepetidaException;
 import excepciones.UsuarioDisponibilidadException;
 import logica.Cuponera;
+import logica.InfoActividadProfe;
+import logica.InfoActividadSocio;
 import logica.InfoBasicaProfesor;
 import logica.InfoBasicaSocio;
 import logica.InfoBasicaUser;
+import logica.InformacionActividad;
 import logica.ctrlCuponeras;
 import logica.ctrlIDeportivas;
 import logica.ctrlUsuarios;
@@ -280,7 +283,67 @@ class ctrlUsuariosTest {
 	 */
 	@Test
 	void testInformacionActividad() {
-		fail("Not yet implemented");
+		
+		ctrlUsuarios cu = new ctrlUsuarios();
+		
+		ctrlIDeportivas cid = new ctrlIDeportivas();
+		
+		//cargo institucion para usuarios
+		try {
+			cid.altaInstitucion("inst1", "desc inst 1", "url inst 1");
+		} catch (InstitucionDeportivaRepetidaException e) {
+			
+		}
+		
+		//creo profes
+		InfoBasicaProfesor p1 = new InfoBasicaProfesor(	"nick p1",		"nombre p1",
+													"apellido p1",	"correo p1",
+													new Date(), 	"inst1",
+													"descp p1", 	"bibliog p1",
+													"url p1" );
+		
+		InfoBasicaProfesor p2 = new InfoBasicaProfesor(	"nick p2",		"nombre p2",
+													"apellido p2",	"correo p2",
+													new Date(), 	"inst1",
+													"descp p2", 	"bibliog p2",
+													"url p2" );
+		//creo socios
+		InfoBasicaSocio s1 = new InfoBasicaSocio(	"nick s1",		"nombre s1",
+													"apellido s1",	"correo s1",
+													new Date() );
+		
+		InfoBasicaSocio s2 = new InfoBasicaSocio(	"nick s2",		"nombre s2",
+													"apellido s2",	"correo s2",
+													new Date());
+		
+		try {
+			cu.altaUsuario(p1);
+			cu.altaUsuario(p2);
+			cu.altaUsuario(s1);
+			cu.altaUsuario(s2);
+		}catch(UsuarioDisponibilidadException e){
+			
+		}
+		
+		//como solo estan cargados los profesores y los socios
+		//tiene que ser vacia la actividad
+		 InformacionActividad info_p1 = cu.InformacionActividad("nick p1");
+		 InformacionActividad info_p2 = cu.InformacionActividad("nick p2");
+		 //compruebo que sea vacia la info.
+		 assertTrue( info_p1.obtenerVector().isEmpty() );
+		 assertTrue( info_p2.obtenerVector().isEmpty() );
+		 
+		 InformacionActividad info_s1 = cu.InformacionActividad("nick p1");
+		 InformacionActividad info_s2 = cu.InformacionActividad("nick p2");
+		 //compruebo que sea vacia la info.
+		 assertTrue( info_s1.obtenerVector().isEmpty() );
+		 assertTrue( info_s2.obtenerVector().isEmpty() );
+		 
+		
+			manejIDeportivas.ElimiarManjeador();
+			cu.ElimiarManjeador();
+			cu=null;
+			cid = null;
 	}
 
 	/**

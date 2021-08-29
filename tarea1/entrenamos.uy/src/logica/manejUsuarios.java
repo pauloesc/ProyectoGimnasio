@@ -156,4 +156,10 @@ public class manejUsuarios {
 		usuarios.clear();
 	}
 	
+	public void ActualizarInformacionUsuario(InfoBasicaUser actualizacion){
+		
+		
+		
+	}
+	
 }
