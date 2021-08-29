@@ -82,14 +82,5 @@ public class DtActividadesDeportivas {
 		return clases;
 	}
     
-	public void imp() {
-		Iterator<DtClase> dd = clases.iterator();
-		
-		while(dd.hasNext()) {
-			DtClase rr = dd.next();
-			rr.imp();
-		}
-		
-	}
 	
 }

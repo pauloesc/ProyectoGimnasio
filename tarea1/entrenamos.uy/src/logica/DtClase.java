@@ -74,11 +74,6 @@ public class DtClase {
 		return minuto;
 	}
 
-	public void imp() {
-		System.out.println("Nombre - clase: "+this.nombre );
-		System.out.println("url - clase: "+this.url );
-		System.out.println("nombre prof - clase : "+this.nomProfesor );
-	}
 	
 	@Override
 	public String toString() {
