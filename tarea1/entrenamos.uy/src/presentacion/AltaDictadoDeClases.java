@@ -79,14 +79,17 @@ public class AltaDictadoDeClases extends JInternalFrame {
 	
 	
 	public AltaDictadoDeClases() {
-		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		addInternalFrameListener(new InternalFrameAdapter() {
 			@Override
-			public void internalFrameClosed(InternalFrameEvent e) {
-				limpiarFormulario();
+			public void internalFrameClosing(InternalFrameEvent e) {
 				setVisible(false);
+				limpiarFormulario();
 			}
 		});
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		
+		
+		
 		setClosable(true);
 		
 		setTitle("Alta dictado de clases");
