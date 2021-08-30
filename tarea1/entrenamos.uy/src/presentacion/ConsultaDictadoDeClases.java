@@ -468,10 +468,13 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 
 	public String ClaseAsociadaAInstitucion(String clase) {
 		Set<String> inst = IID.darNombreInstituciones();
-		for( String i : inst ) {
-			
-			if( buscaractividad(i,clase) != null ) {
-				return i;
+		
+		if (inst != null) {
+			for( String i : inst ) {
+				
+				if( buscaractividad(i,clase) != null ) {
+					return i;
+				}
 			}
 		}
 		return null;
@@ -486,11 +489,16 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 				clas = IC.mostrarClasesDeActividadDeportiva(act);
 			} catch (ClaseNoExisteException e) {
 			}
-			for (String c: clas) {
-				if (c==clase) {
-					return act;
-				} 
+			
+			if (clas != null) {
+				for (String c: clas) {
+					if (c.equals(clase)) {
+						return act;
+					} 
+				}
 			}
+			
+			
 			
 		}
 		return null;

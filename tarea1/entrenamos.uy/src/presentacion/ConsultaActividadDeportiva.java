@@ -386,15 +386,24 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
     	try
     	{
     		DataInstitucion[] instituciones = controlIDeportivas.getInstituciones();
-    		for (DataInstitucion institucion : instituciones)
-    		{
-    			Set<String> nombresActividades = controlADeportivas.darNombresActividadesDeportivas(institucion.getNombre());
-    			for (String nombre : nombresActividades)
-    			{
-    				if (nombre == nombreAct)
-    					return institucion.getNombre();
-    			}
+    		
+    		if ((instituciones != null) && (instituciones.length != 0)) {
+    			for (DataInstitucion institucion : instituciones)
+        		{
+        			Set<String> nombresActividades = controlADeportivas.darNombresActividadesDeportivas(institucion.getNombre());
+        			if (nombresActividades != null) {
+        				for (String nombre : nombresActividades)
+            			{
+            				if (nombre == nombreAct)
+            					return institucion.getNombre();
+            			}
+        			}
+        			
+        			
+        		}
     		}
+    		
+    	
     	}
     	catch (InstitucionDeportivaNoExisteException e)
     	{
