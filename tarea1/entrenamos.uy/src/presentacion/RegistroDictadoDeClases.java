@@ -490,6 +490,8 @@ public class RegistroDictadoDeClases extends JInternalFrame {
 		
 		comboBoxClase.setEnabled(false);
 		comboBoxActividadDeportiva.setEnabled(false);
+		
+		dateChooserRegistro.setCalendar(null);
 	}
 
 }

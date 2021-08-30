@@ -271,6 +271,6 @@ public class AltaActividadDeportiva extends JInternalFrame {
         txtDescripcion.setText("");
         txtDuracion.setText("");
         txtCosto.setText("");
-        dateChooser.cleanup();
+        dateChooser.setCalendar(null);
     }
 }
