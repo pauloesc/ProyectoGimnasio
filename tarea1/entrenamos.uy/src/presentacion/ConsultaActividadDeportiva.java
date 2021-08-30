@@ -230,6 +230,7 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				if (nolimpio) {
+					frameCuponeras.cargarboxcupo(listCuponeras.getSelectedValue());
 					frameCuponeras.cargardatoscuponeras(listCuponeras.getSelectedValue());
 					frameCuponeras.setVisible(true);
 					frameCuponeras.toFront();

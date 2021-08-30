@@ -336,6 +336,18 @@ public class ConsultarCuponera extends JInternalFrame {
         	setVisible(false);
         }
 	}
+	public void cargarboxcupo(String cupo) {
+		DefaultComboBoxModel<String> modelo2;
+	    modelo2= new DefaultComboBoxModel<String>();
+       modelo2.setSelectedItem(cupo);
+       comboBoxCuponeras.setModel(modelo2);
+	}
+	
+	
+	
+	
+	
+	
 	
  private void limpiarFormulario() {
         txtNombre.setText("");
