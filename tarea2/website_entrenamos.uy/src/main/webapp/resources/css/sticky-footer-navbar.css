@@ -35,3 +35,9 @@ body > .container {
 code {
   font-size: 80%;
 }
+
+.carousel-inner > .item >img{
+  min-height : 300px;
+  max-height : 300px;
+  width : 100%;
+}
