@@ -175,28 +175,6 @@ public class ConsultarCuponera extends JInternalFrame {
 		getContentPane().add(txtFechaAlta);
 		getContentPane().add(lblActividadesDeportivas);
 		
-		/*scrollPane = new JScrollPane();
-		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-		scrollPane.setBounds(30, 341, 241, 41);
-		getContentPane().add(scrollPane);
-		
-		list = new JList<String>();
-		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		scrollPane.setViewportView(list);
-		
-		JLabel lblNmeroDeClases = new JLabel("Número de clases:");
-		lblNmeroDeClases.setBounds(271, 306, 147, 26);
-		getContentPane().add(lblNmeroDeClases);
-		
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane_1.setBounds(271, 341, 147, 41);
-		getContentPane().add(scrollPane_1);
-		
-		list_1 = new JList<Integer>();
-		list_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		scrollPane_1.setViewportView(list_1); */
 		
 		scrollPane_2 = new JScrollPane();
 		scrollPane_2.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -248,9 +226,7 @@ public class ConsultarCuponera extends JInternalFrame {
                 JOptionPane.ERROR_MESSAGE);
 		}
 		else {
-		/*String val=String.valueOf(table.getValueAt(num, 0));
-		System.out.println(val);		
-		ac=val;*/
+		
 		resu=true;
 		}
 		return resu;
@@ -299,20 +275,7 @@ public class ConsultarCuponera extends JInternalFrame {
     		}
 	    } 
         table.setModel(modelo);
-        /*DefaultListModel<String> modelo;
-        DefaultListModel<Integer> modelo2;
-        modelo= new DefaultListModel<String>();
-        modelo2= new DefaultListModel<Integer>();
-        Set<ParActividad> res=dat.getClases();
-        if (!res.isEmpty()) {
-    		for (Iterator<ParActividad> iter=res.iterator();iter.hasNext();) {
-    			ParActividad it=iter.next();
-    			modelo.addElement(it.getNombre());
-    			modelo2.addElement(it.getNumclase());
-    		}
-	    } 
-        list.setModel(modelo);
-        list_1.setModel(modelo2);*/
+        
 		}catch (CuponeraNoExisteException e) {
     	JOptionPane.showMessageDialog(this, "No existen datos en el sistema para la Cuponera seleccionada.", "Consulta Cuponera",
 	    		JOptionPane.ERROR_MESSAGE);

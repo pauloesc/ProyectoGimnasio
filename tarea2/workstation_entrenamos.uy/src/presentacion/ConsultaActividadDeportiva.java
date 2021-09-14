@@ -365,15 +365,28 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
     }
     
     //Permite cargar los combobox con string
-    public void cargarComboboxes(String ninst, String nact) throws ActividadDeportivaNoExisteException, InstitucionDeportivaNoExisteException {
-    	DataInstitucion d1 = controlIDeportivas.getInstitucion(ninst);
-    	DataActividad a1 = controlADeportivas.getDataActividad(nact);
-    	comboBoxInstDeportivas.addItem(d1);
-    	comboBoxInstDeportivas.setSelectedItem(d1);
-    	comboBoxInstDeportivas.setEnabled(false);
-    	comboBoxActDeportivas.addItem(a1);
-    	comboBoxActDeportivas.setSelectedItem(a1);
-    	comboBoxActDeportivas.setEnabled(false);
+    public void cargarComboboxes(String ninst, String nact)  {
+	
+   	 DefaultComboBoxModel<DataInstitucion> modelo22;
+        try {
+            modelo22 = new DefaultComboBoxModel<DataInstitucion>();
+            modelo22.setSelectedItem(controlIDeportivas.getInstitucion(ninst));
+            comboBoxInstDeportivas.setModel(modelo22);
+        } catch (InstitucionDeportivaNoExisteException e) {
+        	JOptionPane.showMessageDialog(this, e.getMessage(), "Consulta Actividad Deportiva", JOptionPane.ERROR_MESSAGE);
+        	setVisible(false);
+        }
+    	
+        DefaultComboBoxModel<DataActividad> modelo33;
+        try {
+            modelo33 = new DefaultComboBoxModel<DataActividad>();
+            modelo33.setSelectedItem(controlADeportivas.getDataActividad(nact));
+            comboBoxActDeportivas.setModel(modelo33);
+        } catch (ActividadDeportivaNoExisteException e) {
+        	JOptionPane.showMessageDialog(this, e.getMessage(), "Consulta Actividad Deportiva", JOptionPane.ERROR_MESSAGE);
+        }
+    	
+    	
   	
     }
     

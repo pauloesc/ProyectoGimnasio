@@ -189,7 +189,7 @@ public class ModificarUsuario extends JInternalFrame{
 					
 					InfoBasicaProfesor ee = (InfoBasicaProfesor) i ;
 					//caro en la presentacion datos especificos del profesor
-					txtBibliografia.setText( ee.getDesc() );
+					txtBibliografia.setText( ee.getBibliografia() );
 					txtDescripcion.setText( ee.getDesc() );
 					txtWeb.setText( ee.getUrl() );
 				}
@@ -385,11 +385,7 @@ public class ModificarUsuario extends JInternalFrame{
 		
 
 		
-	}
-	
-	// Permite validar la información introducida en los campos e indicar
-    // a través de un mensaje de error (JOptionPane) cuando algo sucede.
-    // Este tipo de chequeos se puede realizar de otras formas y con otras librerías de Java, 
+	}    // Este tipo de chequeos se puede realizar de otras formas y con otras librerías de Java, 
     // por ejemplo impidiendo que se escriban caracteres no numéricos al momento de escribir en
     // en el campo de la cédula, o mostrando un mensaje de error apenas el foco pasa a otro campo.
     
