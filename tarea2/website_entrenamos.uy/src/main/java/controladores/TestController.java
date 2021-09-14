@@ -20,7 +20,7 @@ public class TestController extends HttpServlet
 	{
 		IctrlUsuarios ctrlUsuarios = Fabrica.getInstance().getIctrlUsuarios();
 		ctrlUsuarios.cargarUsuarios();
-		RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("index.html");
 		dispatcher.forward(request, response);
 	}
 }

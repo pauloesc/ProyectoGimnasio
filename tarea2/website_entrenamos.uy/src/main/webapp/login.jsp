@@ -8,6 +8,7 @@
      <!-- Bootstrap CSS -->
     <link href="./resources/css/bootstrap.min.css" rel="stylesheet" >
     <link href="./resources/css/signin.css" rel="stylesheet">
+    
 </head>
   <body class="text-center">
       <%
@@ -32,8 +33,8 @@
       			recordarme = c.getValue();
       		}
       	}
-      	Boolean errorLogin = request.getSession().getAttribute("error") != null ? true : false;
-      	String errorMsje = errorLogin == true ? (String)request.getSession().getAttribute("error") : "";
+      	Boolean errorLogin = request.getAttribute("error") != null ? true : false;
+      	String errorMsje = errorLogin == true ? (String)request.getAttribute("error") : "";
       %>
     <form class="form-signin" method="post" action="LoginController">
       <img class="mb-4" src="./resources/img/login.png" alt="" width="72" height="72">
@@ -50,7 +51,13 @@
           /> Recordarme
         </label>
       </div>
-      <>
+	  <%= errorLogin ? 
+	  		"<div class=\"alert alert-danger\" role=\"alert\">"
+	  			+ errorMsje + 
+	  		"</div>" 
+	  	: 
+	  		""
+	  %>
       <button class="btn btn-lg btn-primary btn-block" name="btn_iniciarSesion" type="submit">Iniciar Sesion</button>
       <a href="index.html" class="btn btn-lg btn-secondary btn-block">Volver</a>
       <p class="mt-5 mb-3 text-muted">&copy; 2021 - entrenamos.uy</p>
