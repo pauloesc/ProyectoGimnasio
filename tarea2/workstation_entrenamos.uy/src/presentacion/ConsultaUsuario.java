@@ -190,7 +190,7 @@ public class ConsultaUsuario extends JInternalFrame{
 					InfoBasicaProfesor ee = (InfoBasicaProfesor) i ;
 					//caro en la presentacion datos especificos del profesor
 					txtInstitucion.setText( ee.getInstitucion() );
-					txtBibliografia.setText( ee.getDesc() );
+					txtBibliografia.setText( ee.getBibliografia());
 					txtDescripcion.setText( ee.getDesc() );
 					txtWeb.setText( ee.getUrl() );
 				}

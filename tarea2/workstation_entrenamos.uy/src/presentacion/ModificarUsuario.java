@@ -189,7 +189,7 @@ public class ModificarUsuario extends JInternalFrame{
 					
 					InfoBasicaProfesor ee = (InfoBasicaProfesor) i ;
 					//caro en la presentacion datos especificos del profesor
-					txtBibliografia.setText( ee.getDesc() );
+					txtBibliografia.setText( ee.getBibliografia() );
 					txtDescripcion.setText( ee.getDesc() );
 					txtWeb.setText( ee.getUrl() );
 				}
