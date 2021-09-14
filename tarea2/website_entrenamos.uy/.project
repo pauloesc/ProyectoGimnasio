@@ -3,6 +3,7 @@
 	<name>website_entrenamos.uy</name>
 	<comment></comment>
 	<projects>
+		<project>server_entrenamos.uy</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

@@ -41,7 +41,7 @@ public interface IctrlUsuarios {
   //  public abstract DataUsuario[] getUsuarios() throws UsuarioNoExisteException;
 	
 	//creado por Paulo
-	public abstract void altaUsuario(InfoBasicaUser user) throws UsuarioDisponibilidadException;
+	public abstract void altaUsuario(InfoBasicaUser user, String contrasena) throws UsuarioDisponibilidadException;
 	public abstract Vector<String> InstitucionesEnSistema();
 	public abstract InformacionActividad InformacionActividad(String usuario);
 	public abstract void ActualizarInformacionUsuario(InfoBasicaUser actualizacion);
@@ -51,6 +51,8 @@ public interface IctrlUsuarios {
 	
 	public abstract Set<String> MostrarCuponerasDisponibles(String nick, String actDept);
 	public abstract Set<String> mostrarNicknameSocios();
+	
+	public abstract String autenticarUsario(String nickname, String email, String contrasena);
 	
 	public abstract void cargarUsuarios();
 	

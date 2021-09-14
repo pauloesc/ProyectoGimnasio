@@ -24,11 +24,11 @@ public class ctrlUsuarios implements IctrlUsuarios {
 	}
 
 	//paulo
-	public void altaUsuario(InfoBasicaUser user) throws UsuarioDisponibilidadException {
+	public void altaUsuario(InfoBasicaUser user, String contrasena) throws UsuarioDisponibilidadException {
 		
 		//cuando se crea el controlador ya ahi se trae el manejador  
 		try{
-			this.manejador.CrearUsuario(user);
+			this.manejador.CrearUsuario(user, contrasena);
 		}catch(UsuarioDisponibilidadException e){
 			throw e;
 		}
@@ -113,15 +113,15 @@ public class ctrlUsuarios implements IctrlUsuarios {
 			InfoBasicaSocio u8 = new InfoBasicaSocio("m1k4","Micaela","Lopez","mika@gmail.com.ar",f8);
 			InfoBasicaSocio u9 = new InfoBasicaSocio("charly","Carlos","Boston","charly@gmail.com.uy",f9);
 			
-			manejador.CrearUsuario(u1);
-			manejador.CrearUsuario(u2);
-			manejador.CrearUsuario(u3);
-			manejador.CrearUsuario(u4);
-			manejador.CrearUsuario(u5);
-			manejador.CrearUsuario(u6);
-			manejador.CrearUsuario(u7);
-			manejador.CrearUsuario(u8);
-			manejador.CrearUsuario(u9);
+			manejador.CrearUsuario(u1,"test");
+			manejador.CrearUsuario(u2,"0");
+			manejador.CrearUsuario(u3,"0");
+			manejador.CrearUsuario(u4,"0");
+			manejador.CrearUsuario(u5,"0");
+			manejador.CrearUsuario(u6,"0");
+			manejador.CrearUsuario(u7,"0");
+			manejador.CrearUsuario(u8,"0");
+			manejador.CrearUsuario(u9,"0");
 	
 		} catch (Exception e) {	
 		}
@@ -152,15 +152,15 @@ public class ctrlUsuarios implements IctrlUsuarios {
 			
 			
 			
-			manejador.CrearUsuario(p1);
-			manejador.CrearUsuario(p2);
-			manejador.CrearUsuario(p3);
-			manejador.CrearUsuario(p4);
-			manejador.CrearUsuario(p5);
-			manejador.CrearUsuario(p6);
-			manejador.CrearUsuario(p7);
-			manejador.CrearUsuario(p8);
-			manejador.CrearUsuario(p9);
+			manejador.CrearUsuario(p1,"0");
+			manejador.CrearUsuario(p2,"0");
+			manejador.CrearUsuario(p3,"0");
+			manejador.CrearUsuario(p4,"0");
+			manejador.CrearUsuario(p5,"0");
+			manejador.CrearUsuario(p6,"0");
+			manejador.CrearUsuario(p7,"0");
+			manejador.CrearUsuario(p8,"0");
+			manejador.CrearUsuario(p9,"0");
 		} catch (Exception e) {
 			
 		}
@@ -169,5 +169,36 @@ public class ctrlUsuarios implements IctrlUsuarios {
 	public void ElimiarManjeador() {
 		manejador.ElimiarManjeador();
 		this.manejador=null;
+	}
+
+	/* Retorna null si la autenticacion es exitosa. Si no devuelve mensaje de error.
+	 * Al menos uno entre nickname y email debe valer null.
+	 * Si nickname = null se autentica a traves del email, si no a traves del nickname.
+	 */
+	@Override
+	public String autenticarUsario(String nickname, String email, String contrasena) 
+	{
+		if (nickname != null)
+		{
+			// Autenticar usando nickname
+			Usuario user = manejador.findUsuario(nickname);
+			if (user == null)
+				return "Nickname " + nickname + " no corresponde a ningun usuario registrado.";
+			if (user.getContrasena().equals(contrasena))
+				return "Contrasena incorrecta";
+			else
+				return null;
+		}
+		else
+		{
+			// Autenticar usando email
+			Usuario user = manejador.findUsuarioPorEmail(email);
+			if (user == null)
+				return "El correo " + email + " no corresponde a ningun usuario registrado.";
+			if (!user.getContrasena().equals(contrasena))
+				return "Contrasena incorrecta";
+			else
+				return null;
+		}
 	}
 }

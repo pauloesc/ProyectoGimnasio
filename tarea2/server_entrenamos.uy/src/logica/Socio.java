@@ -17,13 +17,14 @@ public class Socio extends Usuario {
 	private Map<String,Compra> compCup;
 	private Set<Registro> regs;
 	
-	public Socio(InfoBasicaSocio info) {
+	public Socio(InfoBasicaSocio info, String contrasena) {
 		
 		super(	info.getNickname(),
 				info.getNombre(),
 				info.getApellido(),
 				info.getCorreo(),
-				info.getFechaNac() );
+				info.getFechaNac(),
+				contrasena);	
 		
 		compCup = new HashMap<String,Compra>();
 		regs = new HashSet<Registro>();

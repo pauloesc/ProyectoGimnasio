@@ -77,9 +77,9 @@ class ctrlUsuariosTest {
 													"descp p3", 	"bibliog p3",
 													"url p3" );
 		try {
-			cu.altaUsuario(p1);
-			cu.altaUsuario(p2);
-			cu.altaUsuario(p3);
+			cu.altaUsuario(p1,"0");
+			cu.altaUsuario(p2,"0");
+			cu.altaUsuario(p3,"0");
 		}catch(UsuarioDisponibilidadException e){
 			
 		}
@@ -155,10 +155,10 @@ class ctrlUsuariosTest {
 
 		
 		try {
-			cu.altaUsuario(p1);
-			cu.altaUsuario(p2);
-			cu.altaUsuario(s1);
-			cu.altaUsuario(s2);
+			cu.altaUsuario(p1,"0");
+			cu.altaUsuario(p2,"0");
+			cu.altaUsuario(s1,"0");
+			cu.altaUsuario(s2,"0");
 
 		}catch(UsuarioDisponibilidadException e){
 			
@@ -211,18 +211,18 @@ class ctrlUsuariosTest {
 													new Date() );
 		
 		try {
-			cu.altaUsuario(p1_1);
-			cu.altaUsuario(p1_2);
-			cu.altaUsuario(s1_1);
+			cu.altaUsuario(p1_1,"0");
+			cu.altaUsuario(p1_2,"0");
+			cu.altaUsuario(s1_1,"0");
 
 		}catch(UsuarioDisponibilidadException e){
 			
 		}
 		
 		final ctrlUsuarios cuCopia = cu;
-		assertThrows( UsuarioDisponibilidadException.class, ()-> {cuCopia.altaUsuario(p1_1);} );
-		assertThrows( UsuarioDisponibilidadException.class, ()-> {cuCopia.altaUsuario(p1_2);} );
-		assertThrows( UsuarioDisponibilidadException.class, ()-> {cuCopia.altaUsuario(s1_1);} );
+		assertThrows( UsuarioDisponibilidadException.class, ()-> {cuCopia.altaUsuario(p1_1,"0");} );
+		assertThrows( UsuarioDisponibilidadException.class, ()-> {cuCopia.altaUsuario(p1_2,"0");} );
+		assertThrows( UsuarioDisponibilidadException.class, ()-> {cuCopia.altaUsuario(s1_1,"0");} );
 		
 		
 		
@@ -318,10 +318,10 @@ class ctrlUsuariosTest {
 													new Date());
 		
 		try {
-			cu.altaUsuario(p1);
-			cu.altaUsuario(p2);
-			cu.altaUsuario(s1);
-			cu.altaUsuario(s2);
+			cu.altaUsuario(p1,"0");
+			cu.altaUsuario(p2,"0");
+			cu.altaUsuario(s1,"0");
+			cu.altaUsuario(s2,"0");
 		}catch(UsuarioDisponibilidadException e){
 			
 		}
@@ -390,10 +390,10 @@ class ctrlUsuariosTest {
 													new Date());
 		
 		try {
-			cu.altaUsuario(p1);
-			cu.altaUsuario(p2);
-			cu.altaUsuario(s1);
-			cu.altaUsuario(s2);
+			cu.altaUsuario(p1,"0");
+			cu.altaUsuario(p2,"0");
+			cu.altaUsuario(s1,"0");
+			cu.altaUsuario(s2,"0");
 		}catch(UsuarioDisponibilidadException e){
 			
 		}
@@ -486,10 +486,10 @@ class ctrlUsuariosTest {
 													new Date());
 		
 		try {
-			cu.altaUsuario(p1);
-			cu.altaUsuario(p2);
-			cu.altaUsuario(s1);
-			cu.altaUsuario(s2);
+			cu.altaUsuario(p1,"0");
+			cu.altaUsuario(p2,"0");
+			cu.altaUsuario(s1,"0");
+			cu.altaUsuario(s2,"0");
 
 		}catch(UsuarioDisponibilidadException e){
 			
@@ -553,10 +553,10 @@ class ctrlUsuariosTest {
 		datosIngresados.add(s2.getNickname());
 
 		try {
-			cu.altaUsuario(p1);
-			cu.altaUsuario(p2);
-			cu.altaUsuario(s1);
-			cu.altaUsuario(s2);
+			cu.altaUsuario(p1,"0");
+			cu.altaUsuario(p2,"0");
+			cu.altaUsuario(s1,"0");
+			cu.altaUsuario(s2,"0");
 
 		}catch(UsuarioDisponibilidadException e){
 			
@@ -618,10 +618,10 @@ class ctrlUsuariosTest {
 		datosEsperados.add(s2.getNickname());
 
 		try {
-			cu.altaUsuario(p1);
-			cu.altaUsuario(p2);
-			cu.altaUsuario(s1);
-			cu.altaUsuario(s2);
+			cu.altaUsuario(p1,"0");
+			cu.altaUsuario(p2,"0");
+			cu.altaUsuario(s1,"0");
+			cu.altaUsuario(s2,"0");
 		}catch(UsuarioDisponibilidadException e){
 			
 		}

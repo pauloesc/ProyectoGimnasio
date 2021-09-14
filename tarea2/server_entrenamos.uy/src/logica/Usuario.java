@@ -1,26 +1,41 @@
 package logica;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Vector;
 
 public abstract class Usuario {
 	private String nickname;
 	private String nombre;
 	private String apellido;
 	private String email;
+	private String contrasena;
 	private Date FNacimiento;
+	private Vector<String> imagenes;
+	private Map<String, Usuario> seguidos;
 	
 	
 	public String getNickname() {
 		return nickname;
 	}
 
-
-	public Usuario(String nickname, String nombre, String apellido, String email, Date fNacimiento) {
+	public String getContrasena()
+	{
+		return contrasena;
+	}
+	
+	public Usuario(String nickname, String nombre, String apellido, String email, Date fNacimiento,
+			String contrasena) 
+	{
 		this.nickname = nickname;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.email = email;
+		this.contrasena = contrasena;
 		FNacimiento = fNacimiento;
+		imagenes = new Vector<String>();
+		seguidos = new HashMap<String, Usuario>();
 	}
 
 	public Usuario(InfoBasicaUser info) {
@@ -73,6 +88,11 @@ public abstract class Usuario {
 
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
+	}
+	
+	public void setContrasena(String contrasena)
+	{
+		this.contrasena = contrasena;
 	}
 	
 	

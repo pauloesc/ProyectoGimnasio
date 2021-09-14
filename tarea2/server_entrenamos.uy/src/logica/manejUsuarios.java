@@ -19,9 +19,11 @@ public class manejUsuarios {
 
 	private static manejUsuarios instance = null;
 	private Map<String,Usuario> usuarios;
+	private Map<String,Usuario> usuariosEmail;
 	
 	private manejUsuarios() {
 		usuarios = new HashMap<String,Usuario>();
+		usuariosEmail = new HashMap<String, Usuario>();
 	}
 	
 	
@@ -56,7 +58,7 @@ public class manejUsuarios {
 		return res;
 	}
 	
-	public void CrearUsuario(InfoBasicaUser info) throws UsuarioDisponibilidadException {
+	public void CrearUsuario(InfoBasicaUser info, String contrasena) throws UsuarioDisponibilidadException {
 		
 		boolean dispN = DisponibleNickname(info.getNickname());
 		boolean dispC = DisponibleCorreo(info.getCorreo());
@@ -73,13 +75,14 @@ public class manejUsuarios {
 		
 		if( info.getClass() == InfoBasicaProfesor.class ) {
 			
-			userCreado = new Profesor( (InfoBasicaProfesor)info );
+			userCreado = new Profesor( (InfoBasicaProfesor)info, contrasena );
 		}
 		else {
-			userCreado = new Socio( (InfoBasicaSocio)info );
+			userCreado = new Socio( (InfoBasicaSocio)info, contrasena );
 		}
 		
 		this.usuarios.put(userCreado.getNickname(), userCreado);
+		this.usuariosEmail.put(userCreado.getEmail(), userCreado);
 		
 	}
 	
@@ -95,19 +98,13 @@ public class manejUsuarios {
 	}
 	
 	public boolean DisponibleCorreo(String correo) {
-
-		Usuario usr;
-		boolean dispC = true;
-		
-		for (Iterator<Map.Entry<String, Usuario>> entries = usuarios.entrySet().iterator(); entries.hasNext(); ) {
-		    Map.Entry<String, Usuario> entry = entries.next();
-		    usr = entry.getValue();
-		    
-		    if ( usr.getEmail().equals(correo) ) {
-		    	dispC = false;
-		    }
+		Usuario e = this.usuariosEmail.get(correo);
+		if(e == null) {
+			return true;
 		}
-		return dispC;
+		else {
+			return false;
+		}
 	}
 	
 	
@@ -131,6 +128,11 @@ public class manejUsuarios {
 	public Usuario findUsuario(String nick) {
 		return usuarios.get(nick);
 	}
+	
+	public Usuario findUsuarioPorEmail(String email) {
+		return usuariosEmail.get(email);
+	}
+	
 	public InfoBasicaUser InformacionBasicaUsuario(String usuario) {
 		
 		Usuario e = this.usuarios.get(usuario);
