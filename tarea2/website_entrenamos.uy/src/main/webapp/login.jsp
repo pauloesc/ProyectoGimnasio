@@ -14,25 +14,26 @@
       <%
       	Cookie[] cookies = request.getCookies();
       	String email = "", nickname = "", pass = "", recordarme = "0";
-      	for (Cookie c : cookies)
-      	{
-      		if (c.getName().equals("password"))
+      	if (cookies != null)
+      		for (Cookie c : cookies)
       		{
-      			pass = c.getValue();
+      			if (c.getName().equals("password"))
+      			{
+      				pass = c.getValue();
+      			}
+      			else if (c.getName().equals("email"))
+      			{
+      				email = c.getValue();
+      			}
+      			else if (c.getName().equals("nickname"))
+      			{
+      				nickname = c.getValue();
+      			}
+      			else if (c.getName().equals("recordarme"))
+      			{
+      				recordarme = c.getValue();
+      			}
       		}
-      		else if (c.getName().equals("email"))
-      		{
-      			email = c.getValue();
-      		}
-      		else if (c.getName().equals("nickname"))
-      		{
-      			nickname = c.getValue();
-      		}
-      		else if (c.getName().equals("cRecordarme"))
-      		{
-      			recordarme = c.getValue();
-      		}
-      	}
       	Boolean errorLogin = request.getAttribute("error") != null ? true : false;
       	String errorMsje = errorLogin == true ? (String)request.getAttribute("error") : "";
       %>
@@ -47,7 +48,7 @@
       <div class="checkbox mb-3">
         <label>
           <input type="checkbox" name="recordarme" value="1"
-          	<%= "1".equals(recordarme.trim()) ? "checked" : "" %> 
+          	<%= "1".equals(recordarme) ? "checked=\"\"" : "" %> 
           /> Recordarme
         </label>
       </div>
