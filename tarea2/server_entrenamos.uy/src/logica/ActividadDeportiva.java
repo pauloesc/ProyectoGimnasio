@@ -19,7 +19,8 @@ public class ActividadDeportiva {
     private String descripcion;
     private Float duracion;
     private Float costo;
-    private Date fecha_alta;
+    private Date fecha_alta; 
+    private Map<String,categoria> categorias;
     
 
     public ActividadDeportiva(String n, String de, Float dur, Float cost, Date fa) {
@@ -29,8 +30,7 @@ public class ActividadDeportiva {
         this.setCosto(cost);
         this.setFechaAlta(fa);
         this.clases = new HashMap<String,Clase>();
-        
-        
+        this.categorias = new HashMap<String,categoria>();    
     }
 
     public void addClase(Clase c) {

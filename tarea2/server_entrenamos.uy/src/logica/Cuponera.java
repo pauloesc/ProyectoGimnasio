@@ -65,6 +65,15 @@ public class Cuponera {
 		return resu;  
 	}
 
+	public Set <String> getListaCategorias(){
+		Set <String> resu = new HashSet<String>();
+		if (!info.isEmpty()) {
+		for (Iterator<InfoClases> iter=info.iterator();iter.hasNext();) {
+			resu.add(iter.next().getAct().darCategorias());
+		}
+		}
+		return resu;  
+	}
 	
 	public Set <String> getCategorias(){
 		Set <String> resu = new HashSet<String>();
