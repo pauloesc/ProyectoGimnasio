@@ -13,6 +13,7 @@ public class Cuponera {
 	private Date fecha_fin;
 	private Float descuento;
 	private Date fecha_alta;
+	private boolean comprada; 
 	private Set <InfoClases> info;
 
 	public Cuponera(String nom, String des, Date ini, Date fin, Float disc, Date alta) {
@@ -23,6 +24,7 @@ public class Cuponera {
 		this.descuento = disc;
 		this.fecha_alta = alta;
 		this.info = new HashSet<InfoClases>();
+		this.comprada = false;
 	}
 
 	public String getDescripcion() {
@@ -63,6 +65,19 @@ public class Cuponera {
 		return resu;  
 	}
 
+	
+	public Set <String> getCategorias(){
+		Set <String> resu = new HashSet<String>();
+		if (!info.isEmpty()) {
+		for (Iterator<InfoClases> iter=info.iterator();iter.hasNext();) {
+			resu.add(iter.next().getNombreActividadDeportiva());
+		}
+		}
+		return resu;  
+	}
+	
+	
+	
 	public Date getFecha_alta() {
 		return fecha_alta;
 	}
@@ -91,5 +106,13 @@ public class Cuponera {
 		}
 		DataCuponera resu= new DataCuponera(nombre,descripcion,fecha_ini,fecha_fin, descuento, fecha_alta, grupo);
 		return resu;
+	}
+
+	public boolean isComprada() {
+		return comprada;
+	}
+
+	public void setComprada(boolean comprada) {
+		this.comprada = comprada;
 	}
 }
