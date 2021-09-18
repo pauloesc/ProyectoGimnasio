@@ -115,5 +115,10 @@ public class ActividadDeportiva {
     	}
     	return i;
     }
+    public Set<String> darCategorias() {
+    	return categorias.keySet();
+    }
+    
+    
     
 }
