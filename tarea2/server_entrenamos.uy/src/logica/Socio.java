@@ -70,6 +70,19 @@ public class Socio extends Usuario {
 		
 	}
 	
+	public boolean tieneCuponera(String nombre) {
+		Set <String> claves=compCup.keySet();
+		return claves.contains(nombre);
+	}
+	
+	public void comprarCuponera(Date fecha, Cuponera cup, Set<String> act) {
+		Compra   nueva= new Compra(fecha, cup, act);
+		this.compCup.put(cup.getNombre(), nueva);
+	}
+	
+	
+	
+	
 	@Override
 	public InfoBasicaUser Informacion() {	
 		InfoBasicaUser rt = new InfoBasicaSocio(

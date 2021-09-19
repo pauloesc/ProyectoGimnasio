@@ -10,6 +10,7 @@ import java.util.Set;
 
 import excepciones.ActividadDeportivaNoExisteException;
 import excepciones.ActividadDeportivaRepetidaException;
+import excepciones.CuponeraCompradaException;
 import excepciones.CuponeraNoExisteException;
 import excepciones.CuponeraRepetidaException;
 
@@ -96,11 +97,26 @@ public class ctrlCuponeras implements IctrlCuponeras {
 		manejCuponeras mC = manejCuponeras.getinstance();
 		Set<String> resu=mC.listarcuponeraslibres();
 		if (resu.size()==0)
-			throw new CuponeraNoExisteException("No existen Cuponeras registradas");
+			throw new CuponeraNoExisteException("No existen Cuponeras para poder agregar actividades");
 
 		return resu;
 		
 	}
+	
+	public void comprarCuponera (Date fecha, String cuponera, String nomsocio) throws CuponeraCompradaException{
+		manejUsuarios mU=manejUsuarios.getInstance();
+		Socio sos= (Socio) mU.findUsuario(nomsocio);
+		if (!sos.tieneCuponera(cuponera)) {
+			manejCuponeras mC = manejCuponeras.getinstance();
+			Cuponera cup=mC.getCuponera(cuponera);
+			Set<String> acts=cup.getListaActividades();
+			sos.comprarCuponera(fecha, cup, acts);
+		}else
+		  throw new CuponeraCompradaException ("El socio ya tiene adquerida esta cuponera");
+	}
+	
+	
+	
 	
 	
 	public void cargarDatosCuponeras() {
