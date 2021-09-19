@@ -34,7 +34,8 @@ public class Principal {
     private AltaUsuario AltaUsuarioInternalFrame;
     private AgregarActividadaCuponera AgregarActividadaCuponeraInternalFrame;
     private ConsultarCuponera ConsultarCuponeraInternalFrame;
-    private RegistroDictadoDeClases RegistroDictadoDeClasesFrame;    
+    private RegistroDictadoDeClases RegistroDictadoDeClasesFrame;   
+    private AltaCategoria AltaCategoriaFrame;
     private IctrlIDeportivas ICID;
     private IctrlADeportivas ICAD;
     private IctrlCuponeras ICC;
@@ -124,6 +125,9 @@ public class Principal {
         ModificarUsuarioInternalFrame = new ModificarUsuario(ICU);
         ModificarUsuarioInternalFrame.setVisible(false);
         
+        AltaCategoriaFrame = new AltaCategoria();
+        AltaCategoriaFrame.setVisible(false);
+        
         desktopPane.setLayout(null);
         
         desktopPane.add(altaInstDeportivaInternalFrame);
@@ -138,6 +142,7 @@ public class Principal {
         desktopPane.add(RegistroDictadoDeClasesFrame);
         desktopPane.add(ConsultaUsuarioInternalFrame);
         desktopPane.add(ModificarUsuarioInternalFrame);
+        desktopPane.add(AltaCategoriaFrame);
     }
 
     /**
@@ -328,6 +333,19 @@ public class Principal {
             }
         });
         menuCuponeras.add(menuItemVerInfoCuponera);
-    }
     
+    
+	    JMenu menuCategorias = new JMenu("Categorias");
+	    menuBar.add(menuCategorias);
+	
+	    JMenuItem menuItemRegistrarCat = new JMenuItem("Alta de Categoria");
+	    menuItemRegistrarCat.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            // Muestro el InternalFrame para registrar una categoria
+	        	AltaCategoriaFrame.setVisible(true);
+	        }
+	    });
+	    menuCategorias.add(menuItemRegistrarCat);
+    }
+	   
 }

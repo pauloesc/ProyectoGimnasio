@@ -39,4 +39,8 @@ public class Fabrica {
     public IctrlClases getIctrlClases() {
     	return (IctrlClases) new ctrlClases();
     }
+    
+    public IctrlCategorias getIctrlCategorias() {
+    	return (IctrlCategorias) new ctrlCategorias();
+    }
 }
