@@ -418,7 +418,8 @@ public class AltaUsuario extends JInternalFrame{
 			}
         	
             try {
-            	controlUsuario.altaUsuario(i);
+            	// se le pasa un string vacio para que compile. Por la modificacion de la contraseña
+            	controlUsuario.altaUsuario(i,"");
                 JOptionPane.showMessageDialog(this, "El Usuario se ha creado con éxito", "Registrar Usuario",
                         JOptionPane.INFORMATION_MESSAGE);
                 limpiarFormulario();
