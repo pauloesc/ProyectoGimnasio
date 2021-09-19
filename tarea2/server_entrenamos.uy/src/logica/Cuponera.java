@@ -65,7 +65,17 @@ public class Cuponera {
 		return resu;  
 	}
 
-	
+	public float getCostoCuponera(){
+		Float  resu = (float) 0;
+		if (!info.isEmpty()) {
+		for (Iterator<InfoClases> iter=info.iterator();iter.hasNext();) {
+			InfoClases clas= iter.next();
+			resu=resu + (clas.getCantidad()*clas.getAct().getCosto());
+		}
+		}
+		resu= (float) ((resu*(100.0-descuento))/100.0);
+		return resu;  
+	}
 	
 	public Set <String> getListaCategorias(){
 		Set <String> resu = new HashSet<String>();
@@ -105,7 +115,9 @@ public class Cuponera {
 			grupo.add(nuevo);
 		}
 		}
-		DataCuponera resu= new DataCuponera(nombre,descripcion,fecha_ini,fecha_fin, descuento, fecha_alta, grupo);
+		float costo= this.getCostoCuponera();
+		Set <String> cat= this.getListaCategorias();
+		DataCuponera resu= new DataCuponera(nombre,descripcion,fecha_ini,fecha_fin, descuento, fecha_alta, costo, grupo, cat);
 		return resu;
 	}
 

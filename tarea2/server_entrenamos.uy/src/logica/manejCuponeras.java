@@ -38,6 +38,22 @@ public class manejCuponeras {
 		return this.Cuponeras.keySet();
 	}
 	
+	
+	public Set<String> listarcuponeraslibres(){
+		Set<String> resu= new HashSet<String>();
+		for (Iterator<String> iter=Cuponeras.keySet().iterator();iter.hasNext();) {
+			Cuponera cup=Cuponeras.get(iter.next());
+			if (!cup.isComprada()) {
+			    resu.add(cup.getNombre());
+			}
+		}
+		return resu;
+	}
+	
+	
+	
+	
+	
 	public Cuponera getCuponera(String nombre) {
 	    return this.Cuponeras.get(nombre);	
 	}

@@ -91,6 +91,18 @@ public class ctrlCuponeras implements IctrlCuponeras {
 
     }
 	
+	
+	public Set<String>listarcuponeraslibres() throws CuponeraNoExisteException {
+		manejCuponeras mC = manejCuponeras.getinstance();
+		Set<String> resu=mC.listarcuponeraslibres();
+		if (resu.size()==0)
+			throw new CuponeraNoExisteException("No existen Cuponeras registradas");
+
+		return resu;
+		
+	}
+	
+	
 	public void cargarDatosCuponeras() {
 		
 		Date f1 = null, f2 = null, f3 = null, f4 = null, f5 = null, f6 = null, f7 =null, f8=null, f9=null;
