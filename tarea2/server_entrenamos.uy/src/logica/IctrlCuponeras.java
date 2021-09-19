@@ -24,4 +24,5 @@ public interface IctrlCuponeras {
 	public abstract Set<String> getCuponerasActividad(String nac) throws CuponeraNoExisteException;
 
 	public abstract void cargarDatosCuponeras();
+	public abstract Set<String> listarcuponeraslibres() throws CuponeraNoExisteException ;
 }
