@@ -80,6 +80,7 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 	private JComboBox<DataActividad> comboBoxActDeportivas;
 	private JList<String> listCuponeras;
 	private JList<String> listClases;
+	private JList<String> listCategorias;
 	private JTextField txtNombre;
     private JTextArea txtDescripcion;
     private JTextField txtDuracion;
@@ -88,6 +89,7 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
     private DefaultListModel<String> modeloCuponeras;
     private DefaultListModel<String> modeloClases;
     private Boolean nolimpio;
+    private JTextField txtEstado;
     
     
     
@@ -112,7 +114,7 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 		setClosable(true);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);;
 		getContentPane().setLayout(null);
-		setBounds(10, 5, 459, 589);
+		setBounds(10, 5, 459, 628);
 		
 		
 
@@ -206,8 +208,11 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 		getContentPane().add(txtFechaAlta);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(34, 294, 384, 205);
+		tabbedPane.setBounds(29, 325, 384, 222);
 		getContentPane().add(tabbedPane);
+		
+		listCategorias = new JList<String>();
+		tabbedPane.addTab("Categorias", null, listCategorias, null);
 		
 		listClases = new JList<String>();
 		listClases.addMouseListener(new MouseAdapter() {
@@ -247,8 +252,18 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 				setVisible(false);
 			}
 		});
-		btnSalir.setBounds(296, 520, 117, 25);
+		btnSalir.setBounds(296, 559, 117, 25);
 		getContentPane().add(btnSalir);
+		
+		JLabel lblEstado = new JLabel("Estado:");
+		lblEstado.setBounds(34, 294, 95, 19);
+		getContentPane().add(lblEstado);
+		
+		txtEstado = new JTextField();
+		txtEstado.setEditable(false);
+		txtEstado.setBorder(BorderFactory.createLineBorder(Color.black));
+		txtEstado.setBounds(133, 294, 93, 19);
+		getContentPane().add(txtEstado);
 		
 	}
 	
@@ -449,5 +464,4 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
          }
     	
     }
-
 }

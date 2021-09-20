@@ -43,6 +43,7 @@ import logica.IctrlADeportivas;
 import logica.IctrlIDeportivas;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.JList;
 
 @SuppressWarnings({ "serial", "unused" })
 public class AltaActividadDeportiva extends JInternalFrame {
@@ -66,7 +67,7 @@ public class AltaActividadDeportiva extends JInternalFrame {
 		setTitle("Alta de Actividad Deportiva");
 		setClosable(true);
 		getContentPane().setLayout(null);
-		setBounds(20, 50, 462, 411);
+		setBounds(20, 50, 462, 493);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		
 		addInternalFrameListener(new InternalFrameAdapter() {
@@ -148,11 +149,11 @@ public class AltaActividadDeportiva extends JInternalFrame {
             	cmdRegistroADActionPerformed(arg0);
             }
         });
-		buttonAceptar.setBounds(133, 308, 100, 32);
+		buttonAceptar.setBounds(133, 401, 100, 32);
 		getContentPane().add(buttonAceptar);
 		
 		JButton buttonCancelar = new JButton("Cancelar");
-		buttonCancelar.setBounds(251, 308, 100, 32);
+		buttonCancelar.setBounds(251, 401, 100, 32);
 		buttonCancelar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 limpiarFormulario();
@@ -165,6 +166,16 @@ public class AltaActividadDeportiva extends JInternalFrame {
 		dateChooser.setBounds(133, 263, 128, 19);
 		dateChooser.setBorder(BorderFactory.createLineBorder(Color.black));
 		getContentPane().add(dateChooser);
+		
+		JLabel lbl_listCategorias = new JLabel("Categorias:");
+		lbl_listCategorias.setBounds(34, 296, 95, 19);
+		getContentPane().add(lbl_listCategorias);
+		
+		JList listCategorias = new JList();
+		listCategorias.setBounds(133, 294, 280, 95);
+		listCategorias.setBorder(BorderFactory.createLineBorder(Color.black));
+		getContentPane().add(listCategorias);
+
 	}
 	
 	// Este método es invocado al querer registrar una Actividad Deportiva, funcionalidad

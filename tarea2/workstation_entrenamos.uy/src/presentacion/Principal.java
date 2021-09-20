@@ -42,7 +42,8 @@ public class Principal {
     private IctrlClases ICCL;
     private IctrlUsuarios IU;
     private ConsultaUsuario ConsultaUsuarioInternalFrame;  
-    private ModificarUsuario ModificarUsuarioInternalFrame ;
+    private ModificarUsuario ModificarUsuarioInternalFrame;
+    private AceptaRechazaActividadDeportiva AceptaRechazaADInternalFrame;
     
     /**
      * Launch the application.
@@ -128,6 +129,9 @@ public class Principal {
         AltaCategoriaFrame = new AltaCategoria();
         AltaCategoriaFrame.setVisible(false);
         
+        AceptaRechazaADInternalFrame = new AceptaRechazaActividadDeportiva(ICID, ICAD, ICC, ICCL, consultaDictadoDeClasesFrame, ConsultarCuponeraInternalFrame);
+        AceptaRechazaADInternalFrame.setVisible(false);
+        
         desktopPane.setLayout(null);
         
         desktopPane.add(altaInstDeportivaInternalFrame);
@@ -143,6 +147,7 @@ public class Principal {
         desktopPane.add(ConsultaUsuarioInternalFrame);
         desktopPane.add(ModificarUsuarioInternalFrame);
         desktopPane.add(AltaCategoriaFrame);
+        desktopPane.add(AceptaRechazaADInternalFrame);
     }
 
     /**
@@ -262,6 +267,16 @@ public class Principal {
             }
         });
         menuActDeportivas.add(menuItemVerInfoAD);
+        
+        JMenuItem menuItemAceptarRechazarAD = new JMenuItem("Aceptar/Rechazar Actividad Deportiva");
+        menuItemAceptarRechazarAD.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Muestro el InternalFrame para cambiar el estado de una Actividad Deportiva
+            	AceptaRechazaADInternalFrame.setVisible(true);
+  
+            }
+        });
+        menuActDeportivas.add(menuItemAceptarRechazarAD);
         
         JMenu menuClases = new JMenu("Clases");
         menuBar.add(menuClases);
