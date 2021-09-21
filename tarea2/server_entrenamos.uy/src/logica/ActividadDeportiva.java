@@ -13,8 +13,8 @@ import java.util.Set;
  */
 
 public class ActividadDeportiva {
-	private Map<String,Clase> clases;
 
+	private Map<String,Clase> clases;
     private String nombre;
     private String descripcion;
     private Float duracion;
@@ -34,7 +34,7 @@ public class ActividadDeportiva {
     }
 
     public void addClase(Clase c) {
-	clases.put(c.getNombre(),c);
+    	clases.put(c.getNombre(),c);
     }
 
     public Set<String> darNombreClases() {
@@ -115,10 +115,13 @@ public class ActividadDeportiva {
     	}
     	return i;
     }
+    
     public Set<String> darCategorias() {
     	return categorias.keySet();
     }
     
-    
+    public void setCategoria(categoria cat) {
+    	categorias.put(cat.getNombre(), cat);
+    }
     
 }
