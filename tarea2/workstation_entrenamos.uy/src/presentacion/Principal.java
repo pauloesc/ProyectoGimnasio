@@ -10,6 +10,7 @@ import javax.swing.JMenuItem;
 import excepciones.ActividadDeportivaNoExisteException;
 import logica.Fabrica;
 import logica.IctrlADeportivas;
+import logica.IctrlCategorias;
 import logica.IctrlClases;
 import logica.IctrlCuponeras;
 import logica.IctrlIDeportivas;
@@ -42,6 +43,7 @@ public class Principal {
     private IctrlCuponeras ICC;
     private IctrlClases ICCL;
     private IctrlUsuarios IU;
+    private IctrlCategorias ICAT;
     private ConsultaUsuario ConsultaUsuarioInternalFrame;  
     private ModificarUsuario ModificarUsuarioInternalFrame;
     private AceptaRechazaActividadDeportiva AceptaRechazaADInternalFrame;
@@ -85,7 +87,7 @@ public class Principal {
         ICC = fabrica.getIctrlCuponeras();
         ICCL = fabrica.getIctrlClases();
         IU = fabrica.getIctrlUsuarios();
-        
+        ICAT = fabrica.getIctrlCategorias();       
         IctrlUsuarios ICU = fabrica.getIctrlUsuarios();
         
         // Se crean los tres InternalFrame y se incluyen al Frame principal ocultos.
@@ -94,7 +96,7 @@ public class Principal {
         altaInstDeportivaInternalFrame = new AltaInstitucionDeportiva(ICID);
         altaInstDeportivaInternalFrame.setVisible(false);
         
-        altaActividadDeportivaInternalFrame = new AltaActividadDeportiva(ICAD, ICID);
+        altaActividadDeportivaInternalFrame = new AltaActividadDeportiva(ICAD, ICID, ICAT);
         altaActividadDeportivaInternalFrame.setVisible(false);
         
         CrearCuponeraInternalFrame = new CrearCuponera(ICC);
@@ -178,6 +180,7 @@ public class Principal {
         menuDatosPrueba.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
             	ICID.cargarDatosIDeportivas();
+            	ICAT.cargarCategorias();
                 ICAD.cargarDatosADeportivas();
                 ICC.cargarDatosCuponeras();
                 IU.cargarUsuarios();

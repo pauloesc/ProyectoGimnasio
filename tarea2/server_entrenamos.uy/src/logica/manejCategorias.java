@@ -5,6 +5,7 @@ package logica;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class manejCategorias {
 	
@@ -30,5 +31,9 @@ public class manejCategorias {
 	
 	public Categoria findCategoria(String nom) {
 		return categorias.get(nom);
+	}
+	
+	public Set<String> getCategorias() {
+		return categorias.keySet();
 	}
 }

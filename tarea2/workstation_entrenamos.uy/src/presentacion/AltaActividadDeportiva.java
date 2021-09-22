@@ -15,15 +15,19 @@ import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.Set;
 import java.awt.Button;
 import java.awt.TextArea;
 
+import excepciones.ActividadDeportivaNoExisteException;
 import excepciones.ActividadDeportivaRepetidaException;
 import excepciones.InstitucionDeportivaRepetidaException;
 import excepciones.InstitucionDeportivaNoExisteException;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.SwingConstants;
@@ -40,6 +44,7 @@ import com.toedter.calendar.JDateChooser;
 
 import logica.DataInstitucion;
 import logica.IctrlADeportivas;
+import logica.IctrlCategorias;
 import logica.IctrlIDeportivas;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -51,6 +56,7 @@ public class AltaActividadDeportiva extends JInternalFrame {
     // Controlador de Actividades Deportivas que se utilizará para las acciones del JFrame
     private IctrlADeportivas controlADeportivas;
     private IctrlIDeportivas controlIDeportivas;
+    private IctrlCategorias controlCategorias;
     
     private JTextField txtNombre;
     private JTextArea txtDescripcion;
@@ -58,11 +64,14 @@ public class AltaActividadDeportiva extends JInternalFrame {
     private JTextField txtDuracion;
     private JTextField txtCosto;
     private JDateChooser dateChooser;
+    private DefaultListModel<String> modeloCategorias;
+    private JList<String> listCategorias; 
 	
-	public AltaActividadDeportiva(IctrlADeportivas icad, IctrlIDeportivas icid) {
+	public AltaActividadDeportiva(IctrlADeportivas icad, IctrlIDeportivas icid, IctrlCategorias icat) {
 		
 		controlADeportivas = icad;
 		controlIDeportivas = icid;
+		controlCategorias = icat;
 		
 		setTitle("Alta de Actividad Deportiva");
 		setClosable(true);
@@ -171,7 +180,7 @@ public class AltaActividadDeportiva extends JInternalFrame {
 		lbl_listCategorias.setBounds(34, 296, 95, 19);
 		getContentPane().add(lbl_listCategorias);
 		
-		JList<?> listCategorias = new JList<Object>();
+		listCategorias = new JList<String>();
 		listCategorias.setBounds(133, 294, 280, 95);
 		listCategorias.setBorder(BorderFactory.createLineBorder(Color.black));
 		getContentPane().add(listCategorias);
@@ -270,6 +279,15 @@ public class AltaActividadDeportiva extends JInternalFrame {
     	    		JOptionPane.ERROR_MESSAGE);
         	setVisible(false);
         }
+        
+        Set<String> dcat;
+        modeloCategorias = new DefaultListModel<String>();
+        dcat = controlCategorias.getCategorias();
+        Iterator<String> it = dcat.iterator();
+		while(it.hasNext()){            	
+			modeloCategorias.addElement(it.next());
+		}
+        listCategorias.setModel(modeloCategorias);
 
     }
     
