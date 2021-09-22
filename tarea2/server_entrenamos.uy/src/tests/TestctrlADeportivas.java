@@ -17,6 +17,7 @@ import logica.DataActividad;
 import logica.EstadoActi;
 import logica.Fabrica;
 import logica.IctrlADeportivas;
+import logica.IctrlCategorias;
 import logica.IctrlIDeportivas;
 
 /**
@@ -28,14 +29,17 @@ class TestctrlADeportivas {
 
 	private static IctrlADeportivas ctrlADeportivas;
 	private static IctrlIDeportivas ctrlIDeportivas;
+	private static IctrlCategorias ctrlCategorias;
 	
 	@BeforeAll
 	public static void iniciar() {
 		Fabrica fabrica = Fabrica.getInstance();
 		ctrlADeportivas = fabrica.getIctrlADeportivas();
 		ctrlIDeportivas = fabrica.getIctrlIDeportivas();
+		ctrlCategorias = fabrica.getIctrlCategorias();
 		ctrlIDeportivas.cargarDatosIDeportivas();
 		ctrlADeportivas.cargarDatosADeportivas();
+		ctrlCategorias.cargarCategorias();
 	}
 
 	@Test
@@ -100,6 +104,8 @@ class TestctrlADeportivas {
 		setA = new HashSet<String>();
 		setA.add("Aeróbica");
 		setA.add("Arqueria");
+		setA.add("Pilates");
+		
 		
 		assertEquals(setA, nomin);
 		

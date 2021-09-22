@@ -35,10 +35,14 @@ public class ctrlADeportivas implements IctrlADeportivas{
     	
         Map<String,Categoria> categorias = new HashMap<String,Categoria>();
         
-    	for( Iterator<String> it = cats.iterator(); it.hasNext();) { 
-    		Categoria cat = mC.findCategoria(it.next());
-    		categorias.put(cat.getNombre(), cat);	
-		}
+        if (cats != null) {
+        	for( Iterator<String> it = cats.iterator(); it.hasNext();) { 
+        		Categoria cat = mC.findCategoria(it.next());
+        		if (cat != null)
+        			categorias.put(cat.getNombre(), cat);	
+    		}
+        }
+    	
 		
         actdep = new ActividadDeportiva(n, de, dur, c, fa, categorias);
         mD.agregarActividad(actdep);

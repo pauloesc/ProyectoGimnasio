@@ -24,5 +24,12 @@ public class ctrlCategorias implements IctrlCategorias {
 		
 	}
 	
+	public void cargarCategorias() {
+		manejador.agregarCategoria("Al aire libre");
+		manejador.agregarCategoria("Deportes");
+		manejador.agregarCategoria("Fitness");
+		manejador.agregarCategoria("Gimnasia");
+	}
+	
 	
 }
