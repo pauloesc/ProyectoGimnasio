@@ -45,5 +45,9 @@ public interface IctrlADeportivas {
     public abstract void cargarDatosADeportivas();
     
     public abstract Set<String> mostrarClasesVigentesDeActividadDeportiva(String nomAct);
+    
+    public abstract void cambiarEstado(String n, EstadoActi est);
+    
+    public abstract DataActividad[] getActividadesIngresadas(String nid) throws ActividadDeportivaNoExisteException;
 }
 

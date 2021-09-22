@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import excepciones.ActividadDeportivaNoExisteException;
 import excepciones.ActividadDeportivaRepetidaException;
 import logica.DataActividad;
+import logica.EstadoActi;
 import logica.Fabrica;
 import logica.IctrlADeportivas;
 import logica.IctrlIDeportivas;
@@ -127,6 +128,17 @@ class TestctrlADeportivas {
 
 		
 		assertEquals(setA, clasesVigentes);
+	}
+	
+	@Test
+	void testCambiarEstado() throws ActividadDeportivaNoExisteException {
+		
+		ctrlADeportivas.cambiarEstado("Kickboxing", EstadoActi.ACEPTADA);
+		
+		DataActividad dact = ctrlADeportivas.getDataActividad("Kickboxing");
+		assertEquals(dact.getNombre(), "Kickboxing");
+		assertEquals(dact.getEstado(), EstadoActi.ACEPTADA);
+		
 	}
 
 }

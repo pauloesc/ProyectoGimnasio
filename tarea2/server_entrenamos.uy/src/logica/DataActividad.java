@@ -1,6 +1,8 @@
 package logica;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Datatype para transportar la información de una Actividad Deportiva entre capa lógica y de presentación.
@@ -15,6 +17,8 @@ public class DataActividad {
     private Float duracion;
     private Float costo;
     private Date fecha_alta;
+    private EstadoActi estado;
+    private Set<String> categorias;
 
     public DataActividad() {
         this.setNombre(new String());
@@ -22,14 +26,18 @@ public class DataActividad {
         this.setDuracion((float) 0);
         this.setCosto((float) 0);
         this.setFechaAlta(new Date());
+        this.setEstado(EstadoActi.INGRESADA);
+        this.setCategorias(new HashSet<String>());
     }
 
-    public DataActividad(String nombre, String descripcion, Float duracion, Float costo, Date fecha_alta) {
+    public DataActividad(String nombre, String descripcion, Float duracion, Float costo, Date fecha_alta, EstadoActi est, Set<String> categ) {
         this.setNombre(nombre);
         this.setDescripcion(descripcion);
         this.setDuracion(duracion);
         this.setCosto(costo);
         this.setFechaAlta(fecha_alta);
+        this.setEstado(est);
+        this.setCategorias(categ);
     }
 
     public String getNombre() {
@@ -52,6 +60,13 @@ public class DataActividad {
         return fecha_alta;
     }
     
+    public EstadoActi getEstado() {
+    	return estado;
+    }
+    
+    private Set<String> getCategorias() {
+    	return categorias;
+    }
     
     /* Sirve para mostrar textualmente el nombre de la Actividad Deportiva, por ejemplo en un ComboBox
      */
@@ -77,6 +92,14 @@ public class DataActividad {
     
     private void setFechaAlta(Date fecha_alta) {
         this.fecha_alta = fecha_alta;
+    }
+    
+    private void setEstado(EstadoActi est) {
+    	this.estado = est;
+    }
+    
+    private void setCategorias(Set<String> cat) {
+    	this.categorias = cat;
     }
 
 }

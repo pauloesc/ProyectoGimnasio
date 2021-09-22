@@ -46,7 +46,7 @@ public class ctrlADeportivas implements IctrlADeportivas{
             // sino los DataActividad asociados a la Institución seleccionada.
             for (int i = 0; i < actsdeps.length; i++) {
                 actividad = actsdeps[i];
-                dad[i] = new DataActividad(actividad.getNombre(), actividad.getDescripcion(), actividad.getDuracion(), actividad.getCosto(), actividad.getFechaAlta());
+                dad[i] = new DataActividad(actividad.getNombre(), actividad.getDescripcion(), actividad.getDuracion(), actividad.getCosto(), actividad.getFechaAlta(), actividad.getEstado(), actividad.darCategorias());
             }
 
             return dad;
@@ -58,7 +58,7 @@ public class ctrlADeportivas implements IctrlADeportivas{
 	public DataActividad getDataActividad(String n) throws ActividadDeportivaNoExisteException {
 		manejADeportivas mD = manejADeportivas.getinstance();
 		ActividadDeportiva actividad = mD.buscarActividad(n);
-		DataActividad dtact = new DataActividad(actividad.getNombre(), actividad.getDescripcion(), actividad.getDuracion(), actividad.getCosto(), actividad.getFechaAlta());
+		DataActividad dtact = new DataActividad(actividad.getNombre(), actividad.getDescripcion(), actividad.getDuracion(), actividad.getCosto(), actividad.getFechaAlta(), actividad.getEstado(), actividad.darCategorias());
 		return dtact;	
 	}
 
@@ -91,7 +91,7 @@ public class ctrlADeportivas implements IctrlADeportivas{
             for (int i = 0; i < actsdeps.length; i++) {
                 actividad = actsdeps[i];
                 if (actividad.getEstado() == EstadoActi.INGRESADA) 
-                	dad[i] = new DataActividad(actividad.getNombre(), actividad.getDescripcion(), actividad.getDuracion(), actividad.getCosto(), actividad.getFechaAlta());
+                	dad[i] = new DataActividad(actividad.getNombre(), actividad.getDescripcion(), actividad.getDuracion(), actividad.getCosto(), actividad.getFechaAlta(), actividad.getEstado(), actividad.darCategorias());
             }
 
             return dad;

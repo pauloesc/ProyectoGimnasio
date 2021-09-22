@@ -20,7 +20,7 @@ public class ActividadDeportiva {
     private Float duracion;
     private Float costo;
     private Date fecha_alta; 
-    private Map<String,categoria> categorias;
+    private Map<String,Categoria> categorias;
     private EstadoActi estado;
     
 
@@ -31,7 +31,7 @@ public class ActividadDeportiva {
         this.setCosto(cost);
         this.setFechaAlta(fa);
         this.clases = new HashMap<String,Clase>();
-        this.categorias = new HashMap<String,categoria>();
+        this.categorias = new HashMap<String,Categoria>();
         this.estado = EstadoActi.INGRESADA;
     }
 
@@ -122,7 +122,7 @@ public class ActividadDeportiva {
     	return categorias.keySet();
     }
     
-    public void setCategoria(categoria cat) {
+    public void setCategoria(Categoria cat) {
     	categorias.put(cat.getNombre(), cat);
     }
     

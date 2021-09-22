@@ -1,9 +1,9 @@
 package logica;
 
-public class categoria {
+public class Categoria {
 	private String nombre;
 
-	public categoria(String nom) {
+	public Categoria(String nom) {
 		nombre = nom;
 	}
 	
