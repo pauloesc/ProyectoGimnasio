@@ -22,6 +22,7 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
 import excepciones.ActividadDeportivaNoExisteException;
+import excepciones.CategoriaNoExisteException;
 import excepciones.ClaseLlenaException;
 import excepciones.ClaseNoExisteException;
 import excepciones.CuponeraNoExisteException;
@@ -88,6 +89,7 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
     private JTextField txtFechaAlta;
     private DefaultListModel<String> modeloCuponeras;
     private DefaultListModel<String> modeloClases;
+    private DefaultListModel<String> modeloCategorias;
     private Boolean nolimpio;
     private JTextField txtEstado;
     
@@ -174,6 +176,8 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 		txtDescripcion = new JTextArea();
 		txtDescripcion.setEditable(false);
 		txtDescripcion.setBounds(133, 110, 280, 89);
+		txtDescripcion.setWrapStyleWord(true);
+		txtDescripcion.setLineWrap(true);
 		txtDescripcion.setBorder(BorderFactory.createLineBorder(Color.black));
 		getContentPane().add(txtDescripcion);
 		
@@ -350,6 +354,20 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 
         
         listClases.setModel(modeloClases);
+        
+        Set<String> dcat;
+        modeloCategorias = new DefaultListModel<String>();
+        try {
+			dcat = controlADeportivas.getDataActividad(n).getCategorias();
+			Iterator<String> it = dcat.iterator();
+			while(it.hasNext()){            	
+				modeloCategorias.addElement(it.next());
+			}  
+		} catch (ActividadDeportivaNoExisteException e) {
+			JOptionPane.showMessageDialog(this, e.getMessage(), "Consulta Actividad Deportiva",	JOptionPane.ERROR_MESSAGE);
+		}
+		      
+        listCategorias.setModel(modeloCategorias);
         
     }
     

@@ -64,7 +64,7 @@ public class DataActividad {
     	return estado;
     }
     
-    private Set<String> getCategorias() {
+    public Set<String> getCategorias() {
     	return categorias;
     }
     
