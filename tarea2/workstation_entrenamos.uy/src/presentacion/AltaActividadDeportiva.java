@@ -171,7 +171,7 @@ public class AltaActividadDeportiva extends JInternalFrame {
 		lbl_listCategorias.setBounds(34, 296, 95, 19);
 		getContentPane().add(lbl_listCategorias);
 		
-		JList listCategorias = new JList();
+		JList<?> listCategorias = new JList<Object>();
 		listCategorias.setBounds(133, 294, 280, 95);
 		listCategorias.setBorder(BorderFactory.createLineBorder(Color.black));
 		getContentPane().add(listCategorias);

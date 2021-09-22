@@ -2,7 +2,6 @@
 package presentacion;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -10,17 +9,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import excepciones.ActividadDeportivaNoExisteException;
 import excepciones.CuponeraNoExisteException;
 import logica.DataCuponera;
 import logica.IctrlADeportivas;
 import logica.IctrlCuponeras;
 import logica.IctrlIDeportivas;
-import logica.InfoClases;
 import logica.ParActividad;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
@@ -34,18 +30,11 @@ import javax.swing.JLabel;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JList;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 
-import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.ListSelectionModel;
-import javax.swing.JTextPane;
-import javax.swing.JSplitPane;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 
 
 /**

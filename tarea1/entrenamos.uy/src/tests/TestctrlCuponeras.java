@@ -10,7 +10,6 @@ import java.util.Set;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -19,14 +18,11 @@ import excepciones.ActividadDeportivaRepetidaException;
 import excepciones.CuponeraNoExisteException;
 import excepciones.CuponeraRepetidaException;
 import excepciones.InstitucionDeportivaRepetidaException;
-import logica.Cuponera;
 import logica.DataCuponera;
-import logica.DtClase;
 import logica.Fabrica;
 import logica.IctrlADeportivas;
 import logica.IctrlCuponeras;
 import logica.IctrlIDeportivas;
-import logica.InfoClases;
 import logica.ParActividad;
 import logica.manejADeportivas;
 import logica.manejCuponeras;

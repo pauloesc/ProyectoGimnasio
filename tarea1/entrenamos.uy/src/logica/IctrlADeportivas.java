@@ -1,8 +1,6 @@
 package logica;
 
 import excepciones.ActividadDeportivaRepetidaException;
-import excepciones.InstitucionDeportivaRepetidaException;
-import excepciones.InstitucionDeportivaNoExisteException;
 import excepciones.ActividadDeportivaNoExisteException;
 import java.util.Date;
 import java.util.Set;

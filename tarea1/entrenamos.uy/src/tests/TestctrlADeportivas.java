@@ -8,7 +8,6 @@ import java.util.Set;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -17,10 +16,7 @@ import excepciones.ActividadDeportivaRepetidaException;
 import logica.DataActividad;
 import logica.Fabrica;
 import logica.IctrlADeportivas;
-import logica.IctrlClases;
 import logica.IctrlIDeportivas;
-import logica.manejIDeportivas;
-import presentacion.Principal;
 
 /**
  * Test en JUnit del Controlador Actividades Deportivas

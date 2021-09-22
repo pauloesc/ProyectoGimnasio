@@ -1,46 +1,22 @@
 package presentacion;
 
 import java.awt.EventQueue;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.Set;
-
 import javax.swing.JInternalFrame;
-import javax.swing.JComboBox;
-import java.awt.BorderLayout;
-import java.awt.Color;
-
-import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.LayoutStyle.ComponentPlacement;
-
 import logica.Fabrica;
-import logica.IctrlADeportivas;
-import logica.IctrlClases;
-import logica.IctrlIDeportivas;
-import logica.IctrlUsuarios;
 import logica.IctrlCategorias;
 
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.ItemListener;
-import java.awt.event.ItemEvent;
 import javax.swing.JButton;
-import com.toedter.calendar.JDateChooser;
-
 import excepciones.CategoriaExistenteException;
-import excepciones.ClaseRepetidaException;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 import javax.swing.JFrame;
-import java.awt.GridBagLayout;
 
 public class AltaCategoria extends JInternalFrame {
 	

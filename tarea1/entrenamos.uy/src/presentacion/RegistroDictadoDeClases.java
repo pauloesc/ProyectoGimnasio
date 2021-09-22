@@ -5,14 +5,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Set;
-import java.util.Vector;
-
 import javax.swing.JInternalFrame;
 import javax.swing.JComboBox;
-import java.awt.BorderLayout;
-import java.awt.Color;
-
-import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
@@ -27,22 +21,16 @@ import logica.IctrlCuponeras;
 import logica.IctrlIDeportivas;
 import logica.IctrlUsuarios;
 
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.ItemListener;
-import java.awt.event.ItemEvent;
 import javax.swing.JButton;
 import com.toedter.calendar.JDateChooser;
 
 import excepciones.ClaseLlenaException;
-import excepciones.ClaseRepetidaException;
 import excepciones.ClaseYaCompradaException;
-import excepciones.CuponeraNoExisteException;
-
 import javax.swing.JCheckBox;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
@@ -116,12 +104,12 @@ public class RegistroDictadoDeClases extends JInternalFrame {
 		setTitle("Registro a dictado de clase");
 		setBounds(100, 100, 551, 570);
 		
-		comboBoxInstituciones = new JComboBox();	
-		comboBoxClase = new JComboBox();	
-		comboBoxActividadDeportiva = new JComboBox();
-		comboBoxSocio = new JComboBox();
+		comboBoxInstituciones = new JComboBox<String>();	
+		comboBoxClase = new JComboBox<String>();	
+		comboBoxActividadDeportiva = new JComboBox<String>();
+		comboBoxSocio = new JComboBox<String>();
 		chckbxCuponera = new JCheckBox("Cuponera");
-		comboBoxCuponera = new JComboBox();
+		comboBoxCuponera = new JComboBox<String>();
 		dateChooserRegistro = new JDateChooser();
 		
 		

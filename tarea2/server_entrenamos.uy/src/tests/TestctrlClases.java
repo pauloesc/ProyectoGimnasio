@@ -5,7 +5,6 @@ package tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
@@ -20,7 +19,6 @@ import logica.IctrlADeportivas;
 import logica.IctrlClases;
 import logica.IctrlIDeportivas;
 import logica.IctrlUsuarios;
-import logica.InfoBasicaProfesor;
 import excepciones.ClaseLlenaException;
 import excepciones.ClaseNoExisteException;
 import excepciones.ClaseRepetidaException;

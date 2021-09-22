@@ -79,7 +79,7 @@ public class AceptaRechazaActividadDeportiva extends JInternalFrame {
     private DefaultListModel<String> modeloCuponeras;
     private DefaultListModel<String> modeloClases;
     private Boolean nolimpio;
-    private JList listIngresadas;
+    private JList<?> listIngresadas;
     private JTextField txtNombre;
     private JTextField txtDuracion;
     private JTextField txtCosto;
@@ -131,7 +131,7 @@ public class AceptaRechazaActividadDeportiva extends JInternalFrame {
 		btnSalir.setBounds(297, 521, 117, 25);
 		getContentPane().add(btnSalir);
 		
-		listIngresadas = new JList();
+		listIngresadas = new JList<Object>();
 		listIngresadas.setBounds(34, 48, 380, 188);
 		listIngresadas.setBorder(BorderFactory.createLineBorder(Color.black));
 		getContentPane().add(listIngresadas);
@@ -200,7 +200,7 @@ public class AceptaRechazaActividadDeportiva extends JInternalFrame {
 		txtInstitucion.setBounds(133, 275, 280, 19);
 		getContentPane().add(txtInstitucion);
 		
-		JComboBox comboBoxEstado = new JComboBox();
+		JComboBox<?> comboBoxEstado = new JComboBox<Object>();
 		comboBoxEstado.setBounds(133, 490, 141, 19);
 		getContentPane().add(comboBoxEstado);
 		

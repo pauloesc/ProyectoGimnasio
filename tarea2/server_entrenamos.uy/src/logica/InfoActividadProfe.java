@@ -1,7 +1,5 @@
 package logica;
 
-import java.util.Iterator;
-
 public class InfoActividadProfe extends InformacionActividad {
 
 	private String nombre;

@@ -3,11 +3,8 @@
  */
 package tests;
 
-import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,20 +13,14 @@ import java.util.Vector;
 import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 
-import excepciones.CuponeraRepetidaException;
 import excepciones.InstitucionDeportivaRepetidaException;
 import excepciones.UsuarioDisponibilidadException;
-import logica.Cuponera;
-import logica.InfoActividadProfe;
-import logica.InfoActividadSocio;
 import logica.InfoBasicaProfesor;
 import logica.InfoBasicaSocio;
 import logica.InfoBasicaUser;
 import logica.InformacionActividad;
-import logica.ctrlCuponeras;
 import logica.ctrlIDeportivas;
 import logica.ctrlUsuarios;
-import logica.manejCuponeras;
 import logica.manejIDeportivas;
 
 /**

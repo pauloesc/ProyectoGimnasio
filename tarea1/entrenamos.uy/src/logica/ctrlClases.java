@@ -4,7 +4,6 @@
 package logica;
 
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Set;
@@ -13,7 +12,6 @@ import excepciones.ClaseLlenaException;
 import excepciones.ClaseNoExisteException;
 import excepciones.ClaseRepetidaException;
 import excepciones.ClaseYaCompradaException;
-import excepciones.CuponeraNoExisteException;
 
 public class ctrlClases implements IctrlClases {
 	

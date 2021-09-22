@@ -2,14 +2,8 @@ package logica;
 
 import java.util.Set;
 
-import excepciones.ActividadDeportivaNoExisteException;
-import excepciones.ActividadDeportivaRepetidaException;
 import excepciones.InstitucionDeportivaRepetidaException;
 import excepciones.InstitucionDeportivaNoExisteException;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * Controlador de Instituciones Deportivas

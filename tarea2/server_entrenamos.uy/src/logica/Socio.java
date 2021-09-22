@@ -7,10 +7,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
-import java.util.Vector;
-
 import excepciones.ClaseLlenaException;
-import excepciones.ClaseRepetidaException;
 import excepciones.ClaseYaCompradaException;
 
 public class Socio extends Usuario {

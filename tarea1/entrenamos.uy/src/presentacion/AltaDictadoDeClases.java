@@ -7,10 +7,6 @@ import java.util.Set;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JComboBox;
-import java.awt.BorderLayout;
-import java.awt.Color;
-
-import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
@@ -23,14 +19,11 @@ import logica.IctrlClases;
 import logica.IctrlIDeportivas;
 import logica.IctrlUsuarios;
 
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.ItemListener;
-import java.awt.event.ItemEvent;
 import javax.swing.JButton;
 import com.toedter.calendar.JDateChooser;
 
@@ -108,9 +101,9 @@ public class AltaDictadoDeClases extends JInternalFrame {
 		
 		
 		
-		comboBoxInstituciones = new JComboBox();	
-		comboBoxProfesor = new JComboBox();	
-		comboBoxActividadDeportiva = new JComboBox();
+		comboBoxInstituciones = new JComboBox<String>();	
+		comboBoxProfesor = new JComboBox<String>();	
+		comboBoxActividadDeportiva = new JComboBox<String>();
 		
 		JLabel lblHora = new JLabel("Hora");
 		

@@ -2,7 +2,6 @@ package presentacion;
 
 import java.awt.EventQueue;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -10,10 +9,6 @@ import javax.swing.JInternalFrame;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-
-import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -28,19 +23,13 @@ import logica.IctrlClases;
 import logica.IctrlIDeportivas;
 import logica.IctrlUsuarios;
 
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.ItemListener;
-import java.awt.event.ItemEvent;
 import javax.swing.JButton;
-import com.toedter.calendar.JDateChooser;
-
 import excepciones.ClaseNoExisteException;
-import excepciones.ClaseRepetidaException;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
@@ -109,9 +98,9 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 		setTitle("Consulta de dictado de clases");
 		setBounds(120, 50, 518, 563);
 		
-		comboBoxInstituciones = new JComboBox();	
-		comboBoxClase = new JComboBox();	
-		comboBoxActividadDeportiva = new JComboBox();
+		comboBoxInstituciones = new JComboBox<String>();	
+		comboBoxClase = new JComboBox<String>();	
+		comboBoxActividadDeportiva = new JComboBox<String>();
 		
 		
 		
@@ -405,7 +394,6 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 		try {
 			
 			
-			String nomAct = (String) comboBoxActividadDeportiva.getSelectedItem();
 			String inst = (String) comboBoxInstituciones.getSelectedItem();
 			
 			//comprobar que todos los campos tengan algo
