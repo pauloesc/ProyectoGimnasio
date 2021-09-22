@@ -77,6 +77,36 @@ public class ctrlADeportivas implements IctrlADeportivas{
 		return ac.darNombreClasesVigentes();
 
     }
+	
+	public DataActividad[] getActividadesIngresadas(String nid) throws ActividadDeportivaNoExisteException {
+        manejADeportivas mAD = manejADeportivas.getinstance();
+        ActividadDeportiva[] actsdeps = mAD.getActividades();
+
+        if (actsdeps != null) {
+            DataActividad[] dad = new DataActividad[actsdeps.length];
+            ActividadDeportiva actividad;
+
+            // Para separar lógica de presentación, no se deben devolver las Actividades,
+            // sino los DataActividad asociados a la Institución seleccionada.
+            for (int i = 0; i < actsdeps.length; i++) {
+                actividad = actsdeps[i];
+                if (actividad.getEstado() == EstadoActi.INGRESADA) 
+                	dad[i] = new DataActividad(actividad.getNombre(), actividad.getDescripcion(), actividad.getDuracion(), actividad.getCosto(), actividad.getFechaAlta());
+            }
+
+            return dad;
+        } else
+            throw new ActividadDeportivaNoExisteException("No existen Actividades Deportivas en estado INGRESADA en el sistema.");
+
+    }
+	
+	public void cambiarEstado(String n, EstadoActi est) {
+		manejADeportivas mD = manejADeportivas.getinstance();
+		ActividadDeportiva actividad = mD.buscarActividad(n);
+		
+		actividad.setEstado(est);
+		
+	}
 
 	public void cargarDatosADeportivas() {
 	

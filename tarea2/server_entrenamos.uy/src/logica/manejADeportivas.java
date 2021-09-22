@@ -1,6 +1,8 @@
 package logica;
 
 
+import java.util.Collection;
+
 /**
  * Clase que conserva la colección global de Actividades Deportivas del sistema.
  * Se identifican por su nombre.
@@ -36,7 +38,7 @@ public class manejADeportivas {
         return ((ActividadDeportiva) actividadesDeportivas.get(nombre));
     }
 
-  /*  public ActividadDeportiva[] getActividades() {
+    public ActividadDeportiva[] getActividades() {
         if (actividadesDeportivas.isEmpty())
             return null;
         else {
@@ -49,11 +51,12 @@ public class manejADeportivas {
 
             return actividadesdeportivas;
         }
-    }*/
+    }
     
     public float getPrecio(String actDep) {
     	return actividadesDeportivas.get(actDep).getCosto();
     }
+    
     public void EliminarManjeador() {
 		instancia.actividadesDeportivas.clear();
 		instancia=null;
