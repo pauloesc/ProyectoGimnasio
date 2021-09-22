@@ -24,14 +24,14 @@ public class ActividadDeportiva {
     private EstadoActi estado;
     
 
-    public ActividadDeportiva(String n, String de, Float dur, Float cost, Date fa) {
+    public ActividadDeportiva(String n, String de, Float dur, Float cost, Date fa, Map<String,Categoria> cats) {
     	this.setNombre(n);
         this.setDescripcion(de);
         this.setDuracion(dur);
         this.setCosto(cost);
         this.setFechaAlta(fa);
         this.clases = new HashMap<String,Clase>();
-        this.categorias = new HashMap<String,Categoria>();
+        this.categorias = cats;
         this.estado = EstadoActi.INGRESADA;
     }
 
@@ -122,8 +122,13 @@ public class ActividadDeportiva {
     	return categorias.keySet();
     }
     
-    public void setCategoria(Categoria cat) {
-    	categorias.put(cat.getNombre(), cat);
+    public void setCategorias( Set<String> cats) {
+    	manejCategorias mC = manejCategorias.getInstance();
+    	
+    	for( Iterator<String> it = cats.iterator(); it.hasNext();) { 
+    		Categoria cat = mC.findCategoria(it.next());
+    		categorias.put(cat.getNombre(), cat);	
+		}
     }
     
     public void setEstado(EstadoActi est) {

@@ -47,7 +47,7 @@ class TestctrlADeportivas {
 			e1.printStackTrace();
 		}
 		try {
-			ctrlADeportivas.altaActividadDeportiva("Instituto Natural", "Arqueria", "Tiro con arco", 120f, 900f, f1);
+			ctrlADeportivas.altaActividadDeportiva("Instituto Natural", "Arqueria", "Tiro con arco", 120f, 900f, f1, new HashSet<String>());
 			DataActividad dact = ctrlADeportivas.getDataActividad("Arqueria");
 			assertEquals(dact.getNombre(), "Arqueria");
 			assertEquals(dact.getDescripcion(), "Tiro con arco");
@@ -72,12 +72,12 @@ class TestctrlADeportivas {
 			e1.printStackTrace();
 		}
 		try {
-			ctrlADeportivas.altaActividadDeportiva("Telón", "Nado Sincronizado", "Equipo olimpico", 180f, 1500f, f2);
+			ctrlADeportivas.altaActividadDeportiva("Telón", "Nado Sincronizado", "Equipo olimpico", 180f, 1500f, f2, new HashSet<String>());
 		} catch (ActividadDeportivaRepetidaException e) {
 			fail(e.getMessage());
 			e.printStackTrace();
 		} 
-		assertThrows(ActividadDeportivaRepetidaException.class, () -> {ctrlADeportivas.altaActividadDeportiva("Olympic", "Nado Sincronizado", "Equipo olimpico", 180f, 1500f, new SimpleDateFormat("dd/MM/yy").parse("07/07/21"));});
+		assertThrows(ActividadDeportivaRepetidaException.class, () -> {ctrlADeportivas.altaActividadDeportiva("Olympic", "Nado Sincronizado", "Equipo olimpico", 180f, 1500f, new SimpleDateFormat("dd/MM/yy").parse("07/07/21"), new HashSet<String>());});
 	}
 	
 	@Test
