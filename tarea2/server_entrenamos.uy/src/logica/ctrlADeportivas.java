@@ -97,12 +97,12 @@ public class ctrlADeportivas implements IctrlADeportivas{
 
     }
 	
-	public DataActividad[] getActividadesIngresadas(String nid) throws ActividadDeportivaNoExisteException {
+	public Set<String> getActividadesIngresadas() throws ActividadDeportivaNoExisteException {
         manejADeportivas mAD = manejADeportivas.getinstance();
         ActividadDeportiva[] actsdeps = mAD.getActividades();
 
         if (actsdeps != null) {
-            DataActividad[] dad = new DataActividad[actsdeps.length];
+        	Set<String> dad = new HashSet<String>();
             ActividadDeportiva actividad;
 
             // Para separar lógica de presentación, no se deben devolver las Actividades,
@@ -110,8 +110,8 @@ public class ctrlADeportivas implements IctrlADeportivas{
             for (int i = 0; i < actsdeps.length; i++) {
                 actividad = actsdeps[i];
                 if (actividad.getEstado() == EstadoActi.INGRESADA) 
-                	dad[i] = new DataActividad(actividad.getNombre(), actividad.getDescripcion(), actividad.getDuracion(), actividad.getCosto(), actividad.getFechaAlta(), actividad.getEstado(), actividad.darCategorias());
-            }
+                	dad.add(actividad.getNombre());
+                }
 
             return dad;
         } else

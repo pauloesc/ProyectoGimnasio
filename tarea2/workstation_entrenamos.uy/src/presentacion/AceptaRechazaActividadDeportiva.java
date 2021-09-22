@@ -31,6 +31,7 @@ import logica.DataActividad;
 import logica.DataCuponera;
 import logica.DataInstitucion;
 import logica.DtClase;
+import logica.EstadoActi;
 import logica.IctrlADeportivas;
 import logica.IctrlClases;
 import logica.IctrlIDeportivas;
@@ -74,18 +75,16 @@ public class AceptaRechazaActividadDeportiva extends JInternalFrame {
     private IctrlADeportivas controlADeportivas;
     private IctrlCuponeras controlCuponeras;
     private IctrlClases controlClases;
-    private ConsultarCuponera frameCuponeras;
-    private ConsultaDictadoDeClases frameClases;
-    private DefaultListModel<String> modeloCuponeras;
-    private DefaultListModel<String> modeloClases;
     private Boolean nolimpio;
-    private JList<?> listIngresadas;
+    private JList<String> listIngresadas;
     private JTextField txtNombre;
     private JTextField txtDuracion;
     private JTextField txtCosto;
     private JTextField txtFechaAlta;
     private JTextField txtInstitucion;
     private JTextArea txtDescripcion;
+    private JComboBox<String> comboBoxEstado;
+    private DefaultListModel<String> modeloIngresadas;
     
     
     
@@ -103,8 +102,7 @@ public class AceptaRechazaActividadDeportiva extends JInternalFrame {
 		controlADeportivas = icad;
 		controlCuponeras = icup;
 		controlClases = icla;
-		frameCuponeras = consultaCuponera;
-		frameClases = consultaClase;
+
 		
 		setTitle("Aceptar/Rechazar Actividad Deportiva");
 		setClosable(true);
@@ -131,7 +129,7 @@ public class AceptaRechazaActividadDeportiva extends JInternalFrame {
 		btnSalir.setBounds(297, 521, 117, 25);
 		getContentPane().add(btnSalir);
 		
-		listIngresadas = new JList<Object>();
+		listIngresadas = new JList<String>();
 		listIngresadas.setBounds(34, 48, 380, 188);
 		listIngresadas.setBorder(BorderFactory.createLineBorder(Color.black));
 		getContentPane().add(listIngresadas);
@@ -200,9 +198,15 @@ public class AceptaRechazaActividadDeportiva extends JInternalFrame {
 		txtInstitucion.setBounds(133, 275, 280, 19);
 		getContentPane().add(txtInstitucion);
 		
-		JComboBox<?> comboBoxEstado = new JComboBox<Object>();
+		comboBoxEstado = new JComboBox<String>();
 		comboBoxEstado.setBounds(133, 490, 141, 19);
 		getContentPane().add(comboBoxEstado);
+		comboBoxEstado.addItem("Ingresada");
+		comboBoxEstado.addItem("Aceptada");
+		comboBoxEstado.addItem("Rechazada");
+		comboBoxEstado.setSelectedItem(null);
+		comboBoxEstado.setEnabled(false);
+		
 		
 		JButton btnGuardar = new JButton("Guardar");
 		btnGuardar.addActionListener(new ActionListener() {
@@ -225,9 +229,18 @@ public class AceptaRechazaActividadDeportiva extends JInternalFrame {
         try {
             DataActividad act = controlADeportivas.getDataActividad(n);
             txtNombre.setText(act.getNombre());
+            //txtInstitucion.setText(act.get)
             txtDescripcion.setText(act.getDescripcion());
             txtDuracion.setText(act.getDuracion().toString());
             txtCosto.setText(act.getCosto().toString());
+            if ( act.getEstado() == EstadoActi.ACEPTADA )
+            		comboBoxEstado.setSelectedIndex(2);
+            if ( act.getEstado() == EstadoActi.RECHAZADA )
+        		comboBoxEstado.setSelectedIndex(3);
+            if ( act.getEstado() == EstadoActi.INGRESADA )
+        		comboBoxEstado.setSelectedIndex(1);
+            comboBoxEstado.setEnabled(true);
+            
             
             date = act.getFechaAlta();
             String strDate = dateFormat.format(date);
@@ -238,6 +251,17 @@ public class AceptaRechazaActividadDeportiva extends JInternalFrame {
         	setVisible(false);
         }    
         
+    }
+    
+    public void cargarIngresadas() throws ActividadDeportivaNoExisteException {
+    	Set<String> ing;
+    	modeloIngresadas = new DefaultListModel<String>();
+    	ing = controlADeportivas.getActividadesIngresadas();
+    	Iterator<String> it = ing.iterator();
+		while(it.hasNext()){            	
+			modeloIngresadas.addElement(it.next());
+        }
+		listIngresadas.setModel(modeloIngresadas);
     }
     
     // Permite borrar el contenido de un formulario antes de cerrarlo.

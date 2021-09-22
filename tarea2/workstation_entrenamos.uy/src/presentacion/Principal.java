@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import excepciones.ActividadDeportivaNoExisteException;
 import logica.Fabrica;
 import logica.IctrlADeportivas;
 import logica.IctrlClases;
@@ -272,6 +273,12 @@ public class Principal {
         menuItemAceptarRechazarAD.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Muestro el InternalFrame para cambiar el estado de una Actividad Deportiva
+            	try {
+					AceptaRechazaADInternalFrame.cargarIngresadas();
+				} catch (ActividadDeportivaNoExisteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
             	AceptaRechazaADInternalFrame.setVisible(true);
   
             }
