@@ -122,7 +122,7 @@ public class ActividadDeportiva {
     	return categorias.keySet();
     }
     
-    public void setCategorias( Set<String> cats) {
+    public void setCategorias(Set<String> cats) {
     	manejCategorias mC = manejCategorias.getInstance();
     	
     	for( Iterator<String> it = cats.iterator(); it.hasNext();) { 

@@ -37,9 +37,9 @@ class TestctrlADeportivas {
 		ctrlADeportivas = fabrica.getIctrlADeportivas();
 		ctrlIDeportivas = fabrica.getIctrlIDeportivas();
 		ctrlCategorias = fabrica.getIctrlCategorias();
+		ctrlCategorias.cargarCategorias();
 		ctrlIDeportivas.cargarDatosIDeportivas();
 		ctrlADeportivas.cargarDatosADeportivas();
-		ctrlCategorias.cargarCategorias();
 	}
 
 	@Test

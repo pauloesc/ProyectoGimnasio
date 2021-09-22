@@ -511,12 +511,10 @@ void testregistrarCuponeraRepite() {
 		manejCuponeras.getinstance().EliminarManjeador();
 		
 		Date fi=null;
-		Date ff=null;
-		Date fa=null;
+
 		try {
 			fi = new SimpleDateFormat("dd/MM/yy").parse("05/08/21");
-			ff = new SimpleDateFormat("dd/MM/yy").parse("31/08/21");
-			fa=  new SimpleDateFormat("dd/MM/yy").parse("01/07/21");
+
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

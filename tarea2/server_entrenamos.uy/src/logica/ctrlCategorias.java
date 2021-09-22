@@ -20,15 +20,19 @@ public class ctrlCategorias implements IctrlCategorias {
 		} else {
 			manejador.agregarCategoria(nom);
 		}
-		
-		
 	}
 	
 	public void cargarCategorias() {
-		manejador.agregarCategoria("Al aire libre");
-		manejador.agregarCategoria("Deportes");
-		manejador.agregarCategoria("Fitness");
-		manejador.agregarCategoria("Gimnasia");
+		try {
+			altaCategoria("Al aire libre");
+			altaCategoria("Deportes");
+			altaCategoria("Fitness");
+			altaCategoria("Gimnasia");
+		} catch (CategoriaExistenteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 	
 	

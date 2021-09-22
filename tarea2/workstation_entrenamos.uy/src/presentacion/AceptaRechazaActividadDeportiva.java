@@ -67,7 +67,7 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-@SuppressWarnings({ "serial", "unused" })
+@SuppressWarnings({ "unused" })
 public class AceptaRechazaActividadDeportiva extends JInternalFrame {
 	
 	// Controlador de Deportivas que se utilizará para las acciones del JFrame

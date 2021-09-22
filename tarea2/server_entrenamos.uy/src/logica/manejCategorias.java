@@ -9,13 +9,12 @@ import java.util.Map;
 public class manejCategorias {
 	
 	private static manejCategorias instance = null;
+	
 	private Map<String,Categoria> categorias;
 	
 	private manejCategorias() {
 		categorias = new HashMap<String,Categoria>();
 	}
-	
-	
 	
 	public static manejCategorias getInstance() {
 		if (instance == null) {
