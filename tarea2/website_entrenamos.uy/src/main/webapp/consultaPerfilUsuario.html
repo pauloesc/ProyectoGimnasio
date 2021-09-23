@@ -42,6 +42,14 @@
             <div id="content">
                <div class="container-fluid">
                   <h3 class="text-dark mb-4">Perfil</h3>
+                  <form>
+                     <select class="form-control" required>
+                            <option value="12" selected>Usuario 1</option>
+                            <option value="13">Usuario 2</option>
+                            <option value="14">Usuario 3</option>
+                    </select>
+                  </form>
+                  <br />
                   <div class="row mb-3">
                      <div class="col-lg-4">
                         <div class="card mb-3">
@@ -176,10 +184,10 @@
                   </div>
 
                   <div class="card shadow mb-5">
-                     <div class="card-header py-3">
+                     <div id="act-dep" class="card-header py-3">
                         <p class="text-primary m-0 font-weight-bold">Actividades deportivas</p>
                      </div>
-                     <div class="card-body">
+                     <div id="act-dep-cont" class="card-body">
                         <div class="row">
                            <table class="table table-hover">
                               <thead>
@@ -216,9 +224,9 @@
 
                   <div class="card shadow mb-5">
                      <div class="card-header py-3">
-                        <p class="text-primary m-0 font-weight-bold">Clases</p>
+                        <p id="clases" class="text-primary m-0 font-weight-bold">Clases</p>
                      </div>
-                     <div class="card-body">
+                     <div id="clases-cont" class="card-body">
                         <div class="row">
                            <table class="table table-hover">
                               <thead>
@@ -254,10 +262,10 @@
                   </div>
 
                   <div class="card shadow mb-5">
-                     <div class="card-header py-3">
-                        <p class="text-primary m-0 font-weight-bold">Actividades deportivas ingresadas(estados)</p>
+                     <div id="act-dep-ing" class="card-header py-3">
+                        <p   class="text-primary m-0 font-weight-bold">Actividades deportivas ingresadas(estados)</p>
                      </div>
-                     <div class="card-body">
+                     <div id="act-dep-ing-cont" class="card-body">
                         <div class="row">
                            <table class="table table-hover">
                               <thead>
@@ -293,10 +301,10 @@
                   </div>
 
                   <div class="card shadow mb-5">
-                     <div class="card-header py-3">
+                     <div id="cuponeras" class="card-header py-3">
                         <p class="text-primary m-0 font-weight-bold">Cuponeras del socio</p>
                      </div>
-                     <div class="card-body">
+                     <div id="cuponeras-cont" class="card-body">
                         <div class="row">
                            <table class="table table-hover">
                               <thead>
@@ -331,13 +339,11 @@
                      </div>
                   </div>
 
-
-
                   <div class="card shadow mb-5">
-                     <div class="card-header py-3">
-                        <p id="sale" class="text-primary m-0 font-weight-bold">Forum Settings</p>
+                     <div id="seguidos-siguiendo" class="card-header py-3">
+                        <p class="text-primary m-0 font-weight-bold">Seguidos y siguiendo</p>
                      </div>
-                     <div class="product-info">
+                     <div id="seguidos-siguiendo-cont" class="product-info">
                         <div>
                             <ul class="nav nav-tabs" role="tablist" id="myTab">
                                 <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-toggle="tab" id="specifications-tabs" href="#specifications">Siguiendo</a></li>
@@ -396,7 +402,6 @@
                         </div>
                     </div>
                   </div>
-
 
 
                </div>
@@ -467,19 +472,73 @@
 
    <script>
       var visible = true;
-      $("#sale").click(function () {
+      $("#act-dep").click(function () {
 
          if (visible) {
-            $("#saleContenido").hide();
+            $("#act-dep-cont").hide();
             visible = false;
          } else {
-            $("#saleContenido").show();
+            $("#act-dep-cont").show();
             visible = true;
          }
-
       });
-
    </script>
+
+<script>
+   var visible = true;
+   $("#clases").click(function () {
+
+      if (visible) {
+         $("#clases-cont").hide();
+         visible = false;
+      } else {
+         $("#clases-cont").show();
+         visible = true;
+      }
+   });
+</script>
+
+<script>
+   var visible = true;
+   $("#act-dep-ing").click(function () {
+
+      if (visible) {
+         $("#act-dep-ing-cont").hide();
+         visible = false;
+      } else {
+         $("#act-dep-ing-cont").show();
+         visible = true;
+      }
+   });
+</script>
+
+<script>
+   var visible = true;
+   $("#cuponeras").click(function () {
+
+      if (visible) {
+         $("#cuponeras-cont").hide();
+         visible = false;
+      } else {
+         $("#cuponeras-cont").show();
+         visible = true;
+      }
+   });
+</script>
+
+<script>
+   var visible = true;
+   $("#seguidos-siguiendo").click(function () {
+
+      if (visible) {
+         $("#seguidos-siguiendo-cont").hide();
+         visible = false;
+      } else {
+         $("#seguidos-siguiendo-cont").show();
+         visible = true;
+      }
+   });
+</script>
 
 
 </body>
