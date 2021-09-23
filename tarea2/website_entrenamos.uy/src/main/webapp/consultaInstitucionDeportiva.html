@@ -27,7 +27,7 @@
 
         <div class="collapse navbar-collapse" id="navbarEntrenamos">
           <ul class="navbar-nav mr-auto">
-          	<li class="nav-item active">
+            <li class="nav-item active">
               <a class="nav-link" href="home.html">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item dropdown">
@@ -55,7 +55,7 @@
     <main role="main" class="container">
     	<div class="row">
       		<div class="col-6 col-md-4">
-      			<ul id="listaInstituciones" class="list-group my-4">
+      			<ul id="listaActividades" class="list-group my-4">
 					<li class="list-group-item"><strong>Instituciones Deportivas</strong></li>
   					<li class="list-group-item"><a href="consultaInstitucionDeportiva.html" class="">Telon</a></li>
   					<li class="list-group-item"><a href="consultaInstitucionDeportiva.html" class="">Instituto Natural</a></li>
@@ -71,73 +71,38 @@
 				</ul>
 			</div>
       		<div class="col-12 col-md-8">
-      			<h1>Consulta de Actividad Deportiva</h1>
-      			<form class="my-4">
-				  <div class="form-group row">
-				    <label for="institucionDeportiva" class="col-4 col-form-label">Institucion Deportiva</label> 
-				    <div class="col-8">
-				      <select id="institucionDeportiva" name="institucionDeportiva" class="custom-select" required="required">
-				        <option value="Instituto Natural">Instituto Natural</option>
-				        <option value="Olympic">Olympic</option>
-				        <option value="Telón">Telón</option>
-				        <option value="Fuerza Bruta">Fuerza Bruta</option>
-				      </select>
-				    </div>
-				  </div>
-				  <div class="form-group row">
-				    <label for="actividadDeportiva" class="col-4 col-form-label">Actividad Deportiva</label> 
-				  	<div class="col-8">
-				      <select id="actividadDeportiva" name="actividadDeportiva" class="custom-select" required="required">
-				        <option value="Instituto Natural">Boxeo I</option>
-				        <option value="Olympic">Natación</option>
-				        <option value="Telón">Aeróbica</option>
-				        <option value="Fuerza Bruta">Bolita</option>
-				      </select>
-				    </div>
-				  </div>
-				</form>
+      			<h1>Consulta de Institucion Deportiva</h1>
+      			
 				<div class="card mb-3" style="max-width: auto;">
 				  <div class="row no-gutters">
 				    <div class="col-md-4">
-				      <img src="./resources/img/a4.jpg" alt="...">
+				      <img src="./resources/img/i1.png"  class="d-block w-100" alt="...">
 				    </div>
 				    <div class="col-md-8">
 				      <div class="card-body">
-				        <h5 class="card-title">Boxeo I</h5>
-				        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-				        <div class="categorias">
-				        	<span class="badge badge-info">Fitness</span>
-				        	<span class="badge badge-info">Artes Marciales</span>
-				        </div>
+				        <h5 class="card-title">Instituto Natural</h5>
+				        <p class="card-text">El club de los hippies.</p>
 				      </div>
 				    </div>
 				  </div>
 				</div>
 				<ul class="nav nav-tabs" id="myTab" role="tablist">
 				  <li class="nav-item" role="presentation">
-				    <a class="nav-link active" id="detalles-tab" data-toggle="tab" href="#detalles" role="tab" aria-controls="detalles" aria-selected="true">Detalles</a>
+				    <a class="nav-link active" id="detalles-tab" data-toggle="tab" href="#detalles" role="tab" aria-controls="detalles" aria-selected="true">Actividades Deportivas</a>
 				  </li>
 				  <li class="nav-item" role="presentation">
-				    <a class="nav-link" id="cuponeras-tab" data-toggle="tab" href="#cuponeras" role="tab" aria-controls="cuponeras" aria-selected="false">Cuponeras</a>
-				  </li>
-				  <li class="nav-item" role="presentation">
-				    <a class="nav-link" id="clases-tab" data-toggle="tab" href="#clases" role="tab" aria-controls="clases" aria-selected="false">Clases</a>
+				    <a class="nav-link" id="cuponeras-tab" data-toggle="tab" href="#cuponeras" role="tab" aria-controls="cuponeras" aria-selected="false">Profesores</a>
 				  </li>
 				</ul>
 				<div class="tab-content" id="myTabContent">
 				  <div class="tab-pane fade show active" id="detalles" role="tabpanel" aria-labelledby="detalles-tab">
-				  	<p class="card-text">Institución Deportiva: Fuerza Bruta</p>
-				  	<p class="card-text">Costo: $590</p>
-				  	<p class="card-text">Duración: 120 minutos</p>
-				  	<p class="card-text">Estado: Aceptada</p>
+				  	<p class="card-text"><a href="consultaActividadDeportiva.html" class="">Actividad 1</a></p>
+				  	<p class="card-text"><a href="consultaActividadDeportiva.html" class="">Actividad 2</a></p>
+				  	<p class="card-text"><a href="consultaActividadDeportiva.html" class="">Actividad 3</a></p>
 				  </div>
 				  <div class="tab-pane fade" id="cuponeras" role="tabpanel" aria-labelledby="cuponeras-tab">
-				  	<p class="card-text">Boxeo Avanzado</p>
-				  	<p class="card-text">Peleas Callejeras</p>
-				  </div>
-				  <div class="tab-pane fade" id="clases" role="tabpanel" aria-labelledby="clases-tab">
-				  	<p class="card-text">Clase 1</p>
-				  	<p class="card-text">Clase 2</p>
+				  	<p class="card-text">Juan Pablo</p>
+				  	<p class="card-text">Moui</p>
 				  </div>
 				</div>
       		</div>
