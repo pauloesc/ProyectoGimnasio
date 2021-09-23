@@ -15,6 +15,7 @@ import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 import java.awt.Button;
@@ -202,9 +203,11 @@ public class AltaActividadDeportiva extends JInternalFrame {
         String cost = txtCosto.getText();
         Date fal = dateChooser.getDate();
         
+        Set<String> categorias = new HashSet<String>(listCategorias.getSelectedValuesList());
+        
         if (checkFormulario()) {
             try {
-                controlADeportivas.altaActividadDeportiva(nombreID, nombre, des, Float.parseFloat(dur), Float.parseFloat(cost), fal, null);
+                controlADeportivas.altaActividadDeportiva(nombreID, nombre, des, Float.parseFloat(dur), Float.parseFloat(cost), fal, categorias);
 
                 // Muestro éxito de la operación
                 JOptionPane.showMessageDialog(this, "La Actividad Deportiva se ha registrado con éxito", "Alta Actividad Deportiva",
@@ -260,7 +263,13 @@ public class AltaActividadDeportiva extends JInternalFrame {
 	    	    		JOptionPane.ERROR_MESSAGE);
 	            ret = false;
 	        }
-        }  
+        }
+        
+        if(listCategorias.isSelectionEmpty()) {
+        	JOptionPane.showMessageDialog(this, "Debe seleccionar al menos una categoria", "Alta Actividad Deportiva",
+                    JOptionPane.ERROR_MESSAGE);
+        	ret = false;
+        }
         
         return ret;
     }
