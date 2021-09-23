@@ -105,12 +105,16 @@ public class ctrlCuponeras implements IctrlCuponeras {
 	
 	public void comprarCuponera (Date fecha, String cuponera, String nomsocio) throws CuponeraCompradaException{
 		manejUsuarios mU=manejUsuarios.getInstance();
-		Socio sos= (Socio) mU.findUsuario(nomsocio);
+		Socio sos= (Socio)mU.findUsuario(nomsocio);
 		if (!sos.tieneCuponera(cuponera)) {
 			manejCuponeras mC = manejCuponeras.getinstance();
 			Cuponera cup=mC.getCuponera(cuponera);
-			Set<String> acts=cup.getListaActividades();
-			sos.comprarCuponera(fecha, cup, acts);
+			if (cup.cuponerahabilitada(fecha)) {
+				Set<String> acts=cup.getListaActividades();
+				sos.comprarCuponera(fecha, cup, acts);
+			}else {
+				throw new CuponeraCompradaException ("La cuponera no está en vigencia");
+			}
 		}else
 		  throw new CuponeraCompradaException ("El socio ya tiene adquerida esta cuponera");
 	}

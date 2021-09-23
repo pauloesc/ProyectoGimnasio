@@ -128,4 +128,12 @@ public class Cuponera {
 	public void setComprada(boolean comprada) {
 		this.comprada = comprada;
 	}
+	
+	public boolean cuponerahabilitada (Date fecha) {
+		boolean resu=true;
+		if (fecha.after(fecha_fin))
+			resu=false;
+		return resu;
+	}
+	
 }

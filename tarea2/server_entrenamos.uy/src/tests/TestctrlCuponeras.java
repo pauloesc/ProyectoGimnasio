@@ -15,17 +15,26 @@ import org.junit.jupiter.api.Test;
 
 import excepciones.ActividadDeportivaNoExisteException;
 import excepciones.ActividadDeportivaRepetidaException;
+import excepciones.CuponeraCompradaException;
 import excepciones.CuponeraNoExisteException;
 import excepciones.CuponeraRepetidaException;
 import excepciones.InstitucionDeportivaRepetidaException;
+import excepciones.UsuarioDisponibilidadException;
 import logica.DataCuponera;
 import logica.Fabrica;
 import logica.IctrlADeportivas;
 import logica.IctrlCuponeras;
 import logica.IctrlIDeportivas;
+import logica.IctrlUsuarios;
+import logica.InfoBasicaSocio;
+import logica.InfoBasicaUser;
 import logica.ParActividad;
+import logica.Socio;
+import logica.Usuario;
+import logica.ctrlUsuarios;
 import logica.manejADeportivas;
 import logica.manejCuponeras;
+import logica.manejUsuarios;
 
 
 
@@ -34,6 +43,7 @@ class TestctrlCuponeras {
 	private static IctrlCuponeras ctrlCuponeras;
 	private static IctrlADeportivas ctrlDeportivas;
 	private static IctrlIDeportivas ctrlInsti;
+	
 	
 	@BeforeAll
 	public static void iniciar() {
@@ -56,6 +66,15 @@ class TestctrlCuponeras {
 		assertThrows(CuponeraNoExisteException.class, () ->{ctrlCuponeras.listarCuponeras();});
 	
 }
+	
+	@Test
+	void testlistarCuponeraLibresFal(){
+		
+		manejCuponeras.getinstance().EliminarManjeador();
+		assertThrows(CuponeraNoExisteException.class, () ->{ctrlCuponeras.listarcuponeraslibres();});
+	
+}
+	
 	
 	
 	@Test
@@ -585,6 +604,192 @@ void testregistrarCuponeraRepite() {
 		
 		assertThrows(CuponeraNoExisteException.class, () -> {ctrlCuponeras.getCuponerasActividad("Volt5");});
 	}
+	
+	@Test
+	void testlistarcuponerasfail2() {
+		manejCuponeras.getinstance().EliminarManjeador();
+		
+		Date fi=null;
+		Date ff=null;
+		Date fa=null;
+		try {
+			fi = new SimpleDateFormat("dd/MM/yy").parse("05/08/21");
+			ff = new SimpleDateFormat("dd/MM/yy").parse("31/08/21");
+			fa=  new SimpleDateFormat("dd/MM/yy").parse("01/07/21");
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	
+		try {
+			ctrlCuponeras.registrarCuponera("ACC5","Actividades2",fi,ff,10f,fa);
+		}catch (CuponeraRepetidaException e) {
+			e.printStackTrace();
+		}
+	
+		try {
+			ctrlInsti.altaInstitucion("Alp3", "deporte1","url");
+		} catch (InstitucionDeportivaRepetidaException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			ctrlDeportivas.altaActividadDeportiva("Alp3", "Vold1", "dep", 30f, 300f, fi, new HashSet<String>());
+		} catch (ActividadDeportivaRepetidaException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		try {
+			ctrlCuponeras.agregarActividad("ACC5","Vold1", 20);	
+			manejCuponeras.getinstance().getCuponera("ACC5").setComprada(true);
+		
+		}catch (ActividadDeportivaRepetidaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		assertThrows(CuponeraNoExisteException.class, () ->{ctrlCuponeras.listarcuponeraslibres();});
+	}
+	
+	@Test
+	void testlistarcuponeraspass() {
+		manejCuponeras.getinstance().EliminarManjeador();
+		
+		Date fi=null;
+		Date ff=null;
+		Date fa=null;
+		try {
+			fi = new SimpleDateFormat("dd/MM/yy").parse("05/08/21");
+			ff = new SimpleDateFormat("dd/MM/yy").parse("31/08/21");
+			fa=  new SimpleDateFormat("dd/MM/yy").parse("01/07/21");
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	
+		try {
+			ctrlCuponeras.registrarCuponera("ACC6","Actividades2",fi,ff,10f,fa);
+		}catch (CuponeraRepetidaException e) {
+			e.printStackTrace();
+		}
+	
+		try {
+			ctrlInsti.altaInstitucion("Alp4", "deporte1","url");
+		} catch (InstitucionDeportivaRepetidaException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			ctrlDeportivas.altaActividadDeportiva("Alp4", "Vold2", "dep", 30f, 300f, fi, new HashSet<String>());
+		} catch (ActividadDeportivaRepetidaException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		try {
+			ctrlCuponeras.agregarActividad("ACC6","Vold2", 20);	
+		
+		}catch (ActividadDeportivaRepetidaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		Set<String> resu=new HashSet<String>();
+		try {
+		    resu= ctrlCuponeras.listarcuponeraslibres();	
+		
+		}catch (CuponeraNoExisteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Set<String> esperado=new HashSet<String>();
+		esperado.add("ACC6");
+		
+		assertEquals(resu,esperado, "Los sets no son iguales");
+	}
+	/*comprarCuponera (Date fecha, String cuponera, String nomsocio) throws CuponeraCompradaException*/
+	
+	@Test
+	void compraCuponerapass() {
+		ctrlUsuarios ctrlUs = new ctrlUsuarios();
+		
+		
+		Date fi=null;
+		Date ff=null;
+		Date fa=null;
+		Date fcompra=null;
+		try {
+			fi = new SimpleDateFormat("dd/MM/yy").parse("05/08/21");
+			ff = new SimpleDateFormat("dd/MM/yy").parse("31/08/21");
+			fa=  new SimpleDateFormat("dd/MM/yy").parse("01/07/21");
+			fcompra= new SimpleDateFormat("dd/MM/yy").parse("15/08/21");
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	
+		try {
+			ctrlCuponeras.registrarCuponera("ACU1","Actividades2",fi,ff,10f,fa);
+		}catch (CuponeraRepetidaException e) {
+			e.printStackTrace();
+		}
+	
+		try {
+			ctrlInsti.altaInstitucion("Ari1", "deporte1","url");
+		} catch (InstitucionDeportivaRepetidaException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			ctrlDeportivas.altaActividadDeportiva("Ari1", "Vas1", "dep", 30f, 300f, fi, new HashSet<String>());
+		} catch (ActividadDeportivaRepetidaException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		try {
+			ctrlCuponeras.agregarActividad("ACU1","Vas1", 20);	
+		
+		}catch (ActividadDeportivaRepetidaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		InfoBasicaSocio t1= new InfoBasicaSocio("ab", "nombre t1", "apellido t1", "correo t1",new Date());
+
+		
+		try {
+		
+			ctrlUs.altaUsuario(t1,"0");
+			
+		}catch(UsuarioDisponibilidadException e){
+
+		}
+		
+		try {
+		   ctrlCuponeras.comprarCuponera(fcompra, "ACU1","ab");	
+		
+		}catch (CuponeraCompradaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Socio sus= (Socio) manejUsuarios.getInstance().findUsuario("ab");
+		String resu= sus.darCompra("ACU1").getCup().getNombre();
+				
+		
+		assertEquals(resu,"ACU1", "La compra tiene la misma cuponera");
+		
+		
+	}
+	
+	
+	
+	
+	
 	
 	
 }
