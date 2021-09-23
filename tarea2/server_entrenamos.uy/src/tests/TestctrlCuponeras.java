@@ -53,6 +53,8 @@ class TestctrlCuponeras {
 		ctrlCuponeras = fabrica.getIctrlCuponeras();
 		ctrlInsti.cargarDatosIDeportivas();
 		ctrlDeportivas.cargarDatosADeportivas();
+		IctrlUsuarios IU = fabrica.getIctrlUsuarios();
+		IU.cargarUsuarios();
 		ctrlCuponeras.cargarDatosCuponeras();
 		manejCuponeras.getinstance().EliminarManjeador();
 		manejADeportivas.getinstance().EliminarManjeador();

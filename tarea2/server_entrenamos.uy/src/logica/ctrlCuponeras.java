@@ -125,7 +125,8 @@ public class ctrlCuponeras implements IctrlCuponeras {
 	
 	public void cargarDatosCuponeras() {
 		
-		Date f1 = null, f2 = null, f3 = null, f4 = null, f5 = null, f6 = null, f7 =null, f8=null, f9=null;
+		Date f1 = null, f2 = null, f3 = null, f4 = null, f5 = null, f6 = null, f7 =null, f8=null, f9=null, f10=null;
+		
 		try {
 			f1 = new SimpleDateFormat("dd/MM/yy").parse("01/05/21");
 			f2 = new SimpleDateFormat("dd/MM/yy").parse("31/07/21");
@@ -136,6 +137,7 @@ public class ctrlCuponeras implements IctrlCuponeras {
 			f7 = new SimpleDateFormat("dd/MM/yy").parse("15/08/21");
 			f8 = new SimpleDateFormat("dd/MM/yy").parse("15/11/21");
 			f9 = new SimpleDateFormat("dd/MM/yy").parse("01/08/21");
+			f10= new SimpleDateFormat("dd/MM/yy").parse("30/07/21");
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -164,6 +166,24 @@ public class ctrlCuponeras implements IctrlCuponeras {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
 	
+	try {
+		comprarCuponera(f10, "Pelota", "guille");
+		comprarCuponera(f10, "Gimnasia", "m1k4");
+		comprarCuponera(f10, "Gimnasia", "caro");
+		comprarCuponera(f10, "Músculos", "sergiop");
+		comprarCuponera(f10, "Músculos", "andy");
+		comprarCuponera(f10, "Pelota", "Emi71");
+		
+		
+	} catch (CuponeraCompradaException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	}
 }
+	
+	
+	
+	
+
