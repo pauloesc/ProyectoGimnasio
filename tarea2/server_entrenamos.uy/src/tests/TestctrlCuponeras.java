@@ -783,12 +783,142 @@ void testregistrarCuponeraRepite() {
 		
 		assertEquals(resu,"ACU1", "La compra tiene la misma cuponera");
 		
+		ctrlUs.ElimiarManjeador();
+	}
+	
+	@Test
+	void compraCuponerafail1() {
+		ctrlUsuarios ctrlUs = new ctrlUsuarios();
+		
+		
+		Date fi=null;
+		Date ff=null;
+		Date fa=null;
+		Date fcompra=null;
+		try {
+			fi = new SimpleDateFormat("dd/MM/yy").parse("05/08/21");
+			ff = new SimpleDateFormat("dd/MM/yy").parse("31/08/21");
+			fa=  new SimpleDateFormat("dd/MM/yy").parse("01/07/21");
+			fcompra= new SimpleDateFormat("dd/MM/yy").parse("15/09/21");
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	
+		try {
+			ctrlCuponeras.registrarCuponera("ACU2","Actividades2",fi,ff,10f,fa);
+		}catch (CuponeraRepetidaException e) {
+			e.printStackTrace();
+		}
+	
+		try {
+			ctrlInsti.altaInstitucion("Ari12", "deporte1","url");
+		} catch (InstitucionDeportivaRepetidaException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			ctrlDeportivas.altaActividadDeportiva("Ari12", "Vas2", "dep", 30f, 300f, fi, new HashSet<String>());
+		} catch (ActividadDeportivaRepetidaException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		try {
+			ctrlCuponeras.agregarActividad("ACU2","Vas2", 20);	
+		
+		}catch (ActividadDeportivaRepetidaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		InfoBasicaSocio t2= new InfoBasicaSocio("ab2", "nombre t1", "apellido t1", "correo t2",new Date());
+
+		
+		try {
+		
+			ctrlUs.altaUsuario(t2,"0");
+			
+		}catch(UsuarioDisponibilidadException e){
+
+		}
+				
+		
+		assertThrows(CuponeraCompradaException.class, () ->{ ctrlCuponeras.comprarCuponera(new SimpleDateFormat("dd/MM/yy").parse("15/09/21"), "ACU2","ab2");});
+		ctrlUs.ElimiarManjeador();
 		
 	}
 	
 	
+	@Test
+	void compraCuponerafail2() {
+		ctrlUsuarios ctrlUs = new ctrlUsuarios();
+		
+		
+		Date fi=null;
+		Date ff=null;
+		Date fa=null;
+		Date fcompra=null;
+		try {
+			fi = new SimpleDateFormat("dd/MM/yy").parse("05/08/21");
+			ff = new SimpleDateFormat("dd/MM/yy").parse("31/08/21");
+			fa=  new SimpleDateFormat("dd/MM/yy").parse("01/07/21");
+			fcompra= new SimpleDateFormat("dd/MM/yy").parse("15/08/21");
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	
+		try {
+			ctrlCuponeras.registrarCuponera("ACU3","Actividades2",fi,ff,10f,fa);
+		}catch (CuponeraRepetidaException e) {
+			e.printStackTrace();
+		}
 	
+		try {
+			ctrlInsti.altaInstitucion("Ari13", "deporte1","url");
+		} catch (InstitucionDeportivaRepetidaException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			ctrlDeportivas.altaActividadDeportiva("Ari13", "Vas3", "dep", 30f, 300f, fi, new HashSet<String>());
+		} catch (ActividadDeportivaRepetidaException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		try {
+			ctrlCuponeras.agregarActividad("ACU3","Vas3", 20);	
+		
+		}catch (ActividadDeportivaRepetidaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		InfoBasicaSocio t2= new InfoBasicaSocio("ab3", "nombre t1", "apellido t1", "correo t3",new Date());
+
+		
+		try {
+		
+			ctrlUs.altaUsuario(t2,"0");
+			
+		}catch(UsuarioDisponibilidadException e){
+
+		}
+		try {
+			   ctrlCuponeras.comprarCuponera(fcompra, "ACU3","ab3");	
+			
+			}catch (CuponeraCompradaException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}		
+		
+		assertThrows(CuponeraCompradaException.class, () ->{ ctrlCuponeras.comprarCuponera(new SimpleDateFormat("dd/MM/yy").parse("15/08/21"), "ACU3","ab3");});
+		
+		ctrlUs.ElimiarManjeador();
+		
+	}
 	
 	
 	
