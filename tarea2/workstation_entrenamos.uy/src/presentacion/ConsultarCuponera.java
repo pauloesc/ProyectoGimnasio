@@ -295,8 +295,9 @@ public class ConsultarCuponera extends JInternalFrame {
         table.setModel(modelo);
         
         DefaultListModel<String> modelolist;
-    	String list2[]=dat.getCategorias().toArray(list2);
-    	modelolist= new DefaultListModel<String>(list2);
+        modelolist= new DefaultListModel<String>();
+    	Set<String> li=dat.getCategorias();
+    	modelolist.addAll(li);
     	list.setModel(modelolist);
         
         
@@ -349,7 +350,8 @@ public class ConsultarCuponera extends JInternalFrame {
         comboBoxCuponeras.setModel(modelo2);
         DefaultTableModel modelo1= new DefaultTableModel();
         table.setModel(modelo1);
-        
+        DefaultListModel<String> modelolist2= new DefaultListModel<String>();
+        list.setModel(modelolist2);
     }
 }
 	
