@@ -12,7 +12,7 @@ public abstract class Usuario {
 	private String email;
 	private String contrasena;
 	private Date FNacimiento;
-	private Vector<String> imagenes;
+	private String imagen;
 	private Map<String, Usuario> seguidos;
 	
 	
@@ -34,7 +34,7 @@ public abstract class Usuario {
 		this.email = email;
 		this.contrasena = contrasena;
 		FNacimiento = fNacimiento;
-		imagenes = new Vector<String>();
+		imagen = "";
 		seguidos = new HashMap<String, Usuario>();
 	}
 
@@ -44,13 +44,18 @@ public abstract class Usuario {
 		this.apellido = info.getApellido();
 		this.email = info.getCorreo();
 		FNacimiento = info.getFechaNac();
+		this.imagen = info.getImagen();
 	}
 
+	
 	public String getNombre() {
 		return nombre;
 	}
 
-
+	public String getImagen() {
+		return imagen;
+	}
+	
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}

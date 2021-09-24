@@ -8,19 +8,25 @@ public abstract class InfoBasicaUser {
 	private String correo;
 	private Date fechaNac;
 	private String pass;
+	private String img;
 
-	public InfoBasicaUser(String nickname, String nombre, String apellido, String correo, Date fechaNac, String pass) {
+	public InfoBasicaUser(String nickname, String nombre, String apellido, String correo, Date fechaNac, String pass, String img) {
 		this.nickname = nickname;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.correo = correo;
 		this.fechaNac = fechaNac;
 		this.pass = pass;
+		this.img = img;
 	}
 
 	
 	public String getpass() {
 		return pass;
+	}
+	
+	public String getImagen() {
+		return img;
 	}
 	
 	public String getNickname() {
