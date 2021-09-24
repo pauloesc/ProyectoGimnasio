@@ -201,4 +201,17 @@ public class ctrlUsuarios implements IctrlUsuarios {
 				return null;
 		}
 	}
+	
+	/*
+	 * Si no existe usuario con ese email devuelve null.
+	 */
+	public String getNicknameUsuario(String email)
+	{
+		Usuario usr = manejador.findUsuarioPorEmail(email);
+		if (usr == null)
+			return null;
+		else
+			return usr.getNickname();
+	}
+
 }
