@@ -11,44 +11,20 @@
 </head>
   <body class="text-center">
       <%
-      	Cookie[] cookies = request.getCookies();
-      	String email = "", nickname = "", pass = "", recordarme = "0";
-      	if (cookies != null)
-      		for (Cookie c : cookies)
-      		{
-      			if (c.getName().equals("password"))
-      			{
-      				pass = c.getValue();
-      			}
-      			else if (c.getName().equals("email"))
-      			{
-      				email = c.getValue();
-      			}
-      			else if (c.getName().equals("nickname"))
-      			{
-      				nickname = c.getValue();
-      			}
-      			else if (c.getName().equals("recordarme"))
-      			{
-      				recordarme = c.getValue();
-      			}
-      		}
-      	Boolean errorLogin = request.getAttribute("error") != null ? true : false;
-      	String errorMsje = errorLogin == true ? (String)request.getAttribute("error") : "";
+      	Boolean errorLogin = request.getSession().getAttribute("login-error") != null ? true : false;
+      	String errorMsje = errorLogin == true ? (String)request.getSession().getAttribute("login-error") : "";
       %>
-    <form class="form-signin" method="post" action="LoginController">
+    <form class="form-signin" method="post" action="login">
       <img class="mb-4" src="./resources/img/login.png" alt="" width="72" height="72">
       <h1 class="h3 mb-3 font-weight-normal">Iniciar Sesion</h1>
       <label for="inputEmail" class="sr-only">Email o Nickname</label>
       <input type="text" name="input_email" class="form-control" placeholder="Email o nickname" 
-      value="<%= email != "" ? email : nickname %>" required autofocus>
+      value="" required autofocus>
       <label for="inputPassword" class="sr-only">Contraseña</label>
-      <input type="password" name="input_password" class="form-control" placeholder="Contraseña" value="<%= pass %>" required>
+      <input type="password" name="input_password" class="form-control" placeholder="Contraseña" value="" required>
       <div class="checkbox mb-3">
         <label>
-          <input type="checkbox" name="recordarme" value="1"
-          	<%= "1".equals(recordarme) ? "checked=\"\"" : "" %> 
-          /> Recordarme
+          <input type="checkbox" name="recordarme" value="1"/> Recordarme
         </label>
       </div>
 	  <%= errorLogin ? 

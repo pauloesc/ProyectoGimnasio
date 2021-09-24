@@ -19,13 +19,13 @@ public class manejUsuarios {
 	private static manejUsuarios instance = null;
 	private Map<String,Usuario> usuarios;
 	private Map<String,Usuario> usuariosEmail;
+	private Boolean flag_carga;
 	
 	private manejUsuarios() {
 		usuarios = new HashMap<String,Usuario>();
 		usuariosEmail = new HashMap<String, Usuario>();
+		flag_carga = false;
 	}
-	
-	
 	
 	public static manejUsuarios getInstance() {
 		if (instance == null) {
@@ -183,5 +183,15 @@ public class manejUsuarios {
 			
 		}
 		
+	}
+
+	public Boolean get_flag_carga() 
+	{
+		return flag_carga;
+	}
+	
+	public void set_flag_carga(Boolean flag) 
+	{
+		flag_carga = flag;
 	}
 }
