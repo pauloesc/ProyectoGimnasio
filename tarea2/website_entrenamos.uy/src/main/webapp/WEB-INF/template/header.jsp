@@ -1,9 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="logica.InfoBasicaUser"%>
 <%@page import="controladores.Login"%>
 <div id="header">
-
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container">
 			<a class="navbar-brand" href="#">Entrenamos.uy</a>
@@ -20,15 +18,13 @@
 					</li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#"
-						id="navbarDropdownCuponera" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false">Menu (si es
-							profesor)</a>
+						id="navbarDropdownMenu" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false">Menu</a>
 						<div class="dropdown-menu"
-							aria-labelledby="navbarDropdownCuponera">
-							<a class="dropdown-item" href="altaActividadDeportiva.html">Alta
-								de Actividad Deportiva</a> <a class="dropdown-item" href="#">Otra
-								cosa que solo pueda el</a>
-						</div></li>
+							aria-labelledby="navbarDropdownMenu">
+							<a class="dropdown-item" href="altaActividadDeportiva.html">Usuarios</a> 
+						</div>
+					</li>
 				</ul>
 				<form class="form-inline my-2 my-md-0">
 					<input class="form-control" type="text" placeholder="Buscar"
@@ -58,18 +54,17 @@
 		<% }
 		else
 		{ %>
-		<div class="card mb-3">
-  			<div class="row no-gutters">
-    			<div class="col-md-4">
-      				<img src="<%= usr.getImagen() %>" class="card-img">
-    			</div>
-   				<div class="col-md-8">
-      				<div class="card-body">
-        				<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-      				</div>
-    			</div>
-  			</div>
-		</div>
+		<div class="btn-group">
+				<a class="btn btn-light btn-sm dropdown-toggle" href="#"
+					id="navbarDropdownUsuario" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="false"><%= usr.getNombre() %></a>
+				<div class="dropdown-menu dropdown-menu-right"
+					aria-labelledby="navbarDropdownUsuario">
+					<a class="dropdown-item" href="#">Ver mi perfil</a> <a
+						class="dropdown-item" href="#">Modificar mis datos</a> <a
+						class="dropdown-item" href="#">Cerrar sesion</a>
+				</div>
+			</div>
 		<% } %>
 	</nav>
 
