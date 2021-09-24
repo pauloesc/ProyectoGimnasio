@@ -17,6 +17,7 @@ import logica.DtClase;
 import logica.Fabrica;
 import logica.IctrlADeportivas;
 import logica.IctrlClases;
+import logica.IctrlCuponeras;
 import logica.IctrlIDeportivas;
 import logica.IctrlUsuarios;
 import excepciones.ClaseLlenaException;
@@ -41,11 +42,13 @@ class TestctrlClases {
 		IctrlIDeportivas IID = fabrica.getIctrlIDeportivas();
 		IctrlADeportivas IAD = fabrica.getIctrlADeportivas();
 		IctrlUsuarios IU = fabrica.getIctrlUsuarios();
+		IctrlCuponeras ICU = fabrica.getIctrlCuponeras();
 		
 		// IU.cargarDatosUsuarios();  -- sin implementar
 		IID.cargarDatosIDeportivas();
 		IAD.cargarDatosADeportivas();
 		IU.cargarUsuarios();
+		ICU.cargarDatosCuponeras();
 		IC.cargarDatosClases();
 		IC.cargarRegistroAClases();
 		
