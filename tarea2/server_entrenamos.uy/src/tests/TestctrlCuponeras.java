@@ -760,12 +760,12 @@ void testregistrarCuponeraRepite() {
 			e.printStackTrace();
 		}
 		
-		InfoBasicaSocio t1= new InfoBasicaSocio("ab", "nombre t1", "apellido t1", "correo t1",new Date());
+		InfoBasicaSocio t1= new InfoBasicaSocio("ab", "nombre t1", "apellido t1", "correo t1",new Date(),"0");
 
 		
 		try {
 		
-			ctrlUs.altaUsuario(t1,"0");
+			ctrlUs.altaUsuario(t1);
 			
 		}catch(UsuarioDisponibilidadException e){
 
@@ -834,12 +834,12 @@ void testregistrarCuponeraRepite() {
 			e.printStackTrace();
 		}
 		
-		InfoBasicaSocio t2= new InfoBasicaSocio("ab2", "nombre t1", "apellido t1", "correo t2",new Date());
+		InfoBasicaSocio t2= new InfoBasicaSocio("ab2", "nombre t1", "apellido t1", "correo t2",new Date(), "0");
 
 		
 		try {
 		
-			ctrlUs.altaUsuario(t2,"0");
+			ctrlUs.altaUsuario(t2);
 			
 		}catch(UsuarioDisponibilidadException e){
 
@@ -898,12 +898,12 @@ void testregistrarCuponeraRepite() {
 			e.printStackTrace();
 		}
 		
-		InfoBasicaSocio t2= new InfoBasicaSocio("ab3", "nombre t1", "apellido t1", "correo t3",new Date());
+		InfoBasicaSocio t2= new InfoBasicaSocio("ab3", "nombre t1", "apellido t1", "correo t3",new Date(), "0");
 
 		
 		try {
 		
-			ctrlUs.altaUsuario(t2,"0");
+			ctrlUs.altaUsuario(t2);
 			
 		}catch(UsuarioDisponibilidadException e){
 
