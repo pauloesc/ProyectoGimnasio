@@ -84,6 +84,7 @@ public class Profesor extends Usuario {
 			this.getEmail(),
 			this.getFNacimiento(),
 			this.getContrasena(),
+			this.getImagen(),
 			this.getNombreInstitucion(),
 			this.getDescripcion(),
 			this.getBio(),
