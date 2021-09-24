@@ -187,10 +187,10 @@ public class ctrlUsuarios implements IctrlUsuarios {
 			seguirUsuario("guille","TheBoss");
 			seguirUsuario("sergiop","euge");
 			seguirUsuario("sergiop","andy");
-			seguirUsuario("sergiop","calzar");
+			seguirUsuario("sergiop","clazar");
 			seguirUsuario("andy","caro");
 			seguirUsuario("andy","tonyp");
-			seguirUsuario("andy","calzar");
+			seguirUsuario("andy","clazar");
 			seguirUsuario("tonyp","caro");
 			seguirUsuario("tonyp","m1k4");
 			seguirUsuario("tonyp","charly");
@@ -200,7 +200,7 @@ public class ctrlUsuarios implements IctrlUsuarios {
 			seguirUsuario("charly","Nelson");
 			seguirUsuario("viktor","tonyp");
 			seguirUsuario("viktor","m1k4");
-			seguirUsuario("viktor","calzar");
+			seguirUsuario("viktor","clazar");
 			seguirUsuario("viktor","lale");
 			seguirUsuario("viktor","prisc");
 			seguirUsuario("denis","Emi71");
@@ -212,10 +212,10 @@ public class ctrlUsuarios implements IctrlUsuarios {
 			seguirUsuario("denis","tonyp");
 			seguirUsuario("denis","m1k4");
 			seguirUsuario("denis","charly");
-			seguirUsuario("calzar","caro");
-			seguirUsuario("calzar","euge");
-			seguirUsuario("calzar","guille");
-			seguirUsuario("calzar","TheBoss");
+			seguirUsuario("clazar","caro");
+			seguirUsuario("clazar","euge");
+			seguirUsuario("clazar","guille");
+			seguirUsuario("clazar","TheBoss");
 			seguirUsuario("TheBoss","guille");
 			seguirUsuario("TheBoss","andy");
 			seguirUsuario("TheBoss","m1k4");
