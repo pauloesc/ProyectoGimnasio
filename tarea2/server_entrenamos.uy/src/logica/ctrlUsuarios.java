@@ -117,15 +117,15 @@ public class ctrlUsuarios implements IctrlUsuarios {
 			InfoBasicaSocio u8 = new InfoBasicaSocio("m1k4","Micaela","Lopez","mika@gmail.com.ar",f8,"0");
 			InfoBasicaSocio u9 = new InfoBasicaSocio("charly","Carlos","Boston","charly@gmail.com.uy",f9,"0");
 			
-			manejador.CrearUsuario(u1,"test");
-			manejador.CrearUsuario(u2,"0");
-			manejador.CrearUsuario(u3,"0");
-			manejador.CrearUsuario(u4,"0");
-			manejador.CrearUsuario(u5,"0");
-			manejador.CrearUsuario(u6,"0");
-			manejador.CrearUsuario(u7,"0");
-			manejador.CrearUsuario(u8,"0");
-			manejador.CrearUsuario(u9,"0");
+			manejador.CrearUsuario(u1);
+			manejador.CrearUsuario(u2);
+			manejador.CrearUsuario(u3);
+			manejador.CrearUsuario(u4);
+			manejador.CrearUsuario(u5);
+			manejador.CrearUsuario(u6);
+			manejador.CrearUsuario(u7);
+			manejador.CrearUsuario(u8);
+			manejador.CrearUsuario(u9);
 			
 			manejador.set_flag_carga(true);
 		} catch (Exception e) {	
