@@ -14,14 +14,14 @@ public class Socio extends Usuario {
 	private Map<String,Compra> compCup;
 	private Set<Registro> regs;
 	
-	public Socio(InfoBasicaSocio info, String contrasena) {
+	public Socio(InfoBasicaSocio info) {
 		
 		super(	info.getNickname(),
 				info.getNombre(),
 				info.getApellido(),
 				info.getCorreo(),
 				info.getFechaNac(),
-				contrasena);	
+				info.getpass());	
 		
 		compCup = new HashMap<String,Compra>();
 		regs = new HashSet<Registro>();
@@ -87,7 +87,8 @@ public class Socio extends Usuario {
 			this.getNombre(),
 			this.getApellido(),
 			this.getEmail(),
-			this.getFNacimiento()
+			this.getFNacimiento(),
+			this.getContrasena()
 			);
 			return rt;
 	}

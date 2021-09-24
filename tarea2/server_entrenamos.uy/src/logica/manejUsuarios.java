@@ -57,7 +57,7 @@ public class manejUsuarios {
 		return res;
 	}
 	
-	public void CrearUsuario(InfoBasicaUser info, String contrasena) throws UsuarioDisponibilidadException {
+	public void CrearUsuario(InfoBasicaUser info) throws UsuarioDisponibilidadException {
 		
 		boolean dispN = DisponibleNickname(info.getNickname());
 		boolean dispC = DisponibleCorreo(info.getCorreo());
@@ -74,10 +74,10 @@ public class manejUsuarios {
 		
 		if( info.getClass() == InfoBasicaProfesor.class ) {
 			
-			userCreado = new Profesor( (InfoBasicaProfesor)info, contrasena );
+			userCreado = new Profesor( (InfoBasicaProfesor)info );
 		}
 		else {
-			userCreado = new Socio( (InfoBasicaSocio)info, contrasena );
+			userCreado = new Socio( (InfoBasicaSocio)info );
 		}
 		
 		this.usuarios.put(userCreado.getNickname(), userCreado);

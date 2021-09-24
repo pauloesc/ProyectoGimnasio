@@ -12,14 +12,14 @@ public class Profesor extends Usuario {
 		return inst.getNombre();
 	}
 
-	public Profesor(InfoBasicaProfesor info, String contrasena) {
+	public Profesor(InfoBasicaProfesor info) {
 		
 		super(	info.getNickname(),
 				info.getNombre(),
 				info.getApellido(),
 				info.getCorreo(),
 				info.getFechaNac(),
-				contrasena);
+				info.getpass());
 		this.descripcion = info.getDesc();
 		this.bio = info.getBibliografia();
 		this.website = info.getUrl();
@@ -81,6 +81,7 @@ public class Profesor extends Usuario {
 			this.getApellido(),
 			this.getEmail(),
 			this.getFNacimiento(),
+			this.getContrasena(),
 			this.getNombreInstitucion(),
 			this.getDescripcion(),
 			this.getBio(),
