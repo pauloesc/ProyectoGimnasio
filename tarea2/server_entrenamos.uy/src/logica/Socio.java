@@ -92,7 +92,8 @@ public class Socio extends Usuario {
 			this.getApellido(),
 			this.getEmail(),
 			this.getFNacimiento(),
-			this.getContrasena()
+			this.getContrasena(),
+			this.getImagen()
 			);
 			return rt;
 	}
