@@ -232,6 +232,10 @@ public class AltaDictadoDeClases extends JInternalFrame {
 						if ((ho < 0) || (ho >= 24) || (mi < 0) || (mi >= 60)) {
 							JOptionPane.showMessageDialog(null, "Error, ponga bien la hora");
 						
+						} else if(min > max) {
+							JOptionPane.showMessageDialog(null, "Error, socios minimos mayor que socios maximos");
+						}else if (Finicio.before(Falta)) {
+							JOptionPane.showMessageDialog(null, "Error, fecha de inicio anterior a fecha de alta");
 						} else {
 							Fabrica fab = Fabrica.getInstance();
 							IctrlClases ic = fab.getIctrlClases();
