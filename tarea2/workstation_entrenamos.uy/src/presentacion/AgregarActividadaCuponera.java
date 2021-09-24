@@ -220,7 +220,7 @@ public class AgregarActividadaCuponera extends JInternalFrame {
             modelo.setSelectedItem(null);
             comboBoxCuponeras.setModel(modelo);
         } catch (CuponeraNoExisteException e) {
-        	JOptionPane.showMessageDialog(this, "No existen Cuponeras en el sistema.", "Agregar Actividad Deportiva a Cuponera",
+        	JOptionPane.showMessageDialog(this, "No existen Cuponeras disponibles en el sistema.", "Agregar Actividad Deportiva a Cuponera",
     	    		JOptionPane.ERROR_MESSAGE);
         	setVisible(false);
         }
