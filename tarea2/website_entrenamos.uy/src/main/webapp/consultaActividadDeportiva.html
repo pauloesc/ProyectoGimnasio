@@ -1,18 +1,21 @@
 <!doctype html>
 <html lang="en">
 <head>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="entrenamos.uy">
-<meta name="author" content="mbarrera">
+<meta name="author" content="tpgr03">
 
 <!-- Bootstrap CSS -->
 <link href="./resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="./resources/css/bootstrap-reboot.min.css" rel="stylesheet">
+<link href="./resources/css/bootstrap-grid.min.css" rel="stylesheet">
 <link href="./resources/css/sticky-footer-navbar.css" rel="stylesheet">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet">
 
 <title>entrenamos.uy</title>
 </head>
@@ -36,14 +39,10 @@
 						</li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#"
-							id="navbarDropdownCuponera" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false">Menu (si es
-								profesor)</a>
-							<div class="dropdown-menu"
-								aria-labelledby="navbarDropdownCuponera">
-								<a class="dropdown-item" href="altaActividadDeportiva.html">Alta
-									de Actividad Deportiva</a> <a class="dropdown-item" href="#">Otra
-									cosa que solo pueda el</a>
+							id="navbarDropdownMenu" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false">Menu</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdownMenu">
+								<a class="dropdown-item" href="#">Usuarios</a> 
 							</div></li>
 					</ul>
 					<form class="form-inline my-2 my-md-0">
@@ -93,11 +92,8 @@
 							Deportiva</label>
 						<div class="col-8">
 							<select id="institucionDeportiva" name="institucionDeportiva"
-								class="custom-select" required="required">
-								<option value="Instituto Natural">Instituto Natural</option>
-								<option value="Olympic">Olympic</option>
+								class="custom-select" required="required" disabled>
 								<option value="Telón">Telón</option>
-								<option value="Fuerza Bruta">Fuerza Bruta</option>
 							</select>
 						</div>
 					</div>
@@ -106,11 +102,8 @@
 							Deportiva</label>
 						<div class="col-8">
 							<select id="actividadDeportiva" name="actividadDeportiva"
-								class="custom-select" required="required">
-								<option value="Instituto Natural">Boxeo I</option>
-								<option value="Olympic">Natación</option>
-								<option value="Telón">Aeróbica</option>
-								<option value="Fuerza Bruta">Bolita</option>
+								class="custom-select" required="required" disabled>
+								<option value="Voleibol">Voleibol</option>
 							</select>
 						</div>
 					</div>
@@ -118,21 +111,22 @@
 				<div class="card mb-3" style="max-width: auto;">
 					<div class="row no-gutters">
 						<div class="col-md-4">
-							<img src="./resources/img/a4.jpg" alt="...">
+							<img class="d-block w-100" src="./resources/img/a4.jpg" alt="...">
 						</div>
 						<div class="col-md-8">
 							<div class="card-body">
-								<h5 class="card-title">Boxeo I</h5>
-								<p class="card-text">This is a wider card with supporting
-									text below as a natural lead-in to additional content. This
-									content is a little bit longer.</p>
+								<h5 class="card-title">Voleibol</h5>
+								<p class="card-text">Voleibol en todas sus formas.</p>
 								<div class="categorias">
-									<span class="badge badge-info">Fitness</span> <span
-										class="badge badge-info">Artes Marciales</span>
+									<span class="badge badge-info">Deportes</span>
 								</div>
 							</div>
 						</div>
 					</div>
+				</div>
+				<div class="offset-3 col-8 mb-3">
+					<button name="submit" type="submit" class="btn btn-primary">Comprar Cuponera</button>
+					<button name="submit" type="submit" class="btn btn-primary">Registrarse a Clase</button>
 				</div>
 				<ul class="nav nav-tabs" id="myTab" role="tablist">
 					<li class="nav-item" role="presentation"><a
@@ -149,20 +143,21 @@
 				<div class="tab-content" id="myTabContent">
 					<div class="tab-pane fade show active" id="detalles"
 						role="tabpanel" aria-labelledby="detalles-tab">
-						<p class="card-text">Institución Deportiva: Fuerza Bruta</p>
-						<p class="card-text">Costo: $590</p>
-						<p class="card-text">Duración: 120 minutos</p>
-						<p class="card-text">Estado: Aceptada</p>
+						<div class="m-3">
+						<p>Institución Deportiva: Telon</p>
+						<p>Profesor: Denis Miguel</p>
+						<p>Costo: $750</p>
+						<p>Duración: 120 minutos</p>
+						</div>
 					</div>
 					<div class="tab-pane fade" id="cuponeras" role="tabpanel"
 						aria-labelledby="cuponeras-tab">
-						<p class="card-text">Boxeo Avanzado</p>
-						<p class="card-text">Peleas Callejeras</p>
+						<p class="card-text m-3">Pelota</p>
+						
 					</div>
 					<div class="tab-pane fade" id="clases" role="tabpanel"
 						aria-labelledby="clases-tab">
-						<p class="card-text">Clase 1</p>
-						<p class="card-text">Clase 2</p>
+						<p class="card-text m-3">10/06/2021</p>
 					</div>
 				</div>
 			</div>
@@ -182,16 +177,8 @@
 	</script>
 
 
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-		integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
-		integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
-		crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
