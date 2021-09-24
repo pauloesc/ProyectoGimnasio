@@ -89,6 +89,16 @@ public class ctrlUsuarios implements IctrlUsuarios {
 		return manejador.mostrarNicknameSocios();
 	}
 	
+	public void seguirUsuario(String seguidor, String seguido) {
+		Usuario sgr = manejador.findUsuario(seguidor);
+		sgr.seguir(manejador.findUsuario(seguido));
+	}
+	
+	public void dejarDeSeguirUsuario(String seguidor, String seguido) {
+		Usuario sgr = manejador.findUsuario(seguidor);
+		sgr.dejarDeSeguir(manejador.findUsuario(seguido));
+	}
+	
 	public void cargarUsuarios() {
 		//socios
 		Date f1 = null, f2 = null, f3 = null, f4 = null, f5 = null, f6 = null, f7 = null, f8 = null, f9 = null;
@@ -161,8 +171,75 @@ public class ctrlUsuarios implements IctrlUsuarios {
 			manejador.CrearUsuario(p7);
 			manejador.CrearUsuario(p8);
 			manejador.CrearUsuario(p9);
-		} catch (Exception e) {
 			
+			
+			
+			// seguir usuarios
+			seguirUsuario("Emi71","guille");
+			seguirUsuario("caro","euge");
+			seguirUsuario("caro","guille");
+			seguirUsuario("euge","Emi71");
+			seguirUsuario("euge","caro");
+			seguirUsuario("euge","m1k4");
+			seguirUsuario("guille","Emi71");
+			seguirUsuario("guille","caro");
+			seguirUsuario("guille","euge");
+			seguirUsuario("guille","TheBoss");
+			seguirUsuario("sergiop","euge");
+			seguirUsuario("sergiop","andy");
+			seguirUsuario("sergiop","calzar");
+			seguirUsuario("andy","caro");
+			seguirUsuario("andy","tonyp");
+			seguirUsuario("andy","calzar");
+			seguirUsuario("tonyp","caro");
+			seguirUsuario("tonyp","m1k4");
+			seguirUsuario("tonyp","charly");
+			seguirUsuario("m1k4","sergiop");
+			seguirUsuario("m1k4","tonyp");
+			seguirUsuario("charly","tonyp");
+			seguirUsuario("charly","Nelson");
+			seguirUsuario("viktor","tonyp");
+			seguirUsuario("viktor","m1k4");
+			seguirUsuario("viktor","calzar");
+			seguirUsuario("viktor","lale");
+			seguirUsuario("viktor","prisc");
+			seguirUsuario("denis","Emi71");
+			seguirUsuario("denis","caro");
+			seguirUsuario("denis","euge");
+			seguirUsuario("denis","guille");
+			seguirUsuario("denis","sergiop");
+			seguirUsuario("denis","andy");
+			seguirUsuario("denis","tonyp");
+			seguirUsuario("denis","m1k4");
+			seguirUsuario("denis","charly");
+			seguirUsuario("calzar","caro");
+			seguirUsuario("calzar","euge");
+			seguirUsuario("calzar","guille");
+			seguirUsuario("calzar","TheBoss");
+			seguirUsuario("TheBoss","guille");
+			seguirUsuario("TheBoss","andy");
+			seguirUsuario("TheBoss","m1k4");
+			seguirUsuario("Nelson","Emi71");
+			seguirUsuario("Nelson","andy");
+			seguirUsuario("Nelson","tonyp");
+			seguirUsuario("Nelson","lale");
+			seguirUsuario("Nelson","prisc");
+			seguirUsuario("Nelson","dagost");
+			seguirUsuario("lale","charly");
+			seguirUsuario("lale","Nelson");
+			seguirUsuario("prisc","charly");
+			seguirUsuario("prisc","Nelson");
+			seguirUsuario("dagost","tonyp");
+			seguirUsuario("dagost","charly");
+			seguirUsuario("aldo","andy");
+			seguirUsuario("aldo","tonyp");
+			seguirUsuario("aldo","charly");
+			seguirUsuario("aldo","lale");
+			seguirUsuario("aldo","prisc");
+			seguirUsuario("aldo","dagost");
+		
+		} catch (Exception e) {
+			System.out.print("mal!!!");
 		}
 	}
 	

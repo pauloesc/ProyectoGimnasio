@@ -49,6 +49,9 @@ public interface IctrlUsuarios {
 	public abstract Vector<String> UsuariosEnSistemaNickName();
 	//fincreado
 	
+	public abstract void seguirUsuario(String seguidor, String seguido);
+	public abstract void dejarDeSeguirUsuario(String seguidor, String seguido);
+	
 	public abstract Set<String> MostrarCuponerasDisponibles(String nick, String actDept);
 	public abstract Set<String> mostrarNicknameSocios();
 	

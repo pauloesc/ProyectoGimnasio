@@ -100,4 +100,12 @@ public abstract class Usuario {
 	
 	public abstract InformacionActividad InformacionActividad(String usuario);
 	
+	public void seguir(Usuario u) {
+		seguidos.put(u.getNombre(), u);
+	}
+	
+	public void dejarDeSeguir(Usuario u) {
+		seguidos.remove(u.getNombre());
+	}
+	
 }
