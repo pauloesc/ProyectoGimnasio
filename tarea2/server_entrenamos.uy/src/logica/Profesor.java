@@ -1,12 +1,14 @@
 package logica;
 
 import java.util.Date;
+import java.util.Vector;
 
 public class Profesor extends Usuario {
 	private String descripcion;
 	private String bio;
 	private String website;
 	private InstitucionDeportiva inst;
+	private Vector<ActividadDeportiva> actDep = null;
 	
 	public String getNombreInstitucion() {
 		return inst.getNombre();
@@ -93,6 +95,10 @@ public class Profesor extends Usuario {
 	@Override
 	public InformacionActividad InformacionActividad(String usuario) {
 		return this.inst.InformacionProfesor(usuario);
+	}
+	
+	public void asociarseActividadDeportiva( ActividadDeportiva actDep) {
+		this.actDep.add(actDep);
 	}
 	
 }
