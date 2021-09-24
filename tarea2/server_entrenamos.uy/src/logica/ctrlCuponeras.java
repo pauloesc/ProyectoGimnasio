@@ -112,6 +112,7 @@ public class ctrlCuponeras implements IctrlCuponeras {
 			if (cup.cuponerahabilitada(fecha)) {
 				Set<String> acts=cup.getListaActividades();
 				sos.comprarCuponera(fecha, cup, acts);
+				cup.setComprada(true);
 			}else {
 				throw new CuponeraCompradaException ("La cuponera no está en vigencia");
 			}
