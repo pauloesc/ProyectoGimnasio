@@ -8,67 +8,60 @@ package presentacion;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
-import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.Button;
-import java.awt.TextArea;
+
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
+
 
 import excepciones.ActividadDeportivaNoExisteException;
-import excepciones.ClaseLlenaException;
+
 import excepciones.ClaseNoExisteException;
 import excepciones.CuponeraNoExisteException;
 import excepciones.InstitucionDeportivaNoExisteException;
-import logica.Cuponera;
+
 import logica.DataActividad;
-import logica.DataCuponera;
+
 import logica.DataInstitucion;
-import logica.DtClase;
+
 import logica.IctrlADeportivas;
 import logica.IctrlClases;
 import logica.IctrlIDeportivas;
 import logica.IctrlCuponeras;
 
-import javax.swing.JSpinner;
-import javax.swing.JComponent;
-import java.awt.Choice;
+
 import java.awt.Color;
-import java.awt.Container;
+
 
 import javax.swing.JList;
 import javax.swing.JOptionPane;
-import javax.swing.JTree;
+
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import java.awt.event.ItemListener;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Set;
-import java.awt.event.ItemEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.event.ListSelectionEvent;
+
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
+
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-@SuppressWarnings({ "serial", "unused" })
 public class ConsultaActividadDeportiva extends JInternalFrame {
 	
+
 	// Controlador de Deportivas que se utilizará para las acciones del JFrame
     private IctrlIDeportivas controlIDeportivas;
     private IctrlADeportivas controlADeportivas;
@@ -88,6 +81,7 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
     private JTextField txtFechaAlta;
     private DefaultListModel<String> modeloCuponeras;
     private DefaultListModel<String> modeloClases;
+    private DefaultListModel<String> modeloCategorias;
     private Boolean nolimpio;
     private JTextField txtEstado;
     
@@ -174,6 +168,8 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 		txtDescripcion = new JTextArea();
 		txtDescripcion.setEditable(false);
 		txtDescripcion.setBounds(133, 110, 280, 89);
+		txtDescripcion.setWrapStyleWord(true);
+		txtDescripcion.setLineWrap(true);
 		txtDescripcion.setBorder(BorderFactory.createLineBorder(Color.black));
 		getContentPane().add(txtDescripcion);
 		
@@ -312,7 +308,7 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
             txtDescripcion.setText(act.getDescripcion());
             txtDuracion.setText(act.getDuracion().toString());
             txtCosto.setText(act.getCosto().toString());
-            
+            txtEstado.setText(act.getEstado().toString());
             date = act.getFechaAlta();
             String strDate = dateFormat.format(date);
             
@@ -350,6 +346,20 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 
         
         listClases.setModel(modeloClases);
+        
+        Set<String> dcat;
+        modeloCategorias = new DefaultListModel<String>();
+        try {
+			dcat = controlADeportivas.getDataActividad(n).getCategorias();
+			Iterator<String> it = dcat.iterator();
+			while(it.hasNext()){            	
+				modeloCategorias.addElement(it.next());
+			}  
+		} catch (ActividadDeportivaNoExisteException e) {
+			JOptionPane.showMessageDialog(this, e.getMessage(), "Consulta Actividad Deportiva",	JOptionPane.ERROR_MESSAGE);
+		}
+		     
+        listCategorias.setModel(modeloCategorias);
         
     }
     

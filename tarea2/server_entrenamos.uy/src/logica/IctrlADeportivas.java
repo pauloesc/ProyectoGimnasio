@@ -23,7 +23,7 @@ public interface IctrlADeportivas {
      * @param fal Fecha de alta de la Actividad Deportiva.
      * @throws ActividadDeportivaRepetidaException Si el nombre ya se encuentra registrado en el sistema.
      */
-    public abstract void altaActividadDeportiva(String nid, String n, String de, Float dur, Float c, Date fal) throws ActividadDeportivaRepetidaException;
+    public abstract void altaActividadDeportiva(String nid, String n, String de, Float dur, Float c, Date fal, Set<String> cats) throws ActividadDeportivaRepetidaException;
 
     /**
      * Consulta de Actividad Deportiva
@@ -45,5 +45,9 @@ public interface IctrlADeportivas {
     public abstract void cargarDatosADeportivas();
     
     public abstract Set<String> mostrarClasesVigentesDeActividadDeportiva(String nomAct);
+    
+    public abstract void cambiarEstado(String n, EstadoActi est);
+    
+    public abstract Set<String> getActividadesIngresadas() throws ActividadDeportivaNoExisteException;
 }
 

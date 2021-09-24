@@ -72,6 +72,10 @@ public class Socio extends Usuario {
 		return claves.contains(nombre);
 	}
 	
+	public Compra darCompra(String nombre) {
+		return compCup.get(nombre);
+	}
+	
 	public void comprarCuponera(Date fecha, Cuponera cup, Set<String> act) {
 		Compra   nueva= new Compra(fecha, cup, act);
 		this.compCup.put(cup.getNombre(), nueva);

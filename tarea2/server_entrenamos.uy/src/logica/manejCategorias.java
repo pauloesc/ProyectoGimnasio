@@ -5,17 +5,17 @@ package logica;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class manejCategorias {
 	
 	private static manejCategorias instance = null;
-	private Map<String,categoria> categorias;
+	
+	private Map<String,Categoria> categorias;
 	
 	private manejCategorias() {
-		categorias = new HashMap<String,categoria>();
+		categorias = new HashMap<String,Categoria>();
 	}
-	
-	
 	
 	public static manejCategorias getInstance() {
 		if (instance == null) {
@@ -25,11 +25,15 @@ public class manejCategorias {
 	}
 	
 	public void agregarCategoria(String nom) {
-		categoria c = new categoria(nom);
+		Categoria c = new Categoria(nom);
 		categorias.put(nom, c);
 	}
 	
-	public categoria findCategoria(String nom) {
+	public Categoria findCategoria(String nom) {
 		return categorias.get(nom);
+	}
+	
+	public Set<String> getCategorias() {
+		return categorias.keySet();
 	}
 }

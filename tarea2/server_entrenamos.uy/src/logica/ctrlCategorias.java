@@ -4,6 +4,8 @@
 package logica;
 
 
+import java.util.Set;
+
 import excepciones.CategoriaExistenteException;
 
 public class ctrlCategorias implements IctrlCategorias {
@@ -20,9 +22,27 @@ public class ctrlCategorias implements IctrlCategorias {
 		} else {
 			manejador.agregarCategoria(nom);
 		}
-		
-		
 	}
+	
+	public Set<String> getCategorias() {
+		Set<String> categorias = manejador.getCategorias();
+		return categorias;
+	}
+	
+	public void cargarCategorias() {
+		try {
+			altaCategoria("Al aire libre");
+			altaCategoria("Deportes");
+			altaCategoria("Fitness");
+			altaCategoria("Gimnasia");
+		} catch (CategoriaExistenteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+
 	
 	
 }

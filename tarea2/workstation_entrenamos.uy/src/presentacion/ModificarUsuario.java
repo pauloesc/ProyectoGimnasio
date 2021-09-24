@@ -84,7 +84,7 @@ import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
 
-@SuppressWarnings({ "serial", "unused" })
+@SuppressWarnings({ "unused" })
 public class ModificarUsuario extends JInternalFrame{
 		
     // Controlador de Deportivas que se utilizará para las acciones del JFrame

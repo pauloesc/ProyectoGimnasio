@@ -31,6 +31,7 @@ import logica.DataActividad;
 import logica.DataCuponera;
 import logica.DataInstitucion;
 import logica.DtClase;
+import logica.EstadoActi;
 import logica.IctrlADeportivas;
 import logica.IctrlClases;
 import logica.IctrlIDeportivas;
@@ -66,7 +67,7 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-@SuppressWarnings({ "serial", "unused" })
+@SuppressWarnings({ "unused" })
 public class AceptaRechazaActividadDeportiva extends JInternalFrame {
 	
 	// Controlador de Deportivas que se utilizará para las acciones del JFrame
@@ -74,18 +75,17 @@ public class AceptaRechazaActividadDeportiva extends JInternalFrame {
     private IctrlADeportivas controlADeportivas;
     private IctrlCuponeras controlCuponeras;
     private IctrlClases controlClases;
-    private ConsultarCuponera frameCuponeras;
-    private ConsultaDictadoDeClases frameClases;
-    private DefaultListModel<String> modeloCuponeras;
-    private DefaultListModel<String> modeloClases;
     private Boolean nolimpio;
-    private JList<?> listIngresadas;
+    private JList<String> listIngresadas;
     private JTextField txtNombre;
     private JTextField txtDuracion;
     private JTextField txtCosto;
     private JTextField txtFechaAlta;
     private JTextField txtInstitucion;
     private JTextArea txtDescripcion;
+    private JComboBox<String> comboBoxEstado;
+    private DefaultListModel<String> modeloIngresadas;
+    private JButton btnGuardar;
     
     
     
@@ -103,8 +103,7 @@ public class AceptaRechazaActividadDeportiva extends JInternalFrame {
 		controlADeportivas = icad;
 		controlCuponeras = icup;
 		controlClases = icla;
-		frameCuponeras = consultaCuponera;
-		frameClases = consultaClase;
+
 		
 		setTitle("Aceptar/Rechazar Actividad Deportiva");
 		setClosable(true);
@@ -131,9 +130,17 @@ public class AceptaRechazaActividadDeportiva extends JInternalFrame {
 		btnSalir.setBounds(297, 521, 117, 25);
 		getContentPane().add(btnSalir);
 		
-		listIngresadas = new JList<Object>();
+		listIngresadas = new JList<String>();
 		listIngresadas.setBounds(34, 48, 380, 188);
 		listIngresadas.setBorder(BorderFactory.createLineBorder(Color.black));
+		listIngresadas.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				if (nolimpio) 
+					cargarDatosActividad(listIngresadas.getSelectedValue());
+				
+			}
+		});
 		getContentPane().add(listIngresadas);
 		
 		JLabel lblNombre = new JLabel("Nombre:");
@@ -152,6 +159,8 @@ public class AceptaRechazaActividadDeportiva extends JInternalFrame {
 		
 		txtDescripcion = new JTextArea();
 		txtDescripcion.setEditable(false);
+		txtDescripcion.setWrapStyleWord(true);
+		txtDescripcion.setLineWrap(true);
 		txtDescripcion.setBorder(BorderFactory.createLineBorder(Color.black));
 		txtDescripcion.setBounds(133, 306, 280, 89);
 		getContentPane().add(txtDescripcion);
@@ -190,23 +199,39 @@ public class AceptaRechazaActividadDeportiva extends JInternalFrame {
 		lblEstado.setBounds(34, 490, 95, 19);
 		getContentPane().add(lblEstado);
 		
-		JLabel lblInstitucion = new JLabel("Institución:");
-		lblInstitucion.setBounds(34, 275, 95, 19);
-		getContentPane().add(lblInstitucion);
+	//	JLabel lblInstitucion = new JLabel("Institución:");
+	//	lblInstitucion.setBounds(34, 275, 95, 19);
+	//	getContentPane().add(lblInstitucion);
 		
-		txtInstitucion = new JTextField();
-		txtInstitucion.setEditable(false);
-		txtInstitucion.setBorder(BorderFactory.createLineBorder(Color.black));
-		txtInstitucion.setBounds(133, 275, 280, 19);
-		getContentPane().add(txtInstitucion);
+	//	txtInstitucion = new JTextField();
+		//txtInstitucion.setEditable(false);
+		//txtInstitucion.setBorder(BorderFactory.createLineBorder(Color.black));
+		//txtInstitucion.setBounds(133, 275, 280, 19);
+	//	getContentPane().add(txtInstitucion);
 		
-		JComboBox<?> comboBoxEstado = new JComboBox<Object>();
+		comboBoxEstado = new JComboBox<String>();
 		comboBoxEstado.setBounds(133, 490, 141, 19);
+		comboBoxEstado.addItem("Ingresada");
+		comboBoxEstado.addItem("Aceptada");
+		comboBoxEstado.addItem("Rechazada");
+		comboBoxEstado.setSelectedItem(null);
+		comboBoxEstado.setEnabled(false);
 		getContentPane().add(comboBoxEstado);
 		
-		JButton btnGuardar = new JButton("Guardar");
+		btnGuardar = new JButton("Guardar");
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (comboBoxEstado.getSelectedIndex() == 1)
+					controlADeportivas.cambiarEstado(listIngresadas.getSelectedValue(),EstadoActi.ACEPTADA);
+				if (comboBoxEstado.getSelectedIndex() == 2)
+					controlADeportivas.cambiarEstado(listIngresadas.getSelectedValue(),EstadoActi.RECHAZADA);
+				limpiarFormulario();
+				try {
+					cargarIngresadas();
+				} catch (ActividadDeportivaNoExisteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnGuardar.setBounds(164, 521, 117, 25);
@@ -225,9 +250,18 @@ public class AceptaRechazaActividadDeportiva extends JInternalFrame {
         try {
             DataActividad act = controlADeportivas.getDataActividad(n);
             txtNombre.setText(act.getNombre());
+            //txtInstitucion.setText(act.get)
             txtDescripcion.setText(act.getDescripcion());
             txtDuracion.setText(act.getDuracion().toString());
             txtCosto.setText(act.getCosto().toString());
+            if ( act.getEstado() == EstadoActi.ACEPTADA )
+            		comboBoxEstado.setSelectedIndex(1);
+            if ( act.getEstado() == EstadoActi.RECHAZADA )
+        		comboBoxEstado.setSelectedIndex(2);
+            if ( act.getEstado() == EstadoActi.INGRESADA )
+        		comboBoxEstado.setSelectedIndex(0);
+            comboBoxEstado.setEnabled(true);
+            
             
             date = act.getFechaAlta();
             String strDate = dateFormat.format(date);
@@ -238,6 +272,17 @@ public class AceptaRechazaActividadDeportiva extends JInternalFrame {
         	setVisible(false);
         }    
         
+    }
+    
+    public void cargarIngresadas() throws ActividadDeportivaNoExisteException {
+    	Set<String> ing;
+    	modeloIngresadas = new DefaultListModel<String>();
+    	ing = controlADeportivas.getActividadesIngresadas();
+    	Iterator<String> it = ing.iterator();
+		while(it.hasNext()){            	
+			modeloIngresadas.addElement(it.next());
+        }
+		listIngresadas.setModel(modeloIngresadas);
     }
     
     // Permite borrar el contenido de un formulario antes de cerrarlo.
@@ -251,6 +296,9 @@ public class AceptaRechazaActividadDeportiva extends JInternalFrame {
         txtDuracion.setText("");
         txtCosto.setText("");
         txtFechaAlta.setText("");
+        comboBoxEstado.setSelectedItem(null);
+        comboBoxEstado.setEnabled(false);
+        listIngresadas.removeAll();
         nolimpio = true;
     }
     	

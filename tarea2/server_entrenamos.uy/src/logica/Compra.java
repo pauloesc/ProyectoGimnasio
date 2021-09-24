@@ -62,4 +62,7 @@ public class Compra {
 			return nombre==cup.getNombre();
 			
 		}
+		public Cuponera getCup() {
+			return cup;
+		}
 }

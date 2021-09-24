@@ -5,6 +5,6 @@
 	<classpathentry kind="lib" path="jars/jcalendar-1.4.jar"/>
 	<classpathentry kind="lib" path="jars/jgoodies-forms-1.8.0.jar"/>
 	<classpathentry kind="lib" path="jars/jgoodies-forms-1.8.0-sources.jar"/>
-	<classpathentry kind="lib" path="jars/server_entrenamosuy.jar"/>
+	<classpathentry kind="lib" path="jars/server_entrenamos.uy.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

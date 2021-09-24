@@ -14,8 +14,10 @@ import org.junit.jupiter.api.Test;
 import excepciones.ActividadDeportivaNoExisteException;
 import excepciones.ActividadDeportivaRepetidaException;
 import logica.DataActividad;
+import logica.EstadoActi;
 import logica.Fabrica;
 import logica.IctrlADeportivas;
+import logica.IctrlCategorias;
 import logica.IctrlIDeportivas;
 
 /**
@@ -27,12 +29,15 @@ class TestctrlADeportivas {
 
 	private static IctrlADeportivas ctrlADeportivas;
 	private static IctrlIDeportivas ctrlIDeportivas;
+	private static IctrlCategorias ctrlCategorias;
 	
 	@BeforeAll
 	public static void iniciar() {
 		Fabrica fabrica = Fabrica.getInstance();
 		ctrlADeportivas = fabrica.getIctrlADeportivas();
 		ctrlIDeportivas = fabrica.getIctrlIDeportivas();
+		ctrlCategorias = fabrica.getIctrlCategorias();
+		ctrlCategorias.cargarCategorias();
 		ctrlIDeportivas.cargarDatosIDeportivas();
 		ctrlADeportivas.cargarDatosADeportivas();
 	}
@@ -46,7 +51,7 @@ class TestctrlADeportivas {
 			e1.printStackTrace();
 		}
 		try {
-			ctrlADeportivas.altaActividadDeportiva("Instituto Natural", "Arqueria", "Tiro con arco", 120f, 900f, f1);
+			ctrlADeportivas.altaActividadDeportiva("Instituto Natural", "Arqueria", "Tiro con arco", 120f, 900f, f1, new HashSet<String>());
 			DataActividad dact = ctrlADeportivas.getDataActividad("Arqueria");
 			assertEquals(dact.getNombre(), "Arqueria");
 			assertEquals(dact.getDescripcion(), "Tiro con arco");
@@ -71,12 +76,12 @@ class TestctrlADeportivas {
 			e1.printStackTrace();
 		}
 		try {
-			ctrlADeportivas.altaActividadDeportiva("Telón", "Nado Sincronizado", "Equipo olimpico", 180f, 1500f, f2);
+			ctrlADeportivas.altaActividadDeportiva("Telón", "Nado Sincronizado", "Equipo olimpico", 180f, 1500f, f2, new HashSet<String>());
 		} catch (ActividadDeportivaRepetidaException e) {
 			fail(e.getMessage());
 			e.printStackTrace();
 		} 
-		assertThrows(ActividadDeportivaRepetidaException.class, () -> {ctrlADeportivas.altaActividadDeportiva("Olympic", "Nado Sincronizado", "Equipo olimpico", 180f, 1500f, new SimpleDateFormat("dd/MM/yy").parse("07/07/21"));});
+		assertThrows(ActividadDeportivaRepetidaException.class, () -> {ctrlADeportivas.altaActividadDeportiva("Olympic", "Nado Sincronizado", "Equipo olimpico", 180f, 1500f, new SimpleDateFormat("dd/MM/yy").parse("07/07/21"), new HashSet<String>());});
 	}
 	
 	@Test
@@ -99,6 +104,8 @@ class TestctrlADeportivas {
 		setA = new HashSet<String>();
 		setA.add("Aeróbica");
 		setA.add("Arqueria");
+		setA.add("Pilates");
+		
 		
 		assertEquals(setA, nomin);
 		
@@ -127,6 +134,17 @@ class TestctrlADeportivas {
 
 		
 		assertEquals(setA, clasesVigentes);
+	}
+	
+	@Test
+	void testCambiarEstado() throws ActividadDeportivaNoExisteException {
+		
+		ctrlADeportivas.cambiarEstado("Kickboxing", EstadoActi.ACEPTADA);
+		
+		DataActividad dact = ctrlADeportivas.getDataActividad("Kickboxing");
+		assertEquals(dact.getNombre(), "Kickboxing");
+		assertEquals(dact.getEstado(), EstadoActi.ACEPTADA);
+		
 	}
 
 }
