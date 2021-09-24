@@ -182,10 +182,10 @@ public class Principal {
             	ICID.cargarDatosIDeportivas();
             	ICAT.cargarCategorias();
                 ICAD.cargarDatosADeportivas();
+                ICC.cargarDatosCuponeras();
                 IU.cargarUsuarios();
                 ICCL.cargarDatosClases();
                 ICCL.cargarRegistroAClases();
-                ICC.cargarDatosCuponeras();
                 
             }
         });

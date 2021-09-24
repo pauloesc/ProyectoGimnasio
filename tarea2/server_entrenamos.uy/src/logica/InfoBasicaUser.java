@@ -7,22 +7,15 @@ public abstract class InfoBasicaUser {
 	private String apellido;
 	private String correo;
 	private Date fechaNac;
-	private String pass;
 
-	public InfoBasicaUser(String nickname, String nombre, String apellido, String correo, Date fechaNac, String pass) {
+	public InfoBasicaUser(String nickname, String nombre, String apellido, String correo, Date fechaNac) {
 		this.nickname = nickname;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.correo = correo;
 		this.fechaNac = fechaNac;
-		this.pass = pass;
 	}
 
-	
-	public String getpass() {
-		return pass;
-	}
-	
 	public String getNickname() {
 		return nickname;
 	}
