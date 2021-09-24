@@ -1,10 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <jsp:include page="/WEB-INF/template/head.jsp" />
-<title>entrenamos.uy</title>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/template/header.jsp" />
@@ -13,10 +11,8 @@
 		<div class="row">
 			<div class="col-6 col-md-4">
 				<ul id="listaActividades" class="list-group my-4">
-					<li class="list-group-item"><strong>Instituciones
-							Deportivas</strong></li>
-					<li class="list-group-item"><a
-						href="consultaInstitucionDeportiva.html" class="">Telon</a></li>
+					<li class="list-group-item"><strong>Instituciones Deportivas</strong></li>
+					<li class="list-group-item">Telon</li>
 					<li class="list-group-item"><a
 						href="consultaInstitucionDeportiva.html" class="">Instituto
 							Natural</a></li>
@@ -45,14 +41,14 @@
 						</ol>
 						<div class="carousel-inner">
 							<div class="carousel-item active">
-								<img src="./resources/img/3.jpg" class="d-block w-100" alt="...">
+								<img src="./resources/img/3.jpg" class="d-block" alt="...">
 							</div>
 							<div class="carousel-item">
-								<img src="./resources/img/1.jpg" class="d-block w-100"
+								<img src="./resources/img/1.jpg" class="d-block"
 									alt="Jiu-Jitsu">
 							</div>
 							<div class="carousel-item">
-								<img src="./resources/img/2.jpg" class="d-block w-100" alt="...">
+								<img src="./resources/img/2.jpg" class="d-block" alt="...">
 							</div>
 						</div>
 						<a class="carousel-control-prev" href="#carouselExampleCaptions"
@@ -136,15 +132,6 @@
 		</div>
 	</footer>
 
-	<script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
-	<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
-		integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
-		integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
-		crossorigin="anonymous"></script>
-</body>
-</html>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
