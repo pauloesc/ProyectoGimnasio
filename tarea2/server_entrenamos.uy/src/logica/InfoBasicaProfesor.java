@@ -10,8 +10,8 @@ public class InfoBasicaProfesor extends InfoBasicaUser {
 	private String url;
 	
 	
-	public InfoBasicaProfesor(String nickname, String nombre, String apellido, String correo, Date fechaNac, String institucion, String des, String bibliografia, String url ) {
-		super(nickname, nombre, apellido, correo, fechaNac);
+	public InfoBasicaProfesor(String nickname, String nombre, String apellido, String correo, Date fechaNac, String pass ,String institucion, String des, String bibliografia, String url ) {
+		super(nickname, nombre, apellido, correo, fechaNac,pass);
 		
 		this.institucion = institucion;
 		this.desc = des;

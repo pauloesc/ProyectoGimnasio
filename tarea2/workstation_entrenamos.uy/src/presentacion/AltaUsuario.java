@@ -83,6 +83,10 @@ public class AltaUsuario extends JInternalFrame{
     private JTextField txtWeb;
     private JButton btnAltaUsuario;
     private JDateChooser dateChooserInicio;
+    private JLabel lblContrasenia;
+    private JLabel lblConfirmarContrasea;
+    private JTextField pass;
+    private JTextField passConf;
 
     
 	public AltaUsuario(IctrlUsuarios icu)  {
@@ -99,13 +103,13 @@ public class AltaUsuario extends JInternalFrame{
 		
 		setTitle("Alta Usuario");
 		setClosable(true);
-		setBounds(20, 50, 479, 663);
+		setBounds(20, 50, 479, 511);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] {0, 165, 160, 50, 0};
-		gridBagLayout.rowHeights = new int[] {25, 0, 30, 0, 30, 0, 30, 0, 30, 0, 30, 0, 30, 0, 30, 0, 30, 0, 30, 0, 30, 0, 0};
+		gridBagLayout.rowHeights = new int[] {25, 0, 30, 0, 30, 0, 30, 0, 30, 0, 0, 30, 0, 0, 0, 30, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		getContentPane().setLayout(gridBagLayout);
 		
 		JLabel lblNombre = new JLabel("Nickname");
@@ -130,7 +134,7 @@ public class AltaUsuario extends JInternalFrame{
 		gbc_lblNewLabel.anchor = GridBagConstraints.WEST;
 		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel.gridx = 1;
-		gbc_lblNewLabel.gridy = 3;
+		gbc_lblNewLabel.gridy = 2;
 		getContentPane().add(lblNewLabel, gbc_lblNewLabel);
 		
 		txtNombre = new JTextField();
@@ -138,7 +142,7 @@ public class AltaUsuario extends JInternalFrame{
 		gbc_txtNombre.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtNombre.insets = new Insets(0, 0, 5, 5);
 		gbc_txtNombre.gridx = 2;
-		gbc_txtNombre.gridy = 3;
+		gbc_txtNombre.gridy = 2;
 		getContentPane().add(txtNombre, gbc_txtNombre);
 		txtNombre.setColumns(10);
 		
@@ -147,7 +151,7 @@ public class AltaUsuario extends JInternalFrame{
 		gbc_lblApellido.anchor = GridBagConstraints.WEST;
 		gbc_lblApellido.insets = new Insets(0, 0, 5, 5);
 		gbc_lblApellido.gridx = 1;
-		gbc_lblApellido.gridy = 5;
+		gbc_lblApellido.gridy = 3;
 		getContentPane().add(lblApellido, gbc_lblApellido);
 		
 		txtApellido = new JTextField();
@@ -155,7 +159,7 @@ public class AltaUsuario extends JInternalFrame{
 		gbc_txtApellido.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtApellido.insets = new Insets(0, 0, 5, 5);
 		gbc_txtApellido.gridx = 2;
-		gbc_txtApellido.gridy = 5;
+		gbc_txtApellido.gridy = 3;
 		getContentPane().add(txtApellido, gbc_txtApellido);
 		txtApellido.setColumns(10);
 		
@@ -164,7 +168,7 @@ public class AltaUsuario extends JInternalFrame{
 		gbc_lblCorreo.anchor = GridBagConstraints.WEST;
 		gbc_lblCorreo.insets = new Insets(0, 0, 5, 5);
 		gbc_lblCorreo.gridx = 1;
-		gbc_lblCorreo.gridy = 7;
+		gbc_lblCorreo.gridy = 4;
 		getContentPane().add(lblCorreo, gbc_lblCorreo);
 		
 		txtCorreo = new JTextField();
@@ -172,17 +176,9 @@ public class AltaUsuario extends JInternalFrame{
 		gbc_txtCorreo.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtCorreo.insets = new Insets(0, 0, 5, 5);
 		gbc_txtCorreo.gridx = 2;
-		gbc_txtCorreo.gridy = 7;
+		gbc_txtCorreo.gridy = 4;
 		getContentPane().add(txtCorreo, gbc_txtCorreo);
 		txtCorreo.setColumns(10);
-		
-		JLabel lblFechaNacimiento = new JLabel("Fecha Nacimiento");
-		GridBagConstraints gbc_lblFechaNacimiento = new GridBagConstraints();
-		gbc_lblFechaNacimiento.anchor = GridBagConstraints.WEST;
-		gbc_lblFechaNacimiento.insets = new Insets(0, 0, 5, 5);
-		gbc_lblFechaNacimiento.gridx = 1;
-		gbc_lblFechaNacimiento.gridy = 9;
-		getContentPane().add(lblFechaNacimiento, gbc_lblFechaNacimiento);
 		
 		chckbxProfesor = new JCheckBox("Profesor");
 		
@@ -210,20 +206,62 @@ public class AltaUsuario extends JInternalFrame{
 			}
 		});
 		
+		JLabel lblFechaNacimiento = new JLabel("Fecha Nacimiento");
+		GridBagConstraints gbc_lblFechaNacimiento = new GridBagConstraints();
+		gbc_lblFechaNacimiento.anchor = GridBagConstraints.WEST;
+		gbc_lblFechaNacimiento.insets = new Insets(0, 0, 5, 5);
+		gbc_lblFechaNacimiento.gridx = 1;
+		gbc_lblFechaNacimiento.gridy = 5;
+		getContentPane().add(lblFechaNacimiento, gbc_lblFechaNacimiento);
+		
 		dateChooserInicio = new JDateChooser();
 		GridBagConstraints gbc_dateChooserInicio = new GridBagConstraints();
 		gbc_dateChooserInicio.fill = GridBagConstraints.HORIZONTAL;
 		gbc_dateChooserInicio.insets = new Insets(0, 0, 5, 6);
 		gbc_dateChooserInicio.gridx = 2;
-		gbc_dateChooserInicio.gridy = 9;
+		gbc_dateChooserInicio.gridy = 5;
 		getContentPane().add(dateChooserInicio, gbc_dateChooserInicio);
+		
+		lblContrasenia = new JLabel("Contraseña");
+		GridBagConstraints gbc_lblContrasenia = new GridBagConstraints();
+		gbc_lblContrasenia.anchor = GridBagConstraints.WEST;
+		gbc_lblContrasenia.insets = new Insets(0, 0, 5, 5);
+		gbc_lblContrasenia.gridx = 1;
+		gbc_lblContrasenia.gridy = 7;
+		getContentPane().add(lblContrasenia, gbc_lblContrasenia);
+		
+		pass = new JTextField();
+		GridBagConstraints gbc_pass = new GridBagConstraints();
+		gbc_pass.insets = new Insets(0, 0, 5, 5);
+		gbc_pass.fill = GridBagConstraints.HORIZONTAL;
+		gbc_pass.gridx = 2;
+		gbc_pass.gridy = 7;
+		getContentPane().add(pass, gbc_pass);
+		pass.setColumns(10);
+		
+		lblConfirmarContrasea = new JLabel("Confirmar contraseña");
+		GridBagConstraints gbc_lblConfirmarContrasea = new GridBagConstraints();
+		gbc_lblConfirmarContrasea.anchor = GridBagConstraints.WEST;
+		gbc_lblConfirmarContrasea.insets = new Insets(0, 0, 5, 5);
+		gbc_lblConfirmarContrasea.gridx = 1;
+		gbc_lblConfirmarContrasea.gridy = 8;
+		getContentPane().add(lblConfirmarContrasea, gbc_lblConfirmarContrasea);
+		
+		passConf = new JTextField();
+		GridBagConstraints gbc_passConf = new GridBagConstraints();
+		gbc_passConf.insets = new Insets(0, 0, 5, 5);
+		gbc_passConf.fill = GridBagConstraints.HORIZONTAL;
+		gbc_passConf.gridx = 2;
+		gbc_passConf.gridy = 8;
+		getContentPane().add(passConf, gbc_passConf);
+		passConf.setColumns(10);
 
 		
 		GridBagConstraints gbc_chckbxProfesor = new GridBagConstraints();
 		gbc_chckbxProfesor.anchor = GridBagConstraints.WEST;
 		gbc_chckbxProfesor.insets = new Insets(0, 0, 5, 5);
 		gbc_chckbxProfesor.gridx = 1;
-		gbc_chckbxProfesor.gridy = 11;
+		gbc_chckbxProfesor.gridy = 10;
 		getContentPane().add(chckbxProfesor, gbc_chckbxProfesor);
 		
 		JLabel lblInstitucion = new JLabel("Institucion");
@@ -231,7 +269,7 @@ public class AltaUsuario extends JInternalFrame{
 		gbc_lblInstitucion.anchor = GridBagConstraints.WEST;
 		gbc_lblInstitucion.insets = new Insets(0, 0, 5, 5);
 		gbc_lblInstitucion.gridx = 1;
-		gbc_lblInstitucion.gridy = 13;
+		gbc_lblInstitucion.gridy = 11;
 		getContentPane().add(lblInstitucion, gbc_lblInstitucion);
 		
 		comboBox = new JComboBox<String>();
@@ -239,7 +277,7 @@ public class AltaUsuario extends JInternalFrame{
 		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
 		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBox.gridx = 2;
-		gbc_comboBox.gridy = 13;
+		gbc_comboBox.gridy = 11;
 		getContentPane().add(comboBox, gbc_comboBox);
 		
 		JLabel lblDescripcion = new JLabel("Descripcion");
@@ -247,7 +285,7 @@ public class AltaUsuario extends JInternalFrame{
 		gbc_lblDescripcion.anchor = GridBagConstraints.WEST;
 		gbc_lblDescripcion.insets = new Insets(0, 0, 5, 5);
 		gbc_lblDescripcion.gridx = 1;
-		gbc_lblDescripcion.gridy = 15;
+		gbc_lblDescripcion.gridy = 12;
 		getContentPane().add(lblDescripcion, gbc_lblDescripcion);
 		
 		txtDescripcion = new JTextField();
@@ -257,7 +295,7 @@ public class AltaUsuario extends JInternalFrame{
 		gbc_txtDescripcion.insets = new Insets(0, 0, 5, 5);
 		gbc_txtDescripcion.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtDescripcion.gridx = 2;
-		gbc_txtDescripcion.gridy = 15;
+		gbc_txtDescripcion.gridy = 12;
 		getContentPane().add(txtDescripcion, gbc_txtDescripcion);
 		txtDescripcion.setColumns(10);
 		
@@ -268,7 +306,7 @@ public class AltaUsuario extends JInternalFrame{
 		gbc_lblBiografia.anchor = GridBagConstraints.WEST;
 		gbc_lblBiografia.insets = new Insets(0, 0, 5, 5);
 		gbc_lblBiografia.gridx = 1;
-		gbc_lblBiografia.gridy = 17;
+		gbc_lblBiografia.gridy = 13;
 		getContentPane().add(lblBiografia, gbc_lblBiografia);
 		
 		txtBibliografia = new JTextField();
@@ -278,7 +316,7 @@ public class AltaUsuario extends JInternalFrame{
 		gbc_txtBibliografia.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtBibliografia.insets = new Insets(0, 0, 5, 5);
 		gbc_txtBibliografia.gridx = 2;
-		gbc_txtBibliografia.gridy = 17;
+		gbc_txtBibliografia.gridy = 13;
 		getContentPane().add(txtBibliografia, gbc_txtBibliografia);
 		txtBibliografia.setColumns(10);
 		
@@ -287,7 +325,7 @@ public class AltaUsuario extends JInternalFrame{
 		gbc_lblWeburl.anchor = GridBagConstraints.WEST;
 		gbc_lblWeburl.insets = new Insets(0, 0, 5, 5);
 		gbc_lblWeburl.gridx = 1;
-		gbc_lblWeburl.gridy = 19;
+		gbc_lblWeburl.gridy = 14;
 		getContentPane().add(lblWeburl, gbc_lblWeburl);
 		
 		txtWeb = new JTextField();
@@ -297,7 +335,7 @@ public class AltaUsuario extends JInternalFrame{
 		gbc_txtWeb.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtWeb.insets = new Insets(0, 0, 5, 5);
 		gbc_txtWeb.gridx = 2;
-		gbc_txtWeb.gridy = 19;
+		gbc_txtWeb.gridy = 14;
 		getContentPane().add(txtWeb, gbc_txtWeb);
 		txtWeb.setColumns(10);
 		
@@ -313,7 +351,7 @@ public class AltaUsuario extends JInternalFrame{
 		gbc_btnAltaUsuario.anchor = GridBagConstraints.WEST;
 		gbc_btnAltaUsuario.insets = new Insets(0, 0, 0, 5);
 		gbc_btnAltaUsuario.gridx = 1;
-		gbc_btnAltaUsuario.gridy = 21;
+		gbc_btnAltaUsuario.gridy = 16;
 		getContentPane().add(btnAltaUsuario, gbc_btnAltaUsuario);
 		
 		JButton btnCancelar = new JButton("Cancelar");
@@ -327,7 +365,7 @@ public class AltaUsuario extends JInternalFrame{
 		GridBagConstraints gbc_btnCancelar = new GridBagConstraints();
 		gbc_btnCancelar.insets = new Insets(0, 0, 0, 5);
 		gbc_btnCancelar.gridx = 2;
-		gbc_btnCancelar.gridy = 21;
+		gbc_btnCancelar.gridy = 16;
 		getContentPane().add(btnCancelar, gbc_btnCancelar);
 	}
 	
@@ -359,6 +397,15 @@ public class AltaUsuario extends JInternalFrame{
                 verificacion = false;
         	}
         }
+        
+        String StringPass = pass.getText();
+        String StringPassConfirmacion = passConf.getText();
+        if( !( StringPass.equals(StringPassConfirmacion) ) ) {
+	        JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden", "Alta De Usuario",
+	                JOptionPane.ERROR_MESSAGE);
+	        verificacion = false;
+        }
+        
         return verificacion;
     }
     
@@ -374,6 +421,9 @@ public class AltaUsuario extends JInternalFrame{
     	txtDescripcion.setText("");
     	txtBibliografia.setText("");
     	txtWeb.setText("");
+    	
+    	pass.setText("");
+    	passConf.setText("");
     	
     	comboBox.setEditable(false);
     	comboBox.setEnabled(false);
@@ -403,6 +453,7 @@ public class AltaUsuario extends JInternalFrame{
 						txtApellido.getText(),
 						txtCorreo.getText(),
 						dateChooserInicio.getDate(),
+						pass.getText(),
 						comboBox.getSelectedItem().toString(),
 						txtDescripcion.getText(),
 						txtBibliografia.getText(),
@@ -414,12 +465,12 @@ public class AltaUsuario extends JInternalFrame{
 						txtNombre.getText(),
 						txtApellido.getText(),
 						txtCorreo.getText(),
-						dateChooserInicio.getDate());
+						dateChooserInicio.getDate(),
+						pass.getText());
 			}
         	
             try {
-            	// se le pasa un string vacio para que compile. Por la modificacion de la contraseña
-            	controlUsuario.altaUsuario(i,"");
+            	controlUsuario.altaUsuario(i);
                 JOptionPane.showMessageDialog(this, "El Usuario se ha creado con éxito", "Registrar Usuario",
                         JOptionPane.INFORMATION_MESSAGE);
                 limpiarFormulario();
