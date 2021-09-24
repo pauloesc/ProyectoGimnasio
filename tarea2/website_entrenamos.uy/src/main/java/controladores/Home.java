@@ -15,6 +15,7 @@ public class Home extends HttpServlet
 	public Home()
 	{
 		super();
+		Login.cargarUsuarios();
 	}
 	
 	public static void iniciarSesion(HttpServletRequest request)
@@ -23,7 +24,6 @@ public class Home extends HttpServlet
 		if (session.getAttribute("estado_sesion") == null) 
 		{
 			session.setAttribute("estado_sesion", "no_login");
-			Login.cargarUsuarios();
 		}
 	}
 	

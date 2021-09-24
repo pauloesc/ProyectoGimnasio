@@ -2,9 +2,7 @@ package controladores;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -40,7 +38,7 @@ public class Login extends HttpServlet
 				email = user;
 			else
 				nickname = user;
-		
+			
 			String auth = ctrlUsuarios.autenticarUsario(nickname, email, pass);
 			
 			if (auth == null)
