@@ -90,6 +90,10 @@ public class ctrlUsuarios implements IctrlUsuarios {
 	}
 	
 	public void cargarUsuarios() {
+		
+		if ( manejador.get_flag_carga() == true)
+			return;
+		
 		//socios
 		Date f1 = null, f2 = null, f3 = null, f4 = null, f5 = null, f6 = null, f7 = null, f8 = null, f9 = null;
 		try {
@@ -113,16 +117,17 @@ public class ctrlUsuarios implements IctrlUsuarios {
 			InfoBasicaSocio u8 = new InfoBasicaSocio("m1k4","Micaela","Lopez","mika@gmail.com.ar",f8,"0");
 			InfoBasicaSocio u9 = new InfoBasicaSocio("charly","Carlos","Boston","charly@gmail.com.uy",f9,"0");
 			
-			manejador.CrearUsuario(u1);
-			manejador.CrearUsuario(u2);
-			manejador.CrearUsuario(u3);
-			manejador.CrearUsuario(u4);
-			manejador.CrearUsuario(u5);
-			manejador.CrearUsuario(u6);
-			manejador.CrearUsuario(u7);
-			manejador.CrearUsuario(u8);
-			manejador.CrearUsuario(u9);
-	
+			manejador.CrearUsuario(u1,"test");
+			manejador.CrearUsuario(u2,"0");
+			manejador.CrearUsuario(u3,"0");
+			manejador.CrearUsuario(u4,"0");
+			manejador.CrearUsuario(u5,"0");
+			manejador.CrearUsuario(u6,"0");
+			manejador.CrearUsuario(u7,"0");
+			manejador.CrearUsuario(u8,"0");
+			manejador.CrearUsuario(u9,"0");
+			
+			manejador.set_flag_carga(true);
 		} catch (Exception e) {	
 		}
 		
@@ -200,5 +205,17 @@ public class ctrlUsuarios implements IctrlUsuarios {
 			else
 				return null;
 		}
+	}
+	
+	/*
+	 * Si no existe usuario con ese email devuelve null.
+	 */
+	public String getNicknameUsuario(String email)
+	{
+		Usuario usr = manejador.findUsuarioPorEmail(email);
+		if (usr == null)
+			return null;
+		else
+			return usr.getNickname();
 	}
 }
