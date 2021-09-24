@@ -85,7 +85,11 @@ public class InstitucionDeportiva {
 			ActividadDeportiva aux = info.next();
 			DtActividadesDeportivas aux_ad = aux.InformacionProfesor(usuario);
 			
-			i.agregarInfo(aux_ad);
+			//si la actividad deportiva tiene clases adentro...
+			if( ! (aux_ad.getClases().isEmpty()) ) {
+				i.agregarInfo(aux_ad);				
+			}
+			
 		}
 				
 		return i;		
