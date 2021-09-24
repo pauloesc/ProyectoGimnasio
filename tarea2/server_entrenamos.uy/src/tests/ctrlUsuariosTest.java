@@ -52,25 +52,25 @@ class ctrlUsuariosTest {
 		//creo profes y los asocio a inst1
 		InfoBasicaUser p1 = new InfoBasicaProfesor(	"nick p1",		"nombre p1",
 													"apellido p1",	"correo p1",
-													new Date(),"0",  	"inst1",
+													new Date(), 	"inst1",
 													"descp p1", 	"bibliog p1",
 													"url p1" );
 		
 		InfoBasicaUser p2 = new InfoBasicaProfesor(	"nick p2",		"nombre p2",
 													"apellido p2",	"correo p2",
-													new Date(),"0", 	"inst1",
+													new Date(), 	"inst1",
 													"descp p2", 	"bibliog p2",
 													"url p2" );
 		
 		InfoBasicaUser p3 = new InfoBasicaProfesor(	"nick p3",		"nombre p3",
 													"apellido p3",	"correo p3",
-													new Date(),"0", 	"inst2",
+													new Date(), 	"inst2",
 													"descp p3", 	"bibliog p3",
 													"url p3" );
 		try {
-			cu.altaUsuario(p1);
-			cu.altaUsuario(p2);
-			cu.altaUsuario(p3);
+			cu.altaUsuario(p1,"0");
+			cu.altaUsuario(p2,"0");
+			cu.altaUsuario(p3,"0");
 		}catch(UsuarioDisponibilidadException e){
 			
 		}
@@ -124,32 +124,32 @@ class ctrlUsuariosTest {
 		//creo profes
 		InfoBasicaProfesor p1 = new InfoBasicaProfesor(	"nick p1",		"nombre p1",
 													"apellido p1",	"correo p1",
-													new Date(),"0", 	"inst1",
+													new Date(), 	"inst1",
 													"descp p1", 	"bibliog p1",
 													"url p1" );
 		
 		InfoBasicaProfesor p2 = new InfoBasicaProfesor(	"nick p2",		"nombre p2",
 													"apellido p2",	"correo p2",
-													new Date(),"0", 	"inst1",
+													new Date(), 	"inst1",
 													"descp p2", 	"bibliog p2",
 													"url p2" );
 		//creo socios
 		InfoBasicaSocio s1 = new InfoBasicaSocio(	"nick s1",		"nombre s1",
 													"apellido s1",	"correo s1",
-													new Date(),"0" );
+													new Date() );
 		
 		InfoBasicaSocio s2 = new InfoBasicaSocio(	"nick s2",		"nombre s2",
 													"apellido s2",	"correo s2",
-													new Date(),"0" );
+													new Date());
 		
 		
 
 		
 		try {
-			cu.altaUsuario(p1);
-			cu.altaUsuario(p2);
-			cu.altaUsuario(s1);
-			cu.altaUsuario(s2);
+			cu.altaUsuario(p1,"0");
+			cu.altaUsuario(p2,"0");
+			cu.altaUsuario(s1,"0");
+			cu.altaUsuario(s2,"0");
 
 		}catch(UsuarioDisponibilidadException e){
 			
@@ -185,35 +185,35 @@ class ctrlUsuariosTest {
 		
 		InfoBasicaProfesor p1_1 = new InfoBasicaProfesor( 	"nick p1_1",		"nombre p1",
 															"apellido p1",	"correo p1",
-															new Date(),"0", 	"inst1",
+															new Date(), 	"inst1",
 															"descp p1", 	"bibliog p1",
 															"url p1" );
 		
 		//creo un profe con datos iguales pero dif correo
 		InfoBasicaProfesor p1_2 = new InfoBasicaProfesor(	"nick p1",		"nombre p1",
 															"apellido p1",	"correo p1_2",
-															new Date(),"0", 	"inst1",
+															new Date(), 	"inst1",
 															"descp p1", 	"bibliog p1",
 															"url p1" );
 		
 		//creo socios el mismo socio que antes (s1)
 		InfoBasicaSocio s1_1 = new InfoBasicaSocio(	"nick s1",		"nombre s1",
 													"apellido s1",	"correo s1",
-													new Date(),"0" );
+													new Date() );
 		
 		try {
-			cu.altaUsuario(p1_1);
-			cu.altaUsuario(p1_2);
-			cu.altaUsuario(s1_1);
+			cu.altaUsuario(p1_1,"0");
+			cu.altaUsuario(p1_2,"0");
+			cu.altaUsuario(s1_1,"0");
 
 		}catch(UsuarioDisponibilidadException e){
 			
 		}
 		
 		final ctrlUsuarios cuCopia = cu;
-		assertThrows( UsuarioDisponibilidadException.class, ()-> {cuCopia.altaUsuario(p1_1);} );
-		assertThrows( UsuarioDisponibilidadException.class, ()-> {cuCopia.altaUsuario(p1_2);} );
-		assertThrows( UsuarioDisponibilidadException.class, ()-> {cuCopia.altaUsuario(s1_1);} );
+		assertThrows( UsuarioDisponibilidadException.class, ()-> {cuCopia.altaUsuario(p1_1,"0");} );
+		assertThrows( UsuarioDisponibilidadException.class, ()-> {cuCopia.altaUsuario(p1_2,"0");} );
+		assertThrows( UsuarioDisponibilidadException.class, ()-> {cuCopia.altaUsuario(s1_1,"0");} );
 		
 		
 		
@@ -290,29 +290,29 @@ class ctrlUsuariosTest {
 		//creo profes
 		InfoBasicaProfesor p1 = new InfoBasicaProfesor(	"nick p1",		"nombre p1",
 													"apellido p1",	"correo p1",
-													new Date(),"0", 	"inst1",
+													new Date(), 	"inst1",
 													"descp p1", 	"bibliog p1",
 													"url p1" );
 		
 		InfoBasicaProfesor p2 = new InfoBasicaProfesor(	"nick p2",		"nombre p2",
 													"apellido p2",	"correo p2",
-													new Date(),"0", 	"inst1",
+													new Date(), 	"inst1",
 													"descp p2", 	"bibliog p2",
 													"url p2" );
 		//creo socios
 		InfoBasicaSocio s1 = new InfoBasicaSocio(	"nick s1",		"nombre s1",
 													"apellido s1",	"correo s1",
-													new Date(),"0" );
+													new Date() );
 		
 		InfoBasicaSocio s2 = new InfoBasicaSocio(	"nick s2",		"nombre s2",
 													"apellido s2",	"correo s2",
-													new Date(),"0" );
+													new Date());
 		
 		try {
-			cu.altaUsuario(p1);
-			cu.altaUsuario(p2);
-			cu.altaUsuario(s1);
-			cu.altaUsuario(s2);
+			cu.altaUsuario(p1,"0");
+			cu.altaUsuario(p2,"0");
+			cu.altaUsuario(s1,"0");
+			cu.altaUsuario(s2,"0");
 		}catch(UsuarioDisponibilidadException e){
 			
 		}
@@ -361,30 +361,30 @@ class ctrlUsuariosTest {
 		//creo profes y los asocio a inst1
 		InfoBasicaProfesor p1 = new InfoBasicaProfesor(	"nick p1",		"nombre p1",
 													"apellido p1",	"correo p1",
-													new Date(),"0", 	"inst1",
+													new Date(), 	"inst1",
 													"descp p1", 	"bibliog p1",
 													"url p1" );
 		
 		InfoBasicaProfesor p2 = new InfoBasicaProfesor(	"nick p2",		"nombre p2",
 													"apellido p2",	"correo p2",
-													new Date(),"0", 	"inst1",
+													new Date(), 	"inst1",
 													"descp p2", 	"bibliog p2",
 													"url p2" );
 		
 		//creo socios
 		InfoBasicaSocio s1 = new InfoBasicaSocio(	"nick s1",		"nombre s1",
 													"apellido s1",	"correo s1",
-													new Date(),"0" );
+													new Date() );
 		
 		InfoBasicaSocio s2 = new InfoBasicaSocio(	"nick s2",		"nombre s2",
 													"apellido s2",	"correo s2",
-													new Date(),"0" );
+													new Date());
 		
 		try {
-			cu.altaUsuario(p1);
-			cu.altaUsuario(p2);
-			cu.altaUsuario(s1);
-			cu.altaUsuario(s2);
+			cu.altaUsuario(p1,"0");
+			cu.altaUsuario(p2,"0");
+			cu.altaUsuario(s1,"0");
+			cu.altaUsuario(s2,"0");
 		}catch(UsuarioDisponibilidadException e){
 			
 		}
@@ -392,24 +392,24 @@ class ctrlUsuariosTest {
 		//cambio la info del profesor p1
 		InfoBasicaProfesor p1M = new InfoBasicaProfesor("nick p1",		"nombre p1M",
 														"apellido p1M",	"correo p1",
-														new Date(),"", 	"inst1",
+														new Date(), 	"inst1",
 														"descp p1M", 	"bibliog p1M",
 														"url p1M" );
 		
 		InfoBasicaProfesor p2M = new InfoBasicaProfesor("nick p2",		"nombre p2M",
 														"apellido p2M",	"correo p2",
-														new Date(),"", 	"inst1",
+														new Date(), 	"inst1",
 														"descp p2M", 	"bibliog p2M",
 														"url p2M" );
 		
 		//modifico socios
 		InfoBasicaSocio s1M = new InfoBasicaSocio(	"nick s1",		"nombre s1M",
 													"apellido s1M",	"correo s1",
-													new Date(),"" );
+													new Date() );
 		
 		InfoBasicaSocio s2M = new InfoBasicaSocio(	"nick s2",		"nombre s2M",
 													"apellido s2M",	"correo s2",
-													new Date(),"" );
+													new Date());
 		
 		
 		cu.ActualizarInformacionUsuario(p1M);
@@ -458,29 +458,29 @@ class ctrlUsuariosTest {
 		//creo profes
 		InfoBasicaProfesor p1 = new InfoBasicaProfesor(	"nick p1",		"nombre p1",
 													"apellido p1",	"correo p1",
-													new Date(),"0", 	"inst1",
+													new Date(), 	"inst1",
 													"descp p1", 	"bibliog p1",
 													"url p1" );
 		
 		InfoBasicaProfesor p2 = new InfoBasicaProfesor(	"nick p2",		"nombre p2",
 													"apellido p2",	"correo p2",
-													new Date(),"0", 	"inst1",
+													new Date(), 	"inst1",
 													"descp p2", 	"bibliog p2",
 													"url p2" );
 		//creo socios
 		InfoBasicaSocio s1 = new InfoBasicaSocio(	"nick s1",		"nombre s1",
 													"apellido s1",	"correo s1",
-													new Date(),"0" );
+													new Date() );
 		
 		InfoBasicaSocio s2 = new InfoBasicaSocio(	"nick s2",		"nombre s2",
 													"apellido s2",	"correo s2",
-													new Date(),"0" );
+													new Date());
 		
 		try {
-			cu.altaUsuario(p1);
-			cu.altaUsuario(p2);
-			cu.altaUsuario(s1);
-			cu.altaUsuario(s2);
+			cu.altaUsuario(p1,"0");
+			cu.altaUsuario(p2,"0");
+			cu.altaUsuario(s1,"0");
+			cu.altaUsuario(s2,"0");
 
 		}catch(UsuarioDisponibilidadException e){
 			
@@ -519,23 +519,23 @@ class ctrlUsuariosTest {
 		//creo profes
 		InfoBasicaProfesor p1 = new InfoBasicaProfesor(	"nick p1",		"nombre p1",
 													"apellido p1",	"correo p1",
-													new Date(),"0", 	"inst1",
+													new Date(), 	"inst1",
 													"descp p1", 	"bibliog p1",
 													"url p1" );
 		
 		InfoBasicaProfesor p2 = new InfoBasicaProfesor(	"nick p2",		"nombre p2",
 													"apellido p2",	"correo p2",
-													new Date(),"0", 	"inst1",
+													new Date(), 	"inst1",
 													"descp p2", 	"bibliog p2",
 													"url p2" );
 		//creo socios
 		InfoBasicaSocio s1 = new InfoBasicaSocio(	"nick s1",		"nombre s1",
 													"apellido s1",	"correo s1",
-													new Date(),"0" );
+													new Date() );
 		
 		InfoBasicaSocio s2 = new InfoBasicaSocio(	"nick s2",		"nombre s2",
 													"apellido s2",	"correo s2",
-													new Date(),"0" );
+													new Date());
 		
 		Vector<String> datosIngresados = new Vector<String>();
 		datosIngresados.add(p1.getNickname());
@@ -544,10 +544,10 @@ class ctrlUsuariosTest {
 		datosIngresados.add(s2.getNickname());
 
 		try {
-			cu.altaUsuario(p1);
-			cu.altaUsuario(p2);
-			cu.altaUsuario(s1);
-			cu.altaUsuario(s2);
+			cu.altaUsuario(p1,"0");
+			cu.altaUsuario(p2,"0");
+			cu.altaUsuario(s1,"0");
+			cu.altaUsuario(s2,"0");
 
 		}catch(UsuarioDisponibilidadException e){
 			
@@ -585,23 +585,23 @@ class ctrlUsuariosTest {
 		//creo profes
 		InfoBasicaProfesor p1 = new InfoBasicaProfesor(	"nick p1",		"nombre p1",
 													"apellido p1",	"correo p1",
-													new Date(),"0", 	"inst1",
+													new Date(), 	"inst1",
 													"descp p1", 	"bibliog p1",
 													"url p1" );
 		
 		InfoBasicaProfesor p2 = new InfoBasicaProfesor(	"nick p2",		"nombre p2",
 													"apellido p2",	"correo p2",
-													new Date(),"0", 	"inst1",
+													new Date(), 	"inst1",
 													"descp p2", 	"bibliog p2",
 													"url p2" );
 		//creo socios
 		InfoBasicaSocio s1 = new InfoBasicaSocio(	"nick s1",		"nombre s1",
 													"apellido s1",	"correo s1",
-													new Date(),"0" );
+													new Date() );
 		
 		InfoBasicaSocio s2 = new InfoBasicaSocio(	"nick s2",		"nombre s2",
 													"apellido s2",	"correo s2",
-													new Date(),"0" );
+													new Date());
 		
 		//datos esperados
 		Set<String> datosEsperados = new HashSet<String>();
@@ -609,10 +609,10 @@ class ctrlUsuariosTest {
 		datosEsperados.add(s2.getNickname());
 
 		try {
-			cu.altaUsuario(p1);
-			cu.altaUsuario(p2);
-			cu.altaUsuario(s1);
-			cu.altaUsuario(s2);
+			cu.altaUsuario(p1,"0");
+			cu.altaUsuario(p2,"0");
+			cu.altaUsuario(s1,"0");
+			cu.altaUsuario(s2,"0");
 		}catch(UsuarioDisponibilidadException e){
 			
 		}

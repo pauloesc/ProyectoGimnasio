@@ -1,27 +1,25 @@
 package logica;
 
 import java.util.Date;
-import java.util.Vector;
 
 public class Profesor extends Usuario {
 	private String descripcion;
 	private String bio;
 	private String website;
 	private InstitucionDeportiva inst;
-	private Vector<ActividadDeportiva> actDep = null;
 	
 	public String getNombreInstitucion() {
 		return inst.getNombre();
 	}
 
-	public Profesor(InfoBasicaProfesor info) {
+	public Profesor(InfoBasicaProfesor info, String contrasena) {
 		
 		super(	info.getNickname(),
 				info.getNombre(),
 				info.getApellido(),
 				info.getCorreo(),
 				info.getFechaNac(),
-				info.getpass());
+				contrasena);
 		this.descripcion = info.getDesc();
 		this.bio = info.getBibliografia();
 		this.website = info.getUrl();
@@ -83,7 +81,6 @@ public class Profesor extends Usuario {
 			this.getApellido(),
 			this.getEmail(),
 			this.getFNacimiento(),
-			this.getContrasena(),
 			this.getNombreInstitucion(),
 			this.getDescripcion(),
 			this.getBio(),
@@ -95,10 +92,6 @@ public class Profesor extends Usuario {
 	@Override
 	public InformacionActividad InformacionActividad(String usuario) {
 		return this.inst.InformacionProfesor(usuario);
-	}
-	
-	public void asociarseActividadDeportiva( ActividadDeportiva actDep) {
-		this.actDep.add(actDep);
 	}
 	
 }

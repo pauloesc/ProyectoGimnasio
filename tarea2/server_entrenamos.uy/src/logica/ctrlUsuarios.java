@@ -24,11 +24,11 @@ public class ctrlUsuarios implements IctrlUsuarios {
 	}
 
 	//paulo
-	public void altaUsuario(InfoBasicaUser user) throws UsuarioDisponibilidadException {
+	public void altaUsuario(InfoBasicaUser user, String contrasena) throws UsuarioDisponibilidadException {
 		
 		//cuando se crea el controlador ya ahi se trae el manejador  
 		try{
-			this.manejador.CrearUsuario(user);
+			this.manejador.CrearUsuario(user, contrasena);
 		}catch(UsuarioDisponibilidadException e){
 			throw e;
 		}
@@ -107,15 +107,15 @@ public class ctrlUsuarios implements IctrlUsuarios {
 			f8 = new SimpleDateFormat("dd/MM/yy").parse("23/02/1987");
 			f9 = new SimpleDateFormat("dd/MM/yy").parse("08/05/1937");
 			
-			InfoBasicaSocio u1 = new InfoBasicaSocio("Emi71","Emiliano","Lucas","emi71@gmail.com",f1,"test");
-			InfoBasicaSocio u2 = new InfoBasicaSocio("caro","Carolina","Omega","caro@gmail.com",f2,"0");
-			InfoBasicaSocio u3 = new InfoBasicaSocio("euge","Eugenia","Williams","e.will@gmail.com",f3,"0");
-			InfoBasicaSocio u4 = new InfoBasicaSocio("guille","Guillermo","Hector","ghector@gmail.com",f4,"0");
-			InfoBasicaSocio u5 = new InfoBasicaSocio("sergiop","Sergio","Perez","sergi@gmail.com.uy",f5,"0");
-			InfoBasicaSocio u6 = new InfoBasicaSocio("andy","Andrés","Roman","chino@gmail.org.uy",f6,"0");
-			InfoBasicaSocio u7 = new InfoBasicaSocio("tonyp","Antonio","Paz","eltony@gmail.org.uy",f7,"0");
-			InfoBasicaSocio u8 = new InfoBasicaSocio("m1k4","Micaela","Lopez","mika@gmail.com.ar",f8,"0");
-			InfoBasicaSocio u9 = new InfoBasicaSocio("charly","Carlos","Boston","charly@gmail.com.uy",f9,"0");
+			InfoBasicaSocio u1 = new InfoBasicaSocio("Emi71","Emiliano","Lucas","emi71@gmail.com",f1);
+			InfoBasicaSocio u2 = new InfoBasicaSocio("caro","Carolina","Omega","caro@gmail.com",f2);
+			InfoBasicaSocio u3 = new InfoBasicaSocio("euge","Eugenia","Williams","e.will@gmail.com",f3);
+			InfoBasicaSocio u4 = new InfoBasicaSocio("guille","Guillermo","Hector","ghector@gmail.com",f4);
+			InfoBasicaSocio u5 = new InfoBasicaSocio("sergiop","Sergio","Perez","sergi@gmail.com.uy",f5);
+			InfoBasicaSocio u6 = new InfoBasicaSocio("andy","Andrés","Roman","chino@gmail.org.uy",f6);
+			InfoBasicaSocio u7 = new InfoBasicaSocio("tonyp","Antonio","Paz","eltony@gmail.org.uy",f7);
+			InfoBasicaSocio u8 = new InfoBasicaSocio("m1k4","Micaela","Lopez","mika@gmail.com.ar",f8);
+			InfoBasicaSocio u9 = new InfoBasicaSocio("charly","Carlos","Boston","charly@gmail.com.uy",f9);
 			
 			manejador.CrearUsuario(u1);
 			manejador.CrearUsuario(u2);
@@ -145,27 +145,27 @@ public class ctrlUsuarios implements IctrlUsuarios {
 			pf8 = new SimpleDateFormat("dd/MM/yy").parse("05/03/1940");
 			pf9 = new SimpleDateFormat("dd/MM/yy").parse("17/07/1952");
 			
-			InfoBasicaProfesor p1 = new InfoBasicaProfesor("viktor","Victor","Perez","vperez@fuerza.com",pf1,"0","Fuerza Bruta","Victor es un apasionado de los músculos. Sus clases son organizadas en función de distintos aparatos y pesas con el objetivo de desarrollar músculos","Victor nació en Moscow en 1977. En el año 2005 emigró a Uruguay luego de quedar encantado con el país en un viaje turístico","www.vikgym.com");
-			InfoBasicaProfesor p2 = new InfoBasicaProfesor("denis","Denis","Miguel","den80@fuerza.com",pf2,"0","Telón","A Denis le interesan los deportes con pelota, principalmente el voleibol y el handball","Denis fue un jugador de voleibol profesional.","www.depecho.com");
-			InfoBasicaProfesor p3 = new InfoBasicaProfesor("clazar","Carlos","Lazaro","claz4r0@hotmail.com",pf3,"0","Instituto Natural","Carlos es un profesor muy divertido cuyas clases de aeróbica están cargadas de energía.","El interés por la actividad física llevo a Carlos a dejar su trabajo en un estudio contable y abrir su propio gimnasio.","www.enforma.com");
-			InfoBasicaProfesor p4 = new InfoBasicaProfesor("TheBoss","Bruno","Sosa","bruceTheBoss@gmail.com",pf4,"0","Fuerza Bruta","Bruno es un ex-boxeardor que busca entrenar a futuros campeones.","Bruno, mejor conocido como Bruce en el ring, compitió como boxeador entre los años 60s y 70s.","www.bruce.net");
-			InfoBasicaProfesor p5 = new InfoBasicaProfesor("Nelson","Luis","Nelson","nelson@hotmail.com",pf5,"0","Telón","Profesor de natación. Especializado en braza y mariposa.","","www.nelson.uy");
-			InfoBasicaProfesor p6 = new InfoBasicaProfesor("lale","Laura","Leyes","la_le@outlook.com",pf6,"0","Telón","Luego de una exitosa carrera como jugadora de futbol profesional. Laura dedica sus clases a enseñar tácticas de futbol","Jugadora profesional de futbol desde 2010 a 2020.","www.laley.com");
-			InfoBasicaProfesor p7 = new InfoBasicaProfesor("prisc","Priscila","Pappo","pripa@gmail.com",pf7,"0","Olympic","Laura tiene un gran interés por los deportes olímpicos.","","www.pi314.net");
-			InfoBasicaProfesor p8 = new InfoBasicaProfesor("dagost","Daiana","Agostini","d_1940_ago@gmail.com",pf8,"0","Olympic","Profesora dedicada y exigente. No acepta un “no puedo” como respuesta.","","www.dygym.com");
-			InfoBasicaProfesor p9 = new InfoBasicaProfesor("aldo","Aldo","Vivaldi","aldo@ outlook.com",pf9,"0","Telón","Dada su gran estatura Aldo siempre jugó al basquetbol, hoy se dedica a enseñarlo.","","www.sportsaldo.net");
+			InfoBasicaProfesor p1 = new InfoBasicaProfesor("viktor","Victor","Perez","vperez@fuerza.com",pf1,"Fuerza Bruta","Victor es un apasionado de los músculos. Sus clases son organizadas en función de distintos aparatos y pesas con el objetivo de desarrollar músculos","Victor nació en Moscow en 1977. En el año 2005 emigró a Uruguay luego de quedar encantado con el país en un viaje turístico","www.vikgym.com");
+			InfoBasicaProfesor p2 = new InfoBasicaProfesor("denis","Denis","Miguel","den80@fuerza.com",pf2,"Telón","A Denis le interesan los deportes con pelota, principalmente el voleibol y el handball","Denis fue un jugador de voleibol profesional.","www.depecho.com");
+			InfoBasicaProfesor p3 = new InfoBasicaProfesor("clazar","Carlos","Lazaro","claz4r0@hotmail.com",pf3,"Instituto Natural","Carlos es un profesor muy divertido cuyas clases de aeróbica están cargadas de energía.","El interés por la actividad física llevo a Carlos a dejar su trabajo en un estudio contable y abrir su propio gimnasio.","www.enforma.com");
+			InfoBasicaProfesor p4 = new InfoBasicaProfesor("TheBoss","Bruno","Sosa","bruceTheBoss@gmail.com",pf4,"Fuerza Bruta","Bruno es un ex-boxeardor que busca entrenar a futuros campeones.","Bruno, mejor conocido como Bruce en el ring, compitió como boxeador entre los años 60s y 70s.","www.bruce.net");
+			InfoBasicaProfesor p5 = new InfoBasicaProfesor("Nelson","Luis","Nelson","nelson@hotmail.com",pf5,"Telón","Profesor de natación. Especializado en braza y mariposa.","","www.nelson.uy");
+			InfoBasicaProfesor p6 = new InfoBasicaProfesor("lale","Laura","Leyes","la_le@outlook.com",pf6,"Telón","Luego de una exitosa carrera como jugadora de futbol profesional. Laura dedica sus clases a enseñar tácticas de futbol","Jugadora profesional de futbol desde 2010 a 2020.","www.laley.com");
+			InfoBasicaProfesor p7 = new InfoBasicaProfesor("prisc","Priscila","Pappo","pripa@gmail.com",pf7,"Olympic","Laura tiene un gran interés por los deportes olímpicos.","","www.pi314.net");
+			InfoBasicaProfesor p8 = new InfoBasicaProfesor("dagost","Daiana","Agostini","d_1940_ago@gmail.com",pf8,"Olympic","Profesora dedicada y exigente. No acepta un “no puedo” como respuesta.","","www.dygym.com");
+			InfoBasicaProfesor p9 = new InfoBasicaProfesor("aldo","Aldo","Vivaldi","aldo@ outlook.com",pf9,"Telón","Dada su gran estatura Aldo siempre jugó al basquetbol, hoy se dedica a enseñarlo.","","www.sportsaldo.net");
 			
 			
 			
-			manejador.CrearUsuario(p1);
-			manejador.CrearUsuario(p2);
-			manejador.CrearUsuario(p3);
-			manejador.CrearUsuario(p4);
-			manejador.CrearUsuario(p5);
-			manejador.CrearUsuario(p6);
-			manejador.CrearUsuario(p7);
-			manejador.CrearUsuario(p8);
-			manejador.CrearUsuario(p9);
+			manejador.CrearUsuario(p1,"0");
+			manejador.CrearUsuario(p2,"0");
+			manejador.CrearUsuario(p3,"0");
+			manejador.CrearUsuario(p4,"0");
+			manejador.CrearUsuario(p5,"0");
+			manejador.CrearUsuario(p6,"0");
+			manejador.CrearUsuario(p7,"0");
+			manejador.CrearUsuario(p8,"0");
+			manejador.CrearUsuario(p9,"0");
 		} catch (Exception e) {
 			
 		}
