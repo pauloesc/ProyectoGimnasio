@@ -2,6 +2,17 @@
 <%@page import="logica.InfoBasicaUser"%>
 <%@page import="controladores.Login"%>
 <div id="header">
+	<%
+		InfoBasicaUser usr;
+		try 
+		{
+			usr = Login.getUsuarioLogueado(request);
+		} 
+		catch(Exception ex)
+		{
+			usr = null;
+		}
+	%>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container">
 			<a class="navbar-brand" href="#">Entrenamos.uy</a>
@@ -32,20 +43,7 @@
 				</form>
 			</div>
 		</div>
-		<%
-		InfoBasicaUser usr;
-		try 
-		{
-			usr = Login.getUsuarioLogueado(request);
-		} 
-		catch(Exception ex)
-		{
-			usr = null;
-		}
-		
-		if(usr == null) {
-	  %>
-
+		<% if (usr == null) { %>
 		<div class="btn-group">
 			<a href=${pageContext.request.contextPath}/login
 				class="btn btn-light btn-sm">Iniciar Sesion</a> <a href="#"
@@ -57,7 +55,8 @@
 		<div class="btn-group">
 				<a class="btn btn-light btn-sm dropdown-toggle" href="#"
 					id="navbarDropdownUsuario" data-toggle="dropdown"
-					aria-haspopup="true" aria-expanded="false"><%= usr.getNombre() %></a>
+					aria-haspopup="true" aria-expanded="false"><%= usr.getNombre() + " " + usr.getApellido()
+					+ " ( " + usr.getNickname() + " )" %></a>
 				<div class="dropdown-menu dropdown-menu-right"
 					aria-labelledby="navbarDropdownUsuario">
 					<a class="dropdown-item" href="#">Ver mi perfil</a> <a
