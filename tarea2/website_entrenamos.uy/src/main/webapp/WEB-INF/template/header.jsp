@@ -44,24 +44,29 @@
 			</div>
 		</div>
 		<% if (usr == null) { %>
-		<div class="btn-group">
-			<a href=${pageContext.request.contextPath}/login
-				class="btn btn-light btn-sm">Iniciar Sesion</a> <a href="#"
-				class="btn btn-light btn-sm">Registrarse</a>
+		<div class="btn-group btn-group-sm">
+			<a class="btn btn-primary" style="font-size: 13px; font-weight: 500"
+				href=${pageContext.request.contextPath}/login >
+				Iniciar Sesion
+			</a>
+			<a class="btn btn-primary" style="font-size:13px; font-weight: 500" 
+				href=# >
+				Registrarse
+			</a>
 		</div>
 		<% }
 		else
 		{ %>
-		<div class="btn-group">
-				<a class="btn btn-light btn-sm dropdown-toggle" href="#"
+		<div class="btn-group btn-group-sm">
+				<a class="btn btn-primary dropdown-toggle" style="font-size: 13px; font-weight: 500" href="#"
 					id="navbarDropdownUsuario" data-toggle="dropdown"
 					aria-haspopup="true" aria-expanded="false"><%= usr.getNombre() + " " + usr.getApellido()
 					+ " ( " + usr.getNickname() + " )" %></a>
 				<div class="dropdown-menu dropdown-menu-right"
 					aria-labelledby="navbarDropdownUsuario">
-					<a class="dropdown-item" href="#">Ver mi perfil</a> <a
-						class="dropdown-item" href="#">Modificar mis datos</a> <a
-						class="dropdown-item" href="/website_entrenamos.uy/logout">Cerrar sesion</a>
+					<a class="btn btn-primary dropdown-item" style="font-size: 13px;" href="#">Ver mi perfil</a> <a
+						class="btn btn-primary dropdown-item" style="font-size: 13px;" href="#">Modificar mis datos</a> <a
+						class="btn btn-primary dropdown-item" style="font-size: 13px;" href=${pageContext.request.contextPath}/logout>Cerrar sesion</a>
 				</div>
 			</div>
 		<% } %>
