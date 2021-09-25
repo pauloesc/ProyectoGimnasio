@@ -6,12 +6,16 @@
 <meta name="description" content="entrenamos.uy">
 <meta name="author" content="tpgr03">
 
+
+
 <!-- Bootstrap CSS -->
 <link href="./resources/css/bootstrap.min.css" rel="stylesheet">
 <link href="./resources/css/bootstrap-reboot.min.css" rel="stylesheet">
 <link href="./resources/css/bootstrap-grid.min.css" rel="stylesheet">
 <link href="./resources/css/sticky-footer-navbar.css" rel="stylesheet">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 
 <title>entrenamos.uy</title>
 </head>
@@ -85,9 +89,9 @@
 						<div class="col-8">
 							<select id="institucionDeportiva" name="institucionDeportiva"
 								class="custom-select" required="required">
-								<option value="Instituto Natural">Instituto Natural</option>
+								<option value="Instituto Natural">Telón</option>
 								<option value="Olympic">Olympic</option>
-								<option value="Telón">Telón</option>
+								<option value="Telón">Instituto Natural</option>
 								<option value="Fuerza Bruta">Fuerza Bruta</option>
 							</select>
 						</div>
@@ -97,10 +101,10 @@
 						<div class="col-8">
 							<select id="categoria" name="categoria" class="custom-select"
 								required="required">
-								<option value="deportes de equipo">deportes de equipo</option>
-								<option value="deportes de pelota">deportes de pelota</option>
-								<option value="deportes acuáticos">deportes acuáticos</option>
-								<option value="deportes de tiro">deportes de tiro</option>
+								<option value="deportes de equipo">Al aire libre</option>
+								<option value="deportes de pelota">Deportes</option>
+								<option value="deportes acuáticos">Fitness</option>
+								<option value="deportes de tiro">Gimnasia</option>
 							</select>
 						</div>
 					</div>
@@ -110,9 +114,9 @@
 						<div class="col-8">
 							<select id="actividadDeportiva" name="actividadDeportiva"
 								class="custom-select" required="required">
-								<option value="Basquetbol">Basquetbol</option>
+								<option value="Basquetbol">Voleibol</option>
 								<option value="Atletismo">Atletismo</option>
-								<option value="Voleibol">Voleibol</option>
+								<option value="Voleibol">Basquetbol</option>
 							</select>
 						</div>
 					</div>
@@ -121,37 +125,28 @@
 
 
 					<div class="row">
-						<div class="col-4">
+						<div class="col-3">
 							<div class="list-group" id="list-tab" role="tablist">
 								<a class="list-group-item list-group-item-action active"
 									id="list-home-list" data-bs-toggle="list" href="#list-home"
-									role="tab" aria-controls="list-home">Basquetbol I</a> <a
+									role="tab" aria-controls="list-home">Voleibol I</a> <a
 									class="list-group-item list-group-item-action"
 									id="list-profile-list" data-bs-toggle="list"
-									href="#list-profile" role="tab" aria-controls="list-profile">Basquetbol
-									II</a> <a class="list-group-item list-group-item-action"
+									href="#list-profile" role="tab" aria-controls="list-profile">Braza
+									</a> <a class="list-group-item list-group-item-action"
 									id="list-messages-list" data-bs-toggle="list"
-									href="#list-messages" role="tab" aria-controls="list-messages">Basquetbol
-									III</a> <a class="list-group-item list-group-item-action"
-									id="list-settings-list" data-bs-toggle="list"
-									href="#list-settings" role="tab" aria-controls="list-settings">Salto
-									mortal</a>
+									href="#list-messages" role="tab" aria-controls="list-messages">Mariposa</a> 
 							</div>
 						</div>
 						<div class="col-8">
 							<div class="tab-content" id="nav-tabContent">
 								<div class="tab-pane fade show active" id="list-home"
-									role="tabpanel" aria-labelledby="list-home-list">Datos
-									basicos de la clase Basquetbol I.</div>
+									role="tabpanel" aria-labelledby="list-home-list">Fecha: 10/06/21  <br>  Hora: 19:00.</div>
 								<div class="tab-pane fade" id="list-profile" role="tabpanel"
-									aria-labelledby="list-profile-list">Datos basicos de la
-									clase Basquetbol II.</div>
+									aria-labelledby="list-profile-list">Fecha: 13/07/21	 <br>  Hora: 15:00.</div>
 								<div class="tab-pane fade" id="list-messages" role="tabpanel"
-									aria-labelledby="list-messages-list">Datos basicos de la
-									clase Basquetbol III.</div>
-								<div class="tab-pane fade" id="list-settings" role="tabpanel"
-									aria-labelledby="list-settings-list">Datos basicos de la
-									clase Salto mortal en basquetbol.</div>
+									aria-labelledby="list-messages-list">Fecha: 19/09/21   <br>	 Hora: 08:00.</div>
+								
 							</div>
 						</div>
 					</div>
@@ -169,10 +164,8 @@
 							<div class="col-4">
 								<select id="institucionDeportiva" name="institucionDeportiva"
 									class="custom-select" required="required">
-									<option value="Instituto Natural">Cuponera1</option>
-									<option value="Olympic">Cuponera2</option>
-									<option value="Telón">Cuponera3</option>
-									<option value="Fuerza Bruta">Cuponera4</option>
+									<option value="Instituto Natural">Pelota</option>
+									
 								</select>
 							</div>
 
@@ -202,7 +195,7 @@
 	  })
 	</script>
 
-
+	
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
