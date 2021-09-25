@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="logica.InfoBasicaUser"%>
+<%@page import="logica.InfoBasicaProfesor"%>
 <%@page import="controladores.Login"%>
 <div id="header">
 	<%
@@ -33,7 +34,11 @@
 						aria-haspopup="true" aria-expanded="false">Menu</a>
 						<div class="dropdown-menu"
 							aria-labelledby="navbarDropdownMenu">
-							<a class="dropdown-item" href="altaActividadDeportiva.html">Usuarios</a> 
+							<a class="dropdown-item" href="altaActividadDeportiva.html">Usuarios</a>
+							<% if (usr instanceof InfoBasicaProfesor) { %>
+								<a class="dropdown-item" href="#">Alta de Actividad Deportiva</a>
+								<a class="dropdown-item" href="altaDictadoDeClases.html">Alta de Dictado de Clase</a>
+							<% } %>
 						</div>
 					</li>
 				</ul>
