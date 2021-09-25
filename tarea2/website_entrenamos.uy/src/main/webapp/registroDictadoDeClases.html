@@ -43,45 +43,14 @@
 				<div class="collapse navbar-collapse" id="navbarEntrenamos">
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item active"><a class="nav-link"
-							href="index.html">Home <span class="sr-only">(current)</span></a>
+							href="home.html">Home <span class="sr-only">(current)</span></a>
 						</li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#"
-							id="navbarDropdownCuponera" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false">Cuponeras</a>
-							<div class="dropdown-menu"
-								aria-labelledby="navbarDropdownCuponera">
-								<a class="dropdown-item" href="#">Comprar</a> <a
-									class="dropdown-item" href="#">Consultar</a>
-							</div></li>
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#"
-							id="navbarDropdownClase" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false">Clases</a>
-							<div class="dropdown-menu" aria-labelledby="navbarDropdownClase">
-								<a class="dropdown-item" href="consultaDictadoDeClases.html">Consulta</a>
-								<a class="dropdown-item" href="altaDictadoDeClases.html">Alta</a>
-								<a class="dropdown-item" href="registroDictadoDeClases.html">Registro</a>
-							</div></li>
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#"
-							id="navbarDropdownActividades" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false">Act. Deportivas</a>
-							<div class="dropdown-menu"
-								aria-labelledby="navbarDropdownActividades">
-								<a class="dropdown-item" href="altaActividadDeportiva.html">Alta</a>
-								<a class="dropdown-item" href="consultaActividadDeportiva.html">Consulta</a>
-							</div></li>
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#"
-							id="navbarDropdownUsuarios" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false">Usuarios</a>
-							<div class="dropdown-menu"
-								aria-labelledby="navbarDropdownUsuarios">
-								<a class="dropdown-item" href="#">Consulta</a> <a
-									class="dropdown-item" href="#">Seguir</a> <a
-									class="dropdown-item" href="#">Dejar de seguir</a> <a
-									class="dropdown-item" href="#">Modificar mis datos</a>
+							id="navbarDropdownMenu" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false">Menu</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdownMenu">
+								<a class="dropdown-item" href="#">Usuarios</a> 
 							</div></li>
 					</ul>
 					<form class="form-inline my-2 my-md-0">
@@ -102,10 +71,11 @@
 	<main role="main" class="container">
 		<div class="row">
 			<div class="col-6 col-md-4">
-				<ul id="listaActividades" class="list-group my-4">
+				<ul id="listaInstituciones" class="list-group my-4">
 					<li class="list-group-item"><strong>Instituciones
 							Deportivas</strong></li>
-					<li class="list-group-item">Telon</li>
+					<li class="list-group-item"><a
+						href="consultaInstitucion.html" class="">Telon</a></li>
 					<li class="list-group-item">Instituto Natural</li>
 					<li class="list-group-item">Olympic</li>
 					<li class="list-group-item">Fuerza Bruta</li>
@@ -113,9 +83,9 @@
 				<ul id="listaCategorias" class="list-group my-4">
 					<li class="list-group-item"><strong>Categorías</strong></li>
 					<li class="list-group-item">Al aire libre</li>
-					<li class="list-group-item">Fitness</li>
-					<li class="list-group-item">Football</li>
-					<li class="list-group-item">Artes Marciales</li>
+					<li class="list-group-item"><a href="consultaCategoria.html" class="">Deportes</a></li>
+					<li class="list-group-item">Fintess</li>
+					<li class="list-group-item">Gimnasia</li>
 				</ul>
 			</div>
 			<div class="col-12 col-md-8">
