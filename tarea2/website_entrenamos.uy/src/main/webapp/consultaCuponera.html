@@ -93,7 +93,47 @@
     						<p class="card-text text-secondary"> Fecha de alta: 30/04/2021 </p>
   					</div>
   						<div class="d-md-flex justify-content-md-end col-12 mb-3">
-  							<a href=# class="btn btn-primary" >Comprar Cuponera</a>	
+  							<a href=# class="btn btn-primary" data-toggle="modal" data-target="#comprar2">Comprar Cuponera</a>	
+  						
+  						<!-- Modal -->
+<div class="modal fade" id="comprar2" tabindex="-1" role="dialog" aria-labelledby="comprar2Label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form >
+                <div class="modal-header">
+                    <h5 class="modal-title" id="comprarLabel">Confirmar la compra de la cuponera</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+              <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-primary" data-toggle="modal" data-target="#exito2">Confirmar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+		<div class="modal fade" id="exito2" tabindex="-1" role="dialog" aria-labelledby="exito2Label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form >
+                <div class="modal-header">
+                    <h5 class="modal-title text-success" id="comprarLabel">La compra fue exitosa</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+              <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+  						
+  						
+  						
   						
   						</div>
 					</div>
