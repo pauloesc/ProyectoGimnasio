@@ -10,10 +10,12 @@
 
 <!-- Bootstrap CSS -->
 <link href="./resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="./resources/css/bootstrap-reboot.min.css" rel="stylesheet">
+<link href="./resources/css/bootstrap-grid.min.css" rel="stylesheet">
 <link href="./resources/css/sticky-footer-navbar.css" rel="stylesheet">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href="./resources/css/consultacup.css" rel="stylesheet">
+<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet">
 
 <title>entrenamos.uy</title>
 </head>
@@ -61,13 +63,18 @@
 	<main role="main" class="container">
 		<div class="row">
 			<div class="col-6 col-md-4">
-				<ul id="listaActividades" class="list-group my-4">
+				<ul id="listaInstituciones" class="list-group my-4">
 					<li class="list-group-item"><strong>Instituciones
 							Deportivas</strong></li>
-					<li class="list-group-item">Telon</li>
-					<li class="list-group-item">Instituto Natural</li>
-					<li class="list-group-item">Olympic</li>
-					<li class="list-group-item">Fuerza Bruta</li>
+					<li class="list-group-item"><a
+						href="consultaInstitucionDeportiva.html" class="">Telon</a></li>
+					<li class="list-group-item"><a
+						href="consultaInstitucionDeportiva.html" class="">Instituto
+							Natural</a></li>
+					<li class="list-group-item"><a
+						href="consultaInstitucionDeportiva.html" class="">Olympic</a></li>
+					<li class="list-group-item"><a
+						href="consultaInstitucionDeportiva.html" class="">Fuerza Bruta</a></li>
 				</ul>
 				<ul id="listaCategorias" class="list-group my-4">
 					<li class="list-group-item"><strong>Categorías</strong></li>
@@ -78,73 +85,72 @@
 				</ul>
 			</div>
 			<div class="col-12 col-md-8">
-				<h2>Cuponeras de actividades deportivas</h2>
-
-				<div class="card mb-3" style="max-width: auto;">
+				<h1>Consulta Cuponeras de Actividad Deportiva</h1>
 					<div class="row no-gutters">
-						<div class="col-md-4 text-center">
+						<div class="col-md-5 text-center">
 							<img src="./resources/img/b1.jpg" class="img-fluid" alt="...">
 						</div>
-						<div class="col-md-8">
-							<div class="card-body">
-								<h5 class="card-title">Pelotas</h5>
-								<p class="card-text">Deportes con Pelota.</p>
-								<div class="d-md-flex justify-content-md-end">
-									<a href="#" class="btn btn-primary">Ver más</a>
-								</div>
-							</div>
-						</div>
+					<div class="col-md-7">	
+					<div class="card border-dark mb-3" style="max-width:auto;">
+ 						<h5 class="card-header"> <b>Pelotas</b></h5>
+  						<div class="card-body text-dark">
+    						<p class="card-text">Deportes con pelota</p>
+    						<p class="card-text">Periodo de vigencia: 01/05/2021 - 31/07/2021</p>
+  					</div>
+					</div>
 					</div>
 				</div>
-
 				<div class="card mb-3" style="max-width: auto;">
 					<div class="row no-gutters">
-						<div class="col-md-4 text-center">
-							<img src="./resources/img/b2.jpg" class="img-fluid" alt="...">
+						<div class="col-md-4">
+							<img class="d-block w-100" src="./resources/img/a4.jpg" alt="...">
 						</div>
 						<div class="col-md-8">
 							<div class="card-body">
-								<h5 class="card-title">Gimnasia</h5>
-								<p class="card-text">Aeróbica y aparatos.</p>
-								<div class="d-md-flex justify-content-md-end">
-									<a href="#" class="btn btn-primary">Ver más</a>
+								<h5 class="card-title">Voleibol</h5>
+								<p class="card-text">Voleibol en todas sus formas.</p>
+								<div class="categorias">
+									<span class="badge badge-info">Deportes</span>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-
-				<div class="card mb-3" style="max-width: auto;">
-					<div class="row no-gutters">
-						<div class="col-md-4 text-center">
-							<img src="./resources/img/b3.jpg" class="img-fluid" alt="...">
-						</div>
-						<div class="col-md-8">
-							<div class="card-body">
-								<h5 class="card-title">Músculos</h5>
-								<p class="card-text">Pesas.</p>
-								<div class="d-md-flex justify-content-md-end">
-									<a href="#" class="btn btn-primary">Ver más</a>
-								</div>
-							</div>
+				<div class="offset-3 col-8 mb-3">
+					<button name="submit" type="submit" class="btn btn-primary">Comprar Cuponera</button>
+					<button name="submit" type="submit" class="btn btn-primary">Registrarse a Clase</button>
+				</div>
+				<ul class="nav nav-tabs" id="myTab" role="tablist">
+					<li class="nav-item" role="presentation"><a
+						class="nav-link active" id="detalles-tab" data-toggle="tab"
+						href="#detalles" role="tab" aria-controls="detalles"
+						aria-selected="true">Detalles</a></li>
+					<li class="nav-item" role="presentation"><a class="nav-link"
+						id="cuponeras-tab" data-toggle="tab" href="#cuponeras" role="tab"
+						aria-controls="cuponeras" aria-selected="false">Cuponeras</a></li>
+					<li class="nav-item" role="presentation"><a class="nav-link"
+						id="clases-tab" data-toggle="tab" href="#clases" role="tab"
+						aria-controls="clases" aria-selected="false">Clases</a></li>
+				</ul>
+				<div class="tab-content" id="myTabContent">
+					<div class="tab-pane fade show active" id="detalles"
+						role="tabpanel" aria-labelledby="detalles-tab">
+						<div class="m-3">
+						<p>Institución Deportiva: Telon</p>
+						<p>Profesor: Denis Miguel</p>
+						<p>Costo: $750</p>
+						<p>Duración: 120 minutos</p>
 						</div>
 					</div>
-				</div>
-
-				<div class="d-md-flex justify-content-md-center">
-					<nav aria-label="Page navigation example">
-						<ul class="pagination">
-							<li class="page-item"><a class="page-link" href="#"
-								aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-							</a></li>
-							<li class="page-item"><a class="page-link" href="#">1</a></li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item"><a class="page-link" href="#"
-								aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-							</a></li>
-						</ul>
-					</nav>
+					<div class="tab-pane fade" id="cuponeras" role="tabpanel"
+						aria-labelledby="cuponeras-tab">
+						<p class="card-text m-3">Pelota</p>
+						
+					</div>
+					<div class="tab-pane fade" id="clases" role="tabpanel"
+						aria-labelledby="clases-tab">
+						<p class="card-text m-3">10/06/2021</p>
+					</div>
 				</div>
 			</div>
 		</div>
