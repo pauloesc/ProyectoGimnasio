@@ -21,7 +21,8 @@ public class Socio extends Usuario {
 				info.getApellido(),
 				info.getCorreo(),
 				info.getFechaNac(),
-				info.getpass());	
+				info.getpass(),
+				info.getImagen());	
 		
 		compCup = new HashMap<String,Compra>();
 		regs = new HashSet<Registro>();

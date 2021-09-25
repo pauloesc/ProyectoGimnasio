@@ -21,7 +21,8 @@ public class Profesor extends Usuario {
 				info.getApellido(),
 				info.getCorreo(),
 				info.getFechaNac(),
-				info.getpass());
+				info.getpass(),
+				info.getImagen());
 		this.descripcion = info.getDesc();
 		this.bio = info.getBibliografia();
 		this.website = info.getUrl();
@@ -33,8 +34,8 @@ public class Profesor extends Usuario {
 	
 
 	public Profesor(String nickname, String nombre, String apellido, String email, Date fNacimiento, String descripcion,
-			String bio, String website, String inst, String contrasena) {
-		super(nickname, nombre, apellido, email, fNacimiento, contrasena);
+			String bio, String website, String inst, String contrasena, String img) {
+		super(nickname, nombre, apellido, email, fNacimiento, contrasena, img);
 		this.descripcion = descripcion;
 		this.bio = bio;
 		this.website = website;

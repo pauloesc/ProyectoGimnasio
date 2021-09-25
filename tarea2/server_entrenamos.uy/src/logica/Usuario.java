@@ -26,7 +26,7 @@ public abstract class Usuario {
 	}
 	
 	public Usuario(String nickname, String nombre, String apellido, String email, Date fNacimiento,
-			String contrasena) 
+			String contrasena, String imagen) 
 	{
 		this.nickname = nickname;
 		this.nombre = nombre;
@@ -34,7 +34,7 @@ public abstract class Usuario {
 		this.email = email;
 		this.contrasena = contrasena;
 		FNacimiento = fNacimiento;
-		imagen = "";
+		this.imagen = imagen;
 		seguidos = new HashMap<String, Usuario>();
 	}
 

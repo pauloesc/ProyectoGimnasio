@@ -50,11 +50,11 @@
 		</div>
 		<% if (usr == null) { %>
 		<div class="btn-group btn-group-sm">
-			<a class="btn btn-primary" style="font-size: 13px; font-weight: 500"
+			<a class="btn btn-dark" style="font-size: 13px; font-weight: 500"
 				href=${pageContext.request.contextPath}/login >
 				Iniciar Sesion
 			</a>
-			<a class="btn btn-primary" style="font-size:13px; font-weight: 500" 
+			<a class="btn btn-dark" style="font-size:13px; font-weight: 500" 
 				href=# >
 				Registrarse
 			</a>
@@ -63,10 +63,11 @@
 		else
 		{ %>
 		<div class="btn-group btn-group-sm">
-				<a class="btn btn-primary dropdown-toggle" style="font-size: 13px; font-weight: 500" href="#"
-					id="navbarDropdownUsuario" data-toggle="dropdown"
-					aria-haspopup="true" aria-expanded="false"><%= usr.getNombre() + " " + usr.getApellido()
-					+ " ( " + usr.getNickname() + " )" %></a>
+				<a class="btn btn-dark dropdown-toggle" style="font-size: 13px; font-weight: 500" href="#"
+					id="navbarDropdownUsuario" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<img src="<%=usr.getImagen()%>" width="30" height="30" class="rounded-circle">
+					<span style="font-size: 13px; font-weight: 700"> &nbsp <%=usr.getNombre() + " " + usr.getApellido() %></span>
+				</a>
 				<div class="dropdown-menu dropdown-menu-right"
 					aria-labelledby="navbarDropdownUsuario">
 					<a class="btn btn-primary dropdown-item" style="font-size: 13px;" href="#">Ver mi perfil</a> <a
