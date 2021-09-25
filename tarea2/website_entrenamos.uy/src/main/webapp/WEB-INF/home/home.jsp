@@ -10,23 +10,21 @@
 	<main role="main" class="container">
 		<div class="row">
 			<div class="col-6 col-md-4">
-				<ul id="listaActividades" class="list-group my-4">
-					<li class="list-group-item"><strong>Instituciones Deportivas</strong></li>
-					<li class="list-group-item">Telon</li>
+				<ul id="listaInstituciones" class="list-group my-4">
+					<li class="list-group-item"><strong>Instituciones
+							Deportivas</strong></li>
 					<li class="list-group-item"><a
-						href="consultaInstitucionDeportiva.html" class="">Instituto
-							Natural</a></li>
-					<li class="list-group-item"><a
-						href="consultaInstitucionDeportiva.html" class="">Olympic</a></li>
-					<li class="list-group-item"><a
-						href="consultaInstitucionDeportiva.html" class="">Fuerza Bruta</a></li>
+						href="consultaInstitucion.html" class="">Telon</a></li>
+					<li class="list-group-item">Instituto Natural</li>
+					<li class="list-group-item">Olympic</li>
+					<li class="list-group-item">Fuerza Bruta</li>
 				</ul>
 				<ul id="listaCategorias" class="list-group my-4">
 					<li class="list-group-item"><strong>Categorías</strong></li>
 					<li class="list-group-item">Al aire libre</li>
-					<li class="list-group-item">Fitness</li>
-					<li class="list-group-item">Football</li>
-					<li class="list-group-item">Artes Marciales</li>
+					<li class="list-group-item"><a href="consultaCategoria.html" class="">Deportes</a></li>
+					<li class="list-group-item">Fintess</li>
+					<li class="list-group-item">Gimnasia</li>
 				</ul>
 			</div>
 			<div class="col-12 col-md-8">
@@ -66,19 +64,17 @@
 					<div class="col-sm-6">
 						<div class="card">
 							<div class="card-body">
-								<h5 class="card-title">Cuponera 1</h5>
-								<p class="card-text">With supporting text below as a natural
-									lead-in to additional content.</p>
-								<a href="#" class="btn btn-primary">Ver mas</a>
+								<h5 class="card-title">Pelotas</h5>
+								<p class="card-text">Deportes con Pelotas</p>
+								<a href="consultaCuponera.html" class="btn btn-primary">Ver mas</a>
 							</div>
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<div class="card">
 							<div class="card-body">
-								<h5 class="card-title">Cuponera 2</h5>
-								<p class="card-text">With supporting text below as a natural
-									lead-in to additional content.</p>
+								<h5 class="card-title">Gimnasia</h5>
+								<p class="card-text">Aeróbica y aparatos</p>
 								<a href="#" class="btn btn-primary">Ver mas</a>
 							</div>
 						</div>
@@ -89,8 +85,7 @@
 						<img src="./resources/img/a1.jpg" class="card-img-top" alt="...">
 						<div class="card-body">
 							<h5 class="card-title">
-								<a href="consultaActividadDeportiva.html" class="">Actividad
-									1</a>
+								<a href="consultaActividadDeportiva.html" class="">Voleibol</a>
 							</h5>
 							<p class="card-text">This is a wider card with supporting
 								text below as a natural lead-in to additional content. This
@@ -131,6 +126,7 @@
 			<span class="text-muted">Copyright 2021 - Entrenamos.uy</span>
 		</div>
 	</footer>
+
 
 
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
