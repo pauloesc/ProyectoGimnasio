@@ -297,7 +297,7 @@ public class ConsultarCuponera extends JInternalFrame {
         DefaultListModel<String> modelolist;
         modelolist= new DefaultListModel<String>();
     	Set<String> li=dat.getCategorias();
-    	modelolist.addAll(li);
+    	//modelolist.addAll(li);
     	list.setModel(modelolist);
         
         

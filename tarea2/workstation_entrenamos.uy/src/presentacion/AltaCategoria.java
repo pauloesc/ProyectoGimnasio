@@ -60,7 +60,7 @@ public class AltaCategoria extends JInternalFrame {
 		
 		setClosable(true);
 		
-		setTitle("Alta dictado de clases");
+		setTitle("Alta de Categoria");
 		setBounds(100, 100, 498, 330);
 		
 		JLabel lblNombreDeLa = new JLabel("Nombre de la categoria:");
