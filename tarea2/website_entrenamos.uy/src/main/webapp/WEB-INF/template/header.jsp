@@ -61,7 +61,7 @@
 					aria-labelledby="navbarDropdownUsuario">
 					<a class="dropdown-item" href="#">Ver mi perfil</a> <a
 						class="dropdown-item" href="#">Modificar mis datos</a> <a
-						class="dropdown-item" href="#">Cerrar sesion</a>
+						class="dropdown-item" href="/website_entrenamos.uy/logout">Cerrar sesion</a>
 				</div>
 			</div>
 		<% } %>

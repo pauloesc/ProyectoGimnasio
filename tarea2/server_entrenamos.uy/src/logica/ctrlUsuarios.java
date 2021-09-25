@@ -261,7 +261,7 @@ public class ctrlUsuarios implements IctrlUsuarios {
 			Usuario user = manejador.findUsuario(nickname);
 			if (user == null)
 				return "Nickname " + nickname + " no corresponde a ningun usuario registrado.";
-			if (user.getContrasena().equals(contrasena))
+			if (!user.getContrasena().equals(contrasena))
 				return "Contrasena incorrecta";
 			else
 				return null;

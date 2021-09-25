@@ -16,6 +16,14 @@
 		<url-pattern>/login</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<servlet-name>Logout</servlet-name>
+		<servlet-class>controladores.Logout</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Logout</servlet-name>
+		<url-pattern>/logout</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>Home</servlet-name>
 		<servlet-class>controladores.Home</servlet-class>
 	</servlet>

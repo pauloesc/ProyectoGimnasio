@@ -1,5 +1,7 @@
 package controladores;
 
+import java.io.IOException;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,5 +16,26 @@ public class Logout extends HttpServlet
 	public Logout() 
 	{
 		super();
+	}
+	
+	private void processRequest(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException 
+	{
+		HttpSession sesion = req.getSession();
+		sesion.setAttribute("nickname-user", null);
+		sesion.setAttribute("estado-sesion", "no-login");
+		resp.sendRedirect("/website_entrenamos.uy/home");
+	}
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException 
+	{
+		processRequest(request, response);
+	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException 
+	{
+		processRequest(request, response);
 	}
 }
