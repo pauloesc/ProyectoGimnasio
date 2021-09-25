@@ -10,10 +10,12 @@
 
 <!-- Bootstrap CSS -->
 <link href="./resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="./resources/css/bootstrap-reboot.min.css" rel="stylesheet">
+<link href="./resources/css/bootstrap-grid.min.css" rel="stylesheet">
 <link href="./resources/css/sticky-footer-navbar.css" rel="stylesheet">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href="./resources/css/consultacup.css" rel="stylesheet">
+<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet">
 
 <title>entrenamos.uy</title>
 </head>
@@ -79,73 +81,64 @@
 				</ul>
 			</div>
 			<div class="col-12 col-md-8">
-				<h2>Cuponeras de actividades deportivas</h2>
-
-				<div class="card mb-3" style="max-width: auto;">
-					<div class="row no-gutters">
-						<div class="col-md-4 text-center">
-							<img src="./resources/img/b1.jpg" class="img-fluid" alt="...">
-						</div>
-						<div class="col-md-8">
-							<div class="card-body">
-								<h5 class="card-title">Pelotas</h5>
-								<p class="card-text">Deportes con Pelota.</p>
-								<div class="d-md-flex justify-content-md-end">
-									<a href="consultaCuponera.html" class="btn btn-primary">Detalles</a>
-								</div>
-							</div>
-						</div>
+				<h1>Institucion Deportiva: Telon</h1>
+				<ul class="nav nav-tabs" id="myTab" role="tablist">
+					<li class="nav-item" role="presentation"><a
+						class="nav-link active" id="actividadesdeportivas-tab" data-toggle="tab"
+						href="#actividadesdeportivas" role="tab" aria-controls="actividadesdeportivas"
+						aria-selected="true">Actividades Deportivas</a></li>
+					<li class="nav-item" role="presentation"><a class="nav-link"
+						id="cuponeras-tab" data-toggle="tab" href="#cuponeras" role="tab"
+						aria-controls="cuponeras" aria-selected="false">Cuponeras</a></li>
+					
+				</ul>
+				<div class="tab-content" id="myTabContent">
+					<div class="tab-pane fade show active" id="actividadesdeportivas"
+						role="tabpanel" aria-labelledby="actividadesdeportivas-tab">
+						<div class="m-3">
+						<table class="table table-hover">
+  							<thead>
+    							<tr>
+     							 <th scope="col">#</th>
+     							 <th scope="col">Nombre</th>
+    							</tr>
+  							</thead>
+  							<tbody>
+   							 <tr>
+     						 <th scope="row">1</th>
+      							<td> <a href="consultaActividadDeportiva.html">Voleibol</a> </td>
+    						</tr>
+    						<tr>
+      							<th scope="row">2</th>
+      							<td>Basquetbol </td>
+    						</tr>  
+  						</tbody>
+					</table>
+					
 					</div>
-				</div>
-
-				<div class="card mb-3" style="max-width: auto;">
-					<div class="row no-gutters">
-						<div class="col-md-4 text-center">
-							<img src="./resources/img/b2.jpg" class="img-fluid" alt="...">
-						</div>
-						<div class="col-md-8">
-							<div class="card-body">
-								<h5 class="card-title">Gimnasia</h5>
-								<p class="card-text">Aeróbica y aparatos.</p>
-								<div class="d-md-flex justify-content-md-end">
-									<a href="#" class="btn btn-primary">Detalles</a>
-								</div>
-							</div>
-						</div>
 					</div>
-				</div>
-
-				<div class="card mb-3" style="max-width: auto;">
-					<div class="row no-gutters">
-						<div class="col-md-4 text-center">
-							<img src="./resources/img/b3.jpg" class="img-fluid" alt="...">
-						</div>
-						<div class="col-md-8">
-							<div class="card-body">
-								<h5 class="card-title">Músculos</h5>
-								<p class="card-text">Pesas.</p>
-								<div class="d-md-flex justify-content-md-end">
-									<a href="#" class="btn btn-primary">Detalles</a>
-								</div>
-							</div>
-						</div>
+					<div class="tab-pane fade" id="cuponeras" role="tabpanel"
+						aria-labelledby="cuponeras-tab">
+						<div class="m-3">
+						<table class="table table-hover">
+  							<thead>
+    							<tr>
+     							 <th scope="col">#</th>
+     							 <th scope="col">Nombre</th>
+    							</tr>
+  							</thead>
+  							<tbody>
+   							 <tr>
+     						 <th scope="row">1</th>
+      							<td><a href="consultaCuponera.html">Pelotas</a></td> 
+    						</tr>
+    					</tbody>
+					</table>
+					
 					</div>
-				</div>
-
-				<div class="d-md-flex justify-content-md-center">
-					<nav aria-label="Page navigation example">
-						<ul class="pagination">
-							<li class="page-item"><a class="page-link" href="#"
-								aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-							</a></li>
-							<li class="page-item"><a class="page-link" href="#">1</a></li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item"><a class="page-link" href="#"
-								aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-							</a></li>
-						</ul>
-					</nav>
+						
+					</div>
+					
 				</div>
 			</div>
 		</div>
