@@ -46,8 +46,8 @@ public class AltaDictadoDeClases extends JInternalFrame {
 	private IctrlADeportivas IAD;
 	private IctrlIDeportivas IID;
 	private IctrlUsuarios IU;
-	private JTextField textFieldHora;
-	private JTextField textFieldMinuto;
+	private JComboBox<String> textFieldHora;
+	private JComboBox<String> textFieldMinuto;
 
 	/**
 	 * Launch the application.
@@ -109,12 +109,17 @@ public class AltaDictadoDeClases extends JInternalFrame {
 		
 		JLabel lblMinuto = new JLabel("Minuto");
 		
-		textFieldHora = new JTextField();
-		textFieldHora.setColumns(10);
+		textFieldHora =  new JComboBox<String>();
 		
-		textFieldMinuto = new JTextField();
-		textFieldMinuto.setColumns(10);
+		textFieldMinuto =  new JComboBox<String>();
 		
+		for (Integer i = 1; i<= 24; i++) {
+			textFieldHora.addItem(i.toString());
+		}
+		
+		for (Integer i = 1; i<= 60; i++) {
+			textFieldMinuto.addItem(i.toString());
+		}
 		
 		
 		//cuando se selecciona una institucion se cargan las actividades deportivas y los profesores
@@ -220,8 +225,8 @@ public class AltaDictadoDeClases extends JInternalFrame {
 					
 					Integer min = Integer.parseInt(Smin.getText());
 					Integer max = Integer.parseInt(Smax.getText());
-					Integer ho = Integer.parseInt(textFieldHora.getText());
-					Integer mi = Integer.parseInt(textFieldMinuto.getText());
+					Integer ho = Integer.parseInt((String) textFieldHora.getSelectedItem());
+					Integer mi = Integer.parseInt((String) textFieldMinuto.getSelectedItem());
 					
 					//comprobar que todos los campos tengan algo
 				
@@ -411,8 +416,9 @@ public class AltaDictadoDeClases extends JInternalFrame {
 		Smin.setText("");
 		Smax.setText("");
 		url.setText("");
-		textFieldHora.setText("");
-		textFieldMinuto.setText("");
+		
+		textFieldHora.setSelectedItem(null);
+		textFieldMinuto.setSelectedItem(null);
 		
 		dateChooserInicio.setCalendar(null);
 		dateChooserAlta.setCalendar(null);
