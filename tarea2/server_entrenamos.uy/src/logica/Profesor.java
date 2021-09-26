@@ -1,6 +1,7 @@
 package logica;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Vector;
 
 public class Profesor extends Usuario {
@@ -101,6 +102,29 @@ public class Profesor extends Usuario {
 	
 	public void asociarseActividadDeportiva( ActividadDeportiva actDep) {
 		this.actDep.add(actDep);
+	}
+
+	public InfoActividadProfe InformacionActDepEstadoIngRech() {
+		
+		InfoActividadProfe infoRetorno = new InfoActividadProfe(
+											this.getNombre(),
+											this.getDescripcion(),
+											this.getWebsite());
+        
+		Iterator<ActividadDeportiva> aDepInstancia = actDep.iterator();
+        while (aDepInstancia.hasNext()) {
+        	
+        	ActividadDeportiva ad = aDepInstancia.next(); 
+        	if( (ad.getEstado() == EstadoActi.RECHAZADA) || (ad.getEstado() == EstadoActi.INGRESADA)  ) {
+
+        		DtActividadesDeportivas DtAD = ad.DtActividadesDeportivasSinInfoClases();
+        		infoRetorno.agregarInfo(DtAD);
+        		
+        	}
+        	
+        }
+        
+        return infoRetorno;
 	}
 	
 }

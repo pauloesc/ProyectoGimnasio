@@ -291,4 +291,26 @@ public class ctrlUsuarios implements IctrlUsuarios {
 			return usr.getNickname();
 	}
 
+	public Vector<String> UsuariosSiguiendo(String nickname){
+		Usuario u = this.manejador.findUsuario(nickname);
+		return u.SeguidosNickname();
+	}
+	
+	
+	public Vector<String> UsuariosSeguidores(String nickname){
+		Usuario u = this.manejador.findUsuario(nickname);
+		return u.SeguidoresNickname();
+	}
+	
+	public Vector<DataCuponera> Cuponeras(String nickname){
+		Usuario u = this.manejador.findUsuario(nickname);
+		Socio s = (Socio)u;
+		return s.Cuponeras();
+	}
+	
+	public InfoActividadProfe InformacionActDepEstadoIngRech(String nickname){
+		Usuario u = this.manejador.findUsuario(nickname);
+		Profesor p = (Profesor)u;
+		return p.InformacionActDepEstadoIngRech();
+	}
 }

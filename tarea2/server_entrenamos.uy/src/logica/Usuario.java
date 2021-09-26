@@ -14,6 +14,7 @@ public abstract class Usuario {
 	private Date FNacimiento;
 	private String imagen;
 	private Map<String, Usuario> seguidos;
+	private Map<String, Usuario> seguidores;
 	
 	
 	public String getNickname() {
@@ -111,6 +112,30 @@ public abstract class Usuario {
 	
 	public void dejarDeSeguir(Usuario u) {
 		seguidos.remove(u.getNombre());
+	}
+	
+	public Vector<String> SeguidoresNickname(){
+		Vector<String> vec = new Vector<String>();
+		
+		Map<String, Usuario> map = seguidores;
+				for (Map.Entry<String, Usuario> entry : map.entrySet()) {
+					Usuario u = entry.getValue();
+					String nick = u.getNickname();
+					vec.add(nick);
+				}
+		return vec;
+	}
+	
+	public Vector<String> SeguidosNickname(){
+		Vector<String> vec = new Vector<String>();
+		
+		Map<String, Usuario> map = seguidos;
+				for (Map.Entry<String, Usuario> entry : map.entrySet()) {
+					Usuario u = entry.getValue();
+					String nick = u.getNickname();
+					vec.add(nick);
+				}
+		return vec;
 	}
 	
 }

@@ -139,4 +139,9 @@ public class ActividadDeportiva {
     	return estado;
     }
     
+    public DtActividadesDeportivas DtActividadesDeportivasSinInfoClases() {
+    	DtActividadesDeportivas i = new DtActividadesDeportivas( this.nombre, this.descripcion, this.duracion, this.costo, this.fecha_alta );
+    	return i;
+    }
+    
 }
