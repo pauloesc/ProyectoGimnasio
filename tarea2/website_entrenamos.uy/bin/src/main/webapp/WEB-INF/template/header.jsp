@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="logica.InfoBasicaUser"%>
+<%@page import="logica.InfoBasicaProfesor"%>
 <%@page import="controladores.Login"%>
 <div id="header">
 	<%
@@ -33,7 +34,11 @@
 						aria-haspopup="true" aria-expanded="false">Menu</a>
 						<div class="dropdown-menu"
 							aria-labelledby="navbarDropdownMenu">
-							<a class="dropdown-item" href="altaActividadDeportiva.html">Usuarios</a> 
+							<a class="dropdown-item" href="altaActividadDeportiva.html">Usuarios</a>
+							<% if (usr instanceof InfoBasicaProfesor) { %>
+								<a class="dropdown-item" href="#">Alta de Actividad Deportiva</a>
+								<a class="dropdown-item" href="altaDictadoDeClases.html">Alta de Dictado de Clase</a>
+							<% } %>
 						</div>
 					</li>
 				</ul>
@@ -44,24 +49,30 @@
 			</div>
 		</div>
 		<% if (usr == null) { %>
-		<div class="btn-group">
-			<a href=${pageContext.request.contextPath}/login
-				class="btn btn-light btn-sm">Iniciar Sesion</a> <a href="#"
-				class="btn btn-light btn-sm">Registrarse</a>
+		<div class="btn-group btn-group-sm">
+			<a class="btn btn-dark" style="font-size: 13px; font-weight: 500"
+				href=${pageContext.request.contextPath}/login >
+				Iniciar Sesion
+			</a>
+			<a class="btn btn-dark" style="font-size:13px; font-weight: 500" 
+				href=# >
+				Registrarse
+			</a>
 		</div>
 		<% }
 		else
 		{ %>
-		<div class="btn-group">
-				<a class="btn btn-light btn-sm dropdown-toggle" href="#"
-					id="navbarDropdownUsuario" data-toggle="dropdown"
-					aria-haspopup="true" aria-expanded="false"><%= usr.getNombre() + " " + usr.getApellido()
-					+ " ( " + usr.getNickname() + " )" %></a>
+		<div class="btn-group btn-group-sm">
+				<a class="btn btn-dark dropdown-toggle" style="font-size: 13px; font-weight: 500" href="#"
+					id="navbarDropdownUsuario" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<img src="<%=usr.getImagen()%>" width="30" height="30" class="rounded-circle">
+					<span style="font-size: 13px; font-weight: 700"> &nbsp <%=usr.getNombre() + " " + usr.getApellido() %></span>
+				</a>
 				<div class="dropdown-menu dropdown-menu-right"
 					aria-labelledby="navbarDropdownUsuario">
-					<a class="dropdown-item" href="#">Ver mi perfil</a> <a
-						class="dropdown-item" href="#">Modificar mis datos</a> <a
-						class="dropdown-item" href="#">Cerrar sesion</a>
+					<a class="btn btn-primary dropdown-item" style="font-size: 13px;" href="#">Ver mi perfil</a> <a
+						class="btn btn-primary dropdown-item" style="font-size: 13px;" href="#">Modificar mis datos</a> <a
+						class="btn btn-primary dropdown-item" style="font-size: 13px;" href=${pageContext.request.contextPath}/logout>Cerrar sesion</a>
 				</div>
 			</div>
 		<% } %>
