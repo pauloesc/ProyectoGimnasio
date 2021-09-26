@@ -37,6 +37,7 @@ public abstract class Usuario {
 		FNacimiento = fNacimiento;
 		this.imagen = imagen;
 		seguidos = new HashMap<String, Usuario>();
+		seguidores = new HashMap<String, Usuario>();
 	}
 
 	public Usuario(InfoBasicaUser info) {
@@ -46,6 +47,9 @@ public abstract class Usuario {
 		this.email = info.getCorreo();
 		FNacimiento = info.getFechaNac();
 		this.imagen = info.getImagen();
+		seguidos = new HashMap<String, Usuario>();
+		seguidores = new HashMap<String, Usuario>();
+	
 	}
 
 	
@@ -106,12 +110,22 @@ public abstract class Usuario {
 	
 	public abstract InformacionActividad InformacionActividad(String usuario);
 	
+	public void teSigo(Usuario u) {
+		seguidores.put(u.getNickname(), u);
+	}
+	
+	public void noTeSigo(Usuario u) {
+		seguidores.remove(u.getNickname());
+	}
+	
 	public void seguir(Usuario u) {
-		seguidos.put(u.getNombre(), u);
+		seguidos.put(u.getNickname(), u);
+		u.teSigo(this);
 	}
 	
 	public void dejarDeSeguir(Usuario u) {
-		seguidos.remove(u.getNombre());
+		seguidos.remove(u.getNickname());
+		u.noTeSigo(this);
 	}
 	
 	public Vector<String> SeguidoresNickname(){
