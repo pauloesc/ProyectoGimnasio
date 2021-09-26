@@ -631,6 +631,191 @@ class ctrlUsuariosTest {
 		cu=null;
 	}
 
+	/**
+	 * Test method for {@link logica.ctrlUsuarios#cargarUsuarios()}.
+	 */
+
+	@Test
+	void testUsuariosSiguiendo(String nickname){
+	
+		//preparacion de datos
+		ctrlUsuarios cu = new ctrlUsuarios();
+		ctrlIDeportivas cid = new ctrlIDeportivas();
+		
+		//creo las instituciones
+		try {
+			cid.altaInstitucion("inst1", "desc1", "url1");
+			cid.altaInstitucion("inst2", "desc2", "url2");
+			cid.altaInstitucion("inst3", "desc3", "url3");
+		}
+		catch( InstitucionDeportivaRepetidaException e) {
+			
+		}
+		
+		//creo profes
+		InfoBasicaProfesor p1 = new InfoBasicaProfesor(	"nick p1",		"nombre p1",
+													"apellido p1",	"correo p1",
+													new Date(),"0", "",	"inst1",
+													"descp p1", 	"bibliog p1",
+													"url p1" );
+		
+		InfoBasicaProfesor p2 = new InfoBasicaProfesor(	"nick p2",		"nombre p2",
+													"apellido p2",	"correo p2",
+													new Date(),"0", "",	"inst1",
+													"descp p2", 	"bibliog p2",
+													"url p2");
+		//creo socios
+		InfoBasicaSocio s1 = new InfoBasicaSocio(	"nick s1",		"nombre s1",
+													"apellido s1",	"correo s1",
+													new Date(),"0" , "");
+		
+		InfoBasicaSocio s2 = new InfoBasicaSocio(	"nick s2",		"nombre s2",
+													"apellido s2",	"correo s2",
+													new Date(),"0" , "");
+		
+		
+		
+		
+		try {
+			cu.altaUsuario(p1);
+			cu.altaUsuario(p2);
+			cu.altaUsuario(s1);
+			cu.altaUsuario(s2);
+		
+		}catch(UsuarioDisponibilidadException e){
+			
+		}
+		
+		//prueba 1
+		cu.seguirUsuario("nick p1", "nick p2");
+		cu.seguirUsuario("nick p1", "nick s1");
+		
+		Vector<String> siguiendo = null;
+		siguiendo = cu.UsuariosSiguiendo("nick p1");
+		
+		Vector<String> NicknameSiguiendo = new Vector<String>();
+		NicknameSiguiendo.add("nick p2");
+		NicknameSiguiendo.add("nick s1");
+		
+		Set<String> set_siguiendo = new HashSet<String>(siguiendo);
+		Set<String> set_NicknameSiguiendo = new HashSet<String>(NicknameSiguiendo);
+		
+		boolean mismo1 = (set_siguiendo.size() == set_NicknameSiguiendo.size()); 
+		boolean mismo2 = set_siguiendo.containsAll(set_NicknameSiguiendo);
+		boolean mismo3 = set_NicknameSiguiendo.containsAll(set_siguiendo);
+	    assertTrue(mismo1 & mismo2 & mismo3, "Los socios esperados no coiniden con los recibidos");
+		
+	    
+	  //prueba 2
+		cu.seguirUsuario("nick p2", "nick p1");
+		cu.seguirUsuario("nick p2", "nick s1");
+		cu.seguirUsuario("nick p2", "nick s2");
+		
+		Vector<String> siguiendo2 = null;
+		siguiendo2 = cu.UsuariosSiguiendo("nick p1");
+		
+		Vector<String> NicknameSiguiendo2 = new Vector<String>();
+		NicknameSiguiendo2.add("nick p1");
+		NicknameSiguiendo2.add("nick s1");
+		NicknameSiguiendo2.add("nick s2");
+		
+		Set<String> set_siguiendo2 = new HashSet<String>(siguiendo2);
+		Set<String> set_NicknameSiguiendo2 = new HashSet<String>(NicknameSiguiendo);
+		
+		mismo1 = (set_siguiendo2.size() == set_NicknameSiguiendo2.size()); 
+		mismo2 = set_siguiendo2.containsAll(set_NicknameSiguiendo2);
+		mismo3 = set_NicknameSiguiendo2.containsAll(set_siguiendo2);
+	    assertTrue(mismo1 & mismo2 & mismo3, "Los socios esperados no coiniden con los recibidos");
+		
+		manejIDeportivas.ElimiarManjeador();
+		cu.ElimiarManjeador();
+		
+		cu=null;
+		cid = null;
+		
+	}
+	@Test
+	void testUsuariosSeguidores(String nickname){
+		
+		//preparacion de datos
+		ctrlUsuarios cu = new ctrlUsuarios();
+		ctrlIDeportivas cid = new ctrlIDeportivas();
+		
+		//creo las instituciones
+		try {
+			cid.altaInstitucion("inst1", "desc1", "url1");
+			cid.altaInstitucion("inst2", "desc2", "url2");
+			cid.altaInstitucion("inst3", "desc3", "url3");
+		}
+		catch( InstitucionDeportivaRepetidaException e) {
+			
+		}
+		
+		//creo profes
+		InfoBasicaProfesor p1 = new InfoBasicaProfesor(	"nick p1",		"nombre p1",
+													"apellido p1",	"correo p1",
+													new Date(),"0", "",	"inst1",
+													"descp p1", 	"bibliog p1",
+													"url p1" );
+		
+		InfoBasicaProfesor p2 = new InfoBasicaProfesor(	"nick p2",		"nombre p2",
+													"apellido p2",	"correo p2",
+													new Date(),"0", "",	"inst1",
+													"descp p2", 	"bibliog p2",
+													"url p2");
+		//creo socios
+		InfoBasicaSocio s1 = new InfoBasicaSocio(	"nick s1",		"nombre s1",
+													"apellido s1",	"correo s1",
+													new Date(),"0" , "");
+		
+		InfoBasicaSocio s2 = new InfoBasicaSocio(	"nick s2",		"nombre s2",
+													"apellido s2",	"correo s2",
+													new Date(),"0" , "");
+		
+		
+		
+		
+		try {
+			cu.altaUsuario(p1);
+			cu.altaUsuario(p2);
+			cu.altaUsuario(s1);
+			cu.altaUsuario(s2);
+		
+		}catch(UsuarioDisponibilidadException e){
+			
+		}
+		
+		//prueba 1
+		cu.seguirUsuario("nick p1", "nick s1");
+		cu.seguirUsuario("nick p2", "nick s1");
+		cu.seguirUsuario("nick s2", "nick s1");
+		
+		Vector<String> Seguidores = null;
+		Seguidores = cu.UsuariosSeguidores("nick s1");
+		
+		Vector<String> NicknameSeguidores = new Vector<String>();
+		NicknameSeguidores.add("nick p1");
+		NicknameSeguidores.add("nick p2");
+		NicknameSeguidores.add("nick s2");
+		
+		Set<String> set_Seguidores = new HashSet<String>(Seguidores);
+		Set<String> set_NicknameSiguiendo = new HashSet<String>(NicknameSeguidores);
+		
+		boolean mismo1 = (set_Seguidores.size() == set_NicknameSiguiendo.size()); 
+		boolean mismo2 = set_Seguidores.containsAll(set_NicknameSiguiendo);
+		boolean mismo3 = set_NicknameSiguiendo.containsAll(set_Seguidores);
+	    assertTrue(mismo1 & mismo2 & mismo3, "Los socios esperados no coiniden con los recibidos");
+		
+		
+		manejIDeportivas.ElimiarManjeador();
+		cu.ElimiarManjeador();
+		
+		cu=null;
+		cid = null;
+		
+		
+	}
+
 	@Test
 	void seguirUsuarios() {
 		ctrlUsuarios cu = new ctrlUsuarios();
@@ -680,7 +865,5 @@ class ctrlUsuariosTest {
 		cu=null;
 		
 	}
-	
-	
-	
+
 }
