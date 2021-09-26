@@ -636,7 +636,7 @@ class ctrlUsuariosTest {
 	 */
 
 	@Test
-	void testUsuariosSiguiendo(String nickname){
+	void testUsuariosSiguiendo(){
 	
 		//preparacion de datos
 		ctrlUsuarios cu = new ctrlUsuarios();
@@ -726,7 +726,7 @@ class ctrlUsuariosTest {
 		mismo2 = set_siguiendo2.containsAll(set_NicknameSiguiendo2);
 		mismo3 = set_NicknameSiguiendo2.containsAll(set_siguiendo2);
 	    assertTrue(mismo1 & mismo2 & mismo3, "Los socios esperados no coiniden con los recibidos");
-		
+
 		manejIDeportivas.ElimiarManjeador();
 		cu.ElimiarManjeador();
 		
@@ -735,11 +735,12 @@ class ctrlUsuariosTest {
 		
 	}
 	@Test
-	void testUsuariosSeguidores(String nickname){
+	void testUsuariosSeguidores(){
 		
 		//preparacion de datos
 		ctrlUsuarios cu = new ctrlUsuarios();
 		ctrlIDeportivas cid = new ctrlIDeportivas();
+		
 		
 		//creo las instituciones
 		try {
