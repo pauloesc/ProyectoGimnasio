@@ -26,6 +26,7 @@ import javax.swing.event.InternalFrameEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
+import javax.swing.JSpinner;
 
 
 
@@ -38,7 +39,7 @@ public class AgregarActividadaCuponera extends JInternalFrame {
 	private JComboBox<String> comboBoxCuponeras;
 	private JComboBox<DataInstitucion> comboBoxInstituciones;
 	private JComboBox<String> comboBoxDeportivas;
-	private JTextField txtnumClases;
+	private JSpinner txtnumClases;
 	
 	public AgregarActividadaCuponera(IctrlCuponeras ICC, IctrlIDeportivas IID, IctrlADeportivas IAD) {
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -96,7 +97,6 @@ public class AgregarActividadaCuponera extends JInternalFrame {
 		comboBoxDeportivas = new JComboBox<String>();
 		comboBoxDeportivas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				txtnumClases.setEditable(true);
 				txtnumClases.setEnabled(true);
 			}
 		});
@@ -109,13 +109,12 @@ public class AgregarActividadaCuponera extends JInternalFrame {
 		lblNmeroDeClases.setBounds(28, 165, 230, 20);
 		getContentPane().add(lblNmeroDeClases);
 		
-		txtnumClases = new JTextField();
-		txtnumClases.setEditable(false);
+		txtnumClases = new JSpinner();
 		txtnumClases.setEnabled(false);
 		txtnumClases.setBounds(252, 163, 90, 26);
 		txtnumClases.setBorder(BorderFactory.createLineBorder(Color.black));
 		getContentPane().add(txtnumClases);
-		txtnumClases.setColumns(10);
+		
 		
 		JButton buttonAceptar = new JButton("Aceptar");
 		buttonAceptar.addActionListener(new ActionListener() {
@@ -134,7 +133,7 @@ public class AgregarActividadaCuponera extends JInternalFrame {
 			}
 		});
 		buttonCancelar.setBounds(369, 223, 100, 32);
-		getContentPane().add(buttonCancelar);	
+		getContentPane().add(buttonCancelar);
 		
 	}
 	
@@ -143,11 +142,11 @@ public class AgregarActividadaCuponera extends JInternalFrame {
 
 		String nomcups=comboBoxCuponeras.getSelectedItem().toString();
         String nomact=comboBoxDeportivas.getSelectedItem().toString();
-        String numClases = txtnumClases.getText();
+        Integer numClases = (Integer) txtnumClases.getValue();
         
         if (checkFormulario()) {
         	try {
-                controlCuponeras.agregarActividad(nomcups, nomact, Integer.parseInt(numClases));
+                controlCuponeras.agregarActividad(nomcups, nomact, numClases);
                 // Muestro éxito de la operación
                 JOptionPane.showMessageDialog(this, "La actividad deportiva se ha agregado con éxito", "Agregar actividad deportiva a cuponera",
                         JOptionPane.INFORMATION_MESSAGE);
@@ -163,31 +162,14 @@ public class AgregarActividadaCuponera extends JInternalFrame {
         }
     
 	private boolean checkFormulario() {
-    	
-		String numClases = txtnumClases.getText();
-        
+    
         boolean ret = true;
-
-        if (numClases.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "Agregar actividades deportivas a cuponera",
-                    JOptionPane.ERROR_MESSAGE);
-            ret = false;
-        }
+        Integer numClases = (Integer) txtnumClases.getValue();
         
-	        
-        if (ret){
-	        try {
-	        	Integer.parseInt(numClases);
+        if (numClases<=0) {
+	         JOptionPane.showMessageDialog(this, "La cantidad de clases debe ser un numero mayor a cero",title, JOptionPane.ERROR_MESSAGE);
+	            ret = false;	
 	        }
-	        catch (NumberFormatException e) {
-	    	    JOptionPane.showMessageDialog(this, "El numero de clases debe ser un numero entero", "Agregar actividades deportivas a cuponeras",
-	    	    		JOptionPane.ERROR_MESSAGE);
-	            ret = false;
-	        }
-	        
-	        }   
-          
-        
         return ret;
     }
 	
@@ -244,9 +226,7 @@ public class AgregarActividadaCuponera extends JInternalFrame {
 		 comboBoxInstituciones.setEnabled(false);
 		 comboBoxDeportivas.setSelectedItem(null);
 		 comboBoxDeportivas.setEnabled(false);
-		 txtnumClases.setText("");
-		 txtnumClases.setEditable(false);
 		 txtnumClases.setEnabled(false);
+		 txtnumClases.setValue(0);
 	    }
-    
 }

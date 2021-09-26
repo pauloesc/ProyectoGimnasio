@@ -374,11 +374,14 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
         txtDuracion.setText("");
         txtCosto.setText("");
         txtFechaAlta.setText("");
+        txtEstado.setText("");
         listClases.removeAll();
         listCuponeras.removeAll();
+        listCategorias.removeAll();
         if (modeloClases != null) {
             modeloClases.clear();
             modeloCuponeras.clear();
+            modeloCategorias.clear();
         }
         comboBoxActDeportivas.removeActionListener(comboBoxActDeportivas);
         comboBoxInstDeportivas.removeActionListener(comboBoxActDeportivas);
