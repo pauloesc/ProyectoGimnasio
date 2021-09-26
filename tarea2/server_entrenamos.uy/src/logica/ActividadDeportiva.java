@@ -19,13 +19,15 @@ public class ActividadDeportiva {
     private String descripcion;
     private Float duracion;
     private Float costo;
-    private Date fecha_alta; 
+    private Date fecha_alta;
+    private Profesor creador;
     private Map<String,Categoria> categorias;
     private EstadoActi estado;
     
 
-    public ActividadDeportiva(String n, String de, Float dur, Float cost, Date fa, Map<String,Categoria> cats) {
+    public ActividadDeportiva(String n, Profesor p, String de, Float dur, Float cost, Date fa, Map<String,Categoria> cats) {
     	this.setNombre(n);
+    	this.setCreador(p);
         this.setDescripcion(de);
         this.setDuracion(dur);
         this.setCosto(cost);
@@ -142,6 +144,14 @@ public class ActividadDeportiva {
     public DtActividadesDeportivas DtActividadesDeportivasSinInfoClases() {
     	DtActividadesDeportivas i = new DtActividadesDeportivas( this.nombre, this.descripcion, this.duracion, this.costo, this.fecha_alta );
     	return i;
+    }
+    
+    public Profesor getCreador() {
+    	return creador;
+    }
+    
+    public void setCreador(Profesor p) {
+    	this.creador = p;
     }
     
 }

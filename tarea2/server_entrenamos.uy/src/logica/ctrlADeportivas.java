@@ -24,10 +24,13 @@ public class ctrlADeportivas implements IctrlADeportivas{
 	 public ctrlADeportivas() {
 	 }
 
-	public void altaActividadDeportiva(String nid, String n, String de, Float dur, Float c, Date fa, Set<String> cats) throws ActividadDeportivaRepetidaException {
+	public void altaActividadDeportiva(String nid, String pid, String n, String de, Float dur, Float c, Date fa, Set<String> cats) throws ActividadDeportivaRepetidaException {
 		manejADeportivas mD = manejADeportivas.getinstance();
 		manejIDeportivas mID = manejIDeportivas.getinstance();
+		manejUsuarios mU = manejUsuarios.getInstance();
         ActividadDeportiva actdep = mD.buscarActividad(n);
+        Profesor crea = mU.darProfesor(pid);
+        
         if (actdep != null)
             throw new ActividadDeportivaRepetidaException("La actividad deportiva " + n + " ya esta registrada.");
         
@@ -40,8 +43,11 @@ public class ctrlADeportivas implements IctrlADeportivas{
         	if (cat != null)
         		categorias.put(cat.getNombre(), cat);	
     		}
-        actdep = new ActividadDeportiva(n, de, dur, c, fa, categorias);
+        actdep = new ActividadDeportiva(n, crea, de, dur, c, fa, categorias);
         mD.agregarActividad(actdep); 
+        
+        if (crea != null)
+        	crea.asociarseActividadDeportiva(actdep);
         
         InstitucionDeportiva indep = mID.buscarInstitucion(nid);
         indep.addActividadDeportiva(actdep);
@@ -159,18 +165,18 @@ public class ctrlADeportivas implements IctrlADeportivas{
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		}
-		//carto actividades deportivas
+		//cargo actividades deportivas
 		try {
-			altaActividadDeportiva("Fuerza Bruta", "Aparatos y pesas", "Clases de aparatos, pesas y calistenia.", 90f, 550f, f1, c1);
-			altaActividadDeportiva("Telón", "Voleibol", "Voleibol en todas sus formas.", 120f, 750f, f2, c2);
-			altaActividadDeportiva("Instituto Natural", "Aeróbica", "Para cuidar el aparato cardiovascular.", 110f, 800f, f3, c3);
-			altaActividadDeportiva("Fuerza Bruta", "Kickboxing", "En busca del nuevo campeón de boxeo.", 100f, 980f, f4, c4);
-			altaActividadDeportiva("Telón", "Atletismo", "100m , 200m, postas y carreras con obstaculos.", 150f, 500f, f5, c5);
-			altaActividadDeportiva("Telón", "Basquetbol", "Basquetbol para todos.", 80f, 450f, f6, c6);
-			altaActividadDeportiva("Fuerza Bruta", "Aparatos II", "Clases de aparatos avanzados", 60f, 1500f, f7, c7);
-			altaActividadDeportiva("Instituto Natural", "Pilates", "El método Pilates combina diferentes capacidades físicas.", 45f, 600f, f8, c8);
-			altaActividadDeportiva("Telón", "Voleibol II", "Voleibol avanzado.", 120f, 1000f, f9, new HashSet<String>());
-			altaActividadDeportiva("Telón", "Basquetbol II", "Basquetbol avanzado.", 80f, 600f, f10, new HashSet<String>());
+			altaActividadDeportiva("Fuerza Bruta","viktor" , "Aparatos y pesas", "Clases de aparatos, pesas y calistenia.", 90f, 550f, f1, c1);
+			altaActividadDeportiva("Telón","denis" , "Voleibol", "Voleibol en todas sus formas.", 120f, 750f, f2, c2);
+			altaActividadDeportiva("Instituto Natural",null , "Aeróbica", "Para cuidar el aparato cardiovascular.", 110f, 800f, f3, c3);
+			altaActividadDeportiva("Fuerza Bruta","TheBoss" , "Kickboxing", "En busca del nuevo campeón de boxeo.", 100f, 980f, f4, c4);
+			altaActividadDeportiva("Telón","denis" , "Atletismo", "100m , 200m, postas y carreras con obstaculos.", 150f, 500f, f5, c5);
+			altaActividadDeportiva("Telón","Nelson" , "Basquetbol", "Basquetbol para todos.", 80f, 450f, f6, c6);
+			altaActividadDeportiva("Fuerza Bruta",null , "Aparatos II", "Clases de aparatos avanzados", 60f, 1500f, f7, c7);
+			altaActividadDeportiva("Instituto Natural","clazar" , "Pilates", "El método Pilates combina diferentes capacidades físicas.", 45f, 600f, f8, c8);
+			altaActividadDeportiva("Telón","denis" , "Voleibol II", "Voleibol avanzado.", 120f, 1000f, f9, new HashSet<String>());
+			altaActividadDeportiva("Telón","denis" , "Basquetbol II", "Basquetbol avanzado.", 80f, 600f, f10, new HashSet<String>());
 		} catch (ActividadDeportivaRepetidaException e) {
 			//e.printStackTrace();
 		}
