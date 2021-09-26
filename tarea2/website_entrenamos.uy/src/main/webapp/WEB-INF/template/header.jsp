@@ -70,8 +70,8 @@
 				</a>
 				<div class="dropdown-menu dropdown-menu-right"
 					aria-labelledby="navbarDropdownUsuario">
-					<a class="btn btn-primary dropdown-item" style="font-size: 13px;" href="#">Ver mi perfil</a> <a
-						class="btn btn-primary dropdown-item" style="font-size: 13px;" href="#">Modificar mis datos</a> <a
+					<a class="btn btn-primary dropdown-item" style="font-size: 13px;" href="consultaPerfilUsuario.html">Ver mi perfil</a> <a
+						class="btn btn-primary dropdown-item" style="font-size: 13px;" href="modificarUsuario.html">Modificar mis datos</a> <a
 						class="btn btn-primary dropdown-item" style="font-size: 13px;" href=${pageContext.request.contextPath}/logout>Cerrar sesion</a>
 				</div>
 			</div>

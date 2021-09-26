@@ -79,7 +79,17 @@
 							</div>
 						</div>
 					</div>
+					<div class="col-sm-12">
+					<table class="table table-sm mt-3 text-right" >
+  							<thead>
+    							<tr>
+     							 <th scope="col"> <a href="consultaCuponera1.html">Ver todas las cuponeras</a></th>
+    							</tr>
+  							</thead>  			
+					</table>
+					</div>
 				</div>
+		
 				<div class="card-group my-4">
 					<div class="card">
 						<img src="./resources/img/a1.jpg" class="card-img-top" alt="...">
@@ -87,33 +97,25 @@
 							<h5 class="card-title">
 								<a href="consultaActividadDeportiva.html" class="">Voleibol</a>
 							</h5>
-							<p class="card-text">This is a wider card with supporting
-								text below as a natural lead-in to additional content. This
-								content is a little bit longer.</p>
+							<p class="card-text">Voleibol en todas sus formas.</p>
 						</div>
 					</div>
 					<div class="card">
 						<img src="./resources/img/a2.jpg" class="card-img-top" alt="...">
 						<div class="card-body">
 							<h5 class="card-title">
-								<a href="consultaActividadDeportiva.html" class="">Actividad
-									2</a>
+								<a href="#" class="">Atletismo</a>
 							</h5>
-							<p class="card-text">This card has supporting text below as a
-								natural lead-in to additional content.</p>
+							<p class="card-text">100m , 200m, postas y carreras con obstaculos.</p>
 						</div>
 					</div>
 					<div class="card">
 						<img src="./resources/img/a3.jpg" class="card-img-top" alt="...">
 						<div class="card-body">
 							<h5 class="card-title">
-								<a href="consultaActividadDeportiva.html" class="">Actividad
-									3</a>
+								<a href="#" class="">Basquetbol</a>
 							</h5>
-							<p class="card-text">This is a wider card with supporting
-								text below as a natural lead-in to additional content. This card
-								has even longer content than the first to show that equal height
-								action.</p>
+							<p class="card-text">Basquetbol para todos.</p>
 						</div>
 					</div>
 				</div>
