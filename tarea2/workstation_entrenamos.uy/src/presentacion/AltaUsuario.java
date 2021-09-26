@@ -454,6 +454,7 @@ public class AltaUsuario extends JInternalFrame{
 						txtCorreo.getText(),
 						dateChooserInicio.getDate(),
 						pass.getText(),
+						"",
 						comboBox.getSelectedItem().toString(),
 						txtDescripcion.getText(),
 						txtBibliografia.getText(),
@@ -466,7 +467,7 @@ public class AltaUsuario extends JInternalFrame{
 						txtApellido.getText(),
 						txtCorreo.getText(),
 						dateChooserInicio.getDate(),
-						pass.getText());
+						pass.getText(),"");
 			}
         	
             try {

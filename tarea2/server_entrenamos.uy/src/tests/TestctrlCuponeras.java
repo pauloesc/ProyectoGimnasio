@@ -205,7 +205,7 @@ void testregistrarCuponeraRepite() {
 			e1.printStackTrace();
 		}
 		try {
-			ctrlDeportivas.altaActividadDeportiva("Ald", "Volei", "dep", 30f, 300f, fi, new HashSet<String>());
+			ctrlDeportivas.altaActividadDeportiva("Ald", null, "Volei", "dep", 30f, 300f, fi, new HashSet<String>());
 		} catch (ActividadDeportivaRepetidaException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -319,10 +319,10 @@ void testregistrarCuponeraRepite() {
 			e1.printStackTrace();
 		}
 		try {
-			ctrlDeportivas.altaActividadDeportiva("Ald2", "Volei2", "dep", 30f, 300f, fi, new HashSet<String>());
-			ctrlDeportivas.altaActividadDeportiva("Ald2", "Volei3", "dep", 30f, 300f, fi, new HashSet<String>());
-			ctrlDeportivas.altaActividadDeportiva("Ald2", "Volei4", "dep", 30f, 300f, fi, new HashSet<String>());
-			ctrlDeportivas.altaActividadDeportiva("Ald2", "Volei5", "dep", 30f, 300f, fi, new HashSet<String>());
+			ctrlDeportivas.altaActividadDeportiva("Ald2", null, "Volei2", "dep", 30f, 300f, fi, new HashSet<String>());
+			ctrlDeportivas.altaActividadDeportiva("Ald2", null, "Volei3", "dep", 30f, 300f, fi, new HashSet<String>());
+			ctrlDeportivas.altaActividadDeportiva("Ald2", null, "Volei4", "dep", 30f, 300f, fi, new HashSet<String>());
+			ctrlDeportivas.altaActividadDeportiva("Ald2", null, "Volei5", "dep", 30f, 300f, fi, new HashSet<String>());
 		} catch (ActividadDeportivaRepetidaException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -382,8 +382,8 @@ void testregistrarCuponeraRepite() {
 			e1.printStackTrace();
 		}
 		try {
-			ctrlDeportivas.altaActividadDeportiva("Ald3", "Volei6", "dep", 30f, 300f, fi, new HashSet<String>());
-			ctrlDeportivas.altaActividadDeportiva("Ald3", "Volei7", "dep", 30f, 300f, fi, new HashSet<String>());
+			ctrlDeportivas.altaActividadDeportiva("Ald3", null, "Volei6", "dep", 30f, 300f, fi, new HashSet<String>());
+			ctrlDeportivas.altaActividadDeportiva("Ald3", null, "Volei7", "dep", 30f, 300f, fi, new HashSet<String>());
 		} catch (ActividadDeportivaRepetidaException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -437,8 +437,8 @@ void testregistrarCuponeraRepite() {
 			e1.printStackTrace();
 		}
 		try {
-			ctrlDeportivas.altaActividadDeportiva("Ald4", "Volei8", "dep", 30f, 300f, fi, new HashSet<String>());
-			ctrlDeportivas.altaActividadDeportiva("Ald4", "Volei9", "dep", 30f, 300f, fi, new HashSet<String>());
+			ctrlDeportivas.altaActividadDeportiva("Ald4", null, "Volei8", "dep", 30f, 300f, fi, new HashSet<String>());
+			ctrlDeportivas.altaActividadDeportiva("Ald4", null, "Volei9", "dep", 30f, 300f, fi, new HashSet<String>());
 		} catch (ActividadDeportivaRepetidaException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -493,8 +493,8 @@ void testregistrarCuponeraRepite() {
 			e1.printStackTrace();
 		}
 		try {
-			ctrlDeportivas.altaActividadDeportiva("Alp", "Volt1", "dep", 30f, 300f, fi, new HashSet<String>());
-			ctrlDeportivas.altaActividadDeportiva("Alp", "Volt2", "dep", 30f, 300f, fi, new HashSet<String>());
+			ctrlDeportivas.altaActividadDeportiva("Alp", null, "Volt1", "dep", 30f, 300f, fi, new HashSet<String>());
+			ctrlDeportivas.altaActividadDeportiva("Alp", null, "Volt2", "dep", 30f, 300f, fi, new HashSet<String>());
 		} catch (ActividadDeportivaRepetidaException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -548,8 +548,8 @@ void testregistrarCuponeraRepite() {
 			e1.printStackTrace();
 		}
 		try {
-			ctrlDeportivas.altaActividadDeportiva("Alp1", "Volt3", "dep", 30f, 300f, fi, new HashSet<String>());
-			ctrlDeportivas.altaActividadDeportiva("Alp1", "Volt4", "dep", 30f, 300f, fi, new HashSet<String>());
+			ctrlDeportivas.altaActividadDeportiva("Alp1", null, "Volt3", "dep", 30f, 300f, fi, new HashSet<String>());
+			ctrlDeportivas.altaActividadDeportiva("Alp1", null, "Volt4", "dep", 30f, 300f, fi, new HashSet<String>());
 		} catch (ActividadDeportivaRepetidaException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -589,8 +589,8 @@ void testregistrarCuponeraRepite() {
 			e1.printStackTrace();
 		}
 		try {
-			ctrlDeportivas.altaActividadDeportiva("Alp2", "Volt5", "dep", 30f, 300f, fi, new HashSet<String>());
-			ctrlDeportivas.altaActividadDeportiva("Alp2", "Volt6", "dep", 30f, 300f, fi, new HashSet<String>());
+			ctrlDeportivas.altaActividadDeportiva("Alp2", null, "Volt5", "dep", 30f, 300f, fi, new HashSet<String>());
+			ctrlDeportivas.altaActividadDeportiva("Alp2", null, "Volt6", "dep", 30f, 300f, fi, new HashSet<String>());
 		} catch (ActividadDeportivaRepetidaException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -636,7 +636,7 @@ void testregistrarCuponeraRepite() {
 			e1.printStackTrace();
 		}
 		try {
-			ctrlDeportivas.altaActividadDeportiva("Alp3", "Vold1", "dep", 30f, 300f, fi, new HashSet<String>());
+			ctrlDeportivas.altaActividadDeportiva("Alp3", null, "Vold1", "dep", 30f, 300f, fi, new HashSet<String>());
 		} catch (ActividadDeportivaRepetidaException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -683,7 +683,7 @@ void testregistrarCuponeraRepite() {
 			e1.printStackTrace();
 		}
 		try {
-			ctrlDeportivas.altaActividadDeportiva("Alp4", "Vold2", "dep", 30f, 300f, fi, new HashSet<String>());
+			ctrlDeportivas.altaActividadDeportiva("Alp4", null, "Vold2", "dep", 30f, 300f, fi, new HashSet<String>());
 		} catch (ActividadDeportivaRepetidaException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -746,7 +746,7 @@ void testregistrarCuponeraRepite() {
 			e1.printStackTrace();
 		}
 		try {
-			ctrlDeportivas.altaActividadDeportiva("Ari1", "Vas1", "dep", 30f, 300f, fi, new HashSet<String>());
+			ctrlDeportivas.altaActividadDeportiva("Ari1", null, "Vas1", "dep", 30f, 300f, fi, new HashSet<String>());
 		} catch (ActividadDeportivaRepetidaException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -820,7 +820,7 @@ void testregistrarCuponeraRepite() {
 			e1.printStackTrace();
 		}
 		try {
-			ctrlDeportivas.altaActividadDeportiva("Ari12", "Vas2", "dep", 30f, 300f, fi, new HashSet<String>());
+			ctrlDeportivas.altaActividadDeportiva("Ari12", null, "Vas2", "dep", 30f, 300f, fi, new HashSet<String>());
 		} catch (ActividadDeportivaRepetidaException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -884,7 +884,7 @@ void testregistrarCuponeraRepite() {
 			e1.printStackTrace();
 		}
 		try {
-			ctrlDeportivas.altaActividadDeportiva("Ari13", "Vas3", "dep", 30f, 300f, fi, new HashSet<String>());
+			ctrlDeportivas.altaActividadDeportiva("Ari13", null, "Vas3", "dep", 30f, 300f, fi, new HashSet<String>());
 		} catch (ActividadDeportivaRepetidaException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

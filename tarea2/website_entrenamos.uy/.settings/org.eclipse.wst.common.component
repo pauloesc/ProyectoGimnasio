@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-                                
+                                    
+    
     
     
     
@@ -7,21 +8,27 @@
     
     
     <wb-module deploy-name="website_entrenamos.uy">
-                                
+                                        
+        
         
         
         <wb-resource deploy-path="/" source-path="/src/main/webapp"/>
-                                
+                                        
+        
         
         
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
-                
-        <dependent-module archiveName="server_entrenamos.uy.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/server_entrenamos.uy/server_entrenamos.uy">
                         
+        
+        <dependent-module archiveName="server_entrenamos.uy.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/server_entrenamos.uy/server_entrenamos.uy">
+                                    
+            
             <dependency-type>uses</dependency-type>
-                    
+                                
+        
         </dependent-module>
-                                                                
+                                                                        
+        
         
         
         
@@ -29,7 +36,8 @@
         
         
         <property name="context-root" value="website_entrenamos.uy"/>
-                                                                
+                                                                        
+        
         
         
         
@@ -37,7 +45,8 @@
         
         
         <property name="java-output-path" value="/website_entrenamos.uy/build/classes"/>
-                                                            
+                                                                    
+    
     
     
     
@@ -45,7 +54,8 @@
     
     
     </wb-module>
-                            
+                                
+
 
 
 
