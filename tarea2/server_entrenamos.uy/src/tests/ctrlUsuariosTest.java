@@ -15,6 +15,8 @@ import org.junit.jupiter.api.Test;
 
 import excepciones.InstitucionDeportivaRepetidaException;
 import excepciones.UsuarioDisponibilidadException;
+import logica.Fabrica;
+import logica.IctrlUsuarios;
 import logica.InfoBasicaProfesor;
 import logica.InfoBasicaSocio;
 import logica.InfoBasicaUser;
@@ -632,7 +634,7 @@ class ctrlUsuariosTest {
 	/**
 	 * Test method for {@link logica.ctrlUsuarios#cargarUsuarios()}.
 	 */
-	
+
 	@Test
 	void testUsuariosSiguiendo(String nickname){
 	
@@ -811,6 +813,56 @@ class ctrlUsuariosTest {
 		cu=null;
 		cid = null;
 		
+		
+	}
+
+	@Test
+	void seguirUsuarios() {
+		ctrlUsuarios cu = new ctrlUsuarios();
+		
+		
+		InfoBasicaUser p1 = new InfoBasicaSocio(	"nick1",		"nombre p1",
+						"apellido p1",	"correo p1",
+						new Date(),"0", "");
+		
+		InfoBasicaUser p2 = new InfoBasicaSocio(	"nick2",		"nombre p2",
+						"apellido p2",	"correo p2",
+						new Date(),"0", "");
+		
+		InfoBasicaUser p3 = new InfoBasicaSocio(	"nick3",		"nombre p3",
+						"apellido p3",	"correo p3",
+						new Date(),"0", "");
+		
+		try {
+			cu.altaUsuario(p1);
+			cu.altaUsuario(p2);
+			cu.altaUsuario(p3);
+		} catch (Exception asd) {
+			fail("Test fallllllló");
+		}
+		
+		
+		try {
+			cu.seguirUsuario("nick1","nick2");
+			cu.seguirUsuario("nick1","nick3");
+			assertEquals(0,0);
+		} catch (Exception ex) {
+			fail("Test falló");
+		}
+		
+		
+		try {
+			cu.dejarDeSeguirUsuario("nick1","nick2");
+			cu.dejarDeSeguirUsuario("nick1","nick3");
+			assertEquals(0,0);
+		} catch (Exception eex) {
+			fail("Test falló");
+		}
+		
+		
+		
+		cu.ElimiarManjeador();
+		cu=null;
 		
 	}
 
