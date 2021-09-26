@@ -61,4 +61,8 @@ public interface IctrlUsuarios {
 	
 	public abstract void cargarUsuarios();
 	
+	public abstract Vector<String> UsuariosSiguiendo(String nickname);
+	public abstract Vector<String> UsuariosSeguidores(String nickname);
+	public abstract InfoActividadProfe InformacionActDepEstadoIngRech(String nickname);
+	
 }

@@ -65,4 +65,9 @@ public class Compra {
 		public Cuponera getCup() {
 			return cup;
 		}
+
+
+		public DataCuponera DarInformacionCuponera() {
+			return cup.getDataCuponera();
+		}
 }

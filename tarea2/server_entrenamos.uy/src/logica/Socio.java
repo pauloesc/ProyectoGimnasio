@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import java.util.Vector;
+
 import excepciones.ClaseLlenaException;
 import excepciones.ClaseYaCompradaException;
 
@@ -110,5 +112,18 @@ public class Socio extends Usuario {
 		}
 		
 		return i;
+	}
+	
+	public Vector<DataCuponera> Cuponeras(){
+		
+		Vector<DataCuponera> vec = new Vector<DataCuponera>();
+		
+		 Map<String,Compra> map = compCup;
+		for (Map.Entry<String,Compra> entry : map.entrySet()) {
+			Compra comp = entry.getValue();
+			DataCuponera info = comp.DarInformacionCuponera();
+			vec.add(info);
+		}
+		return vec;
 	}
 }
