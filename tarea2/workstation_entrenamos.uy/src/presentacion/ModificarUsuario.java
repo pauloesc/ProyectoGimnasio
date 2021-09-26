@@ -354,6 +354,7 @@ public class ModificarUsuario extends JInternalFrame{
 							dateChooserInicio.getDate(),
 							"",
 							"",
+							"",
 							txtDescripcion.getText(),
 							txtBibliografia.getText(),
 							txtWeb.getText());
@@ -365,7 +366,7 @@ public class ModificarUsuario extends JInternalFrame{
 							txtApellido.getText(),
 							txtCorreo.getText(),
 							dateChooserInicio.getDate(),
-							"");
+							"", "");
 				}
 				
 				controlUsuario.ActualizarInformacionUsuario(i);
