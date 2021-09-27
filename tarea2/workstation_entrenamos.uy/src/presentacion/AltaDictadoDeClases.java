@@ -113,11 +113,11 @@ public class AltaDictadoDeClases extends JInternalFrame {
 		
 		textFieldMinuto =  new JComboBox<String>();
 		
-		for (Integer i = 1; i<= 24; i++) {
+		for (Integer i = 0; i<= 23; i++) {
 			textFieldHora.addItem(i.toString());
 		}
 		
-		for (Integer i = 1; i<= 60; i++) {
+		for (Integer i = 0; i<= 59; i++) {
 			textFieldMinuto.addItem(i.toString());
 		}
 		
