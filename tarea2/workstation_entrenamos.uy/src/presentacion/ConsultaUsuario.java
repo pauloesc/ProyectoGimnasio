@@ -84,6 +84,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
+import javax.swing.ScrollPaneConstants;
 
 
 @SuppressWarnings({ "serial", "unused" })
@@ -98,9 +99,9 @@ public class ConsultaUsuario extends JInternalFrame{
     private JTextField txtApellido;
     private JTextField txtCorreo;
     private JComboBox<String> comboBoxNicks;
-    private JTextField txtDescripcion;
-    private JTextField txtBibliografia;
-    private JTextField txtWeb;
+    private JTextArea txtDescripcion;
+    private JTextArea txtBibliografia;
+    private JTextArea txtWeb;
     private JDateChooser dateChooserInicio;
     private JButton btnConsultarActividad;
     
@@ -134,25 +135,17 @@ public class ConsultaUsuario extends JInternalFrame{
 		setBounds(20, 50, 918, 663);
 		
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[] {165, 220, 57, 340, 0};
-		gridBagLayout.rowHeights = new int[] {25, 0, 30, 0, 30, 0, 30, 0, 30, 0, 30, 0, 30, 0, 30, 0, 30, 0, 30, 0, 30, 0, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0};
-		gridBagLayout.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		getContentPane().setLayout(gridBagLayout);
+		getContentPane().setLayout(null);
 		
 		JLabel lblNombre = new JLabel("Nickname");
-		GridBagConstraints gbc_lblNombre = new GridBagConstraints();
-		gbc_lblNombre.anchor = GridBagConstraints.WEST;
-		gbc_lblNombre.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNombre.gridx = 0;
-		gbc_lblNombre.gridy = 1;
-		getContentPane().add(lblNombre, gbc_lblNombre);
+		lblNombre.setBounds(48, 53, 68, 15);
+		getContentPane().add(lblNombre);
 		
 		
 		
 		
 		comboBoxNicks = new JComboBox<String>();
+		comboBoxNicks.setBounds(213, 49, 215, 24);
 		comboBoxNicks.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//System.out.println("se activo el combobox");
@@ -254,30 +247,17 @@ public class ConsultaUsuario extends JInternalFrame{
 					
 			}
 		});
-		GridBagConstraints gbc_comboBoxNicks = new GridBagConstraints();
-		gbc_comboBoxNicks.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBoxNicks.insets = new Insets(0, 0, 5, 5);
-		gbc_comboBoxNicks.gridx = 1;
-		gbc_comboBoxNicks.gridy = 1;
-		getContentPane().add(comboBoxNicks, gbc_comboBoxNicks);
+		getContentPane().add(comboBoxNicks);
 		
 		JLabel lblActividadesDeportivas = new JLabel("Actividades Deportivas (Nombre)");
-		GridBagConstraints gbc_lblActividadesDeportivas = new GridBagConstraints();
-		gbc_lblActividadesDeportivas.insets = new Insets(0, 0, 5, 5);
-		gbc_lblActividadesDeportivas.gridx = 3;
-		gbc_lblActividadesDeportivas.gridy = 1;
-		getContentPane().add(lblActividadesDeportivas, gbc_lblActividadesDeportivas);
+		lblActividadesDeportivas.setBounds(542, 53, 231, 15);
+		getContentPane().add(lblActividadesDeportivas);
 		
 
 		
 		JScrollPane scrollPane = new JScrollPane();
-		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
-		gbc_scrollPane.insets = new Insets(0, 0, 5, 5);
-		gbc_scrollPane.fill = GridBagConstraints.BOTH;
-		gbc_scrollPane.gridx = 3;
-		gbc_scrollPane.gridy = 2;
-		gbc_scrollPane.gridheight=6;
-		getContentPane().add(scrollPane, gbc_scrollPane);
+		scrollPane.setBounds(490, 78, 335, 157);
+		getContentPane().add(scrollPane);
 		
 		
 		
@@ -303,61 +283,38 @@ public class ConsultaUsuario extends JInternalFrame{
 		
 			
 		JLabel lblNewLabel = new JLabel("Nombre");
-		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-		gbc_lblNewLabel.anchor = GridBagConstraints.WEST;
-		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel.gridx = 0;
-		gbc_lblNewLabel.gridy = 3;
-		getContentPane().add(lblNewLabel, gbc_lblNewLabel);
+		lblNewLabel.setBounds(48, 110, 55, 15);
+		getContentPane().add(lblNewLabel);
 		
 		
 		txtNombre = new JTextField();
+		txtNombre.setBounds(213, 108, 215, 19);
 		txtNombre.setEditable(false);
-		GridBagConstraints gbc_txtNombre = new GridBagConstraints();
-		gbc_txtNombre.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtNombre.insets = new Insets(0, 0, 5, 5);
-		gbc_txtNombre.gridx = 1;
-		gbc_txtNombre.gridy = 3;
-		getContentPane().add(txtNombre, gbc_txtNombre);
+		getContentPane().add(txtNombre);
 		txtNombre.setColumns(10);
 		
 		JLabel lblApellido = new JLabel("Apellido");
-		GridBagConstraints gbc_lblApellido = new GridBagConstraints();
-		gbc_lblApellido.anchor = GridBagConstraints.WEST;
-		gbc_lblApellido.insets = new Insets(0, 0, 5, 5);
-		gbc_lblApellido.gridx = 0;
-		gbc_lblApellido.gridy = 5;
-		getContentPane().add(lblApellido, gbc_lblApellido);
+		lblApellido.setBounds(48, 164, 57, 15);
+		getContentPane().add(lblApellido);
 		
 		txtApellido = new JTextField();
+		txtApellido.setBounds(213, 162, 215, 19);
 		txtApellido.setEditable(false);
-		GridBagConstraints gbc_txtApellido = new GridBagConstraints();
-		gbc_txtApellido.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtApellido.insets = new Insets(0, 0, 5, 5);
-		gbc_txtApellido.gridx = 1;
-		gbc_txtApellido.gridy = 5;
-		getContentPane().add(txtApellido, gbc_txtApellido);
+		getContentPane().add(txtApellido);
 		txtApellido.setColumns(10);
 		
 		JLabel lblCorreo = new JLabel("Correo");
-		GridBagConstraints gbc_lblCorreo = new GridBagConstraints();
-		gbc_lblCorreo.anchor = GridBagConstraints.WEST;
-		gbc_lblCorreo.insets = new Insets(0, 0, 5, 5);
-		gbc_lblCorreo.gridx = 0;
-		gbc_lblCorreo.gridy = 7;
-		getContentPane().add(lblCorreo, gbc_lblCorreo);
+		lblCorreo.setBounds(48, 218, 48, 15);
+		getContentPane().add(lblCorreo);
 		
 		txtCorreo = new JTextField();
+		txtCorreo.setBounds(213, 216, 215, 19);
 		txtCorreo.setEditable(false);
-		GridBagConstraints gbc_txtCorreo = new GridBagConstraints();
-		gbc_txtCorreo.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtCorreo.insets = new Insets(0, 0, 5, 5);
-		gbc_txtCorreo.gridx = 1;
-		gbc_txtCorreo.gridy = 7;
-		getContentPane().add(txtCorreo, gbc_txtCorreo);
+		getContentPane().add(txtCorreo);
 		txtCorreo.setColumns(10);
 		
 		btnConsultarActividad = new JButton("Consulta  de  Actividad  Deportiva");
+		btnConsultarActividad.setBounds(553, 240, 272, 25);
 		btnConsultarActividad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -372,64 +329,33 @@ public class ConsultaUsuario extends JInternalFrame{
 				}
 			}
 		});
-		
-		
-		GridBagConstraints gbc_btnConsultarActividad = new GridBagConstraints();
-		gbc_btnConsultarActividad.anchor = GridBagConstraints.EAST;
-		gbc_btnConsultarActividad.insets = new Insets(0, 0, 5, 5);
-		gbc_btnConsultarActividad.gridx = 3;
-		gbc_btnConsultarActividad.gridy = 8;
-		getContentPane().add(btnConsultarActividad, gbc_btnConsultarActividad);
+		getContentPane().add(btnConsultarActividad);
 		
 		JLabel lblFechaNacimiento = new JLabel("Fecha Nacimiento");
-		GridBagConstraints gbc_lblFechaNacimiento = new GridBagConstraints();
-		gbc_lblFechaNacimiento.anchor = GridBagConstraints.WEST;
-		gbc_lblFechaNacimiento.insets = new Insets(0, 0, 5, 5);
-		gbc_lblFechaNacimiento.gridx = 0;
-		gbc_lblFechaNacimiento.gridy = 9;
-		getContentPane().add(lblFechaNacimiento, gbc_lblFechaNacimiento);
+		lblFechaNacimiento.setBounds(48, 272, 125, 15);
+		getContentPane().add(lblFechaNacimiento);
 		
 		dateChooserInicio = new JDateChooser();
-		GridBagConstraints gbc_dateChooserInicio = new GridBagConstraints();
-		gbc_dateChooserInicio.fill = GridBagConstraints.HORIZONTAL;
-		gbc_dateChooserInicio.insets = new Insets(0, 0, 5, 6);
-		gbc_dateChooserInicio.gridx = 1;
-		gbc_dateChooserInicio.gridy = 9;
-		getContentPane().add(dateChooserInicio, gbc_dateChooserInicio);
+		dateChooserInicio.setBounds(213, 270, 214, 19);
+		getContentPane().add(dateChooserInicio);
 		
 		JLabel lblClases = new JLabel("Clases (Nombre)");
-		GridBagConstraints gbc_lblClases = new GridBagConstraints();
-		gbc_lblClases.insets = new Insets(0, 0, 5, 5);
-		gbc_lblClases.gridx = 3;
-		gbc_lblClases.gridy = 10;
-		getContentPane().add(lblClases, gbc_lblClases);
+		lblClases.setBounds(599, 299, 116, 15);
+		getContentPane().add(lblClases);
 		
 		JLabel lblInstitucion = new JLabel("Institucion");
-		GridBagConstraints gbc_lblInstitucion = new GridBagConstraints();
-		gbc_lblInstitucion.anchor = GridBagConstraints.WEST;
-		gbc_lblInstitucion.insets = new Insets(0, 0, 5, 5);
-		gbc_lblInstitucion.gridx = 0;
-		gbc_lblInstitucion.gridy = 11;
-		getContentPane().add(lblInstitucion, gbc_lblInstitucion);
+		lblInstitucion.setBounds(48, 326, 75, 15);
+		getContentPane().add(lblInstitucion);
 		
 		txtInstitucion = new JTextField();
+		txtInstitucion.setBounds(213, 324, 215, 19);
 		txtInstitucion.setEditable(false);
-		GridBagConstraints gbc_txtInstitucion = new GridBagConstraints();
-		gbc_txtInstitucion.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtInstitucion.insets = new Insets(0, 0, 5, 5);
-		gbc_txtInstitucion.gridx = 1;
-		gbc_txtInstitucion.gridy = 11;
-		getContentPane().add(txtInstitucion, gbc_txtInstitucion);
+		getContentPane().add(txtInstitucion);
 		txtInstitucion.setColumns(10);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		GridBagConstraints gbc_scrollPane_1 = new GridBagConstraints();
-		gbc_scrollPane_1.insets = new Insets(0, 0, 5, 5);
-		gbc_scrollPane_1.fill = GridBagConstraints.BOTH;
-		gbc_scrollPane_1.gridx = 3;
-		gbc_scrollPane_1.gridy = 11;
-		gbc_scrollPane_1.gridheight = 6;
-		getContentPane().add(scrollPane_1, gbc_scrollPane_1);
+		scrollPane_1.setBounds(490, 324, 335, 157);
+		getContentPane().add(scrollPane_1);
 		
 		list_1 = new JList<DtClase>();
 		scrollPane_1.setViewportView(list_1);
@@ -440,62 +366,21 @@ public class ConsultaUsuario extends JInternalFrame{
 		
 		
 		JLabel lblDescripcion = new JLabel("Descripcion");
-		GridBagConstraints gbc_lblDescripcion = new GridBagConstraints();
-		gbc_lblDescripcion.anchor = GridBagConstraints.WEST;
-		gbc_lblDescripcion.insets = new Insets(0, 0, 5, 5);
-		gbc_lblDescripcion.gridx = 0;
-		gbc_lblDescripcion.gridy = 13;
-		getContentPane().add(lblDescripcion, gbc_lblDescripcion);
-		
-		txtDescripcion = new JTextField();
-		txtDescripcion.setEditable(false);
-		GridBagConstraints gbc_txtDescripcion = new GridBagConstraints();
-		gbc_txtDescripcion.insets = new Insets(0, 0, 5, 5);
-		gbc_txtDescripcion.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtDescripcion.gridx = 1;
-		gbc_txtDescripcion.gridy = 13;
-		getContentPane().add(txtDescripcion, gbc_txtDescripcion);
-		txtDescripcion.setColumns(10);
+		lblDescripcion.setBounds(48, 380, 82, 15);
+		getContentPane().add(lblDescripcion);
 		
 		
 		
 		JLabel lblBiografia = new JLabel("Biografia");
-		GridBagConstraints gbc_lblBiografia = new GridBagConstraints();
-		gbc_lblBiografia.anchor = GridBagConstraints.WEST;
-		gbc_lblBiografia.insets = new Insets(0, 0, 5, 5);
-		gbc_lblBiografia.gridx = 0;
-		gbc_lblBiografia.gridy = 15;
-		getContentPane().add(lblBiografia, gbc_lblBiografia);
-		
-		txtBibliografia = new JTextField();
-		txtBibliografia.setEditable(false);
-		GridBagConstraints gbc_txtBibliografia = new GridBagConstraints();
-		gbc_txtBibliografia.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtBibliografia.insets = new Insets(0, 0, 5, 5);
-		gbc_txtBibliografia.gridx = 1;
-		gbc_txtBibliografia.gridy = 15;
-		getContentPane().add(txtBibliografia, gbc_txtBibliografia);
-		txtBibliografia.setColumns(10);
+		lblBiografia.setBounds(48, 434, 64, 15);
+		getContentPane().add(lblBiografia);
 		
 		JLabel lblWeburl = new JLabel("Web (url)");
-		GridBagConstraints gbc_lblWeburl = new GridBagConstraints();
-		gbc_lblWeburl.anchor = GridBagConstraints.WEST;
-		gbc_lblWeburl.insets = new Insets(0, 0, 5, 5);
-		gbc_lblWeburl.gridx = 0;
-		gbc_lblWeburl.gridy = 17;
-		getContentPane().add(lblWeburl, gbc_lblWeburl);
-		
-		txtWeb = new JTextField();
-		txtWeb.setEditable(false);
-		GridBagConstraints gbc_txtWeb = new GridBagConstraints();
-		gbc_txtWeb.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtWeb.insets = new Insets(0, 0, 5, 5);
-		gbc_txtWeb.gridx = 1;
-		gbc_txtWeb.gridy = 17;
-		getContentPane().add(txtWeb, gbc_txtWeb);
-		txtWeb.setColumns(10);
+		lblWeburl.setBounds(48, 491, 65, 15);
+		getContentPane().add(lblWeburl);
 		
 		JButton btnCancelar = new JButton("Cerrar");
+		btnCancelar.setBounds(213, 606, 215, 25);
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				limpiarFormulario();
@@ -506,24 +391,52 @@ public class ConsultaUsuario extends JInternalFrame{
 		});
 		
 		JButton btnConsultarClases = new JButton("Consulta \nde Dictado de Clases");
+		btnConsultarClases.setBounds(575, 486, 250, 25);
 		btnConsultarClases.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 								
 				llamarCasoUsoConsultaDictadoClase(); 
 			}
 		});
-		GridBagConstraints gbc_btnConsultarClases = new GridBagConstraints();
-		gbc_btnConsultarClases.anchor = GridBagConstraints.EAST;
-		gbc_btnConsultarClases.insets = new Insets(0, 0, 5, 5);
-		gbc_btnConsultarClases.gridx = 3;
-		gbc_btnConsultarClases.gridy = 17;
-		getContentPane().add(btnConsultarClases, gbc_btnConsultarClases);
-		GridBagConstraints gbc_btnCancelar = new GridBagConstraints();
-		gbc_btnCancelar.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnCancelar.insets = new Insets(0, 0, 0, 5);
-		gbc_btnCancelar.gridx = 1;
-		gbc_btnCancelar.gridy = 21;
-		getContentPane().add(btnCancelar, gbc_btnCancelar);
+		getContentPane().add(btnConsultarClases);
+		getContentPane().add(btnCancelar);
+		
+		JScrollPane scrollPane_2 = new JScrollPane();
+		scrollPane_2.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane_2.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane_2.setBounds(213, 380, 215, 49);
+		getContentPane().add(scrollPane_2);
+		
+		txtDescripcion = new JTextArea();
+		scrollPane_2.setViewportView(txtDescripcion);
+		txtDescripcion.setEditable(false);
+		txtDescripcion.setColumns(10);
+		txtDescripcion.setWrapStyleWord(true);
+		txtDescripcion.setLineWrap(true);
+		
+		JScrollPane scrollPane_3 = new JScrollPane();
+		scrollPane_3.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane_3.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane_3.setBounds(213, 434, 215, 49);
+		getContentPane().add(scrollPane_3);
+		
+		txtBibliografia = new JTextArea();
+		scrollPane_3.setViewportView(txtBibliografia);
+		txtBibliografia.setEditable(false);
+		txtBibliografia.setColumns(10);
+		txtBibliografia.setWrapStyleWord(true);
+		txtBibliografia.setLineWrap(true);
+		
+		JScrollPane scrollPane_4 = new JScrollPane();
+		scrollPane_4.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane_4.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane_4.setBounds(213, 491, 215, 49);
+		getContentPane().add(scrollPane_4);
+		
+		txtWeb = new JTextArea();
+		scrollPane_4.setViewportView(txtWeb);
+		txtWeb.setEditable(false);
+		txtWeb.setColumns(10);
 		
 
 		
