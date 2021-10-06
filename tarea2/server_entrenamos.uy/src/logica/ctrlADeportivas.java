@@ -199,4 +199,10 @@ public class ctrlADeportivas implements IctrlADeportivas{
 		a9.setEstado(EstadoActi.RECHAZADA);
 	}
 
+	@Override
+	public Set<String> getActividadesCategoria(String cat) {
+		
+		return null;
+	}
+
 }

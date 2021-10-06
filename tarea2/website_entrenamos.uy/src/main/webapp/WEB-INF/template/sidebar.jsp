@@ -23,7 +23,7 @@
 		<% 
 		for(String nominst :instituciones) {
 		%>	
-		<li class="list-group-item"><a class="nombreInst" href="?institucion=<%= nominst  %>"><%= nominst %></a></li>
+		<li class="list-group-item"><a class="nombreInst" href="consultaInstitucion?institucion=<%= nominst  %>"><%= nominst %></a></li>
 		<% } %>	
 	</ul>
 	<ul id="listaCategorias" class="list-group my-4">

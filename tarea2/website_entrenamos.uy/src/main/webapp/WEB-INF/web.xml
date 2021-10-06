@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
 	id="WebApp_ID" version="4.0">
-	<display-name>web_entrenamos.uy</display-name>
+	<display-name>website_entrenamos.uy</display-name>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
@@ -44,6 +44,14 @@
 	<servlet-mapping>
 		<servlet-name>ConsultaActividad</servlet-name>
 		<url-pattern>/consultaActividad</url-pattern>
+	</servlet-mapping>
+		<servlet>
+		<servlet-name>ConsultaInstitucion</servlet-name>
+		<servlet-class>controladores.ConsultaInstitucion</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ConsultaInstitucion</servlet-name>
+		<url-pattern>/consultaInstitucion</url-pattern>
 	</servlet-mapping>
 	<session-config>
 		<session-timeout>30</session-timeout>

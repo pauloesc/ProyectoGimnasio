@@ -12,33 +12,32 @@ import javax.servlet.http.HttpSession;
 
 import logica.Fabrica;
 
-public class ConsultaActividad extends HttpServlet
+public class Categorias extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
 	
-	public ConsultaActividad() 
+	public Categorias() 
 	{
 		super();
-		Instituciones.cargarInstituciones();
-		Fabrica.getInstance().getIctrlADeportivas().cargarDatosADeportivas();
-		Login.cargarUsuarios();
-		Categorias.cargarCategorias();
 	}
 	
 	private void processRequest(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException 
 	{
-		req.getRequestDispatcher("/WEB-INF/actividades/consultaActividadDeportiva.jsp").forward(req, resp);
+		HttpSession sesion = req.getSession();
+		sesion.setAttribute("nickname-user", null);
+		sesion.setAttribute("estado-sesion", "no-login");
+		resp.sendRedirect("/website_entrenamos.uy/home");
 	}
 	
-	public static Set<String> getActividadesInst(String inst){
-		Set<String> acts = Fabrica.getInstance().getIctrlADeportivas().darNombresActividadesDeportivas(inst);
-		return acts;
+	public static Set<String> getCategorias(){
+		Set<String> cats = Fabrica.getInstance().getIctrlCategorias().getCategorias();
+		return cats;
 	}
 	
-	public static void cargarActividades()
+	public static void cargarCategorias()
 	{
-		Fabrica.getInstance().getIctrlADeportivas().cargarDatosADeportivas();
+		Fabrica.getInstance().getIctrlCategorias().cargarCategorias();
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 

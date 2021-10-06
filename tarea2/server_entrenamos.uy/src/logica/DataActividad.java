@@ -19,7 +19,6 @@ public class DataActividad {
     private Date fecha_alta;
     private EstadoActi estado;
     private Set<String> categorias;
-    private String profesor;
 
     public DataActividad() {
         this.setNombre(new String());

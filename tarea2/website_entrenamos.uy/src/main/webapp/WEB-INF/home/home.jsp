@@ -9,24 +9,7 @@
 	<!-- Begin page content -->
 	<main role="main" class="container">
 		<div class="row">
-			<div class="col-6 col-md-4">
-				<ul id="listaInstituciones" class="list-group my-4">
-					<li class="list-group-item"><strong>Instituciones
-							Deportivas</strong></li>
-					<li class="list-group-item"><a
-						href="consultaInstitucion.html" class="">Telon</a></li>
-					<li class="list-group-item">Instituto Natural</li>
-					<li class="list-group-item">Olympic</li>
-					<li class="list-group-item">Fuerza Bruta</li>
-				</ul>
-				<ul id="listaCategorias" class="list-group my-4">
-					<li class="list-group-item"><strong>Categorías</strong></li>
-					<li class="list-group-item">Al aire libre</li>
-					<li class="list-group-item"><a href="consultaCategoria.html" class="">Deportes</a></li>
-					<li class="list-group-item">Fintess</li>
-					<li class="list-group-item">Gimnasia</li>
-				</ul>
-			</div>
+			<jsp:include page="/WEB-INF/template/sidebar.jsp" />
 			<div class="col-12 col-md-8">
 				<div class="row py-4">
 					<div id="carouselExampleCaptions" class="carousel slide mx-auto"

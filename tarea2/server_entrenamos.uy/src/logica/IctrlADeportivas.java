@@ -42,6 +42,8 @@ public interface IctrlADeportivas {
     public abstract Set<String> darNombresActividadesDeportivas(String inst);
     // muestra de las actividades deportivas de una institucion, utilizado en varios CU
     
+    public abstract Set<String> getActividadesCategoria(String cat);
+     
     public abstract void cargarDatosADeportivas();
     
     public abstract Set<String> mostrarClasesVigentesDeActividadDeportiva(String nomAct);
