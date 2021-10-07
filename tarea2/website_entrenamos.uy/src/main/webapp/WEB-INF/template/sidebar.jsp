@@ -31,7 +31,7 @@
 		<% 
 		for(String nomcat :categorias) {
 		%>
-		<li class="list-group-item"><a class="nombreCat" href="?categoria=<%= nomcat  %>"><%= nomcat %></a></li>
+		<li class="list-group-item"><a class="nombreCat" href="consultaCategoria?categoria=<%= nomcat  %>"><%= nomcat %></a></li>
 		<% } %>	
 	</ul>
 </div>

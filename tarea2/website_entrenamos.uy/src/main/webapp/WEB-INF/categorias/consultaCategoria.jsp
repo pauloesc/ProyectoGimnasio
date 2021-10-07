@@ -6,9 +6,16 @@
 <head>
 <jsp:include page="/WEB-INF/template/head.jsp" />
 </head>
+
 <%
-	String nominst = (String) request.getAttribute("institucion");
-	Set<String> actividades = (Set<String>) request.getAttribute("actividades");
+	String nomcat = request.getParameter("categoria");
+	Set<String> actividades;
+	try {
+		actividades = ConsultaActividad.getActividadesInst(nominst);
+	} 
+	catch(Exception ex) {
+		actividades = null;
+	}
 %>
 <body>
 	<jsp:include page="/WEB-INF/template/header.jsp" />
@@ -17,7 +24,7 @@
 		<div class="row my-4">
 			<jsp:include page="/WEB-INF/template/sidebar.jsp" />
 			<div class="col-12 col-md-8 my-4">
-				<h1><%= nominst  %></h1>
+				<h1><%= nomcat  %></h1>
 				<ul class="nav nav-tabs" id="myTab" role="tablist">
 					<li class="nav-item" role="presentation"><a
 						class="nav-link active" id="actividadesdeportivas-tab" data-toggle="tab"
@@ -33,20 +40,13 @@
 						role="tabpanel" aria-labelledby="actividadesdeportivas-tab">
 						<div class="m-3">
 						<table class="table table-hover">
-  							<thead>
-    							<tr>
-     							 <th scope="col">#</th>
-     							 <th scope="col">Nombre</th>
-    							</tr>
-  							</thead>
-  						<tbody>
   						<% 
   						int i = 1;
 						for(String nomact :actividades) {
 						%>	
    							<tr>
      						 <th scope="row"><%= i  %></th>
-      							<td> <a href="consultaActividad?actividad=<%= nomact  %>"><%= nomact  %></a> </td>
+      							<td> <a href="#"><%= nomact  %></a> </td>
     						</tr>
     					<%
     					i++;

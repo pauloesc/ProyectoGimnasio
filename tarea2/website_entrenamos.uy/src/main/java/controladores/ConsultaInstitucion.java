@@ -28,6 +28,17 @@ public class ConsultaInstitucion extends HttpServlet
 	private void processRequest(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException 
 	{
+		String inst = req.getParameter("institucion");
+		//verificar que institucion existe y sino llevar a errorPage
+		Set<String> actividades;
+		try {
+			actividades = ConsultaActividad.getActividadesInst(inst);
+		} 
+		catch(Exception ex) {
+			actividades = null;
+		}
+		req.setAttribute("actividades", actividades);
+		req.setAttribute("institucion", inst);
 		req.getRequestDispatcher("/WEB-INF/instituciones/consultaInstitucion.jsp").forward(req, resp);
 	}
 	

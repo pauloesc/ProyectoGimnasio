@@ -19,6 +19,8 @@ public class DataActividad {
     private Date fecha_alta;
     private EstadoActi estado;
     private Set<String> categorias;
+    private String profesor;
+    private String institucion;
 
     public DataActividad() {
         this.setNombre(new String());
@@ -28,9 +30,11 @@ public class DataActividad {
         this.setFechaAlta(new Date());
         this.setEstado(EstadoActi.INGRESADA);
         this.setCategorias(new HashSet<String>());
+        this.setProfesor(new String());
+        this.setInstitucion(new String());
     }
 
-    public DataActividad(String nombre, String descripcion, Float duracion, Float costo, Date fecha_alta, EstadoActi est, Set<String> categ) {
+    public DataActividad(String nombre, String descripcion, Float duracion, Float costo, Date fecha_alta, EstadoActi est, Set<String> categ, String prof, String inst) {
         this.setNombre(nombre);
         this.setDescripcion(descripcion);
         this.setDuracion(duracion);
@@ -38,6 +42,8 @@ public class DataActividad {
         this.setFechaAlta(fecha_alta);
         this.setEstado(est);
         this.setCategorias(categ);
+        this.setProfesor(prof);
+        this.setInstitucion(inst);
     }
 
     public String getNombre() {
@@ -66,6 +72,14 @@ public class DataActividad {
     
     public Set<String> getCategorias() {
     	return categorias;
+    }
+    
+    public String getProfesor() {
+        return profesor;
+    }
+
+    public String getInstitucion() {
+        return institucion;
     }
     
     /* Sirve para mostrar textualmente el nombre de la Actividad Deportiva, por ejemplo en un ComboBox
@@ -100,6 +114,14 @@ public class DataActividad {
     
     private void setCategorias(Set<String> cat) {
     	this.categorias = cat;
+    }
+    
+    private void setProfesor(String prof) {
+    	this.profesor = prof;
+    }
+    
+    private void setInstitucion(String inst) {
+    	this.institucion = inst;
     }
 
 }

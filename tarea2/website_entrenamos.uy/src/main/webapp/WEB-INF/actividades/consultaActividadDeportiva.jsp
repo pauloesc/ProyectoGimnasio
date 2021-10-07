@@ -1,9 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="logica.DataActividad"%>
 <!DOCTYPE html>
 <html>
 <head>
 <jsp:include page="/WEB-INF/template/head.jsp" />
 </head>
+<%
+	DataActividad actividad = (DataActividad) request.getAttribute("actividad");
+%>
 <body>
 	<jsp:include page="/WEB-INF/template/header.jsp" />
 	<!-- Begin page content -->
@@ -18,8 +22,8 @@
 						</div>
 						<div class="col-md-8">
 							<div class="card-body">
-								<h1 class="card-title">Voleibol</h1>
-								<p class="card-text">Voleibol en todas sus formas.</p>
+								<h1 class="card-title"><%= actividad.getNombre()  %></h1>
+								<p class="card-text"><%= actividad.getDescripcion()  %></p>
 								<div class="categorias">
 									<span class="badge badge-info">Deportes</span>
 								</div>
@@ -47,10 +51,10 @@
 					<div class="tab-pane fade show active" id="detalles"
 						role="tabpanel" aria-labelledby="detalles-tab">
 						<div class="m-3">
-						<p>InstituciÃ³n Deportiva: Telon</p>
-						<p>Profesor: Denis Miguel</p>
-						<p>Costo: $750</p>
-						<p>DuraciÃ³n: 120 minutos</p>
+						<p>Institución Deportiva: <%= actividad.getInstitucion() %></p>
+						<p>Profesor: <%= actividad.getProfesor() %></p>
+						<p>Costo: $<%= actividad.getCosto()  %></p>
+						<p>Duración: <%= actividad.getDuracion()  %> minutos</p>
 						</div>
 					</div>
 					<div class="tab-pane fade" id="cuponeras" role="tabpanel"

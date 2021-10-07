@@ -28,7 +28,7 @@ public class ConsultaCategoria extends HttpServlet
 	private void processRequest(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException 
 	{
-		req.getRequestDispatcher("/WEB-INF/instituciones/consultaInstitucion.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/categorias/consultaCategoria.jsp").forward(req, resp);
 	}
 	
 	public static Set<String> getActividadesCat(String cat){

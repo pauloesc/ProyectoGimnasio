@@ -66,7 +66,7 @@ public class ctrlADeportivas implements IctrlADeportivas{
             // sino los DataActividad asociados a la Institución seleccionada.
             for (int i = 0; i < actsdeps.length; i++) {
                 actividad = actsdeps[i];
-                dad[i] = new DataActividad(actividad.getNombre(), actividad.getDescripcion(), actividad.getDuracion(), actividad.getCosto(), actividad.getFechaAlta(), actividad.getEstado(), actividad.darCategorias());
+                dad[i] = new DataActividad(actividad.getNombre(), actividad.getDescripcion(), actividad.getDuracion(), actividad.getCosto(), actividad.getFechaAlta(), actividad.getEstado(), actividad.darCategorias(), actividad.getCreador().getNombre(), actividad.getCreador().getNombreInstitucion());
             }
 
             return dad;
@@ -78,7 +78,9 @@ public class ctrlADeportivas implements IctrlADeportivas{
 	public DataActividad getDataActividad(String n) throws ActividadDeportivaNoExisteException {
 		manejADeportivas mD = manejADeportivas.getinstance();
 		ActividadDeportiva actividad = mD.buscarActividad(n);
-		DataActividad dtact = new DataActividad(actividad.getNombre(), actividad.getDescripcion(), actividad.getDuracion(), actividad.getCosto(), actividad.getFechaAlta(), actividad.getEstado(), actividad.darCategorias());
+		String prof = "falta funcion";
+		String inst = "falta funcion";
+		DataActividad dtact = new DataActividad(actividad.getNombre(), actividad.getDescripcion(), actividad.getDuracion(), actividad.getCosto(), actividad.getFechaAlta(), actividad.getEstado(), actividad.darCategorias(), prof, inst);
 		return dtact;	
 	}
 
