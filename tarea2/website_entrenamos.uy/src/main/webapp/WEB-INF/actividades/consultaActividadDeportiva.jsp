@@ -64,9 +64,9 @@
 					</div>
 					<div class="tab-pane fade" id="clases" role="tabpanel"
 						aria-labelledby="clases-tab">
-						<p class="card-text m-3"><a href="consultaDictadoDeClases.html">Voleibol</a></p>
-						<p class="card-text m-3"><a href="#">Braza</a></p>
-						<p class="card-text m-3"><a href="#">Mariposa</a></p>
+						<p class="card-text m-3"><a href="consultaClase?clase=Voleibol">Voleibol</a></p>
+						<p class="card-text m-3"><a href="consultaClase?clase=Braza">Braza</a></p>
+						<p class="card-text m-3"><a href="consultaClase?clase=Mariposa">Mariposa</a></p>
 					</div>
 				</div>
 			</div>

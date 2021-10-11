@@ -57,6 +57,16 @@ public class manejADeportivas {
     	return actividadesDeportivas.get(actDep).getCosto();
     }
     
+    public String getNombreActividadDeClase(String nom) {
+    	//encuentra el nombre de la actividad deportiva que tiene a la clase con nombre nom
+    	for (ActividadDeportiva a: actividadesDeportivas.values()) {
+    		if (a.darNombreClases().contains(nom)) {
+    			return a.getNombre();
+    		}
+    	}
+    	return "";
+    }
+    
     public void EliminarManjeador() {
 		instancia.actividadesDeportivas.clear();
 		instancia=null;

@@ -63,6 +63,14 @@
 		<servlet-name>ConsultaCategoria</servlet-name>
 		<url-pattern>/consultaCategoria</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>ConsultaClase</servlet-name>
+		<servlet-class>controladores.ConsultaClase</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ConsultaClase</servlet-name>
+		<url-pattern>/consultaClase</url-pattern>
+	</servlet-mapping>
 	<session-config>
 		<session-timeout>30</session-timeout>
 	</session-config>
