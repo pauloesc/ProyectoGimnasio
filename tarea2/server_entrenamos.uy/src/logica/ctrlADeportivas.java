@@ -203,8 +203,22 @@ public class ctrlADeportivas implements IctrlADeportivas{
 
 	@Override
 	public Set<String> getActividadesCategoria(String cat) {
+		manejADeportivas mAD = manejADeportivas.getinstance();
+		ActividadDeportiva[] actsdeps = mAD.getActividades();
+		Set<String> dad = new HashSet<String>();
 		
-		return null;
-	}
+		if (actsdeps != null) {
+            ActividadDeportiva actividad;
+            Set<String> categorias = new HashSet<String>();
+
+            for (int i = 0; i < actsdeps.length; i++) {
+                actividad = actsdeps[i];
+                categorias = actividad.darCategorias();
+                if ( categorias.contains(cat) ) 
+                	dad.add(actividad.getNombre());
+            }     
+        }
+		return dad;
+    }
 
 }
