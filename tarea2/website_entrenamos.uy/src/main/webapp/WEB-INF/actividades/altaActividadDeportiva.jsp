@@ -1,9 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="controladores.Instituciones"%>
+<%@page import="controladores.Categorias"%>
+<%@page import="java.util.Set"%>
 <!DOCTYPE html>
 <html>
 <head>
 <jsp:include page="/WEB-INF/template/head.jsp" />
 </head>
+<%
+	Set<String> instituciones;
+	Set<String> categorias;
+	try {
+		instituciones = Instituciones.getInstituciones();
+		categorias = Categorias.getCategorias();
+	} 
+	catch(Exception ex) {
+		instituciones = null;
+		categorias = null;
+	}
+%>
 <body>
 	<jsp:include page="/WEB-INF/template/header.jsp" />
 	<!-- Begin page content -->
@@ -12,17 +27,18 @@
 			<jsp:include page="/WEB-INF/template/sidebar.jsp" />
 			<div class="col-12 col-md-8 my-4">
 				<h1>Alta de Actividad Deportiva</h1>
-				<form class="my-4">
+				<form class="my-4" method="post" action="altaActividad">
 					<div class="form-group row">
 						<label for="institucionDeportiva" class="col-4 col-form-label">Institucion
 							Deportiva</label>
 						<div class="col-8">
 							<select id="institucionDeportiva" name="institucionDeportiva"
 								class="custom-select" required="required">
-								<option value="Instituto Natural">Instituto Natural</option>
-								<option value="Olympic">Olympic</option>
-								<option value="TelÃ³n">TelÃ³n</option>
-								<option value="Fuerza Bruta">Fuerza Bruta</option>
+								<% 
+								for(String nominst :instituciones) {
+								%>
+								<option value="<%= nominst  %>"><%= nominst  %></option>
+								<% } %>
 							</select>
 						</div>
 					</div>
@@ -35,14 +51,14 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="descripcionActividad" class="col-4 col-form-label">DescripciÃ³n</label>
+						<label for="descripcionActividad" class="col-4 col-form-label">Descripción</label>
 						<div class="col-8">
 							<textarea id="descripcionActividad" name="descripcionActividad"
 								cols="40" rows="3" class="form-control" required="required"></textarea>
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="duracionActividad" class="col-4 col-form-label">DuraciÃ³n</label>
+						<label for="duracionActividad" class="col-4 col-form-label">Duración</label>
 						<div class="col-8">
 							<div class="input-group">
 								<div class="input-group-prepend">
@@ -51,7 +67,7 @@
 									</div>
 								</div>
 								<input id="duracionActividad" name="duracionActividad"
-									placeholder="Ingrese la duraciÃ³n en minutos" type="text"
+									placeholder="Ingrese la duración en minutos" type="text"
 									required="required" class="form-control">
 							</div>
 						</div>
@@ -82,10 +98,11 @@
 						<div class="col-8">
 							<select id="categoriasActividad" name="categoriasActividad"
 								class="custom-select" required="required" multiple="multiple">
-								<option value="Al aire libre">Al aire libre</option>
-								<option value="Futbol">Deporte</option>
-								<option value="Fitness">Fitness</option>
-								<option value="Artes Marciales">Gimnasia</option>
+								<% 
+								for(String nomcat :categorias) {
+								%>
+								<option value="<%= nomcat  %>"><%= nomcat  %></option>
+								<% } %>	
 							</select>
 						</div>
 					</div>

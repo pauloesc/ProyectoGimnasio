@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="logica.DataActividad"%>
+<%@page import="logica.InfoBasicaUser"%>
+<%@page import="logica.InfoBasicaSocio"%>
+<%@page import="controladores.Login"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +10,14 @@
 </head>
 <%
 	DataActividad actividad = (DataActividad) request.getAttribute("actividad");
+
+	InfoBasicaUser usr;
+	try {
+		usr = Login.getUsuarioLogueado(request);
+	} 
+	catch(Exception ex) {
+		usr = null;
+	}
 %>
 <body>
 	<jsp:include page="/WEB-INF/template/header.jsp" />
@@ -31,10 +42,12 @@
 						</div>
 					</div>
 				</div>
+				<% if (usr instanceof InfoBasicaSocio) { %>
 				<div class="offset-3 col-8 mb-3">
 					<a  class="btn btn-primary" href="consultaCuponera1.html">Comprar Cuponera</a>
 					<a class="btn btn-primary" href="registroDictadoDeClases.html">Registrarse a Clase</a>
 				</div>
+				<% } %>
 				<ul class="nav nav-tabs" id="myTab" role="tablist">
 					<li class="nav-item" role="presentation"><a
 						class="nav-link active" id="detalles-tab" data-toggle="tab"
