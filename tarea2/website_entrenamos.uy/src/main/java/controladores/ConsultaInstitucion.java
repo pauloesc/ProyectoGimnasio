@@ -19,10 +19,7 @@ public class ConsultaInstitucion extends HttpServlet
 	public ConsultaInstitucion() 
 	{
 		super();
-		Instituciones.cargarInstituciones();
-		Categorias.cargarCategorias();
-		ConsultaActividad.cargarActividades();
-		Login.cargarUsuarios();
+		
 	}
 	
 	private void processRequest(HttpServletRequest req, HttpServletResponse resp)

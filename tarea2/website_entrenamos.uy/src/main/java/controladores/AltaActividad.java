@@ -24,10 +24,7 @@ public class AltaActividad extends HttpServlet
 	public AltaActividad() 
 	{
 		super();
-		Fabrica.getInstance().getIctrlIDeportivas().cargarDatosIDeportivas();
-		Login.cargarUsuarios();
-		Instituciones.cargarInstituciones();
-		Categorias.cargarCategorias();
+		
 	}
 	
 	private void processRequest(HttpServletRequest req, HttpServletResponse resp)
@@ -55,10 +52,6 @@ public class AltaActividad extends HttpServlet
 		return acts;
 	}
 	
-	public static void cargarActividades()
-	{
-		Fabrica.getInstance().getIctrlADeportivas().cargarDatosADeportivas();
-	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException 

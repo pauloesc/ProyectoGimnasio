@@ -19,10 +19,7 @@ public class ConsultaCategoria extends HttpServlet
 	public ConsultaCategoria() 
 	{
 		super();
-		Instituciones.cargarInstituciones();
-		Categorias.cargarCategorias();
-		ConsultaActividad.cargarActividades();
-		Login.cargarUsuarios();
+		
 	}
 	
 	private void processRequest(HttpServletRequest req, HttpServletResponse resp)
