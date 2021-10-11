@@ -13,19 +13,22 @@ import logica.IctrlUsuarios;
 import logica.Fabrica;
 import excepciones.UsuarioInexistenteException;
 
-public class Login extends HttpServlet
-{
-	private static final long serialVersionUID = 1L;
+/**
+* Servlet de Login. 
+*
+* @author JP
+*/
+public class Login extends HttpServlet {
+  private static final long serialVersionUID = 1L;
 	
-    public Login() 
-    {
-        super();
-    }
+  public Login() {
+    super();
+  }
 
-	private void processRequest(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException
-	{
-		HttpSession sesion = req.getSession();
+  private void processRequest(HttpServletRequest req, HttpServletResponse resp)
+      throws ServletException, IOException {
+  
+  HttpSession sesion = req.getSession();
 		
 		if ( req.getParameter("btn_iniciarSesion") != null )
 		{
