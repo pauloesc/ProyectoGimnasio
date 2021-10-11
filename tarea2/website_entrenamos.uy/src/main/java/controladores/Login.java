@@ -77,10 +77,6 @@ public class Login extends HttpServlet
 			return usr;
 	}
 	
-	public static void cargarUsuarios()
-	{
-		Fabrica.getInstance().getIctrlUsuarios().cargarUsuarios();
-	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException

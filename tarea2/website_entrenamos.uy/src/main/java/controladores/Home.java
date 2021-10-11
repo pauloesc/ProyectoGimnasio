@@ -9,6 +9,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import logica.Fabrica;
+import logica.IctrlADeportivas;
+import logica.IctrlCategorias;
+import logica.IctrlClases;
+import logica.IctrlCuponeras;
+import logica.IctrlIDeportivas;
+import logica.IctrlUsuarios;
 
 public class Home extends HttpServlet
 {
@@ -17,10 +23,23 @@ public class Home extends HttpServlet
 	public Home()
 	{
 		super();
-		Fabrica.getInstance().getIctrlIDeportivas().cargarDatosIDeportivas();
-		Login.cargarUsuarios();
-		Instituciones.cargarInstituciones();
-		Categorias.cargarCategorias();
+		// carga de datos hardcodeados de la logica
+		Fabrica fabrica = Fabrica.getInstance();
+		IctrlADeportivas ICAD = fabrica.getIctrlADeportivas();
+		IctrlIDeportivas ICID = fabrica.getIctrlIDeportivas();
+		IctrlCuponeras ICC = fabrica.getIctrlCuponeras();
+		IctrlClases ICCL = fabrica.getIctrlClases();
+		IctrlUsuarios IU = fabrica.getIctrlUsuarios();
+		IctrlCategorias ICAT = fabrica.getIctrlCategorias();       
+		IctrlUsuarios ICU = fabrica.getIctrlUsuarios();
+		
+		ICID.cargarDatosIDeportivas();
+    	ICAT.cargarCategorias();
+        ICAD.cargarDatosADeportivas();
+        IU.cargarUsuarios();
+        ICC.cargarDatosCuponeras();
+        ICCL.cargarDatosClases();
+        ICCL.cargarRegistroAClases();
 	}
 	
 	public static void iniciarSesion(HttpServletRequest request)

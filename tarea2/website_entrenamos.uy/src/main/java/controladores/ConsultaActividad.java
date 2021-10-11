@@ -24,10 +24,7 @@ public class ConsultaActividad extends HttpServlet
 	public ConsultaActividad() 
 	{
 		super();
-		Instituciones.cargarInstituciones();
-		ConsultaActividad.cargarActividades();
-		Login.cargarUsuarios();
-		Categorias.cargarCategorias();
+		
 	}
 	
 	private void processRequest(HttpServletRequest req, HttpServletResponse resp)
@@ -62,10 +59,6 @@ public class ConsultaActividad extends HttpServlet
 		return acti;
 	}
 	
-	public static void cargarActividades()
-	{
-		Fabrica.getInstance().getIctrlADeportivas().cargarDatosADeportivas();
-	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException 
