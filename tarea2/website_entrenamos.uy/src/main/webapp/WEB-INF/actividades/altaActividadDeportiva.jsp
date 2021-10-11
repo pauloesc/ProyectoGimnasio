@@ -18,11 +18,22 @@
 		instituciones = null;
 		categorias = null;
 	}
+
+	
+	String msjAlta = request.getAttribute("estadoAlta") != null ? (String) request.getAttribute("estadoAlta") : "";
 %>
 <body>
 	<jsp:include page="/WEB-INF/template/header.jsp" />
 	<!-- Begin page content -->
 	<main role="main" class="container">
+		<% if (request.getAttribute("estadoAlta") != null) { %>
+		<div class="alert alert-danger alert-dismissible fade show" role="alert">
+		  <%= msjAlta %>
+		  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		    <span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		<% } %>
 		<div class="row my-4">
 			<jsp:include page="/WEB-INF/template/sidebar.jsp" />
 			<div class="col-12 col-md-8 my-4">
@@ -34,9 +45,7 @@
 						<div class="col-8">
 							<select id="institucionDeportiva" name="institucionDeportiva"
 								class="custom-select" required="required">
-								<% 
-								for(String nominst :instituciones) {
-								%>
+								<% for(String nominst :instituciones) {	%>
 								<option value="<%= nominst  %>"><%= nominst  %></option>
 								<% } %>
 							</select>
