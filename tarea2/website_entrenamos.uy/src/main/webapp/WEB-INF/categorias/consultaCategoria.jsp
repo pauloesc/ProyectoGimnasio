@@ -8,14 +8,8 @@
 </head>
 
 <%
-	String nomcat = request.getParameter("categoria");
-	Set<String> actividades;
-	try {
-		actividades = ConsultaActividad.getActividadesInst(nominst);
-	} 
-	catch(Exception ex) {
-		actividades = null;
-	}
+	String nomcat = (String) request.getAttribute("categoria");
+	Set<String> actividades = (Set<String>) request.getAttribute("actividades");
 %>
 <body>
 	<jsp:include page="/WEB-INF/template/header.jsp" />
