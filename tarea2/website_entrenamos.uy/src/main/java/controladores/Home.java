@@ -33,25 +33,25 @@ public class Home extends HttpServlet {
     // carga de datos hardcodeados de la logica
     Fabrica fabrica = Fabrica.getInstance();
     
-    IctrlADeportivas ctrlActDep = fabrica.getIctrlADeportivas();
-    ctrlActDep.cargarDatosADeportivas();
-    
     IctrlIDeportivas ctrlInstDep = fabrica.getIctrlIDeportivas();
     ctrlInstDep.cargarDatosIDeportivas();
-    
-    IctrlCuponeras ctrlCuponeras = fabrica.getIctrlCuponeras();
-    ctrlCuponeras.cargarDatosCuponeras();
-    
-    IctrlClases ctrlClases = fabrica.getIctrlClases();
-    ctrlClases.cargarDatosClases();
-    ctrlClases.cargarRegistroAClases();
-    
-    IctrlUsuarios ctrlUsuarios = fabrica.getIctrlUsuarios();
-    ctrlUsuarios.cargarUsuarios();
     
     IctrlCategorias ctrlCat = fabrica.getIctrlCategorias();       
     ctrlCat.cargarCategorias();
     
+    IctrlADeportivas ctrlActDep = fabrica.getIctrlADeportivas();
+    ctrlActDep.cargarDatosADeportivas();
+    
+    IctrlUsuarios ctrlUsuarios = fabrica.getIctrlUsuarios();
+    ctrlUsuarios.cargarUsuarios();
+    
+    IctrlCuponeras ctrlCuponeras = fabrica.getIctrlCuponeras();
+    ctrlCuponeras.cargarDatosCuponeras();
+
+    IctrlClases ctrlClases = fabrica.getIctrlClases();
+    ctrlClases.cargarDatosClases();
+    ctrlClases.cargarRegistroAClases();
+
   }
 
   /**
