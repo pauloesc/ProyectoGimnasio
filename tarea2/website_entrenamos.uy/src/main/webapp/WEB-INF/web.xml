@@ -71,6 +71,14 @@
 		<servlet-name>ConsultaClase</servlet-name>
 		<url-pattern>/consultaClase</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>RegistroAClase</servlet-name>
+		<servlet-class>controladores.RegistroAClase</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RegistroAClase</servlet-name>
+		<url-pattern>/registroAClase</url-pattern>
+	</servlet-mapping>
 	<session-config>
 		<session-timeout>30</session-timeout>
 	</session-config>

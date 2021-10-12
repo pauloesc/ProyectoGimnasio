@@ -1,6 +1,7 @@
 package controladores;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Calendar;
 
 import javax.servlet.RequestDispatcher;
@@ -32,20 +33,27 @@ public class ConsultaClase extends HttpServlet {
 		IctrlClases ICL = f.getIctrlClases();
 		
 		DtClase res = ICL.darDtClase((String)req.getParameter("clase"));
-		
-		req.setAttribute("nom", res.getNombre());
-		req.setAttribute("nomP",res.getNomProfesor());
-		req.setAttribute("act",res.getNomAct());
-		req.setAttribute("url",res.getUrl());
-		
-		Calendar c = Calendar.getInstance();
-		c.setTime(res.getFecha());
-		String ini = Integer.toString(c.get(Calendar.DATE)) + "/" + Integer.toString(c.get(Calendar.MONTH)+1) + "/" + Integer.toString(c.get(Calendar.YEAR)) + "  " +Integer.toString(res.getHora()) + ":" + Integer.toString(res.getMinuto());
-		req.setAttribute("fecha",ini);
-		
-		
-		RequestDispatcher md = req.getRequestDispatcher("/WEB-INF/clases/consultaClase.jsp");
-		md.forward(req, resp);
+		if (res != null) {
+			req.setAttribute("nom", res.getNombre());
+			req.setAttribute("nomP",res.getNomProfesor());
+			req.setAttribute("act",res.getNomAct());
+			req.setAttribute("url",res.getUrl());
+			
+			Calendar c = Calendar.getInstance();
+			c.setTime(res.getFecha());
+			String ini = Integer.toString(c.get(Calendar.DATE)) + "/" + Integer.toString(c.get(Calendar.MONTH)+1) + "/" + Integer.toString(c.get(Calendar.YEAR)) + "  " +Integer.toString(res.getHora()) + ":" + Integer.toString(res.getMinuto());
+			req.setAttribute("fecha",ini);
+			
+			
+			RequestDispatcher md = req.getRequestDispatcher("/WEB-INF/clases/consultaClase.jsp");
+			md.forward(req, resp);
+		} else {
+			resp.setContentType("text/html");
+			PrintWriter salida = resp.getWriter();
+			salida.println("<html><body>");
+			salida.println("Ha ocurrido un error, clase no encontrada en el sistema");
+			salida.println("</body></html>");
+		}
 	}
 
     

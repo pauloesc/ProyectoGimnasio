@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.Iterator;
 
 import excepciones.UsuarioDisponibilidadException;
+import excepciones.UsuarioInexistenteException;
 
 public class ctrlUsuarios implements IctrlUsuarios {
 	
@@ -97,6 +98,21 @@ public class ctrlUsuarios implements IctrlUsuarios {
 	public void dejarDeSeguirUsuario(String seguidor, String seguido) {
 		Usuario sgr = manejador.findUsuario(seguidor);
 		sgr.dejarDeSeguir(manejador.findUsuario(seguido));
+	}
+	
+	public boolean esSocio(String nick) throws UsuarioInexistenteException {
+		Usuario u = manejador.findUsuario(nick);
+		
+		if (u != null) {
+			if (u.getClass() == Socio.class) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			throw new UsuarioInexistenteException();
+		}
+	
 	}
 	
 	public void cargarUsuarios() {
