@@ -8,37 +8,37 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Representa a una Actividad Deportiva en el sistema con nombre, descripcion, duracion, costo, fecha_alta.
+ * Actividad Deportiva en con nombre, descripcion, duracion, costo, fecha_alta.
+
  * @author mbarrera
  */
 
 public class ActividadDeportiva {
 
-	private Map<String,Clase> clases;
-    private String nombre;
-    private String descripcion;
-    private Float duracion;
-    private Float costo;
-    private Date fecha_alta;
-    private Profesor creador;
-    private Map<String,Categoria> categorias;
-    private EstadoActi estado;
+	private Map<String, Clase> clases;
+	private String nombre;
+	private String descripcion;
+	private Float duracion;
+	private Float costo;
+	private Date fechaAlta;
+	private Profesor creador;
+	private Map<String, Categoria> categorias;
+	private EstadoActi estado;
     
-
-    public ActividadDeportiva(String n, Profesor p, String de, Float dur, Float cost, Date fa, Map<String,Categoria> cats) {
-    	this.setNombre(n);
-    	this.setCreador(p);
-        this.setDescripcion(de);
+    public ActividadDeportiva(String nombre, Profesor profe, String descrip, Float dur, Float cost, Date fechaAlta, Map<String, Categoria> cats) {
+    	this.setNombre(nombre);
+    	this.setCreador(profe);
+        this.setDescripcion(descrip);
         this.setDuracion(dur);
         this.setCosto(cost);
-        this.setFechaAlta(fa);
-        this.clases = new HashMap<String,Clase>();
+        this.setFechaAlta(fechaAlta);
+        this.clases = new HashMap<String, Clase>();
         this.categorias = cats;
         this.estado = EstadoActi.INGRESADA;
     }
 
-    public void addClase(Clase c) {
-    	clases.put(c.getNombre(),c);
+    public void addClase(Clase clase) {
+    	clases.put(clase.getNombre(), clase);
     }
 
     public Set<String> darNombreClases() {
@@ -78,46 +78,46 @@ public class ActividadDeportiva {
     }
     
     public Date getFechaAlta() {
-        return fecha_alta;
+        return fechaAlta;
     }
 
-    public void setNombre(String n) {
-        this.nombre = n;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public void setDescripcion(String de) {
-        this.descripcion = de;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
     
-    public void setDuracion(Float dur) {
-        this.duracion = dur;
+    public void setDuracion(Float duracion) {
+        this.duracion = duracion;
     }
 
     public void setCosto(Float cost) {
         this.costo = cost;
     }
     
-    public void setFechaAlta(Date fa) {
-        this.fecha_alta = fa;
+    public void setFechaAlta(Date fechaAlta) {
+        this.fechaAlta = fechaAlta;
     }
 
-    public DtActividadesDeportivas InformacionProfesor(String usuario) {
+    public DtActividadesDeportivas informacionProfesor(String usuario) {
     	
-    	DtActividadesDeportivas i = new DtActividadesDeportivas( this.nombre, this.descripcion, this.duracion, this.costo, this.fecha_alta );
+    	DtActividadesDeportivas info = new DtActividadesDeportivas( this.nombre, this.descripcion, this.duracion, this.costo, this.fechaAlta );
     	
-    	Iterator<Map.Entry<String,Clase>> Iter =  this.clases.entrySet().iterator();
+    	Iterator<Map.Entry<String, Clase>> iter =  this.clases.entrySet().iterator();
     	
-    	while (Iter.hasNext()) {
-    	    Map.Entry<String, Clase> datos = Iter.next();
+    	while (iter.hasNext()) {
+    	    Map.Entry<String, Clase> datos = iter.next();
     	    
-    	    Clase c = datos.getValue();
+    	    Clase clase = datos.getValue();
     	    
-    	    if (c.EsDeProfesor(usuario)) {
-    	    	i.agregarDtClase(c.darDtClase());
+    	    if (clase.esDeProfesor(usuario)) {
+    	    	info.agregarDtClase(clase.darDtClase());
     	    }
     	    
     	}
-    	return i;
+    	return info;
     }
     
     public Set<String> darCategorias() {
@@ -125,10 +125,10 @@ public class ActividadDeportiva {
     }
     
     public void setCategorias(Set<String> cats) {
-    	manejCategorias mC = manejCategorias.getInstance();
+    	manejCategorias manCategorias = manejCategorias.getInstance();
     	
-    	for( Iterator<String> it = cats.iterator(); it.hasNext();) { 
-    		Categoria cat = mC.findCategoria(it.next());
+    	for (Iterator<String> it = cats.iterator(); it.hasNext();) { 
+    		Categoria cat = manCategorias.findCategoria(it.next());
     		categorias.put(cat.getNombre(), cat);	
 		}
     }
@@ -141,17 +141,17 @@ public class ActividadDeportiva {
     	return estado;
     }
     
-    public DtActividadesDeportivas DtActividadesDeportivasSinInfoClases() {
-    	DtActividadesDeportivas i = new DtActividadesDeportivas( this.nombre, this.descripcion, this.duracion, this.costo, this.fecha_alta );
-    	return i;
+    public DtActividadesDeportivas dtActividadesDeportivasSinInfoClases() {
+    	DtActividadesDeportivas info = new DtActividadesDeportivas( this.nombre, this.descripcion, this.duracion, this.costo, this.fechaAlta );
+    	return info;
     }
     
     public Profesor getCreador() {
     	return creador;
     }
     
-    public void setCreador(Profesor p) {
-    	this.creador = p;
+    public void setCreador(Profesor profe) {
+    	this.creador = profe;
     }
     
 }

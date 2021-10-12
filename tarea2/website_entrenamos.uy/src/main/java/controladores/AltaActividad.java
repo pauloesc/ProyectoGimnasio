@@ -37,10 +37,12 @@ public class AltaActividad extends HttpServlet {
 		try {
 			ctrlADeportivas.altaActividadDeportiva(ninst, nprof, nact, descrip, Float.parseFloat(dur),
 					Float.parseFloat(cost), date, cats);
+			req.setAttribute("msjAlta", "La Actividad Deportiva se ha registrado con éxito.");
+			req.setAttribute("estadoAlta", true);
 		} catch (ActividadDeportivaRepetidaException e) {
-			req.setAttribute("estadoAlta", e.getMessage());
+			req.setAttribute("msjAlta", e.getMessage());
+			req.setAttribute("estadoAlta", false);
 		}
-		req.setAttribute("estadoAlta", "La Actividad Deportiva se ha registrado con éxito.");
 		req.getRequestDispatcher("/WEB-INF/actividades/altaActividadDeportiva.jsp").forward(req, resp);
 	}
 

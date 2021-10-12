@@ -16,9 +16,9 @@ public class Clase {
 	private Profesor profesor;
 	
 	public Clase(String nombre, Date Finicio, String prof, int Smin, int Smax, String url, Date FechaAlta, int hor, int minut) {
-		manejUsuarios m = manejUsuarios.getInstance();
-		Profesor p = m.darProfesor(prof);
-		this.profesor = p;
+		manejUsuarios mUsr = manejUsuarios.getInstance();
+		Profesor profe = mUsr.darProfesor(prof);
+		this.profesor = profe;
 		
 		this.nombre = nombre;
 		this.fechaInicio = Finicio;
@@ -41,8 +41,8 @@ public class Clase {
 	}
 	
 	public DtClase darDtClase() {
-		Usuario prof = (Usuario)this.profesor;
-		return new DtClase(this.fechaInicio, this.nombre, this.minSocios, this.actualSocios, this.maxSocios, this.url, this.fechaReg, prof.getNickname(),this.hora,this.min);
+		Usuario prof = (Usuario) this.profesor;
+		return new DtClase(this.fechaInicio, this.nombre, this.minSocios, this.actualSocios, this.maxSocios, this.url, this.fechaReg, prof.getNickname(), this.hora, this.min);
 	}
 	
 	public boolean esVigente() {
@@ -50,7 +50,7 @@ public class Clase {
 		Calendar fechaActual = Calendar.getInstance();  
 		Date act = fechaActual.getTime();
 		 
-		return ((!act.after(fechaInicio)));
+		return !act.after(fechaInicio);
 	}
 
 	public Date getFechaInicio() {
@@ -66,7 +66,7 @@ public class Clase {
 	}
 
 	
-	public boolean EsDeProfesor(String usuario) {
-		return (usuario == this.profesor.getNickname());
+	public boolean esDeProfesor(String usuario) {
+		return usuario == this.profesor.getNickname();
 	}
 }

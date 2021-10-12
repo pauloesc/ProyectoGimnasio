@@ -118,7 +118,7 @@ public class Profesor extends Usuario {
         	ActividadDeportiva ad = aDepInstancia.next(); 
         	if( (ad.getEstado() == EstadoActi.RECHAZADA) || (ad.getEstado() == EstadoActi.INGRESADA)  ) {
 
-        		DtActividadesDeportivas DtAD = ad.DtActividadesDeportivasSinInfoClases();
+        		DtActividadesDeportivas DtAD = ad.dtActividadesDeportivasSinInfoClases();
         		infoRetorno.agregarInfo(DtAD);
         		
         	}

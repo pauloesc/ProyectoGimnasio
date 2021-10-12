@@ -19,20 +19,30 @@
 		categorias = null;
 	}
 
-	
-	String msjAlta = request.getAttribute("estadoAlta") != null ? (String) request.getAttribute("estadoAlta") : "";
+	String msjAlta = (String) request.getAttribute("msjAlta");
+	Boolean estadoAlta = (Boolean) request.getAttribute("estadoAlta");
 %>
 <body>
 	<jsp:include page="/WEB-INF/template/header.jsp" />
 	<!-- Begin page content -->
 	<main role="main" class="container">
 		<% if (request.getAttribute("estadoAlta") != null) { %>
-		<div class="alert alert-danger alert-dismissible fade show" role="alert">
+		<% if (estadoAlta == false) { %>
+		<div class="alert alert-danger alert-dismissible fade show  my-4" role="alert">
 		  <%= msjAlta %>
 		  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 		    <span aria-hidden="true">&times;</span>
 		  </button>
 		</div>
+		<% } %>
+		<% if (estadoAlta == true) { %>
+		<div class="alert alert-success alert-dismissible fade show  my-4" role="alert">
+		  <%= msjAlta %>
+		  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		    <span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		<% } %>
 		<% } %>
 		<div class="row my-4">
 			<jsp:include page="/WEB-INF/template/sidebar.jsp" />
