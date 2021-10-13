@@ -37,7 +37,7 @@
 							<a class="dropdown-item" href="consultaUsuario.html">Usuarios</a>
 							<% if (usr instanceof InfoBasicaProfesor) { %>
 								<a class="dropdown-item" href=${pageContext.request.contextPath}/altaActividad>Alta de Actividad Deportiva</a>
-								<a class="dropdown-item" href="altaDictadoDeClases.html">Alta de Dictado de Clase</a>
+								<a class="dropdown-item" href=${pageContext.request.contextPath}/altaClase>Alta de Dictado de Clase</a>
 							<% } %>
 						</div>
 					</li>
