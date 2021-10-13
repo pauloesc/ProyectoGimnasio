@@ -48,7 +48,11 @@ public class ctrlClases implements IctrlClases {
 	
 	public DtClase darDtClase(String nomClas) {
 		Clase c = manejador.findClase(nomClas);
-		return c.darDtClase();
+		if (c!=null) {
+			return c.darDtClase();
+		} else {
+			return null;
+		}
 	}
 	
 	public void registrarSocioAClase(String nick, String actDep, String clas, boolean cuponera, String nomCuponera, Date fechaReg) throws ClaseYaCompradaException, ClaseLlenaException {
