@@ -79,12 +79,14 @@
 		<servlet-name>RegistroAClase</servlet-name>
 		<url-pattern>/registroAClase</url-pattern>
 	</servlet-mapping>
-	<servlet-name>Busqueda</servlet-name>
+	<servlet>
+        <servlet-name>Busqueda</servlet-name>
         <servlet-class>controladores.Busqueda</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Busqueda</servlet-name>
         <url-pattern>/busqueda</url-pattern>
+    </servlet-mapping>
 	<session-config>
 		<session-timeout>30</session-timeout>
 	</session-config>
