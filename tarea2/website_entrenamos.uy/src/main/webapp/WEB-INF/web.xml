@@ -87,6 +87,14 @@
         <servlet-name>Busqueda</servlet-name>
         <url-pattern>/busqueda</url-pattern>
     </servlet-mapping>
+    <servlet>
+		<servlet-name>AltaClase</servlet-name>
+		<servlet-class>controladores.AltaClase</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AltaClase</servlet-name>
+		<url-pattern>/altaClase</url-pattern>
+	</servlet-mapping>
 	<session-config>
 		<session-timeout>30</session-timeout>
 	</session-config>
