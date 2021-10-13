@@ -24,8 +24,9 @@ public class ActividadDeportiva {
 	private Profesor creador;
 	private Map<String, Categoria> categorias;
 	private EstadoActi estado;
+	private String imagen;
     
-    public ActividadDeportiva(String nombre, Profesor profe, String descrip, Float dur, Float cost, Date fechaAlta, Map<String, Categoria> cats) {
+    public ActividadDeportiva(String nombre, Profesor profe, String descrip, Float dur, Float cost, Date fechaAlta, Map<String, Categoria> cats, String imag) {
     	this.setNombre(nombre);
     	this.setCreador(profe);
         this.setDescripcion(descrip);
@@ -35,6 +36,7 @@ public class ActividadDeportiva {
         this.clases = new HashMap<String, Clase>();
         this.categorias = cats;
         this.estado = EstadoActi.INGRESADA;
+        this.imagen = imag;
     }
 
     public void addClase(Clase clase) {
@@ -152,6 +154,14 @@ public class ActividadDeportiva {
     
     public void setCreador(Profesor profe) {
     	this.creador = profe;
+    }
+    
+    public String getImagen() {
+    	return imagen;
+    }
+    
+    public void setImagen(String uri) {
+    	this.imagen = uri;
     }
     
 }

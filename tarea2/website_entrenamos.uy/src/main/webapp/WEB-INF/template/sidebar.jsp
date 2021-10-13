@@ -2,7 +2,6 @@
 <%@page import="controladores.Instituciones"%>
 <%@page import="controladores.Categorias"%>
 <%@page import="java.util.Set"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
 <%

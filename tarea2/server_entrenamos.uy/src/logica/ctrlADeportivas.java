@@ -24,7 +24,7 @@ public class ctrlADeportivas implements IctrlADeportivas{
 	 public ctrlADeportivas() {
 	 }
 
-	public void altaActividadDeportiva(String nid, String pid, String n, String de, Float dur, Float c, Date fa, Set<String> cats) throws ActividadDeportivaRepetidaException {
+	public void altaActividadDeportiva(String nid, String pid, String n, String de, Float dur, Float c, Date fa, Set<String> cats, String img) throws ActividadDeportivaRepetidaException {
 		manejADeportivas mD = manejADeportivas.getinstance();
 		manejIDeportivas mID = manejIDeportivas.getinstance();
 		manejUsuarios mU = manejUsuarios.getInstance();
@@ -43,7 +43,7 @@ public class ctrlADeportivas implements IctrlADeportivas{
         	if (cat != null)
         		categorias.put(cat.getNombre(), cat);	
     		}
-        actdep = new ActividadDeportiva(n, crea, de, dur, c, fa, categorias);
+        actdep = new ActividadDeportiva(n, crea, de, dur, c, fa, categorias, img);
         mD.agregarActividad(actdep); 
         
         if (crea != null)
@@ -66,7 +66,7 @@ public class ctrlADeportivas implements IctrlADeportivas{
             // sino los DataActividad asociados a la Institución seleccionada.
             for (int i = 0; i < actsdeps.length; i++) {
                 actividad = actsdeps[i];
-                dad[i] = new DataActividad(actividad.getNombre(), actividad.getDescripcion(), actividad.getDuracion(), actividad.getCosto(), actividad.getFechaAlta(), actividad.getEstado(), actividad.darCategorias(), actividad.getCreador().getNombre(), actividad.getCreador().getNombreInstitucion());
+                dad[i] = new DataActividad(actividad.getNombre(), actividad.getDescripcion(), actividad.getDuracion(), actividad.getCosto(), actividad.getFechaAlta(), actividad.getEstado(), actividad.darCategorias(), actividad.getCreador().getNombre(), actividad.getCreador().getNombreInstitucion(), actividad.getImagen());
             }
 
             return dad;
@@ -80,7 +80,7 @@ public class ctrlADeportivas implements IctrlADeportivas{
 		ActividadDeportiva actividad = mD.buscarActividad(n);
 		String prof = "falta funcion";
 		String inst = "falta funcion";
-		DataActividad dtact = new DataActividad(actividad.getNombre(), actividad.getDescripcion(), actividad.getDuracion(), actividad.getCosto(), actividad.getFechaAlta(), actividad.getEstado(), actividad.darCategorias(), prof, inst);
+		DataActividad dtact = new DataActividad(actividad.getNombre(), actividad.getDescripcion(), actividad.getDuracion(), actividad.getCosto(), actividad.getFechaAlta(), actividad.getEstado(), actividad.darCategorias(), prof, inst, actividad.getImagen());
 		return dtact;	
 	}
 
@@ -169,16 +169,16 @@ public class ctrlADeportivas implements IctrlADeportivas{
 		}
 		//cargo actividades deportivas
 		try {
-			altaActividadDeportiva("Fuerza Bruta", "viktor" , "Aparatos y pesas", "Clases de aparatos, pesas y calistenia.", 90f, 550f, f1, c1);
-			altaActividadDeportiva("Telon", "denis" , "Voleibol", "Voleibol en todas sus formas.", 120f, 750f, f2, c2);
-			altaActividadDeportiva("Instituto Natural", null , "Aeróbica", "Para cuidar el aparato cardiovascular.", 110f, 800f, f3, c3);
-			altaActividadDeportiva("Fuerza Bruta", "TheBoss" , "Kickboxing", "En busca del nuevo campeón de boxeo.", 100f, 980f, f4, c4);
-			altaActividadDeportiva("Telon", "denis" , "Atletismo", "100m , 200m, postas y carreras con obstaculos.", 150f, 500f, f5, c5);
-			altaActividadDeportiva("Telon", "Nelson" , "Basquetbol", "Basquetbol para todos.", 80f, 450f, f6, c6);
-			altaActividadDeportiva("Fuerza Bruta", null , "Aparatos II", "Clases de aparatos avanzados", 60f, 1500f, f7, c7);
-			altaActividadDeportiva("Instituto Natural", "clazar" , "Pilates", "El método Pilates combina diferentes capacidades físicas.", 45f, 600f, f8, c8);
-			altaActividadDeportiva("Telon", "denis" , "Voleibol II", "Voleibol avanzado.", 120f, 1000f, f9, new HashSet<String>());
-			altaActividadDeportiva("Telon", "denis" , "Basquetbol II", "Basquetbol avanzado.", 80f, 600f, f10, new HashSet<String>());
+			altaActividadDeportiva("Fuerza Bruta", "viktor" , "Aparatos y pesas", "Clases de aparatos, pesas y calistenia.", 90f, 550f, f1, c1, null);
+			altaActividadDeportiva("Telón", "denis" , "Voleibol", "Voleibol en todas sus formas.", 120f, 750f, f2, c2, null);
+			altaActividadDeportiva("Instituto Natural", null , "Aeróbica", "Para cuidar el aparato cardiovascular.", 110f, 800f, f3, c3, null);
+			altaActividadDeportiva("Fuerza Bruta", "TheBoss" , "Kickboxing", "En busca del nuevo campeón de boxeo.", 100f, 980f, f4, c4, null);
+			altaActividadDeportiva("Telón", "denis" , "Atletismo", "100m , 200m, postas y carreras con obstaculos.", 150f, 500f, f5, c5, null);
+			altaActividadDeportiva("Telón", "Nelson" , "Basquetbol", "Basquetbol para todos.", 80f, 450f, f6, c6, null);
+			altaActividadDeportiva("Fuerza Bruta", null , "Aparatos II", "Clases de aparatos avanzados", 60f, 1500f, f7, c7, null);
+			altaActividadDeportiva("Instituto Natural", "clazar" , "Pilates", "El método Pilates combina diferentes capacidades físicas.", 45f, 600f, f8, c8, null);
+			altaActividadDeportiva("Telón", "denis" , "Voleibol II", "Voleibol avanzado.", 120f, 1000f, f9, new HashSet<String>(), null);
+			altaActividadDeportiva("Telón", "denis" , "Basquetbol II", "Basquetbol avanzado.", 80f, 600f, f10, new HashSet<String>(), null);
 		} catch (ActividadDeportivaRepetidaException e) {
 			//e.printStackTrace();
 		}
