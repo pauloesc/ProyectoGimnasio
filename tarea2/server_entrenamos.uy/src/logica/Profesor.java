@@ -1,15 +1,16 @@
 package logica;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Vector;
+import java.util.Set;
 
 public class Profesor extends Usuario {
 	private String descripcion;
 	private String bio;
 	private String website;
 	private InstitucionDeportiva inst;
-	private Vector<ActividadDeportiva> actDep = null;
+	private Set<ActividadDeportiva> actDep = new HashSet();
 	
 	public String getNombreInstitucion() {
 		return inst.getNombre();
@@ -117,7 +118,7 @@ public class Profesor extends Usuario {
         	ActividadDeportiva ad = aDepInstancia.next(); 
         	if( (ad.getEstado() == EstadoActi.RECHAZADA) || (ad.getEstado() == EstadoActi.INGRESADA)  ) {
 
-        		DtActividadesDeportivas DtAD = ad.DtActividadesDeportivasSinInfoClases();
+        		DtActividadesDeportivas DtAD = ad.dtActividadesDeportivasSinInfoClases();
         		infoRetorno.agregarInfo(DtAD);
         		
         	}

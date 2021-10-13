@@ -83,7 +83,7 @@ public class InstitucionDeportiva {
 		while(info.hasNext()) {
 			
 			ActividadDeportiva aux = info.next();
-			DtActividadesDeportivas aux_ad = aux.InformacionProfesor(usuario);
+			DtActividadesDeportivas aux_ad = aux.informacionProfesor(usuario);
 			
 			//si la actividad deportiva tiene clases adentro...
 			if( ! (aux_ad.getClases().isEmpty()) ) {

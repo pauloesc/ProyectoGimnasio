@@ -40,7 +40,7 @@
 						%>	
    							<tr>
      						 <th scope="row"><%= i  %></th>
-      							<td> <a href="#"><%= nomact  %></a> </td>
+      							<td> <a href="consultaActividad?actividad=<%= nomact  %>"><%= nomact  %></a> </td>
     						</tr>
     					<%
     					i++;

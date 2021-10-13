@@ -36,9 +36,9 @@ public class ctrlADeportivas implements IctrlADeportivas{
         
         manejCategorias mC = manejCategorias.getInstance();
     	
-        Map<String,Categoria> categorias = new HashMap<String,Categoria>();
+        Map<String, Categoria> categorias = new HashMap<String, Categoria>();
         
-        for( Iterator<String> it = cats.iterator(); it.hasNext();) { 
+        for (Iterator<String> it = cats.iterator(); it.hasNext();) { 
         	Categoria cat = mC.findCategoria(it.next());
         	if (cat != null)
         		categorias.put(cat.getNombre(), cat);	
@@ -169,16 +169,16 @@ public class ctrlADeportivas implements IctrlADeportivas{
 		}
 		//cargo actividades deportivas
 		try {
-			altaActividadDeportiva("Fuerza Bruta","viktor" , "Aparatos y pesas", "Clases de aparatos, pesas y calistenia.", 90f, 550f, f1, c1);
-			altaActividadDeportiva("Telón","denis" , "Voleibol", "Voleibol en todas sus formas.", 120f, 750f, f2, c2);
-			altaActividadDeportiva("Instituto Natural",null , "Aeróbica", "Para cuidar el aparato cardiovascular.", 110f, 800f, f3, c3);
-			altaActividadDeportiva("Fuerza Bruta","TheBoss" , "Kickboxing", "En busca del nuevo campeón de boxeo.", 100f, 980f, f4, c4);
-			altaActividadDeportiva("Telón","denis" , "Atletismo", "100m , 200m, postas y carreras con obstaculos.", 150f, 500f, f5, c5);
-			altaActividadDeportiva("Telón","Nelson" , "Basquetbol", "Basquetbol para todos.", 80f, 450f, f6, c6);
-			altaActividadDeportiva("Fuerza Bruta",null , "Aparatos II", "Clases de aparatos avanzados", 60f, 1500f, f7, c7);
-			altaActividadDeportiva("Instituto Natural","clazar" , "Pilates", "El método Pilates combina diferentes capacidades físicas.", 45f, 600f, f8, c8);
-			altaActividadDeportiva("Telón","denis" , "Voleibol II", "Voleibol avanzado.", 120f, 1000f, f9, new HashSet<String>());
-			altaActividadDeportiva("Telón","denis" , "Basquetbol II", "Basquetbol avanzado.", 80f, 600f, f10, new HashSet<String>());
+			altaActividadDeportiva("Fuerza Bruta", "viktor" , "Aparatos y pesas", "Clases de aparatos, pesas y calistenia.", 90f, 550f, f1, c1);
+			altaActividadDeportiva("Telon", "denis" , "Voleibol", "Voleibol en todas sus formas.", 120f, 750f, f2, c2);
+			altaActividadDeportiva("Instituto Natural", null , "Aeróbica", "Para cuidar el aparato cardiovascular.", 110f, 800f, f3, c3);
+			altaActividadDeportiva("Fuerza Bruta", "TheBoss" , "Kickboxing", "En busca del nuevo campeón de boxeo.", 100f, 980f, f4, c4);
+			altaActividadDeportiva("Telon", "denis" , "Atletismo", "100m , 200m, postas y carreras con obstaculos.", 150f, 500f, f5, c5);
+			altaActividadDeportiva("Telon", "Nelson" , "Basquetbol", "Basquetbol para todos.", 80f, 450f, f6, c6);
+			altaActividadDeportiva("Fuerza Bruta", null , "Aparatos II", "Clases de aparatos avanzados", 60f, 1500f, f7, c7);
+			altaActividadDeportiva("Instituto Natural", "clazar" , "Pilates", "El método Pilates combina diferentes capacidades físicas.", 45f, 600f, f8, c8);
+			altaActividadDeportiva("Telon", "denis" , "Voleibol II", "Voleibol avanzado.", 120f, 1000f, f9, new HashSet<String>());
+			altaActividadDeportiva("Telon", "denis" , "Basquetbol II", "Basquetbol avanzado.", 80f, 600f, f10, new HashSet<String>());
 		} catch (ActividadDeportivaRepetidaException e) {
 			//e.printStackTrace();
 		}
