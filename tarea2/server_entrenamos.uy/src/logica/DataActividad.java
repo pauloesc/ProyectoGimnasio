@@ -21,6 +21,7 @@ public class DataActividad {
     private Set<String> categorias;
     private String profesor;
     private String institucion;
+    private String imagen;
 
     public DataActividad() {
         this.setNombre(new String());
@@ -34,7 +35,7 @@ public class DataActividad {
         this.setInstitucion(new String());
     }
 
-    public DataActividad(String nombre, String descripcion, Float duracion, Float costo, Date fecha_alta, EstadoActi est, Set<String> categ, String prof, String inst) {
+    public DataActividad(String nombre, String descripcion, Float duracion, Float costo, Date fecha_alta, EstadoActi est, Set<String> categ, String prof, String inst, String img) {
         this.setNombre(nombre);
         this.setDescripcion(descripcion);
         this.setDuracion(duracion);
@@ -44,6 +45,7 @@ public class DataActividad {
         this.setCategorias(categ);
         this.setProfesor(prof);
         this.setInstitucion(inst);
+        this.setImagen(img);
     }
 
     public String getNombre() {
@@ -82,6 +84,9 @@ public class DataActividad {
         return institucion;
     }
     
+    public String getImagen() {
+        return imagen;
+    }
     /* Sirve para mostrar textualmente el nombre de la Actividad Deportiva, por ejemplo en un ComboBox
      */
     public String toString() {
@@ -123,5 +128,8 @@ public class DataActividad {
     private void setInstitucion(String inst) {
     	this.institucion = inst;
     }
-
+    
+    private void setImagen(String img) {
+    	this.imagen = img;
+    }
 }

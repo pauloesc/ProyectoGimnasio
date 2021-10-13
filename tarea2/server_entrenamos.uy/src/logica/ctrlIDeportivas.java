@@ -67,7 +67,7 @@ public class ctrlIDeportivas implements IctrlIDeportivas{
 		try {
 			altaInstitucion("Instituto Natural", "Clases de gimnasia, aeróbica, spinning y yoga.", "https://www.inatural.com");
 			altaInstitucion("Fuerza Bruta", "Gimnasio especializado en el desarrollo de la musculatura.", "https://www.musculos.com/");
-			altaInstitucion("Telon", "Actividades deportivas para todas las edades.", "https://telon.com.uy");
+			altaInstitucion("Telón", "Actividades deportivas para todas las edades.", "https://telon.com.uy");
 			altaInstitucion("Olympic", "Gimnasia y Aparatos", "https://www.olympic21.com/");
 		} catch (InstitucionDeportivaRepetidaException e) {
 			//e.printStackTrace();

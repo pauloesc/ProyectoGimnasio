@@ -48,7 +48,7 @@
 			<jsp:include page="/WEB-INF/template/sidebar.jsp" />
 			<div class="col-12 col-md-8 my-4">
 				<h1>Alta de Actividad Deportiva</h1>
-				<form class="my-4" method="post" action="altaActividad">
+				<form class="my-4" method="post" action="altaActividad" enctype="multipart/form-data">
 					<div class="form-group row">
 						<label for="institucionDeportiva" class="col-4 col-form-label">Institucion
 							Deportiva</label>
@@ -86,8 +86,8 @@
 									</div>
 								</div>
 								<input id="duracionActividad" name="duracionActividad"
-									placeholder="Ingrese la duración en minutos" type="text"
-									required="required" class="form-control">
+									placeholder="Ingrese la duración en minutos" type="number"
+									required="required" class="form-control" min="0" oninput="validity.valid||(value='');">
 							</div>
 						</div>
 					</div>
@@ -101,15 +101,15 @@
 									</div>
 								</div>
 								<input id="costoActividad" name="costoActividad"
-									placeholder="Ingrese el costo en pesos." type="text"
-									class="form-control">
+									placeholder="Ingrese el costo en pesos." type="number"
+									required="required" class="form-control" min="0" oninput="validity.valid||(value='');">
 							</div>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="imagenActividad" class="col-4 col-form-label">Imagen</label>
 						<div class="col-8">
-							<input type="file" class="form-control-file" id="imagenActividad">
+							<input type="file" class="form-control-file" accept="image/*" id="imagenActividad" name="fileName">
 						</div>
 					</div>
 					<div class="form-group row">
