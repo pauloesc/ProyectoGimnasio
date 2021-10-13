@@ -2,6 +2,7 @@ package logica;
 import java.util.Set;
 
 import excepciones.UsuarioDisponibilidadException;
+import excepciones.UsuarioInexistenteException;
 
 import java.util.Vector;
 
@@ -64,5 +65,8 @@ public interface IctrlUsuarios {
 	public abstract Vector<String> UsuariosSiguiendo(String nickname);
 	public abstract Vector<String> UsuariosSeguidores(String nickname);
 	public abstract InfoActividadProfe InformacionActDepEstadoIngRech(String nickname);
+	
+	//retorna true si el usuario es un socio, si es un profesor retorna false, si no existe retorna una excepcion
+	public abstract boolean esSocio(String nick) throws UsuarioInexistenteException;
 	
 }

@@ -63,7 +63,23 @@
 		<servlet-name>ConsultaCategoria</servlet-name>
 		<url-pattern>/consultaCategoria</url-pattern>
 	</servlet-mapping>
-	   <servlet>
+	<servlet>
+		<servlet-name>ConsultaClase</servlet-name>
+		<servlet-class>controladores.ConsultaClase</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ConsultaClase</servlet-name>
+		<url-pattern>/consultaClase</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>RegistroAClase</servlet-name>
+		<servlet-class>controladores.RegistroAClase</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RegistroAClase</servlet-name>
+		<url-pattern>/registroAClase</url-pattern>
+	</servlet-mapping>
+	<servlet>
         <servlet-name>Busqueda</servlet-name>
         <servlet-class>controladores.Busqueda</servlet-class>
     </servlet>
