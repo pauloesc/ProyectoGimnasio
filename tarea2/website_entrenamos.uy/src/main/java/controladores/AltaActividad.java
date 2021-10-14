@@ -17,7 +17,7 @@ import logica.Fabrica;
 import logica.IctrlADeportivas;
 import logica.InfoBasicaProfesor;
 import logica.InfoBasicaUser;
-
+import org.apache.commons.io.FilenameUtils;
 
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 10, 	// 10 MB 
@@ -43,7 +43,7 @@ public class AltaActividad extends HttpServlet {
 		String dur = req.getParameter("duracionActividad");
 		String cost = req.getParameter("costoActividad");
 		String fileName = null;
-		if (req.getParameter("imagenActividad") != null ) {
+		if ( req.getParts() != null ) {
 			/*gets absolute path of the web application*/
 	        String applicationPath = req.getServletContext().getRealPath("");
 	        // constructs path of the directory to save uploaded file*/
@@ -55,11 +55,13 @@ public class AltaActividad extends HttpServlet {
 	            fileSaveDir.mkdirs();
 	        }
 			
-	        
+	        fileName = nact.toLowerCase().replaceAll("\\s", "");
+	        String nomf = req.getPart("imagenActividad").getSubmittedFileName();
+	        String ext = FilenameUtils.getExtension(nomf);
+	        nomf = fileName + "." + ext;
 	        //Get all the parts from request and write it to the file on server
 	        for (Part part : req.getParts()) {
-	            fileName = part.getSubmittedFileName();
-	            part.write(uploadFilePath + File.separator + fileName);
+	            part.write(uploadFilePath + File.separator + nomf);
 	        }
 		}
 		

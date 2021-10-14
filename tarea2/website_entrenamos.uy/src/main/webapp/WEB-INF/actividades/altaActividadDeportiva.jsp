@@ -109,7 +109,7 @@
 					<div class="form-group row">
 						<label for="imagenActividad" class="col-4 col-form-label">Imagen</label>
 						<div class="col-8">
-							<input type="file" class="form-control-file" accept="image/*" id="imagenActividad" name="fileName">
+							<input type="file" class="form-control-file" accept="image/*" name="imagenActividad">
 						</div>
 					</div>
 					<div class="form-group row">
