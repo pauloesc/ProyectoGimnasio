@@ -58,10 +58,10 @@ public class AltaActividad extends HttpServlet {
 	        fileName = nact.toLowerCase().replaceAll("\\s", "");
 	        String nomf = req.getPart("imagenActividad").getSubmittedFileName();
 	        String ext = FilenameUtils.getExtension(nomf);
-	        nomf = fileName + "." + ext;
+	        fileName = fileName + "." + ext;
 	        //Get all the parts from request and write it to the file on server
 	        for (Part part : req.getParts()) {
-	            part.write(uploadFilePath + File.separator + nomf);
+	            part.write(uploadFilePath + File.separator + fileName);
 	        }
 		}
 		
