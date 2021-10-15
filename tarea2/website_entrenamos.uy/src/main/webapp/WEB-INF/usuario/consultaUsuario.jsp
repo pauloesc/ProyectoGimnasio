@@ -5,6 +5,9 @@
 <%@page import="logica.InfoBasicaUser"%>
 <%@page import="logica.*"%>
 <%@page import="java.util.Vector"%>
+<%@page import="java.util.Iterator"%>
+
+
 
 <!doctype html>
 <html lang="en">
@@ -182,7 +185,7 @@ if( aa == true ){ %><a>Its February</a><% }else{ %><a>Any month other than Febru
                                              <label for="email">
                                                 <strong>Email</strong>
                                              </label>
-                                             <input value="" readonly type="email" class="form-control" id="email" name="email" />
+                                             <input value=<%= informacionUusario.getCorreo() %>"" readonly type="email" class="form-control" id="email" name="email" />
                                           </div>
                                        </div>
                                     </div>
@@ -192,7 +195,7 @@ if( aa == true ){ %><a>Its February</a><% }else{ %><a>Any month other than Febru
                                              <label for="first_name">
                                                 <strong>Apellido</strong>
                                              </label>
-                                             <input value="" readonly type="text" class="form-control" id="first_name"
+                                             <input value="<%= informacionUusario.getApellido() %>" readonly type="text" class="form-control" id="first_name"
                                                 name="first_name" />
                                           </div>
                                        </div>
@@ -201,17 +204,22 @@ if( aa == true ){ %><a>Its February</a><% }else{ %><a>Any month other than Febru
                                              <label for="last_name">
                                                 <strong>Fecha nacimiento</strong>
                                              </label>
-                                             <input value="" readonly type="text" class="form-control" id="last_name" name="last_name" />
+                                             <input value="<%= informacionUusario.getFechaNac() %>" readonly type="text" class="form-control" id="last_name" name="last_name" />
                                           </div>
                                        </div>
                                     </div>
+
+									<% 
+									if( !esSocio ){
+										InfoBasicaProfesor infoBasicaP = (InfoBasicaProfesor) informacionUusario;
+									%>
                                     <div class="form-row soloProfesor">
                                        <div class="col">
                                           <div class="form-group">
                                              <label for="first_name">
                                                 <strong>Institucion</strong>
                                              </label>
-                                             <input readonly type="text" class="form-control" id="first_name"
+                                             <input value="<%= infoBasicaP.getInstitucion() %>" readonly type="text" class="form-control" id="first_name"
                                                 name="first_name" />
                                           </div>
                                        </div>
@@ -220,17 +228,19 @@ if( aa == true ){ %><a>Its February</a><% }else{ %><a>Any month other than Febru
                                              <label for="last_name">
                                                 <strong>Descripcion</strong>
                                              </label>
-                                             <textarea rows="1" readonly type="text" class="form-control"></textarea>
+                                             <textarea  rows="1" readonly type="text" class="form-control"><%= infoBasicaP.getInstitucion() %></textarea>
                                           </div>
                                        </div>
                                     </div>
+									
+                                    
                                     <div class="form-row soloProfesor">
                                        <div class="col">
                                           <div class="form-group">
                                              <label for="first_name">
                                                 <strong>Bibliografia</strong>
                                              </label>
-                                             <textarea rows="1" readonly type="text" class="form-control"></textarea>
+                                             <textarea rows="1" readonly type="text" class="form-control"><%= infoBasicaP.getBibliografia() %></textarea>
                                           </div>
                                        </div>
                                        <div class="col">
@@ -238,10 +248,13 @@ if( aa == true ){ %><a>Its February</a><% }else{ %><a>Any month other than Febru
                                              <label for="last_name">
                                                 <strong>Url</strong>
                                              </label>
-                                             <textarea rows="1" readonly type="text" class="form-control"></textarea>
+                                             <textarea rows="1" readonly type="text" class="form-control"><%= infoBasicaP.getUrl() %></textarea>
                                           </div>
                                        </div>
                                     </div>
+                                 
+                                 <% } %>
+
                                  </div>
                               </div>
                            </div>
@@ -249,6 +262,10 @@ if( aa == true ){ %><a>Its February</a><% }else{ %><a>Any month other than Febru
                      </div>
                   </div>
 
+                  <!-- inicio bloque ** Actividades deportivas ingresadas (Aceptada) -->
+                  	<% 
+					if( !esSocio ){
+					%>
                   <div class="card shadow mb-5 soloProfesor">
                      <div id="act-dep" class="card-header py-3">
                         <p class="text-primary m-0 font-weight-bold">Actividades deportivas ingresadas (Aceptada)</p>
@@ -264,21 +281,39 @@ if( aa == true ){ %><a>Its February</a><% }else{ %><a>Any month other than Febru
                                  </tr>
                               </thead>
                               <tbody>
+                              <% 
+                              
+	          					InfoActividadProfe oo = (InfoActividadProfe) informacioActividad;
+	          					Vector<DtActividadesDeportivas> vec = new Vector<DtActividadesDeportivas>();
+	          					Vector<Object> vecGenerico = oo.obtenerVector();
+	          					Iterator<Object> iterat = vecGenerico.iterator();
+	          					while( iterat.hasNext() ) {
+	          						Object aux =  iterat.next( );
+	          						vec.add( (DtActividadesDeportivas) aux );
+	          					}
+          						
+	        					Iterator<DtActividadesDeportivas> iterat2 = vec.iterator();
+	        					while( iterat2.hasNext() ) {
+	        						
+	        					DtActividadesDeportivas mier = iterat2.next();
+	          					
+                              %>
                                  <tr>
-                                    <th scope="row">1</th>
-                                    <td> <a href="consultaActividadDeportiva.html">Voleibol</a></td>
-                                    <td>Voleibol en todas sus formas</td>
+                                    <th scope="row"></th>
+                                    <td> <a href="consultaActividadDeportiva.html"><%= mier.getNombre() %></a></td>
+                                    <td><%= mier.getDescripcion() %></td>
                                  </tr>
-                                 <tr>
-                                    <th scope="row">2</th>
-                                    <td>Atletismo</td>
-                                    <td>100m , 200m, postas y carreras con obstaculos.</td>
-                                 </tr>
+                                 
+                                <% } %>
+                                
                               </tbody>
                            </table>
                         </div>
                      </div>
                   </div>
+                  <% } %>
+                  <!-- fin bloque ** Actividades deportivas ingresadas (Aceptada) -->
+
 
                   <div class="card shadow mb-5">
                      <div id="clases" class="card-header py-3">

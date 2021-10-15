@@ -94,7 +94,7 @@ public class ConsultaUsuario extends HttpServlet {
 		
 		
 
-		request.setAttribute("esSocio", true);
+		request.setAttribute("esSocio", esSocio);
 		request.setAttribute("infoUsuario", informacionUusario);
 		request.setAttribute("infoActividad", informacioActividad);
 		request.setAttribute("usersSeguidores", usuariosSeguidores);
