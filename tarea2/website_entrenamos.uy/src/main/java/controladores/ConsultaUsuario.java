@@ -12,10 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import excepciones.UsuarioInexistenteException;
 import logica.DataCuponera;
 import logica.Fabrica;
-import logica.IctrlClases;
 import logica.IctrlUsuarios;
 import logica.InfoActividadProfe;
+import logica.InfoActividadSocio;
 import logica.InfoBasicaUser;
+import logica.InfoBasicaSocio;
+import logica.InfoBasicaProfesor;
 import logica.InformacionActividad;
 
 /**
@@ -41,52 +43,66 @@ public class ConsultaUsuario extends HttpServlet {
 		Fabrica f = Fabrica.getInstance();
 		IctrlUsuarios ICU = f.getIctrlUsuarios();
 		
+		//nickname del socio en la url
 		String user = request.getParameter("usuarioNick");
+		
+		//si el usuario en la url es vacio =>> redirigo a home
 		if( user == null ) {
 			response.sendRedirect("/website_entrenamos.uy/home");
 		}
-		else {
-			
-			boolean esSocio = true;
-			try{
-				esSocio = ICU.esSocio(user);
-			}
-			catch(UsuarioInexistenteException e) {
-			}
-			
-			
-			Vector<DataCuponera> cuponerasSocio = null;
-			InfoActividadProfe actIngRech = null;
-			if(esSocio) {
-				cuponerasSocio =  ICU.Cuponeras(user);
-			}
-			else {
-				actIngRech = ICU.InformacionActDepEstadoIngRech(user);
-			}
-			
-			InformacionActividad informacioActividad = null;
-			informacioActividad = ICU.InformacionActividad(user);
-			InfoBasicaUser infoUser = null;
-			infoUser = ICU.InformacionBasicaUsuario(user);
-			Vector<String> uSeguidores = null;
-			uSeguidores = ICU.UsuariosSeguidores(user);
-			Vector<String> uSiguiendo = null;
-			uSiguiendo = ICU.UsuariosSiguiendo(user);
-			
-			
-			//genero la respuesta
-			request.setAttribute("esSocio", esSocio);
-			request.setAttribute("cuponera", cuponerasSocio);
-			request.setAttribute("actDepIngRech", actIngRech);
-			request.setAttribute("informacionActividad", informacioActividad );
-			request.setAttribute("infoUser", infoUser);
-			request.setAttribute("seguidores", uSeguidores );
-			request.setAttribute("siguiendo", uSiguiendo );
-			
-			request.getRequestDispatcher("/WEB-INF/usuario/consultaUsuario.jsp").forward(request, response);
-
+		
+		/**
+		*compruebo si es un socio.
+		*tambien se comroueba si existe el usuario 
+		*/
+		boolean esSocio=true;
+		try {
+			esSocio = ICU.esSocio(user);
+		}
+		catch(UsuarioInexistenteException e) {
+			/**
+			compruebo si hay algun problema
+			*/
+			response.sendRedirect("/website_entrenamos.uy/home");
 		}
 		
+		//informacion comun a ambos tipos de usuarios
+		//declaro las variables 
+		InfoBasicaUser informacionUusario = null;
+		Vector<String> usuariosSeguidores = null;
+		Vector<String> usuariosSiguiendo = null;
+		InformacionActividad informacioActividad = null;
+		//llamo a la funciones para traer la informacion
+		informacionUusario = ICU.InformacionBasicaUsuario(user);
+		usuariosSeguidores = ICU.UsuariosSeguidores(user);
+		usuariosSiguiendo = ICU.UsuariosSiguiendo(user);
+		informacioActividad = ICU.InformacionActividad(user);
+		
+
+		/**
+		 * info dependiente del tipo de usuario
+		 * declaro las variables 
+		*/
+		Vector<DataCuponera> cuponerasSocio = null;
+		InfoActividadProfe actDepsIngRech = null;
+		if(esSocio) {
+			cuponerasSocio = ICU.Cuponeras(user);			
+		}
+		else {
+			actDepsIngRech = ICU.InformacionActDepEstadoIngRech(user);			
+		}
+		
+		
+
+		request.setAttribute("esSocio", true);
+		request.setAttribute("infoUsuario", informacionUusario);
+		request.setAttribute("infoActividad", informacioActividad);
+		request.setAttribute("usersSeguidores", usuariosSeguidores);
+		request.setAttribute("usersSiguiendo", usuariosSiguiendo);
+		request.setAttribute("cuponeras", cuponerasSocio);
+		request.setAttribute("actDepIngRech", actDepsIngRech);
+		request.getRequestDispatcher("/WEB-INF/usuario/consultaUsuario.jsp").forward(request, response);
+
 	}
 
 	/**

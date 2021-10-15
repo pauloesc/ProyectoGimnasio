@@ -1,7 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@page import="controladores.ConsultaUsuario"%>
+<%@page import="logica.InfoBasicaUser"%>
+<%@page import="logica.*"%>
+<%@page import="java.util.Vector"%>
+
 <!doctype html>
 <html lang="en">
+
+<% 
+
+boolean esSocio = (boolean) request.getAttribute("esSocio");
+InfoBasicaUser informacionUusario = (InfoBasicaUser) request.getAttribute("infoUsuario");
+InformacionActividad informacioActividad = (InformacionActividad) request.getAttribute("infoActividad");
+Vector<String> usuariosSeguidores = (Vector<String>) request.getAttribute("usersSeguidores");
+Vector<String> usuariosSiguiendo = (Vector<String>) request.getAttribute("usersSiguiendo");
+Vector<DataCuponera> cuponerasSocio = (Vector<DataCuponera>) request.getAttribute("cuponeras");
+InfoActividadProfe actDepsIngRech = (InfoActividadProfe) request.getAttribute("actDepIngRech");
+
+%>
+
+<% 
+boolean aa = (boolean) request.getAttribute("esSocio");
+if( aa == true ){ %><a>Its February</a><% }else{ %><a>Any month other than February</a><% } %>
 
 <head>
    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -152,7 +174,7 @@
                                              <label for="username">
                                                 <strong>Nombre</strong>
                                              </label>
-                                             <input readonly type="text" class="form-control" id="username" name="username" />
+                                             <input value="<%= informacionUusario.getNombre() %>" readonly type="text" class="form-control" id="username" name="username" />
                                           </div>
                                        </div>
                                        <div class="col">
@@ -160,7 +182,7 @@
                                              <label for="email">
                                                 <strong>Email</strong>
                                              </label>
-                                             <input readonly type="email" class="form-control" id="email" name="email" />
+                                             <input value="" readonly type="email" class="form-control" id="email" name="email" />
                                           </div>
                                        </div>
                                     </div>
@@ -170,7 +192,7 @@
                                              <label for="first_name">
                                                 <strong>Apellido</strong>
                                              </label>
-                                             <input readonly type="text" class="form-control" id="first_name"
+                                             <input value="" readonly type="text" class="form-control" id="first_name"
                                                 name="first_name" />
                                           </div>
                                        </div>
@@ -179,7 +201,7 @@
                                              <label for="last_name">
                                                 <strong>Fecha nacimiento</strong>
                                              </label>
-                                             <input readonly type="text" class="form-control" id="last_name" name="last_name" />
+                                             <input value="" readonly type="text" class="form-control" id="last_name" name="last_name" />
                                           </div>
                                        </div>
                                     </div>
@@ -436,7 +458,7 @@
          profesor = 1;
          profesorPerfilPropio = 1;
          FuncionMostrarDependiendoProfSocio(profesor);
-         EsElPropioProfesor(profesorPerfilPropio);
+         EsElPropioProfesor( (profesorPerfilPropio*profesor) );
 
          //ocultar info
 
@@ -458,6 +480,7 @@
       }
       else{
          $(".soloProfesor").hide();
+         $(".propioProfesor").hide();
       }
    }
 
