@@ -29,7 +29,7 @@
 				<div class="card mb-3" style="max-width: auto;">
 					<div class="row no-gutters">
 						<div class="col-md-4">
-							<img class="d-block w-100" src="./resources/img/a4.jpg" alt="...">
+							<img class="d-block w-100" src="./resources/img/actividades/<%= actividad.getImagen()  %>" alt="<%= actividad.getImagen()  %>">
 						</div>
 						<div class="col-md-8">
 							<div class="card-body">

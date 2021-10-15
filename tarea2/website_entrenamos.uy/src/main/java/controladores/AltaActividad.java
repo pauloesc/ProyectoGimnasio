@@ -27,7 +27,7 @@ public class AltaActividad extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private static IctrlADeportivas ctrlADeportivas = Fabrica.getInstance().getIctrlADeportivas();
-	private static final String UPLOAD_DIR = "resources/img";
+	private static final String UPLOAD_DIR = "resources/img/actividades";
 
 	public AltaActividad() {
 		super();
@@ -54,15 +54,13 @@ public class AltaActividad extends HttpServlet {
 	        if (!fileSaveDir.exists()) {
 	            fileSaveDir.mkdirs();
 	        }
-			
+	        
 	        fileName = nact.toLowerCase().replaceAll("\\s", "");
 	        String nomf = req.getPart("imagenActividad").getSubmittedFileName();
 	        String ext = FilenameUtils.getExtension(nomf);
-	        fileName = fileName + "." + ext;
-	        //Get all the parts from request and write it to the file on server
-	        for (Part part : req.getParts()) {
-	            part.write(uploadFilePath + File.separator + fileName);
-	        }
+	        Part part = req.getPart("imagenActividad");
+	        part.write(uploadFilePath + File.separator + fileName + "." + ext);
+			
 		}
 		
         
