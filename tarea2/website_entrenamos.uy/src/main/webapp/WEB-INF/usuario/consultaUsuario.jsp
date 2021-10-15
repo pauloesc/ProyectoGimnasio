@@ -16,11 +16,13 @@
 
 boolean esSocio = (boolean) request.getAttribute("esSocio");
 InfoBasicaUser informacionUusario = (InfoBasicaUser) request.getAttribute("infoUsuario");
-InformacionActividad informacioActividad = (InformacionActividad) request.getAttribute("infoActividad");
 Vector<String> usuariosSeguidores = (Vector<String>) request.getAttribute("usersSeguidores");
 Vector<String> usuariosSiguiendo = (Vector<String>) request.getAttribute("usersSiguiendo");
 Vector<DataCuponera> cuponerasSocio = (Vector<DataCuponera>) request.getAttribute("cuponeras");
 InfoActividadProfe actDepsIngRech = (InfoActividadProfe) request.getAttribute("actDepIngRech");
+
+Vector<DtClase> informacionSocio = (Vector<DtClase>) request.getAttribute("infoSocio");
+Vector<DtActividadesDeportivas> informacionProfesor = (Vector<DtActividadesDeportivas>) request.getAttribute("infoProfe");
 
 %>
 
@@ -283,25 +285,14 @@ if( aa == true ){ %><a>Its February</a><% }else{ %><a>Any month other than Febru
                               <tbody>
                               <% 
                               
-	          					InfoActividadProfe oo = (InfoActividadProfe) informacioActividad;
-	          					Vector<DtActividadesDeportivas> vec = new Vector<DtActividadesDeportivas>();
-	          					Vector<Object> vecGenerico = oo.obtenerVector();
-	          					Iterator<Object> iterat = vecGenerico.iterator();
-	          					while( iterat.hasNext() ) {
-	          						Object aux =  iterat.next( );
-	          						vec.add( (DtActividadesDeportivas) aux );
-	          					}
-          						
-	        					Iterator<DtActividadesDeportivas> iterat2 = vec.iterator();
+	          					Iterator<DtActividadesDeportivas> iterat2 = informacionProfesor.iterator();
 	        					while( iterat2.hasNext() ) {
-	        						
-	        					DtActividadesDeportivas mier = iterat2.next();
-	          					
+	        						DtActividadesDeportivas infoP = iterat2.next();
                               %>
                                  <tr>
                                     <th scope="row"></th>
-                                    <td> <a href="consultaActividadDeportiva.html"><%= mier.getNombre() %></a></td>
-                                    <td><%= mier.getDescripcion() %></td>
+                                    <td> <a href="consultaActividadDeportiva.html"><%= infoP.getNombre() %></a></td>
+                                    <td><%= infoP.getDescripcion() %></td>
                                  </tr>
                                  
                                 <% } %>
@@ -315,6 +306,10 @@ if( aa == true ){ %><a>Its February</a><% }else{ %><a>Any month other than Febru
                   <!-- fin bloque ** Actividades deportivas ingresadas (Aceptada) -->
 
 
+				<!-- inicio bloque ** clases ** para profesor -->
+                  	<% 
+					if( !esSocio ){
+					%>
                   <div class="card shadow mb-5">
                      <div id="clases" class="card-header py-3">
                         <p class="text-primary m-0 font-weight-bold">Clases</p>
@@ -331,18 +326,81 @@ if( aa == true ){ %><a>Its February</a><% }else{ %><a>Any month other than Febru
                                  </tr>
                               </thead>
                               <tbody>
+									<% 
+									Iterator<DtActividadesDeportivas> iterat2 = informacionProfesor.iterator();
+									while( iterat2.hasNext() ) {
+										DtActividadesDeportivas infoP = iterat2.next();
+									%>
+									
+									<%
+									Vector<DtClase> VectorclasesInfo = infoP.getClases();
+									Iterator<DtClase> iterVectorClases = VectorclasesInfo.iterator();
+									while ( iterVectorClases.hasNext() ){
+										DtClase infoCla = iterVectorClases.next();
+									%>
                                  <tr>
                                     <th scope="row">1</th>
-                                    <td> <a href="consultaDictadoDeClases.html">Voleibol</a></td>
-                                    <td>10/06/21</td>
-                                    <td>Voleibol</td>
+                                    <td> <a href="consultaDictadoDeClases.html"><%= infoCla.getNombre() %></a></td>
+                                    <td><%= infoCla.getFecha() %></td>
+                                    <td><%= infoP.getNombre() %></td>
                                  </tr>
+									<% 
+									}}
+									%>
                               </tbody>
                            </table>
                         </div>
                      </div>
                   </div>
+					<% 
+					}
+					%>
+                  <!-- fin bloque ** clases ** para profesor -->
+                  
+                  
+                  <!-- inicio bloque ** clases ** para socio -->
+                  	<% 
+					if( esSocio ){
+					%>
+                  <div class="card shadow mb-5">
+                     <div id="clases" class="card-header py-3">
+                        <p class="text-primary m-0 font-weight-bold">Clases</p>
+                     </div>
+                     <div id="clases-cont" class="card-body">
+                        <div class="row">
+                           <table class="table table-hover">
+                              <thead>
+                                 <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Fecha</th>
+                                    <th scope="col">Actividad deportiva</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+									<% 
+								
+									%>
+                                 <tr>
+                                    <th scope="row">1</th>
+                                    <td> <a href="consultaDictadoDeClases.html"><%=  %></a></td>
+                                    <td><%=  %></td>
+                                    <td><%=  %></td>
+                                 </tr>
+									<% 
+								
+									%>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                  </div>
+					<% 
+					}
+					%>
+                  <!-- fin bloque ** clases ** para socio -->
 
+					<!-- inicio bloque ** acd dep ing rech ** para profesor -->
                   <div class="card shadow mb-5 soloProfesor propioProfesor">
                      <div id="act-dep-ing" class="card-header py-3">
                         <p class="text-primary m-0 font-weight-bold">Actividades deportivas ingresadas (Ingresada,
@@ -377,7 +435,10 @@ if( aa == true ){ %><a>Its February</a><% }else{ %><a>Any month other than Febru
                         </div>
                      </div>
                   </div>
+				<!-- fin bloque ** acd dep ing rech ** para profesor -->
 
+
+						<!-- inicio bloque ** cuponeras ** para socio -->
 						<div class="card shadow mb-5">
 							<div id="cuponeras" class="card-header py-3">
 								<p class="text-primary m-0 font-weight-bold">Cuponeras del
@@ -404,6 +465,8 @@ if( aa == true ){ %><a>Its February</a><% }else{ %><a>Any month other than Febru
 								</div>
 							</div>
 						</div>
+						
+						<!-- fin bloque ** cuponeras ** para socio -->
 
                   <div class="card shadow mb-5">
                      <div id="seguidos-siguiendo" class="card-header py-3">

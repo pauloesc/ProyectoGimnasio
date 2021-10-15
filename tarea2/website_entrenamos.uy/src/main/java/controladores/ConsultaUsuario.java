@@ -1,6 +1,7 @@
 package controladores;
 
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.Vector;
 
 import javax.servlet.ServletException;
@@ -8,9 +9,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.DefaultListModel;
 
 import excepciones.UsuarioInexistenteException;
 import logica.DataCuponera;
+import logica.DtActividadesDeportivas;
+import logica.DtClase;
 import logica.Fabrica;
 import logica.IctrlUsuarios;
 import logica.InfoActividadProfe;
@@ -93,10 +97,52 @@ public class ConsultaUsuario extends HttpServlet {
 		}
 		
 		
+		//info clases socio
+		Vector<DtClase> informacionSocio = null;
+		//info del profesor
+		Vector<DtActividadesDeportivas> informacionProfesor = null;
+		
+		
+		/**
+		 * casteo de informacion para no hacerlo en la vista
+		*/
+		if( informacioActividad.getClass() == InfoActividadSocio.class ) {
+			
+			InfoActividadSocio oo = (InfoActividadSocio) informacioActividad;
+			informacionSocio = new Vector<DtClase>();
+			Vector<Object> vecGenerico = oo.obtenerVector();
+			
+			
+			Iterator<Object> iterat = vecGenerico.iterator();
+			while( iterat.hasNext() ) {
+				Object aux =  iterat.next( );
+				informacionSocio.add( (DtClase) aux );
+			}
+			
+			}
+		//info actividad del profesor
+		else {
+			InfoActividadProfe oo = (InfoActividadProfe) informacioActividad;
+			informacionProfesor = new Vector<DtActividadesDeportivas>();
+			Vector<Object> vecGenerico = oo.obtenerVector();
+			
+			
+			Iterator<Object> iterat = vecGenerico.iterator();
+			while( iterat.hasNext() ) {
+				Object aux =  iterat.next( );
+				informacionProfesor.add( (DtActividadesDeportivas) aux );
+			}
+			
+		}
+		
+		
+		
+		
 
 		request.setAttribute("esSocio", esSocio);
 		request.setAttribute("infoUsuario", informacionUusario);
-		request.setAttribute("infoActividad", informacioActividad);
+		request.setAttribute("infoSocio", informacionSocio);
+		request.setAttribute("infoProfe", informacionProfesor);
 		request.setAttribute("usersSeguidores", usuariosSeguidores);
 		request.setAttribute("usersSiguiendo", usuariosSiguiendo);
 		request.setAttribute("cuponeras", cuponerasSocio);
