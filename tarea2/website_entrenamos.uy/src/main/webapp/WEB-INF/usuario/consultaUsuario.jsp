@@ -24,6 +24,8 @@ InfoActividadProfe actDepsIngRech = (InfoActividadProfe) request.getAttribute("a
 Vector<DtClase> informacionSocio = (Vector<DtClase>) request.getAttribute("infoSocio");
 Vector<DtActividadesDeportivas> informacionProfesor = (Vector<DtActividadesDeportivas>) request.getAttribute("infoProfe");
 
+Vector<String> usersEnSistema = (Vector<String>) request.getAttribute("usuariosEnSistema");
+
 %>
 
 <% 
@@ -109,14 +111,6 @@ if( aa == true ){ %><a>Its February</a><% }else{ %><a>Any month other than Febru
             <div id="content">
                <div class="container-fluid">
                   <h3 class="text-dark mb-4">Perfil</h3>
-                  <form>
-                     <select class="form-control" required>
-                            <option value="12" selected>Usuario 1</option>
-                            <option value="13">Usuario 2</option>
-                            <option value="14">Usuario 3</option>
-                    </select>
-                  </form>
-                  <br />
                   <div class="row mb-3">
                      <div class="col-lg-4">
                         <div class="card mb-3">
@@ -378,18 +372,14 @@ if( aa == true ){ %><a>Its February</a><% }else{ %><a>Any month other than Febru
                                  </tr>
                               </thead>
                               <tbody>
-									<% 
-								
-									%>
+									
                                  <tr>
                                     <th scope="row">1</th>
-                                    <td> <a href="consultaDictadoDeClases.html"><%=  %></a></td>
-                                    <td><%=  %></td>
-                                    <td><%=  %></td>
+                                    <td> <a href="consultaDictadoDeClases.html"></a></td>
+                                    <td></td>
+                                    <td></td>
                                  </tr>
-									<% 
-								
-									%>
+									
                               </tbody>
                            </table>
                         </div>
@@ -401,6 +391,7 @@ if( aa == true ){ %><a>Its February</a><% }else{ %><a>Any month other than Febru
                   <!-- fin bloque ** clases ** para socio -->
 
 					<!-- inicio bloque ** acd dep ing rech ** para profesor -->
+					<% if(!esSocio) { %>
                   <div class="card shadow mb-5 soloProfesor propioProfesor">
                      <div id="act-dep-ing" class="card-header py-3">
                         <p class="text-primary m-0 font-weight-bold">Actividades deportivas ingresadas (Ingresada,
@@ -435,10 +426,12 @@ if( aa == true ){ %><a>Its February</a><% }else{ %><a>Any month other than Febru
                         </div>
                      </div>
                   </div>
+                  <% } %>
 				<!-- fin bloque ** acd dep ing rech ** para profesor -->
 
 
 						<!-- inicio bloque ** cuponeras ** para socio -->
+						<% if(esSocio) { %>
 						<div class="card shadow mb-5">
 							<div id="cuponeras" class="card-header py-3">
 								<p class="text-primary m-0 font-weight-bold">Cuponeras del
@@ -455,19 +448,31 @@ if( aa == true ){ %><a>Its February</a><% }else{ %><a>Any month other than Febru
 											</tr>
 										</thead>
 										<tbody>
+										
+										<%
+										Iterator<DataCuponera> cuponeras =  cuponerasSocio.iterator();
+										int cont = 1;
+										while( cuponeras.hasNext() ){
+											DataCuponera infoCuponera = cuponeras.next();
+										%>
 											<tr>
-												<th scope="row">1</th>
-												<td><a href="consultaCuponera.html">Pelota</a></td>
-												<td>Deportes con pelota</td>
+												<th scope="row"> <%= cont %> </th>
+												<td><a href="consultaCuponera.html"> <%= infoCuponera.getNombre()  %> </a></td>
+												<td> <%= infoCuponera.getDescripcion() %> </td>
 											</tr>
+										<% 
+										cont=cont+1;
+										} %>	
+										
 										</tbody>
 									</table>
 								</div>
 							</div>
 						</div>
-						
+						<% } %>
 						<!-- fin bloque ** cuponeras ** para socio -->
 
+					<!-- inicio bloque ** seguidores sigue -->
                   <div class="card shadow mb-5">
                      <div id="seguidos-siguiendo" class="card-header py-3">
                         <p class="text-primary m-0 font-weight-bold">Seguidores y Sigue</p>
@@ -483,22 +488,19 @@ if( aa == true ){ %><a>Its February</a><% }else{ %><a>Any month other than Febru
                                     <div class="table-responsive table-bordered">
                                         <table class="table table-bordered">
                                             <tbody>
+                                            <%
+                                            Iterator<String> uLosQuesiguen =  usuariosSeguidores.iterator();
+                                            while( uLosQuesiguen.hasNext() ){
+                                            	String usario = uLosQuesiguen.next();
+                                            
+                                            %>
                                                 <tr>
-                                                    <td class="stat">Nickname</td>
+                                                    <td class="stat"><a href="${pageContext.request.contextPath}/ConsultaUsuario?usuarioNick=<%= usario %>"> <%= usario %> </a></td>
                                                     <td>.</td>
                                                 </tr>
-                                                <tr>
-                                                    <td class="stat"></td>
-                                                    <td>.</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="stat"></td>
-                                                    <td>.</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="stat"></td>
-                                                    <td>.</td>
-                                                </tr>
+                                                
+											<% } %>
+												
                                             </tbody>
                                         </table>
                                     </div>
@@ -507,22 +509,18 @@ if( aa == true ){ %><a>Its February</a><% }else{ %><a>Any month other than Febru
                                  <div class="table-responsive table-bordered">
                                     <table class="table table-bordered">
                                         <tbody>
-                                            <tr>
-                                                <td class="stat">Nickname</td>
-                                                <td>.</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="stat">Camera</td>
-                                                <td>.</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="stat">RAM</td>
-                                                <td>.</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="stat">OS</td>
-                                                <td>.</td>
-                                            </tr>
+                                            <%
+                                            Iterator<String> uSeg =  usuariosSiguiendo.iterator();
+                                            while( uSeg.hasNext() ){
+                                            	String usario2 = uSeg.next();
+                                            
+                                            %>
+                                                <tr>
+                                                    <td class="stat"> <a href="${pageContext.request.contextPath}/ConsultaUsuario?usuarioNick=<%= usario2 %>"> <%= usario2 %> </a></td>
+                                                    <td>.</td>
+                                                </tr>
+                                                
+											<% } %>
                                         </tbody>
                                     </table>
                                 </div>
@@ -531,7 +529,7 @@ if( aa == true ){ %><a>Its February</a><% }else{ %><a>Any month other than Febru
                         </div>
                     </div>
                   </div>
-
+                  <!-- fin bloque ** seguidores sigue -->
 
                </div>
             </div>

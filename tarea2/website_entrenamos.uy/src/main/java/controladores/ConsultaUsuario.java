@@ -137,8 +137,9 @@ public class ConsultaUsuario extends HttpServlet {
 		
 		
 		
-		
+		Vector<String> usuariosEnSistema = ICU.UsuariosEnSistemaNickName();
 
+		request.setAttribute("usuarioEnSistema", usuariosEnSistema);
 		request.setAttribute("esSocio", esSocio);
 		request.setAttribute("infoUsuario", informacionUusario);
 		request.setAttribute("infoSocio", informacionSocio);

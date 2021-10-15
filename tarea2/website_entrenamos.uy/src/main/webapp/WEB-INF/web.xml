@@ -95,6 +95,20 @@
 		<servlet-name>AltaClase</servlet-name>
 		<url-pattern>/altaClase</url-pattern>
 	</servlet-mapping>
+	
+	
+	
+	<servlet>
+		<servlet-name>ConsultaUsuario</servlet-name>
+		<servlet-class>controladores.ConsultaUsuario</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ConsultaUsuario</servlet-name>
+		<url-pattern>/ConsultaUsuario</url-pattern>
+	</servlet-mapping>
+	
+	
+	
 	<session-config>
 		<session-timeout>30</session-timeout>
 	</session-config>
