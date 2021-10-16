@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="controladores.ConsultaCuponera"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,9 +49,10 @@
 					<div class="col-sm-6">
 						<div class="card">
 							<div class="card-body">
-								<h5 class="card-title">Pelotas</h5>
+								<% String nomcup="Pelota"; %>
+								<h5 class="card-title">Pelota</h5>
 								<p class="card-text">Deportes con Pelotas</p>
-								<a href="consultaCuponera.html" class="btn btn-primary">Ver mas</a>
+								<a class="btn btn-primary" href="consultaCuponera?cuponera=<%= nomcup  %>">Ver mas</a>
 							</div>
 						</div>
 					</div>

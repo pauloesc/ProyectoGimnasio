@@ -1,8 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="controladores.ConsultaActividad"%>
 <%@page import="controladores.ConsultaCategoria"%>
+
 <%@page import="logica.DataCuponera"%>
 <%@page import="java.util.Set"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.DateFormat"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +14,8 @@
 </head>
 <%
 	DataCuponera dtcuponera = (DataCuponera) request.getAttribute("cuponera");
+	Date date = null;  
+	DateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");  
 	
 %>
 <body>
@@ -26,15 +32,15 @@
 						</div>
 					<div class="col-md-7">	
 					<div class="card mb-3 shadow" style="max-width:auto;">
- 						<h5 class="card-header text-primary"> <b>Pelotas</b></h5>
+ 						<h5 class="card-header text-primary"> <b><%= dtcuponera.getNombre() %></b></h5>
   						<div class="card-body text-dark">
-    						<p class="card-text">Deportes con pelota</p>
-    						<p class="card-text">Periodo de vigencia: 01/05/2021 - 31/07/2021</p>
-    						<p class="card-text">Descuento aplicar: 20% </p>
-    						<p class="card-text"> <b> Costo Total: 10680$</b> </p>
-    						<p class="card-text text-secondary"> Fecha de alta: 30/04/2021 </p>
+    						<p class="card-text"><%= dtcuponera.getDescripcion() %></p>
+    						<p class="card-text"> Periodo de vigencia: <%= dateFormat.format(dtcuponera.getFecha_ini())%> - <%= dateFormat.format(dtcuponera.getFecha_fin())%> </p>
+    						<p class="card-text">Descuento aplicar: <%= dtcuponera.getDescuento() %>% </p>
+    						<p class="card-text"> <b> Costo Total: <%= dtcuponera.getCosto() %>$</b> </p>
+    						<p class="card-text text-secondary"> Fecha de alta: <%= dateFormat.format(dtcuponera.getFecha_alta())%> </p>
   					</div>
-  						<div class="d-md-flex justify-content-md-end col-12 mb-3">
+  						 <div class="d-md-flex justify-content-md-end col-12 mb-3">
   							<a href=# class="btn btn-primary" data-toggle="modal" data-target="#comprar2">Comprar Cuponera</a>	
   						
   						<!-- Modal -->
@@ -77,7 +83,7 @@
   						
   						
   						
-  						</div>
+  						</div> 
 					</div>
 					</div>
 				</div>
