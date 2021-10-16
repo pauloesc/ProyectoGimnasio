@@ -59,7 +59,7 @@ Vector<String> usersEnSistema = (Vector<String>) request.getAttribute("usuariosE
                      <div class="col-lg-4">
                         <div class="card mb-3">
                            <div class="card-body text-center shadow">
-                              <img class="rounded-circle mb-3 mt-4" src="./resources/img/user.png" width="160"
+                              <img class="rounded-circle mb-3 mt-4" src=" <%= informacionUusario.getImagen() %>" width="160"
                                  height="160" />
                            </div>
                         </div>
