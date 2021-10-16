@@ -59,9 +59,10 @@
 					<div class="col-sm-6">
 						<div class="card">
 							<div class="card-body">
+								<% String nomcup2="Gimnasia"; %>
 								<h5 class="card-title">Gimnasia</h5>
 								<p class="card-text">Aeróbica y aparatos</p>
-								<a href="#" class="btn btn-primary">Ver mas</a>
+								<a class="btn btn-primary" href="consultaCuponera?cuponera=<%= nomcup2  %>">Ver mas</a>
 							</div>
 						</div>
 					</div>

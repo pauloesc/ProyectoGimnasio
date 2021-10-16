@@ -95,6 +95,14 @@
 		<servlet-name>AltaClase</servlet-name>
 		<url-pattern>/altaClase</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>ConsultaCuponera</servlet-name>
+		<servlet-class>controladores.ConsultaCuponera</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ConsultaCuponera</servlet-name>
+		<url-pattern>/consultaCuponera</url-pattern>
+	</servlet-mapping>
 	<session-config>
 		<session-timeout>30</session-timeout>
 	</session-config>
