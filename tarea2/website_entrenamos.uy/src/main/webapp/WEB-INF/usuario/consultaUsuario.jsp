@@ -317,13 +317,19 @@ Vector<String> usersEnSistema = (Vector<String>) request.getAttribute("usuariosE
                               </thead>
                               <tbody>
 									
+									<% 
+									Iterator<DtClase> iterat3 = informacionSocio.iterator();
+									while( iterat3.hasNext() ) {
+										DtClase infoS = iterat3.next();
+									%>
+									
                                  <tr>
                                     <th scope="row">1</th>
-                                    <td> <a href="consultaDictadoDeClases.html"></a></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td> <a href="consultaDictadoDeClases.html"> <%= infoS.getNombre() %> </a></td>
+                                    <td> <%= infoS.getFecha() %> </td>
+                                    <td> <%= infoS.getNomAct() %> </td>
                                  </tr>
-									
+									<% } %>
                               </tbody>
                            </table>
                         </div>
