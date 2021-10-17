@@ -5,7 +5,7 @@
 <%@page import="java.util.Set"%>
 <%@page import="controladores.Login"%>
 <%@page import="controladores.Cuponeras"%>
-<%@page import="logica.DataCuponera"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +13,7 @@
 </head>
 <%
 	DataActividad actividad = (DataActividad) request.getAttribute("actividad");
-	Set<DataCuponera> cuponeras= Cuponeras.getCuponeras();
+	Set<String> cup= (Set<String>) request.getAttribute("cup");
 	InfoBasicaUser usr;
 	try {
 		usr = Login.getUsuarioLogueado(request);
@@ -88,11 +88,11 @@
   							<tbody>
   							<% 
   							int i2 = 1;
-							for(DataCuponera nomcup :cuponeras) {
+							for(String nomcup:cup) {
 							%>	
    							 <tr>
      						 <th scope="row"><%= i2%></th>
-      							<td><a href="consultaCuponera?cuponera=<%= nomcup.getNombre() %>"> <%= nomcup.getNombre()%></a></td> 
+      							<td><a href="consultaCuponera?cuponera=<%= nomcup %>"> <%= nomcup %></a></td> 
     						</tr>
     						<%
     						i2++;

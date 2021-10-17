@@ -52,6 +52,12 @@ public class Cuponeras extends HttpServlet
 		return cuponeras;
 	}
 	
+	public static Set<String> getCuponerasAD(String act){
+		
+		return Fabrica.getInstance().getIctrlCuponeras().getCuponerasAD(act);
+	}
+	
+	
 	public static void cargarCuponeras()
 	{
 		Fabrica.getInstance().getIctrlCuponeras().cargarDatosCuponeras();

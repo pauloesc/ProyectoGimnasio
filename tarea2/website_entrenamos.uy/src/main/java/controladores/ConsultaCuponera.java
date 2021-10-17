@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import excepciones.CuponeraNoExisteException;
 import logica.DataCuponera;
 import logica.Fabrica;
 import logica.IctrlCuponeras;
@@ -56,6 +57,7 @@ public class ConsultaCuponera extends HttpServlet
 		}
 		return dtCuponera;
 	}
+	
 	
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 

@@ -29,5 +29,6 @@ public interface IctrlCuponeras {
 	public abstract void comprarCuponera (Date fecha, String cuponera, String nomsocio) throws CuponeraCompradaException;
 	public abstract Set<String> getCuponerasCategoria(String cat);
 	public abstract Set<String> getCuponerasInstitucion(String inst);
+	public abstract Set<String> getCuponerasAD(String act); 
 	
 }

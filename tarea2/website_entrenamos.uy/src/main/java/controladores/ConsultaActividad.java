@@ -22,7 +22,6 @@ public class ConsultaActividad extends HttpServlet
 	private static final long serialVersionUID = 1L;
 	
 	private static IctrlADeportivas ctrlADeportivas = Fabrica.getInstance().getIctrlADeportivas();
-	private static IctrlCuponeras ctrlCuponeras = Fabrica.getInstance().getIctrlCuponeras();
 	
 	public ConsultaActividad() 
 	{
@@ -43,16 +42,16 @@ public class ConsultaActividad extends HttpServlet
 			e.printStackTrace();
 		}
 		
-		Set<String> cuponeras;
+		Set<String> cup;
 		try {
-			cuponeras = ConsultaActividad.getCuponerasAD();
+			cup = Cuponeras.getCuponerasAD(act);
 		} 
 		catch(Exception ex) {
-			cuponeras  = null;
+			cup  = null;
 		}
 		
 		req.setAttribute("actividad", actividad);
-		req.setAttribute("cuponeras", cuponeras);
+		req.setAttribute("cup", cup);
 		req.getRequestDispatcher("/WEB-INF/actividades/consultaActividadDeportiva.jsp").forward(req, resp);
 	}
 	
@@ -72,17 +71,7 @@ public class ConsultaActividad extends HttpServlet
 		return acti;
 	}
 	
-	public static Set<String> getCuponerasAD(){
-		Set<String> resu = new HashSet<String>();
 	
-		try {
-			resu=ctrlCuponeras.listarCuponeras();
-		} catch (CuponeraNoExisteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return resu;
-	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException 

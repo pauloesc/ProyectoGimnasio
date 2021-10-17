@@ -127,6 +127,12 @@ public class ctrlCuponeras implements IctrlCuponeras {
 		return resu;
     }
 	
+	public Set<String> getCuponerasAD(String act) {
+		manejCuponeras mCup = manejCuponeras.getinstance();
+		Set<String> resu=mCup.getCuponerasAD(act);
+		return resu;
+    } 
+	
 	public Set<String> getCuponerasInstitucion(String inst){
 		Set<String> resu = new HashSet<String>();
 		

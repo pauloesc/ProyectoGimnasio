@@ -78,6 +78,20 @@ public class manejCuponeras {
 		return resu;
 	}
 	
+	public Set<String> getCuponerasAD(String actividad){
+		Set<String> resu= new HashSet<String>();
+		for (Iterator<String> iter=Cuponeras.keySet().iterator();iter.hasNext();) {
+			Cuponera cup=Cuponeras.get(iter.next());
+			Set<String> list=cup.getListaActividades();
+			if (list.contains(actividad)) {
+			    resu.add(cup.getNombre());
+			}
+		}
+		
+		return resu;
+	}
+	
+	
 	
 	public Set<String> getCuponerasdeCategoria (String categoria){
 		Set<String> resu= new HashSet<String>();
