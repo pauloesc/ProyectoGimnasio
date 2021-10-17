@@ -9,6 +9,7 @@
 <%
 	String nominst = (String) request.getAttribute("institucion");
 	Set<String> actividades = (Set<String>) request.getAttribute("actividades");
+	Set<String> cuponeras = (Set<String>) request.getAttribute("cuponeras");
 %>
 <body>
 	<jsp:include page="/WEB-INF/template/header.jsp" />
@@ -68,10 +69,18 @@
     							</tr>
   							</thead>
   							<tbody>
+  							<% 
+  							int i2 = 1;
+							for(String nomcup :cuponeras) {
+							%>	
    							 <tr>
-     						 <th scope="row">1</th>
-      							<td><a href="consultaCuponera.html">Pelotas</a></td> 
+     						 <th scope="row"><%= i2%></th>
+      							<td><a href="consultaCuponera?cuponera=<%= nomcup%>"> <%= nomcup%></a></td> 
     						</tr>
+    						<%
+    						i2++;
+							} 
+							%>	
     					</tbody>
 					</table>
 					

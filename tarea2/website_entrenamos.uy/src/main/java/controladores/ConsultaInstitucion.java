@@ -34,8 +34,18 @@ public class ConsultaInstitucion extends HttpServlet
 		catch(Exception ex) {
 			actividades = null;
 		}
+		Set<String> cuponeras;
+		try {
+			cuponeras = ConsultaInstitucion.getCuponerasInst(inst);
+		} 
+		catch(Exception ex) {
+			cuponeras = null;
+		}
+		
+		
 		req.setAttribute("actividades", actividades);
 		req.setAttribute("institucion", inst);
+		req.setAttribute("cuponeras", cuponeras);
 		req.getRequestDispatcher("/WEB-INF/instituciones/consultaInstitucion.jsp").forward(req, resp);
 	}
 	
@@ -43,7 +53,11 @@ public class ConsultaInstitucion extends HttpServlet
 		Set<String> acts = Fabrica.getInstance().getIctrlADeportivas().darNombresActividadesDeportivas(inst);
 		return acts;
 	}	
-
+	public static Set<String> getCuponerasInst(String inst){
+		Set<String> cups = Fabrica.getInstance().getIctrlCuponeras().getCuponerasInstitucion(inst);
+		return cups;
+	}
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException 
 	{
