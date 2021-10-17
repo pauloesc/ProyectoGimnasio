@@ -1,11 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="controladores.ConsultaCuponera"%>
+<%@page import="controladores.Cuponeras"%>
+<%@page import="java.util.Set"%>
+<%@page import="logica.DataCuponera"%>
+<%@page import="java.util.Iterator"%>
+
 
 <!DOCTYPE html>
 <html>
 <head>
 <jsp:include page="/WEB-INF/template/head.jsp" />
 </head>
+<%
+	Set<DataCuponera> cuponeras;
+	try {
+		cuponeras = Cuponeras.getCuponeras();
+	} 
+	catch(Exception ex) {
+		cuponeras = null;
+	
+	}
+%>
+
+
 <body>
 	<jsp:include page="/WEB-INF/template/header.jsp" />
 	<!-- Begin page content -->
@@ -46,26 +63,34 @@
 					</div>
 				</div>
 				<div class="row y-4">
+				<% 
+				Iterator<DataCuponera> iter=cuponeras.iterator();
+				DataCuponera nomcup= iter.next();
+				%>	
 					<div class="col-sm-6">
 						<div class="card">
 							<div class="card-body">
-								<% String nomcup="Pelota"; %>
-								<h5 class="card-title">Pelota</h5>
-								<p class="card-text">Deportes con Pelotas</p>
-								<a class="btn btn-primary" href="consultaCuponera?cuponera=<%= nomcup  %>">Ver mas</a>
+								<h5 class="card-title"><%= nomcup.getNombre() %></h5>
+								<p class="card-text"><%= nomcup.getDescripcion() %></p>
+								<a class="btn btn-primary" href="consultaCuponera?cuponera=<%= nomcup.getNombre()  %>">Ver mas</a>
 							</div>
 						</div>
 					</div>
+					<% 
+					nomcup= iter.next();
+					%>	
 					<div class="col-sm-6">
 						<div class="card">
 							<div class="card-body">
-								<% String nomcup2="Gimnasia"; %>
-								<h5 class="card-title">Gimnasia</h5>
-								<p class="card-text">Aeróbica y aparatos</p>
-								<a class="btn btn-primary" href="consultaCuponera?cuponera=<%= nomcup2  %>">Ver mas</a>
+								<h5 class="card-title"><%= nomcup.getNombre() %></h5>
+								<p class="card-text"><%= nomcup.getDescripcion() %></p>
+								<a class="btn btn-primary" href="consultaCuponera?cuponera=<%= nomcup.getNombre() %>">Ver mas</a>
 							</div>
 						</div>
 					</div>
+								
+					
+					
 					<div class="col-sm-12">
 					<table class="table table-sm mt-3 text-right" >
   							<thead>
