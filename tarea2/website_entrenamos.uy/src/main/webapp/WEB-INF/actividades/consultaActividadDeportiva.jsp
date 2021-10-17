@@ -2,7 +2,10 @@
 <%@page import="logica.DataActividad"%>
 <%@page import="logica.InfoBasicaUser"%>
 <%@page import="logica.InfoBasicaSocio"%>
+<%@page import="java.util.Set"%>
 <%@page import="controladores.Login"%>
+<%@page import="controladores.Cuponeras"%>
+<%@page import="logica.DataCuponera"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +13,7 @@
 </head>
 <%
 	DataActividad actividad = (DataActividad) request.getAttribute("actividad");
-
+	Set<DataCuponera> cuponeras= Cuponeras.getCuponeras();
 	InfoBasicaUser usr;
 	try {
 		usr = Login.getUsuarioLogueado(request);
@@ -18,7 +21,9 @@
 	catch(Exception ex) {
 		usr = null;
 	}
+	
 %>
+
 <body>
 	<jsp:include page="/WEB-INF/template/header.jsp" />
 	<!-- Begin page content -->
@@ -72,8 +77,30 @@
 					</div>
 					<div class="tab-pane fade" id="cuponeras" role="tabpanel"
 						aria-labelledby="cuponeras-tab">
-						<p class="card-text m-3"><a href="consultaCuponera.html">Pelota</a></p>
-						
+						<div class="m-3">
+						<table class="table table-hover">
+						<thead>
+    							<tr>
+     							 <th scope="col">#</th>
+     							 <th scope="col">Nombre</th>
+    							</tr>
+  							</thead>
+  							<tbody>
+  							<% 
+  							int i2 = 1;
+							for(DataCuponera nomcup :cuponeras) {
+							%>	
+   							 <tr>
+     						 <th scope="row"><%= i2%></th>
+      							<td><a href="consultaCuponera?cuponera=<%= nomcup.getNombre() %>"> <%= nomcup.getNombre()%></a></td> 
+    						</tr>
+    						<%
+    						i2++;
+							} 
+							%>	
+    					</tbody>
+					</table>
+					</div>
 					</div>
 					<div class="tab-pane fade" id="clases" role="tabpanel"
 						aria-labelledby="clases-tab">

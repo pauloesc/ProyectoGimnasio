@@ -77,7 +77,7 @@
 						</div>
 					</div>
 					<% 
-					nomcup= iter.next();
+					nomcup=iter.next();
 					%>	
 					<div class="col-sm-6">
 						<div class="card">
