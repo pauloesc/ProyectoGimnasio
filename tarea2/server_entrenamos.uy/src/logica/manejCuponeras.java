@@ -77,6 +77,21 @@ public class manejCuponeras {
 		
 		return resu;
 	}
+	
+	
+	public Set<String> getCuponerasdeCategoria (String categoria){
+		Set<String> resu= new HashSet<String>();
+		for (Iterator<String> iter=Cuponeras.keySet().iterator();iter.hasNext();) {
+			Cuponera cup=Cuponeras.get(iter.next());
+			Set<String> list=cup.getListaCategorias();		
+			if (list.contains(categoria)) {
+			    resu.add(cup.getNombre());
+			}
+		}
+		return resu;
+	}
+	
+	
 	public void EliminarManjeador() {
 		instancia.Cuponeras.clear();
 		instancia=null;

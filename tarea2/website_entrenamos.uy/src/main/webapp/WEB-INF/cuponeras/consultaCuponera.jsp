@@ -3,6 +3,7 @@
 <%@page import="controladores.ConsultaCategoria"%>
 
 <%@page import="logica.DataCuponera"%>
+<%@page import="logica.ParActividad"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.DateFormat"%>
@@ -114,16 +115,22 @@
     							</tr>
   							</thead>
   							<tbody>
+  							<% 
+  							int i = 1;
+  							Set<ParActividad> act=dtcuponera.getClases();
+							for(ParActividad paract :act) {
+								String aa=paract.getNombre();
+								int    n1=paract.getNumclase();
+							%>	
    							 <tr>
-     						 <th scope="row">1</th>
-      							<td> <a href="consultaActividadDeportiva.html">Voleibol</a> </td>
-     							 <td>7</td>
+     						 <th scope="row"><%= i  %></th>
+      							<td> <a href="consultaActividad?actividad=<%= aa%>"><%= aa%></a> </td>
+     							 <td><%= n1%></td>
     						</tr>
-    						<tr>
-      							<th scope="row">2</th>
-      							<td>Basquetbol </td>
-      							<td>18</td>
-    						</tr>  
+    						<%
+    						i++;
+							} 
+							%>	
   						</tbody>
 					</table>
 					
@@ -140,10 +147,19 @@
     							</tr>
   							</thead>
   							<tbody>
+  							<% 
+  							int i2 = 1;
+  							Set<String> cat=dtcuponera.getCategorias();
+							for(String categoria :cat) {
+							%>	
    							 <tr>
-     						 <th scope="row">1</th>
-      							<td><a href="consultaCategoria.html">Deportes</a></td> 
+     						 <th scope="row"><%= i2  %></th>
+      							<td><a href="consultaCategoria?categoria=<%= categoria  %>"><%= categoria %></a></td> 
     						</tr>
+    						<%
+    						i2++;
+							} 
+							%>	
     					</tbody>
 					</table>
 					

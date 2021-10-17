@@ -121,8 +121,30 @@ public class ctrlCuponeras implements IctrlCuponeras {
 	}
 	
 	
+	public Set<String> getCuponerasCategoria(String cat) {
+		manejCuponeras mCup = manejCuponeras.getinstance();
+		Set<String> resu=mCup.getCuponerasdeCategoria(cat);
+		return resu;
+    }
 	
-	
+	public Set<String> getCuponerasInstitucion(String inst){
+		Set<String> resu = new HashSet<String>();
+		
+		manejIDeportivas mID = manejIDeportivas.getinstance();
+		InstitucionDeportiva i = mID.buscarInstitucion(inst);
+		Set<String>  dad=i.darNombresActividadesDeportivas();
+		
+		manejCuponeras mCup = manejCuponeras.getinstance();
+		for (Iterator<String> iter=dad.iterator();iter.hasNext();) {
+			String act=iter.next();
+			Set<Cuponera> list=mCup.getCuponerasDeActividad(act);
+			for (Iterator<Cuponera> iter2=list.iterator();iter2.hasNext();) {
+				Cuponera cup=iter2.next();
+				    resu.add(cup.getNombre());
+			}
+		}
+		return resu;
+	}
 	
 	public void cargarDatosCuponeras() {
 		
