@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import excepciones.CuponeraNoExisteException;
+import excepciones.ActividadDeportivaNoExisteException;
 import logica.DataActividad;
 import logica.Fabrica;
 import logica.IctrlADeportivas;
@@ -37,9 +37,10 @@ public class ConsultaActividad extends HttpServlet
 		DataActividad actividad = null;
 		try {
 			actividad = ConsultaActividad.getDataActividad(act);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (ActividadDeportivaNoExisteException e) {
+			//resp.sendError(404); // la actividad no existe
+			req.getRequestDispatcher("/WEB-INF/errorpages/404.jsp").include(req, resp);
+			return;
 		}
 		
 		Set<String> cup;
@@ -60,15 +61,13 @@ public class ConsultaActividad extends HttpServlet
 		return acts;
 	}
 	
-	public static DataActividad getDataActividad(String act){
+	public static DataActividad getDataActividad(String act) throws ActividadDeportivaNoExisteException {
 		DataActividad acti;
-		try {
-			acti = ctrlADeportivas.getDataActividad(act);
-		} 
-		catch(Exception ex) {
-			acti = null;
-		}
-		return acti;
+		acti = ctrlADeportivas.getDataActividad(act);
+		if (acti != null) {
+			return acti;
+	 	} else
+	 		throw new ActividadDeportivaNoExisteException("No existe la Actividad Deportiva.");
 	}
 	
 	

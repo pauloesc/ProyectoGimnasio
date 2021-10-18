@@ -15,7 +15,7 @@
 	            <div class="col-md-12 text-center">
 	                <span class="display-1 d-block">404</span>
 	                <div class="mb-4 lead">La página que está buscando no existe.</div>
-	                <a href="/home" class="btn btn-link">Volver a Home</a>
+	                <a href=${pageContext.request.contextPath}/home class="btn btn-link">Volver a Home</a>
 	            </div>
 	        </div>
 	    </div>
