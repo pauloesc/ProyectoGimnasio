@@ -224,4 +224,22 @@ public class ctrlADeportivas implements IctrlADeportivas{
 		return dad;
     }
 
+	public Set<String> buscarActividades(String query) {
+		manejADeportivas mAD = manejADeportivas.getinstance();
+		ActividadDeportiva[] actsdeps = mAD.getActividades();
+		Set<String> results = new HashSet<String>();
+		
+		if (actsdeps != null) {
+            ActividadDeportiva actividad;
+
+            for (int i = 0; i < actsdeps.length; i++) {
+                actividad = actsdeps[i];
+                String nact = actividad.getNombre().toLowerCase();
+                if ( nact.contains(query) ) 
+                	results.add(actividad.getNombre());
+            }     
+        }
+		return results;
+	}
+
 }

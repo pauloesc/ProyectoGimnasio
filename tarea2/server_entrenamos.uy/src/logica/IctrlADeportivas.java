@@ -50,5 +50,7 @@ public interface IctrlADeportivas {
     public abstract void cambiarEstado(String n, EstadoActi est);
     
     public abstract Set<String> getActividadesIngresadas() throws ActividadDeportivaNoExisteException;
+    
+    public abstract Set<String> buscarActividades(String query);
 }
 
