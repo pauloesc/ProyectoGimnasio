@@ -67,26 +67,26 @@ public class InstitucionDeportiva {
 
 	public Set<String> darNombresActividadesDeportivas() {
 		Set<String> res = new HashSet<String>();    	
-		for( Iterator<ActividadDeportiva> it = this.actividadesDeportivasInst.iterator(); it.hasNext();) { 
-		    String x = (String)it.next().getNombre();
+		for ( Iterator<ActividadDeportiva> it = this.actividadesDeportivasInst.iterator(); it.hasNext();) { 
+		    String x = (String) it.next().getNombre();
 		    res.add(x);
 		}
 		return res;
     }
 	
-	public InformacionActividad InformacionProfesor(String usuario) {
+	public InformacionActividad informacionProfesor(String usuario) {
 		
 		InformacionActividad i = new InfoActividadProfe( this.nombre, this.descripcion, this.url );
 	
 		Iterator<ActividadDeportiva> info = this.actividadesDeportivasInst.iterator();
 	
-		while(info.hasNext()) {
+		while (info.hasNext()) {
 			
 			ActividadDeportiva aux = info.next();
 			DtActividadesDeportivas aux_ad = aux.informacionProfesor(usuario);
 			
 			//si la actividad deportiva tiene clases adentro...
-			if( ! (aux_ad.getClases().isEmpty()) ) {
+			if ( ! (aux_ad.getClases().isEmpty()) ) {
 				i.agregarInfo(aux_ad);				
 			}
 			

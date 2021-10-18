@@ -8,61 +8,31 @@ package presentacion;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
-import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.Button;
-import java.awt.TextArea;
-
 import javax.swing.BorderFactory;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
-
 import excepciones.ActividadDeportivaNoExisteException;
-import excepciones.ClaseLlenaException;
-import excepciones.ClaseNoExisteException;
-import excepciones.CuponeraNoExisteException;
-import excepciones.InstitucionDeportivaNoExisteException;
-import logica.Cuponera;
 import logica.DataActividad;
-import logica.DataCuponera;
-import logica.DataInstitucion;
-import logica.DtClase;
 import logica.EstadoActi;
 import logica.IctrlADeportivas;
 import logica.IctrlClases;
 import logica.IctrlIDeportivas;
 import logica.IctrlCuponeras;
-
-import javax.swing.JSpinner;
-import javax.swing.JComponent;
-import java.awt.Choice;
 import java.awt.Color;
-import java.awt.Container;
-
 import javax.swing.JList;
 import javax.swing.JOptionPane;
-import javax.swing.JTree;
-import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-
-import java.awt.event.ItemListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Set;
-import java.awt.event.ItemEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -107,7 +77,7 @@ public class AceptaRechazaActividadDeportiva extends JInternalFrame {
 		
 		setTitle("Aceptar/Rechazar Actividad Deportiva");
 		setClosable(true);
-		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);;
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		getContentPane().setLayout(null);
 		setBounds(10, 5, 459, 591);
 		
@@ -222,14 +192,13 @@ public class AceptaRechazaActividadDeportiva extends JInternalFrame {
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (comboBoxEstado.getSelectedIndex() == 1)
-					controlADeportivas.cambiarEstado(listIngresadas.getSelectedValue(),EstadoActi.ACEPTADA);
+					controlADeportivas.cambiarEstado(listIngresadas.getSelectedValue(), EstadoActi.ACEPTADA);
 				if (comboBoxEstado.getSelectedIndex() == 2)
-					controlADeportivas.cambiarEstado(listIngresadas.getSelectedValue(),EstadoActi.RECHAZADA);
+					controlADeportivas.cambiarEstado(listIngresadas.getSelectedValue(), EstadoActi.RECHAZADA);
 				limpiarFormulario();
 				try {
 					cargarIngresadas();
 				} catch (ActividadDeportivaNoExisteException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
@@ -242,13 +211,13 @@ public class AceptaRechazaActividadDeportiva extends JInternalFrame {
     // Método que permite cargar los datos de la Actividad Deportiva seleccionada
     // provistos por la operación del sistema getDataActividad().
     // Se invoca el método luego de haber seleccionado la Institución Deportiva y la Actividad Deportiva
-    public void cargarDatosActividad(String n) {
+    public void cargarDatosActividad(String nact) {
     	
         Date date = null;  
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");  
     
         try {
-            DataActividad act = controlADeportivas.getDataActividad(n);
+            DataActividad act = controlADeportivas.getDataActividad(nact);
             txtNombre.setText(act.getNombre());
             //txtInstitucion.setText(act.get)
             txtDescripcion.setText(act.getDescripcion());
@@ -279,7 +248,7 @@ public class AceptaRechazaActividadDeportiva extends JInternalFrame {
     	modeloIngresadas = new DefaultListModel<String>();
     	ing = controlADeportivas.getActividadesIngresadas();
     	Iterator<String> it = ing.iterator();
-		while(it.hasNext()){            	
+		while (it.hasNext()) {            	
 			modeloIngresadas.addElement(it.next());
         }
 		listIngresadas.setModel(modeloIngresadas);

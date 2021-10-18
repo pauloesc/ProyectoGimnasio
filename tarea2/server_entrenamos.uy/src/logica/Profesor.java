@@ -10,7 +10,7 @@ public class Profesor extends Usuario {
 	private String bio;
 	private String website;
 	private InstitucionDeportiva inst;
-	private Set<ActividadDeportiva> actDep = new HashSet();
+	private Set<ActividadDeportiva> actDep = new HashSet<ActividadDeportiva>();
 	
 	public String getNombreInstitucion() {
 		return inst.getNombre();
@@ -98,7 +98,7 @@ public class Profesor extends Usuario {
 	
 	@Override
 	public InformacionActividad InformacionActividad(String usuario) {
-		return this.inst.InformacionProfesor(usuario);
+		return this.inst.informacionProfesor(usuario);
 	}
 	
 	public void asociarseActividadDeportiva( ActividadDeportiva actDep) {

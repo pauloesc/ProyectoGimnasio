@@ -16,7 +16,7 @@ public class DataActividad {
     private String descripcion;
     private Float duracion;
     private Float costo;
-    private Date fecha_alta;
+    private Date fechaAlta;
     private EstadoActi estado;
     private Set<String> categorias;
     private String profesor;
@@ -35,12 +35,12 @@ public class DataActividad {
         this.setInstitucion(new String());
     }
 
-    public DataActividad(String nombre, String descripcion, Float duracion, Float costo, Date fecha_alta, EstadoActi est, Set<String> categ, String prof, String inst, String img) {
+    public DataActividad(String nombre, String descripcion, Float duracion, Float costo, Date fechaAlta, EstadoActi est, Set<String> categ, String prof, String inst, String img) {
         this.setNombre(nombre);
         this.setDescripcion(descripcion);
         this.setDuracion(duracion);
         this.setCosto(costo);
-        this.setFechaAlta(fecha_alta);
+        this.setFechaAlta(fechaAlta);
         this.setEstado(est);
         this.setCategorias(categ);
         this.setProfesor(prof);
@@ -65,7 +65,7 @@ public class DataActividad {
     }
     
     public Date getFechaAlta() {
-        return fecha_alta;
+        return fechaAlta;
     }
     
     public EstadoActi getEstado() {
@@ -110,7 +110,7 @@ public class DataActividad {
     }
     
     private void setFechaAlta(Date fecha_alta) {
-        this.fecha_alta = fecha_alta;
+        this.fechaAlta = fecha_alta;
     }
     
     private void setEstado(EstadoActi est) {

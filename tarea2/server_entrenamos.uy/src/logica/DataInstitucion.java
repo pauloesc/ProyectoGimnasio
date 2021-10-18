@@ -55,8 +55,7 @@ public class DataInstitucion {
     }
     
     @Override
-    public boolean equals(Object o)
-    {
+    public boolean equals(Object o) {
         if (o == this) 
             return true;
         
@@ -64,7 +63,7 @@ public class DataInstitucion {
             return false;
         }
         
-        DataInstitucion dataInst = (DataInstitucion)o;
+        DataInstitucion dataInst = (DataInstitucion) o;
         if (nombre == dataInst.getNombre() && descripcion == dataInst.getDescripcion() && url == dataInst.getURL())
         	return true;
         else
