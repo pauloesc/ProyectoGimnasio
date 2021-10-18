@@ -96,6 +96,14 @@
 		<url-pattern>/altaClase</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<servlet-name>ListaCuponeras</servlet-name>
+		<servlet-class>controladores.ListaCuponeras</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ListaCuponeras</servlet-name>
+		<url-pattern>/listaCuponeras</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>ConsultaCuponera</servlet-name>
 		<servlet-class>controladores.ConsultaCuponera</servlet-class>
 	</servlet>
