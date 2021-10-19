@@ -5,6 +5,7 @@ import java.util.Set;
 import excepciones.ActividadDeportivaNoExisteException;
 import excepciones.ActividadDeportivaRepetidaException;
 
+import java.awt.color.ProfileDataException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -92,8 +93,15 @@ public class ctrlADeportivas implements IctrlADeportivas{
                 	inst = institucion.getNombre();
                 }
             }
-			String prof = "falta funcion";
-			DataActividad dtact = new DataActividad(actividad.getNombre(), actividad.getDescripcion(), actividad.getDuracion(), actividad.getCosto(), actividad.getFechaAlta(), actividad.getEstado(), actividad.darCategorias(), prof, inst, actividad.getImagen());
+			Profesor prof = actividad.getCreador();
+			String nprof = null;
+			if (prof != null) {
+				nprof = prof.getNombre(); 
+			}
+			else {
+				nprof = "Sin profesor asignado.";
+			}
+			DataActividad dtact = new DataActividad(actividad.getNombre(), actividad.getDescripcion(), actividad.getDuracion(), actividad.getCosto(), actividad.getFechaAlta(), actividad.getEstado(), actividad.darCategorias(), nprof, inst, actividad.getImagen());
 			return dtact;	
 	 	} else
          throw new ActividadDeportivaNoExisteException("No existe la Actividad Deportiva.");
