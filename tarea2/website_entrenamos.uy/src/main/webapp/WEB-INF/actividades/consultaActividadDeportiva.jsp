@@ -3,6 +3,7 @@
 <%@page import="logica.InfoBasicaUser"%>
 <%@page import="logica.InfoBasicaSocio"%>
 <%@page import="java.util.Set"%>
+<%@page import="java.util.Iterator"%>
 <%@page import="controladores.Login"%>
 <%@page import="controladores.Cuponeras"%>
 
@@ -13,7 +14,7 @@
 </head>
 <%
 	DataActividad actividad = (DataActividad) request.getAttribute("actividad");
-	Set<String> cup= (Set<String>) request.getAttribute("cup");
+	Set<String> cup = (Set<String>) request.getAttribute("cup");
 	InfoBasicaUser usr;
 	try {
 		usr = Login.getUsuarioLogueado(request);
@@ -41,7 +42,15 @@
 								<h1 class="card-title"><%= actividad.getNombre()  %></h1>
 								<p class="card-text"><%= actividad.getDescripcion()  %></p>
 								<div class="categorias">
-									<span class="badge badge-info">Deportes</span>
+								<% 
+								Iterator<String> iter = actividad.getCategorias().iterator();
+								while (iter.hasNext()) {
+									String ncat = iter.next();
+								%>								
+									<a href="consultaCategoria?categoria=<%= ncat  %>"><span class="badge badge-info"><%= ncat  %></span></a>
+								<% 
+								}
+								%>
 								</div>
 							</div>
 						</div>
@@ -69,7 +78,7 @@
 					<div class="tab-pane fade show active" id="detalles"
 						role="tabpanel" aria-labelledby="detalles-tab">
 						<div class="m-3">
-						<p>Institución Deportiva: <%= actividad.getInstitucion() %></p>
+						<p>Institución Deportiva: <a class="nombreInst" href="consultaInstitucion?institucion=<%= actividad.getInstitucion() %>"><%= actividad.getInstitucion() %></a></p>
 						<p>Profesor: <%= actividad.getProfesor() %></p>
 						<p>Costo: $<%= actividad.getCosto()  %></p>
 						<p>Duración: <%= actividad.getDuracion()  %> minutos</p>

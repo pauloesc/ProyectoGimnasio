@@ -78,9 +78,21 @@ public class ctrlADeportivas implements IctrlADeportivas{
 	public DataActividad getDataActividad(String n) throws ActividadDeportivaNoExisteException {
 		manejADeportivas mD = manejADeportivas.getinstance();
 		ActividadDeportiva actividad = mD.buscarActividad(n);
+		
+		manejIDeportivas mID = manejIDeportivas.getinstance();
+		InstitucionDeportiva[] instituciones = mID.getInstituciones();
+		InstitucionDeportiva institucion;
+		String inst = null;
 		if (actividad != null) {
+			
+			for (int i = 0; i < instituciones.length; i++) {
+                institucion = instituciones[i];
+                Set<String> acts = institucion.darNombresActividadesDeportivas();
+                if ( acts.contains(actividad.getNombre()) ) {
+                	inst = institucion.getNombre();
+                }
+            }
 			String prof = "falta funcion";
-			String inst = "falta funcion";
 			DataActividad dtact = new DataActividad(actividad.getNombre(), actividad.getDescripcion(), actividad.getDuracion(), actividad.getCosto(), actividad.getFechaAlta(), actividad.getEstado(), actividad.darCategorias(), prof, inst, actividad.getImagen());
 			return dtact;	
 	 	} else
