@@ -36,66 +36,15 @@ int cont = 0;
 <title>entrenamos.uy</title>
 </head>
 <body>
-
-	<header>
-		<!-- Fixed navbar -->
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-			<div class="container">
-				<a class="navbar-brand" href="#">Entrenamos.uy</a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse"
-					data-target="#navbarEntrenamos" aria-controls="navbarEntrenamos"
-					aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-
-				<div class="collapse navbar-collapse" id="navbarEntrenamos">
-					<ul class="navbar-nav mr-auto">
-						<li class="nav-item active"><a class="nav-link"
-							href="home.html">Home <span class="sr-only">(current)</span></a>
-						</li>
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#"
-							id="navbarDropdownMenu" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false">Menu</a>
-							<div class="dropdown-menu" aria-labelledby="navbarDropdownMenu">
-								<a class="dropdown-item" href="#">Usuarios</a> 
-							</div></li>
-					</ul>
-					<form class="form-inline my-2 my-md-0">
-						<input class="form-control" type="text" placeholder="Buscar"
-							aria-label="Search">
-					</form>
-				</div>
-			</div>
-			<div class="btn-group">
-				<a href="login.html" class="btn btn-light btn-sm">Iniciar Sesion</a>
-				<a href="#" class="btn btn-light btn-sm">Registrarse</a>
-			</div>
-		</nav>
-
-	</header>
+<jsp:include page="/WEB-INF/template/header.jsp" />
 
 	<!-- Begin page content -->
 	<main role="main" class="container">
 		<div class="row">
-			<div class="col-6 col-md-4">
-				<ul id="listaInstituciones" class="list-group my-4">
-					<li class="list-group-item"><strong>Instituciones
-							Deportivas</strong></li>
-					<li class="list-group-item"><a
-						href="consultaInstitucion.html" class="">Telon</a></li>
-					<li class="list-group-item">Instituto Natural</li>
-					<li class="list-group-item">Olympic</li>
-					<li class="list-group-item">Fuerza Bruta</li>
-				</ul>
-				<ul id="listaCategorias" class="list-group my-4">
-					<li class="list-group-item"><strong>Categorías</strong></li>
-					<li class="list-group-item">Al aire libre</li>
-					<li class="list-group-item"><a href="consultaCategoria.html" class="">Deportes</a></li>
-					<li class="list-group-item">Fintess</li>
-					<li class="list-group-item">Gimnasia</li>
-				</ul>
-			</div>
+
+		<jsp:include page="/WEB-INF/template/sidebar.jsp" />
+		
+		
 			<div class="col-12 col-md-8">
 				<h1>Usuarios</h1>
 				<ul class="nav nav-tabs" id="myTab" role="tablist">
