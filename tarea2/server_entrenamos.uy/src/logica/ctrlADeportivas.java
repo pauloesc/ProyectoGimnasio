@@ -65,7 +65,9 @@ public class ctrlADeportivas implements IctrlADeportivas{
             // sino los DataActividad asociados a la Institución seleccionada.
             for (int i = 0; i < actsdeps.length; i++) {
                 actividad = actsdeps[i];
-                dad[i] = new DataActividad(actividad.getNombre(), actividad.getDescripcion(), actividad.getDuracion(), actividad.getCosto(), actividad.getFechaAlta(), actividad.getEstado(), actividad.darCategorias(), actividad.getCreador().getNombre(), actividad.getCreador().getNombreInstitucion(), actividad.getImagen());
+                if (actividad.getEstado() == EstadoActi.ACEPTADA) {
+                    dad[i] = new DataActividad(actividad.getNombre(), actividad.getDescripcion(), actividad.getDuracion(), actividad.getCosto(), actividad.getFechaAlta(), actividad.getEstado(), actividad.darCategorias(), actividad.getCreador().getNombre(), actividad.getCreador().getNombreInstitucion(), actividad.getImagen());
+                }
             }
 
             return dad;
@@ -135,6 +137,28 @@ public class ctrlADeportivas implements IctrlADeportivas{
                 actividad = actsdeps[i];
                 if (actividad.getEstado() == EstadoActi.INGRESADA) 
                 	dad.add(actividad.getNombre());
+                }
+
+            return dad;
+        } else
+            throw new ActividadDeportivaNoExisteException("No existen Actividades Deportivas en estado INGRESADA en el sistema.");
+
+    }
+	
+	public Set<DataActividad> getDataActividadesIngresadas() throws ActividadDeportivaNoExisteException {
+        manejADeportivas mAD = manejADeportivas.getinstance();
+        ActividadDeportiva[] actsdeps = mAD.getActividades();
+
+        if (actsdeps != null) {
+        	Set<DataActividad> dad = new HashSet<DataActividad>();
+            ActividadDeportiva actividad;
+
+            // Para separar lógica de presentación, no se deben devolver las Actividades,
+            // sino los DataActividad asociados a la Institución seleccionada.
+            for (int i = 0; i < actsdeps.length; i++) {
+                actividad = actsdeps[i];
+                if (actividad.getEstado() == EstadoActi.ACEPTADA) 
+                	dad.add(this.getDataActividad(actividad.getNombre()));
                 }
 
             return dad;

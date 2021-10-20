@@ -2,7 +2,9 @@
 <%@page import="controladores.ConsultaCuponera"%>
 <%@page import="controladores.Cuponeras"%>
 <%@page import="java.util.Set"%>
+<%@page import="java.util.Date"%>
 <%@page import="logica.DataCuponera"%>
+<%@page import="logica.DataActividad"%>
 <%@page import="java.util.Iterator"%>
 
 
@@ -20,6 +22,7 @@
 		cuponeras = null;
 	
 	}
+	Set<DataActividad> actividades = (Set<DataActividad>) request.getAttribute("actividades");
 %>
 
 
@@ -103,33 +106,23 @@
 				</div>
 		
 				<div class="card-group my-4">
+				<% 
+				Iterator<DataActividad> iterac = actividades.iterator();
+				for (int i = 1; i < 4; i++) {
+					DataActividad acti = iterac.next();
+				%>	
 					<div class="card">
-						<img src="./resources/img/a1.jpg" class="card-img-top" alt="...">
+						<img src="./resources/img/actividades/<%= acti.getImagen() %>" class="card-img-top" alt="<%= acti.getNombre() %>">
 						<div class="card-body">
 							<h5 class="card-title">
-								<a href="consultaActividadDeportiva.html" class="">Voleibol</a>
+								<a href="consultaActividad?actividad=<%= acti.getNombre() %>" class=""><%= acti.getNombre() %></a>
 							</h5>
-							<p class="card-text">Voleibol en todas sus formas.</p>
+							<p class="card-text"><%= acti.getDescripcion() %></p>
 						</div>
 					</div>
-					<div class="card">
-						<img src="./resources/img/a2.jpg" class="card-img-top" alt="...">
-						<div class="card-body">
-							<h5 class="card-title">
-								<a href="#" class="">Atletismo</a>
-							</h5>
-							<p class="card-text">100m , 200m, postas y carreras con obstaculos.</p>
-						</div>
-					</div>
-					<div class="card">
-						<img src="./resources/img/a3.jpg" class="card-img-top" alt="...">
-						<div class="card-body">
-							<h5 class="card-title">
-								<a href="#" class="">Basquetbol</a>
-							</h5>
-							<p class="card-text">Basquetbol para todos.</p>
-						</div>
-					</div>
+				<% 
+					}
+				%>
 				</div>
 			</div>
 		</div>

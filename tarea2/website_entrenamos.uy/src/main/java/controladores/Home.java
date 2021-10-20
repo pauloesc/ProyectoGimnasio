@@ -6,6 +6,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import excepciones.ActividadDeportivaNoExisteException;
+import logica.DataActividad;
 import logica.Fabrica;
 import logica.IctrlADeportivas;
 import logica.IctrlCategorias;
@@ -13,6 +16,9 @@ import logica.IctrlClases;
 import logica.IctrlCuponeras;
 import logica.IctrlIDeportivas;
 import logica.IctrlUsuarios;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
 * Home Servlet.
@@ -22,6 +28,8 @@ import logica.IctrlUsuarios;
 public class Home extends HttpServlet {
   
   private static final long serialVersionUID = 1L;
+  private Fabrica fabrica = Fabrica.getInstance();
+  private IctrlADeportivas ctrlActDep = fabrica.getIctrlADeportivas();
   
   /**
   * Constructor servlet. Carga datos si aún no fueron cargados.
@@ -31,15 +39,14 @@ public class Home extends HttpServlet {
   public Home() {
     super();
     // carga de datos hardcodeados de la logica
-    Fabrica fabrica = Fabrica.getInstance();
+    
     
     IctrlIDeportivas ctrlInstDep = fabrica.getIctrlIDeportivas();
     ctrlInstDep.cargarDatosIDeportivas();
     
     IctrlCategorias ctrlCat = fabrica.getIctrlCategorias();       
     ctrlCat.cargarCategorias();
-    
-    IctrlADeportivas ctrlActDep = fabrica.getIctrlADeportivas();
+        
     ctrlActDep.cargarDatosADeportivas();
     
     IctrlUsuarios ctrlUsuarios = fabrica.getIctrlUsuarios();
@@ -90,9 +97,14 @@ public class Home extends HttpServlet {
       throws ServletException, IOException {
 
     iniciarSesion(req);
-
+    Set<DataActividad> acts;
+	try {
+		acts = ctrlActDep.getDataActividadesIngresadas();
+	} catch (ActividadDeportivaNoExisteException e) {
+		acts = null;
+	}
+    req.setAttribute("actividades", acts);
     req.getRequestDispatcher("/WEB-INF/home/home.jsp").forward(req, resp);
-
   }
   
   /**
