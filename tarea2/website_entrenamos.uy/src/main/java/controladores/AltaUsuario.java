@@ -84,7 +84,7 @@ public class AltaUsuario extends HttpServlet {
 		String img = "";
 		
 		//si es profesor
-		if( esProfesor.equals("on") ) {
+		if( esProfesor != null && esProfesor.equals("on") ) {
 			
 			InfoBasicaProfesor infoP = new InfoBasicaProfesor(
 																nickname,
