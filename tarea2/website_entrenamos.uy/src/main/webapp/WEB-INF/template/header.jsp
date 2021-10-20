@@ -26,7 +26,7 @@
 			<div class="collapse navbar-collapse" id="navbarEntrenamos">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active"><a class="nav-link"
-						href="index.html">Home <span class="sr-only">(current)</span></a>
+						href="home">Home <span class="sr-only">(current)</span></a>
 					</li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#"
@@ -34,7 +34,7 @@
 						aria-haspopup="true" aria-expanded="false">Menu</a>
 						<div class="dropdown-menu"
 							aria-labelledby="navbarDropdownMenu">
-							<a class="dropdown-item" href="consultaUsuario.html">Usuarios</a>
+							<a class="dropdown-item" href="ListarUsuarios">Usuarios</a>
 							<% if (usr instanceof InfoBasicaProfesor) { %>
 								<a class="dropdown-item" href=${pageContext.request.contextPath}/altaActividad>Alta de Actividad Deportiva</a>
 								<a class="dropdown-item" href=${pageContext.request.contextPath}/altaClase>Alta de Dictado de Clase</a>
