@@ -231,7 +231,7 @@ boolean propioUsuario = (boolean) request.getAttribute("userPropio");
                               %>
                                  <tr>
                                     <th scope="row"></th>
-                                    <td> <a href="consultaActividadDeportiva.html"><%= infoP.getNombre() %></a></td>
+                                    <td> <a href="consultaActividad?actividad=<%= infoP.getNombre() %>  "><%= infoP.getNombre() %></a></td>
                                     <td><%= infoP.getDescripcion() %></td>
                                  </tr>
                                  
@@ -369,9 +369,9 @@ boolean propioUsuario = (boolean) request.getAttribute("userPropio");
                               %>
                                  <tr>
                                     <th scope="row">1</th>
-                                    <td><%= ii.getNombre() %></td>
+                                    <td> <a href="consultaActividad?actividad=<%= ii.getNombre() %>  "><%= ii.getNombre() %></a></td>
                                     <td><%= ii.getDescripcion() %></td>
-                                    <td>estado</td>
+                                    <td> estado	 </td>
                                  </tr>
 								<% } %>
                                  
