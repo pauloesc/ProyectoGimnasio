@@ -68,8 +68,10 @@ public class InstitucionDeportiva {
 	public Set<String> darNombresActividadesDeportivas() {
 		Set<String> res = new HashSet<String>();    	
 		for ( Iterator<ActividadDeportiva> iter = this.actividadesDeportivasInst.iterator(); iter.hasNext();) { 
-		    String nomact = (String) iter.next().getNombre();
-		    res.add(nomact);
+			ActividadDeportiva act = iter.next();
+		    String nomact = act.getNombre();
+		    if (act.getEstado() == EstadoActi.ACEPTADA)
+		    	res.add(nomact);
 		}
 		return res;
     }

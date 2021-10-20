@@ -194,11 +194,11 @@ public class ctrlADeportivas implements IctrlADeportivas{
 			altaActividadDeportiva("Telón", "denis" , "Voleibol", "Voleibol en todas sus formas.", 120f, 750f, fe2, cat2, "a2.jpg");
 			altaActividadDeportiva("Instituto Natural", null , "Aeróbica", "Para cuidar el aparato cardiovascular.", 110f, 800f, fe3, cat3, "a3.jpg");
 			altaActividadDeportiva("Fuerza Bruta", "TheBoss" , "Kickboxing", "En busca del nuevo campeón de boxeo.", 100f, 980f, fe4, cat4, "a4.jpg");
-			altaActividadDeportiva("Telón", "denis" , "Atletismo", "100m , 200m, postas y carreras con obstaculos.", 150f, 500f, fe5, cat5, "a1.jpg");
-			altaActividadDeportiva("Telón", "Nelson" , "Basquetbol", "Basquetbol para todos.", 80f, 450f, fe6, cat6, "a1.jpg");
-			altaActividadDeportiva("Fuerza Bruta", null , "Aparatos II", "Clases de aparatos avanzados", 60f, 1500f, fe7, cat7, "a1.jpg");
-			altaActividadDeportiva("Instituto Natural", "clazar" , "Pilates", "El método Pilates combina diferentes capacidades físicas.", 45f, 600f, fe8, cat8, "a1.jpg");
-			altaActividadDeportiva("Telón", "denis" , "Voleibol II", "Voleibol avanzado.", 120f, 1000f, fe9, new HashSet<String>(), null);
+			altaActividadDeportiva("Telón", "denis" , "Atletismo", "100m , 200m, postas y carreras con obstaculos.", 150f, 500f, fe5, cat5, "a5.jpg");
+			altaActividadDeportiva("Telón", "Nelson" , "Basquetbol", "Basquetbol para todos.", 80f, 450f, fe6, cat6, null);
+			altaActividadDeportiva("Fuerza Bruta", null , "Aparatos II", "Clases de aparatos avanzados", 60f, 1500f, fe7, cat7, null);
+			altaActividadDeportiva("Instituto Natural", "clazar" , "Pilates", "El método Pilates combina diferentes capacidades físicas.", 45f, 600f, fe8, cat8, "a8.jpg");
+			altaActividadDeportiva("Telón", "denis" , "Voleibol II", "Voleibol avanzado.", 120f, 1000f, fe9, new HashSet<String>(), "a9.jpeg");
 			altaActividadDeportiva("Telón", "denis" , "Basquetbol II", "Basquetbol avanzado.", 80f, 600f, fe10, new HashSet<String>(), null);
 		} catch (ActividadDeportivaRepetidaException e) {
 			//e.printStackTrace();

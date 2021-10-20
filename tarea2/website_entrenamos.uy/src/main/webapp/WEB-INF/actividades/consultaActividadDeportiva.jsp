@@ -22,7 +22,6 @@
 	catch(Exception ex) {
 		usr = null;
 	}
-	
 %>
 
 <body>
@@ -35,7 +34,11 @@
 				<div class="card mb-3" style="max-width: auto;">
 					<div class="row no-gutters">
 						<div class="col-md-4">
+						<% if (actividad.getImagen() != null) { %>
 							<img class="d-block w-100" src="./resources/img/actividades/<%= actividad.getImagen()  %>" alt="<%= actividad.getImagen()  %>">
+						<% } else {  %>
+							<img class="d-block w-100" src="./resources/img/actividades/noimg.jpg" alt="No tiene imagen.">
+						<% } %>
 						</div>
 						<div class="col-md-8">
 							<div class="card-body">
