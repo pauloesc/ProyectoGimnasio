@@ -280,7 +280,7 @@ boolean propioUsuario = (boolean) request.getAttribute("userPropio");
 									%>
                                  <tr>
                                     <th scope="row">1</th>
-                                    <td> <a href="consultaDictadoDeClases.html"><%= infoCla.getNombre() %></a></td>
+                                    <td> <a href="consultaClase?clase=<%= infoCla.getNombre() %> "><%= infoCla.getNombre() %></a></td>
                                     <td><%= infoCla.getFecha() %></td>
                                     <td><%= infoP.getNombre() %></td>
                                  </tr>
@@ -327,7 +327,7 @@ boolean propioUsuario = (boolean) request.getAttribute("userPropio");
 									
                                  <tr>
                                     <th scope="row">1</th>
-                                    <td> <a href="consultaDictadoDeClases.html"> <%= infoS.getNombre() %> </a></td>
+                                    <td> <a href="consultaClase?clase=<%= infoS.getNombre() %>  "> <%= infoS.getNombre() %> </a></td>
                                     <td> <%= infoS.getFecha() %> </td>
                                     <td> <%= infoS.getNomAct() %> </td>
                                  </tr>
