@@ -170,7 +170,7 @@ boolean propioUsuario = (boolean) request.getAttribute("userPropio");
                                              <label for="last_name">
                                                 <strong>Descripcion</strong>
                                              </label>
-                                             <textarea  rows="1" readonly type="text" class="form-control"><%= infoBasicaP.getInstitucion() %></textarea>
+                                             <textarea  rows="1" readonly type="text" class="form-control"><%= infoBasicaP.getDesc() %></textarea>
                                           </div>
                                        </div>
                                     </div>

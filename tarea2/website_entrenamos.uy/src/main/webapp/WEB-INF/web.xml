@@ -125,6 +125,16 @@
 		<url-pattern>/listarUsuarios</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>AltaUsuario</servlet-name>
+		<servlet-class>controladores.AltaUsuario</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AltaUsuario</servlet-name>
+		<url-pattern>/altaUsuario</url-pattern>
+	</servlet-mapping>
+
+	
 	<session-config>
 		<session-timeout>30</session-timeout>
 	</session-config>
