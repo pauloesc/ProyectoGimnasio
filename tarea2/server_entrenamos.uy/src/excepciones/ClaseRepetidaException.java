@@ -2,7 +2,7 @@ package excepciones;
 
 @SuppressWarnings("serial")
 public class ClaseRepetidaException extends Exception {
-	public ClaseRepetidaException(String s) {
-		super(s);
+	public ClaseRepetidaException(String err) {
+		super(err);
 	}
 }

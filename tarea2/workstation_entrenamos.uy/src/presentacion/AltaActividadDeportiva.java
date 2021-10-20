@@ -82,7 +82,7 @@ public class AltaActividadDeportiva extends JInternalFrame {
 		
 		addInternalFrameListener(new InternalFrameAdapter() {
 			@Override
-			public void internalFrameClosing(InternalFrameEvent e) {
+			public void internalFrameClosing(InternalFrameEvent eve) {
 				limpiarFormulario();
 				setVisible(false);
 			}
@@ -113,14 +113,14 @@ public class AltaActividadDeportiva extends JInternalFrame {
 		txtDescripcion = new JTextArea();
 		txtDescripcion.addKeyListener(new KeyAdapter() {
 			@Override
-			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_TAB) {
-                    if (e.getModifiersEx() > 0) {
+			public void keyPressed(KeyEvent eve) {
+				if (eve.getKeyCode() == KeyEvent.VK_TAB) {
+                    if (eve.getModifiersEx() > 0) {
                     	txtDescripcion.transferFocusBackward();
                     } else {
                     	txtDescripcion.transferFocus();
                     }
-                    e.consume();
+                    eve.consume();
                 }
 			}
 		});
@@ -165,7 +165,7 @@ public class AltaActividadDeportiva extends JInternalFrame {
 		JButton buttonCancelar = new JButton("Cancelar");
 		buttonCancelar.setBounds(251, 401, 100, 32);
 		buttonCancelar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent eve) {
                 limpiarFormulario();
                 setVisible(false);
             }
@@ -292,9 +292,9 @@ public class AltaActividadDeportiva extends JInternalFrame {
         Set<String> dcat;
         modeloCategorias = new DefaultListModel<String>();
         dcat = controlCategorias.getCategorias();
-        Iterator<String> it = dcat.iterator();
-		while(it.hasNext()){            	
-			modeloCategorias.addElement(it.next());
+        Iterator<String> iter = dcat.iterator();
+		while(iter.hasNext()){            	
+			modeloCategorias.addElement(iter.next());
 		}
         listCategorias.setModel(modeloCategorias);
 

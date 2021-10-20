@@ -54,7 +54,7 @@ public class AltaInstitucionDeportiva extends JInternalFrame {
 		
 		addInternalFrameListener(new InternalFrameAdapter() {
 			@Override
-			public void internalFrameClosing(InternalFrameEvent e) {
+			public void internalFrameClosing(InternalFrameEvent eve) {
 				limpiarFormulario();
 				setVisible(false);
 			}
@@ -77,14 +77,14 @@ public class AltaInstitucionDeportiva extends JInternalFrame {
 		txtDescripcion = new JTextArea();
 		txtDescripcion.addKeyListener(new KeyAdapter() {
 			@Override
-			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_TAB) {
-                    if (e.getModifiersEx() > 0) {
+			public void keyPressed(KeyEvent eve) {
+				if (eve.getKeyCode() == KeyEvent.VK_TAB) {
+                    if (eve.getModifiersEx() > 0) {
                     	txtDescripcion.transferFocusBackward();
                     } else {
                     	txtDescripcion.transferFocus();
                     }
-                    e.consume();
+                    eve.consume();
                 }
 			}
 		});
@@ -115,7 +115,7 @@ public class AltaInstitucionDeportiva extends JInternalFrame {
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.setBounds(277, 205, 100, 32);
 		btnCancelar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent eve) {
                 limpiarFormulario();
                 setVisible(false);
             }

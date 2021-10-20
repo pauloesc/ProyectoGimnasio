@@ -42,7 +42,7 @@ public class Principal {
     private IctrlADeportivas ICAD;
     private IctrlCuponeras ICC;
     private IctrlClases ICCL;
-    private IctrlUsuarios IU;
+    private IctrlUsuarios IUSR;
     private IctrlCategorias ICAT;
     private ConsultaUsuario ConsultaUsuarioInternalFrame;  
     private ModificarUsuario ModificarUsuarioInternalFrame;
@@ -86,7 +86,7 @@ public class Principal {
         ICID = fabrica.getIctrlIDeportivas();
         ICC = fabrica.getIctrlCuponeras();
         ICCL = fabrica.getIctrlClases();
-        IU = fabrica.getIctrlUsuarios();
+        IUSR = fabrica.getIctrlUsuarios();
         ICAT = fabrica.getIctrlCategorias();       
         IctrlUsuarios ICU = fabrica.getIctrlUsuarios();
         
@@ -182,7 +182,7 @@ public class Principal {
             	ICID.cargarDatosIDeportivas();
             	ICAT.cargarCategorias();
                 ICAD.cargarDatosADeportivas();
-                IU.cargarUsuarios();
+                IUSR.cargarUsuarios();
                 ICC.cargarDatosCuponeras();
                 ICCL.cargarDatosClases();
                 ICCL.cargarRegistroAClases();
@@ -208,7 +208,7 @@ public class Principal {
 
         JMenuItem menuItemRegistrar = new JMenuItem("Alta de Usuario");
         menuItemRegistrar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent eve) {
                 // Muestro el InternalFrame para registrar un usuario
             	AltaUsuarioInternalFrame.setVisible(true);
             }
@@ -217,7 +217,7 @@ public class Principal {
 
         JMenuItem menuItemVerInfo = new JMenuItem("Consulta de Usuario");
         menuItemVerInfo.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent eve) {
                 // Muestro el InternalFrame para ver información de un usuario
             	ConsultaUsuarioInternalFrame.CargarDatos();
             	ConsultaUsuarioInternalFrame.setVisible(true);
@@ -229,7 +229,7 @@ public class Principal {
 
         JMenuItem menuItemModificaUsuario = new JMenuItem("Modificar Datos de Usuario");
         menuItemModificaUsuario.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent eve) {
             	ModificarUsuarioInternalFrame.CargarDatos();
             	ModificarUsuarioInternalFrame.setVisible(true);
 
@@ -242,7 +242,7 @@ public class Principal {
 
         JMenuItem menuItemRegistrarID = new JMenuItem("Alta de Institución Deportiva");
         menuItemRegistrarID.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent eve) {
                 // Muestro el InternalFrame para registrar una Institucion Deportiva
             	altaInstDeportivaInternalFrame.setVisible(true);
             }
@@ -255,7 +255,7 @@ public class Principal {
 
         JMenuItem menuItemRegistrarAD = new JMenuItem("Alta de Actividad Deportiva");
         menuItemRegistrarAD.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent eve) {
                 // Muestro el InternalFrame para registrar una Actividad Deportiva
             	altaActividadDeportivaInternalFrame.setVisible(true);
             	altaActividadDeportivaInternalFrame.cargarInstituciones();
@@ -265,7 +265,7 @@ public class Principal {
 
         JMenuItem menuItemVerInfoAD = new JMenuItem("Consulta de Actividad Deportiva");
         menuItemVerInfoAD.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent eve) {
                 // Muestro el InternalFrame para ver información de una Actividad Deportiva
             	consultaActividadDeportivaInternalFrame.setVisible(true);
             	consultaActividadDeportivaInternalFrame.cargarInstituciones();
@@ -275,13 +275,13 @@ public class Principal {
         
         JMenuItem menuItemAceptarRechazarAD = new JMenuItem("Aceptar/Rechazar Actividad Deportiva");
         menuItemAceptarRechazarAD.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent eve) {
                 // Muestro el InternalFrame para cambiar el estado de una Actividad Deportiva
             	try {
 					AceptaRechazaADInternalFrame.cargarIngresadas();
-				} catch (ActividadDeportivaNoExisteException e1) {
+				} catch (ActividadDeportivaNoExisteException ex1) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					ex1.printStackTrace();
 				}
             	AceptaRechazaADInternalFrame.setVisible(true);
   
@@ -294,7 +294,7 @@ public class Principal {
 
         JMenuItem menuItemAltaClase = new JMenuItem("Alta de dictado de Clase");
         menuItemAltaClase.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent eve) {
                 // Muestro el InternalFrame para registrar una clase
             	altaDictadoDeClasesInternalFrame.cargarFormulario();
             	altaDictadoDeClasesInternalFrame.setVisible(true);
@@ -306,7 +306,7 @@ public class Principal {
 
         JMenuItem menuItemVerInfoClase = new JMenuItem("Consulta de dictado de Clase");
         menuItemVerInfoClase.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent eve) {
                 // Muestro el InternalFrame para ver información de una clase
             	consultaDictadoDeClasesFrame.cargarFormulario();
             	consultaDictadoDeClasesFrame.setVisible(true);
@@ -318,7 +318,7 @@ public class Principal {
 
         JMenuItem menuItemRegistrarClase = new JMenuItem("Registro a dictado de Clase");
         menuItemRegistrarClase.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent eve) {
             	RegistroDictadoDeClasesFrame.cargarFormulario();
             	RegistroDictadoDeClasesFrame.setVisible(true);
 
@@ -331,7 +331,7 @@ public class Principal {
 
         JMenuItem menuItemRegistrarCuponera = new JMenuItem("Crear Cuponera de Actividades Deportivas");
         menuItemRegistrarCuponera.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent eve) {
                 // Muestro el InternalFrame para registrar un usuario
             	CrearCuponeraInternalFrame.setVisible(true);
             }
@@ -340,7 +340,7 @@ public class Principal {
        
         JMenuItem menuAgregaADCuponera = new JMenuItem("Agregar Actividad Deportiva a Cuponera");
         menuAgregaADCuponera.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent eve) {
                 // Muestro el InternalFrame para ver la lista de todos los usuarios,
                 // cargando previamente la lista
             	AgregarActividadaCuponeraInternalFrame.cargarCuponeras();
@@ -352,7 +352,7 @@ public class Principal {
         
         JMenuItem menuItemVerInfoCuponera = new JMenuItem("Consulta de Cuponeras de Actividades Deportivas");
         menuItemVerInfoCuponera.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent eve) {
                 // Muestro el InternalFrame para ver información de un usuario
             	ConsultarCuponeraInternalFrame.cargarCuponeras();
             	ConsultarCuponeraInternalFrame.setVisible(true);
@@ -366,7 +366,7 @@ public class Principal {
 	
 	    JMenuItem menuItemRegistrarCat = new JMenuItem("Alta de Categoria");
 	    menuItemRegistrarCat.addActionListener(new ActionListener() {
-	        public void actionPerformed(ActionEvent e) {
+	        public void actionPerformed(ActionEvent eve) {
 	            // Muestro el InternalFrame para registrar una categoria
 	        	AltaCategoriaFrame.setVisible(true);
 	        }

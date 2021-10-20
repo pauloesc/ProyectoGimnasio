@@ -1,7 +1,7 @@
 package excepciones;
 
 /**
- * Excepción utilizada para indicar la inexistencia de una Actividad Deportiva en el sistema.
+ * Excepción utilizada para indicar la inexistencia de una Actividad Deportiva.
  * 
  * @author mbarrera
  *

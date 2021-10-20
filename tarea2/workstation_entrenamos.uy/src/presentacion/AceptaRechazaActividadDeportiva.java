@@ -62,7 +62,7 @@ public class AceptaRechazaActividadDeportiva extends JInternalFrame {
 	public AceptaRechazaActividadDeportiva(IctrlIDeportivas icid, IctrlADeportivas icad, IctrlCuponeras icup, IctrlClases icla, ConsultaDictadoDeClases consultaClase, ConsultarCuponera consultaCuponera) {
 		addInternalFrameListener(new InternalFrameAdapter() {
 			@Override
-			public void internalFrameClosing(InternalFrameEvent e) {
+			public void internalFrameClosing(InternalFrameEvent eve) {
 				limpiarFormulario();
 				setVisible(false);
 			}
@@ -190,7 +190,7 @@ public class AceptaRechazaActividadDeportiva extends JInternalFrame {
 		
 		btnGuardar = new JButton("Guardar");
 		btnGuardar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent eve) {
 				if (comboBoxEstado.getSelectedIndex() == 1)
 					controlADeportivas.cambiarEstado(listIngresadas.getSelectedValue(), EstadoActi.ACEPTADA);
 				if (comboBoxEstado.getSelectedIndex() == 2)
@@ -198,8 +198,8 @@ public class AceptaRechazaActividadDeportiva extends JInternalFrame {
 				limpiarFormulario();
 				try {
 					cargarIngresadas();
-				} catch (ActividadDeportivaNoExisteException e1) {
-					e1.printStackTrace();
+				} catch (ActividadDeportivaNoExisteException ex1) {
+					ex1.printStackTrace();
 				}
 			}
 		});
@@ -247,9 +247,9 @@ public class AceptaRechazaActividadDeportiva extends JInternalFrame {
     	Set<String> ing;
     	modeloIngresadas = new DefaultListModel<String>();
     	ing = controlADeportivas.getActividadesIngresadas();
-    	Iterator<String> it = ing.iterator();
-		while (it.hasNext()) {            	
-			modeloIngresadas.addElement(it.next());
+    	Iterator<String> iter = ing.iterator();
+		while (iter.hasNext()) {            	
+			modeloIngresadas.addElement(iter.next());
         }
 		listIngresadas.setModel(modeloIngresadas);
     }

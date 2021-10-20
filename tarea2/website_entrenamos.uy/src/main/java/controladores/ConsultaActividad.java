@@ -32,6 +32,7 @@ public class ConsultaActividad extends HttpServlet
 	private void processRequest(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException 
 	{
+		req.setCharacterEncoding("UTF-8");
 		String act = req.getParameter("actividad");
 		//verificar que institucion existe y sino llevar a errorPage
 		DataActividad actividad = null;

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package logica;
 
 import java.util.Date;
@@ -13,12 +10,12 @@ public class Compra {
 
 		private Date fecha;
 		private Cuponera cup;
-		private Map<String,Integer> cantClases;
+		private Map<String, Integer> cantClases;
 		
 		
 		public Compra(Date fec, Cuponera cupo, Set<String> act) {
-			this.fecha=fec;
-			this.cup=cupo;
+			this.fecha = fec;
+			this.cup = cupo;
 			if (!cupo.isComprada()) {
 				cupo.setComprada(true);
 			}
@@ -59,14 +56,18 @@ public class Compra {
 		}
 
 		public boolean tienecuponera(String nombre) {
-			return nombre==cup.getNombre();
+			return nombre == cup.getNombre();
 			
 		}
+		
 		public Cuponera getCup() {
 			return cup;
 		}
 
-
+		public Date getFechaCompra() {
+			return fecha;
+		}
+		
 		public DataCuponera DarInformacionCuponera() {
 			return cup.getDataCuponera();
 		}

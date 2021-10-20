@@ -16,9 +16,9 @@ public class InstitucionDeportiva {
     private String url;
     private Set<ActividadDeportiva> actividadesDeportivasInst;
 
-    public InstitucionDeportiva(String n, String de, String url) {
-        this.setNombre(n);
-        this.setDescripcion(de);
+    public InstitucionDeportiva(String nomb, String desc, String url) {
+        this.setNombre(nomb);
+        this.setDescripcion(desc);
         this.setURL(url);
         this.actividadesDeportivasInst = new HashSet<ActividadDeportiva>();
     }
@@ -35,12 +35,12 @@ public class InstitucionDeportiva {
         return url;
     }
 
-    public void setNombre(String n) {
-        this.nombre = n;
+    public void setNombre(String nom) {
+        this.nombre = nom;
     }
 
-    public void setDescripcion(String de) {
-        this.descripcion = de;
+    public void setDescripcion(String des) {
+        this.descripcion = des;
     }
 
     public void setURL(String url) {
@@ -55,10 +55,10 @@ public class InstitucionDeportiva {
 		if (actividadesDeportivasInst.isEmpty())
             return null;
         else {
-            Object[] o = actividadesDeportivasInst.toArray();
-            ActividadDeportiva[] actividadesdeportivas = new ActividadDeportiva[o.length];
-            for (int i = 0; i < o.length; i++) {
-                actividadesdeportivas[i] = (ActividadDeportiva) o[i];
+            Object[] obj = actividadesDeportivasInst.toArray();
+            ActividadDeportiva[] actividadesdeportivas = new ActividadDeportiva[obj.length];
+            for (int i = 0; i < obj.length; i++) {
+                actividadesdeportivas[i] = (ActividadDeportiva) obj[i];
             }
 
             return actividadesdeportivas;
@@ -67,16 +67,16 @@ public class InstitucionDeportiva {
 
 	public Set<String> darNombresActividadesDeportivas() {
 		Set<String> res = new HashSet<String>();    	
-		for ( Iterator<ActividadDeportiva> it = this.actividadesDeportivasInst.iterator(); it.hasNext();) { 
-		    String x = (String) it.next().getNombre();
-		    res.add(x);
+		for ( Iterator<ActividadDeportiva> iter = this.actividadesDeportivasInst.iterator(); iter.hasNext();) { 
+		    String nomact = (String) iter.next().getNombre();
+		    res.add(nomact);
 		}
 		return res;
     }
 	
 	public InformacionActividad informacionProfesor(String usuario) {
 		
-		InformacionActividad i = new InfoActividadProfe( this.nombre, this.descripcion, this.url );
+		InformacionActividad infoac = new InfoActividadProfe( this.nombre, this.descripcion, this.url );
 	
 		Iterator<ActividadDeportiva> info = this.actividadesDeportivasInst.iterator();
 	
@@ -87,12 +87,12 @@ public class InstitucionDeportiva {
 			
 			//si la actividad deportiva tiene clases adentro...
 			if ( ! (aux_ad.getClases().isEmpty()) ) {
-				i.agregarInfo(aux_ad);				
+				infoac.agregarInfo(aux_ad);				
 			}
 			
 		}
 				
-		return i;		
+		return infoac;		
 	}
 	
 }

@@ -43,10 +43,10 @@ public class manejADeportivas {
             return null;
         else {
             Collection<ActividadDeportiva> actdeps = actividadesDeportivas.values();
-            Object[] o = actdeps.toArray();
-            ActividadDeportiva[] actividadesdeportivas = new ActividadDeportiva[o.length];
-            for (int i = 0; i < o.length; i++) {
-                actividadesdeportivas[i] = (ActividadDeportiva) o[i];
+            Object[] obj = actdeps.toArray();
+            ActividadDeportiva[] actividadesdeportivas = new ActividadDeportiva[obj.length];
+            for (int i = 0; i < obj.length; i++) {
+                actividadesdeportivas[i] = (ActividadDeportiva) obj[i];
             }
 
             return actividadesdeportivas;

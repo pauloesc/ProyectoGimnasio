@@ -19,7 +19,7 @@ public interface IctrlIDeportivas {
      * @param url URL de la Institución Deportiva.
      * @throws InstitucionDeportivaRepetidaException Si el nombre ya se encuentra registrado en el sistema.
      */
-    public abstract void altaInstitucion(String n, String de, String url) throws InstitucionDeportivaRepetidaException;
+    public abstract void altaInstitucion(String nom, String des, String url) throws InstitucionDeportivaRepetidaException;
     
     public abstract DataInstitucion getInstitucion(String nombre) throws InstitucionDeportivaNoExisteException;
     

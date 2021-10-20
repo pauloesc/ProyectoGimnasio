@@ -90,7 +90,7 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 	public ConsultaActividadDeportiva(IctrlIDeportivas icid, IctrlADeportivas icad, IctrlCuponeras icup, IctrlClases icla, ConsultaDictadoDeClases consultaClase, ConsultarCuponera consultaCuponera) {
 		addInternalFrameListener(new InternalFrameAdapter() {
 			@Override
-			public void internalFrameClosing(InternalFrameEvent e) {
+			public void internalFrameClosing(InternalFrameEvent eve) {
 				limpiarFormulario();
 				setVisible(false);
 			}
@@ -121,7 +121,7 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 		
 		comboBoxInstDeportivas = new JComboBox<DataInstitucion>();
 		comboBoxInstDeportivas.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent eve) {
 				if (nolimpio) {
 					cargarActividades(comboBoxInstDeportivas.getSelectedItem().toString());
 					comboBoxActDeportivas.setEnabled(true);
@@ -142,7 +142,7 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 		comboBoxActDeportivas = new JComboBox<DataActividad>();
 		comboBoxActDeportivas.setEnabled(false);
 		comboBoxActDeportivas.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent eve) {
 				if (nolimpio)
 					cargarDatosActividad(comboBoxActDeportivas.getSelectedItem().toString());
 			}
@@ -288,8 +288,8 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
             modelo = new DefaultComboBoxModel<DataActividad>(controlADeportivas.getActividades(nid));
             modelo.setSelectedItem(null);
             comboBoxActDeportivas.setModel(modelo);
-        } catch (ActividadDeportivaNoExisteException e) {
-        	JOptionPane.showMessageDialog(this, e.getMessage(), "Consulta Actividad Deportiva", JOptionPane.ERROR_MESSAGE);
+        } catch (ActividadDeportivaNoExisteException exe) {
+        	JOptionPane.showMessageDialog(this, exe.getMessage(), "Consulta Actividad Deportiva", JOptionPane.ERROR_MESSAGE);
         }
 
     }
@@ -297,13 +297,13 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
     // Método que permite cargar los datos de la Actividad Deportiva seleccionada
     // provistos por la operación del sistema getDataActividad().
     // Se invoca el método luego de haber seleccionado la Institución Deportiva y la Actividad Deportiva
-    public void cargarDatosActividad(String n) {
+    public void cargarDatosActividad(String nom) {
     	
         Date date = null;  
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");  
     
         try {
-            DataActividad act = controlADeportivas.getDataActividad(n);
+            DataActividad act = controlADeportivas.getDataActividad(nom);
             txtNombre.setText(act.getNombre());
             txtDescripcion.setText(act.getDescripcion());
             txtDuracion.setText(act.getDuracion().toString());
@@ -313,21 +313,21 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
             String strDate = dateFormat.format(date);
             
             txtFechaAlta.setText(strDate);            
-        } catch (ActividadDeportivaNoExisteException e) {
-        	JOptionPane.showMessageDialog(this, e.getMessage(), "Consulta Actividad Deportiva",	JOptionPane.ERROR_MESSAGE);
+        } catch (ActividadDeportivaNoExisteException exe) {
+        	JOptionPane.showMessageDialog(this, exe.getMessage(), "Consulta Actividad Deportiva",	JOptionPane.ERROR_MESSAGE);
         	setVisible(false);
         }
         
         Set<String> dcu;
         modeloCuponeras = new DefaultListModel<String>();
 		try {
-			dcu = controlCuponeras.getCuponerasActividad(n);
-			Iterator<String> it = dcu.iterator();
-			while(it.hasNext()){            	
-	               modeloCuponeras.addElement(it.next());
+			dcu = controlCuponeras.getCuponerasActividad(nom);
+			Iterator<String> iter = dcu.iterator();
+			while(iter.hasNext()){            	
+	               modeloCuponeras.addElement(iter.next());
 	            }
-		} catch (CuponeraNoExisteException e) {
-			JOptionPane.showMessageDialog(this, e.getMessage(), "Consulta Actividad Deportiva",	JOptionPane.ERROR_MESSAGE);
+		} catch (CuponeraNoExisteException exe) {
+			JOptionPane.showMessageDialog(this, exe.getMessage(), "Consulta Actividad Deportiva",	JOptionPane.ERROR_MESSAGE);
 		}
         
         listCuponeras.setModel(modeloCuponeras);
@@ -335,13 +335,13 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
         Set<String> dcla;
         modeloClases = new DefaultListModel<String>();
         try {
-			dcla = controlClases.mostrarClasesDeActividadDeportiva(n);
-	        Iterator<String> it = dcla.iterator();
-	        while(it.hasNext()){            	
-	        	modeloClases.addElement(it.next());
+			dcla = controlClases.mostrarClasesDeActividadDeportiva(nom);
+	        Iterator<String> iter = dcla.iterator();
+	        while(iter.hasNext()){            	
+	        	modeloClases.addElement(iter.next());
 			}
-		} catch (ClaseNoExisteException e) {
-			JOptionPane.showMessageDialog(this, e.getMessage(), "Consulta Actividad Deportiva",	JOptionPane.ERROR_MESSAGE);
+		} catch (ClaseNoExisteException exe) {
+			JOptionPane.showMessageDialog(this, exe.getMessage(), "Consulta Actividad Deportiva",	JOptionPane.ERROR_MESSAGE);
 		}
 
         
@@ -350,13 +350,13 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
         Set<String> dcat;
         modeloCategorias = new DefaultListModel<String>();
         try {
-			dcat = controlADeportivas.getDataActividad(n).getCategorias();
-			Iterator<String> it = dcat.iterator();
-			while(it.hasNext()){            	
-				modeloCategorias.addElement(it.next());
+			dcat = controlADeportivas.getDataActividad(nom).getCategorias();
+			Iterator<String> iter = dcat.iterator();
+			while(iter.hasNext()){            	
+				modeloCategorias.addElement(iter.next());
 			}  
-		} catch (ActividadDeportivaNoExisteException e) {
-			JOptionPane.showMessageDialog(this, e.getMessage(), "Consulta Actividad Deportiva",	JOptionPane.ERROR_MESSAGE);
+		} catch (ActividadDeportivaNoExisteException exe) {
+			JOptionPane.showMessageDialog(this, exe.getMessage(), "Consulta Actividad Deportiva",	JOptionPane.ERROR_MESSAGE);
 		}
 		     
         listCategorias.setModel(modeloCategorias);

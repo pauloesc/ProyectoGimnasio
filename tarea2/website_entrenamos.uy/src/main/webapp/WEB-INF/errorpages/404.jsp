@@ -14,7 +14,7 @@
 	        <div class="row justify-content-center">
 	            <div class="col-md-12 text-center">
 	                <span class="display-1 d-block">404</span>
-	                <div class="mb-4 lead">La página que está buscando no existe.</div>
+	                <div class="mb-4 lead">No pudimos encontrar el recurso solicitado en el servidor.</div>
 	                <a href=${pageContext.request.contextPath}/home class="btn btn-link">Volver a Home</a>
 	            </div>
 	        </div>

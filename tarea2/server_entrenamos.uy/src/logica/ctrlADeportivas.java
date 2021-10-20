@@ -4,8 +4,6 @@ import java.util.Set;
 
 import excepciones.ActividadDeportivaNoExisteException;
 import excepciones.ActividadDeportivaRepetidaException;
-
-import java.awt.color.ProfileDataException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -25,32 +23,32 @@ public class ctrlADeportivas implements IctrlADeportivas{
 	 public ctrlADeportivas() {
 	 }
 
-	public void altaActividadDeportiva(String nid, String pid, String n, String de, Float dur, Float c, Date fa, Set<String> cats, String img) throws ActividadDeportivaRepetidaException {
-		manejADeportivas mD = manejADeportivas.getinstance();
-		manejIDeportivas mID = manejIDeportivas.getinstance();
-		manejUsuarios mU = manejUsuarios.getInstance();
-        ActividadDeportiva actdep = mD.buscarActividad(n);
-        Profesor crea = mU.darProfesor(pid);
+	public void altaActividadDeportiva(String nid, String pid, String nom, String des, Float dur, Float cos, Date falt, Set<String> cats, String img) throws ActividadDeportivaRepetidaException {
+		manejADeportivas mADep = manejADeportivas.getinstance();
+		manejIDeportivas mIDep = manejIDeportivas.getinstance();
+		manejUsuarios mUsr = manejUsuarios.getInstance();
+        ActividadDeportiva actdep = mADep.buscarActividad(nom);
+        Profesor crea = mUsr.darProfesor(pid);
         
         if (actdep != null)
-            throw new ActividadDeportivaRepetidaException("La actividad deportiva " + n + " ya esta registrada.");
+            throw new ActividadDeportivaRepetidaException("La actividad deportiva " + nom + " ya esta registrada.");
         
-        manejCategorias mC = manejCategorias.getInstance();
+        manejCategorias mCat = manejCategorias.getInstance();
     	
         Map<String, Categoria> categorias = new HashMap<String, Categoria>();
         
         for (Iterator<String> it = cats.iterator(); it.hasNext();) { 
-        	Categoria cat = mC.findCategoria(it.next());
+        	Categoria cat = mCat.findCategoria(it.next());
         	if (cat != null)
         		categorias.put(cat.getNombre(), cat);	
     		}
-        actdep = new ActividadDeportiva(n, crea, de, dur, c, fa, categorias, img);
-        mD.agregarActividad(actdep); 
+        actdep = new ActividadDeportiva(nom, crea, des, dur, cos, falt, categorias, img);
+        mADep.agregarActividad(actdep); 
         
         if (crea != null)
         	crea.asociarseActividadDeportiva(actdep);
         
-        InstitucionDeportiva indep = mID.buscarInstitucion(nid);
+        InstitucionDeportiva indep = mIDep.buscarInstitucion(nid);
         indep.addActividadDeportiva(actdep);
 	}
 
@@ -76,9 +74,9 @@ public class ctrlADeportivas implements IctrlADeportivas{
 
     }
 
-	public DataActividad getDataActividad(String n) throws ActividadDeportivaNoExisteException {
-		manejADeportivas mD = manejADeportivas.getinstance();
-		ActividadDeportiva actividad = mD.buscarActividad(n);
+	public DataActividad getDataActividad(String nom) throws ActividadDeportivaNoExisteException {
+		manejADeportivas mDep = manejADeportivas.getinstance();
+		ActividadDeportiva actividad = mDep.buscarActividad(nom);
 		
 		manejIDeportivas mID = manejIDeportivas.getinstance();
 		InstitucionDeportiva[] instituciones = mID.getInstituciones();
@@ -110,16 +108,16 @@ public class ctrlADeportivas implements IctrlADeportivas{
 
 	public Set<String> darNombresActividadesDeportivas(String inst) {
 		manejIDeportivas mID = manejIDeportivas.getinstance();
-		InstitucionDeportiva i = mID.buscarInstitucion(inst);
+		InstitucionDeportiva insti = mID.buscarInstitucion(inst);
 		
-		return i.darNombresActividadesDeportivas();
+		return insti.darNombresActividadesDeportivas();
 	}
 	
 	public Set<String> mostrarClasesVigentesDeActividadDeportiva(String nomAct) {
-		manejADeportivas mD = manejADeportivas.getinstance();
-		ActividadDeportiva ac = mD.buscarActividad(nomAct);
+		manejADeportivas mADep = manejADeportivas.getinstance();
+		ActividadDeportiva act = mADep.buscarActividad(nomAct);
 		
-		return ac.darNombreClasesVigentes();
+		return act.darNombreClasesVigentes();
 
     }
 	
@@ -145,9 +143,9 @@ public class ctrlADeportivas implements IctrlADeportivas{
 
     }
 	
-	public void cambiarEstado(String n, EstadoActi est) {
-		manejADeportivas mD = manejADeportivas.getinstance();
-		ActividadDeportiva actividad = mD.buscarActividad(n);
+	public void cambiarEstado(String nom, EstadoActi est) {
+		manejADeportivas mADep = manejADeportivas.getinstance();
+		ActividadDeportiva actividad = mADep.buscarActividad(nom);
 		
 		actividad.setEstado(est);
 		
@@ -155,73 +153,73 @@ public class ctrlADeportivas implements IctrlADeportivas{
 
 	public void cargarDatosADeportivas() {
 		
-		manejADeportivas mD = manejADeportivas.getinstance();
+		manejADeportivas mADep = manejADeportivas.getinstance();
 		
-		Set<String> c1 = new HashSet<String>();
-		c1.add("Fitness");
-		Set<String> c2 = new HashSet<String>();
-		c2.add("Deportes");
-		Set<String> c3 = new HashSet<String>();
-		c3.add("Gimnasia");
-		c3.add("Al aire libre");
-		Set<String> c4 = new HashSet<String>();
-		c4.add("Deportes");
-		Set<String> c5 = new HashSet<String>();
-		c5.add("Deportes");
-		Set<String> c6 = new HashSet<String>();
-		c6.add("Deportes");
-		Set<String> c7 = new HashSet<String>();
-		c7.add("Fitness");
-		Set<String> c8 = new HashSet<String>();
-		c8.add("Gimnasia");
+		Set<String> cat1 = new HashSet<String>();
+		cat1.add("Fitness");
+		Set<String> cat2 = new HashSet<String>();
+		cat2.add("Deportes");
+		Set<String> cat3 = new HashSet<String>();
+		cat3.add("Gimnasia");
+		cat3.add("Al aire libre");
+		Set<String> cat4 = new HashSet<String>();
+		cat4.add("Deportes");
+		Set<String> cat5 = new HashSet<String>();
+		cat5.add("Deportes");
+		Set<String> cat6 = new HashSet<String>();
+		cat6.add("Deportes");
+		Set<String> cat7 = new HashSet<String>();
+		cat7.add("Fitness");
+		Set<String> cat8 = new HashSet<String>();
+		cat8.add("Gimnasia");
 	
-		Date f1 = null, f2 = null, f3 = null, f4 = null, f5 = null, f6 = null, f7 = null, f8 = null, f9 = null, f10 = null;
+		Date fe1 = null, fe2 = null, fe3 = null, fe4 = null, fe5 = null, fe6 = null, fe7 = null, fe8 = null, fe9 = null, fe10 = null;
 		try {
-			f1 = new SimpleDateFormat("dd/MM/yy").parse("31/03/21");
-			f2 = new SimpleDateFormat("dd/MM/yy").parse("20/04/21");
-			f3 = new SimpleDateFormat("dd/MM/yy").parse("30/05/21");
-			f4 = new SimpleDateFormat("dd/MM/yy").parse("07/06/21");
-			f5 = new SimpleDateFormat("dd/MM/yy").parse("08/07/21");
-			f6 = new SimpleDateFormat("dd/MM/yy").parse("31/07/21");
-			f7 = new SimpleDateFormat("dd/MM/yy").parse("15/08/21");
-			f8 = new SimpleDateFormat("dd/MM/yy").parse("30/08/21");
-			f9 = new SimpleDateFormat("dd/MM/yy").parse("01/09/21");
-			f10 = new SimpleDateFormat("dd/MM/yy").parse("07/09/21");
+			fe1 = new SimpleDateFormat("dd/MM/yy").parse("31/03/21");
+			fe2 = new SimpleDateFormat("dd/MM/yy").parse("20/04/21");
+			fe3 = new SimpleDateFormat("dd/MM/yy").parse("30/05/21");
+			fe4 = new SimpleDateFormat("dd/MM/yy").parse("07/06/21");
+			fe5 = new SimpleDateFormat("dd/MM/yy").parse("08/07/21");
+			fe6 = new SimpleDateFormat("dd/MM/yy").parse("31/07/21");
+			fe7 = new SimpleDateFormat("dd/MM/yy").parse("15/08/21");
+			fe8 = new SimpleDateFormat("dd/MM/yy").parse("30/08/21");
+			fe9 = new SimpleDateFormat("dd/MM/yy").parse("01/09/21");
+			fe10 = new SimpleDateFormat("dd/MM/yy").parse("07/09/21");
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		}
 		//cargo actividades deportivas
 		try {
-			altaActividadDeportiva("Fuerza Bruta", "viktor" , "Aparatos y pesas", "Clases de aparatos, pesas y calistenia.", 90f, 550f, f1, c1, "a1.jpg");
-			altaActividadDeportiva("Telón", "denis" , "Voleibol", "Voleibol en todas sus formas.", 120f, 750f, f2, c2, "a2.jpg");
-			altaActividadDeportiva("Instituto Natural", null , "Aeróbica", "Para cuidar el aparato cardiovascular.", 110f, 800f, f3, c3, "a3.jpg");
-			altaActividadDeportiva("Fuerza Bruta", "TheBoss" , "Kickboxing", "En busca del nuevo campeón de boxeo.", 100f, 980f, f4, c4, "a4.jpg");
-			altaActividadDeportiva("Telón", "denis" , "Atletismo", "100m , 200m, postas y carreras con obstaculos.", 150f, 500f, f5, c5, "a1.jpg");
-			altaActividadDeportiva("Telón", "Nelson" , "Basquetbol", "Basquetbol para todos.", 80f, 450f, f6, c6, "a1.jpg");
-			altaActividadDeportiva("Fuerza Bruta", null , "Aparatos II", "Clases de aparatos avanzados", 60f, 1500f, f7, c7, "a1.jpg");
-			altaActividadDeportiva("Instituto Natural", "clazar" , "Pilates", "El método Pilates combina diferentes capacidades físicas.", 45f, 600f, f8, c8, "a1.jpg");
-			altaActividadDeportiva("Telón", "denis" , "Voleibol II", "Voleibol avanzado.", 120f, 1000f, f9, new HashSet<String>(), null);
-			altaActividadDeportiva("Telón", "denis" , "Basquetbol II", "Basquetbol avanzado.", 80f, 600f, f10, new HashSet<String>(), null);
+			altaActividadDeportiva("Fuerza Bruta", "viktor" , "Aparatos y pesas", "Clases de aparatos, pesas y calistenia.", 90f, 550f, fe1, cat1, "a1.jpg");
+			altaActividadDeportiva("Telón", "denis" , "Voleibol", "Voleibol en todas sus formas.", 120f, 750f, fe2, cat2, "a2.jpg");
+			altaActividadDeportiva("Instituto Natural", null , "Aeróbica", "Para cuidar el aparato cardiovascular.", 110f, 800f, fe3, cat3, "a3.jpg");
+			altaActividadDeportiva("Fuerza Bruta", "TheBoss" , "Kickboxing", "En busca del nuevo campeón de boxeo.", 100f, 980f, fe4, cat4, "a4.jpg");
+			altaActividadDeportiva("Telón", "denis" , "Atletismo", "100m , 200m, postas y carreras con obstaculos.", 150f, 500f, fe5, cat5, "a1.jpg");
+			altaActividadDeportiva("Telón", "Nelson" , "Basquetbol", "Basquetbol para todos.", 80f, 450f, fe6, cat6, "a1.jpg");
+			altaActividadDeportiva("Fuerza Bruta", null , "Aparatos II", "Clases de aparatos avanzados", 60f, 1500f, fe7, cat7, "a1.jpg");
+			altaActividadDeportiva("Instituto Natural", "clazar" , "Pilates", "El método Pilates combina diferentes capacidades físicas.", 45f, 600f, fe8, cat8, "a1.jpg");
+			altaActividadDeportiva("Telón", "denis" , "Voleibol II", "Voleibol avanzado.", 120f, 1000f, fe9, new HashSet<String>(), null);
+			altaActividadDeportiva("Telón", "denis" , "Basquetbol II", "Basquetbol avanzado.", 80f, 600f, fe10, new HashSet<String>(), null);
 		} catch (ActividadDeportivaRepetidaException e) {
 			//e.printStackTrace();
 		}
 		
-		ActividadDeportiva a1 = mD.buscarActividad("Aparatos y pesas");
-		a1.setEstado(EstadoActi.ACEPTADA);
-		ActividadDeportiva a2 = mD.buscarActividad("Voleibol");
-		a2.setEstado(EstadoActi.ACEPTADA);
-		ActividadDeportiva a3 = mD.buscarActividad("Aeróbica");
-		a3.setEstado(EstadoActi.ACEPTADA);
-		ActividadDeportiva a4 = mD.buscarActividad("Kickboxing");
-		a4.setEstado(EstadoActi.ACEPTADA);
-		ActividadDeportiva a5 = mD.buscarActividad("Atletismo");
-		a5.setEstado(EstadoActi.ACEPTADA);
-		ActividadDeportiva a6 = mD.buscarActividad("Basquetbol");
-		a6.setEstado(EstadoActi.ACEPTADA);
-		ActividadDeportiva a7 = mD.buscarActividad("Aparatos II");
-		a7.setEstado(EstadoActi.RECHAZADA);
-		ActividadDeportiva a9 = mD.buscarActividad("Voleibol II");
-		a9.setEstado(EstadoActi.RECHAZADA);
+		ActividadDeportiva act1 = mADep.buscarActividad("Aparatos y pesas");
+		act1.setEstado(EstadoActi.ACEPTADA);
+		ActividadDeportiva act2 = mADep.buscarActividad("Voleibol");
+		act2.setEstado(EstadoActi.ACEPTADA);
+		ActividadDeportiva act3 = mADep.buscarActividad("Aeróbica");
+		act3.setEstado(EstadoActi.ACEPTADA);
+		ActividadDeportiva act4 = mADep.buscarActividad("Kickboxing");
+		act4.setEstado(EstadoActi.ACEPTADA);
+		ActividadDeportiva act5 = mADep.buscarActividad("Atletismo");
+		act5.setEstado(EstadoActi.ACEPTADA);
+		ActividadDeportiva act6 = mADep.buscarActividad("Basquetbol");
+		act6.setEstado(EstadoActi.ACEPTADA);
+		ActividadDeportiva act7 = mADep.buscarActividad("Aparatos II");
+		act7.setEstado(EstadoActi.RECHAZADA);
+		ActividadDeportiva act9 = mADep.buscarActividad("Voleibol II");
+		act9.setEstado(EstadoActi.RECHAZADA);
 	}
 
 	@Override

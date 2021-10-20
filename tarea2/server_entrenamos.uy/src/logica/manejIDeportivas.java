@@ -43,10 +43,10 @@ public class manejIDeportivas {
             return null;
         else {
             Collection<InstitucionDeportiva> insdeps = institucionesDeportivas.values();
-            Object[] o = insdeps.toArray();
-            InstitucionDeportiva[] institucionesdeportivas = new InstitucionDeportiva[o.length];
-            for (int i = 0; i < o.length; i++) {
-                institucionesdeportivas[i] = (InstitucionDeportiva) o[i];
+            Object[] obj = insdeps.toArray();
+            InstitucionDeportiva[] institucionesdeportivas = new InstitucionDeportiva[obj.length];
+            for (int i = 0; i < obj.length; i++) {
+                institucionesdeportivas[i] = (InstitucionDeportiva) obj[i];
             }
 
             return institucionesdeportivas;

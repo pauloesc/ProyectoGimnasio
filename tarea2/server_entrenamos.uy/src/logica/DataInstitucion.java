@@ -55,15 +55,15 @@ public class DataInstitucion {
     }
     
     @Override
-    public boolean equals(Object o) {
-        if (o == this) 
+    public boolean equals(Object obj) {
+        if (obj == this) 
             return true;
         
-        if (!(o instanceof DataInstitucion)) {
+        if (!(obj instanceof DataInstitucion)) {
             return false;
         }
         
-        DataInstitucion dataInst = (DataInstitucion) o;
+        DataInstitucion dataInst = (DataInstitucion) obj;
         if (nombre == dataInst.getNombre() && descripcion == dataInst.getDescripcion() && url == dataInst.getURL())
         	return true;
         else

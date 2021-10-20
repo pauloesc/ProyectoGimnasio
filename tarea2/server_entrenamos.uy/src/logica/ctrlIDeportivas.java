@@ -16,13 +16,13 @@ public class ctrlIDeportivas implements IctrlIDeportivas{
 	 public ctrlIDeportivas() {
 	 }
 
-	public void altaInstitucion(String n, String de, String url) throws InstitucionDeportivaRepetidaException {
+	public void altaInstitucion(String nom, String des, String url) throws InstitucionDeportivaRepetidaException {
 		manejIDeportivas mID = manejIDeportivas.getinstance();
-        InstitucionDeportiva indep = mID.buscarInstitucion(n);
+        InstitucionDeportiva indep = mID.buscarInstitucion(nom);
         if (indep != null)
-            throw new InstitucionDeportivaRepetidaException("La institución deportiva " + n + " ya esta registrada.");
+            throw new InstitucionDeportivaRepetidaException("La institución deportiva " + nom + " ya esta registrada.");
 
-        indep = new InstitucionDeportiva(n, de, url);
+        indep = new InstitucionDeportiva(nom, des, url);
         mID.agregarInstitucion(indep);
 	}
 	
