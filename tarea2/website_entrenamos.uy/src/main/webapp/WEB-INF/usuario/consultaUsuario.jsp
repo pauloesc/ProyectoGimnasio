@@ -67,7 +67,7 @@ boolean propioUsuario = (boolean) request.getAttribute("userPropio");
                         </div>
                         <div class="card mb-3">
                            <div class="card-body text-center shadow">
-                              <button type="button" class="btn btn-success" style="font-size: smaller;">Seguir / Dejar de seguir</button>
+                              <a href="${pageContext.request.contextPath}/SeguirDejarDeSeguir?usuarioNick=<%=informacionUusario.getNickname() %> " ><button type="button" class="btn btn-success" style="font-size: smaller;"> Seguir / Dejar de seguir</button></a>
                            </div>
                         </div>
                      </div>

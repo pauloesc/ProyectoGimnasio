@@ -107,6 +107,15 @@
 		<url-pattern>/consultaUsuario</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>SeguirDejarDeSeguir</servlet-name>
+		<servlet-class>controladores.SeguirDejarDeSeguir</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SeguirDejarDeSeguir</servlet-name>
+		<url-pattern>/seguirDejarDeSeguir</url-pattern>
+	</servlet-mapping>
+	
 	
 	
 	<session-config>

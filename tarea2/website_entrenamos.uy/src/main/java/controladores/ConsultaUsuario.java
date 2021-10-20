@@ -109,7 +109,6 @@ public class ConsultaUsuario extends HttpServlet {
 		informacionUusario = ICU.InformacionBasicaUsuario(user);
 		usuariosSeguidores = ICU.UsuariosSeguidores(user);
 		usuariosSiguiendo = ICU.UsuariosSiguiendo(user);
-		
 		informacioActividad = ICU.InformacionActividad(informacionUusario.getNickname());
 		
 		
