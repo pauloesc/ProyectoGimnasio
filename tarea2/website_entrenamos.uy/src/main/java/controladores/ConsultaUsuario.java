@@ -73,8 +73,9 @@ public class ConsultaUsuario extends HttpServlet {
 		/**
 		*si el usuario no estaba en la url, entonces hago una redireccion al home
 		*/
-		if( user == null ) {
-			response.sendRedirect("/website_entrenamos.uy/home");
+		if( user == null || user.equals("") ) {
+			response.sendRedirect("/website_entrenamos.uy/ListarUsuarios");
+			return;
 		}
 		
 		
@@ -91,6 +92,7 @@ public class ConsultaUsuario extends HttpServlet {
 			*si hay algun problema
 			*/
 			response.sendRedirect("/website_entrenamos.uy/home");
+			return;
 		}
 		
 		

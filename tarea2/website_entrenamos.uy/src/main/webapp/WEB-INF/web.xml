@@ -116,7 +116,14 @@
 		<url-pattern>/seguirDejarDeSeguir</url-pattern>
 	</servlet-mapping>
 	
-	
+	<servlet>
+		<servlet-name>ListarUsuarios</servlet-name>
+		<servlet-class>controladores.ListarUsuarios</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ListarUsuarios</servlet-name>
+		<url-pattern>/listarUsuarios</url-pattern>
+	</servlet-mapping>
 	
 	<session-config>
 		<session-timeout>30</session-timeout>

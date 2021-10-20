@@ -91,13 +91,17 @@ public class ctrlUsuarios implements IctrlUsuarios {
 	}
 	
 	public void seguirUsuario(String seguidor, String seguido) {
-		Usuario sgr = manejador.findUsuario(seguidor);
-		sgr.seguir(manejador.findUsuario(seguido));
+		if( !seguidor.equals(seguido) ) {
+			Usuario sgr = manejador.findUsuario(seguidor);
+			sgr.seguir(manejador.findUsuario(seguido));
+		}
 	}
 	
 	public void dejarDeSeguirUsuario(String seguidor, String seguido) {
-		Usuario sgr = manejador.findUsuario(seguidor);
-		sgr.dejarDeSeguir(manejador.findUsuario(seguido));
+		if( !seguidor.equals(seguido) ) {
+			Usuario sgr = manejador.findUsuario(seguidor);
+			sgr.dejarDeSeguir(manejador.findUsuario(seguido));
+		}
 	}
 	
 	public boolean esSocio(String nick) throws UsuarioInexistenteException {
