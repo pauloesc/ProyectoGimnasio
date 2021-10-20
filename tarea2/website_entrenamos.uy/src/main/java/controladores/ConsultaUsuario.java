@@ -53,7 +53,21 @@ public class ConsultaUsuario extends HttpServlet {
 		/**
 		*obtengo el nickname del socio en la url
 		*/
-		String user = request.getParameter("usuarioNick");
+		 String user = (String) request.getParameter("usuarioNick");
+		
+		/**
+		*compruebo si quien esta visitando el perfil es el propio usuario
+		*/
+		boolean usuarioPropio;
+		String nickEnSesion = (String) request.getSession().getAttribute("nickname-user");
+		if ( nickEnSesion.equals(user) ) {
+			usuarioPropio = true;				
+		}
+		else {
+			usuarioPropio = false;
+		}
+		
+		
 		
 
 		/**
@@ -95,7 +109,8 @@ public class ConsultaUsuario extends HttpServlet {
 		informacionUusario = ICU.InformacionBasicaUsuario(user);
 		usuariosSeguidores = ICU.UsuariosSeguidores(user);
 		usuariosSiguiendo = ICU.UsuariosSiguiendo(user);
-		informacioActividad = ICU.InformacionActividad("denis");
+		
+		informacioActividad = ICU.InformacionActividad(informacionUusario.getNickname());
 		
 		
 		if ( "denis".equals(user) ) {
@@ -236,6 +251,7 @@ public class ConsultaUsuario extends HttpServlet {
 		request.setAttribute("usersSiguiendo", usuariosSiguiendo);
 		request.setAttribute("cuponeras", cuponerasSocio);
 		request.setAttribute("actDepIngRech", informacionProfesorActDepIngRech);
+		request.setAttribute("userPropio", usuarioPropio);
 		request.getRequestDispatcher("/WEB-INF/usuario/consultaUsuario.jsp").forward(request, response);
 
 	}

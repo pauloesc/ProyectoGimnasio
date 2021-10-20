@@ -26,6 +26,8 @@ Vector<DtActividadesDeportivas> informacionProfesor = (Vector<DtActividadesDepor
 
 Vector<String> usersEnSistema = (Vector<String>) request.getAttribute("usuariosEnSistema");
 
+boolean propioUsuario = (boolean) request.getAttribute("userPropio");
+
 %>
 
 <head>
@@ -341,7 +343,7 @@ Vector<String> usersEnSistema = (Vector<String>) request.getAttribute("usuariosE
                   <!-- fin bloque ** clases ** para socio -->
 
 					<!-- inicio bloque ** acd dep ing rech ** para profesor -->
-					<% if(!esSocio) { %>
+					<% if(!esSocio & propioUsuario) { %>
                   <div class="card shadow mb-5 soloProfesor propioProfesor">
                      <div id="act-dep-ing" class="card-header py-3">
                         <p class="text-primary m-0 font-weight-bold">Actividades deportivas ingresadas (Ingresada,
@@ -383,7 +385,7 @@ Vector<String> usersEnSistema = (Vector<String>) request.getAttribute("usuariosE
 
 
 						<!-- inicio bloque ** cuponeras ** para socio -->
-						<% if(esSocio) { %>
+						<% if(esSocio & propioUsuario) { %>
 						<div class="card shadow mb-5">
 							<div id="cuponeras" class="card-header py-3">
 								<p class="text-primary m-0 font-weight-bold">Cuponeras del
