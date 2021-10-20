@@ -19,7 +19,7 @@ InfoBasicaUser informacionUusario = (InfoBasicaUser) request.getAttribute("infoU
 Vector<String> usuariosSeguidores = (Vector<String>) request.getAttribute("usersSeguidores");
 Vector<String> usuariosSiguiendo = (Vector<String>) request.getAttribute("usersSiguiendo");
 Vector<DataCuponera> cuponerasSocio = (Vector<DataCuponera>) request.getAttribute("cuponeras");
-InfoActividadProfe actDepsIngRech = (InfoActividadProfe) request.getAttribute("actDepIngRech");
+Vector<DtActividadesDeportivas> actDepIR = (Vector<DtActividadesDeportivas>) request.getAttribute("actDepIngRech");
 
 Vector<DtClase> informacionSocio = (Vector<DtClase>) request.getAttribute("infoSocio");
 Vector<DtActividadesDeportivas> informacionProfesor = (Vector<DtActividadesDeportivas>) request.getAttribute("infoProfe");
@@ -359,18 +359,20 @@ Vector<String> usersEnSistema = (Vector<String>) request.getAttribute("usuariosE
                                  </tr>
                               </thead>
                               <tbody>
+                              <% 
+                              Iterator<DtActividadesDeportivas> infoAcInRecha = actDepIR.iterator();
+                              while ( infoAcInRecha.hasNext() ){
+                            	  DtActividadesDeportivas ii = infoAcInRecha.next();
+                              
+                              %>
                                  <tr>
                                     <th scope="row">1</th>
-                                    <td>Voleibol II</td>
-                                    <td>Voleibol avanzado.</td>
-                                    <td>Rechazada</td>
+                                    <td><%= ii.getNombre() %></td>
+                                    <td><%= ii.getDescripcion() %></td>
+                                    <td>estado</td>
                                  </tr>
-                                 <tr>
-                                    <th scope="row">2</th>
-                                    <td>Basquetbol II</td>
-                                    <td>Basequetbol avanzado.</td>
-                                    <td>Ingresada</td>
-                                 </tr>
+								<% } %>
+                                 
                               </tbody>
                            </table>
                         </div>

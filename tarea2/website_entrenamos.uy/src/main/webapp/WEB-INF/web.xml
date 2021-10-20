@@ -104,7 +104,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ConsultaUsuario</servlet-name>
-		<url-pattern>/ConsultaUsuario</url-pattern>
+		<url-pattern>/consultaUsuario</url-pattern>
 	</servlet-mapping>
 	
 	
