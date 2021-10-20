@@ -55,7 +55,7 @@
 				Iniciar Sesion
 			</a>
 			<a class="btn btn-dark" style="font-size:13px; font-weight: 500" 
-				href=# >
+				href="AltaUsuario" >
 				Registrarse
 			</a>
 		</div>
