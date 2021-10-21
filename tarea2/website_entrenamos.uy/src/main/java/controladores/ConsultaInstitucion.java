@@ -2,19 +2,22 @@ package controladores;
 
 import java.io.IOException;
 import java.util.Set;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
+import excepciones.ActividadDeportivaNoExisteException;
+import excepciones.InstitucionDeportivaNoExisteException;
+import logica.DataActividad;
+import logica.DataInstitucion;
 import logica.Fabrica;
+import logica.IctrlADeportivas;
 
 public class ConsultaInstitucion extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
+	
+	private static IctrlADeportivas ctrlADeportivas = Fabrica.getInstance().getIctrlADeportivas();
 	
 	public ConsultaInstitucion() 
 	{
@@ -23,30 +26,41 @@ public class ConsultaInstitucion extends HttpServlet
 	}
 	
 	private void processRequest(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException 
+			throws ServletException, IOException
 	{
 		String inst = req.getParameter("institucion");
-		//verificar que institucion existe y sino llevar a errorPage
-		Set<String> actividades;
+		DataInstitucion insti = null;
 		try {
-			actividades = ConsultaActividad.getActividadesInst(inst);
-		} 
-		catch(Exception ex) {
-			actividades = null;
+			insti = ConsultaInstitucion.getInstitucion(inst);
+		} catch (InstitucionDeportivaNoExisteException e) {
+			insti = null;
 		}
-		Set<String> cuponeras;
-		try {
-			cuponeras = ConsultaInstitucion.getCuponerasInst(inst);
+		if (insti == null) {
+			req.getRequestDispatcher("/WEB-INF/errorpages/404.jsp").include(req, resp);
 		} 
-		catch(Exception ex) {
-			cuponeras = null;
+		else {
+			Set<String> actividades;
+			try {
+				actividades = ConsultaInstitucion.getActividadesInst(inst);
+			} 
+			catch(Exception ex) {
+				actividades = null;
+	
+			}
+			Set<String> cuponeras;
+			try {
+				cuponeras = ConsultaInstitucion.getCuponerasInst(inst);
+			} 
+			catch(Exception ex) {
+				cuponeras = null;
+			}
+			
+			
+			req.setAttribute("actividades", actividades);
+			req.setAttribute("institucion", insti.getNombre());
+			req.setAttribute("cuponeras", cuponeras);
+			req.getRequestDispatcher("/WEB-INF/instituciones/consultaInstitucion.jsp").forward(req, resp);
 		}
-		
-		
-		req.setAttribute("actividades", actividades);
-		req.setAttribute("institucion", inst);
-		req.setAttribute("cuponeras", cuponeras);
-		req.getRequestDispatcher("/WEB-INF/instituciones/consultaInstitucion.jsp").forward(req, resp);
 	}
 	
 	public static Set<String> getActividadesInst(String inst){
@@ -56,6 +70,19 @@ public class ConsultaInstitucion extends HttpServlet
 	public static Set<String> getCuponerasInst(String inst){
 		Set<String> cups = Fabrica.getInstance().getIctrlCuponeras().getCuponerasInstitucion(inst);
 		return cups;
+	}
+	
+	public static DataInstitucion getInstitucion(String inst) throws InstitucionDeportivaNoExisteException {
+		return Fabrica.getInstance().getIctrlIDeportivas().getInstitucion(inst);
+	}
+	
+	public static DataActividad getDataActividad(String act) throws ActividadDeportivaNoExisteException {
+		DataActividad acti;
+		acti = ctrlADeportivas.getDataActividad(act);
+		if (acti != null) {
+			return acti;
+	 	} else
+	 		throw new ActividadDeportivaNoExisteException("No existe la Actividad Deportiva.");
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 

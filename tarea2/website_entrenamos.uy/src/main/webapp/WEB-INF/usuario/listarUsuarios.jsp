@@ -40,12 +40,12 @@ int cont = 0;
 
 	<!-- Begin page content -->
 	<main role="main" class="container">
-		<div class="row">
+		<div class="row my-4">
 
 		<jsp:include page="/WEB-INF/template/sidebar.jsp" />
 		
 		
-			<div class="col-12 col-md-8">
+			<div class="col-12 col-md-8 my-4">
 				<h1>Usuarios</h1>
 				<ul class="nav nav-tabs" id="myTab" role="tablist">
 					<li class="nav-item" role="presentation"><a

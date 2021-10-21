@@ -49,11 +49,11 @@ boolean propioUsuario = (boolean) request.getAttribute("userPropio");
 
 	<!-- Begin page content -->
 	<main role="main" class="container">
-		<div class="row">
+		<div class="row my-4">
 
 		<jsp:include page="/WEB-INF/template/sidebar.jsp" />
 
-         <div class="col-12 col-md-8">
+         <div class="col-12 col-md-8 my-4">
             <div id="content">
                <div class="container-fluid">
                   <h3 class="text-dark mb-4">Perfil</h3>
@@ -371,7 +371,7 @@ boolean propioUsuario = (boolean) request.getAttribute("userPropio");
                                     <th scope="row">1</th>
                                     <td> <a href="consultaActividad?actividad=<%= ii.getNombre() %>  "><%= ii.getNombre() %></a></td>
                                     <td><%= ii.getDescripcion() %></td>
-                                    <td> estado	 </td>
+                                    <td> <%= ii.getEstado() %>	 </td>
                                  </tr>
 								<% } %>
                                  
@@ -411,7 +411,7 @@ boolean propioUsuario = (boolean) request.getAttribute("userPropio");
 										%>
 											<tr>
 												<th scope="row"> <%= cont %> </th>
-												<td><a href="consultaCuponera.html"> <%= infoCuponera.getNombre()  %> </a></td>
+												<td><a href="ConsultaCuponera?cuponera=<%= infoCuponera.getNombre() %> "> <%= infoCuponera.getNombre()  %> </a></td>
 												<td> <%= infoCuponera.getDescripcion() %> </td>
 											</tr>
 										<% 

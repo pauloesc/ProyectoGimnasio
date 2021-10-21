@@ -43,6 +43,7 @@ public class AltaActividad extends HttpServlet {
 		String dur = req.getParameter("duracionActividad");
 		String cost = req.getParameter("costoActividad");
 		String fileName = null;
+		String ext = null;
 		if ( req.getParts() != null ) {
 			/*gets absolute path of the web application*/
 	        String applicationPath = req.getServletContext().getRealPath("");
@@ -57,7 +58,7 @@ public class AltaActividad extends HttpServlet {
 	        
 	        fileName = nact.toLowerCase().replaceAll("\\s", "");
 	        String nomf = req.getPart("imagenActividad").getSubmittedFileName();
-	        String ext = FilenameUtils.getExtension(nomf);
+	        ext = FilenameUtils.getExtension(nomf);
 	        Part part = req.getPart("imagenActividad");
 	        part.write(uploadFilePath + File.separator + fileName + "." + ext);
 			
@@ -68,7 +69,7 @@ public class AltaActividad extends HttpServlet {
 		Set<String> cats = new HashSet<>(Arrays.asList(req.getParameterValues("categoriasActividad")));
 		try {
 			ctrlADeportivas.altaActividadDeportiva(ninst, nprof, nact, descrip, Float.parseFloat(dur),
-					Float.parseFloat(cost), date, cats, fileName);
+					Float.parseFloat(cost), date, cats, fileName+ "." + ext);
 			req.setAttribute("msjAlta", "La Actividad Deportiva se ha registrado con éxito.");
 			req.setAttribute("estadoAlta", true);
 		} catch (ActividadDeportivaRepetidaException e) {

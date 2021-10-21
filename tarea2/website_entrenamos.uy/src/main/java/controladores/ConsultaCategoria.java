@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import logica.Fabrica;
 import logica.IctrlADeportivas;
+import logica.IctrlCategorias;
 import logica.IctrlCuponeras;
 
 /**
@@ -22,6 +23,7 @@ public class ConsultaCategoria extends HttpServlet {
 	private static Fabrica fabrica = Fabrica.getInstance();
 	private static IctrlADeportivas ICAD = fabrica.getIctrlADeportivas();
 	private static IctrlCuponeras ICUP = fabrica.getIctrlCuponeras();
+	private static IctrlCategorias ICAT = fabrica.getIctrlCategorias();
 	private static final long serialVersionUID = 1L;
 
 	public ConsultaCategoria() {
@@ -30,25 +32,31 @@ public class ConsultaCategoria extends HttpServlet {
 
 	private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String cat = req.getParameter("categoria");
-		// verificar que categoria existe y sino llevar a errorPage
-		Set<String> actividades;
-		try {
-			actividades = ConsultaCategoria.getActividadesCat(cat);
-		} catch (Exception ex) {
-			actividades = null;
-		}
-		Set<String> cuponeras;
 		
-		try {
-			cuponeras = ConsultaCategoria.getCuponerasCat(cat);
-		} catch (Exception ex) {
-			cuponeras = null;
+		if (!ConsultaCategoria.existeCategoria(cat)) {
+			req.getRequestDispatcher("/WEB-INF/errorpages/404.jsp").include(req, resp);
 		}
+		else {
 		
-		req.setAttribute("actividades", actividades);
-		req.setAttribute("categoria", cat);
-		req.setAttribute("cuponeras", cuponeras);
-		req.getRequestDispatcher("/WEB-INF/categorias/consultaCategoria.jsp").forward(req, resp);
+			Set<String> actividades;
+			try {
+				actividades = ConsultaCategoria.getActividadesCat(cat);
+			} catch (Exception ex) {
+				actividades = null;
+			}
+			Set<String> cuponeras;
+			
+			try {
+				cuponeras = ConsultaCategoria.getCuponerasCat(cat);
+			} catch (Exception ex) {
+				cuponeras = null;
+			}
+			
+			req.setAttribute("actividades", actividades);
+			req.setAttribute("categoria", cat);
+			req.setAttribute("cuponeras", cuponeras);
+			req.getRequestDispatcher("/WEB-INF/categorias/consultaCategoria.jsp").forward(req, resp);
+		}
 	}
 
 	public static Set<String> getActividadesCat(String cat) {
@@ -58,6 +66,12 @@ public class ConsultaCategoria extends HttpServlet {
 	public static Set<String> getCuponerasCat(String cat) {
 		return ICUP.getCuponerasCategoria(cat);
 	}
+	
+	public static Boolean existeCategoria(String cat) {
+		Set<String> cats = ICAT.getCategorias();
+		return cats.contains(cat);
+	}
+	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

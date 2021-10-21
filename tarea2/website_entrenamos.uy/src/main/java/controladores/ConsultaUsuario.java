@@ -58,13 +58,18 @@ public class ConsultaUsuario extends HttpServlet {
 		/**
 		*compruebo si quien esta visitando el perfil es el propio usuario
 		*/
-		boolean usuarioPropio;
+		boolean usuarioPropio = false;
 		String nickEnSesion = (String) request.getSession().getAttribute("nickname-user");
-		if ( nickEnSesion.equals(user) ) {
-			usuarioPropio = true;				
-		}
-		else {
-			usuarioPropio = false;
+
+		//si hay una sesion
+		if( nickEnSesion != null ) {
+			//si el perfil visitado coincide con el usuario en sesion
+			if ( nickEnSesion.equals(user) ) {
+				usuarioPropio = true;				
+			}
+			else {
+				usuarioPropio = false;
+			}
 		}
 		
 		

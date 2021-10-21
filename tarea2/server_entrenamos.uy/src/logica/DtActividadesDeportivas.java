@@ -17,6 +17,7 @@ public class DtActividadesDeportivas {
     private Float costo;
     private Date fecha_alta;
     private Vector<DtClase> clases = new  Vector<DtClase>();
+    private EstadoActi estado;
 
     public DtActividadesDeportivas(String nombre, String descripcion, Float duracion, Float costo, Date fecha_alta) {
         this.setNombre(nombre);
@@ -81,5 +82,12 @@ public class DtActividadesDeportivas {
 		return clases;
 	}
     
+	public EstadoActi getEstado() {
+		return this.estado;
+	}
+	
+	public void setEstado( EstadoActi e ) {
+		this.estado = e;
+	}
 	
 }
