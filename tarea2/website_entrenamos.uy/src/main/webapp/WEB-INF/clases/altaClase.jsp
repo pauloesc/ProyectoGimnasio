@@ -40,7 +40,7 @@
 
 <body>
 	<jsp:include page="/WEB-INF/template/header.jsp" />
-	<jsp:include page="/WEB-INF/template/sidebar.jsp" />
+	
 	<!-- Begin page content -->
 	<main role="main" class="container">
 		<div class="row my-4">
@@ -139,6 +139,12 @@
 						</div>
 					</div>
 
+					<div class="form-group row">
+						<label for="imagenActividad" class="col-4 col-form-label">Imagen</label>
+						<div class="col-8">
+							<input type="file" class="form-control-file" accept="image/*" name="imagenClase">
+						</div>
+					</div>
 
 
 					<div class="form-group row">

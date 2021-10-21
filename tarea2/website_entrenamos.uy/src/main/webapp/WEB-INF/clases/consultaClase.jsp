@@ -14,6 +14,7 @@
 	String hor = (String)request.getAttribute("hor");
 	String min = (String)request.getAttribute("min");
 	String url = (String)request.getAttribute("url");
+	String img = (String)request.getAttribute("img");
 
 %>
 </head>
@@ -29,7 +30,7 @@
 					<div class="card mb-3" style="max-width: auto;">
 						<div class="row no-gutters">
 							<div class="col-md-4">
-								<img src="./resources/img/voleibol1.jpg" width="240"
+								<img src="./resources/img/clases/<%=img%>" width="240"
 									height="160" alt="...">
 							</div>
 							<div class="col-md-8">
