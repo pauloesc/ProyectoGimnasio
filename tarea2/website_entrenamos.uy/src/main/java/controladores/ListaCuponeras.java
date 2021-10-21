@@ -33,9 +33,14 @@ public class ListaCuponeras extends HttpServlet
 	private void processRequest(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException 
 	{
+		String pag = req.getParameter("n");
+		Integer pagnum= Integer.parseInt(pag);
 		
 		Set<DataCuponera> cups=ListaCuponeras.getCuponeras();
+		Integer total= cups.size();
+		req.setAttribute("pag", pagnum);
 		req.setAttribute("cups", cups);
+		req.setAttribute("totalcups", total);
 		req.getRequestDispatcher("/WEB-INF/cuponeras/listaCuponeras.jsp").forward(req, resp);
 		
 	}
