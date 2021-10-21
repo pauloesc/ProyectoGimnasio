@@ -15,6 +15,7 @@
 <%
 	DataActividad actividad = (DataActividad) request.getAttribute("actividad");
 	Set<String> cup = (Set<String>) request.getAttribute("cup");
+	Set<String> clases = (Set<String>) request.getAttribute("clases");
 	InfoBasicaUser usr;
 	try {
 		usr = Login.getUsuarioLogueado(request);
@@ -116,9 +117,30 @@
 					</div>
 					<div class="tab-pane fade" id="clases" role="tabpanel"
 						aria-labelledby="clases-tab">
-						<p class="card-text m-3"><a href="consultaDictadoDeClases.html">Voleibol</a></p>
-						<p class="card-text m-3"><a href="#">Braza</a></p>
-						<p class="card-text m-3"><a href="#">Mariposa</a></p>
+							<div class="m-3">
+							<table class="table table-hover">
+							<thead>
+	    							<tr>
+	     							 <th scope="col">#</th>
+	     							 <th scope="col">Nombre</th>
+	    							</tr>
+	  							</thead>
+	  							<tbody>
+	  							<% 
+	  							int ic = 1;
+								for(String nomClas:clases) {
+								%>	
+	   							 <tr>
+	     						 <th scope="row"><%= ic%></th>
+	      							<td><a href="consultaClase?clase=<%= nomClas %>"> <%= nomClas %></a></td> 
+	    						</tr>
+	    						<%
+	    						i2++;
+								} 
+								%>	
+	    					</tbody>
+						</table>
+						</div>
 					</div>
 				</div>
 			</div>
