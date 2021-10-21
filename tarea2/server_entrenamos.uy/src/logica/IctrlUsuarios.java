@@ -69,4 +69,6 @@ public interface IctrlUsuarios {
 	//retorna true si el usuario es un socio, si es un profesor retorna false, si no existe retorna una excepcion
 	public abstract boolean esSocio(String nick) throws UsuarioInexistenteException;
 	
+	public abstract Vector<DataCuponera> Cuponeras(String nickname);
+	
 }

@@ -40,6 +40,7 @@
 
 <body>
 	<jsp:include page="/WEB-INF/template/header.jsp" />
+	<jsp:include page="/WEB-INF/template/sidebar.jsp" />
 	<!-- Begin page content -->
 	<main role="main" class="container">
 		<div class="row my-4">

@@ -53,7 +53,7 @@
 									<h5 class="card-title">Información Adicional</h5>
 									
 									<!-- agregar que te mande a la pagina de consultar usuario con el profesor cuando este lista -->
-									<p class="card-text"> <p class="card-text m-0"><a href="consultaPerfilUsuario-Profesor.html">Dictada por: <%= nomP %></a></p> 
+									<p class="card-text"> <p class="card-text m-0"><a href="consultaUsuario?usuarioNick=<%= nomP %> ">Dictada por: <%= nomP %></a></p> 
 									
 									<p class="card-text"> <p class="card-text m-0">Fecha y hora: <%= fecha %></p> 
 									<p class="card-text"> <p class="card-text m-0">URL:: <%= url %></p> 

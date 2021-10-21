@@ -96,7 +96,7 @@ public class ctrlADeportivas implements IctrlADeportivas{
 			Profesor prof = actividad.getCreador();
 			String nprof = null;
 			if (prof != null) {
-				nprof = prof.getNombre(); 
+				nprof = prof.getNombre() + " " + prof.getApellido(); 
 			}
 			else {
 				nprof = "Sin profesor asignado.";

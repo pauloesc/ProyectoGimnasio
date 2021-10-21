@@ -46,11 +46,11 @@ public class Home extends HttpServlet {
     
     IctrlCategorias ctrlCat = fabrica.getIctrlCategorias();       
     ctrlCat.cargarCategorias();
-        
-    ctrlActDep.cargarDatosADeportivas();
     
     IctrlUsuarios ctrlUsuarios = fabrica.getIctrlUsuarios();
     ctrlUsuarios.cargarUsuarios();
+    
+    ctrlActDep.cargarDatosADeportivas();
     
     IctrlCuponeras ctrlCuponeras = fabrica.getIctrlCuponeras();
     ctrlCuponeras.cargarDatosCuponeras();

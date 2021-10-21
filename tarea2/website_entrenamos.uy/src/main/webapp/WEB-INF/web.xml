@@ -111,9 +111,47 @@
 		<servlet-name>ConsultaCuponera</servlet-name>
 		<url-pattern>/consultaCuponera</url-pattern>
 	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ConsultaUsuario</servlet-name>
+		<servlet-class>controladores.ConsultaUsuario</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ConsultaUsuario</servlet-name>
+		<url-pattern>/consultaUsuario</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>SeguirDejarDeSeguir</servlet-name>
+		<servlet-class>controladores.SeguirDejarDeSeguir</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SeguirDejarDeSeguir</servlet-name>
+		<url-pattern>/seguirDejarDeSeguir</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ListarUsuarios</servlet-name>
+		<servlet-class>controladores.ListarUsuarios</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ListarUsuarios</servlet-name>
+		<url-pattern>/listarUsuarios</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>AltaUsuario</servlet-name>
+		<servlet-class>controladores.AltaUsuario</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AltaUsuario</servlet-name>
+		<url-pattern>/altaUsuario</url-pattern>
+	</servlet-mapping>
+
 	<session-config>
 		<session-timeout>30</session-timeout>
 	</session-config>
+
 	<error-page>
     	<!-- Uncaught exception -->
     	<error-code>500</error-code>

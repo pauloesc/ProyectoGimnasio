@@ -1,5 +1,34 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+<%@page import="controladores.ConsultaUsuario"%>
+<%@page import="logica.InfoBasicaUser"%>
+<%@page import="logica.*"%>
+<%@page import="java.util.Vector"%>
+<%@page import="java.util.Iterator"%>
+
+
+
 <!doctype html>
 <html lang="en">
+
+<% 
+
+boolean esSocio = (boolean) request.getAttribute("esSocio");
+InfoBasicaUser informacionUusario = (InfoBasicaUser) request.getAttribute("infoUsuario");
+Vector<String> usuariosSeguidores = (Vector<String>) request.getAttribute("usersSeguidores");
+Vector<String> usuariosSiguiendo = (Vector<String>) request.getAttribute("usersSiguiendo");
+Vector<DataCuponera> cuponerasSocio = (Vector<DataCuponera>) request.getAttribute("cuponeras");
+Vector<DtActividadesDeportivas> actDepIR = (Vector<DtActividadesDeportivas>) request.getAttribute("actDepIngRech");
+
+Vector<DtClase> informacionSocio = (Vector<DtClase>) request.getAttribute("infoSocio");
+Vector<DtActividadesDeportivas> informacionProfesor = (Vector<DtActividadesDeportivas>) request.getAttribute("infoProfe");
+
+Vector<String> usersEnSistema = (Vector<String>) request.getAttribute("usuariosEnSistema");
+
+boolean propioUsuario = (boolean) request.getAttribute("userPropio");
+
+%>
 
 <head>
    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -16,89 +45,29 @@
 </head>
 
 <body>
- 	<header>
-		<!-- Fixed navbar -->
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-			<div class="container">
-				<a class="navbar-brand" href="#">Entrenamos.uy</a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse"
-					data-target="#navbarEntrenamos" aria-controls="navbarEntrenamos"
-					aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-
-				<div class="collapse navbar-collapse" id="navbarEntrenamos">
-					<ul class="navbar-nav mr-auto">
-						<li class="nav-item active"><a class="nav-link"
-							href="home.html">Home <span class="sr-only">(current)</span></a>
-						</li>
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#"
-							id="navbarDropdownMenu" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false">Menu</a>
-							<div class="dropdown-menu" aria-labelledby="navbarDropdownMenu">
-								<a class="dropdown-item" href=consultaUsuario.html">Usuarios</a>
-							</div>
-						</li>
-					</ul>
-					<form class="form-inline my-2 my-md-0">
-						<input class="form-control" type="text" placeholder="Buscar"
-							aria-label="Search">
-					</form>
-				</div>
-			</div>
-			<div class="btn-group">
-				<a href="login.html" class="btn btn-light btn-sm">Iniciar Sesion</a>
-				<a href="altaUsuario.html" class="btn btn-light btn-sm">Registrarse</a>
-			</div>
-		</nav>
-
-	</header>
+<jsp:include page="/WEB-INF/template/header.jsp" />
 
 	<!-- Begin page content -->
 	<main role="main" class="container">
 		<div class="row">
-			<div class="col-6 col-md-4">
-				<ul id="listaInstituciones" class="list-group my-4">
-					<li class="list-group-item"><strong>Instituciones
-							Deportivas</strong></li>
-					<li class="list-group-item"><a
-						href="consultaInstitucion.html" class="">Telon</a></li>
-					<li class="list-group-item">Instituto Natural</li>
-					<li class="list-group-item">Olympic</li>
-					<li class="list-group-item">Fuerza Bruta</li>
-				</ul>
-				<ul id="listaCategorias" class="list-group my-4">
-					<li class="list-group-item"><strong>Categorías</strong></li>
-					<li class="list-group-item">Al aire libre</li>
-					<li class="list-group-item"><a href="consultaCategoria.html" class="">Deportes</a></li>
-					<li class="list-group-item">Fintess</li>
-					<li class="list-group-item">Gimnasia</li>
-				</ul>
-			</div>
+
+		<jsp:include page="/WEB-INF/template/sidebar.jsp" />
+
          <div class="col-12 col-md-8">
             <div id="content">
                <div class="container-fluid">
                   <h3 class="text-dark mb-4">Perfil</h3>
-                  <form>
-                     <select class="form-control" required>
-                            <option value="12" selected>Usuario 1</option>
-                            <option value="13">Usuario 2</option>
-                            <option value="14">Usuario 3</option>
-                    </select>
-                  </form>
-                  <br />
                   <div class="row mb-3">
                      <div class="col-lg-4">
                         <div class="card mb-3">
                            <div class="card-body text-center shadow">
-                              <img class="rounded-circle mb-3 mt-4" src="./resources/img/user.png" width="160"
+                              <img class="rounded-circle mb-3 mt-4" src=" <%= informacionUusario.getImagen() %>" width="160"
                                  height="160" />
                            </div>
                         </div>
                         <div class="card mb-3">
                            <div class="card-body text-center shadow">
-                              <button type="button" class="btn btn-success" style="font-size: smaller;">Seguir / Dejar de seguir</button>
+                              <a href="${pageContext.request.contextPath}/SeguirDejarDeSeguir?usuarioNick=<%=informacionUusario.getNickname() %> " ><button type="button" class="btn btn-success" style="font-size: smaller;"> Seguir / Dejar de seguir</button></a>
                            </div>
                         </div>
                      </div>
@@ -150,7 +119,7 @@
                                              <label for="username">
                                                 <strong>Nombre</strong>
                                              </label>
-                                             <input readonly type="text" class="form-control" id="username" name="username" />
+                                             <input value="<%= informacionUusario.getNombre() %>" readonly type="text" class="form-control" id="username" name="username" />
                                           </div>
                                        </div>
                                        <div class="col">
@@ -158,7 +127,7 @@
                                              <label for="email">
                                                 <strong>Email</strong>
                                              </label>
-                                             <input readonly type="email" class="form-control" id="email" name="email" />
+                                             <input value="<%= informacionUusario.getCorreo() %>" readonly type="email" class="form-control" id="email" name="email" />
                                           </div>
                                        </div>
                                     </div>
@@ -168,7 +137,7 @@
                                              <label for="first_name">
                                                 <strong>Apellido</strong>
                                              </label>
-                                             <input readonly type="text" class="form-control" id="first_name"
+                                             <input value="<%= informacionUusario.getApellido() %>" readonly type="text" class="form-control" id="first_name"
                                                 name="first_name" />
                                           </div>
                                        </div>
@@ -177,17 +146,22 @@
                                              <label for="last_name">
                                                 <strong>Fecha nacimiento</strong>
                                              </label>
-                                             <input readonly type="text" class="form-control" id="last_name" name="last_name" />
+                                             <input value="<%= informacionUusario.getFechaNac() %>" readonly type="text" class="form-control" id="last_name" name="last_name" />
                                           </div>
                                        </div>
                                     </div>
+
+									<% 
+									if( !esSocio ){
+										InfoBasicaProfesor infoBasicaP = (InfoBasicaProfesor) informacionUusario;
+									%>
                                     <div class="form-row soloProfesor">
                                        <div class="col">
                                           <div class="form-group">
                                              <label for="first_name">
                                                 <strong>Institucion</strong>
                                              </label>
-                                             <input readonly type="text" class="form-control" id="first_name"
+                                             <input value="<%= infoBasicaP.getInstitucion() %>" readonly type="text" class="form-control" id="first_name"
                                                 name="first_name" />
                                           </div>
                                        </div>
@@ -196,17 +170,19 @@
                                              <label for="last_name">
                                                 <strong>Descripcion</strong>
                                              </label>
-                                             <textarea rows="1" readonly type="text" class="form-control"></textarea>
+                                             <textarea  rows="1" readonly type="text" class="form-control"><%= infoBasicaP.getDesc() %></textarea>
                                           </div>
                                        </div>
                                     </div>
+									
+                                    
                                     <div class="form-row soloProfesor">
                                        <div class="col">
                                           <div class="form-group">
                                              <label for="first_name">
                                                 <strong>Bibliografia</strong>
                                              </label>
-                                             <textarea rows="1" readonly type="text" class="form-control"></textarea>
+                                             <textarea rows="1" readonly type="text" class="form-control"><%= infoBasicaP.getBibliografia() %></textarea>
                                           </div>
                                        </div>
                                        <div class="col">
@@ -214,10 +190,13 @@
                                              <label for="last_name">
                                                 <strong>Url</strong>
                                              </label>
-                                             <textarea rows="1" readonly type="text" class="form-control"></textarea>
+                                             <textarea rows="1" readonly type="text" class="form-control"><%= infoBasicaP.getUrl() %></textarea>
                                           </div>
                                        </div>
                                     </div>
+                                 
+                                 <% } %>
+
                                  </div>
                               </div>
                            </div>
@@ -225,6 +204,10 @@
                      </div>
                   </div>
 
+                  <!-- inicio bloque ** Actividades deportivas ingresadas (Aceptada) -->
+                  	<% 
+					if( !esSocio ){
+					%>
                   <div class="card shadow mb-5 soloProfesor">
                      <div id="act-dep" class="card-header py-3">
                         <p class="text-primary m-0 font-weight-bold">Actividades deportivas ingresadas (Aceptada)</p>
@@ -240,22 +223,33 @@
                                  </tr>
                               </thead>
                               <tbody>
+                              <% 
+                              
+	          					Iterator<DtActividadesDeportivas> iterat2 = informacionProfesor.iterator();
+	        					while( iterat2.hasNext() ) {
+	        						DtActividadesDeportivas infoP = iterat2.next();
+                              %>
                                  <tr>
-                                    <th scope="row">1</th>
-                                    <td> <a href="consultaActividadDeportiva.html">Voleibol</a></td>
-                                    <td>Voleibol en todas sus formas</td>
+                                    <th scope="row"></th>
+                                    <td> <a href="consultaActividad?actividad=<%= infoP.getNombre() %>  "><%= infoP.getNombre() %></a></td>
+                                    <td><%= infoP.getDescripcion() %></td>
                                  </tr>
-                                 <tr>
-                                    <th scope="row">2</th>
-                                    <td>Atletismo</td>
-                                    <td>100m , 200m, postas y carreras con obstaculos.</td>
-                                 </tr>
+                                 
+                                <% } %>
+                                
                               </tbody>
                            </table>
                         </div>
                      </div>
                   </div>
+                  <% } %>
+                  <!-- fin bloque ** Actividades deportivas ingresadas (Aceptada) -->
 
+
+				<!-- inicio bloque ** clases ** para profesor -->
+                  	<% 
+					if( !esSocio ){
+					%>
                   <div class="card shadow mb-5">
                      <div id="clases" class="card-header py-3">
                         <p class="text-primary m-0 font-weight-bold">Clases</p>
@@ -272,18 +266,84 @@
                                  </tr>
                               </thead>
                               <tbody>
+									<% 
+									Iterator<DtActividadesDeportivas> iterat2 = informacionProfesor.iterator();
+									while( iterat2.hasNext() ) {
+										DtActividadesDeportivas infoP = iterat2.next();
+									%>
+									
+									<%
+									Vector<DtClase> VectorclasesInfo = infoP.getClases();
+									Iterator<DtClase> iterVectorClases = VectorclasesInfo.iterator();
+									while ( iterVectorClases.hasNext() ){
+										DtClase infoCla = iterVectorClases.next();
+									%>
                                  <tr>
                                     <th scope="row">1</th>
-                                    <td> <a href="consultaDictadoDeClases.html">Voleibol</a></td>
-                                    <td>10/06/21</td>
-                                    <td>Voleibol</td>
+                                    <td> <a href="consultaClase?clase=<%= infoCla.getNombre() %> "><%= infoCla.getNombre() %></a></td>
+                                    <td><%= infoCla.getFecha() %></td>
+                                    <td><%= infoP.getNombre() %></td>
                                  </tr>
+									<% 
+									}}
+									%>
                               </tbody>
                            </table>
                         </div>
                      </div>
                   </div>
+					<% 
+					}
+					%>
+                  <!-- fin bloque ** clases ** para profesor -->
+                  
+                  
+                  <!-- inicio bloque ** clases ** para socio -->
+                  	<% 
+					if( esSocio ){
+					%>
+                  <div class="card shadow mb-5">
+                     <div id="clases" class="card-header py-3">
+                        <p class="text-primary m-0 font-weight-bold">Clases</p>
+                     </div>
+                     <div id="clases-cont" class="card-body">
+                        <div class="row">
+                           <table class="table table-hover">
+                              <thead>
+                                 <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Fecha</th>
+                                    <th scope="col">Actividad deportiva</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+									
+									<% 
+									Iterator<DtClase> iterat3 = informacionSocio.iterator();
+									while( iterat3.hasNext() ) {
+										DtClase infoS = iterat3.next();
+									%>
+									
+                                 <tr>
+                                    <th scope="row">1</th>
+                                    <td> <a href="consultaClase?clase=<%= infoS.getNombre() %>  "> <%= infoS.getNombre() %> </a></td>
+                                    <td> <%= infoS.getFecha() %> </td>
+                                    <td> <%= infoS.getNomAct() %> </td>
+                                 </tr>
+									<% } %>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                  </div>
+					<% 
+					}
+					%>
+                  <!-- fin bloque ** clases ** para socio -->
 
+					<!-- inicio bloque ** acd dep ing rech ** para profesor -->
+					<% if(!esSocio & propioUsuario) { %>
                   <div class="card shadow mb-5 soloProfesor propioProfesor">
                      <div id="act-dep-ing" class="card-header py-3">
                         <p class="text-primary m-0 font-weight-bold">Actividades deportivas ingresadas (Ingresada,
@@ -301,24 +361,31 @@
                                  </tr>
                               </thead>
                               <tbody>
+                              <% 
+                              Iterator<DtActividadesDeportivas> infoAcInRecha = actDepIR.iterator();
+                              while ( infoAcInRecha.hasNext() ){
+                            	  DtActividadesDeportivas ii = infoAcInRecha.next();
+                              
+                              %>
                                  <tr>
                                     <th scope="row">1</th>
-                                    <td>Voleibol II</td>
-                                    <td>Voleibol avanzado.</td>
-                                    <td>Rechazada</td>
+                                    <td> <a href="consultaActividad?actividad=<%= ii.getNombre() %>  "><%= ii.getNombre() %></a></td>
+                                    <td><%= ii.getDescripcion() %></td>
+                                    <td> estado	 </td>
                                  </tr>
-                                 <tr>
-                                    <th scope="row">2</th>
-                                    <td>Basquetbol II</td>
-                                    <td>Basequetbol avanzado.</td>
-                                    <td>Ingresada</td>
-                                 </tr>
+								<% } %>
+                                 
                               </tbody>
                            </table>
                         </div>
                      </div>
                   </div>
+                  <% } %>
+				<!-- fin bloque ** acd dep ing rech ** para profesor -->
 
+
+						<!-- inicio bloque ** cuponeras ** para socio -->
+						<% if(esSocio & propioUsuario) { %>
 						<div class="card shadow mb-5">
 							<div id="cuponeras" class="card-header py-3">
 								<p class="text-primary m-0 font-weight-bold">Cuponeras del
@@ -335,17 +402,31 @@
 											</tr>
 										</thead>
 										<tbody>
+										
+										<%
+										Iterator<DataCuponera> cuponeras =  cuponerasSocio.iterator();
+										int cont = 1;
+										while( cuponeras.hasNext() ){
+											DataCuponera infoCuponera = cuponeras.next();
+										%>
 											<tr>
-												<th scope="row">1</th>
-												<td><a href="consultaCuponera.html">Pelota</a></td>
-												<td>Deportes con pelota</td>
+												<th scope="row"> <%= cont %> </th>
+												<td><a href="consultaCuponera.html"> <%= infoCuponera.getNombre()  %> </a></td>
+												<td> <%= infoCuponera.getDescripcion() %> </td>
 											</tr>
+										<% 
+										cont=cont+1;
+										} %>	
+										
 										</tbody>
 									</table>
 								</div>
 							</div>
 						</div>
+						<% } %>
+						<!-- fin bloque ** cuponeras ** para socio -->
 
+					<!-- inicio bloque ** seguidores sigue -->
                   <div class="card shadow mb-5">
                      <div id="seguidos-siguiendo" class="card-header py-3">
                         <p class="text-primary m-0 font-weight-bold">Seguidores y Sigue</p>
@@ -361,22 +442,19 @@
                                     <div class="table-responsive table-bordered">
                                         <table class="table table-bordered">
                                             <tbody>
+                                            <%
+                                            Iterator<String> uLosQuesiguen =  usuariosSeguidores.iterator();
+                                            while( uLosQuesiguen.hasNext() ){
+                                            	String usario = uLosQuesiguen.next();
+                                            
+                                            %>
                                                 <tr>
-                                                    <td class="stat">Nickname</td>
+                                                    <td class="stat"><a href="${pageContext.request.contextPath}/ConsultaUsuario?usuarioNick=<%= usario %>"> <%= usario %> </a></td>
                                                     <td>.</td>
                                                 </tr>
-                                                <tr>
-                                                    <td class="stat"></td>
-                                                    <td>.</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="stat"></td>
-                                                    <td>.</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="stat"></td>
-                                                    <td>.</td>
-                                                </tr>
+                                                
+											<% } %>
+												
                                             </tbody>
                                         </table>
                                     </div>
@@ -385,22 +463,18 @@
                                  <div class="table-responsive table-bordered">
                                     <table class="table table-bordered">
                                         <tbody>
-                                            <tr>
-                                                <td class="stat">Nickname</td>
-                                                <td>.</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="stat">Camera</td>
-                                                <td>.</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="stat">RAM</td>
-                                                <td>.</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="stat">OS</td>
-                                                <td>.</td>
-                                            </tr>
+                                            <%
+                                            Iterator<String> uSeg =  usuariosSiguiendo.iterator();
+                                            while( uSeg.hasNext() ){
+                                            	String usario2 = uSeg.next();
+                                            
+                                            %>
+                                                <tr>
+                                                    <td class="stat"> <a href="${pageContext.request.contextPath}/ConsultaUsuario?usuarioNick=<%= usario2 %>"> <%= usario2 %> </a></td>
+                                                    <td>.</td>
+                                                </tr>
+                                                
+											<% } %>
                                         </tbody>
                                     </table>
                                 </div>
@@ -409,7 +483,7 @@
                         </div>
                     </div>
                   </div>
-
+                  <!-- fin bloque ** seguidores sigue -->
 
                </div>
             </div>
@@ -434,7 +508,7 @@
          profesor = 1;
          profesorPerfilPropio = 1;
          FuncionMostrarDependiendoProfSocio(profesor);
-         EsElPropioProfesor(profesorPerfilPropio);
+         EsElPropioProfesor( (profesorPerfilPropio*profesor) );
 
          //ocultar info
 
@@ -456,6 +530,7 @@
       }
       else{
          $(".soloProfesor").hide();
+         $(".propioProfesor").hide();
       }
    }
 

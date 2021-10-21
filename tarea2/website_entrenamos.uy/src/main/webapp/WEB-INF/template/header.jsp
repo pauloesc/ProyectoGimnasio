@@ -26,7 +26,7 @@
 			<div class="collapse navbar-collapse" id="navbarEntrenamos">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active"><a class="nav-link"
-						href="index.html">Home <span class="sr-only">(current)</span></a>
+						href="home">Home <span class="sr-only">(current)</span></a>
 					</li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#"
@@ -34,7 +34,7 @@
 						aria-haspopup="true" aria-expanded="false">Menu</a>
 						<div class="dropdown-menu"
 							aria-labelledby="navbarDropdownMenu">
-							<a class="dropdown-item" href="consultaUsuario.html">Usuarios</a>
+							<a class="dropdown-item" href="ListarUsuarios">Usuarios</a>
 							<% if (usr instanceof InfoBasicaProfesor) { %>
 								<a class="dropdown-item" href=${pageContext.request.contextPath}/altaActividad>Alta de Actividad Deportiva</a>
 								<a class="dropdown-item" href=${pageContext.request.contextPath}/altaClase>Alta de Dictado de Clase</a>
@@ -55,7 +55,7 @@
 				Iniciar Sesion
 			</a>
 			<a class="btn btn-dark" style="font-size:13px; font-weight: 500" 
-				href=# >
+				href="AltaUsuario" >
 				Registrarse
 			</a>
 		</div>
@@ -70,7 +70,7 @@
 				</a>
 				<div class="dropdown-menu dropdown-menu-right"
 					aria-labelledby="navbarDropdownUsuario">
-					<a class="btn btn-primary dropdown-item" style="font-size: 13px;" href="consultaPerfilUsuario.html">Ver mi perfil</a> <a
+					<a class="btn btn-primary dropdown-item" style="font-size: 13px;" href="ConsultaUsuario?usuarioNick=<%= usr.getNickname() %>  ">Ver mi perfil</a> <a
 						class="btn btn-primary dropdown-item" style="font-size: 13px;" href="modificarUsuario.html">Modificar mis datos</a> <a
 						class="btn btn-primary dropdown-item" style="font-size: 13px;" href=${pageContext.request.contextPath}/logout>Cerrar sesion</a>
 				</div>
