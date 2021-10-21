@@ -49,11 +49,11 @@ boolean propioUsuario = (boolean) request.getAttribute("userPropio");
 
 	<!-- Begin page content -->
 	<main role="main" class="container">
-		<div class="row">
+		<div class="row my-4">
 
 		<jsp:include page="/WEB-INF/template/sidebar.jsp" />
 
-         <div class="col-12 col-md-8">
+         <div class="col-12 col-md-8 my-4">
             <div id="content">
                <div class="container-fluid">
                   <h3 class="text-dark mb-4">Perfil</h3>

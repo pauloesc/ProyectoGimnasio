@@ -39,11 +39,11 @@ Iterator<String> institucionesI = instituciones.iterator();
 
 	<!-- Begin page content -->
 	<main role="main" class="container">
-		<div class="row">
+		<div class="row my-4">
 
 		<jsp:include page="/WEB-INF/template/sidebar.jsp" />
 
-         <div class="col-12 col-md-8">
+         <div class="col-12 col-md-8 my-4">
 				<section class="clean-block clean-form dark">
 					<div class="container">
 					

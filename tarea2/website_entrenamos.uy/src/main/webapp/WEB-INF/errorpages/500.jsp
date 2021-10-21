@@ -9,7 +9,17 @@
 	<!-- Begin page content -->
 	<main role="main" class="container">
 	
-	
+	<div class="page-wrap d-flex flex-row align-items-center">
+    	<div class="container">
+	        <div class="row justify-content-center">
+	            <div class="col-md-12 text-center">
+	                <span class="display-1 d-block">500 Internal Server Error</span>
+	                <div class="mb-4 lead">El servidor tuvo un problema para procesar tu solicitud.</div>
+	                <a href=${pageContext.request.contextPath}/home class="btn btn-link">Volver a Home</a>
+	            </div>
+	        </div>
+	    </div>
+	</div>
 	
 	</main>
 	<footer class="footer">

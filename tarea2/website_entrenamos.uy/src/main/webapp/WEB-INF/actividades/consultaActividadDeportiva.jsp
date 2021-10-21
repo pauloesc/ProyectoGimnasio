@@ -82,10 +82,14 @@
 					<div class="tab-pane fade show active" id="detalles"
 						role="tabpanel" aria-labelledby="detalles-tab">
 						<div class="m-3">
-						<p>Institución Deportiva: <a class="nombreInst" href="consultaInstitucion?institucion=<%= actividad.getInstitucion() %>"><%= actividad.getInstitucion() %></a></p>
-						<p>Profesor: <%= actividad.getProfesor() %></p>
-						<p>Costo: $<%= actividad.getCosto()  %></p>
-						<p>Duración: <%= actividad.getDuracion()  %> minutos</p>
+						<p><i class="fa fa-building"></i> &nbsp &nbsp Institución Deportiva: <a href="consultaInstitucion?institucion=<%= actividad.getInstitucion() %>"><%= actividad.getInstitucion() %></a></p>
+						<% if (actividad.getProfesor() == "Sin profesor asignado.") { %>
+							<p><i class="fa fa-user-circle-o"></i> &nbsp &nbsp Profesor: <%= actividad.getProfesor() %></p>
+						<% } else {  %>
+							<p><i class="fa fa-user-circle-o"></i> &nbsp &nbsp Profesor: <a href="consultaUsuario?usuarioNick=<%= actividad.getProfesor() %>"><%= actividad.getProfesor() %></a></p>
+						<% } %>
+						<p><i class="fa fa-usd"></i> &nbsp &nbsp Costo: $<%= actividad.getCosto()  %></p>
+						<p><i class="fa fa-clock-o"></i> &nbsp &nbsp Duración: <%= actividad.getDuracion()  %> minutos</p>
 						</div>
 					</div>
 					<div class="tab-pane fade" id="cuponeras" role="tabpanel"
