@@ -54,6 +54,16 @@ public class ConsultaActividad extends HttpServlet
 		
 		req.setAttribute("actividad", actividad);
 		req.setAttribute("cup", cup);
+		
+		
+		Set<String> clases;
+		try {
+			clases = Fabrica.getInstance().getIctrlClases().mostrarClasesDeActividadDeportiva(act);
+		} catch(Exception e) {
+			clases = null;
+		}
+		
+		req.setAttribute("clases", clases);
 		req.getRequestDispatcher("/WEB-INF/actividades/consultaActividadDeportiva.jsp").forward(req, resp);
 	}
 	
