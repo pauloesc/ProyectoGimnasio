@@ -24,7 +24,8 @@
 					<div class="col-12 col-md-8">
 				<h2>Cuponeras de actividades deportivas</h2>
 				
-				
+				<% int i=1;
+				if (i<4 && (((pagnum-1)*3)+i)<=total){ %>
 				<div class="card mb-3" style="max-width: auto;">
 					<div class="row no-gutters">					
 						<div class="col-md-4 text-center">
@@ -44,7 +45,9 @@
 						</div>
 					</div>
 				</div>
-				
+				<%}%>
+				<%i=i+1; 
+				if (i<4 && (((pagnum-1)*3)+i)<=total){ %>
 				<div class="card mb-3" style="max-width: auto;">
 					<div class="row no-gutters">
 						<div class="col-md-4 text-center">
@@ -64,7 +67,9 @@
 						</div>
 					</div>
 				</div>
-			
+			   <%}%>
+			   <%i=i+1; 
+				if (i<4 && (((pagnum-1)*3)+i)<=total){ %>
 				<div class="card mb-3" style="max-width: auto;">
 					<div class="row no-gutters">
 						<div class="col-md-4 text-center">
@@ -84,27 +89,8 @@
 						</div>
 					</div>
 				</div>
+				<%}%>
 				
-				
-				<div class="card mb-3" style="max-width: auto;">
-					<div class="row no-gutters">
-						<div class="col-md-4 text-center">
-							<img src="./resources/img/b2.jpg"  alt="..." width="242" height="200">
-						</div>
-						<div class="col-md-8">
-							<div class="card-body">
-								<h5 class="card-title">Gimnasia</h5>
-								<p class="card-text">Aeróbica y aparatos.</p>
-								<div class="d-md-flex justify-content-md-end">
-									<div class="d-flex flex-column">
-									<a href=# class="btn btn-primary">Detalles</a>
-									<a href=# class="btn btn-primary mt-2" data-toggle="modal" data-target="#comprar">Comprar</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
 				
 				<div class="d-md-flex justify-content-md-center">
 					<nav aria-label="Page navigation example">
@@ -112,10 +98,17 @@
 							<li class="page-item"><a class="page-link" href="#"
 								aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 							</a></li>
-							<% for (int i2=1; i2<5;i2++) { 
+							<% int i2=1; 
+							int totalpag= (total/3);
+							
+							if ((total/3) >totalpag) {
+								totalpag=totalpag+1;
+							}
+							
+							while (i2<= (totalpag)) { 
 							%>
 							<li class="page-item"><a class="page-link" href="#"><%=i2%></a></li>
-							<%}%>
+							<%i2++;}%>
 							<li class="page-item"><a class="page-link" href="#"
 								aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 							</a></li>
