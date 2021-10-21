@@ -47,7 +47,7 @@
 		<jsp:include page="/WEB-INF/template/sidebar.jsp" />
 			<div class="col-12 col-md-8 my-4">
 			
-			<form action="${pageContext.request.contextPath}/AltaClase" method="post">
+			<form action="${pageContext.request.contextPath}/AltaClase" method="post" enctype="multipart/form-data">
 				<h1>Alta Dictado de Clases</h1>
 				
 					<div class="form-group row">

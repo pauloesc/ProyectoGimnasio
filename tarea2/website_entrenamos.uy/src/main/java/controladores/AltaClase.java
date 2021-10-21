@@ -155,24 +155,19 @@ public class AltaClase extends HttpServlet {
 					String fileName = null;
 					
 					if ( req.getParts() != null ) {
-						
-						
-						
+					
 						/*gets absolute path of the web application*/
 				        String applicationPath = req.getServletContext().getRealPath("");
 			
-				        
 				        // constructs path of the directory to save uploaded file*/
 				        String uploadFilePath = applicationPath + File.separator + "resources/img/clases";
 		
-				        
 				        // creates the save directory if it does not exists
 				        File fileSaveDir = new File(uploadFilePath);
 				        if (!fileSaveDir.exists()) {
 				            fileSaveDir.mkdirs();
 				        }
-				        
-				        
+				     
 				        fileName = nomC.toLowerCase().replaceAll("\\s", "");
 				        String nomf = req.getPart("imagenClase").getSubmittedFileName();
 				        ext = FilenameUtils.getExtension(nomf);
@@ -180,7 +175,7 @@ public class AltaClase extends HttpServlet {
 				        part.write(uploadFilePath + File.separator + fileName + "." + ext);
 						
 					}
-					System.out.println("llego aca");
+					
 					ICL.crearClase(nomC,feI, nomP,Smin ,Smax ,url ,Factual , act, Integer.parseInt(h), Integer.parseInt(m),fileName + "." + ext);
 					req.setAttribute("respuesta","La clase ha sido creada con exito");
 				} catch (ClaseRepetidaException e) {
@@ -189,9 +184,6 @@ public class AltaClase extends HttpServlet {
 					req.setAttribute("respuesta","Error inesperado");
 				}
 			}
-			
-			
-			
 			
 			RequestDispatcher dispatcher =req.getRequestDispatcher("/WEB-INF/clases/altaClase.jsp");
 			dispatcher.forward(req, resp);
