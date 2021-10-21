@@ -35,11 +35,6 @@ Iterator<String> institucionesI = instituciones.iterator();
 <body>
 
 
-<%
-
-%>
-
-
 <jsp:include page="/WEB-INF/template/header.jsp" />
 
 	<!-- Begin page content -->
@@ -51,6 +46,33 @@ Iterator<String> institucionesI = instituciones.iterator();
          <div class="col-12 col-md-8">
 				<section class="clean-block clean-form dark">
 					<div class="container">
+					
+					
+		<% if ( request.getAttribute("altaUsuarioEstado") != null ) {
+			boolean estadoAlta =  (boolean) request.getAttribute("altaUsuarioEstado");
+			//si hay estado, entonces hay mensaje
+			String msn = (String) request.getAttribute("MensajeRespuesta"); 
+			
+		%>
+		<% if (estadoAlta == false) { %>
+		<div class="alert alert-danger alert-dismissible fade show  my-4" role="alert">
+		  <%= msn %>
+		  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		    <span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		<% } %>
+		<% if (estadoAlta == true) { %>
+		<div class="alert alert-success alert-dismissible fade show  my-4" role="alert">
+		  <%= msn %>
+		  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		    <span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		<% } %>
+		<% } %>
+					
+					
 						<div class="block-heading">
 							<h2 class="text-info">Alta Usuario</h2>
 						</div>
@@ -76,7 +98,7 @@ Iterator<String> institucionesI = instituciones.iterator();
 							</div>
 							<div class="form-group">
 								<label>Fecha Nacimiento</label> <input class="form-control"
-									type="date" name="fecha" />
+									type="date" name="fecha" required/>
 							</div>
 							<div class="form-group">
 								<label>Contrasenia</label> <input id="pass" type="password"
