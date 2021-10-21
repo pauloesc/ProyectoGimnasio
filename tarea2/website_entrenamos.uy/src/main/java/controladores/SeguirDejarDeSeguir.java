@@ -42,6 +42,13 @@ public class SeguirDejarDeSeguir extends HttpServlet {
 		String usuario = (String) request.getParameter("usuarioNick");
 		String nickEnSesion = (String) request.getSession().getAttribute("nickname-user");
 		
+		//si no hay usuario en sesion
+		if(nickEnSesion == null) {
+			String url = "/website_entrenamos.uy/ConsultaUsuario?usuarioNick=" + usuario;
+			response.sendRedirect(url);
+			return;
+		}
+		
 		boolean siguendo=false;
 		Vector<String> usuariosSiguiendo = ICU.UsuariosSiguiendo( nickEnSesion  );
 		Iterator<String> itt = usuariosSiguiendo.iterator();

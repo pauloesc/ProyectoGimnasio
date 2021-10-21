@@ -124,18 +124,21 @@ public class AltaUsuario extends HttpServlet {
 		Fabrica f = Fabrica.getInstance();
 		IctrlUsuarios ICU = f.getIctrlUsuarios();
 
-		boolean error = false;
-		
+		//indica si existio algun error
+		boolean altaUsuarioEstado;
+		String MensajeRespuesta;
 		/**
 		*cargo el usuario
 		*/
 		try {
 			ICU.altaUsuario(info);
+			altaUsuarioEstado = true;
+			MensajeRespuesta = "El usuario se ha cargado con exito";
 		} catch (UsuarioDisponibilidadException e) {
-			error = true;
+			altaUsuarioEstado = false;
+			MensajeRespuesta = e.getMessage().toString();
 		}
 		
-		request.setAttribute("error", error);
 		
 		
 		System.out.println( nickname  );
@@ -151,7 +154,15 @@ public class AltaUsuario extends HttpServlet {
 		System.out.println( bibliografia  );
 		System.out.println( web  );
 		
-		doGet(request, response);
+		/**
+		*traigo las instituciones
+		*/
+		Vector<String> instEnSistem =  ICU.InstitucionesEnSistema();
+		request.setAttribute("instituciones", instEnSistem);
+		
+		request.setAttribute("altaUsuarioEstado", altaUsuarioEstado);
+		request.setAttribute("MensajeRespuesta", MensajeRespuesta);
+		request.getRequestDispatcher("/WEB-INF/usuario/AltaUsuario.jsp").forward(request, response);
 		
 	}
 

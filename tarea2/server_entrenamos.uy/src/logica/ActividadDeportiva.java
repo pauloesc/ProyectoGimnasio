@@ -23,7 +23,7 @@ public class ActividadDeportiva {
 	private Date fechaAlta;
 	private Profesor creador;
 	private Map<String, Categoria> categorias;
-	private EstadoActi estado;
+	private EstadoActi estado = null;
 	private String imagen;
     
     public ActividadDeportiva(String nombre, Profesor profe, String descrip, Float dur, Float cost, Date fechaAlta, Map<String, Categoria> cats, String imag) {
@@ -145,6 +145,7 @@ public class ActividadDeportiva {
     
     public DtActividadesDeportivas dtActividadesDeportivasSinInfoClases() {
     	DtActividadesDeportivas info = new DtActividadesDeportivas( this.nombre, this.descripcion, this.duracion, this.costo, this.fechaAlta );
+    	info.setEstado(this.estado);
     	return info;
     }
     
