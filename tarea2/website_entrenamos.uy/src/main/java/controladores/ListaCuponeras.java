@@ -33,10 +33,9 @@ public class ListaCuponeras extends HttpServlet
 	private void processRequest(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException 
 	{
-		String cup = req.getParameter("cuponera");
+		
 		Set<DataCuponera> cups=ListaCuponeras.getCuponeras();
 		req.setAttribute("cups", cups);
-		req.setAttribute("cu", cup);
 		req.getRequestDispatcher("/WEB-INF/cuponeras/listaCuponeras.jsp").forward(req, resp);
 		
 	}
