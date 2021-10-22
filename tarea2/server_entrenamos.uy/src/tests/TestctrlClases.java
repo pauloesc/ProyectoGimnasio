@@ -87,7 +87,7 @@ class TestctrlClases {
 		try {
 			Date f1 = new SimpleDateFormat("dd/MM/yy").parse("09/04/21");
 			Date f2 = new SimpleDateFormat("dd/MM/yy").parse("09/03/21");
-			IC.crearClase("Peso libre",f1,"viktor",1,3,"url",f2,"Kickboxing",1,1);
+			IC.crearClase("Peso libre",f1,"viktor",1,3,"url",f2,"Kickboxing",1,1,"");
 			fail("Test falló");
 		} catch (ClaseRepetidaException e) {
 			assertEquals(0,0);

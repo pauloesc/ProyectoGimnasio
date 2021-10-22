@@ -1,5 +1,6 @@
 package controladores;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
@@ -9,11 +10,15 @@ import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
+
+import org.apache.commons.io.FilenameUtils;
 
 import excepciones.ClaseLlenaException;
 import excepciones.ClaseRepetidaException;
@@ -26,9 +31,11 @@ import logica.IctrlUsuarios;
 import logica.InfoBasicaProfesor;
 import logica.InfoBasicaUser;
 
-/**
- * Servlet implementation class AltaClase
- */
+
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 10, 	// 10 MB 
+maxFileSize=1024*1024*50,      	// 50 MB
+maxRequestSize=1024*1024*100)
+
 @WebServlet("/AltaClase")
 public class AltaClase extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -39,6 +46,7 @@ public class AltaClase extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
 		HttpSession sesion = req.getSession();
     	Fabrica f = Fabrica.getInstance();
 		IctrlUsuarios ICU = f.getIctrlUsuarios();
@@ -77,6 +85,7 @@ public class AltaClase extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
 		HttpSession sesion = req.getSession();
     	Fabrica f = Fabrica.getInstance();
 		IctrlUsuarios ICU = f.getIctrlUsuarios();
@@ -118,6 +127,7 @@ public class AltaClase extends HttpServlet {
 				req.setAttribute("respuesta","Error fecha de inicio anterior a fecha actual");
 			} else {
 				try {
+					
 					String nomC = req.getParameter("nombreClase");
 					String nomP = (String) sesion.getAttribute("nickname-user");
 					String url = req.getParameter("urlClase");
@@ -139,9 +149,34 @@ public class AltaClase extends HttpServlet {
 						}
 						
 					}
-
 					
-					ICL.crearClase(nomC,feI, nomP,Smin ,Smax ,url ,Factual , act, Integer.parseInt(h), Integer.parseInt(m));
+					//imagen
+					String ext = "";
+					String fileName = null;
+					
+					if ( req.getParts() != null ) {
+					
+						/*gets absolute path of the web application*/
+				        String applicationPath = req.getServletContext().getRealPath("");
+			
+				        // constructs path of the directory to save uploaded file*/
+				        String uploadFilePath = applicationPath + File.separator + "resources/img/clases";
+		
+				        // creates the save directory if it does not exists
+				        File fileSaveDir = new File(uploadFilePath);
+				        if (!fileSaveDir.exists()) {
+				            fileSaveDir.mkdirs();
+				        }
+				     
+				        fileName = nomC.toLowerCase().replaceAll("\\s", "");
+				        String nomf = req.getPart("imagenClase").getSubmittedFileName();
+				        ext = FilenameUtils.getExtension(nomf);
+				        Part part = req.getPart("imagenClase");
+				        part.write(uploadFilePath + File.separator + fileName + "." + ext);
+						
+					}
+					
+					ICL.crearClase(nomC,feI, nomP,Smin ,Smax ,url ,Factual , act, Integer.parseInt(h), Integer.parseInt(m),fileName + "." + ext);
 					req.setAttribute("respuesta","La clase ha sido creada con exito");
 				} catch (ClaseRepetidaException e) {
 					req.setAttribute("respuesta","Error, ya existe una clase con ese nombre");
@@ -149,9 +184,6 @@ public class AltaClase extends HttpServlet {
 					req.setAttribute("respuesta","Error inesperado");
 				}
 			}
-			
-			
-			
 			
 			RequestDispatcher dispatcher =req.getRequestDispatcher("/WEB-INF/clases/altaClase.jsp");
 			dispatcher.forward(req, resp);

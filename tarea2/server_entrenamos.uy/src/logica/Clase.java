@@ -14,8 +14,9 @@ public class Clase {
 	private Date fechaReg;
 	private String url;
 	private Profesor profesor;
+	private String imagen;
 	
-	public Clase(String nombre, Date Finicio, String prof, int Smin, int Smax, String url, Date FechaAlta, int hor, int minut) {
+	public Clase(String nombre, Date Finicio, String prof, int Smin, int Smax, String url, Date FechaAlta, int hor, int minut, String img) {
 		manejUsuarios mUsr = manejUsuarios.getInstance();
 		Profesor profe = mUsr.darProfesor(prof);
 		this.profesor = profe;
@@ -29,6 +30,7 @@ public class Clase {
 		this.fechaReg = FechaAlta;
 		this.hora = hor;
 		this.min = minut;
+		this.imagen = img;
 	}
 
 	public String getNombre() {	
@@ -42,7 +44,7 @@ public class Clase {
 	
 	public DtClase darDtClase() {
 		Usuario prof = (Usuario) this.profesor;
-		return new DtClase(this.fechaInicio, this.nombre, this.minSocios, this.actualSocios, this.maxSocios, this.url, this.fechaReg, prof.getNickname(), this.hora, this. min, manejADeportivas.getinstance().getNombreActividadDeClase(nombre));
+		return new DtClase(this.fechaInicio, this.nombre, this.minSocios, this.actualSocios, this.maxSocios, this.url, this.fechaReg, prof.getNickname(),this.hora,this.min,manejADeportivas.getinstance().getNombreActividadDeClase(nombre),this.imagen);
 	}
 	
 	public boolean esVigente() {
