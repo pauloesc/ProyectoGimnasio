@@ -21,16 +21,24 @@ public class Compra {
 			}
 			this.cantClases = new HashMap<String, Integer>();
 
-			if (!act.isEmpty()) {
-			for (Iterator<String> iter=act.iterator(); iter.hasNext();) {
-				this.cantClases.put(iter.next(), 0);
-			}
+
+			Set<InfoClases> inf = cupo.getInfo();
+			
+			for (Iterator<InfoClases> iter=inf.iterator(); iter.hasNext();) {
+				this.cantClases.put(iter.next().getAct().getNombre(), iter.next().getCantidad());
+			
 			}
 		}
 		
 		
 		public Integer clasesDisponibles(String act) {
-			return cantClases.get(act);
+			Integer res = cantClases.get(act);
+			if (res != null) {
+				return res;
+			} else {
+				return 0;
+			}
+			
 		}
 		
 		public String getNombreCuponera() {
@@ -52,7 +60,7 @@ public class Compra {
 		public void descontarClase(String actDept) {
 			Integer Cclas = cantClases.get(actDept);
 			cantClases.remove(actDept);
-			cantClases.put(actDept, Cclas);
+			cantClases.put(actDept, Cclas-1);
 		}
 
 		public boolean tienecuponera(String nombre) {
