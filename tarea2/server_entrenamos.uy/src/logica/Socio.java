@@ -114,9 +114,9 @@ public class Socio extends Usuario {
 		return infoAct;
 	}
 	
-	public Vector<DataCuponera> cuponeras(){
+	public Set<DataCuponera> cuponeras(){
 		
-		Vector<DataCuponera> vec = new Vector<DataCuponera>();
+		Set<DataCuponera> vec = new HashSet<DataCuponera>();
 		
 		 Map<String, Compra> map = compCup;
 		for (Map.Entry<String, Compra> entry : map.entrySet()) {

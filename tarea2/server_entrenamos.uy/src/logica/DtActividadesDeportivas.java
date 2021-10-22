@@ -1,6 +1,8 @@
 package logica;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Vector;
 
 /**
@@ -16,7 +18,7 @@ public class DtActividadesDeportivas {
     private Float duracion;
     private Float costo;
     private Date fechaAlta;
-    private Vector<DtClase> clases = new  Vector<DtClase>();
+    private Set<DtClase> clases = new  HashSet<DtClase>();
     private EstadoActi estado;
 
     public DtActividadesDeportivas(String nombre, String descripcion, Float duracion, Float costo, Date fecha_alta) {
@@ -78,7 +80,7 @@ public class DtActividadesDeportivas {
     	this.clases.add(dataTypePorParametro);
     }
 
-	public Vector<DtClase> getClases() {
+	public Set<DtClase> getClases() {
 		return clases;
 	}
     

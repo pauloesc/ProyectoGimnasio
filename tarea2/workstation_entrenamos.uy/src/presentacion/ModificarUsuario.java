@@ -410,7 +410,7 @@ public class ModificarUsuario extends JInternalFrame{
     
     public void CargarDatos() {
     	
-		Vector<String> vector;
+		Set<String> vector;
 		vector = controlUsuario.usuariosEnSistemaNickName();
 		DefaultComboBoxModel<String> model;
 		model = new DefaultComboBoxModel<String>(vector);

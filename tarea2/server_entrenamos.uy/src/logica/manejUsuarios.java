@@ -107,9 +107,9 @@ public class manejUsuarios {
 	}
 	
 	
-	public Vector<String> usuariosNickName(){
+	public Set<String> usuariosNickName(){
 		
-		Vector<String> vec= new Vector<>();
+		Set<String> vec= new HashSet<>();
 		
 		Iterator<Map.Entry<String, Usuario>> usr = this.usuarios.entrySet().iterator();
 		
