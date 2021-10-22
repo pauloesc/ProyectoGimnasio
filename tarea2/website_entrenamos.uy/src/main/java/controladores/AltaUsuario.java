@@ -1,6 +1,8 @@
 package controladores;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Vector;
 
@@ -80,8 +82,31 @@ public class AltaUsuario extends HttpServlet {
 		
 		//auxiliares
 		InfoBasicaUser info = null;
-		Date objDate = new Date(); 
 		String img = "";
+		
+		/**
+		 *proceso la fecha en el formato que viene
+		 */
+		Date feI = null;
+		try {
+			feI = new SimpleDateFormat("yyyy-MM-dd").parse(fecha);
+		} catch (ParseException e1) {
+		}
+		
+		/**
+		 *proceso la fecha en el formato que quiero
+		 */
+		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+		String dateString = formato.format(feI);
+
+		/**
+		 *genero la fecha a guardar en el sistema
+		 */
+		Date fechaFormateadaDate = null;
+		try {
+			fechaFormateadaDate = new SimpleDateFormat("dd/MM/yyyy").parse(dateString);
+		} catch (ParseException e1) {
+		}
 		
 		//si es profesor
 		if( esProfesor != null && esProfesor.equals("on") ) {
@@ -91,7 +116,7 @@ public class AltaUsuario extends HttpServlet {
 																nombre,
 																apellido,
 																email,
-																objDate,
+																fechaFormateadaDate,
 																pass,
 																img,
 																institucion,
@@ -111,7 +136,7 @@ public class AltaUsuario extends HttpServlet {
 																nombre,
 																apellido,
 																email,
-																objDate,
+																fechaFormateadaDate,
 																pass,
 																img);
 			info = infoS;
@@ -140,7 +165,7 @@ public class AltaUsuario extends HttpServlet {
 		}
 		
 		
-		
+		/**
 		System.out.println( nickname  );
 		System.out.println( nombre  );
 		System.out.println( apellido  );
@@ -153,6 +178,7 @@ public class AltaUsuario extends HttpServlet {
 		System.out.println( descripcion  );
 		System.out.println( bibliografia  );
 		System.out.println( web  );
+		*/
 		
 		/**
 		*traigo las instituciones
