@@ -50,7 +50,7 @@ public class AltaUsuario extends HttpServlet {
 		/**
 		*traigo las instituciones
 		*/
-		Vector<String> instEnSistem =  ICU.InstitucionesEnSistema();
+		Vector<String> instEnSistem =  ICU.institucionesEnSistema();
 		
 		request.setAttribute("instituciones", instEnSistem);
 		request.getRequestDispatcher("/WEB-INF/usuario/AltaUsuario.jsp").forward(request, response);
@@ -183,7 +183,7 @@ public class AltaUsuario extends HttpServlet {
 		/**
 		*traigo las instituciones
 		*/
-		Vector<String> instEnSistem =  ICU.InstitucionesEnSistema();
+		Vector<String> instEnSistem =  ICU.institucionesEnSistema();
 		request.setAttribute("instituciones", instEnSistem);
 		
 		request.setAttribute("altaUsuarioEstado", altaUsuarioEstado);

@@ -50,7 +50,7 @@ public class SeguirDejarDeSeguir extends HttpServlet {
 		}
 		
 		boolean siguendo=false;
-		Vector<String> usuariosSiguiendo = ICU.UsuariosSiguiendo( nickEnSesion  );
+		Vector<String> usuariosSiguiendo = ICU.usuariosSiguiendo( nickEnSesion  );
 		Iterator<String> itt = usuariosSiguiendo.iterator();
 		
 		//compruebo si ya estoy siguendo a ese usuario 

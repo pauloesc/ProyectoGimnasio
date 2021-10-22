@@ -58,7 +58,7 @@ public class AltaClase extends HttpServlet {
     	if (!ESocio) {
         	
 			
-			InfoBasicaProfesor infP = (InfoBasicaProfesor)ICU.InformacionBasicaUsuario((String)sesion.getAttribute("nickname-user"));
+			InfoBasicaProfesor infP = (InfoBasicaProfesor)ICU.informacionBasicaUsuario((String)sesion.getAttribute("nickname-user"));
 			
 			req.setAttribute("institucion",infP.getInstitucion());
 			req.setAttribute("actividades",ICA.darNombresActividadesDeportivas(infP.getInstitucion()));
@@ -94,7 +94,7 @@ public class AltaClase extends HttpServlet {
     	}
     	
     	if (!ESocio) {
-    		InfoBasicaProfesor infP = (InfoBasicaProfesor)ICU.InformacionBasicaUsuario((String)sesion.getAttribute("nickname-user"));
+    		InfoBasicaProfesor infP = (InfoBasicaProfesor)ICU.informacionBasicaUsuario((String)sesion.getAttribute("nickname-user"));
 			req.setAttribute("institucion",infP.getInstitucion());
 			req.setAttribute("actividades",ICA.darNombresActividadesDeportivas(infP.getInstitucion()));
 			

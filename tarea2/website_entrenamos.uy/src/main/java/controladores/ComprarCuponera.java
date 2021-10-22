@@ -56,7 +56,7 @@ public class ComprarCuponera extends HttpServlet {
         	String nom = req.getParameter("clase");
         	DtClase dc = ICL.darDtClase(nom);
         	
-        	Set<String> nomCups = ICU.MostrarCuponerasDisponibles((String) sesion.getAttribute("nickname-user"), dc.getNomAct());
+        	Set<String> nomCups = ICU.mostrarCuponerasDisponibles((String) sesion.getAttribute("nickname-user"), dc.getNomAct());
         	
         	req.setAttribute("nomC", nom);
         	req.setAttribute("nomCups", nomCups);
@@ -104,7 +104,7 @@ public class ComprarCuponera extends HttpServlet {
         	String nom = req.getParameter("clase");
         	DtClase dc = ICL.darDtClase(nom);
         	
-        	Set<String> nomCups = ICU.MostrarCuponerasDisponibles((String) sesion.getAttribute("nickname-user"), dc.getNomAct());
+        	Set<String> nomCups = ICU.mostrarCuponerasDisponibles((String) sesion.getAttribute("nickname-user"), dc.getNomAct());
         	
         	req.setAttribute("nomC", nom);
         	req.setAttribute("nomCups", nomCups);
