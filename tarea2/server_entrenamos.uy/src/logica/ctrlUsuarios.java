@@ -48,8 +48,8 @@ public class ctrlUsuarios implements IctrlUsuarios {
 		
 		while(iterate_value.hasNext()){
 			
-			String e = iterate_value.next().toString();
-			vector.add(e);
+			String institucionesDep = iterate_value.next().toString();
+			vector.add(institucionesDep);
 		}
 		
 		return vector;
@@ -81,9 +81,9 @@ public class ctrlUsuarios implements IctrlUsuarios {
 	
 	
 	public Set<String> MostrarCuponerasDisponibles(String nick, String actDept) {
-		Socio s = (Socio) manejador.findUsuario(nick);
+		Socio socio = (Socio) manejador.findUsuario(nick);
 		
-		return s.mostrarNombreCuponerasDisponibles(actDept); 
+		return socio.mostrarNombreCuponerasDisponibles(actDept); 
 	}
 	
 	public Set<String> mostrarNicknameSocios() {
@@ -105,10 +105,10 @@ public class ctrlUsuarios implements IctrlUsuarios {
 	}
 	
 	public boolean esSocio(String nick) throws UsuarioInexistenteException {
-		Usuario u = manejador.findUsuario(nick);
+		Usuario usuario = manejador.findUsuario(nick);
 		
-		if (u != null) {
-			if (u.getClass() == Socio.class) {
+		if (usuario != null) {
+			if (usuario.getClass() == Socio.class) {
 				return true;
 			} else {
 				return false;
@@ -121,37 +121,37 @@ public class ctrlUsuarios implements IctrlUsuarios {
 	
 	public void cargarUsuarios() {
 		//socios
-		Date f1 = null, f2 = null, f3 = null, f4 = null, f5 = null, f6 = null, f7 = null, f8 = null, f9 = null;
+		Date fecha1 = null, fecha2 = null, fecha3 = null, fecha4 = null, fecha5 = null, fecha6 = null, fecha7 = null, fecha8 = null, fecha9 = null;
 		try {
-			f1 = new SimpleDateFormat("dd/MM/yy").parse("31/12/1971");
-			f2 = new SimpleDateFormat("dd/MM/yy").parse("15/11/1983");
-			f3 = new SimpleDateFormat("dd/MM/yy").parse("15/04/1990");
-			f4 = new SimpleDateFormat("dd/MM/yy").parse("15/05/1959");
-			f5 = new SimpleDateFormat("dd/MM/yy").parse("28/01/1950");
-			f6 = new SimpleDateFormat("dd/MM/yy").parse("17/03/1976");
-			f7 = new SimpleDateFormat("dd/MM/yy").parse("14/02/1955");
-			f8 = new SimpleDateFormat("dd/MM/yy").parse("23/02/1987");
-			f9 = new SimpleDateFormat("dd/MM/yy").parse("08/05/1937");
+			fecha1 = new SimpleDateFormat("dd/MM/yy").parse("31/12/1971");
+			fecha2 = new SimpleDateFormat("dd/MM/yy").parse("15/11/1983");
+			fecha3 = new SimpleDateFormat("dd/MM/yy").parse("15/04/1990");
+			fecha4 = new SimpleDateFormat("dd/MM/yy").parse("15/05/1959");
+			fecha5 = new SimpleDateFormat("dd/MM/yy").parse("28/01/1950");
+			fecha6 = new SimpleDateFormat("dd/MM/yy").parse("17/03/1976");
+			fecha7 = new SimpleDateFormat("dd/MM/yy").parse("14/02/1955");
+			fecha8 = new SimpleDateFormat("dd/MM/yy").parse("23/02/1987");
+			fecha9 = new SimpleDateFormat("dd/MM/yy").parse("08/05/1937");
 			
-			InfoBasicaSocio u1 = new InfoBasicaSocio("Emi71","Emiliano","Lucas","emi71@gmail.com",f1,"asdfg456","https://bit.ly/3lxoBvZ");
-			InfoBasicaSocio u2 = new InfoBasicaSocio("caro","Carolina","Omega","caro@gmail.com",f2,"123rtgfdv","https://bit.ly/3AfcJER");
-			InfoBasicaSocio u3 = new InfoBasicaSocio("euge","Eugenia","Williams","e.will@gmail.com",f3,"poiuy086","https://bit.ly/3Afz59x");
-			InfoBasicaSocio u4 = new InfoBasicaSocio("guille","Guillermo","Hector","ghector@gmail.com",f4,"GTO468","https://bit.ly/2XkrKH9");
-			InfoBasicaSocio u5 = new InfoBasicaSocio("sergiop","Sergio","Perez","sergi@gmail.com.uy",f5,"HGF135","https://bit.ly/3ElkVG2");
-			InfoBasicaSocio u6 = new InfoBasicaSocio("andy","Andrés","Roman","chino@gmail.org.uy",f6,"lkj65D","https://bit.ly/3hDWgTD");
-			InfoBasicaSocio u7 = new InfoBasicaSocio("tonyp","Antonio","Paz","eltony@gmail.org.uy",f7,"jhvf395","https://bit.ly/3Ai4jMW");
-			InfoBasicaSocio u8 = new InfoBasicaSocio("m1k4","Micaela","Lopez","mika@gmail.com.ar",f8,"ijngr024","https://bit.ly/3zglsWf");
-			InfoBasicaSocio u9 = new InfoBasicaSocio("charly","Carlos","Boston","charly@gmail.com.uy",f9,"987mnbgh","https://bit.ly/2YRWDTQ");
+			InfoBasicaSocio socio1 = new InfoBasicaSocio("Emi71","Emiliano","Lucas","emi71@gmail.com",fecha1,"asdfg456","https://bit.ly/3lxoBvZ");
+			InfoBasicaSocio socio2 = new InfoBasicaSocio("caro","Carolina","Omega","caro@gmail.com",fecha2,"123rtgfdv","https://bit.ly/3AfcJER");
+			InfoBasicaSocio socio3 = new InfoBasicaSocio("euge","Eugenia","Williams","e.will@gmail.com",fecha3,"poiuy086","https://bit.ly/3Afz59x");
+			InfoBasicaSocio socio4 = new InfoBasicaSocio("guille","Guillermo","Hector","ghector@gmail.com",fecha4,"GTO468","https://bit.ly/2XkrKH9");
+			InfoBasicaSocio socio5 = new InfoBasicaSocio("sergiop","Sergio","Perez","sergi@gmail.com.uy",fecha5,"HGF135","https://bit.ly/3ElkVG2");
+			InfoBasicaSocio socio6 = new InfoBasicaSocio("andy","Andrés","Roman","chino@gmail.org.uy",fecha6,"lkj65D","https://bit.ly/3hDWgTD");
+			InfoBasicaSocio socio7 = new InfoBasicaSocio("tonyp","Antonio","Paz","eltony@gmail.org.uy",fecha7,"jhvf395","https://bit.ly/3Ai4jMW");
+			InfoBasicaSocio socio8 = new InfoBasicaSocio("m1k4","Micaela","Lopez","mika@gmail.com.ar",fecha8,"ijngr024","https://bit.ly/3zglsWf");
+			InfoBasicaSocio socio9 = new InfoBasicaSocio("charly","Carlos","Boston","charly@gmail.com.uy",fecha9,"987mnbgh","https://bit.ly/2YRWDTQ");
 			
-			manejador.CrearUsuario(u1);
-			manejador.CrearUsuario(u2);
-			manejador.CrearUsuario(u3);
-			manejador.CrearUsuario(u4);
-			manejador.CrearUsuario(u5);
-			manejador.CrearUsuario(u6);
-			manejador.CrearUsuario(u7);
-			manejador.CrearUsuario(u8);
-			manejador.CrearUsuario(u9);
+			manejador.CrearUsuario(socio1);
+			manejador.CrearUsuario(socio2);
+			manejador.CrearUsuario(socio3);
+			manejador.CrearUsuario(socio4);
+			manejador.CrearUsuario(socio5);
+			manejador.CrearUsuario(socio6);
+			manejador.CrearUsuario(socio7);
+			manejador.CrearUsuario(socio8);
+			manejador.CrearUsuario(socio9);
 	
 		} catch (Exception e) {	
 		}
@@ -170,27 +170,27 @@ public class ctrlUsuarios implements IctrlUsuarios {
 			pf8 = new SimpleDateFormat("dd/MM/yy").parse("05/03/1940");
 			pf9 = new SimpleDateFormat("dd/MM/yy").parse("17/07/1952");
 			
-			InfoBasicaProfesor p1 = new InfoBasicaProfesor("viktor","Victor","Perez","vperez@fuerza.com",pf1,"lkj34df","https://bit.ly/3zetdMl","Fuerza Bruta","Victor es un apasionado de los músculos. Sus clases son organizadas en función de distintos aparatos y pesas con el objetivo de desarrollar músculos","Victor nació en Moscow en 1977. En el año 2005 emigró a Uruguay luego de quedar encantado con el país en un viaje turístico","www.vikgym.com");
-			InfoBasicaProfesor p2 = new InfoBasicaProfesor("denis","Denis","Miguel","den80@fuerza.com",pf2,"poke579","https://bit.ly/3lKq8Px","Telón","A Denis le interesan los deportes con pelota, principalmente el voleibol y el handball","Denis fue un jugador de voleibol profesional.","www.depecho.com");
-			InfoBasicaProfesor p3 = new InfoBasicaProfesor("clazar","Carlos","Lazaro","claz4r0@hotmail.com",pf3,"mkji648","https://bit.ly/2VJvT6S","Instituto Natural","Carlos es un profesor muy divertido cuyas clases de aeróbica están cargadas de energía.","El interés por la actividad física llevo a Carlos a dejar su trabajo en un estudio contable y abrir su propio gimnasio.","www.enforma.com");
-			InfoBasicaProfesor p4 = new InfoBasicaProfesor("TheBoss","Bruno","Sosa","bruceTheBoss@gmail.com",pf4,"fcku0123","https://bit.ly/3kdT9TV","Fuerza Bruta","Bruno es un ex-boxeardor que busca entrenar a futuros campeones.","Bruno, mejor conocido como Bruce en el ring, compitió como boxeador entre los años 60s y 70s.","www.bruce.net");
-			InfoBasicaProfesor p5 = new InfoBasicaProfesor("Nelson","Luis","Nelson","nelson@hotmail.com",pf5,"vbmn4r","https://bit.ly/3lxsDo7","Telón","Profesor de natación. Especializado en braza y mariposa.","","www.nelson.uy");
-			InfoBasicaProfesor p6 = new InfoBasicaProfesor("lale","Laura","Leyes","la_le@outlook.com",pf6,"ncnl123","https://bit.ly/3EmlY8F","Telón","Luego de una exitosa carrera como jugadora de futbol profesional. Laura dedica sus clases a enseñar tácticas de futbol","Jugadora profesional de futbol desde 2010 a 2020.","www.laley.com");
-			InfoBasicaProfesor p7 = new InfoBasicaProfesor("prisc","Priscila","Pappo","pripa@gmail.com",pf7,"mny101","","Olympic","Laura tiene un gran interés por los deportes olímpicos.","","www.pi314.net");
-			InfoBasicaProfesor p8 = new InfoBasicaProfesor("dagost","Daiana","Agostini","d_1940_ago@gmail.com",pf8,"1o1vbm","https://bit.ly/3hB3zvo","Olympic","Profesora dedicada y exigente. No acepta un “no puedo” como respuesta.","","www.dygym.com");
-			InfoBasicaProfesor p9 = new InfoBasicaProfesor("aldo","Aldo","Vivaldi","aldo@ outlook.com",pf9,"ultraton01","https://bit.ly/2VLnzUj","Telón","Dada su gran estatura Aldo siempre jugó al basquetbol, hoy se dedica a enseñarlo.","","www.sportsaldo.net");
+			InfoBasicaProfesor prof1 = new InfoBasicaProfesor("viktor","Victor","Perez","vperez@fuerza.com",pf1,"lkj34df","https://bit.ly/3zetdMl","Fuerza Bruta","Victor es un apasionado de los músculos. Sus clases son organizadas en función de distintos aparatos y pesas con el objetivo de desarrollar músculos","Victor nació en Moscow en 1977. En el año 2005 emigró a Uruguay luego de quedar encantado con el país en un viaje turístico","www.vikgym.com");
+			InfoBasicaProfesor prof2 = new InfoBasicaProfesor("denis","Denis","Miguel","den80@fuerza.com",pf2,"poke579","https://bit.ly/3lKq8Px","Telón","A Denis le interesan los deportes con pelota, principalmente el voleibol y el handball","Denis fue un jugador de voleibol profesional.","www.depecho.com");
+			InfoBasicaProfesor prof3 = new InfoBasicaProfesor("clazar","Carlos","Lazaro","claz4r0@hotmail.com",pf3,"mkji648","https://bit.ly/2VJvT6S","Instituto Natural","Carlos es un profesor muy divertido cuyas clases de aeróbica están cargadas de energía.","El interés por la actividad física llevo a Carlos a dejar su trabajo en un estudio contable y abrir su propio gimnasio.","www.enforma.com");
+			InfoBasicaProfesor prof4 = new InfoBasicaProfesor("TheBoss","Bruno","Sosa","bruceTheBoss@gmail.com",pf4,"fcku0123","https://bit.ly/3kdT9TV","Fuerza Bruta","Bruno es un ex-boxeardor que busca entrenar a futuros campeones.","Bruno, mejor conocido como Bruce en el ring, compitió como boxeador entre los años 60s y 70s.","www.bruce.net");
+			InfoBasicaProfesor prof5 = new InfoBasicaProfesor("Nelson","Luis","Nelson","nelson@hotmail.com",pf5,"vbmn4r","https://bit.ly/3lxsDo7","Telón","Profesor de natación. Especializado en braza y mariposa.","","www.nelson.uy");
+			InfoBasicaProfesor prof6 = new InfoBasicaProfesor("lale","Laura","Leyes","la_le@outlook.com",pf6,"ncnl123","https://bit.ly/3EmlY8F","Telón","Luego de una exitosa carrera como jugadora de futbol profesional. Laura dedica sus clases a enseñar tácticas de futbol","Jugadora profesional de futbol desde 2010 a 2020.","www.laley.com");
+			InfoBasicaProfesor prof7 = new InfoBasicaProfesor("prisc","Priscila","Pappo","pripa@gmail.com",pf7,"mny101","","Olympic","Laura tiene un gran interés por los deportes olímpicos.","","www.pi314.net");
+			InfoBasicaProfesor prof8 = new InfoBasicaProfesor("dagost","Daiana","Agostini","d_1940_ago@gmail.com",pf8,"1o1vbm","https://bit.ly/3hB3zvo","Olympic","Profesora dedicada y exigente. No acepta un “no puedo” como respuesta.","","www.dygym.com");
+			InfoBasicaProfesor prof9 = new InfoBasicaProfesor("aldo","Aldo","Vivaldi","aldo@ outlook.com",pf9,"ultraton01","https://bit.ly/2VLnzUj","Telón","Dada su gran estatura Aldo siempre jugó al basquetbol, hoy se dedica a enseñarlo.","","www.sportsaldo.net");
 			
 			
 			
-			manejador.CrearUsuario(p1);
-			manejador.CrearUsuario(p2);
-			manejador.CrearUsuario(p3);
-			manejador.CrearUsuario(p4);
-			manejador.CrearUsuario(p5);
-			manejador.CrearUsuario(p6);
-			manejador.CrearUsuario(p7);
-			manejador.CrearUsuario(p8);
-			manejador.CrearUsuario(p9);
+			manejador.CrearUsuario(prof1);
+			manejador.CrearUsuario(prof2);
+			manejador.CrearUsuario(prof3);
+			manejador.CrearUsuario(prof4);
+			manejador.CrearUsuario(prof5);
+			manejador.CrearUsuario(prof6);
+			manejador.CrearUsuario(prof7);
+			manejador.CrearUsuario(prof8);
+			manejador.CrearUsuario(prof9);
 			
 			
 			
@@ -312,25 +312,25 @@ public class ctrlUsuarios implements IctrlUsuarios {
 	}
 
 	public Vector<String> UsuariosSiguiendo(String nickname){
-		Usuario u = this.manejador.findUsuario(nickname);
-		return u.SeguidosNickname();
+		Usuario usuario = this.manejador.findUsuario(nickname);
+		return usuario.SeguidosNickname();
 	}
 	
 	
 	public Vector<String> UsuariosSeguidores(String nickname){
-		Usuario u = this.manejador.findUsuario(nickname);
-		return u.SeguidoresNickname();
+		Usuario usuario = this.manejador.findUsuario(nickname);
+		return usuario.SeguidoresNickname();
 	}
 	
 	public Vector<DataCuponera> Cuponeras(String nickname){
-		Usuario u = this.manejador.findUsuario(nickname);
-		Socio s = (Socio)u;
-		return s.Cuponeras();
+		Usuario usuario = this.manejador.findUsuario(nickname);
+		Socio socio = (Socio)usuario;
+		return socio.Cuponeras();
 	}
 	
 	public InfoActividadProfe InformacionActDepEstadoIngRech(String nickname){
-		Usuario u = this.manejador.findUsuario(nickname);
-		Profesor p = (Profesor)u;
-		return p.InformacionActDepEstadoIngRech();
+		Usuario usuario = this.manejador.findUsuario(nickname);
+		Profesor profe = (Profesor)usuario;
+		return profe.InformacionActDepEstadoIngRech();
 	}
 }
