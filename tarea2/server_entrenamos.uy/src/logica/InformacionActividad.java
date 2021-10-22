@@ -1,17 +1,18 @@
 package logica;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.List;
 import java.util.Vector;
 
 public class InformacionActividad {
 
-	protected Set<Object> vector= new HashSet<Object>();
+	protected List<Object> vector= new Vector<Object>();
 	
 	public void agregarInfo(Object parametroObj) {
 		vector.add(parametroObj);
 	}
  	
-	public Set<Object> obtenerVector() {
+	public List<Object> obtenerVector() {
 		return this.vector;
 	}
 }

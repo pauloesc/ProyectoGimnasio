@@ -3,6 +3,7 @@ package logica;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
@@ -127,8 +128,8 @@ public abstract class Usuario {
 		usuario.noTeSigo(this);
 	}
 	
-	public Set<String> seguidoresNickname(){
-		Set<String> vec = new HashSet<String>();
+	public List<String> seguidoresNickname(){
+		Vector<String> vec = new Vector<String>();
 		
 		Map<String, Usuario> map = seguidores;
 				for (Map.Entry<String, Usuario> entry : map.entrySet()) {
@@ -139,8 +140,8 @@ public abstract class Usuario {
 		return vec;
 	}
 	
-	public Set<String> seguidosNickname(){
-		Set<String> vec = new HashSet<String>();
+	public List<String> seguidosNickname(){
+		Vector<String> vec = new Vector<String>();
 		
 		Map<String, Usuario> map = seguidos;
 				for (Map.Entry<String, Usuario> entry : map.entrySet()) {

@@ -73,6 +73,7 @@ import java.awt.*;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import java.util.List;
 import java.util.Vector;
 
 import javax.swing.JOptionPane;
@@ -410,10 +411,11 @@ public class ModificarUsuario extends JInternalFrame{
     
     public void CargarDatos() {
     	
-		Set<String> vector;
+		List<String> vector;
 		vector = controlUsuario.usuariosEnSistemaNickName();
 		DefaultComboBoxModel<String> model;
-		model = new DefaultComboBoxModel<String>(vector);
+		Vector<String> casreoVector = (Vector<String>) vector;
+		model = new DefaultComboBoxModel<String>(casreoVector);
 		model.setSelectedItem(null);
 		comboBoxNicks.setModel(model);
 		

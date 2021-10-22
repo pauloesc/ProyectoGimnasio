@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
@@ -116,7 +117,7 @@ public class Socio extends Usuario {
 		return infoAct;
 	}
 	
-	public Set<DataCuponera> cuponeras(){
+	public List<DataCuponera> cuponeras(){
 		
 		Set<DataCuponera> vec = new HashSet<DataCuponera>();
 		

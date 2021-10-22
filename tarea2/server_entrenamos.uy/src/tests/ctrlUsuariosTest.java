@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.Vector;
 
@@ -250,7 +251,7 @@ class ctrlUsuariosTest {
 		vecDatosEntrada.add("institucion3");
 		
 		//utilizo carga de datos
-		Set<String> vecDatosRespuesta = cu.institucionesEnSistema();
+		List<String> vecDatosRespuesta = cu.institucionesEnSistema();
 		
 		
 		//si lo de adentro es falso dispara el assert
@@ -553,7 +554,7 @@ class ctrlUsuariosTest {
 			
 		}
 		
-		Set<String> respuesta = cu.usuariosEnSistemaNickName();
+		List<String> respuesta = cu.usuariosEnSistemaNickName();
 		
 		boolean mismo1 = (datosIngresados.size() == respuesta.size()); 
 		boolean mismo2 = datosIngresados.containsAll(respuesta);
@@ -688,7 +689,7 @@ class ctrlUsuariosTest {
 		cu.seguirUsuario("nick p1", "nick p2");
 		cu.seguirUsuario("nick p1", "nick s1");
 		
-		Set<String> siguiendo = null;
+		List<String> siguiendo = null;
 		siguiendo = cu.usuariosSiguiendo("nick p1");
 		
 		Set<String> NicknameSiguiendo = new HashSet<String>();
@@ -709,7 +710,7 @@ class ctrlUsuariosTest {
 		cu.seguirUsuario("nick p2", "nick s1");
 		cu.seguirUsuario("nick p2", "nick s2");
 		
-		Set<String> siguiendo2 = null;
+		List<String> siguiendo2 = null;
 		siguiendo2 = cu.usuariosSiguiendo("nick p1");
 		
 		Set<String> NicknameSiguiendo2 = new HashSet<String>();
@@ -789,7 +790,7 @@ class ctrlUsuariosTest {
 		cu.seguirUsuario("nick p2", "nick s1");
 		cu.seguirUsuario("nick s2", "nick s1");
 		
-		Set<String> Seguidores = null;
+		List<String> Seguidores = null;
 		Seguidores = cu.usuariosSeguidores("nick s1");
 		
 		Set<String> NicknameSeguidores = new HashSet<String>();

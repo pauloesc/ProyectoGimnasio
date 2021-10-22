@@ -3,6 +3,7 @@ package controladores;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.List;
 import java.util.Vector;
 
 import javax.servlet.ServletException;
@@ -51,7 +52,7 @@ public class SeguirDejarDeSeguir extends HttpServlet {
 		}
 		
 		boolean siguendo=false;
-		Set<String> usuariosSiguiendo = ICU.usuariosSiguiendo( nickEnSesion  );
+		List<String> usuariosSiguiendo = ICU.usuariosSiguiendo( nickEnSesion  );
 		Iterator<String> itt = usuariosSiguiendo.iterator();
 		
 		//compruebo si ya estoy siguendo a ese usuario 

@@ -1,4 +1,5 @@
 package logica;
+import java.util.List;
 import java.util.Set;
 
 import excepciones.UsuarioDisponibilidadException;
@@ -43,11 +44,11 @@ public interface IctrlUsuarios {
 	
 	//creado por Paulo
 	public abstract void altaUsuario(InfoBasicaUser user) throws UsuarioDisponibilidadException;
-	public abstract Set<String> institucionesEnSistema();
+	public abstract List<String> institucionesEnSistema();
 	public abstract InformacionActividad informacionActividad(String usuario);
 	public abstract void actualizarInformacionUsuario(InfoBasicaUser actualizacion);
 	public abstract InfoBasicaUser informacionBasicaUsuario(String usuario);
-	public abstract Set<String> usuariosEnSistemaNickName();
+	public abstract List<String> usuariosEnSistemaNickName();
 	//fincreado
 	
 	public abstract void seguirUsuario(String seguidor, String seguido);
@@ -62,13 +63,13 @@ public interface IctrlUsuarios {
 	
 	public abstract void cargarUsuarios();
 	
-	public abstract Set<String> usuariosSiguiendo(String nickname);
-	public abstract Set<String> usuariosSeguidores(String nickname);
+	public abstract List<String> usuariosSiguiendo(String nickname);
+	public abstract List<String> usuariosSeguidores(String nickname);
 	public abstract InfoActividadProfe informacionActDepEstadoIngRech(String nickname);
 	
 	//retorna true si el usuario es un socio, si es un profesor retorna false, si no existe retorna una excepcion
 	public abstract boolean esSocio(String nick) throws UsuarioInexistenteException;
 	
-	public abstract Set<DataCuponera> cuponeras(String nickname);
+	public abstract List<DataCuponera> cuponeras(String nickname);
 	
 }
