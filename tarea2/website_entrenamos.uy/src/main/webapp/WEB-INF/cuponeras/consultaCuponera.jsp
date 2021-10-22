@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="controladores.ConsultaActividad"%>
 <%@page import="controladores.ConsultaCategoria"%>
+<%@page import="controladores.ComprarCuponera"%>
 
 <%@page import="logica.DataCuponera"%>
 <%@page import="logica.ParActividad"%>
@@ -23,6 +24,26 @@
 	<jsp:include page="/WEB-INF/template/header.jsp" />
 	<!-- Begin page content -->
 	<main role="main" class="container">
+	<% if (request.getAttribute("compra") != null) { %>
+		<% String msje=(String) request.getAttribute("msjcompra");
+		Boolean compra =(Boolean) request.getAttribute("compra");
+			if (compra==false) { %>
+		<div class="alert alert-danger alert-dismissible fade show  my-4" role="alert">
+		  <%= msje %>
+		  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		    <span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		<% } %>
+		<% if (compra == true) { %>
+		<div class="alert alert-success alert-dismissible fade show  my-4" role="alert">
+		  <%= msje %>
+		  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		    <span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		<% } %>
+		<% } %>
 		<div class="row my-4">
 			<jsp:include page="/WEB-INF/template/sidebar.jsp" />
 			<div class="col-12 col-md-8">
@@ -49,7 +70,7 @@
 <div class="modal fade" id="comprar2" tabindex="-1" role="dialog" aria-labelledby="comprar2Label" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form >
+            <form method="post" action="ComprarCuponera"> 
                 <div class="modal-header">
                     <h5 class="modal-title" id="comprarLabel">Confirmar la compra de la cuponera</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -58,29 +79,13 @@
                 </div>
               <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="button" data-dismiss="modal" class="btn btn-primary" data-toggle="modal" data-target="#exito2">Confirmar</button>
+                    <button type="button" name="submit" type="submit" class="btn btn-primary" data-dismiss="modal">Confirmar</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
-		<div class="modal fade" id="exito2" tabindex="-1" role="dialog" aria-labelledby="exito2Label" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <form >
-                <div class="modal-header">
-                    <h5 class="modal-title text-success" id="comprarLabel">La compra fue exitosa</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-              <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+		
   						
   						
   						
