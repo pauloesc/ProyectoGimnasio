@@ -36,12 +36,14 @@ public class Socio extends Usuario {
 		 Calendar fechaActual = Calendar.getInstance();  
 		 Date act = fechaActual.getTime();
 		
-		for (Compra c: compCup.values()) { 
-		   
-		    if (c.clasesDisponibles(actDept) > 0 && !c.comienzoCuponera().after(act) && !c.vencimientoCuponera().before(act)) {
-		    	res.add(c.getNombreCuponera());
-		    }
-
+		if (compCup.size() != 0) {
+			for (Compra c: compCup.values()) { 
+				
+			    if (c.clasesDisponibles(actDept) > 0 && !c.comienzoCuponera().after(act) && !c.vencimientoCuponera().before(act)) {
+			    	res.add(c.getNombreCuponera());
+			    }
+	
+			}
 		}
 		return res;
 	}
