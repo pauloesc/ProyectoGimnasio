@@ -40,14 +40,14 @@
 
 <body>
 	<jsp:include page="/WEB-INF/template/header.jsp" />
-	<jsp:include page="/WEB-INF/template/sidebar.jsp" />
+	
 	<!-- Begin page content -->
 	<main role="main" class="container">
 		<div class="row my-4">
 		<jsp:include page="/WEB-INF/template/sidebar.jsp" />
 			<div class="col-12 col-md-8 my-4">
 			
-			<form action="${pageContext.request.contextPath}/AltaClase" method="post">
+			<form action="${pageContext.request.contextPath}/AltaClase" method="post" enctype="multipart/form-data">
 				<h1>Alta Dictado de Clases</h1>
 				
 					<div class="form-group row">
@@ -139,6 +139,12 @@
 						</div>
 					</div>
 
+					<div class="form-group row">
+						<label for="imagenActividad" class="col-4 col-form-label">Imagen</label>
+						<div class="col-8">
+							<input type="file" class="form-control-file" accept="image/*" name="imagenClase">
+						</div>
+					</div>
 
 
 					<div class="form-group row">
