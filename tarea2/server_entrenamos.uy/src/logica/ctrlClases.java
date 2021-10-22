@@ -111,23 +111,23 @@ public class ctrlClases implements IctrlClases {
 			fr16 = new SimpleDateFormat("dd/MM/yy").parse("31/07/21");
 			fr17 = new SimpleDateFormat("dd/MM/yy").parse("31/07/21");
 			
-			crearClase("Calistenia",fecha1,"viktor",1,5,"https://www.musculos.com/Calistenia",fr1,"Aparatos y pesas",15,30);
-			crearClase("Peso libre",fecha2,"viktor",1,5,"https://www.musculos.com/pesolibre",fr2,"Aparatos y pesas",17,00);
-			crearClase("Aparatos",fecha3,"viktor",1,7,"https://www.musculos.com/aparatos",fr3,"Aparatos y pesas",18,00);
-			crearClase("Voleibol",fecha4,"denis",10,21,"https://telon.com.uy/voley",fr4,"Voleibol",19,00);
-			crearClase("Braza",fecha5,"Nelson",2,6,"https://telon.com.uy/natacionB",fr5,"Voleibol",20,00);
-			crearClase("Mariposa",fecha6,"Nelson",2,6,"https://telon.com.uy/natacionM",fr6,"Voleibol",17,45);
-			crearClase("Aeróbica niños",fecha7,"clazar",5,10,"https://www.inatural.com/aeroni",fr7,"Aeróbica",16,30);
-			crearClase("Aeróbico adulto mayor",fecha8,"clazar",5,12,"https://www.inatural.com/aeroam",fr8,"Aeróbica",19,30);
-			crearClase("Aeróbica",fecha9,"clazar",5,20,"https://www.inatural.com/aerogral",fr9,"Aeróbica",20,00);
-			crearClase("Boxeo I",fecha10,"TheBoss",1,4,"https://www.musculos.com/boxeo1",fr10,"Kickboxing",19,30);
-			crearClase("Boxeo II",fecha11,"TheBoss",2,2,"https://www.musculos.com/boxeo2",fr11,"Kickboxing",17,00);
-			crearClase("Músculos para boxeo",fecha12,"viktor",1,5,"https://www.musculos.com/muscbox",fr12,"Kickboxing",20,00);
-			crearClase("100 M",fecha13,"lale",3,10,"https://telon.com.uy/100m",fr13,"Atletismo",19,00);
-			crearClase("200 M",fecha14,"lale",3,10,"https://telon.com.uy/200m",fr14,"Atletismo",18,30);
-			crearClase("Posta",fecha15,"lale",8,16,"https://telon.com.uy/posta",fr15,"Atletismo",17,45);
-			crearClase("Basquet I",fecha16,"aldo",10,15,"https://telon.com.uy/bball1",fr16,"Basquetbol",21,00);
-			crearClase("Basquet II",fecha17,"aldo",10,10,"https://telon.com.uy/bball2",fr17,"Basquetbol",21,00);
+			crearClase("Calistenia", fecha1, "viktor", 1, 5, "https://www.musculos.com/Calistenia", fr1, "Aparatos y pesas", 15, 30);
+			crearClase("Peso libre", fecha2, "viktor", 1, 5, "https://www.musculos.com/pesolibre", fr2, "Aparatos y pesas", 17, 00);
+			crearClase("Aparatos", fecha3, "viktor", 1, 7, "https://www.musculos.com/aparatos", fr3, "Aparatos y pesas", 18, 00);
+			crearClase("Voleibol", fecha4, "denis", 10, 21, "https://telon.com.uy/voley", fr4, "Voleibol", 19, 00);
+			crearClase("Braza", fecha5, "Nelson", 2, 6, "https://telon.com.uy/natacionB", fr5, "Voleibol", 20, 00);
+			crearClase("Mariposa", fecha6, "Nelson", 2, 6, "https://telon.com.uy/natacionM", fr6, "Voleibol", 17, 45);
+			crearClase("Aeróbica niños", fecha7, "clazar", 5, 10, "https://www.inatural.com/aeroni", fr7, "Aeróbica", 16, 30);
+			crearClase("Aeróbico adulto mayor", fecha8, "clazar", 5, 12, "https://www.inatural.com/aeroam", fr8, "Aeróbica", 19, 30);
+			crearClase("Aeróbica", fecha9, "clazar", 5, 20, "https://www.inatural.com/aerogral", fr9, "Aeróbica", 20, 00);
+			crearClase("Boxeo I", fecha10, "TheBoss", 1, 4, "https://www.musculos.com/boxeo1", fr10, "Kickboxing", 19, 30);
+			crearClase("Boxeo II", fecha11, "TheBoss", 2, 2, "https://www.musculos.com/boxeo2", fr11, "Kickboxing", 17, 00);
+			crearClase("Músculos para boxeo", fecha12, "viktor", 1, 5, "https://www.musculos.com/muscbox", fr12, "Kickboxing", 20, 00);
+			crearClase("100 M", fecha13, "lale", 3, 10, "https://telon.com.uy/100m", fr13, "Atletismo", 19, 00);
+			crearClase("200 M", fecha14, "lale", 3, 10, "https://telon.com.uy/200m", fr14, "Atletismo", 18, 30);
+			crearClase("Posta", fecha15, "lale", 8, 16, "https://telon.com.uy/posta", fr15, "Atletismo", 17, 45);
+			crearClase("Basquet I", fecha16, "aldo", 10, 15, "https://telon.com.uy/bball1", fr16, "Basquetbol", 21, 00);
+			crearClase("Basquet II", fecha17, "aldo", 10, 10, "https://telon.com.uy/bball2", fr17, "Basquetbol", 21, 00);
 			
 		} catch (Exception e) {
 			// errores al ingresar las fechas o al registrar clases
