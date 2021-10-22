@@ -18,7 +18,7 @@ public class DataCuponera {
 	private Float costo;
 	
 	private Set<ParActividad> clases;
-	private Set <String> categorias;
+	private Set<String> categorias;
 	
 	
 	 public DataCuponera() {
@@ -108,11 +108,11 @@ public class DataCuponera {
 		this.costo = costo;
 	}
 
-	public Set <String> getCategorias() {
+	public Set<String> getCategorias() {
 		return categorias;
 	}
 
-	public void setCategorias(Set <String> categorias) {
+	public void setCategorias(Set<String> categorias) {
 		this.categorias = categorias;
 	}
 }

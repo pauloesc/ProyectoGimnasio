@@ -29,8 +29,8 @@ public class Profesor extends Usuario {
 		this.bio = info.getBibliografia();
 		this.website = info.getUrl();
 		
-		manejIDeportivas ee =  manejIDeportivas.getinstance();
-		this.inst = ee.buscarInstitucion(info.getInstitucion());
+		manejIDeportivas manejadorInsDeportivas =  manejIDeportivas.getinstance();
+		this.inst = manejadorInsDeportivas.buscarInstitucion(info.getInstitucion());
 	}
 	
 	
@@ -41,8 +41,8 @@ public class Profesor extends Usuario {
 		this.descripcion = descripcion;
 		this.bio = bio;
 		this.website = website;
-		manejIDeportivas ee =  manejIDeportivas.getinstance();
-		this.inst = ee.buscarInstitucion(inst);
+		manejIDeportivas manejadorInstDeportivas =  manejIDeportivas.getinstance();
+		this.inst = manejadorInstDeportivas.buscarInstitucion(inst);
 	}
 	
 	public String getDescripcion() {
@@ -79,8 +79,8 @@ public class Profesor extends Usuario {
 	
 	
 	@Override
-	public InfoBasicaUser Informacion() {	
-		InfoBasicaUser rt = new InfoBasicaProfesor(
+	public InfoBasicaUser informacion() {	
+		InfoBasicaUser DtInformacion = new InfoBasicaProfesor(
 			this.getNickname(),
 			this.getNombre(),
 			this.getApellido(),
@@ -93,11 +93,11 @@ public class Profesor extends Usuario {
 			this.getBio(),
 			this.getWebsite()
 			);
-			return rt;
+			return DtInformacion;
 	}
 	
 	@Override
-	public InformacionActividad InformacionActividad(String usuario) {
+	public InformacionActividad informacionActividad(String usuario) {
 		return this.inst.informacionProfesor(usuario);
 	}
 	
@@ -105,7 +105,7 @@ public class Profesor extends Usuario {
 		this.actDep.add(actDep);
 	}
 
-	public InfoActividadProfe InformacionActDepEstadoIngRech() {
+	public InfoActividadProfe informacionActDepEstadoIngRech() {
 		
 		InfoActividadProfe infoRetorno = new InfoActividadProfe(
 											this.getNombre(),
@@ -115,10 +115,10 @@ public class Profesor extends Usuario {
 		Iterator<ActividadDeportiva> aDepInstancia = actDep.iterator();
         while (aDepInstancia.hasNext()) {
         	
-        	ActividadDeportiva ad = aDepInstancia.next(); 
-        	if( (ad.getEstado() == EstadoActi.RECHAZADA) || (ad.getEstado() == EstadoActi.INGRESADA)  ) {
+        	ActividadDeportiva actDeportiva = aDepInstancia.next(); 
+        	if ( actDeportiva.getEstado() == EstadoActi.RECHAZADA || actDeportiva.getEstado() == EstadoActi.INGRESADA  ) {
 
-        		DtActividadesDeportivas DtAD = ad.dtActividadesDeportivasSinInfoClases();
+        		DtActividadesDeportivas DtAD = actDeportiva.dtActividadesDeportivasSinInfoClases();
         		infoRetorno.agregarInfo(DtAD);
         		
         	}

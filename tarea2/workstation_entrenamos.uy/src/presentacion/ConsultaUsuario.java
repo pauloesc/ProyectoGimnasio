@@ -157,7 +157,7 @@ public class ConsultaUsuario extends JInternalFrame{
 				String nick = comboBoxNicks.getSelectedItem().toString();
 			
 				InfoBasicaUser i;
-				i = controlUsuario.InformacionBasicaUsuario(nick);
+				i = controlUsuario.informacionBasicaUsuario(nick);
 				
 				//cargo en la presentacion la info basica 
 				txtNombre.setText( i.getNombre() )  ;
@@ -194,7 +194,7 @@ public class ConsultaUsuario extends JInternalFrame{
 				
 				
 				
-				InformacionActividad infoActividad = controlUsuario.InformacionActividad(nick);
+				InformacionActividad infoActividad = controlUsuario.informacionActividad(nick);
 				
 				if( infoActividad.getClass() == InfoActividadSocio.class ) {
 					
@@ -462,7 +462,7 @@ public class ConsultaUsuario extends JInternalFrame{
     public void CargarDatos() {
     	
 		Vector<String> vector;
-		vector = controlUsuario.UsuariosEnSistemaNickName();
+		vector = controlUsuario.usuariosEnSistemaNickName();
 		DefaultComboBoxModel<String> model;
 		model = new DefaultComboBoxModel<String>(vector);
 		model.setSelectedItem(null);

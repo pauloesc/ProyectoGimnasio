@@ -98,7 +98,7 @@
 					<table class="table table-sm mt-3 text-right" >
   							<thead>
     							<tr>
-     							 <th scope="col"> <a href="listaCuponeras?cuponera=<%= nomcup.getNombre() %>">Ver todas las cuponeras</a></th>
+     							 <th scope="col"> <a href="listaCuponeras?n=<%=1 %>">Ver todas las cuponeras</a></th>
     							</tr>
   							</thead>  			
 					</table>

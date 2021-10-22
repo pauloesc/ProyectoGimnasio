@@ -24,18 +24,18 @@ import logica.IctrlUsuarios;
 /**
  * Servlet implementation class RegistroAClase
  */
-@WebServlet("/RegistroAClase")
-public class RegistroAClase extends HttpServlet {
+@WebServlet("/ComprarCuponera")
+public class ComprarCuponera extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    
-    public RegistroAClase() {
+    public ComprarCuponera() {
         super();
         
     }
 
     	
-    
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    	
     	HttpSession sesion = req.getSession();
     	Fabrica f = Fabrica.getInstance();
 		IctrlUsuarios ICU = f.getIctrlUsuarios();

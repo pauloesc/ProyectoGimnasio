@@ -9,8 +9,12 @@
 <jsp:include page="/WEB-INF/template/head.jsp" />
 </head>
 <%
-	
-    String sel= (String) request.getAttribute("cu");
+	Integer total= (Integer) request.getAttribute("totalcups");
+	Set<DataCuponera> cups=(Set<DataCuponera>) request.getAttribute("cups");
+	DataCuponera[]  cupsar= cups.toArray(new DataCuponera[total]);
+    Integer pagnum= (Integer) request.getAttribute("pag");
+    Boolean socio= (Boolean) request.getAttribute ("socio");
+    
 %>
 <body>
 	<jsp:include page="/WEB-INF/template/header.jsp" />
@@ -18,9 +22,11 @@
 	<main role="main" class="container">
 		<div class="row my-4">
 			<jsp:include page="/WEB-INF/template/sidebar.jsp" />
-			<div class="col-12 col-md-8">
+					<div class="col-12 col-md-8">
 				<h2>Cuponeras de actividades deportivas</h2>
-
+				
+				<% int i=1;
+				if (i<4 && (((pagnum-1)*3)+i)<=total){ %>
 				<div class="card mb-3" style="max-width: auto;">
 					<div class="row no-gutters">					
 						<div class="col-md-4 text-center">
@@ -28,20 +34,135 @@
 						</div>
 						<div class="col-md-8">
 							<div class="card-body">
-								<h5 class="card-title"><%=sel%></h5>
-								<p class="card-text">Deportes con Pelota.</p>
-								
+								<h5 class="card-title"><%= cupsar[i-1].getNombre()%></h5>
+								<p class="card-text"><%= cupsar[i-1].getDescripcion()%></p>
+								<div class="d-md-flex justify-content-md-end">
+									<div class="d-flex flex-column">
+									<a href="consultaCuponera?cuponera=<%= cupsar[i-1].getNombre()%>" class="btn btn-primary">Detalles</a>
+									<% if (socio){%>
+									<a href=# class="btn btn-primary mt-2" data-toggle="modal" data-target="#comprar">Comprar</a>
+									<%}%>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-
+				<%}%>
+				<%i=i+1; 
+				if (i<4 && (((pagnum-1)*3)+i)<=total){ %>
+				<div class="card mb-3" style="max-width: auto;">
+					<div class="row no-gutters">					
+						<div class="col-md-4 text-center">
+							<img src="./resources/img/b1.jpg" alt="..." width="242" height="200">
+						</div>
+						<div class="col-md-8">
+							<div class="card-body">
+								<h5 class="card-title"><%= cupsar[i-1].getNombre()%></h5>
+								<p class="card-text"><%= cupsar[i-1].getDescripcion()%></p>
+								<div class="d-md-flex justify-content-md-end">
+									<div class="d-flex flex-column">
+									<a href="consultaCuponera?cuponera=<%= cupsar[i-1].getNombre()%>" class="btn btn-primary">Detalles</a>
+									<% if (socio){%>
+									<a href=# class="btn btn-primary mt-2" data-toggle="modal" data-target="#comprar">Comprar</a>
+									<%}%>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			   <%}%>
+			   <%i=i+1; 
+				if (i<4 && (((pagnum-1)*3)+i)<=total){ %>
+				<div class="card mb-3" style="max-width: auto;">
+					<div class="row no-gutters">					
+						<div class="col-md-4 text-center">
+							<img src="./resources/img/b1.jpg" alt="..." width="242" height="200">
+						</div>
+						<div class="col-md-8">
+							<div class="card-body">
+								<h5 class="card-title"><%= cupsar[i-1].getNombre()%></h5>
+								<p class="card-text"><%= cupsar[i-1].getDescripcion()%></p>
+								<div class="d-md-flex justify-content-md-end">
+									<div class="d-flex flex-column">
+									<a href="consultaCuponera?cuponera=<%= cupsar[i-1].getNombre()%>" class="btn btn-primary">Detalles</a>
+									<% if (socio){%>
+									<a href=# class="btn btn-primary mt-2" data-toggle="modal" data-target="#comprar">Comprar</a>
+									<%}%>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<%}%>
 				
-			
-
-		   </div>
+				
+				<div class="d-md-flex justify-content-md-center">
+					<nav aria-label="Page navigation example">
+						<ul class="pagination">
+							<li class="page-item"><a class="page-link" href="#"
+								aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+							</a></li>
+							<% int i2=1; 
+							int totalpag= (total/3);
+							
+							if ((total/3) >totalpag) {
+								totalpag=totalpag+1;
+							}
+							
+							while (i2<= (totalpag)) { 
+							%>
+							<li class="page-item"><a class="page-link" href="listaCuponeras?n=<%=i2 %>"><%=i2%></a></li>
+							<%i2++;}%>
+							<li class="page-item"><a class="page-link" href="#"
+								aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+							</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
 		</div>
 
+		<!-- Modal -->
+<div class="modal fade" id="comprar" tabindex="-1" role="dialog" aria-labelledby="comprarLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form >
+                <div class="modal-header">
+                    <h5 class="modal-title" id="comprarLabel">Confirmar la compra de la cuponera</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+              <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-primary" data-toggle="modal" data-target="#exito">Confirmar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+		<div class="modal fade" id="exito" tabindex="-1" role="dialog" aria-labelledby="exitoLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form >
+                <div class="modal-header">
+                    <h5 class="modal-title text-success" id="comprarLabel">La compra fue exitosa</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+              <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+		
+		
 		
 		
 	</main>

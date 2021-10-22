@@ -1,6 +1,8 @@
 package controladores;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Vector;
 
@@ -48,7 +50,7 @@ public class AltaUsuario extends HttpServlet {
 		/**
 		*traigo las instituciones
 		*/
-		Vector<String> instEnSistem =  ICU.InstitucionesEnSistema();
+		Vector<String> instEnSistem =  ICU.institucionesEnSistema();
 		
 		request.setAttribute("instituciones", instEnSistem);
 		request.getRequestDispatcher("/WEB-INF/usuario/AltaUsuario.jsp").forward(request, response);
@@ -80,8 +82,31 @@ public class AltaUsuario extends HttpServlet {
 		
 		//auxiliares
 		InfoBasicaUser info = null;
-		Date objDate = new Date(); 
 		String img = "";
+		
+		/**
+		 *proceso la fecha en el formato que viene
+		 */
+		Date feI = null;
+		try {
+			feI = new SimpleDateFormat("yyyy-MM-dd").parse(fecha);
+		} catch (ParseException e1) {
+		}
+		
+		/**
+		 *proceso la fecha en el formato que quiero
+		 */
+		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+		String dateString = formato.format(feI);
+
+		/**
+		 *genero la fecha a guardar en el sistema
+		 */
+		Date fechaFormateadaDate = null;
+		try {
+			fechaFormateadaDate = new SimpleDateFormat("dd/MM/yyyy").parse(dateString);
+		} catch (ParseException e1) {
+		}
 		
 		//si es profesor
 		if( esProfesor != null && esProfesor.equals("on") ) {
@@ -91,7 +116,7 @@ public class AltaUsuario extends HttpServlet {
 																nombre,
 																apellido,
 																email,
-																objDate,
+																fechaFormateadaDate,
 																pass,
 																img,
 																institucion,
@@ -111,7 +136,7 @@ public class AltaUsuario extends HttpServlet {
 																nombre,
 																apellido,
 																email,
-																objDate,
+																fechaFormateadaDate,
 																pass,
 																img);
 			info = infoS;
@@ -124,20 +149,23 @@ public class AltaUsuario extends HttpServlet {
 		Fabrica f = Fabrica.getInstance();
 		IctrlUsuarios ICU = f.getIctrlUsuarios();
 
-		boolean error = false;
-		
+		//indica si existio algun error
+		boolean altaUsuarioEstado;
+		String MensajeRespuesta;
 		/**
 		*cargo el usuario
 		*/
 		try {
 			ICU.altaUsuario(info);
+			altaUsuarioEstado = true;
+			MensajeRespuesta = "El usuario se ha cargado con exito";
 		} catch (UsuarioDisponibilidadException e) {
-			error = true;
+			altaUsuarioEstado = false;
+			MensajeRespuesta = e.getMessage().toString();
 		}
 		
-		request.setAttribute("error", error);
 		
-		
+		/**
 		System.out.println( nickname  );
 		System.out.println( nombre  );
 		System.out.println( apellido  );
@@ -150,8 +178,17 @@ public class AltaUsuario extends HttpServlet {
 		System.out.println( descripcion  );
 		System.out.println( bibliografia  );
 		System.out.println( web  );
+		*/
 		
-		doGet(request, response);
+		/**
+		*traigo las instituciones
+		*/
+		Vector<String> instEnSistem =  ICU.institucionesEnSistema();
+		request.setAttribute("instituciones", instEnSistem);
+		
+		request.setAttribute("altaUsuarioEstado", altaUsuarioEstado);
+		request.setAttribute("MensajeRespuesta", MensajeRespuesta);
+		request.getRequestDispatcher("/WEB-INF/usuario/AltaUsuario.jsp").forward(request, response);
 		
 	}
 

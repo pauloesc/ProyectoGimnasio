@@ -43,17 +43,17 @@ public interface IctrlUsuarios {
 	
 	//creado por Paulo
 	public abstract void altaUsuario(InfoBasicaUser user) throws UsuarioDisponibilidadException;
-	public abstract Vector<String> InstitucionesEnSistema();
-	public abstract InformacionActividad InformacionActividad(String usuario);
-	public abstract void ActualizarInformacionUsuario(InfoBasicaUser actualizacion);
-	public abstract InfoBasicaUser InformacionBasicaUsuario(String usuario);
-	public abstract Vector<String> UsuariosEnSistemaNickName();
+	public abstract Vector<String> institucionesEnSistema();
+	public abstract InformacionActividad informacionActividad(String usuario);
+	public abstract void actualizarInformacionUsuario(InfoBasicaUser actualizacion);
+	public abstract InfoBasicaUser informacionBasicaUsuario(String usuario);
+	public abstract Vector<String> usuariosEnSistemaNickName();
 	//fincreado
 	
 	public abstract void seguirUsuario(String seguidor, String seguido);
 	public abstract void dejarDeSeguirUsuario(String seguidor, String seguido);
 	
-	public abstract Set<String> MostrarCuponerasDisponibles(String nick, String actDept);
+	public abstract Set<String> mostrarCuponerasDisponibles(String nick, String actDept);
 	public abstract Set<String> mostrarNicknameSocios();
 	
 	public abstract String autenticarUsario(String nickname, String email, String contrasena);
@@ -62,13 +62,13 @@ public interface IctrlUsuarios {
 	
 	public abstract void cargarUsuarios();
 	
-	public abstract Vector<String> UsuariosSiguiendo(String nickname);
-	public abstract Vector<String> UsuariosSeguidores(String nickname);
-	public abstract InfoActividadProfe InformacionActDepEstadoIngRech(String nickname);
+	public abstract Vector<String> usuariosSiguiendo(String nickname);
+	public abstract Vector<String> usuariosSeguidores(String nickname);
+	public abstract InfoActividadProfe informacionActDepEstadoIngRech(String nickname);
 	
 	//retorna true si el usuario es un socio, si es un profesor retorna false, si no existe retorna una excepcion
 	public abstract boolean esSocio(String nick) throws UsuarioInexistenteException;
 	
-	public abstract Vector<DataCuponera> Cuponeras(String nickname);
+	public abstract Vector<DataCuponera> cuponeras(String nickname);
 	
 }

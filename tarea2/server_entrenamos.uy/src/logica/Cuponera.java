@@ -14,7 +14,7 @@ public class Cuponera {
 	private Float descuento;
 	private Date fecha_alta;
 	private boolean comprada; 
-	private Set <InfoClases> info;
+	private Set<InfoClases> info;
 
 	public Cuponera(String nom, String des, Date ini, Date fin, Float disc, Date alta) {
 		this.nombre = nom;
@@ -47,18 +47,18 @@ public class Cuponera {
 		return descuento;
 	}
 
-	public Set <InfoClases> getInfo() {
+	public Set<InfoClases> getInfo() {
 		return info;
 	}
 
-	public void setInfo(Set <InfoClases> info) {
+	public void setInfo(Set<InfoClases> info) {
 		this.info = info;
 	}
 	
-	public Set <String> getListaActividades(){
-		Set <String> resu = new HashSet<String>();
+	public Set<String> getListaActividades(){
+		Set<String> resu = new HashSet<String>();
 		if (!info.isEmpty()) {
-		for (Iterator<InfoClases> iter=info.iterator();iter.hasNext();) {
+		for (Iterator<InfoClases> iter=info.iterator(); iter.hasNext();) {
 			resu.add(iter.next().getNombreActividadDeportiva());
 		}
 		}
@@ -68,7 +68,7 @@ public class Cuponera {
 	public float getCostoCuponera(){
 		Float  resu = (float) 0;
 		if (!info.isEmpty()) {
-		for (Iterator<InfoClases> iter=info.iterator();iter.hasNext();) {
+		for (Iterator<InfoClases> iter=info.iterator(); iter.hasNext();) {
 			InfoClases clas= iter.next();
 			resu=resu + (clas.getCantidad()*clas.getAct().getCosto());
 		}
@@ -77,10 +77,10 @@ public class Cuponera {
 		return resu;  
 	}
 	
-	public Set <String> getListaCategorias(){
-		Set <String> resu = new HashSet<String>();
+	public Set<String> getListaCategorias(){
+		Set<String> resu = new HashSet<String>();
 		if (!info.isEmpty()) {
-		for (Iterator<InfoClases> iter=info.iterator();iter.hasNext();) {
+		for (Iterator<InfoClases> iter=info.iterator(); iter.hasNext();) {
 			resu.addAll(iter.next().getAct().darCategorias());
 		}
 		}
@@ -97,27 +97,27 @@ public class Cuponera {
 		this.fecha_alta = fecha_alta;
 	}
 
-	public void agregarActividad (ActividadDeportiva act, int numclase) {
-		InfoClases nueva=new InfoClases (act, numclase);
+	public void agregarActividad(ActividadDeportiva act, int numclase) {
+		InfoClases nueva=new InfoClases(act, numclase);
 		info.add(nueva);
 	}
 
 	
 	public DataCuponera getDataCuponera() {
-		Set <ParActividad> grupo= new HashSet<ParActividad>();
+		Set<ParActividad> grupo = new HashSet<ParActividad>();
 		
 		if (!info.isEmpty()) {
-		for (Iterator<InfoClases> iter=info.iterator();iter.hasNext();) {
-			InfoClases it=iter.next();
-			String nom=it.getNombreActividadDeportiva();
-			int    n=it.getCantidad();
-			ParActividad nuevo= new ParActividad (nom,n);
+		for (Iterator<InfoClases> iter = info.iterator(); iter.hasNext();) {
+			InfoClases iterador = iter.next();
+			String nom = iterador.getNombreActividadDeportiva();
+			int numeroCantidad = iterador.getCantidad();
+			ParActividad nuevo = new ParActividad(nom, numeroCantidad);
 			grupo.add(nuevo);
 		}
 		}
 		float costo= this.getCostoCuponera();
-		Set <String> cat= this.getListaCategorias();
-		DataCuponera resu= new DataCuponera(nombre,descripcion,fecha_ini,fecha_fin, descuento, fecha_alta, costo, grupo, cat);
+		Set<String> cat= this.getListaCategorias();
+		DataCuponera resu= new DataCuponera(nombre, descripcion, fecha_ini, fecha_fin, descuento, fecha_alta, costo, grupo, cat);
 		return resu;
 	}
 
@@ -129,7 +129,7 @@ public class Cuponera {
 		this.comprada = comprada;
 	}
 	
-	public boolean cuponerahabilitada (Date fecha) {
+	public boolean cuponerahabilitada(Date fecha) {
 		boolean resu=true;
 		if (fecha.after(fecha_fin))
 			resu=false;

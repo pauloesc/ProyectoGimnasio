@@ -35,7 +35,7 @@ public class manejIDeportivas {
     }
 
     public InstitucionDeportiva buscarInstitucion(String nombre) {
-        return ((InstitucionDeportiva) institucionesDeportivas.get(nombre));
+        return (InstitucionDeportiva) institucionesDeportivas.get(nombre);
     }
 
     public InstitucionDeportiva[] getInstituciones() {

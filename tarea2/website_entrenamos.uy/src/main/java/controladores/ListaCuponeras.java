@@ -16,7 +16,9 @@ import javax.servlet.http.HttpSession;
 import excepciones.CuponeraNoExisteException;
 import logica.DataCuponera;
 import logica.Fabrica;
+import logica.IctrlClases;
 import logica.IctrlCuponeras;
+import logica.IctrlUsuarios;
 
 @WebServlet("/ListaCuponeras")
 public class ListaCuponeras extends HttpServlet
@@ -33,10 +35,29 @@ public class ListaCuponeras extends HttpServlet
 	private void processRequest(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException 
 	{
-		String cup = req.getParameter("cuponera");
+		HttpSession sesion = req.getSession();
+    	Fabrica f = Fabrica.getInstance();
+		IctrlUsuarios ICU = f.getIctrlUsuarios();
+		IctrlClases ICL = f.getIctrlClases();
+		boolean bien = false;
+    	
+		if ((String)sesion.getAttribute("estado-sesion") == "logged-in") {
+    		try {
+    			bien = ICU.esSocio((String)sesion.getAttribute("nickname-user"));
+    		} catch (Exception e) {
+    			
+    		}
+    	}
+		
+		String pag = req.getParameter("n");
+		Integer pagnum= Integer.parseInt(pag);
+		
 		Set<DataCuponera> cups=ListaCuponeras.getCuponeras();
+		Integer total= cups.size();
+		req.setAttribute("pag", pagnum);
 		req.setAttribute("cups", cups);
-		req.setAttribute("cu", cup);
+		req.setAttribute("totalcups", total);
+		req.setAttribute("socio", bien);
 		req.getRequestDispatcher("/WEB-INF/cuponeras/listaCuponeras.jsp").forward(req, resp);
 		
 	}

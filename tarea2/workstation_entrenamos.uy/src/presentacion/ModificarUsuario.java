@@ -155,7 +155,7 @@ public class ModificarUsuario extends JInternalFrame{
 				String nick = comboBoxNicks.getSelectedItem().toString();
 			
 				InfoBasicaUser i;
-				i = controlUsuario.InformacionBasicaUsuario(nick);
+				i = controlUsuario.informacionBasicaUsuario(nick);
 				
 				//cargo en la presentacion la info basica 
 				txtNombre.setText( i.getNombre() )  ;
@@ -369,7 +369,7 @@ public class ModificarUsuario extends JInternalFrame{
 							"", "");
 				}
 				
-				controlUsuario.ActualizarInformacionUsuario(i);
+				controlUsuario.actualizarInformacionUsuario(i);
 				
 			}
 		});
@@ -407,7 +407,7 @@ public class ModificarUsuario extends JInternalFrame{
     public void CargarDatos() {
     	
 		Vector<String> vector;
-		vector = controlUsuario.UsuariosEnSistemaNickName();
+		vector = controlUsuario.usuariosEnSistemaNickName();
 		DefaultComboBoxModel<String> model;
 		model = new DefaultComboBoxModel<String>(vector);
 		model.setSelectedItem(null);

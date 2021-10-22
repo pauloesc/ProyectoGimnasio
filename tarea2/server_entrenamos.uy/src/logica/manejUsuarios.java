@@ -17,11 +17,11 @@ import java.util.Vector;
 public class manejUsuarios {
 
 	private static manejUsuarios instance = null;
-	private Map<String,Usuario> usuarios;
-	private Map<String,Usuario> usuariosEmail;
+	private Map<String, Usuario> usuarios;
+	private Map<String, Usuario> usuariosEmail;
 	
 	private manejUsuarios() {
-		usuarios = new HashMap<String,Usuario>();
+		usuarios = new HashMap<String, Usuario>();
 		usuariosEmail = new HashMap<String, Usuario>();
 	}
 	
@@ -47,8 +47,8 @@ public class manejUsuarios {
 		    usr = entry.getValue();
 		    
 		    if (usr.getClass() == Profesor.class) {
-		    	Profesor p = (Profesor) usr;
-		    	if (p.getNombreInstitucion() == inst) {
+		    	Profesor profe = (Profesor) usr;
+		    	if (profe.getNombreInstitucion() == inst) {
 		    		res.add(usr.getNickname());
 		    	}
 		    }
@@ -57,10 +57,10 @@ public class manejUsuarios {
 		return res;
 	}
 	
-	public void CrearUsuario(InfoBasicaUser info) throws UsuarioDisponibilidadException {
+	public void crearUsuario(InfoBasicaUser info) throws UsuarioDisponibilidadException {
 		
-		boolean dispN = DisponibleNickname(info.getNickname());
-		boolean dispC = DisponibleCorreo(info.getCorreo());
+		boolean dispN = disponibleNickname(info.getNickname());
+		boolean dispC = disponibleCorreo(info.getCorreo());
 		
 		if ( !dispC ) {			
 			throw new UsuarioDisponibilidadException("No esta disponible el correo: " + info.getCorreo() );
@@ -72,12 +72,12 @@ public class manejUsuarios {
 		
 		Usuario userCreado = null;
 		
-		if( info.getClass() == InfoBasicaProfesor.class ) {
+		if ( info.getClass() == InfoBasicaProfesor.class ) {
 			
-			userCreado = new Profesor( (InfoBasicaProfesor)info );
+			userCreado = new Profesor( (InfoBasicaProfesor) info );
 		}
 		else {
-			userCreado = new Socio( (InfoBasicaSocio)info );
+			userCreado = new Socio( (InfoBasicaSocio) info );
 		}
 		
 		this.usuarios.put(userCreado.getNickname(), userCreado);
@@ -86,9 +86,9 @@ public class manejUsuarios {
 	}
 	
 	
-	public boolean DisponibleNickname(String nickname) {
-		Usuario e = this.usuarios.get(nickname);
-		if(e == null) {
+	public boolean disponibleNickname(String nickname) {
+		Usuario user = this.usuarios.get(nickname);
+		if (user == null) {
 			return true;
 		}
 		else {
@@ -96,9 +96,9 @@ public class manejUsuarios {
 		}
 	}
 	
-	public boolean DisponibleCorreo(String correo) {
-		Usuario e = this.usuariosEmail.get(correo);
-		if(e == null) {
+	public boolean disponibleCorreo(String correo) {
+		Usuario user = this.usuariosEmail.get(correo);
+		if (user == null) {
 			return true;
 		}
 		else {
@@ -111,13 +111,13 @@ public class manejUsuarios {
 		
 		Vector<String> vec= new Vector<>();
 		
-		Iterator<Map.Entry<String,Usuario>> usr = this.usuarios.entrySet().iterator();
+		Iterator<Map.Entry<String, Usuario>> usr = this.usuarios.entrySet().iterator();
 		
-		while(usr.hasNext()){
+		while (usr.hasNext()){
 			Map.Entry<String, Usuario> entry = usr.next();
-			Usuario u = entry.getValue();
+			Usuario user = entry.getValue();
 			
-			vec.add(u.getNickname());
+			vec.add(user.getNickname());
 		}
 		
 		return vec;
@@ -132,15 +132,15 @@ public class manejUsuarios {
 		return usuariosEmail.get(email);
 	}
 	
-	public InfoBasicaUser InformacionBasicaUsuario(String usuario) {
+	public InfoBasicaUser informacionBasicaUsuario(String usuario) {
 		
-		Usuario e = this.usuarios.get(usuario);
-		return  e.Informacion();
+		Usuario user = this.usuarios.get(usuario);
+		return  user.informacion();
 	}
 	
-	public InformacionActividad InformacionActividad(String usuario) {
-		Usuario e = this.usuarios.get(usuario);
-		return  e.InformacionActividad(usuario);
+	public InformacionActividad informacionActividad(String usuario) {
+		Usuario user = this.usuarios.get(usuario);
+		return  user.informacionActividad(usuario);
 	}
 	
 	public Set<String> mostrarNicknameSocios() {
@@ -153,28 +153,28 @@ public class manejUsuarios {
 		return res;
 	}
 	
-	public void ElimiarManjeador() {
+	public void elimiarManjeador() {
 		manejUsuarios.instance=null;
 		usuarios.clear();
 	}
 	
-	public void ActualizarInformacionUsuario(InfoBasicaUser actualizacion){
+	public void actualizarInformacionUsuario(InfoBasicaUser actualizacion){
 		
-		Usuario u = findUsuario( actualizacion.getNickname() );
+		Usuario usuario = findUsuario( actualizacion.getNickname() );
 		
-		u.setNombre(actualizacion.getNombre());
-		u.setApellido(actualizacion.getApellido());
-		u.setEmail(actualizacion.getCorreo());
-		u.setFNacimiento(actualizacion.getFechaNac());
+		usuario.setNombre(actualizacion.getNombre());
+		usuario.setApellido(actualizacion.getApellido());
+		usuario.setEmail(actualizacion.getCorreo());
+		usuario.setFNacimiento(actualizacion.getFechaNac());
 	
 		
 		if ( actualizacion.getClass() == InfoBasicaProfesor.class ) {
 		
-			if( u.getClass() == Profesor.class ) {
+			if ( usuario.getClass() == Profesor.class ) {
 				
-				InfoBasicaProfesor aux_actualizacion = (InfoBasicaProfesor)actualizacion;
+				InfoBasicaProfesor aux_actualizacion = (InfoBasicaProfesor) actualizacion;
 				
-				Profesor auxP = (Profesor)u;
+				Profesor auxP = (Profesor) usuario;
 				auxP.setBio(aux_actualizacion.getBibliografia());
 				auxP.setDescripcion(aux_actualizacion.getDesc());
 				auxP.setWebsite(aux_actualizacion.getUrl());

@@ -15,8 +15,9 @@ public class DtActividadesDeportivas {
     private String descripcion;
     private Float duracion;
     private Float costo;
-    private Date fecha_alta;
+    private Date fechaAlta;
     private Vector<DtClase> clases = new  Vector<DtClase>();
+    private EstadoActi estado;
 
     public DtActividadesDeportivas(String nombre, String descripcion, Float duracion, Float costo, Date fecha_alta) {
         this.setNombre(nombre);
@@ -43,7 +44,7 @@ public class DtActividadesDeportivas {
     }
     
     public Date getFechaAlta() {
-        return fecha_alta;
+        return fechaAlta;
     }
     
     
@@ -70,16 +71,23 @@ public class DtActividadesDeportivas {
     }
     
     private void setFechaAlta(Date fecha_alta) {
-        this.fecha_alta = fecha_alta;
+        this.fechaAlta = fecha_alta;
     }
 
-    public void agregarDtClase(DtClase dt ) {
-    	this.clases.add(dt);
+    public void agregarDtClase(DtClase dataTypePorParametro ) {
+    	this.clases.add(dataTypePorParametro);
     }
 
 	public Vector<DtClase> getClases() {
 		return clases;
 	}
     
+	public EstadoActi getEstado() {
+		return this.estado;
+	}
+	
+	public void setEstado( EstadoActi estadoActiv ) {
+		this.estado = estadoActiv;
+	}
 	
 }

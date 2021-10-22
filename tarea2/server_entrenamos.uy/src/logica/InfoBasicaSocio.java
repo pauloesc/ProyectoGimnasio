@@ -7,4 +7,9 @@ public class InfoBasicaSocio extends InfoBasicaUser {
 		super(nickname, nombre, apellido, correo, fechaNac, pass, img);
 	}
 	
+	@Override
+	public String queEs() {
+		return "socio";
+	}
+	
 }

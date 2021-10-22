@@ -6,7 +6,7 @@
 <%@page import="logica.*"%>
 <%@page import="java.util.Vector"%>
 <%@page import="java.util.Iterator"%>
-
+<%@page import="java.text.SimpleDateFormat"%>
 
 
 <!doctype html>
@@ -27,6 +27,9 @@ Vector<DtActividadesDeportivas> informacionProfesor = (Vector<DtActividadesDepor
 Vector<String> usersEnSistema = (Vector<String>) request.getAttribute("usuariosEnSistema");
 
 boolean propioUsuario = (boolean) request.getAttribute("userPropio");
+
+SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+String dateString = formato.format(informacionUusario.getFechaNac());
 
 %>
 
@@ -49,11 +52,11 @@ boolean propioUsuario = (boolean) request.getAttribute("userPropio");
 
 	<!-- Begin page content -->
 	<main role="main" class="container">
-		<div class="row">
+		<div class="row my-4">
 
 		<jsp:include page="/WEB-INF/template/sidebar.jsp" />
 
-         <div class="col-12 col-md-8">
+         <div class="col-12 col-md-8 my-4">
             <div id="content">
                <div class="container-fluid">
                   <h3 class="text-dark mb-4">Perfil</h3>
@@ -146,7 +149,7 @@ boolean propioUsuario = (boolean) request.getAttribute("userPropio");
                                              <label for="last_name">
                                                 <strong>Fecha nacimiento</strong>
                                              </label>
-                                             <input value="<%= informacionUusario.getFechaNac() %>" readonly type="text" class="form-control" id="last_name" name="last_name" />
+                                             <input value="<%= dateString %>" readonly type="text" class="form-control" id="last_name" name="last_name" />
                                           </div>
                                        </div>
                                     </div>
@@ -371,7 +374,7 @@ boolean propioUsuario = (boolean) request.getAttribute("userPropio");
                                     <th scope="row">1</th>
                                     <td> <a href="consultaActividad?actividad=<%= ii.getNombre() %>  "><%= ii.getNombre() %></a></td>
                                     <td><%= ii.getDescripcion() %></td>
-                                    <td> estado	 </td>
+                                    <td> <%= ii.getEstado() %>	 </td>
                                  </tr>
 								<% } %>
                                  
@@ -411,7 +414,7 @@ boolean propioUsuario = (boolean) request.getAttribute("userPropio");
 										%>
 											<tr>
 												<th scope="row"> <%= cont %> </th>
-												<td><a href="consultaCuponera.html"> <%= infoCuponera.getNombre()  %> </a></td>
+												<td><a href="ConsultaCuponera?cuponera=<%= infoCuponera.getNombre() %> "> <%= infoCuponera.getNombre()  %> </a></td>
 												<td> <%= infoCuponera.getDescripcion() %> </td>
 											</tr>
 										<% 
