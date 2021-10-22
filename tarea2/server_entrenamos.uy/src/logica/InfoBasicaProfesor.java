@@ -60,15 +60,15 @@ public class InfoBasicaProfesor extends InfoBasicaUser {
 		this.institucion = institucion;
 	}
 	
-	public boolean SonIguales( InfoBasicaProfesor i ) {
+	public boolean SonIguales( InfoBasicaProfesor parametroInfoProfe ) {
 
-		InfoBasicaUser aux = (InfoBasicaUser)i;
+		InfoBasicaUser aux = (InfoBasicaUser)parametroInfoProfe;
 		
-		if( (i.SonIguales(aux))& 
-			(this.getInstitucion() == i.getInstitucion())&
-			(this.getDesc() == i.getDesc())&
-			(this.getBibliografia() == i.getBibliografia())&
-			(this.getUrl() == i.getUrl())) {
+		if( (parametroInfoProfe.SonIguales(aux))& 
+			(this.getInstitucion() == parametroInfoProfe.getInstitucion())&
+			(this.getDesc() == parametroInfoProfe.getDesc())&
+			(this.getBibliografia() == parametroInfoProfe.getBibliografia())&
+			(this.getUrl() == parametroInfoProfe.getUrl())) {
 			
 			return true;
 		}
