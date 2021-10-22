@@ -1,8 +1,6 @@
 package controladores;
 
-import java.beans.Encoder;
 import java.io.IOException;
-import java.util.Base64;
 import java.util.Iterator;
 import java.util.Vector;
 

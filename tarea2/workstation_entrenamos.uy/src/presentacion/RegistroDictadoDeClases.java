@@ -37,6 +37,10 @@ import javax.swing.event.InternalFrameEvent;
 import javax.swing.JFrame;
 
 public class RegistroDictadoDeClases extends JInternalFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JComboBox<String> comboBoxInstituciones;
 	private JComboBox<String> comboBoxClase;
 	private JComboBox<String> comboBoxActividadDeportiva;

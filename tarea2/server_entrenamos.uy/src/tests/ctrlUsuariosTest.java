@@ -15,8 +15,6 @@ import org.junit.jupiter.api.Test;
 
 import excepciones.InstitucionDeportivaRepetidaException;
 import excepciones.UsuarioDisponibilidadException;
-import logica.Fabrica;
-import logica.IctrlUsuarios;
 import logica.InfoBasicaProfesor;
 import logica.InfoBasicaSocio;
 import logica.InfoBasicaUser;

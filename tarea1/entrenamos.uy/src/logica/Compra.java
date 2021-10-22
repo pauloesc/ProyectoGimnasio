@@ -32,6 +32,10 @@ public class Compra {
 			return cup.getDescuento();
 		}
 		
+		public Date getFCompra() {
+			return fecha;
+		}
+		
 		public void descontarClase(String actDept) {
 			Integer Cclas = cantClases.get(actDept);
 			cantClases.remove(actDept);

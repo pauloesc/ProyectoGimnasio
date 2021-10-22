@@ -6,8 +6,6 @@ import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Set;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -17,19 +15,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
-
 import org.apache.commons.io.FilenameUtils;
-
-import excepciones.ClaseLlenaException;
 import excepciones.ClaseRepetidaException;
-import excepciones.ClaseYaCompradaException;
-import logica.DtClase;
 import logica.Fabrica;
 import logica.IctrlADeportivas;
 import logica.IctrlClases;
 import logica.IctrlUsuarios;
 import logica.InfoBasicaProfesor;
-import logica.InfoBasicaUser;
 
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 10, 	// 10 MB 
@@ -50,7 +42,6 @@ public class AltaClase extends HttpServlet {
 		HttpSession sesion = req.getSession();
     	Fabrica f = Fabrica.getInstance();
 		IctrlUsuarios ICU = f.getIctrlUsuarios();
-		IctrlClases ICL = f.getIctrlClases();
 		IctrlADeportivas ICA = f.getIctrlADeportivas();
 		
 		boolean ESocio = true;

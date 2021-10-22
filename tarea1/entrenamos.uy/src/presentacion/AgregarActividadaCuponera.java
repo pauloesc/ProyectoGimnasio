@@ -34,7 +34,6 @@ public class AgregarActividadaCuponera extends JInternalFrame {
 
 	private IctrlCuponeras controlCuponeras;
 	private IctrlIDeportivas controlIDeportivas;
-	private IctrlADeportivas controlADeportivas;
 	private JComboBox<String> comboBoxCuponeras;
 	private JComboBox<DataInstitucion> comboBoxInstituciones;
 	private JComboBox<String> comboBoxDeportivas;
@@ -51,7 +50,6 @@ public class AgregarActividadaCuponera extends JInternalFrame {
 	
 		controlCuponeras=ICC;
 		controlIDeportivas=IID;
-		controlADeportivas=IAD;
 		
 		setTitle("Agregar Actividad Deportiva a Cuponera");
 		setClosable(true);
