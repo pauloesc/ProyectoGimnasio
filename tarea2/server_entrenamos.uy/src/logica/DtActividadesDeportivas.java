@@ -74,8 +74,8 @@ public class DtActividadesDeportivas {
         this.fecha_alta = fecha_alta;
     }
 
-    public void agregarDtClase(DtClase dt ) {
-    	this.clases.add(dt);
+    public void agregarDtClase(DtClase dataTypePorParametro ) {
+    	this.clases.add(dataTypePorParametro);
     }
 
 	public Vector<DtClase> getClases() {
@@ -86,8 +86,8 @@ public class DtActividadesDeportivas {
 		return this.estado;
 	}
 	
-	public void setEstado( EstadoActi e ) {
-		this.estado = e;
+	public void setEstado( EstadoActi estadoActiv ) {
+		this.estado = estadoActiv;
 	}
 	
 }
