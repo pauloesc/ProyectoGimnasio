@@ -70,14 +70,14 @@ public abstract class InfoBasicaUser {
 	}
     
 	
-	public boolean SonIguales( InfoBasicaUser i ) {
+	public boolean SonIguales( InfoBasicaUser parametroInfoUser ) {
 		
 		if(
-		(this.apellido == i.getApellido())&
-		(this.correo == i.getCorreo())&
-		(this.fechaNac == i.getFechaNac())&
-		(this.nickname == i.getNickname())&
-		(this.nombre == i.getNombre())){
+		(this.apellido == parametroInfoUser.getApellido())&
+		(this.correo == parametroInfoUser.getCorreo())&
+		(this.fechaNac == parametroInfoUser.getFechaNac())&
+		(this.nickname == parametroInfoUser.getNickname())&
+		(this.nombre == parametroInfoUser.getNombre())){
 			return true;
 		}
 		
