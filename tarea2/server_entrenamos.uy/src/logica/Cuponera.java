@@ -107,11 +107,11 @@ public class Cuponera {
 		Set <ParActividad> grupo= new HashSet<ParActividad>();
 		
 		if (!info.isEmpty()) {
-		for (Iterator<InfoClases> iter=info.iterator();iter.hasNext();) {
-			InfoClases it=iter.next();
-			String nom=it.getNombreActividadDeportiva();
-			int    n=it.getCantidad();
-			ParActividad nuevo= new ParActividad (nom,n);
+		for (Iterator<InfoClases> iter = info.iterator();iter.hasNext();) {
+			InfoClases iterador = iter.next();
+			String nom = iterador.getNombreActividadDeportiva();
+			int numeroCantidad = iterador.getCantidad();
+			ParActividad nuevo = new ParActividad(nom,numeroCantidad);
 			grupo.add(nuevo);
 		}
 		}
