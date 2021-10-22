@@ -33,6 +33,14 @@ public class Registro {
 	public DtClase ActividadSocio() {
 		return this.clase.darDtClase();
 	}
+	
+	public Date getFecha() {
+		return fecha;
+	}
+	
+	public Compra getCompra() {
+		return compra;
+	}
 
 
 }
