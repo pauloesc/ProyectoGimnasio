@@ -15,8 +15,6 @@ import org.junit.jupiter.api.Test;
 
 import excepciones.InstitucionDeportivaRepetidaException;
 import excepciones.UsuarioDisponibilidadException;
-import logica.Fabrica;
-import logica.IctrlUsuarios;
 import logica.InfoBasicaProfesor;
 import logica.InfoBasicaSocio;
 import logica.InfoBasicaUser;
@@ -252,7 +250,7 @@ class ctrlUsuariosTest {
 		vecDatosEntrada.add("institucion3");
 		
 		//utilizo carga de datos
-		Vector<String> vecDatosRespuesta = cu.institucionesEnSistema();
+		Set<String> vecDatosRespuesta = cu.institucionesEnSistema();
 		
 		
 		//si lo de adentro es falso dispara el assert
@@ -555,7 +553,7 @@ class ctrlUsuariosTest {
 			
 		}
 		
-		Vector<String> respuesta = cu.usuariosEnSistemaNickName();
+		Set<String> respuesta = cu.usuariosEnSistemaNickName();
 		
 		boolean mismo1 = (datosIngresados.size() == respuesta.size()); 
 		boolean mismo2 = datosIngresados.containsAll(respuesta);
@@ -690,10 +688,10 @@ class ctrlUsuariosTest {
 		cu.seguirUsuario("nick p1", "nick p2");
 		cu.seguirUsuario("nick p1", "nick s1");
 		
-		Vector<String> siguiendo = null;
+		Set<String> siguiendo = null;
 		siguiendo = cu.usuariosSiguiendo("nick p1");
 		
-		Vector<String> NicknameSiguiendo = new Vector<String>();
+		Set<String> NicknameSiguiendo = new HashSet<String>();
 		NicknameSiguiendo.add("nick p2");
 		NicknameSiguiendo.add("nick s1");
 		
@@ -711,10 +709,10 @@ class ctrlUsuariosTest {
 		cu.seguirUsuario("nick p2", "nick s1");
 		cu.seguirUsuario("nick p2", "nick s2");
 		
-		Vector<String> siguiendo2 = null;
+		Set<String> siguiendo2 = null;
 		siguiendo2 = cu.usuariosSiguiendo("nick p1");
 		
-		Vector<String> NicknameSiguiendo2 = new Vector<String>();
+		Set<String> NicknameSiguiendo2 = new HashSet<String>();
 		NicknameSiguiendo2.add("nick p1");
 		NicknameSiguiendo2.add("nick s1");
 		NicknameSiguiendo2.add("nick s2");
@@ -791,10 +789,10 @@ class ctrlUsuariosTest {
 		cu.seguirUsuario("nick p2", "nick s1");
 		cu.seguirUsuario("nick s2", "nick s1");
 		
-		Vector<String> Seguidores = null;
+		Set<String> Seguidores = null;
 		Seguidores = cu.usuariosSeguidores("nick s1");
 		
-		Vector<String> NicknameSeguidores = new Vector<String>();
+		Set<String> NicknameSeguidores = new HashSet<String>();
 		NicknameSeguidores.add("nick p1");
 		NicknameSeguidores.add("nick p2");
 		NicknameSeguidores.add("nick s2");

@@ -7,6 +7,7 @@ import java.util.Set;
 import java.util.Vector;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Iterator;
 
 import excepciones.UsuarioDisponibilidadException;
@@ -37,14 +38,14 @@ public class ctrlUsuarios implements IctrlUsuarios {
 	}
 	
 
-	public Vector<String> institucionesEnSistema() {
+	public Set<String> institucionesEnSistema() {
 		
 		manejIDeportivas mID = manejIDeportivas.getinstance();
 		Set<String> set;
 		set = mID.darNombreInstituciones();
 		Iterator<String> iterate_value = set.iterator();
 		
-		Vector<String> vector = new Vector<String>();
+		Set<String> vector = new HashSet<String>();
 		
 		while (iterate_value.hasNext()){
 			
@@ -72,7 +73,7 @@ public class ctrlUsuarios implements IctrlUsuarios {
 		return this.manejador.informacionBasicaUsuario(usuario);		
 	}
 	
-	public Vector<String> usuariosEnSistemaNickName(){
+	public Set<String> usuariosEnSistemaNickName(){
 		
 		return this.manejador.usuariosNickName();
 		
@@ -308,18 +309,18 @@ public class ctrlUsuarios implements IctrlUsuarios {
 			return usr.getNickname();
 	}
 
-	public Vector<String> usuariosSiguiendo(String nickname){
+	public Set<String> usuariosSiguiendo(String nickname){
 		Usuario usuario = this.manejador.findUsuario(nickname);
 		return usuario.seguidosNickname();
 	}
 	
 	
-	public Vector<String> usuariosSeguidores(String nickname){
+	public Set<String> usuariosSeguidores(String nickname){
 		Usuario usuario = this.manejador.findUsuario(nickname);
 		return usuario.seguidoresNickname();
 	}
 	
-	public Vector<DataCuponera> cuponeras(String nickname){
+	public Set<DataCuponera> cuponeras(String nickname){
 		Usuario usuario = this.manejador.findUsuario(nickname);
 		Socio socio = (Socio) usuario;
 		return socio.cuponeras();

@@ -87,7 +87,11 @@ import javax.swing.event.InternalFrameEvent;
 @SuppressWarnings({ "unused" })
 public class ModificarUsuario extends JInternalFrame{
 		
-    // Controlador de Deportivas que se utilizará para las acciones del JFrame
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	// Controlador de Deportivas que se utilizará para las acciones del JFrame
     private IctrlUsuarios controlUsuario;
     private JTextField txtNombre;
     private JTextField txtApellido;
@@ -406,7 +410,7 @@ public class ModificarUsuario extends JInternalFrame{
     
     public void CargarDatos() {
     	
-		Vector<String> vector;
+		Set<String> vector;
 		vector = controlUsuario.usuariosEnSistemaNickName();
 		DefaultComboBoxModel<String> model;
 		model = new DefaultComboBoxModel<String>(vector);

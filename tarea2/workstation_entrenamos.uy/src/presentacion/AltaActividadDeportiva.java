@@ -207,7 +207,7 @@ public class AltaActividadDeportiva extends JInternalFrame {
         
         if (checkFormulario()) {
             try {
-                controlADeportivas.altaActividadDeportiva(nombreID, null, nombre, des, Float.parseFloat(dur), Float.parseFloat(cost), fal, categorias);
+                controlADeportivas.altaActividadDeportiva(nombreID, null, nombre, des, Float.parseFloat(dur), Float.parseFloat(cost), fal, categorias, null);
 
                 // Muestro éxito de la operación
                 JOptionPane.showMessageDialog(this, "La Actividad Deportiva se ha registrado con éxito", "Alta Actividad Deportiva",

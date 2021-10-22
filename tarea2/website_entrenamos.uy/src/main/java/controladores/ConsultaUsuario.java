@@ -1,9 +1,8 @@
 package controladores;
 
-import java.beans.Encoder;
 import java.io.IOException;
-import java.util.Base64;
 import java.util.Iterator;
+import java.util.Set;
 import java.util.Vector;
 
 import javax.servlet.ServletException;
@@ -105,8 +104,8 @@ public class ConsultaUsuario extends HttpServlet {
 		*Declaro las variables de la informacion comun a ambos usuarios 
 		*/
 		InfoBasicaUser informacionUusario = null;
-		Vector<String> usuariosSeguidores = null;
-		Vector<String> usuariosSiguiendo = null;
+		Set<String> usuariosSeguidores = null;
+		Set<String> usuariosSiguiendo = null;
 		InformacionActividad informacioActividad = null;
 		
 
@@ -131,7 +130,7 @@ public class ConsultaUsuario extends HttpServlet {
 		 * informacion dependiente del tipo de usuario
 		 * declaro las variables 
 		*/
-		Vector<DataCuponera> cuponerasSocio = null;
+		Set<DataCuponera> cuponerasSocio = null;
 		InfoActividadProfe actDepsIngRech = null;
 		if(esSocio) {
 			cuponerasSocio = ICU.cuponeras(user);			
@@ -161,7 +160,7 @@ public class ConsultaUsuario extends HttpServlet {
 		if( informacioActividad.getClass() == InfoActividadSocio.class ) {
 			
 			InfoActividadSocio oo = (InfoActividadSocio) informacioActividad;
-			Vector<Object> vecGenerico = oo.obtenerVector();
+			Set<Object> vecGenerico = oo.obtenerVector();
 			
 			Iterator<Object> iterat = vecGenerico.iterator();
 			while( iterat.hasNext() ) {
@@ -179,7 +178,7 @@ public class ConsultaUsuario extends HttpServlet {
 		*/
 		else {
 			InfoActividadProfe oo = (InfoActividadProfe) informacioActividad;
-			Vector<Object> vecGenerico = oo.obtenerVector();
+			Set<Object> vecGenerico = oo.obtenerVector();
 			
 			Iterator<Object> iterat = vecGenerico.iterator();
 			while( iterat.hasNext() ) {
@@ -196,7 +195,7 @@ public class ConsultaUsuario extends HttpServlet {
 		*/
 		Vector<DtActividadesDeportivas> informacionProfesorActDepIngRech = new Vector<DtActividadesDeportivas>();
 		if( actDepsIngRech != null ) {
-			Vector<Object> vecGenerico2 = actDepsIngRech.obtenerVector();
+			Set<Object> vecGenerico2 = actDepsIngRech.obtenerVector();
 			
 			Iterator<Object> iteratt = vecGenerico2.iterator();
 			while( iteratt.hasNext() ) {
@@ -246,7 +245,7 @@ public class ConsultaUsuario extends HttpServlet {
 		
 		
 		
-		Vector<String> usuariosEnSistema = ICU.usuariosEnSistemaNickName();
+		Set<String> usuariosEnSistema = ICU.usuariosEnSistemaNickName();
 
 		request.setAttribute("usuarioEnSistema", usuariosEnSistema);
 		request.setAttribute("esSocio", esSocio);
