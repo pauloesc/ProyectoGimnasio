@@ -30,7 +30,7 @@ public class manejCuponeras {
 
 	public void agregarCuponera(String nom, String des, Date ini, Date fin, Float disc, Date alta) {
 		Cuponera cupo; 
-		cupo= new Cuponera(nom, des, ini,fin, disc, alta);
+		cupo = new Cuponera(nom, des, ini, fin, disc, alta);
 		Cuponeras.put(nom, cupo);
 	}
 	
@@ -41,7 +41,7 @@ public class manejCuponeras {
 	
 	public Set<String> listarcuponeraslibres(){
 		Set<String> resu= new HashSet<String>();
-		for (Iterator<String> iter=Cuponeras.keySet().iterator();iter.hasNext();) {
+		for (Iterator<String> iter=Cuponeras.keySet().iterator(); iter.hasNext();) {
 			Cuponera cup=Cuponeras.get(iter.next());
 			if (!cup.isComprada()) {
 			    resu.add(cup.getNombre());
@@ -67,7 +67,7 @@ public class manejCuponeras {
 	
 	public Set<Cuponera> getCuponerasDeActividad(String actividad){
 		Set<Cuponera> resu= new HashSet<Cuponera>();
-		for (Iterator<String> iter=Cuponeras.keySet().iterator();iter.hasNext();) {
+		for (Iterator<String> iter=Cuponeras.keySet().iterator(); iter.hasNext();) {
 			Cuponera cup=Cuponeras.get(iter.next());
 			Set<String> list=cup.getListaActividades();
 			if (list.contains(actividad)) {
@@ -80,7 +80,7 @@ public class manejCuponeras {
 	
 	public Set<String> getCuponerasAD(String actividad){
 		Set<String> resu= new HashSet<String>();
-		for (Iterator<String> iter=Cuponeras.keySet().iterator();iter.hasNext();) {
+		for (Iterator<String> iter=Cuponeras.keySet().iterator(); iter.hasNext();) {
 			Cuponera cup=Cuponeras.get(iter.next());
 			Set<String> list=cup.getListaActividades();
 			if (list.contains(actividad)) {
@@ -95,7 +95,7 @@ public class manejCuponeras {
 	
 	public Set<String> getCuponerasdeCategoria (String categoria){
 		Set<String> resu= new HashSet<String>();
-		for (Iterator<String> iter=Cuponeras.keySet().iterator();iter.hasNext();) {
+		for (Iterator<String> iter=Cuponeras.keySet().iterator(); iter.hasNext();) {
 			Cuponera cup=Cuponeras.get(iter.next());
 			Set<String> list=cup.getListaCategorias();		
 			if (list.contains(categoria)) {

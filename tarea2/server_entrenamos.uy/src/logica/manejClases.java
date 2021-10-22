@@ -9,10 +9,10 @@ import java.util.Map;
 public class manejClases {
 	
 	private static manejClases instance = null;
-	private Map<String,Clase> clases;
+	private Map<String, Clase> clases;
 	
 	private manejClases() {
-		clases = new HashMap<String,Clase>();
+		clases = new HashMap<String, Clase>();
 	}
 	
 	
