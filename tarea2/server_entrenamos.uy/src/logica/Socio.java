@@ -46,25 +46,25 @@ public class Socio extends Usuario {
 		return res;
 	}
 	
-	public void comprarClase(String actDep, Clase c, Float precio, boolean cuponera, String nomCuponera, Date fechaReg) throws ClaseYaCompradaException, ClaseLlenaException {
+	public void comprarClase(String actDep, Clase clase, Float precio, boolean cuponera, String nomCuponera, Date fechaReg) throws ClaseYaCompradaException, ClaseLlenaException {
 		
 		for( Iterator<Registro> it = regs.iterator(); it.hasNext();) { 
-		   if (it.next().getNombreClase() == c.getNombre()) {
+		   if (it.next().getNombreClase() == clase.getNombre()) {
 			   throw new ClaseYaCompradaException("Clase ya comprada");
 		   }
 		}
 	
-		if (c.getActualSocios() >= c.getMaxSocios()) {
+		if (clase.getActualSocios() >= clase.getMaxSocios()) {
 			throw new ClaseLlenaException("Clase llena");
 		}
 	
-		Registro r = new Registro(c,precio,fechaReg);
-		regs.add(r);
+		Registro registro = new Registro(clase,precio,fechaReg);
+		regs.add(registro);
 		
 		if (cuponera) {
 			Compra comp = compCup.get(nomCuponera);
 			comp.descontarClase(actDep);
-			r.aplicarDescuento(comp.getDescuento(),c);
+			registro.aplicarDescuento(comp.getDescuento(),clase);
 			
 		}
 		
@@ -89,7 +89,7 @@ public class Socio extends Usuario {
 	
 	@Override
 	public InfoBasicaUser Informacion() {	
-		InfoBasicaUser rt = new InfoBasicaSocio(
+		InfoBasicaUser DtInfoBasicUser = new InfoBasicaSocio(
 			this.getNickname(),
 			this.getNombre(),
 			this.getApellido(),
@@ -98,20 +98,20 @@ public class Socio extends Usuario {
 			this.getContrasena(),
 			this.getImagen()
 			);
-			return rt;
+			return DtInfoBasicUser;
 	}
 	
 	@Override
 	public InformacionActividad InformacionActividad(String usuario) {
 		
-		InformacionActividad i = new InfoActividadSocio();		
+		InformacionActividad infoAct = new InfoActividadSocio();		
 		for( Iterator<Registro> it = regs.iterator(); it.hasNext();) { 
 			Registro aux = it.next();
 			DtClase claseInfo = aux.ActividadSocio();
-			i.agregarInfo(claseInfo);
+			infoAct.agregarInfo(claseInfo);
 		}
 		
-		return i;
+		return infoAct;
 	}
 	
 	public Vector<DataCuponera> Cuponeras(){
