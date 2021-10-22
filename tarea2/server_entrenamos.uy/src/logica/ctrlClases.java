@@ -60,7 +60,7 @@ public class ctrlClases implements IctrlClases {
 		manejClases manejadorClases = manejClases.getInstance();
 		manejADeportivas mad = manejADeportivas.getinstance();
 		
-		Socio usr = (Socio)manejadorUsuario.findUsuario(nick);
+		Socio usr = (Socio) manejadorUsuario.findUsuario(nick);
 		Clase clase = manejadorClases.findClase(clas);
 		float precio = mad.getPrecio(actDep);
 		
@@ -239,6 +239,7 @@ public class ctrlClases implements IctrlClases {
 			
 		}
 		catch (Exception e){
+			//nada
 		}
 	
 	}
