@@ -47,8 +47,8 @@ public class manejUsuarios {
 		    usr = entry.getValue();
 		    
 		    if (usr.getClass() == Profesor.class) {
-		    	Profesor p = (Profesor) usr;
-		    	if (p.getNombreInstitucion() == inst) {
+		    	Profesor profe = (Profesor) usr;
+		    	if (profe.getNombreInstitucion() == inst) {
 		    		res.add(usr.getNickname());
 		    	}
 		    }
@@ -87,8 +87,8 @@ public class manejUsuarios {
 	
 	
 	public boolean DisponibleNickname(String nickname) {
-		Usuario e = this.usuarios.get(nickname);
-		if(e == null) {
+		Usuario user = this.usuarios.get(nickname);
+		if(user == null) {
 			return true;
 		}
 		else {
@@ -97,8 +97,8 @@ public class manejUsuarios {
 	}
 	
 	public boolean DisponibleCorreo(String correo) {
-		Usuario e = this.usuariosEmail.get(correo);
-		if(e == null) {
+		Usuario user = this.usuariosEmail.get(correo);
+		if(user == null) {
 			return true;
 		}
 		else {
@@ -115,9 +115,9 @@ public class manejUsuarios {
 		
 		while(usr.hasNext()){
 			Map.Entry<String, Usuario> entry = usr.next();
-			Usuario u = entry.getValue();
+			Usuario user = entry.getValue();
 			
-			vec.add(u.getNickname());
+			vec.add(user.getNickname());
 		}
 		
 		return vec;
@@ -134,13 +134,13 @@ public class manejUsuarios {
 	
 	public InfoBasicaUser InformacionBasicaUsuario(String usuario) {
 		
-		Usuario e = this.usuarios.get(usuario);
-		return  e.Informacion();
+		Usuario user = this.usuarios.get(usuario);
+		return  user.Informacion();
 	}
 	
 	public InformacionActividad InformacionActividad(String usuario) {
-		Usuario e = this.usuarios.get(usuario);
-		return  e.InformacionActividad(usuario);
+		Usuario user = this.usuarios.get(usuario);
+		return  user.InformacionActividad(usuario);
 	}
 	
 	public Set<String> mostrarNicknameSocios() {
@@ -160,21 +160,21 @@ public class manejUsuarios {
 	
 	public void ActualizarInformacionUsuario(InfoBasicaUser actualizacion){
 		
-		Usuario u = findUsuario( actualizacion.getNickname() );
+		Usuario usuario = findUsuario( actualizacion.getNickname() );
 		
-		u.setNombre(actualizacion.getNombre());
-		u.setApellido(actualizacion.getApellido());
-		u.setEmail(actualizacion.getCorreo());
-		u.setFNacimiento(actualizacion.getFechaNac());
+		usuario.setNombre(actualizacion.getNombre());
+		usuario.setApellido(actualizacion.getApellido());
+		usuario.setEmail(actualizacion.getCorreo());
+		usuario.setFNacimiento(actualizacion.getFechaNac());
 	
 		
 		if ( actualizacion.getClass() == InfoBasicaProfesor.class ) {
 		
-			if( u.getClass() == Profesor.class ) {
+			if( usuario.getClass() == Profesor.class ) {
 				
 				InfoBasicaProfesor aux_actualizacion = (InfoBasicaProfesor)actualizacion;
 				
-				Profesor auxP = (Profesor)u;
+				Profesor auxP = (Profesor)usuario;
 				auxP.setBio(aux_actualizacion.getBibliografia());
 				auxP.setDescripcion(aux_actualizacion.getDesc());
 				auxP.setWebsite(aux_actualizacion.getUrl());
