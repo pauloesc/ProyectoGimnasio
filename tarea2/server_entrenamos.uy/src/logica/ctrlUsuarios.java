@@ -133,15 +133,15 @@ public class ctrlUsuarios implements IctrlUsuarios {
 			fecha8 = new SimpleDateFormat("dd/MM/yy").parse("23/02/1987");
 			fecha9 = new SimpleDateFormat("dd/MM/yy").parse("08/05/1937");
 			
-			InfoBasicaSocio socio1 = new InfoBasicaSocio("Emi71","Emiliano","Lucas","emi71@gmail.com",fecha1,"asdfg456","https://bit.ly/3lxoBvZ");
-			InfoBasicaSocio socio2 = new InfoBasicaSocio("caro","Carolina","Omega","caro@gmail.com",fecha2,"123rtgfdv","https://bit.ly/3AfcJER");
-			InfoBasicaSocio socio3 = new InfoBasicaSocio("euge","Eugenia","Williams","e.will@gmail.com",fecha3,"poiuy086","https://bit.ly/3Afz59x");
-			InfoBasicaSocio socio4 = new InfoBasicaSocio("guille","Guillermo","Hector","ghector@gmail.com",fecha4,"GTO468","https://bit.ly/2XkrKH9");
-			InfoBasicaSocio socio5 = new InfoBasicaSocio("sergiop","Sergio","Perez","sergi@gmail.com.uy",fecha5,"HGF135","https://bit.ly/3ElkVG2");
-			InfoBasicaSocio socio6 = new InfoBasicaSocio("andy","Andrés","Roman","chino@gmail.org.uy",fecha6,"lkj65D","https://bit.ly/3hDWgTD");
-			InfoBasicaSocio socio7 = new InfoBasicaSocio("tonyp","Antonio","Paz","eltony@gmail.org.uy",fecha7,"jhvf395","https://bit.ly/3Ai4jMW");
-			InfoBasicaSocio socio8 = new InfoBasicaSocio("m1k4","Micaela","Lopez","mika@gmail.com.ar",fecha8,"ijngr024","https://bit.ly/3zglsWf");
-			InfoBasicaSocio socio9 = new InfoBasicaSocio("charly","Carlos","Boston","charly@gmail.com.uy",fecha9,"987mnbgh","https://bit.ly/2YRWDTQ");
+			InfoBasicaSocio socio1 = new InfoBasicaSocio("Emi71", "Emiliano", "Lucas", "emi71@gmail.com", fecha1, "asdfg456", "https://bit.ly/3lxoBvZ");
+			InfoBasicaSocio socio2 = new InfoBasicaSocio("caro", "Carolina", "Omega", "caro@gmail.com", fecha2, "123rtgfdv", "https://bit.ly/3AfcJER");
+			InfoBasicaSocio socio3 = new InfoBasicaSocio("euge", "Eugenia", "Williams", "e.will@gmail.com", fecha3, "poiuy086", "https://bit.ly/3Afz59x");
+			InfoBasicaSocio socio4 = new InfoBasicaSocio("guille", "Guillermo", "Hector", "ghector@gmail.com", fecha4, "GTO468", "https://bit.ly/2XkrKH9");
+			InfoBasicaSocio socio5 = new InfoBasicaSocio("sergiop", "Sergio", "Perez", "sergi@gmail.com.uy", fecha5, "HGF135", "https://bit.ly/3ElkVG2");
+			InfoBasicaSocio socio6 = new InfoBasicaSocio("andy", "Andrés", "Roman", "chino@gmail.org.uy", fecha6, "lkj65D", "https://bit.ly/3hDWgTD");
+			InfoBasicaSocio socio7 = new InfoBasicaSocio("tonyp", "Antonio", "Paz", "eltony@gmail.org.uy", fecha7, "jhvf395", "https://bit.ly/3Ai4jMW");
+			InfoBasicaSocio socio8 = new InfoBasicaSocio("m1k4", "Micaela", "Lopez", "mika@gmail.com.ar", fecha8, "ijngr024", "https://bit.ly/3zglsWf");
+			InfoBasicaSocio socio9 = new InfoBasicaSocio("charly", "Carlos", "Boston", "charly@gmail.com.uy", fecha9, "987mnbgh", "https://bit.ly/2YRWDTQ");
 			
 			manejador.CrearUsuario(socio1);
 			manejador.CrearUsuario(socio2);
