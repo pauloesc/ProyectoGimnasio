@@ -85,5 +85,7 @@ public abstract class InfoBasicaUser {
 			return false;
 			}
 	}
+	
+	public abstract String queEs();
     
 }

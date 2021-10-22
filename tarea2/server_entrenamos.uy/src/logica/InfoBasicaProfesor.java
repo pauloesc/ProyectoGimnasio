@@ -77,5 +77,9 @@ public class InfoBasicaProfesor extends InfoBasicaUser {
 		}
 	} 
 		
+	@Override
+	public String queEs() {
+		return "profesor";
+	}
 	
 }
