@@ -79,7 +79,7 @@ public class Profesor extends Usuario {
 	
 	
 	@Override
-	public InfoBasicaUser Informacion() {	
+	public InfoBasicaUser informacion() {	
 		InfoBasicaUser DtInformacion = new InfoBasicaProfesor(
 			this.getNickname(),
 			this.getNombre(),
@@ -97,7 +97,7 @@ public class Profesor extends Usuario {
 	}
 	
 	@Override
-	public InformacionActividad InformacionActividad(String usuario) {
+	public InformacionActividad informacionActividad(String usuario) {
 		return this.inst.informacionProfesor(usuario);
 	}
 	
@@ -105,7 +105,7 @@ public class Profesor extends Usuario {
 		this.actDep.add(actDep);
 	}
 
-	public InfoActividadProfe InformacionActDepEstadoIngRech() {
+	public InfoActividadProfe informacionActDepEstadoIngRech() {
 		
 		InfoActividadProfe infoRetorno = new InfoActividadProfe(
 											this.getNombre(),

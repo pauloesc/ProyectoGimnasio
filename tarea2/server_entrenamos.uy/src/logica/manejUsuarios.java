@@ -57,10 +57,10 @@ public class manejUsuarios {
 		return res;
 	}
 	
-	public void CrearUsuario(InfoBasicaUser info) throws UsuarioDisponibilidadException {
+	public void crearUsuario(InfoBasicaUser info) throws UsuarioDisponibilidadException {
 		
-		boolean dispN = DisponibleNickname(info.getNickname());
-		boolean dispC = DisponibleCorreo(info.getCorreo());
+		boolean dispN = disponibleNickname(info.getNickname());
+		boolean dispC = disponibleCorreo(info.getCorreo());
 		
 		if ( !dispC ) {			
 			throw new UsuarioDisponibilidadException("No esta disponible el correo: " + info.getCorreo() );
@@ -86,7 +86,7 @@ public class manejUsuarios {
 	}
 	
 	
-	public boolean DisponibleNickname(String nickname) {
+	public boolean disponibleNickname(String nickname) {
 		Usuario user = this.usuarios.get(nickname);
 		if (user == null) {
 			return true;
@@ -96,7 +96,7 @@ public class manejUsuarios {
 		}
 	}
 	
-	public boolean DisponibleCorreo(String correo) {
+	public boolean disponibleCorreo(String correo) {
 		Usuario user = this.usuariosEmail.get(correo);
 		if (user == null) {
 			return true;
@@ -132,15 +132,15 @@ public class manejUsuarios {
 		return usuariosEmail.get(email);
 	}
 	
-	public InfoBasicaUser InformacionBasicaUsuario(String usuario) {
+	public InfoBasicaUser informacionBasicaUsuario(String usuario) {
 		
 		Usuario user = this.usuarios.get(usuario);
-		return  user.Informacion();
+		return  user.informacion();
 	}
 	
-	public InformacionActividad InformacionActividad(String usuario) {
+	public InformacionActividad informacionActividad(String usuario) {
 		Usuario user = this.usuarios.get(usuario);
-		return  user.InformacionActividad(usuario);
+		return  user.informacionActividad(usuario);
 	}
 	
 	public Set<String> mostrarNicknameSocios() {
@@ -153,12 +153,12 @@ public class manejUsuarios {
 		return res;
 	}
 	
-	public void ElimiarManjeador() {
+	public void elimiarManjeador() {
 		manejUsuarios.instance=null;
 		usuarios.clear();
 	}
 	
-	public void ActualizarInformacionUsuario(InfoBasicaUser actualizacion){
+	public void actualizarInformacionUsuario(InfoBasicaUser actualizacion){
 		
 		Usuario usuario = findUsuario( actualizacion.getNickname() );
 		

@@ -29,7 +29,7 @@ public class ctrlUsuarios implements IctrlUsuarios {
 		
 		//cuando se crea el controlador ya ahi se trae el manejador  
 		try{
-			this.manejador.CrearUsuario(user);
+			this.manejador.crearUsuario(user);
 		}catch(UsuarioDisponibilidadException e){
 			throw e;
 		}
@@ -58,18 +58,18 @@ public class ctrlUsuarios implements IctrlUsuarios {
 	
 	public InformacionActividad informacionActividad(String usuario) {
 		
-		return this.manejador.InformacionActividad(usuario);
+		return this.manejador.informacionActividad(usuario);
 
 	}
 	
 	public void actualizarInformacionUsuario(InfoBasicaUser actualizacion){
-		this.manejador.ActualizarInformacionUsuario(actualizacion);
+		this.manejador.actualizarInformacionUsuario(actualizacion);
 		
 	}
 	
 	public InfoBasicaUser informacionBasicaUsuario(String usuario) {
 		
-		return this.manejador.InformacionBasicaUsuario(usuario);		
+		return this.manejador.informacionBasicaUsuario(usuario);		
 	}
 	
 	public Vector<String> usuariosEnSistemaNickName(){
@@ -143,15 +143,15 @@ public class ctrlUsuarios implements IctrlUsuarios {
 			InfoBasicaSocio socio8 = new InfoBasicaSocio("m1k4", "Micaela", "Lopez", "mika@gmail.com.ar", fecha8, "ijngr024", "https://bit.ly/3zglsWf");
 			InfoBasicaSocio socio9 = new InfoBasicaSocio("charly", "Carlos", "Boston", "charly@gmail.com.uy", fecha9, "987mnbgh", "https://bit.ly/2YRWDTQ");
 			
-			manejador.CrearUsuario(socio1);
-			manejador.CrearUsuario(socio2);
-			manejador.CrearUsuario(socio3);
-			manejador.CrearUsuario(socio4);
-			manejador.CrearUsuario(socio5);
-			manejador.CrearUsuario(socio6);
-			manejador.CrearUsuario(socio7);
-			manejador.CrearUsuario(socio8);
-			manejador.CrearUsuario(socio9);
+			manejador.crearUsuario(socio1);
+			manejador.crearUsuario(socio2);
+			manejador.crearUsuario(socio3);
+			manejador.crearUsuario(socio4);
+			manejador.crearUsuario(socio5);
+			manejador.crearUsuario(socio6);
+			manejador.crearUsuario(socio7);
+			manejador.crearUsuario(socio8);
+			manejador.crearUsuario(socio9);
 	
 		} catch(Exception e) {
 			//nada
@@ -183,15 +183,15 @@ public class ctrlUsuarios implements IctrlUsuarios {
 			
 			
 			
-			manejador.CrearUsuario(prof1);
-			manejador.CrearUsuario(prof2);
-			manejador.CrearUsuario(prof3);
-			manejador.CrearUsuario(prof4);
-			manejador.CrearUsuario(prof5);
-			manejador.CrearUsuario(prof6);
-			manejador.CrearUsuario(prof7);
-			manejador.CrearUsuario(prof8);
-			manejador.CrearUsuario(prof9);
+			manejador.crearUsuario(prof1);
+			manejador.crearUsuario(prof2);
+			manejador.crearUsuario(prof3);
+			manejador.crearUsuario(prof4);
+			manejador.crearUsuario(prof5);
+			manejador.crearUsuario(prof6);
+			manejador.crearUsuario(prof7);
+			manejador.crearUsuario(prof8);
+			manejador.crearUsuario(prof9);
 			
 			
 			
@@ -265,7 +265,7 @@ public class ctrlUsuarios implements IctrlUsuarios {
 	}
 	
 	public void elimiarManjeador() {
-		manejador.ElimiarManjeador();
+		manejador.elimiarManjeador();
 		this.manejador=null;
 	}
 
@@ -310,24 +310,24 @@ public class ctrlUsuarios implements IctrlUsuarios {
 
 	public Vector<String> usuariosSiguiendo(String nickname){
 		Usuario usuario = this.manejador.findUsuario(nickname);
-		return usuario.SeguidosNickname();
+		return usuario.seguidosNickname();
 	}
 	
 	
 	public Vector<String> usuariosSeguidores(String nickname){
 		Usuario usuario = this.manejador.findUsuario(nickname);
-		return usuario.SeguidoresNickname();
+		return usuario.seguidoresNickname();
 	}
 	
 	public Vector<DataCuponera> cuponeras(String nickname){
 		Usuario usuario = this.manejador.findUsuario(nickname);
 		Socio socio = (Socio) usuario;
-		return socio.Cuponeras();
+		return socio.cuponeras();
 	}
 	
 	public InfoActividadProfe informacionActDepEstadoIngRech(String nickname){
 		Usuario usuario = this.manejador.findUsuario(nickname);
 		Profesor profe = (Profesor) usuario;
-		return profe.InformacionActDepEstadoIngRech();
+		return profe.informacionActDepEstadoIngRech();
 	}
 }

@@ -175,10 +175,10 @@ class ctrlUsuariosTest {
 		InfoBasicaSocio respuesta_s2_casteo = (InfoBasicaSocio)respuesta_s2;
 		
 		//compruebo que se crea y se devulve el mismo objeto
-		assertTrue( p1.SonIguales(respuesta_p1_casteo), "son dif");
-		assertTrue( p2.SonIguales(respuesta_p2_casteo), "son dif");
-		assertTrue( s1.SonIguales(respuesta_s1_casteo), "son dif");
-		assertTrue( s2.SonIguales(respuesta_s2_casteo), "son dif");
+		assertTrue( p1.sonIguales(respuesta_p1_casteo), "son dif");
+		assertTrue( p2.sonIguales(respuesta_p2_casteo), "son dif");
+		assertTrue( s1.sonIguales(respuesta_s1_casteo), "son dif");
+		assertTrue( s2.sonIguales(respuesta_s2_casteo), "son dif");
 
 		//segunda parte
 		//segunda parte
@@ -425,10 +425,10 @@ class ctrlUsuariosTest {
 		InfoBasicaUser s1M_Respuesta = cu.informacionBasicaUsuario("nick s1");
 		InfoBasicaUser s2M_Respuesta = cu.informacionBasicaUsuario("nick s2");
 
-		assertTrue( p1M.SonIguales( (InfoBasicaProfesor)p1M_Respuesta  ), "Info diferente" );
-		assertTrue( p2M.SonIguales( (InfoBasicaProfesor)p2M_Respuesta  ), "Info diferente" );
-		assertTrue( s1M.SonIguales( (InfoBasicaSocio)s1M_Respuesta  ), "Info diferente" );
-		assertTrue( s2M.SonIguales( (InfoBasicaSocio)s2M_Respuesta  ), "Info diferente" );
+		assertTrue( p1M.sonIguales( (InfoBasicaProfesor)p1M_Respuesta  ), "Info diferente" );
+		assertTrue( p2M.sonIguales( (InfoBasicaProfesor)p2M_Respuesta  ), "Info diferente" );
+		assertTrue( s1M.sonIguales( (InfoBasicaSocio)s1M_Respuesta  ), "Info diferente" );
+		assertTrue( s2M.sonIguales( (InfoBasicaSocio)s2M_Respuesta  ), "Info diferente" );
 		
 		manejIDeportivas.ElimiarManjeador();
 		cu.elimiarManjeador();
@@ -498,10 +498,10 @@ class ctrlUsuariosTest {
 		InfoBasicaSocio respuesta_s1_casteo = (InfoBasicaSocio)respuesta_s1;
 		InfoBasicaSocio respuesta_s2_casteo = (InfoBasicaSocio)respuesta_s2;
 		
-		assertTrue( p1.SonIguales(respuesta_p1_casteo), "No son iguales" );
-		assertTrue( p2.SonIguales(respuesta_p2_casteo), "No son iguales" );
-		assertTrue( s1.SonIguales(respuesta_s1_casteo), "No son iguales" );
-		assertTrue( s2.SonIguales(respuesta_s2_casteo), "No son iguales" );
+		assertTrue( p1.sonIguales(respuesta_p1_casteo), "No son iguales" );
+		assertTrue( p2.sonIguales(respuesta_p2_casteo), "No son iguales" );
+		assertTrue( s1.sonIguales(respuesta_s1_casteo), "No son iguales" );
+		assertTrue( s2.sonIguales(respuesta_s2_casteo), "No son iguales" );
 		
 		manejIDeportivas.ElimiarManjeador();
 		cu.elimiarManjeador();

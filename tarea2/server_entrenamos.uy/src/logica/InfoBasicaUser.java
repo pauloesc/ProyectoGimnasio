@@ -70,7 +70,7 @@ public abstract class InfoBasicaUser {
 	}
     
 	
-	public boolean SonIguales( InfoBasicaUser parametroInfoUser ) {
+	public boolean sonIguales( InfoBasicaUser parametroInfoUser ) {
 		
 		if (
 		(this.apellido == parametroInfoUser.getApellido())&

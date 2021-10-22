@@ -88,7 +88,7 @@ public class Socio extends Usuario {
 	
 	
 	@Override
-	public InfoBasicaUser Informacion() {	
+	public InfoBasicaUser informacion() {	
 		InfoBasicaUser DtInfoBasicUser = new InfoBasicaSocio(
 			this.getNickname(),
 			this.getNombre(),
@@ -102,7 +102,7 @@ public class Socio extends Usuario {
 	}
 	
 	@Override
-	public InformacionActividad InformacionActividad(String usuario) {
+	public InformacionActividad informacionActividad(String usuario) {
 		
 		InformacionActividad infoAct = new InfoActividadSocio();		
 		for ( Iterator<Registro> it = regs.iterator(); it.hasNext();) { 
@@ -114,7 +114,7 @@ public class Socio extends Usuario {
 		return infoAct;
 	}
 	
-	public Vector<DataCuponera> Cuponeras(){
+	public Vector<DataCuponera> cuponeras(){
 		
 		Vector<DataCuponera> vec = new Vector<DataCuponera>();
 		

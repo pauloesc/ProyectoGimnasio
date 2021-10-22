@@ -103,9 +103,9 @@ public abstract class Usuario {
 	}
 	
 	
-	public abstract InfoBasicaUser Informacion();
+	public abstract InfoBasicaUser informacion();
 	
-	public abstract InformacionActividad InformacionActividad(String usuario);
+	public abstract InformacionActividad informacionActividad(String usuario);
 	
 	public void teSigo(Usuario usuario) {
 		seguidores.put(usuario.getNickname(), usuario);
@@ -125,7 +125,7 @@ public abstract class Usuario {
 		usuario.noTeSigo(this);
 	}
 	
-	public Vector<String> SeguidoresNickname(){
+	public Vector<String> seguidoresNickname(){
 		Vector<String> vec = new Vector<String>();
 		
 		Map<String, Usuario> map = seguidores;
@@ -137,7 +137,7 @@ public abstract class Usuario {
 		return vec;
 	}
 	
-	public Vector<String> SeguidosNickname(){
+	public Vector<String> seguidosNickname(){
 		Vector<String> vec = new Vector<String>();
 		
 		Map<String, Usuario> map = seguidos;
