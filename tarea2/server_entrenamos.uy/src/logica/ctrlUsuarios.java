@@ -91,14 +91,14 @@ public class ctrlUsuarios implements IctrlUsuarios {
 	}
 	
 	public void seguirUsuario(String seguidor, String seguido) {
-		if( !seguidor.equals(seguido) ) {
+		if ( !seguidor.equals(seguido) ) {
 			Usuario sgr = manejador.findUsuario(seguidor);
 			sgr.seguir(manejador.findUsuario(seguido));
 		}
 	}
 	
 	public void dejarDeSeguirUsuario(String seguidor, String seguido) {
-		if( !seguidor.equals(seguido) ) {
+		if ( !seguidor.equals(seguido) ) {
 			Usuario sgr = manejador.findUsuario(seguidor);
 			sgr.dejarDeSeguir(manejador.findUsuario(seguido));
 		}
@@ -153,7 +153,8 @@ public class ctrlUsuarios implements IctrlUsuarios {
 			manejador.CrearUsuario(socio8);
 			manejador.CrearUsuario(socio9);
 	
-		} catch (Exception e) {	
+		} catch(Exception e) {
+			//nada
 		}
 		
 		

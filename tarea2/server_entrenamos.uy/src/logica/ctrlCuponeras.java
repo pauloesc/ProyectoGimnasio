@@ -43,10 +43,10 @@ public class ctrlCuponeras implements IctrlCuponeras {
 	public Set<String> listarActividadesfaltantes(String nomcup, String nominst) throws ActividadDeportivaNoExisteException{
 		manejCuponeras manejadorCuponeras = manejCuponeras.getinstance();
 		Cuponera cup = manejadorCuponeras.getCuponera(nomcup);
-		Set <String> ListAct=cup.getListaActividades();
+		Set<String> ListAct=cup.getListaActividades();
 		manejIDeportivas mID = manejIDeportivas.getinstance();
 		InstitucionDeportiva inst = mID.buscarInstitucion(nominst);
-		Set <String> ListInst = inst.darNombresActividadesDeportivas();
+		Set<String> ListInst = inst.darNombresActividadesDeportivas();
 		if ((ListAct!=null) && (ListInst!=null)) 
 			ListInst.removeAll(ListAct);
 	
@@ -56,7 +56,7 @@ public class ctrlCuponeras implements IctrlCuponeras {
 		return ListInst;
 	}
 	
-	public void agregarActividad(String nomcup,String act,int numclase) throws ActividadDeportivaRepetidaException {
+	public void agregarActividad(String nomcup, String act, int numclase) throws ActividadDeportivaRepetidaException {
 		manejCuponeras manejadorCuponeras = manejCuponeras.getinstance();
 		Cuponera cup = manejadorCuponeras.getCuponera(nomcup);
 		manejADeportivas manejadorActDep = manejADeportivas.getinstance();
@@ -66,7 +66,7 @@ public class ctrlCuponeras implements IctrlCuponeras {
 		cup.agregarActividad(activ, numclase);
 	}
 	
-	public DataCuponera mostrarCuponera (String nomCup) throws CuponeraNoExisteException {
+	public DataCuponera mostrarCuponera(String nomCup) throws CuponeraNoExisteException {
 		manejCuponeras manejadorCuponeras = manejCuponeras.getinstance();
 		Cuponera cup=manejadorCuponeras.getCuponera(nomCup);
 		if (cup==null)
@@ -82,7 +82,7 @@ public class ctrlCuponeras implements IctrlCuponeras {
         	
         	Set<String> cups = new HashSet<String>();
         	Iterator<Cuponera> iteradorCuponeras = cuponeras.iterator();
-            while(iteradorCuponeras.hasNext()){            	
+            while (iteradorCuponeras.hasNext()){            	
                cups.add(iteradorCuponeras.next().getNombre());
             }
 
@@ -93,7 +93,7 @@ public class ctrlCuponeras implements IctrlCuponeras {
     }
 	
 	
-	public Set<String>listarcuponeraslibres() throws CuponeraNoExisteException {
+	public Set<String> listarcuponeraslibres() throws CuponeraNoExisteException {
 		manejCuponeras manejadorCuponeras = manejCuponeras.getinstance();
 		Set<String> resu=manejadorCuponeras.listarcuponeraslibres();
 		if (resu.size()==0)
@@ -103,9 +103,9 @@ public class ctrlCuponeras implements IctrlCuponeras {
 		
 	}
 	
-	public void comprarCuponera (Date fecha, String cuponera, String nomsocio) throws CuponeraCompradaException{
+	public void comprarCuponera(Date fecha, String cuponera, String nomsocio) throws CuponeraCompradaException{
 		manejUsuarios manejadorUsuario=manejUsuarios.getInstance();
-		Socio sos= (Socio)manejadorUsuario.findUsuario(nomsocio);
+		Socio sos= (Socio) manejadorUsuario.findUsuario(nomsocio);
 		if (!sos.tieneCuponera(cuponera)) {
 			manejCuponeras manejadorCuponeras = manejCuponeras.getinstance();
 			Cuponera cup=manejadorCuponeras.getCuponera(cuponera);
@@ -114,10 +114,10 @@ public class ctrlCuponeras implements IctrlCuponeras {
 				sos.comprarCuponera(fecha, cup, acts);
 				cup.setComprada(true);
 			}else {
-				throw new CuponeraCompradaException ("La cuponera no está en vigencia");
+				throw new CuponeraCompradaException("La cuponera no está en vigencia");
 			}
 		}else
-		  throw new CuponeraCompradaException ("El socio ya tiene adquerida esta cuponera");
+		  throw new CuponeraCompradaException("El socio ya tiene adquerida esta cuponera");
 	}
 	
 	
@@ -141,10 +141,10 @@ public class ctrlCuponeras implements IctrlCuponeras {
 		Set<String>  dad=instDep.darNombresActividadesDeportivas();
 		
 		manejCuponeras mCup = manejCuponeras.getinstance();
-		for (Iterator<String> iter=dad.iterator();iter.hasNext();) {
+		for (Iterator<String> iter=dad.iterator(); iter.hasNext();) {
 			String act=iter.next();
 			Set<Cuponera> list=mCup.getCuponerasDeActividad(act);
-			for (Iterator<Cuponera> iter2=list.iterator();iter2.hasNext();) {
+			for (Iterator<Cuponera> iter2=list.iterator(); iter2.hasNext();) {
 				Cuponera cup=iter2.next();
 				    resu.add(cup.getNombre());
 			}
@@ -177,9 +177,9 @@ public class ctrlCuponeras implements IctrlCuponeras {
 		
 		//cargo cuponeras
 		try {
-			registrarCuponera("Pelota", "Deportes con pelota.",fecha1,fecha2,20f,fecha3);
-			registrarCuponera("Gimnasia", "Aeróbica y aparatos.",fecha4,fecha5,30f,fecha6);
-			registrarCuponera("Músculos", "Pesas.",fecha7,fecha8 ,10f,fecha9 );
+			registrarCuponera("Pelota", "Deportes con pelota.", fecha1, fecha2, 20f, fecha3);
+			registrarCuponera("Gimnasia", "Aeróbica y aparatos.", fecha4, fecha5, 30f, fecha6);
+			registrarCuponera("Músculos", "Pesas.", fecha7, fecha8 , 10f, fecha9 );
 		} catch (CuponeraRepetidaException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -191,8 +191,8 @@ public class ctrlCuponeras implements IctrlCuponeras {
 			agregarActividad("Pelota", "Basquetbol", 18);
 			agregarActividad("Gimnasia", "Aeróbica", 2);
 			agregarActividad("Gimnasia", "Aparatos y pesas", 8);
-		    agregarActividad ("Músculos", "Kickboxing", 11);
-		    agregarActividad ("Músculos", "Aparatos y pesas", 12);
+		    agregarActividad("Músculos", "Kickboxing", 11);
+		    agregarActividad("Músculos", "Aparatos y pesas", 12);
 		} catch (ActividadDeportivaRepetidaException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

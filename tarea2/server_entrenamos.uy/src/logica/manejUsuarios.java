@@ -17,11 +17,11 @@ import java.util.Vector;
 public class manejUsuarios {
 
 	private static manejUsuarios instance = null;
-	private Map<String,Usuario> usuarios;
-	private Map<String,Usuario> usuariosEmail;
+	private Map<String, Usuario> usuarios;
+	private Map<String, Usuario> usuariosEmail;
 	
 	private manejUsuarios() {
-		usuarios = new HashMap<String,Usuario>();
+		usuarios = new HashMap<String, Usuario>();
 		usuariosEmail = new HashMap<String, Usuario>();
 	}
 	
@@ -72,12 +72,12 @@ public class manejUsuarios {
 		
 		Usuario userCreado = null;
 		
-		if( info.getClass() == InfoBasicaProfesor.class ) {
+		if ( info.getClass() == InfoBasicaProfesor.class ) {
 			
-			userCreado = new Profesor( (InfoBasicaProfesor)info );
+			userCreado = new Profesor( (InfoBasicaProfesor) info );
 		}
 		else {
-			userCreado = new Socio( (InfoBasicaSocio)info );
+			userCreado = new Socio( (InfoBasicaSocio) info );
 		}
 		
 		this.usuarios.put(userCreado.getNickname(), userCreado);
@@ -88,7 +88,7 @@ public class manejUsuarios {
 	
 	public boolean DisponibleNickname(String nickname) {
 		Usuario user = this.usuarios.get(nickname);
-		if(user == null) {
+		if (user == null) {
 			return true;
 		}
 		else {
@@ -98,7 +98,7 @@ public class manejUsuarios {
 	
 	public boolean DisponibleCorreo(String correo) {
 		Usuario user = this.usuariosEmail.get(correo);
-		if(user == null) {
+		if (user == null) {
 			return true;
 		}
 		else {
@@ -111,9 +111,9 @@ public class manejUsuarios {
 		
 		Vector<String> vec= new Vector<>();
 		
-		Iterator<Map.Entry<String,Usuario>> usr = this.usuarios.entrySet().iterator();
+		Iterator<Map.Entry<String, Usuario>> usr = this.usuarios.entrySet().iterator();
 		
-		while(usr.hasNext()){
+		while (usr.hasNext()){
 			Map.Entry<String, Usuario> entry = usr.next();
 			Usuario user = entry.getValue();
 			
@@ -170,11 +170,11 @@ public class manejUsuarios {
 		
 		if ( actualizacion.getClass() == InfoBasicaProfesor.class ) {
 		
-			if( usuario.getClass() == Profesor.class ) {
+			if ( usuario.getClass() == Profesor.class ) {
 				
-				InfoBasicaProfesor aux_actualizacion = (InfoBasicaProfesor)actualizacion;
+				InfoBasicaProfesor aux_actualizacion = (InfoBasicaProfesor) actualizacion;
 				
-				Profesor auxP = (Profesor)usuario;
+				Profesor auxP = (Profesor) usuario;
 				auxP.setBio(aux_actualizacion.getBibliografia());
 				auxP.setDescripcion(aux_actualizacion.getDesc());
 				auxP.setWebsite(aux_actualizacion.getUrl());

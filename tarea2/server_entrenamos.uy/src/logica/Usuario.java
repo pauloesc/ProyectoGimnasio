@@ -21,14 +21,12 @@ public abstract class Usuario {
 		return nickname;
 	}
 
-	public String getContrasena()
-	{
+	public String getContrasena(){
 		return contrasena;
 	}
 	
 	public Usuario(String nickname, String nombre, String apellido, String email, Date fNacimiento,
-			String contrasena, String imagen) 
-	{
+			String contrasena, String imagen){
 		this.nickname = nickname;
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -100,8 +98,7 @@ public abstract class Usuario {
 		this.nickname = nickname;
 	}
 	
-	public void setContrasena(String contrasena)
-	{
+	public void setContrasena(String contrasena){
 		this.contrasena = contrasena;
 	}
 	

@@ -14,7 +14,7 @@ public class Cuponera {
 	private Float descuento;
 	private Date fecha_alta;
 	private boolean comprada; 
-	private Set <InfoClases> info;
+	private Set<InfoClases> info;
 
 	public Cuponera(String nom, String des, Date ini, Date fin, Float disc, Date alta) {
 		this.nombre = nom;
@@ -47,7 +47,7 @@ public class Cuponera {
 		return descuento;
 	}
 
-	public Set <InfoClases> getInfo() {
+	public Set<InfoClases> getInfo() {
 		return info;
 	}
 

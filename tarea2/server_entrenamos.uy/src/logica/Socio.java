@@ -13,7 +13,7 @@ import excepciones.ClaseLlenaException;
 import excepciones.ClaseYaCompradaException;
 
 public class Socio extends Usuario {
-	private Map<String,Compra> compCup;
+	private Map<String, Compra> compCup;
 	private Set<Registro> regs;
 	
 	public Socio(InfoBasicaSocio info) {
@@ -48,7 +48,7 @@ public class Socio extends Usuario {
 	
 	public void comprarClase(String actDep, Clase clase, Float precio, boolean cuponera, String nomCuponera, Date fechaReg) throws ClaseYaCompradaException, ClaseLlenaException {
 		
-		for( Iterator<Registro> it = regs.iterator(); it.hasNext();) { 
+		for( Iterator<Registro> it = regs.iterator(); it.hasNext();){ 
 		   if (it.next().getNombreClase() == clase.getNombre()) {
 			   throw new ClaseYaCompradaException("Clase ya comprada");
 		   }
@@ -58,13 +58,13 @@ public class Socio extends Usuario {
 			throw new ClaseLlenaException("Clase llena");
 		}
 	
-		Registro registro = new Registro(clase,precio,fechaReg);
+		Registro registro = new Registro(clase, precio, fechaReg);
 		regs.add(registro);
 		
 		if (cuponera) {
 			Compra comp = compCup.get(nomCuponera);
 			comp.descontarClase(actDep);
-			registro.aplicarDescuento(comp.getDescuento(),clase);
+			registro.aplicarDescuento(comp.getDescuento(), clase);
 			
 		}
 		
@@ -118,8 +118,8 @@ public class Socio extends Usuario {
 		
 		Vector<DataCuponera> vec = new Vector<DataCuponera>();
 		
-		 Map<String,Compra> map = compCup;
-		for (Map.Entry<String,Compra> entry : map.entrySet()) {
+		 Map<String, Compra> map = compCup;
+		for (Map.Entry<String, Compra> entry : map.entrySet()) {
 			Compra comp = entry.getValue();
 			DataCuponera info = comp.DarInformacionCuponera();
 			vec.add(info);

@@ -8,9 +8,9 @@ public class InfoActividadSocio extends InformacionActividad {
 	
 	public boolean SonIguales( InfoBasicaSocio inf ) {
 
-		InfoBasicaUser aux = (InfoBasicaUser)inf;
+		InfoBasicaUser aux = (InfoBasicaUser) inf;
 		
-		if( (inf.SonIguales(aux))) {
+		if ( inf.SonIguales(aux)) {
 			return true;
 		}
 		else {

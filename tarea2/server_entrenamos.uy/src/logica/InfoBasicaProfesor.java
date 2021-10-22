@@ -10,8 +10,8 @@ public class InfoBasicaProfesor extends InfoBasicaUser {
 	private String url;
 	
 	
-	public InfoBasicaProfesor(String nickname, String nombre, String apellido, String correo, Date fechaNac, String pass, String img ,String institucion, String des, String bibliografia, String url ) {
-		super(nickname, nombre, apellido, correo, fechaNac,pass,img);
+	public InfoBasicaProfesor(String nickname, String nombre, String apellido, String correo, Date fechaNac, String pass, String img, String institucion, String des, String bibliografia, String url ) {
+		super(nickname, nombre, apellido, correo, fechaNac, pass, img);
 		
 		this.institucion = institucion;
 		this.desc = des;
@@ -62,9 +62,9 @@ public class InfoBasicaProfesor extends InfoBasicaUser {
 	
 	public boolean SonIguales( InfoBasicaProfesor parametroInfoProfe ) {
 
-		InfoBasicaUser aux = (InfoBasicaUser)parametroInfoProfe;
+		InfoBasicaUser aux = (InfoBasicaUser) parametroInfoProfe;
 		
-		if( (parametroInfoProfe.SonIguales(aux))& 
+		if ( (parametroInfoProfe.SonIguales(aux))& 
 			(this.getInstitucion() == parametroInfoProfe.getInstitucion())&
 			(this.getDesc() == parametroInfoProfe.getDesc())&
 			(this.getBibliografia() == parametroInfoProfe.getBibliografia())&

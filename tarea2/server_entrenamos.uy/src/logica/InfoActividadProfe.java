@@ -6,7 +6,7 @@ public class InfoActividadProfe extends InformacionActividad {
 	private String desc;
 	private String url;
 	
-	public InfoActividadProfe(String nombre,String desc,String url) {
+	public InfoActividadProfe(String nombre, String desc, String url) {
 		this.nombre=nombre;
 		this.desc = desc;
 		this.url = url;
