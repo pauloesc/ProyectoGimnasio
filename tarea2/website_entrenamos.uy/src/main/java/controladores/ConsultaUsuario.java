@@ -113,10 +113,10 @@ public class ConsultaUsuario extends HttpServlet {
 		/**
 		*llamo a la funciones para traer la informacion
 		*/
-		informacionUusario = ICU.InformacionBasicaUsuario(user);
-		usuariosSeguidores = ICU.UsuariosSeguidores(user);
-		usuariosSiguiendo = ICU.UsuariosSiguiendo(user);
-		informacioActividad = ICU.InformacionActividad(informacionUusario.getNickname());
+		informacionUusario = ICU.informacionBasicaUsuario(user);
+		usuariosSeguidores = ICU.usuariosSeguidores(user);
+		usuariosSiguiendo = ICU.usuariosSiguiendo(user);
+		informacioActividad = ICU.informacionActividad(informacionUusario.getNickname());
 		
 		
 		if ( "denis".equals(user) ) {
@@ -134,10 +134,10 @@ public class ConsultaUsuario extends HttpServlet {
 		Vector<DataCuponera> cuponerasSocio = null;
 		InfoActividadProfe actDepsIngRech = null;
 		if(esSocio) {
-			cuponerasSocio = ICU.Cuponeras(user);			
+			cuponerasSocio = ICU.cuponeras(user);			
 		}
 		else {
-			actDepsIngRech = ICU.InformacionActDepEstadoIngRech(user);			
+			actDepsIngRech = ICU.informacionActDepEstadoIngRech(user);			
 		}
 		
 		
@@ -246,7 +246,7 @@ public class ConsultaUsuario extends HttpServlet {
 		
 		
 		
-		Vector<String> usuariosEnSistema = ICU.UsuariosEnSistemaNickName();
+		Vector<String> usuariosEnSistema = ICU.usuariosEnSistemaNickName();
 
 		request.setAttribute("usuarioEnSistema", usuariosEnSistema);
 		request.setAttribute("esSocio", esSocio);
