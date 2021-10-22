@@ -165,7 +165,7 @@ public class AltaUsuario extends JInternalFrame{
 				comboBox.setEnabled(estado);
 							
 				Vector<String> vector2;
-				vector2 = icu.InstitucionesEnSistema();
+				vector2 = icu.institucionesEnSistema();
 				DefaultComboBoxModel<String> model;
 				model = new DefaultComboBoxModel<String>(vector2);
 				model.setSelectedItem(null);

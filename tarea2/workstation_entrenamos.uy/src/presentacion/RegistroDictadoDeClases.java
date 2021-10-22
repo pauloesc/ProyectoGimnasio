@@ -207,7 +207,7 @@ public class RegistroDictadoDeClases extends JInternalFrame {
 						JOptionPane.showMessageDialog(null, "Primero se debe seleccionar el socio y la actividad deportiva");
 						chckbxCuponera.setSelected(false);
 					} else {
-						Set<String> cup = IU.MostrarCuponerasDisponibles((String)comboBoxSocio.getSelectedItem(),(String)comboBoxActividadDeportiva.getSelectedItem());
+						Set<String> cup = IU.mostrarCuponerasDisponibles((String)comboBoxSocio.getSelectedItem(),(String)comboBoxActividadDeportiva.getSelectedItem());
 						if (cup.size() == 0) {
 							JOptionPane.showMessageDialog(null, "El socio no tiene cuponeras disponibles para esta actividad");
 							chckbxCuponera.setSelected(false);
