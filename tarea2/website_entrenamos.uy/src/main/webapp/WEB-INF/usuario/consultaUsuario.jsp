@@ -6,7 +6,7 @@
 <%@page import="logica.*"%>
 <%@page import="java.util.Vector"%>
 <%@page import="java.util.Iterator"%>
-
+<%@page import="java.text.SimpleDateFormat"%>
 
 
 <!doctype html>
@@ -27,6 +27,9 @@ Vector<DtActividadesDeportivas> informacionProfesor = (Vector<DtActividadesDepor
 Vector<String> usersEnSistema = (Vector<String>) request.getAttribute("usuariosEnSistema");
 
 boolean propioUsuario = (boolean) request.getAttribute("userPropio");
+
+SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+String dateString = formato.format(informacionUusario.getFechaNac());
 
 %>
 
@@ -146,7 +149,7 @@ boolean propioUsuario = (boolean) request.getAttribute("userPropio");
                                              <label for="last_name">
                                                 <strong>Fecha nacimiento</strong>
                                              </label>
-                                             <input value="<%= informacionUusario.getFechaNac() %>" readonly type="text" class="form-control" id="last_name" name="last_name" />
+                                             <input value="<%= dateString %>" readonly type="text" class="form-control" id="last_name" name="last_name" />
                                           </div>
                                        </div>
                                     </div>
