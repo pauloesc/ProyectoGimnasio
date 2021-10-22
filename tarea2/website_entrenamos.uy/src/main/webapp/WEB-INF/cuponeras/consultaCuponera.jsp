@@ -17,7 +17,7 @@
 	DataCuponera dtcuponera = (DataCuponera) request.getAttribute("cuponera");
 	Date date = null;  
 	DateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");  
-	
+	Boolean socio= (Boolean) request.getAttribute ("socio");
 %>
 <body>
 	<jsp:include page="/WEB-INF/template/header.jsp" />
@@ -42,8 +42,9 @@
     						<p class="card-text text-secondary"> Fecha de alta: <%= dateFormat.format(dtcuponera.getFecha_alta())%> </p>
   					</div>
   						 <div class="d-md-flex justify-content-md-end col-12 mb-3">
+  							<% if (socio){%>
   							<a href=# class="btn btn-primary" data-toggle="modal" data-target="#comprar2">Comprar Cuponera</a>	
-  						
+  							<%}%>
   						<!-- Modal -->
 <div class="modal fade" id="comprar2" tabindex="-1" role="dialog" aria-labelledby="comprar2Label" aria-hidden="true">
     <div class="modal-dialog" role="document">

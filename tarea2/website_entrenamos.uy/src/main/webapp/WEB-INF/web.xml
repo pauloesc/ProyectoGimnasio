@@ -148,6 +148,12 @@
 		<url-pattern>/altaUsuario</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>ComprarCuponera</servlet-name>
+		<servlet-class>controladores.ComprarCuponera</servlet-class>
+	</servlet>
+	
+
 	<session-config>
 		<session-timeout>30</session-timeout>
 	</session-config>

@@ -13,6 +13,7 @@
 	Set<DataCuponera> cups=(Set<DataCuponera>) request.getAttribute("cups");
 	DataCuponera[]  cupsar= cups.toArray(new DataCuponera[total]);
     Integer pagnum= (Integer) request.getAttribute("pag");
+    Boolean socio= (Boolean) request.getAttribute ("socio");
     
 %>
 <body>
@@ -38,7 +39,9 @@
 								<div class="d-md-flex justify-content-md-end">
 									<div class="d-flex flex-column">
 									<a href="consultaCuponera?cuponera=<%= cupsar[i-1].getNombre()%>" class="btn btn-primary">Detalles</a>
+									<% if (socio){%>
 									<a href=# class="btn btn-primary mt-2" data-toggle="modal" data-target="#comprar">Comprar</a>
+									<%}%>
 									</div>
 								</div>
 							</div>
@@ -60,7 +63,9 @@
 								<div class="d-md-flex justify-content-md-end">
 									<div class="d-flex flex-column">
 									<a href="consultaCuponera?cuponera=<%= cupsar[i-1].getNombre()%>" class="btn btn-primary">Detalles</a>
+									<% if (socio){%>
 									<a href=# class="btn btn-primary mt-2" data-toggle="modal" data-target="#comprar">Comprar</a>
+									<%}%>
 									</div>
 								</div>
 							</div>
@@ -82,7 +87,9 @@
 								<div class="d-md-flex justify-content-md-end">
 									<div class="d-flex flex-column">
 									<a href="consultaCuponera?cuponera=<%= cupsar[i-1].getNombre()%>" class="btn btn-primary">Detalles</a>
+									<% if (socio){%>
 									<a href=# class="btn btn-primary mt-2" data-toggle="modal" data-target="#comprar">Comprar</a>
+									<%}%>
 									</div>
 								</div>
 							</div>

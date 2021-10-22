@@ -14,7 +14,9 @@ import javax.servlet.http.HttpSession;
 import excepciones.CuponeraNoExisteException;
 import logica.DataCuponera;
 import logica.Fabrica;
+import logica.IctrlClases;
 import logica.IctrlCuponeras;
+import logica.IctrlUsuarios;
 
 @WebServlet("/ConsultaCuponera")
 public class ConsultaCuponera extends HttpServlet
@@ -33,6 +35,20 @@ public class ConsultaCuponera extends HttpServlet
 	private void processRequest(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException 
 	{
+		HttpSession sesion = req.getSession();
+    	Fabrica f = Fabrica.getInstance();
+		IctrlUsuarios ICU = f.getIctrlUsuarios();
+		IctrlClases ICL = f.getIctrlClases();
+		boolean bien = false;
+    	
+		if ((String)sesion.getAttribute("estado-sesion") == "logged-in") {
+    		try {
+    			bien = ICU.esSocio((String)sesion.getAttribute("nickname-user"));
+    		} catch (Exception e) {
+    			
+    		}
+    	}
+		
 		String cup = req.getParameter("cuponera");
 		//verificar que cuponera existe y sino llevar a errorPage
 		DataCuponera cuponera = null;
@@ -43,6 +59,7 @@ public class ConsultaCuponera extends HttpServlet
 			e.printStackTrace();
 		}
 		req.setAttribute("cuponera", cuponera);
+		req.setAttribute("socio", bien);
 		req.getRequestDispatcher("/WEB-INF/cuponeras/consultaCuponera.jsp").forward(req, resp);
 	}
 	
