@@ -110,22 +110,22 @@ public abstract class Usuario {
 	
 	public abstract InformacionActividad InformacionActividad(String usuario);
 	
-	public void teSigo(Usuario u) {
-		seguidores.put(u.getNickname(), u);
+	public void teSigo(Usuario usuario) {
+		seguidores.put(usuario.getNickname(), usuario);
 	}
 	
-	public void noTeSigo(Usuario u) {
-		seguidores.remove(u.getNickname());
+	public void noTeSigo(Usuario usuario) {
+		seguidores.remove(usuario.getNickname());
 	}
 	
-	public void seguir(Usuario u) {
-		seguidos.put(u.getNickname(), u);
-		u.teSigo(this);
+	public void seguir(Usuario usuario) {
+		seguidos.put(usuario.getNickname(), usuario);
+		usuario.teSigo(this);
 	}
 	
-	public void dejarDeSeguir(Usuario u) {
-		seguidos.remove(u.getNickname());
-		u.noTeSigo(this);
+	public void dejarDeSeguir(Usuario usuario) {
+		seguidos.remove(usuario.getNickname());
+		usuario.noTeSigo(this);
 	}
 	
 	public Vector<String> SeguidoresNickname(){
@@ -133,8 +133,8 @@ public abstract class Usuario {
 		
 		Map<String, Usuario> map = seguidores;
 				for (Map.Entry<String, Usuario> entry : map.entrySet()) {
-					Usuario u = entry.getValue();
-					String nick = u.getNickname();
+					Usuario usuario = entry.getValue();
+					String nick = usuario.getNickname();
 					vec.add(nick);
 				}
 		return vec;
@@ -145,8 +145,8 @@ public abstract class Usuario {
 		
 		Map<String, Usuario> map = seguidos;
 				for (Map.Entry<String, Usuario> entry : map.entrySet()) {
-					Usuario u = entry.getValue();
-					String nick = u.getNickname();
+					Usuario usuario = entry.getValue();
+					String nick = usuario.getNickname();
 					vec.add(nick);
 				}
 		return vec;
