@@ -37,7 +37,7 @@ public class ctrlUsuarios implements IctrlUsuarios {
 	}
 	
 
-	public Vector<String> InstitucionesEnSistema() {
+	public Vector<String> institucionesEnSistema() {
 		
 		manejIDeportivas mID = manejIDeportivas.getinstance();
 		Set<String> set;
@@ -56,23 +56,23 @@ public class ctrlUsuarios implements IctrlUsuarios {
 		
 	}
 	
-	public InformacionActividad InformacionActividad(String usuario) {
+	public InformacionActividad informacionActividad(String usuario) {
 		
 		return this.manejador.InformacionActividad(usuario);
 
 	}
 	
-	public void ActualizarInformacionUsuario(InfoBasicaUser actualizacion){
+	public void actualizarInformacionUsuario(InfoBasicaUser actualizacion){
 		this.manejador.ActualizarInformacionUsuario(actualizacion);
 		
 	}
 	
-	public InfoBasicaUser InformacionBasicaUsuario(String usuario) {
+	public InfoBasicaUser informacionBasicaUsuario(String usuario) {
 		
 		return this.manejador.InformacionBasicaUsuario(usuario);		
 	}
 	
-	public Vector<String> UsuariosEnSistemaNickName(){
+	public Vector<String> usuariosEnSistemaNickName(){
 		
 		return this.manejador.usuariosNickName();
 		
@@ -80,7 +80,7 @@ public class ctrlUsuarios implements IctrlUsuarios {
 	//paulo
 	
 	
-	public Set<String> MostrarCuponerasDisponibles(String nick, String actDept) {
+	public Set<String> mostrarCuponerasDisponibles(String nick, String actDept) {
 		Socio socio = (Socio) manejador.findUsuario(nick);
 		
 		return socio.mostrarNombreCuponerasDisponibles(actDept); 
@@ -264,7 +264,7 @@ public class ctrlUsuarios implements IctrlUsuarios {
 		}
 	}
 	
-	public void ElimiarManjeador() {
+	public void elimiarManjeador() {
 		manejador.ElimiarManjeador();
 		this.manejador=null;
 	}
@@ -308,24 +308,24 @@ public class ctrlUsuarios implements IctrlUsuarios {
 			return usr.getNickname();
 	}
 
-	public Vector<String> UsuariosSiguiendo(String nickname){
+	public Vector<String> usuariosSiguiendo(String nickname){
 		Usuario usuario = this.manejador.findUsuario(nickname);
 		return usuario.SeguidosNickname();
 	}
 	
 	
-	public Vector<String> UsuariosSeguidores(String nickname){
+	public Vector<String> usuariosSeguidores(String nickname){
 		Usuario usuario = this.manejador.findUsuario(nickname);
 		return usuario.SeguidoresNickname();
 	}
 	
-	public Vector<DataCuponera> Cuponeras(String nickname){
+	public Vector<DataCuponera> cuponeras(String nickname){
 		Usuario usuario = this.manejador.findUsuario(nickname);
 		Socio socio = (Socio) usuario;
 		return socio.Cuponeras();
 	}
 	
-	public InfoActividadProfe InformacionActDepEstadoIngRech(String nickname){
+	public InfoActividadProfe informacionActDepEstadoIngRech(String nickname){
 		Usuario usuario = this.manejador.findUsuario(nickname);
 		Profesor profe = (Profesor) usuario;
 		return profe.InformacionActDepEstadoIngRech();
