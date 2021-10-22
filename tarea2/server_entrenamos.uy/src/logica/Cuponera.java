@@ -51,12 +51,12 @@ public class Cuponera {
 		return info;
 	}
 
-	public void setInfo(Set <InfoClases> info) {
+	public void setInfo(Set<InfoClases> info) {
 		this.info = info;
 	}
 	
-	public Set <String> getListaActividades(){
-		Set <String> resu = new HashSet<String>();
+	public Set<String> getListaActividades(){
+		Set<String> resu = new HashSet<String>();
 		if (!info.isEmpty()) {
 		for (Iterator<InfoClases> iter=info.iterator(); iter.hasNext();) {
 			resu.add(iter.next().getNombreActividadDeportiva());
@@ -77,7 +77,7 @@ public class Cuponera {
 		return resu;  
 	}
 	
-	public Set <String> getListaCategorias(){
+	public Set<String> getListaCategorias(){
 		Set<String> resu = new HashSet<String>();
 		if (!info.isEmpty()) {
 		for (Iterator<InfoClases> iter=info.iterator(); iter.hasNext();) {

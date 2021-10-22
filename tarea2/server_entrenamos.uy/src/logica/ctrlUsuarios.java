@@ -46,7 +46,7 @@ public class ctrlUsuarios implements IctrlUsuarios {
 		
 		Vector<String> vector = new Vector<String>();
 		
-		while(iterate_value.hasNext()){
+		while (iterate_value.hasNext()){
 			
 			String institucionesDep = iterate_value.next().toString();
 			vector.add(institucionesDep);
@@ -321,13 +321,13 @@ public class ctrlUsuarios implements IctrlUsuarios {
 	
 	public Vector<DataCuponera> Cuponeras(String nickname){
 		Usuario usuario = this.manejador.findUsuario(nickname);
-		Socio socio = (Socio)usuario;
+		Socio socio = (Socio) usuario;
 		return socio.Cuponeras();
 	}
 	
 	public InfoActividadProfe InformacionActDepEstadoIngRech(String nickname){
 		Usuario usuario = this.manejador.findUsuario(nickname);
-		Profesor profe = (Profesor)usuario;
+		Profesor profe = (Profesor) usuario;
 		return profe.InformacionActDepEstadoIngRech();
 	}
 }
