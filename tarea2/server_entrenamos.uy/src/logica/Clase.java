@@ -42,7 +42,7 @@ public class Clase {
 	
 	public DtClase darDtClase() {
 		Usuario prof = (Usuario) this.profesor;
-		return new DtClase(this.fechaInicio, this.nombre, this.minSocios, this.actualSocios, this.maxSocios, this.url, this.fechaReg, prof.getNickname(),this.hora,this.min,manejADeportivas.getinstance().getNombreActividadDeClase(nombre));
+		return new DtClase(this.fechaInicio, this.nombre, this.minSocios, this.actualSocios, this.maxSocios, this.url, this.fechaReg, prof.getNickname(), this.hora, this. min, manejADeportivas.getinstance().getNombreActividadDeClase(nombre));
 	}
 	
 	public boolean esVigente() {

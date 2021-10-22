@@ -47,7 +47,7 @@ public class ctrlCuponeras implements IctrlCuponeras {
 		manejIDeportivas mID = manejIDeportivas.getinstance();
 		InstitucionDeportiva inst = mID.buscarInstitucion(nominst);
 		Set<String> ListInst = inst.darNombresActividadesDeportivas();
-		if ((ListAct!=null) && (ListInst!=null)) 
+		if ( ListAct!=null && ListInst!=null ) 
 			ListInst.removeAll(ListAct);
 	
 		if (ListInst.size()==0) {

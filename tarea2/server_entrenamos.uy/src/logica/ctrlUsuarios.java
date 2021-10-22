@@ -274,10 +274,8 @@ public class ctrlUsuarios implements IctrlUsuarios {
 	 * Si nickname = null se autentica a traves del email, si no a traves del nickname.
 	 */
 	@Override
-	public String autenticarUsario(String nickname, String email, String contrasena) 
-	{
-		if (nickname != null)
-		{
+	public String autenticarUsario(String nickname, String email, String contrasena){
+		if (nickname != null){
 			// Autenticar usando nickname
 			Usuario user = manejador.findUsuario(nickname);
 			if (user == null)
@@ -287,8 +285,7 @@ public class ctrlUsuarios implements IctrlUsuarios {
 			else
 				return null;
 		}
-		else
-		{
+		else {
 			// Autenticar usando email
 			Usuario user = manejador.findUsuarioPorEmail(email);
 			if (user == null)
@@ -303,8 +300,7 @@ public class ctrlUsuarios implements IctrlUsuarios {
 	/*
 	 * Si no existe usuario con ese email devuelve null.
 	 */
-	public String getNicknameUsuario(String email)
-	{
+	public String getNicknameUsuario(String email){
 		Usuario usr = manejador.findUsuarioPorEmail(email);
 		if (usr == null)
 			return null;

@@ -11,7 +11,7 @@ public abstract class Usuario {
 	private String apellido;
 	private String email;
 	private String contrasena;
-	private Date FNacimiento;
+	private Date fechaNacimiento;
 	private String imagen;
 	private Map<String, Usuario> seguidos;
 	private Map<String, Usuario> seguidores;
@@ -32,7 +32,7 @@ public abstract class Usuario {
 		this.apellido = apellido;
 		this.email = email;
 		this.contrasena = contrasena;
-		FNacimiento = fNacimiento;
+		fechaNacimiento = fNacimiento;
 		this.imagen = imagen;
 		seguidos = new HashMap<String, Usuario>();
 		seguidores = new HashMap<String, Usuario>();
@@ -43,7 +43,7 @@ public abstract class Usuario {
 		this.nombre = info.getNombre();
 		this.apellido = info.getApellido();
 		this.email = info.getCorreo();
-		FNacimiento = info.getFechaNac();
+		fechaNacimiento = info.getFechaNac();
 		this.imagen = info.getImagen();
 		seguidos = new HashMap<String, Usuario>();
 		seguidores = new HashMap<String, Usuario>();
@@ -85,12 +85,12 @@ public abstract class Usuario {
 
 
 	public Date getFNacimiento() {
-		return FNacimiento;
+		return fechaNacimiento;
 	}
 
 
 	public void setFNacimiento(Date fNacimiento) {
-		FNacimiento = fNacimiento;
+		fechaNacimiento = fNacimiento;
 	}
 
 

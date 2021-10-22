@@ -237,8 +237,8 @@ public class ctrlClases implements IctrlClases {
 			registrarSocioAClase("caro", "Basquetbol", "Basquet II", false, "", f46);
 			
 			
-		} catch (Exception e) {
-			
+		}
+		catch (Exception e){
 		}
 	
 	}

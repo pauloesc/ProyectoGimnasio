@@ -25,7 +25,7 @@ public class manejCuponeras {
 
 	public boolean exiteCuponera(String nombre) {
 	
-		return (Cuponeras.get(nombre)!=null);
+		return Cuponeras.get(nombre)!=null;
 	}
 
 	public void agregarCuponera(String nom, String des, Date ini, Date fin, Float disc, Date alta) {
@@ -93,7 +93,7 @@ public class manejCuponeras {
 	
 	
 	
-	public Set<String> getCuponerasdeCategoria (String categoria){
+	public Set<String> getCuponerasdeCategoria(String categoria){
 		Set<String> resu= new HashSet<String>();
 		for (Iterator<String> iter=Cuponeras.keySet().iterator(); iter.hasNext();) {
 			Cuponera cup=Cuponeras.get(iter.next());

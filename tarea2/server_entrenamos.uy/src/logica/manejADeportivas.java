@@ -35,7 +35,7 @@ public class manejADeportivas {
     }
 
     public ActividadDeportiva buscarActividad(String nombre) {
-        return ((ActividadDeportiva) actividadesDeportivas.get(nombre));
+        return (ActividadDeportiva) actividadesDeportivas.get(nombre);
     }
 
     public ActividadDeportiva[] getActividades() {

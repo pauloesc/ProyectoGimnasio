@@ -72,7 +72,7 @@ public abstract class InfoBasicaUser {
 	
 	public boolean SonIguales( InfoBasicaUser parametroInfoUser ) {
 		
-		if(
+		if (
 		(this.apellido == parametroInfoUser.getApellido())&
 		(this.correo == parametroInfoUser.getCorreo())&
 		(this.fechaNac == parametroInfoUser.getFechaNac())&

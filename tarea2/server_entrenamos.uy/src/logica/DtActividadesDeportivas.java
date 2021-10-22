@@ -15,7 +15,7 @@ public class DtActividadesDeportivas {
     private String descripcion;
     private Float duracion;
     private Float costo;
-    private Date fecha_alta;
+    private Date fechaAlta;
     private Vector<DtClase> clases = new  Vector<DtClase>();
     private EstadoActi estado;
 
@@ -44,7 +44,7 @@ public class DtActividadesDeportivas {
     }
     
     public Date getFechaAlta() {
-        return fecha_alta;
+        return fechaAlta;
     }
     
     
@@ -71,7 +71,7 @@ public class DtActividadesDeportivas {
     }
     
     private void setFechaAlta(Date fecha_alta) {
-        this.fecha_alta = fecha_alta;
+        this.fechaAlta = fecha_alta;
     }
 
     public void agregarDtClase(DtClase dataTypePorParametro ) {

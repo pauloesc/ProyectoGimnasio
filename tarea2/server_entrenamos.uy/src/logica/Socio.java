@@ -26,7 +26,7 @@ public class Socio extends Usuario {
 				info.getpass(),
 				info.getImagen());	
 		
-		compCup = new HashMap<String,Compra>();
+		compCup = new HashMap<String, Compra>();
 		regs = new HashSet<Registro>();
 	
 	}
@@ -36,9 +36,9 @@ public class Socio extends Usuario {
 		 Calendar fechaActual = Calendar.getInstance();  
 		 Date act = fechaActual.getTime();
 		
-		for(Compra c: compCup.values()) { 
+		for (Compra c: compCup.values()) { 
 		   
-		    if ((c.clasesDisponibles(actDept) > 0) && (!c.comienzoCuponera().after(act)) && (!c.vencimientoCuponera().before(act))) {
+		    if (c.clasesDisponibles(actDept) > 0 && !c.comienzoCuponera().after(act) && !c.vencimientoCuponera().before(act)) {
 		    	res.add(c.getNombreCuponera());
 		    }
 
@@ -48,7 +48,7 @@ public class Socio extends Usuario {
 	
 	public void comprarClase(String actDep, Clase clase, Float precio, boolean cuponera, String nomCuponera, Date fechaReg) throws ClaseYaCompradaException, ClaseLlenaException {
 		
-		for( Iterator<Registro> it = regs.iterator(); it.hasNext();){ 
+		for ( Iterator<Registro> it = regs.iterator(); it.hasNext();){ 
 		   if (it.next().getNombreClase() == clase.getNombre()) {
 			   throw new ClaseYaCompradaException("Clase ya comprada");
 		   }
@@ -71,7 +71,7 @@ public class Socio extends Usuario {
 	}
 	
 	public boolean tieneCuponera(String nombre) {
-		Set <String> claves=compCup.keySet();
+		Set<String> claves = compCup.keySet();
 		return claves.contains(nombre);
 	}
 	
@@ -105,7 +105,7 @@ public class Socio extends Usuario {
 	public InformacionActividad InformacionActividad(String usuario) {
 		
 		InformacionActividad infoAct = new InfoActividadSocio();		
-		for( Iterator<Registro> it = regs.iterator(); it.hasNext();) { 
+		for ( Iterator<Registro> it = regs.iterator(); it.hasNext();) { 
 			Registro aux = it.next();
 			DtClase claseInfo = aux.ActividadSocio();
 			infoAct.agregarInfo(claseInfo);

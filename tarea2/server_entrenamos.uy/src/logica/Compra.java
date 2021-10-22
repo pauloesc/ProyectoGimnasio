@@ -19,10 +19,10 @@ public class Compra {
 			if (!cupo.isComprada()) {
 				cupo.setComprada(true);
 			}
-			this.cantClases = new HashMap<String,Integer>();
+			this.cantClases = new HashMap<String, Integer>();
 
 			if (!act.isEmpty()) {
-			for (Iterator<String> iter=act.iterator();iter.hasNext();) {
+			for (Iterator<String> iter=act.iterator(); iter.hasNext();) {
 				this.cantClases.put(iter.next(), 0);
 			}
 			}
