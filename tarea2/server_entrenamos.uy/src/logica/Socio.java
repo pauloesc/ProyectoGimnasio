@@ -119,7 +119,7 @@ public class Socio extends Usuario {
 	
 	public List<DataCuponera> cuponeras(){
 		
-		Set<DataCuponera> vec = new HashSet<DataCuponera>();
+		Vector<DataCuponera> vec = new Vector<DataCuponera>();
 		
 		 Map<String, Compra> map = compCup;
 		for (Map.Entry<String, Compra> entry : map.entrySet()) {

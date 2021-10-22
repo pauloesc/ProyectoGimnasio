@@ -110,7 +110,7 @@ public class manejUsuarios {
 	
 	public List<String> usuariosNickName(){
 		
-		Set<String> vec= new HashSet<>();
+		Vector<String> vec= new Vector<>();
 		
 		Iterator<Map.Entry<String, Usuario>> usr = this.usuarios.entrySet().iterator();
 		

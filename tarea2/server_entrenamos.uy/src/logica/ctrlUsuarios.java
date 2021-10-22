@@ -46,7 +46,7 @@ public class ctrlUsuarios implements IctrlUsuarios {
 		set = mID.darNombreInstituciones();
 		Iterator<String> iterate_value = set.iterator();
 		
-		Set<String> vector = new HashSet<String>();
+		Vector<String> vector = new Vector<String>();
 		
 		while (iterate_value.hasNext()){
 			
