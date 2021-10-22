@@ -24,11 +24,11 @@ public class manejClases {
 		return instance;
 	}
 	
-	public Clase findClase(String c) {
-		return clases.get(c);
+	public Clase findClase(String clase) {
+		return clases.get(clase);
 	}
 	
-	public void agregarClase(Clase c) {
-		clases.put(c.getNombre(), c);
+	public void agregarClase(Clase clase) {
+		clases.put(clase.getNombre(), clase);
 	}
 }
