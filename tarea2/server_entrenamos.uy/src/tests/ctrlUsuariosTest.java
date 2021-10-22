@@ -93,7 +93,7 @@ class ctrlUsuariosTest {
 		assertEquals( entrada1, respuesta1, "problema1" );
 		assertEquals( entrada2, respuesta2, "problema2" );
 		
-		cu.ElimiarManjeador();
+		cu.elimiarManjeador();
 		manejIDeportivas.ElimiarManjeador();
 		
 		cu = null;
@@ -157,10 +157,10 @@ class ctrlUsuariosTest {
 			
 		}
 		
-		InfoBasicaUser respuesta_p1 = cu.InformacionBasicaUsuario("nick p1");
-		InfoBasicaUser respuesta_p2 = cu.InformacionBasicaUsuario("nick p2");
-		InfoBasicaUser respuesta_s1 = cu.InformacionBasicaUsuario("nick s1");
-		InfoBasicaUser respuesta_s2 = cu.InformacionBasicaUsuario("nick s2");
+		InfoBasicaUser respuesta_p1 = cu.informacionBasicaUsuario("nick p1");
+		InfoBasicaUser respuesta_p2 = cu.informacionBasicaUsuario("nick p2");
+		InfoBasicaUser respuesta_s1 = cu.informacionBasicaUsuario("nick s1");
+		InfoBasicaUser respuesta_s2 = cu.informacionBasicaUsuario("nick s2");
 		
 		//compruebo si son instancias de lo que corresponde
 		assertTrue(respuesta_p1 instanceof InfoBasicaProfesor, "no es instanciap1");
@@ -220,7 +220,7 @@ class ctrlUsuariosTest {
 		
 		
 		manejIDeportivas.ElimiarManjeador();
-		cu.ElimiarManjeador();
+		cu.elimiarManjeador();
 		
 		cu=null;
 		cid = null;
@@ -252,7 +252,7 @@ class ctrlUsuariosTest {
 		vecDatosEntrada.add("institucion3");
 		
 		//utilizo carga de datos
-		Vector<String> vecDatosRespuesta = cu.InstitucionesEnSistema();
+		Vector<String> vecDatosRespuesta = cu.institucionesEnSistema();
 		
 		
 		//si lo de adentro es falso dispara el assert
@@ -266,7 +266,7 @@ class ctrlUsuariosTest {
 
 		
 		manejIDeportivas.ElimiarManjeador();
-		cu.ElimiarManjeador();
+		cu.elimiarManjeador();
 		cu=null;
 		cid = null;
 		
@@ -321,21 +321,21 @@ class ctrlUsuariosTest {
 		
 		//como solo estan cargados los profesores y los socios
 		//tiene que ser vacia la actividad
-		 InformacionActividad info_p1 = cu.InformacionActividad("nick p1");
-		 InformacionActividad info_p2 = cu.InformacionActividad("nick p2");
+		 InformacionActividad info_p1 = cu.informacionActividad("nick p1");
+		 InformacionActividad info_p2 = cu.informacionActividad("nick p2");
 		 //compruebo que sea vacia la info.
 		 assertTrue( info_p1.obtenerVector().isEmpty() );
 		 assertTrue( info_p2.obtenerVector().isEmpty() );
 		 
-		 InformacionActividad info_s1 = cu.InformacionActividad("nick p1");
-		 InformacionActividad info_s2 = cu.InformacionActividad("nick p2");
+		 InformacionActividad info_s1 = cu.informacionActividad("nick p1");
+		 InformacionActividad info_s2 = cu.informacionActividad("nick p2");
 		 //compruebo que sea vacia la info.
 		 assertTrue( info_s1.obtenerVector().isEmpty() );
 		 assertTrue( info_s2.obtenerVector().isEmpty() );
 		 
 		
 			manejIDeportivas.ElimiarManjeador();
-			cu.ElimiarManjeador();
+			cu.elimiarManjeador();
 			cu=null;
 			cid = null;
 	}
@@ -414,16 +414,16 @@ class ctrlUsuariosTest {
 													new Date(),"" , "");
 		
 		
-		cu.ActualizarInformacionUsuario(p1M);
-		cu.ActualizarInformacionUsuario(p2M);
-		cu.ActualizarInformacionUsuario(s1M);
-		cu.ActualizarInformacionUsuario(s2M);
+		cu.actualizarInformacionUsuario(p1M);
+		cu.actualizarInformacionUsuario(p2M);
+		cu.actualizarInformacionUsuario(s1M);
+		cu.actualizarInformacionUsuario(s2M);
 		
 		//traigo la info desde el sistema
-		InfoBasicaUser p1M_Respuesta = cu.InformacionBasicaUsuario("nick p1");
-		InfoBasicaUser p2M_Respuesta = cu.InformacionBasicaUsuario("nick p2");
-		InfoBasicaUser s1M_Respuesta = cu.InformacionBasicaUsuario("nick s1");
-		InfoBasicaUser s2M_Respuesta = cu.InformacionBasicaUsuario("nick s2");
+		InfoBasicaUser p1M_Respuesta = cu.informacionBasicaUsuario("nick p1");
+		InfoBasicaUser p2M_Respuesta = cu.informacionBasicaUsuario("nick p2");
+		InfoBasicaUser s1M_Respuesta = cu.informacionBasicaUsuario("nick s1");
+		InfoBasicaUser s2M_Respuesta = cu.informacionBasicaUsuario("nick s2");
 
 		assertTrue( p1M.SonIguales( (InfoBasicaProfesor)p1M_Respuesta  ), "Info diferente" );
 		assertTrue( p2M.SonIguales( (InfoBasicaProfesor)p2M_Respuesta  ), "Info diferente" );
@@ -431,7 +431,7 @@ class ctrlUsuariosTest {
 		assertTrue( s2M.SonIguales( (InfoBasicaSocio)s2M_Respuesta  ), "Info diferente" );
 		
 		manejIDeportivas.ElimiarManjeador();
-		cu.ElimiarManjeador();
+		cu.elimiarManjeador();
 		cu=null;
 		cid = null;
 		
@@ -488,10 +488,10 @@ class ctrlUsuariosTest {
 			
 		}
 		
-		InfoBasicaUser respuesta_p1 = cu.InformacionBasicaUsuario("nick p1");
-		InfoBasicaUser respuesta_p2 = cu.InformacionBasicaUsuario("nick p2");
-		InfoBasicaUser respuesta_s1 = cu.InformacionBasicaUsuario("nick s1");
-		InfoBasicaUser respuesta_s2 = cu.InformacionBasicaUsuario("nick s2");
+		InfoBasicaUser respuesta_p1 = cu.informacionBasicaUsuario("nick p1");
+		InfoBasicaUser respuesta_p2 = cu.informacionBasicaUsuario("nick p2");
+		InfoBasicaUser respuesta_s1 = cu.informacionBasicaUsuario("nick s1");
+		InfoBasicaUser respuesta_s2 = cu.informacionBasicaUsuario("nick s2");
 		
 		InfoBasicaProfesor respuesta_p1_casteo = (InfoBasicaProfesor)respuesta_p1;
 		InfoBasicaProfesor respuesta_p2_casteo = (InfoBasicaProfesor)respuesta_p2;
@@ -504,7 +504,7 @@ class ctrlUsuariosTest {
 		assertTrue( s2.SonIguales(respuesta_s2_casteo), "No son iguales" );
 		
 		manejIDeportivas.ElimiarManjeador();
-		cu.ElimiarManjeador();
+		cu.elimiarManjeador();
 		cu=null;
 		cid = null;
 		
@@ -555,7 +555,7 @@ class ctrlUsuariosTest {
 			
 		}
 		
-		Vector<String> respuesta = cu.UsuariosEnSistemaNickName();
+		Vector<String> respuesta = cu.usuariosEnSistemaNickName();
 		
 		boolean mismo1 = (datosIngresados.size() == respuesta.size()); 
 		boolean mismo2 = datosIngresados.containsAll(respuesta);
@@ -563,7 +563,7 @@ class ctrlUsuariosTest {
 		
 	    assertTrue(mismo1 & mismo2 & mismo3, "Las instituciones ingresadas y devueltas no coinciden");
 		
-		cu.ElimiarManjeador();
+		cu.elimiarManjeador();
 		cu=null;
 		
 	}
@@ -627,7 +627,7 @@ class ctrlUsuariosTest {
 		
 	    assertTrue(mismo1 & mismo2 & mismo3, "Los socios esperados no coiniden con los recibidos");
 		
-		cu.ElimiarManjeador();
+		cu.elimiarManjeador();
 		cu=null;
 	}
 
@@ -691,7 +691,7 @@ class ctrlUsuariosTest {
 		cu.seguirUsuario("nick p1", "nick s1");
 		
 		Vector<String> siguiendo = null;
-		siguiendo = cu.UsuariosSiguiendo("nick p1");
+		siguiendo = cu.usuariosSiguiendo("nick p1");
 		
 		Vector<String> NicknameSiguiendo = new Vector<String>();
 		NicknameSiguiendo.add("nick p2");
@@ -712,7 +712,7 @@ class ctrlUsuariosTest {
 		cu.seguirUsuario("nick p2", "nick s2");
 		
 		Vector<String> siguiendo2 = null;
-		siguiendo2 = cu.UsuariosSiguiendo("nick p1");
+		siguiendo2 = cu.usuariosSiguiendo("nick p1");
 		
 		Vector<String> NicknameSiguiendo2 = new Vector<String>();
 		NicknameSiguiendo2.add("nick p1");
@@ -728,7 +728,7 @@ class ctrlUsuariosTest {
 	    assertTrue(mismo1 & mismo2 & mismo3, "Los socios esperados no coiniden con los recibidos");
 
 		manejIDeportivas.ElimiarManjeador();
-		cu.ElimiarManjeador();
+		cu.elimiarManjeador();
 		
 		cu=null;
 		cid = null;
@@ -792,7 +792,7 @@ class ctrlUsuariosTest {
 		cu.seguirUsuario("nick s2", "nick s1");
 		
 		Vector<String> Seguidores = null;
-		Seguidores = cu.UsuariosSeguidores("nick s1");
+		Seguidores = cu.usuariosSeguidores("nick s1");
 		
 		Vector<String> NicknameSeguidores = new Vector<String>();
 		NicknameSeguidores.add("nick p1");
@@ -809,7 +809,7 @@ class ctrlUsuariosTest {
 		
 		
 		manejIDeportivas.ElimiarManjeador();
-		cu.ElimiarManjeador();
+		cu.elimiarManjeador();
 		
 		cu=null;
 		cid = null;
@@ -862,7 +862,7 @@ class ctrlUsuariosTest {
 		
 		
 		
-		cu.ElimiarManjeador();
+		cu.elimiarManjeador();
 		cu=null;
 		
 	}
