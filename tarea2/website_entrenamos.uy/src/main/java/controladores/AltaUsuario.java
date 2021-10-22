@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Vector;
 
 import javax.servlet.ServletException;
@@ -50,7 +51,7 @@ public class AltaUsuario extends HttpServlet {
 		/**
 		*traigo las instituciones
 		*/
-		Vector<String> instEnSistem =  ICU.institucionesEnSistema();
+		List<String> instEnSistem =  ICU.institucionesEnSistema();
 		
 		request.setAttribute("instituciones", instEnSistem);
 		request.getRequestDispatcher("/WEB-INF/usuario/AltaUsuario.jsp").forward(request, response);
@@ -183,7 +184,7 @@ public class AltaUsuario extends HttpServlet {
 		/**
 		*traigo las instituciones
 		*/
-		Vector<String> instEnSistem =  ICU.institucionesEnSistema();
+		List<String> instEnSistem =  ICU.institucionesEnSistema();
 		request.setAttribute("instituciones", instEnSistem);
 		
 		request.setAttribute("altaUsuarioEstado", altaUsuarioEstado);

@@ -2,6 +2,7 @@ package logica;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
@@ -125,7 +126,7 @@ public abstract class Usuario {
 		usuario.noTeSigo(this);
 	}
 	
-	public Vector<String> seguidoresNickname(){
+	public List<String> seguidoresNickname(){
 		Vector<String> vec = new Vector<String>();
 		
 		Map<String, Usuario> map = seguidores;
@@ -137,7 +138,7 @@ public abstract class Usuario {
 		return vec;
 	}
 	
-	public Vector<String> seguidosNickname(){
+	public List<String> seguidosNickname(){
 		Vector<String> vec = new Vector<String>();
 		
 		Map<String, Usuario> map = seguidos;

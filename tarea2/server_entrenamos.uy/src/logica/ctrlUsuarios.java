@@ -8,6 +8,7 @@ import java.util.Vector;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 
 import excepciones.UsuarioDisponibilidadException;
 import excepciones.UsuarioInexistenteException;
@@ -37,7 +38,7 @@ public class ctrlUsuarios implements IctrlUsuarios {
 	}
 	
 
-	public Vector<String> institucionesEnSistema() {
+	public List<String> institucionesEnSistema() {
 		
 		manejIDeportivas mID = manejIDeportivas.getinstance();
 		Set<String> set;
@@ -72,7 +73,7 @@ public class ctrlUsuarios implements IctrlUsuarios {
 		return this.manejador.informacionBasicaUsuario(usuario);		
 	}
 	
-	public Vector<String> usuariosEnSistemaNickName(){
+	public List<String> usuariosEnSistemaNickName(){
 		
 		return this.manejador.usuariosNickName();
 		
@@ -308,18 +309,18 @@ public class ctrlUsuarios implements IctrlUsuarios {
 			return usr.getNickname();
 	}
 
-	public Vector<String> usuariosSiguiendo(String nickname){
+	public List<String> usuariosSiguiendo(String nickname){
 		Usuario usuario = this.manejador.findUsuario(nickname);
 		return usuario.seguidosNickname();
 	}
 	
 	
-	public Vector<String> usuariosSeguidores(String nickname){
+	public List<String> usuariosSeguidores(String nickname){
 		Usuario usuario = this.manejador.findUsuario(nickname);
 		return usuario.seguidoresNickname();
 	}
 	
-	public Vector<DataCuponera> cuponeras(String nickname){
+	public List<DataCuponera> cuponeras(String nickname){
 		Usuario usuario = this.manejador.findUsuario(nickname);
 		Socio socio = (Socio) usuario;
 		return socio.cuponeras();
