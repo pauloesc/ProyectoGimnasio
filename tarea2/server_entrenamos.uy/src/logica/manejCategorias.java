@@ -25,8 +25,8 @@ public class manejCategorias {
 	}
 	
 	public void agregarCategoria(String nom) {
-		Categoria c = new Categoria(nom);
-		categorias.put(nom, c);
+		Categoria categoria = new Categoria(nom);
+		categorias.put(nom, categoria);
 	}
 	
 	public Categoria findCategoria(String nom) {
