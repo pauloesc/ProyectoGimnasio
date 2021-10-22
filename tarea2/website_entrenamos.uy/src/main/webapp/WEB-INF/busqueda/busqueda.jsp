@@ -20,8 +20,8 @@
                         <select class="form-control-sm" id="ordenarPor">
                               <option>Alfabeticamente (a-z)</option>
                               <option>Alfabeticamente (z-a)</option>
-                              <option>Ano (ascendente)</option>
-                              <option>Ano (descendente)</option>
+                              <option>Año (ascendente)</option>
+                              <option>Año (descendente)</option>
                          </select>
                     </div>
 			     <div class="accordion" id="accordionExample">
