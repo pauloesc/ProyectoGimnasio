@@ -16,6 +16,7 @@ public class DataCuponera {
 	private Float descuento;
 	private Date fechaAlta;
 	private Float costo;
+	private String imagen;
 	
 	private Set<ParActividad> clases;
 	private Set<String> categorias;
@@ -34,7 +35,7 @@ public class DataCuponera {
 	    }
 	
 	public DataCuponera(String nombre, String descripcion, Date fechaIni, Date fechaFin, Float descuento,
-			Date fechaAlta, Float costo, Set<ParActividad> clases, Set<String> categorias) {
+			Date fechaAlta, Float costo, Set<ParActividad> clases, Set<String> categorias, String img) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.fechaIni = fechaIni;
@@ -44,6 +45,7 @@ public class DataCuponera {
 		this.costo=costo;
 		this.clases = clases;
 		this.categorias= categorias;
+		this.setImagen(img);
 	}
 	public String getNombre() {
 		return nombre;
@@ -114,5 +116,13 @@ public class DataCuponera {
 
 	public void setCategorias(Set<String> categorias) {
 		this.categorias = categorias;
+	}
+
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
 }

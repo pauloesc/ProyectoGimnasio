@@ -52,7 +52,7 @@
 				<h2 class="text-dark mb-4">Consulta Cuponeras de Actividad Deportiva</h2>
 					<div class="row no-gutters">
 						<div class="col-md-5 text-center">
-							<img src="./resources/img/b1.jpg" class="img-fluid" alt="...">
+							<img src="./resources/img/cuponeras/<%= dtcuponera.getImagen()  %>" class="img-fluid" alt="...">
 						</div>
 					<div class="col-md-7">	
 					<div class="card mb-3 shadow" style="max-width:auto;">

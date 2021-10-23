@@ -177,9 +177,9 @@ public class ctrlCuponeras implements IctrlCuponeras {
 		
 		//cargo cuponeras
 		try {
-			registrarCuponera("Pelota", "Deportes con pelota.", fecha1, fecha2, 20f, fecha3, "imagen");
-			registrarCuponera("Gimnasia", "Aeróbica y aparatos.", fecha4, fecha5, 30f, fecha6);
-			registrarCuponera("Músculos", "Pesas.", fecha7, fecha8 , 10f, fecha9 );
+			registrarCuponera("Pelota", "Deportes con pelota.", fecha1, fecha2, 20f, fecha3, "b1.jpg");
+			registrarCuponera("Gimnasia", "Aeróbica y aparatos.", fecha4, fecha5, 30f, fecha6, "b2.jpg");
+			registrarCuponera("Músculos", "Pesas.", fecha7, fecha8 , 10f, fecha9,"b3.jpg" );
 		} catch (CuponeraRepetidaException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

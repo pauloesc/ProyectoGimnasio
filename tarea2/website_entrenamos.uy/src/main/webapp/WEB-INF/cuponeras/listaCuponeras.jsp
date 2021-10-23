@@ -30,7 +30,7 @@
 				<div class="card mb-3" style="max-width: auto;">
 					<div class="row no-gutters">					
 						<div class="col-md-4 text-center">
-							<img src="./resources/img/b1.jpg" alt="..." width="242" height="200">
+							<img src="./resources/img/cuponeras/<%= cupsar[i-1].getImagen()  %>" alt="..." width="242" height="200">
 						</div>
 						<div class="col-md-8">
 							<div class="card-body">
@@ -52,7 +52,7 @@
 				<div class="card mb-3" style="max-width: auto;">
 					<div class="row no-gutters">					
 						<div class="col-md-4 text-center">
-							<img src="./resources/img/b1.jpg" alt="..." width="242" height="200">
+							<img src="./resources/img/cuponeras/<%= cupsar[i-1].getImagen()  %>" alt="..." width="242" height="200">
 						</div>
 						<div class="col-md-8">
 							<div class="card-body">
@@ -74,7 +74,7 @@
 				<div class="card mb-3" style="max-width: auto;">
 					<div class="row no-gutters">					
 						<div class="col-md-4 text-center">
-							<img src="./resources/img/b1.jpg" alt="..." width="242" height="200">
+							<img src="./resources/img/cuponeras/<%= cupsar[i-1].getImagen()  %>" alt="..." width="242" height="200">
 						</div>
 						<div class="col-md-8">
 							<div class="card-body">

@@ -96,7 +96,7 @@ class TestctrlCuponeras {
 		}
 		
 		try {
-			ctrlCuponeras.registrarCuponera("social","Deportes y Socialización",fi,ff,20f,fa);
+			ctrlCuponeras.registrarCuponera("social","Deportes y Socialización",fi,ff,20f,fa,null);
 		} catch (CuponeraRepetidaException e) {
 			e.printStackTrace();
 		}
@@ -133,11 +133,11 @@ void testregistrarCuponeraRepite() {
 		e1.printStackTrace();
 	}
 	try {
-		ctrlCuponeras.registrarCuponera("Flexibilidad","Actividades de flexibilidad",fi,ff,20f,fa);
+		ctrlCuponeras.registrarCuponera("Flexibilidad","Actividades de flexibilidad",fi,ff,20f,fa, null);
 	} catch (CuponeraRepetidaException e) {
 		e.printStackTrace();
 	}
-	assertThrows(CuponeraRepetidaException.class, () -> {ctrlCuponeras.registrarCuponera("Flexibilidad","Actividades de flexibilidad",new SimpleDateFormat("dd/MM/yy").parse("02/08/21"),new SimpleDateFormat("dd/MM/yy").parse("31/08/21"),20f,new SimpleDateFormat("dd/MM/yy").parse("01/07/21"));});
+	assertThrows(CuponeraRepetidaException.class, () -> {ctrlCuponeras.registrarCuponera("Flexibilidad","Actividades de flexibilidad",new SimpleDateFormat("dd/MM/yy").parse("02/08/21"),new SimpleDateFormat("dd/MM/yy").parse("31/08/21"),20f,new SimpleDateFormat("dd/MM/yy").parse("01/07/21"), null);});
 
 }
 	
@@ -158,8 +158,8 @@ void testregistrarCuponeraRepite() {
 		}
 		
 		try {
-			ctrlCuponeras.registrarCuponera("Baile","Actividades de danza",fi,ff,10f,fa);
-			ctrlCuponeras.registrarCuponera("Didactica","Actividades creativas",fi,ff,10f,fa);
+			ctrlCuponeras.registrarCuponera("Baile","Actividades de danza",fi,ff,10f,fa,null);
+			ctrlCuponeras.registrarCuponera("Didactica","Actividades creativas",fi,ff,10f,fa,null);
 		} catch (CuponeraRepetidaException e) {
 			e.printStackTrace();
 		}
@@ -194,7 +194,7 @@ void testregistrarCuponeraRepite() {
 		}
 	
 		try {
-			ctrlCuponeras.registrarCuponera("Baile2","Actividades2",fi,ff,10f,fa);
+			ctrlCuponeras.registrarCuponera("Baile2","Actividades2",fi,ff,10f,fa,null);
 		}catch (CuponeraRepetidaException e) {
 			e.printStackTrace();
 		}
@@ -264,7 +264,7 @@ void testregistrarCuponeraRepite() {
 		}
 	
 		try {
-			ctrlCuponeras.registrarCuponera("Baile3","Actividades2",fi,ff,10f,fa);
+			ctrlCuponeras.registrarCuponera("Baile3","Actividades2",fi,ff,10f,fa,null);
 		}catch (CuponeraRepetidaException e) {
 			e.printStackTrace();
 		}
@@ -309,7 +309,7 @@ void testregistrarCuponeraRepite() {
 		}
 	
 		try {
-			ctrlCuponeras.registrarCuponera("Baile4","Actividades2",fi,ff,10f,fa);
+			ctrlCuponeras.registrarCuponera("Baile4","Actividades2",fi,ff,10f,fa,null);
 		}catch (CuponeraRepetidaException e) {
 			e.printStackTrace();
 		}
@@ -392,7 +392,7 @@ void testregistrarCuponeraRepite() {
 		}
 	
 		try {
-			ctrlCuponeras.registrarCuponera("Baile5","Actividades2",fi,ff,10f,fa);
+			ctrlCuponeras.registrarCuponera("Baile5","Actividades2",fi,ff,10f,fa,null);
 		}catch (CuponeraRepetidaException e) {
 			e.printStackTrace();
 		}
@@ -465,7 +465,7 @@ void testregistrarCuponeraRepite() {
 		}
 	
 		try {
-			ctrlCuponeras.registrarCuponera("Baile6","Actividades2",fi,ff,10f,fa);
+			ctrlCuponeras.registrarCuponera("Baile6","Actividades2",fi,ff,10f,fa,null);
 		}catch (CuponeraRepetidaException e) {
 			e.printStackTrace();
 		}
@@ -519,9 +519,9 @@ void testregistrarCuponeraRepite() {
 		}
 	
 		try {
-			ctrlCuponeras.registrarCuponera("ACC1","Actividades2",fi,ff,10f,fa);
-			ctrlCuponeras.registrarCuponera("ACC2","Actividades2",fi,ff,10f,fa);
-			ctrlCuponeras.registrarCuponera("ACC3","Actividades2",fi,ff,10f,fa);
+			ctrlCuponeras.registrarCuponera("ACC1","Actividades2",fi,ff,10f,fa,null);
+			ctrlCuponeras.registrarCuponera("ACC2","Actividades2",fi,ff,10f,fa,null);
+			ctrlCuponeras.registrarCuponera("ACC3","Actividades2",fi,ff,10f,fa,null);
 		}catch (CuponeraRepetidaException e) {
 			e.printStackTrace();
 		}
@@ -617,7 +617,7 @@ void testregistrarCuponeraRepite() {
 		}
 	
 		try {
-			ctrlCuponeras.registrarCuponera("ACC4","Actividades2",fi,ff,10f,fa);
+			ctrlCuponeras.registrarCuponera("ACC4","Actividades2",fi,ff,10f,fa, null);
 		}catch (CuponeraRepetidaException e) {
 			e.printStackTrace();
 		}
@@ -664,7 +664,7 @@ void testregistrarCuponeraRepite() {
 		}
 	
 		try {
-			ctrlCuponeras.registrarCuponera("ACC5","Actividades2",fi,ff,10f,fa);
+			ctrlCuponeras.registrarCuponera("ACC5","Actividades2",fi,ff,10f,fa, null);
 		}catch (CuponeraRepetidaException e) {
 			e.printStackTrace();
 		}
@@ -711,7 +711,7 @@ void testregistrarCuponeraRepite() {
 		}
 	
 		try {
-			ctrlCuponeras.registrarCuponera("ACC6","Actividades2",fi,ff,10f,fa);
+			ctrlCuponeras.registrarCuponera("ACC6","Actividades2",fi,ff,10f,fa, null);
 		}catch (CuponeraRepetidaException e) {
 			e.printStackTrace();
 		}
@@ -774,7 +774,7 @@ void testregistrarCuponeraRepite() {
 		}
 	
 		try {
-			ctrlCuponeras.registrarCuponera("ACU1","Actividades2",fi,ff,10f,fa);
+			ctrlCuponeras.registrarCuponera("ACU1","Actividades2",fi,ff,10f,fa,null);
 		}catch (CuponeraRepetidaException e) {
 			e.printStackTrace();
 		}
@@ -869,7 +869,7 @@ void testregistrarCuponeraRepite() {
 		}
 	
 		try {
-			ctrlCuponeras.registrarCuponera("ACU2","Actividades2",fi,ff,10f,fa);
+			ctrlCuponeras.registrarCuponera("ACU2","Actividades2",fi,ff,10f,fa,null);
 		}catch (CuponeraRepetidaException e) {
 			e.printStackTrace();
 		}
@@ -933,7 +933,7 @@ void testregistrarCuponeraRepite() {
 		}
 	
 		try {
-			ctrlCuponeras.registrarCuponera("ACU3","Actividades2",fi,ff,10f,fa);
+			ctrlCuponeras.registrarCuponera("ACU3","Actividades2",fi,ff,10f,fa,null);
 		}catch (CuponeraRepetidaException e) {
 			e.printStackTrace();
 		}

@@ -13,7 +13,7 @@ import excepciones.CuponeraRepetidaException;
 
 public interface IctrlCuponeras {
 	
-	public abstract boolean registrarCuponera(String nombre, String descrip, Date fecha_ini, Date fecha_fin, Float descuento, Date fecha_alta) throws CuponeraRepetidaException;
+	public abstract boolean registrarCuponera(String nombre, String descrip, Date fecha_ini, Date fecha_fin, Float descuento, Date fecha_alta, String imagen) throws CuponeraRepetidaException;
 	public abstract Set<String> listarCuponeras() throws CuponeraNoExisteException;
 	
 	public abstract Set<String> listarActividadesfaltantes(String nomcup, String nominst)throws ActividadDeportivaNoExisteException;
