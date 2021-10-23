@@ -19,6 +19,8 @@
 		categorias = null;
 	}
 
+	String insti = (String) request.getAttribute("institucion");
+	
 	String msjAlta = (String) request.getAttribute("msjAlta");
 	Boolean estadoAlta = (Boolean) request.getAttribute("estadoAlta");
 %>
@@ -51,16 +53,14 @@
 				<form class="my-4" method="post" action="altaActividad" enctype="multipart/form-data">
 					<div class="form-group row">
 						<label for="institucionDeportiva" class="col-4 col-form-label">Institucion
-							Deportiva</label>
+							Deportiva: <%= insti %></label>
 						<div class="col-8">
-							<select id="institucionDeportiva" name="institucionDeportiva"
-								class="custom-select" required="required">
-								<% for(String nominst :instituciones) {	%>
-								<option value="<%= nominst  %>"><%= nominst  %></option>
-								<% } %>
-							</select>
+							
 						</div>
 					</div>
+					
+					<input type="hidden" id="clase" name="institucionDeportiva" value="<%= insti %>" >
+					
 					<div class="form-group row">
 						<label class="col-4 col-form-label" for="nombreActividad">Nombre</label>
 						<div class="col-8">
