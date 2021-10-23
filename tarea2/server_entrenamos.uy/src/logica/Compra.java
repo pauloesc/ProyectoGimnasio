@@ -25,7 +25,8 @@ public class Compra {
 			Set<InfoClases> inf = cupo.getInfo();
 			
 			for (Iterator<InfoClases> iter=inf.iterator(); iter.hasNext();) {
-				this.cantClases.put(iter.next().getAct().getNombre(), iter.next().getCantidad());
+				InfoClases clase=iter.next();
+				this.cantClases.put(clase.getAct().getNombre(), clase.getCantidad());
 			
 			}
 		}

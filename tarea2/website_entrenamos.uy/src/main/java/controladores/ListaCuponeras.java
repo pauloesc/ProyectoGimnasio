@@ -36,10 +36,7 @@ public class ListaCuponeras extends HttpServlet
 		HttpSession sesion = req.getSession();
     	Fabrica f = Fabrica.getInstance();
 		IctrlUsuarios ICU = f.getIctrlUsuarios();
-<<<<<<< HEAD
-	
-=======
->>>>>>> refs/heads/master
+
 		boolean bien = false;
     	
 		if ((String)sesion.getAttribute("estado-sesion") == "logged-in") {
