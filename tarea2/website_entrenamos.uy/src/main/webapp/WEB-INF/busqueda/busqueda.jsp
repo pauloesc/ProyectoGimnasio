@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page import="logica.DataCuponera"%>
 <%@page import="logica.DataActividad"%>
 <%@page import="java.util.Set"%>
@@ -25,7 +26,7 @@
 				{
 				%>
 				<h5>Cuponeras</h5>
-				<div class="list-group list-group-flush">
+				<div class="list-group list-group-flush" id="cuponeras-group">
 					<%
 					for (DataCuponera cup : cuponeras)
 					{
@@ -35,7 +36,7 @@
       						<h5 class="mb-1"><%=cup.getNombre() %></h5>
       						<small>$<%=cup.getCosto() %></small>
     					</div>
-    					<p class="mb-1"><%=cup.getDescripcion() %></p>
+    					<span>Fecha publicación: <fmt:formatDate pattern = "yyyy-MM-dd" value = "<%=cup.getFechaAlta()%>"/> </span><br>
     					<%
     					for ( String ncat : cup.getCategorias() )
     					{
@@ -55,7 +56,7 @@
 				{
 				%>
 					<h5>Actividades Deportivas</h5>
-					<div class="list-group list-group-flush">
+					<div class="list-group list-group-flush" id="actividades-group">
 					<%
 					for (DataActividad act : actividades)
 					{
@@ -64,6 +65,7 @@
     					<div class="d-flex w-100 justify-content-between">
     						<div>
     							<h5 class="mb-1"><%=act.getNombre() %></h5>
+    							<span>Fecha publicación: <fmt:formatDate pattern = "yyyy-MM-dd" value = "<%=act.getFechaAlta()%>"/></span> <br>
     							<span class="badge badge-dark"><%=act.getInstitucion()%></span>
     							<br>
     							<%
