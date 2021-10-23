@@ -5,15 +5,6 @@ import java.util.Set;
 import excepciones.UsuarioDisponibilidadException;
 import excepciones.UsuarioInexistenteException;
 
-import java.util.Vector;
-
-//import excepciones.UsuarioNoExisteException;
-//import excepciones.UsuarioRepetidoException;
-
-/**
- * @author mbarrera
- *
- */
 public interface IctrlUsuarios {
     
 	public abstract Set<String> mostrarNombreProfesoresDeInstitucion(String inst);

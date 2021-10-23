@@ -249,7 +249,7 @@ public class AltaDictadoDeClases extends JInternalFrame {
 							Fabrica fab = Fabrica.getInstance();
 							IctrlClases ic = fab.getIctrlClases();
 								
-							ic.crearClase(nom, Finicio, prof, min, max, ur, Falta, nomAct, ho, mi);
+							ic.crearClase(nom, Finicio, prof, min, max, ur, Falta, nomAct, ho, mi, "");
 							
 							limpiarFormulario();
 							setVisible(false);

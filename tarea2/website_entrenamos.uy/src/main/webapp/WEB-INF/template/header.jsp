@@ -79,5 +79,3 @@
 	</nav>
 
 </div>
-
-<div id="body-container">

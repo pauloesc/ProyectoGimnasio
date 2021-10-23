@@ -46,11 +46,11 @@ public class Compra {
 		}
 		
 		public Date comienzoCuponera() {
-			return cup.getFecha_ini();
+			return cup.getFechaIni();
 		}
 		
 		public Date vencimientoCuponera() {
-			return cup.getFecha_fin();
+			return cup.getFechaFin();
 		}
 		
 		public Float getDescuento() {
@@ -76,7 +76,7 @@ public class Compra {
 			return fecha;
 		}
 		
-		public DataCuponera DarInformacionCuponera() {
+		public DataCuponera darInformacionCuponera() {
 			return cup.getDataCuponera();
 		}
 }

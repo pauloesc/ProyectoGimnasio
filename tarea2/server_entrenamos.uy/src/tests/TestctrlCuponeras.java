@@ -54,15 +54,15 @@ class TestctrlCuponeras {
 		IctrlUsuarios IU = fabrica.getIctrlUsuarios();
 		IU.cargarUsuarios();
 		ctrlCuponeras.cargarDatosCuponeras();
-		manejCuponeras.getinstance().EliminarManjeador();
-		manejADeportivas.getinstance().EliminarManjeador();
+		manejCuponeras.getinstance().eliminarManjeador();
+		manejADeportivas.getinstance().eliminarManjeador();
 	
 	}
 
 	@Test
 	void testlistarCuponeraFal(){
 		
-		manejCuponeras.getinstance().EliminarManjeador();
+		manejCuponeras.getinstance().eliminarManjeador();
 		assertThrows(CuponeraNoExisteException.class, () ->{ctrlCuponeras.listarCuponeras();});
 	
 }
@@ -70,7 +70,7 @@ class TestctrlCuponeras {
 	@Test
 	void testlistarCuponeraLibresFal(){
 		
-		manejCuponeras.getinstance().EliminarManjeador();
+		manejCuponeras.getinstance().eliminarManjeador();
 		assertThrows(CuponeraNoExisteException.class, () ->{ctrlCuponeras.listarcuponeraslibres();});
 	
 }
@@ -79,7 +79,7 @@ class TestctrlCuponeras {
 	
 	@Test
 	void testregistrarCuponeraExito() {
-		manejCuponeras.getinstance().EliminarManjeador();
+		manejCuponeras.getinstance().eliminarManjeador();
 		Date fi=null;
 		Date ff=null;
 		Date fa=null;
@@ -107,17 +107,17 @@ class TestctrlCuponeras {
 			
 			assertEquals(res.getNombre(), "social", "El nombre de la cuponera no es correcto");
 			assertEquals(res.getDescripcion(), "Deportes y Socialización","Las descripción no es la correcta") ;
-			assertEquals(res.getFecha_ini(), fi, "La fecha inicial no es la correcta");
-			assertEquals(res.getFecha_fin(), ff, "La fecha final no es la correcta");
+			assertEquals(res.getFechaIni(), fi, "La fecha inicial no es la correcta");
+			assertEquals(res.getFechaFin(), ff, "La fecha final no es la correcta");
 			assertEquals(res.getDescuento(), 20f, "El descuento no es el correcto");
-			assertEquals(res.getFecha_alta(), fa, "La fecha de alta no es la correcta");
+			assertEquals(res.getFechaAlta(), fa, "La fecha de alta no es la correcta");
 			
 			
 		} 
 
 	@Test
 void testregistrarCuponeraRepite() {
-		manejCuponeras.getinstance().EliminarManjeador();
+		manejCuponeras.getinstance().eliminarManjeador();
 	Date fi=null;
 	Date ff=null;
 	Date fa=null;
@@ -140,7 +140,7 @@ void testregistrarCuponeraRepite() {
 	
 	@Test
 	void testlistarCuponerasExito() {
-		manejCuponeras.getinstance().EliminarManjeador();
+		manejCuponeras.getinstance().eliminarManjeador();
 		
 		Date fi=null;
 		Date ff=null;
@@ -178,7 +178,7 @@ void testregistrarCuponeraRepite() {
 
 	@Test
 	void testagregarActividadExito() {
-		manejCuponeras.getinstance().EliminarManjeador();Date fi=null;
+		manejCuponeras.getinstance().eliminarManjeador();Date fi=null;
 		Date ff=null;
 		Date fa=null;
 		try {
@@ -247,7 +247,7 @@ void testregistrarCuponeraRepite() {
 	}
 	@Test
 	void testagregarActividadFail() {
-		manejCuponeras.getinstance().EliminarManjeador();
+		manejCuponeras.getinstance().eliminarManjeador();
 		Date fi=null;
 		Date ff=null;
 		Date fa=null;
@@ -290,7 +290,7 @@ void testregistrarCuponeraRepite() {
 	
 	@Test
 	void testlistarActividadesfaltantesExito1() {
-		manejCuponeras.getinstance().EliminarManjeador();
+		manejCuponeras.getinstance().eliminarManjeador();
 		
 		Date fi=null;
 		Date ff=null;
@@ -353,7 +353,7 @@ void testregistrarCuponeraRepite() {
 	 
 	@Test
 	void testlistarActividadesfaltantesExito2() {
-		manejCuponeras.getinstance().EliminarManjeador();
+		manejCuponeras.getinstance().eliminarManjeador();
 		
 		Date fi=null;
 		Date ff=null;
@@ -408,7 +408,7 @@ void testregistrarCuponeraRepite() {
 
 	@Test
 	void testlistarActividadesfaltantesFail() {
-		manejCuponeras.getinstance().EliminarManjeador();
+		manejCuponeras.getinstance().eliminarManjeador();
 		
 		Date fi=null;
 		Date ff=null;
@@ -462,7 +462,7 @@ void testregistrarCuponeraRepite() {
 
 	@Test
 	void testgetCuponeraActividadExito() {
-		manejCuponeras.getinstance().EliminarManjeador();
+		manejCuponeras.getinstance().eliminarManjeador();
 		
 		Date fi=null;
 		Date ff=null;
@@ -527,7 +527,7 @@ void testregistrarCuponeraRepite() {
 	
 	@Test
 	void testgetCuponeraActividadfail1() {
-		manejCuponeras.getinstance().EliminarManjeador();
+		manejCuponeras.getinstance().eliminarManjeador();
 		
 		Date fi=null;
 
@@ -560,7 +560,7 @@ void testregistrarCuponeraRepite() {
 	
 	@Test
 	void testgetCuponeraActividadfail2() {
-		manejCuponeras.getinstance().EliminarManjeador();
+		manejCuponeras.getinstance().eliminarManjeador();
 		
 		Date fi=null;
 		Date ff=null;
@@ -607,7 +607,7 @@ void testregistrarCuponeraRepite() {
 	
 	@Test
 	void testlistarcuponerasfail2() {
-		manejCuponeras.getinstance().EliminarManjeador();
+		manejCuponeras.getinstance().eliminarManjeador();
 		
 		Date fi=null;
 		Date ff=null;
@@ -654,7 +654,7 @@ void testregistrarCuponeraRepite() {
 	
 	@Test
 	void testlistarcuponeraspass() {
-		manejCuponeras.getinstance().EliminarManjeador();
+		manejCuponeras.getinstance().eliminarManjeador();
 		
 		Date fi=null;
 		Date ff=null;
@@ -794,12 +794,12 @@ void testregistrarCuponeraRepite() {
 		Date fi=null;
 		Date ff=null;
 		Date fa=null;
-		Date fcompra=null;
+		Date fcompra = null;
 		try {
 			fi = new SimpleDateFormat("dd/MM/yy").parse("05/08/21");
 			ff = new SimpleDateFormat("dd/MM/yy").parse("31/08/21");
 			fa=  new SimpleDateFormat("dd/MM/yy").parse("01/07/21");
-			fcompra= new SimpleDateFormat("dd/MM/yy").parse("15/09/21");
+			fcompra = new SimpleDateFormat("dd/MM/yy").parse("15/09/21");
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

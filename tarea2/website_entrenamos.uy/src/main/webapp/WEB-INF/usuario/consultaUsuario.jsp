@@ -4,7 +4,7 @@
 <%@page import="controladores.ConsultaUsuario"%>
 <%@page import="logica.InfoBasicaUser"%>
 <%@page import="logica.*"%>
-<%@page import="java.util.Vector"%>
+<%@page import="java.util.List"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.text.SimpleDateFormat"%>
 
@@ -16,15 +16,15 @@
 
 boolean esSocio = (boolean) request.getAttribute("esSocio");
 InfoBasicaUser informacionUusario = (InfoBasicaUser) request.getAttribute("infoUsuario");
-Vector<String> usuariosSeguidores = (Vector<String>) request.getAttribute("usersSeguidores");
-Vector<String> usuariosSiguiendo = (Vector<String>) request.getAttribute("usersSiguiendo");
-Vector<DataCuponera> cuponerasSocio = (Vector<DataCuponera>) request.getAttribute("cuponeras");
-Vector<DtActividadesDeportivas> actDepIR = (Vector<DtActividadesDeportivas>) request.getAttribute("actDepIngRech");
+List<String> usuariosSeguidores = (List<String>) request.getAttribute("usersSeguidores");
+List<String> usuariosSiguiendo = (List<String>) request.getAttribute("usersSiguiendo");
+List<DataCuponera> cuponerasSocio = (List<DataCuponera>) request.getAttribute("cuponeras");
+List<DtActividadesDeportivas> actDepIR = (List<DtActividadesDeportivas>) request.getAttribute("actDepIngRech");
 
-Vector<DtClase> informacionSocio = (Vector<DtClase>) request.getAttribute("infoSocio");
-Vector<DtActividadesDeportivas> informacionProfesor = (Vector<DtActividadesDeportivas>) request.getAttribute("infoProfe");
+List<DtClase> informacionSocio = (List<DtClase>) request.getAttribute("infoSocio");
+List<DtActividadesDeportivas> informacionProfesor = (List<DtActividadesDeportivas>) request.getAttribute("infoProfe");
 
-Vector<String> usersEnSistema = (Vector<String>) request.getAttribute("usuariosEnSistema");
+List<String> usersEnSistema = (List<String>) request.getAttribute("usuariosEnSistema");
 
 boolean propioUsuario = (boolean) request.getAttribute("userPropio");
 
@@ -276,10 +276,10 @@ String dateString = formato.format(informacionUusario.getFechaNac());
 									%>
 									
 									<%
-									Vector<DtClase> VectorclasesInfo = infoP.getClases();
-									Iterator<DtClase> iterVectorClases = VectorclasesInfo.iterator();
-									while ( iterVectorClases.hasNext() ){
-										DtClase infoCla = iterVectorClases.next();
+									List<DtClase> ListclasesInfo = infoP.getClases();
+									Iterator<DtClase> iterListClases = ListclasesInfo.iterator();
+									while ( iterListClases.hasNext() ){
+										DtClase infoCla = iterListClases.next();
 									%>
                                  <tr>
                                     <th scope="row">1</th>

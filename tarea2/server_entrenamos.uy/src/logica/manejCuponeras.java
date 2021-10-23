@@ -9,12 +9,12 @@ import java.util.Set;
 
 
 public class manejCuponeras {
-	private Map<String, Cuponera> Cuponeras;
+	private Map<String, Cuponera> cuponeras;
 	
     private static manejCuponeras instancia = null;
 
     private manejCuponeras() {
-        Cuponeras = new HashMap<String, Cuponera>();
+        cuponeras = new HashMap<String, Cuponera>();
     }
     
     public static manejCuponeras getinstance() {
@@ -25,24 +25,24 @@ public class manejCuponeras {
 
 	public boolean exiteCuponera(String nombre) {
 	
-		return Cuponeras.get(nombre)!=null;
+		return cuponeras.get(nombre)!=null;
 	}
 
 	public void agregarCuponera(String nom, String des, Date ini, Date fin, Float disc, Date alta) {
 		Cuponera cupo; 
 		cupo = new Cuponera(nom, des, ini, fin, disc, alta);
-		Cuponeras.put(nom, cupo);
+		cuponeras.put(nom, cupo);
 	}
 	
 	public Set<String> listarcuponeras(){
-		return this.Cuponeras.keySet();
+		return this.cuponeras.keySet();
 	}
 	
 	
 	public Set<String> listarcuponeraslibres(){
 		Set<String> resu= new HashSet<String>();
-		for (Iterator<String> iter=Cuponeras.keySet().iterator(); iter.hasNext();) {
-			Cuponera cup=Cuponeras.get(iter.next());
+		for (Iterator<String> iter=cuponeras.keySet().iterator(); iter.hasNext();) {
+			Cuponera cup=cuponeras.get(iter.next());
 			if (!cup.isComprada()) {
 			    resu.add(cup.getNombre());
 			}
@@ -55,20 +55,20 @@ public class manejCuponeras {
 	
 	
 	public Cuponera getCuponera(String nombre) {
-	    return this.Cuponeras.get(nombre);	
+	    return this.cuponeras.get(nombre);	
 	}
 
 	
 	public DataCuponera mostrarCuponera(String nomCup) {
-		Cuponera cup=Cuponeras.get(nomCup);
+		Cuponera cup=cuponeras.get(nomCup);
 		return cup.getDataCuponera();
 		
 	}
 	
 	public Set<Cuponera> getCuponerasDeActividad(String actividad){
 		Set<Cuponera> resu= new HashSet<Cuponera>();
-		for (Iterator<String> iter=Cuponeras.keySet().iterator(); iter.hasNext();) {
-			Cuponera cup=Cuponeras.get(iter.next());
+		for (Iterator<String> iter=cuponeras.keySet().iterator(); iter.hasNext();) {
+			Cuponera cup=cuponeras.get(iter.next());
 			Set<String> list=cup.getListaActividades();
 			if (list.contains(actividad)) {
 			    resu.add(cup);
@@ -80,8 +80,8 @@ public class manejCuponeras {
 	
 	public Set<String> getCuponerasAD(String actividad){
 		Set<String> resu= new HashSet<String>();
-		for (Iterator<String> iter=Cuponeras.keySet().iterator(); iter.hasNext();) {
-			Cuponera cup=Cuponeras.get(iter.next());
+		for (Iterator<String> iter=cuponeras.keySet().iterator(); iter.hasNext();) {
+			Cuponera cup=cuponeras.get(iter.next());
 			Set<String> list=cup.getListaActividades();
 			if (list.contains(actividad)) {
 			    resu.add(cup.getNombre());
@@ -95,8 +95,8 @@ public class manejCuponeras {
 	
 	public Set<String> getCuponerasdeCategoria(String categoria){
 		Set<String> resu= new HashSet<String>();
-		for (Iterator<String> iter=Cuponeras.keySet().iterator(); iter.hasNext();) {
-			Cuponera cup=Cuponeras.get(iter.next());
+		for (Iterator<String> iter=cuponeras.keySet().iterator(); iter.hasNext();) {
+			Cuponera cup=cuponeras.get(iter.next());
 			Set<String> list=cup.getListaCategorias();		
 			if (list.contains(categoria)) {
 			    resu.add(cup.getNombre());
@@ -106,8 +106,8 @@ public class manejCuponeras {
 	}
 	
 	
-	public void EliminarManjeador() {
-		instancia.Cuponeras.clear();
+	public void eliminarManjeador() {
+		instancia.cuponeras.clear();
 		instancia=null;
 	}
 	

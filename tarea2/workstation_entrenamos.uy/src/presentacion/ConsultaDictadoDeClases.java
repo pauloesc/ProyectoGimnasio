@@ -21,8 +21,6 @@ import logica.Fabrica;
 import logica.IctrlADeportivas;
 import logica.IctrlClases;
 import logica.IctrlIDeportivas;
-import logica.IctrlUsuarios;
-
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -48,7 +46,6 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 	
 	private IctrlADeportivas IAD;
 	private IctrlIDeportivas IID;
-	private IctrlUsuarios IU;
 	private IctrlClases IC;
 	private JTextField Sactuales;
 	private JTextField nomProfesor;
@@ -95,7 +92,6 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 		Fabrica fab = Fabrica.getInstance();
 		IAD = fab.getIctrlADeportivas();
 		IID = fab.getIctrlIDeportivas();
-		IU = fab.getIctrlUsuarios();
 		IC = fab.getIctrlClases();
 		
 		
@@ -395,13 +391,7 @@ public class ConsultaDictadoDeClases extends JInternalFrame {
 	
 	
 	public void cargarDatosClase(String clas) {
-		try {
-			
-			
-			String inst = (String) comboBoxInstituciones.getSelectedItem();
-			
-			//comprobar que todos los campos tengan algo
-		
+		try {	
 			
 				DtClase res = IC.darDtClase(clas);
 				

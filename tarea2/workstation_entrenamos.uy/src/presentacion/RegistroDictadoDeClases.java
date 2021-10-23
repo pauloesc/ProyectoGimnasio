@@ -17,10 +17,8 @@ import logica.DtClase;
 import logica.Fabrica;
 import logica.IctrlADeportivas;
 import logica.IctrlClases;
-import logica.IctrlCuponeras;
 import logica.IctrlIDeportivas;
 import logica.IctrlUsuarios;
-
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -28,7 +26,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import com.toedter.calendar.JDateChooser;
-
 import excepciones.ClaseLlenaException;
 import excepciones.ClaseYaCompradaException;
 import javax.swing.JCheckBox;
@@ -53,7 +50,6 @@ public class RegistroDictadoDeClases extends JInternalFrame {
 	private IctrlIDeportivas IID;
 	private IctrlUsuarios IU;
 	private IctrlClases IC;
-	private IctrlCuponeras ICUP;
 	private JTextField textFieldProfesor;
 	private JTextField textFieldFecha;
 	private JTextField textFieldUrl;
@@ -102,7 +98,6 @@ public class RegistroDictadoDeClases extends JInternalFrame {
 		IID = fab.getIctrlIDeportivas();
 		IU = fab.getIctrlUsuarios();
 		IC = fab.getIctrlClases();
-		ICUP = fab.getIctrlCuponeras();
 		
 		
 		setTitle("Registro a dictado de clase");

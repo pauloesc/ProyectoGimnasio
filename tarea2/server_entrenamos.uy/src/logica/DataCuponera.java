@@ -11,10 +11,10 @@ public class DataCuponera {
     
 	private String nombre;
     private String descripcion;
-    private Date fecha_ini;
-	private Date fecha_fin;
+    private Date fechaIni;
+	private Date fechaFin;
 	private Float descuento;
-	private Date fecha_alta;
+	private Date fechaAlta;
 	private Float costo;
 	
 	private Set<ParActividad> clases;
@@ -25,22 +25,22 @@ public class DataCuponera {
 	        this.setNombre(new String());
 	        this.setDescripcion(new String());
 	        this.setDescuento((float) 0);
-	        this.setFecha_ini(new Date());
-	        this.setFecha_fin(new Date());
-	        this.setFecha_alta(new Date());
+	        this.setFechaIni(new Date());
+	        this.setFechaFin(new Date());
+	        this.setFechaAlta(new Date());
 	        this.setCosto((float) 0);
 	        this.setClases(new HashSet<ParActividad>());
 	        this.setCategorias(new HashSet<String>());
 	    }
 	
-	public DataCuponera(String nombre, String descripcion, Date fecha_ini, Date fecha_fin, Float descuento,
-			Date fecha_alta, Float costo, Set<ParActividad> clases, Set<String> categorias) {
+	public DataCuponera(String nombre, String descripcion, Date fechaIni, Date fechaFin, Float descuento,
+			Date fechaAlta, Float costo, Set<ParActividad> clases, Set<String> categorias) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
-		this.fecha_ini = fecha_ini;
-		this.fecha_fin = fecha_fin;
+		this.fechaIni = fechaIni;
+		this.fechaFin = fechaFin;
 		this.descuento = descuento;
-		this.fecha_alta = fecha_alta;
+		this.fechaAlta = fechaAlta;
 		this.costo=costo;
 		this.clases = clases;
 		this.categorias= categorias;
@@ -60,20 +60,20 @@ public class DataCuponera {
 		this.descripcion = descripcion;
 	}
 	
-	public Date getFecha_ini() {
-		return fecha_ini;
+	public Date getFechaIni() {
+		return fechaIni;
 	}
 	
-	public void setFecha_ini(Date fecha_ini) {
-		this.fecha_ini = fecha_ini;
+	public void setFechaIni(Date fechaIni) {
+		this.fechaIni = fechaIni;
 	}
 
-	public Date getFecha_fin() {
-		return fecha_fin;
+	public Date getFechaFin() {
+		return fechaFin;
 	}
 	
-	public void setFecha_fin(Date fecha_fin) {
-		this.fecha_fin = fecha_fin;
+	public void setFechaFin(Date fechaFin) {
+		this.fechaFin = fechaFin;
 	}
 	
 	public Float getDescuento() {
@@ -84,12 +84,12 @@ public class DataCuponera {
 		this.descuento = descuento;
 	}
 	
-	public Date getFecha_alta() {
-		return fecha_alta;
+	public Date getFechaAlta() {
+		return fechaAlta;
 	}
 
-	public void setFecha_alta(Date fecha_alta) {
-		this.fecha_alta = fecha_alta;
+	public void setFechaAlta(Date fecha_alta) {
+		this.fechaAlta = fecha_alta;
 	}
 	
 	public Set<ParActividad> getClases() {
