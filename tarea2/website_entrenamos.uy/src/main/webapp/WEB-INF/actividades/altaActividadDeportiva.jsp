@@ -52,14 +52,13 @@
 				<h1>Alta de Actividad Deportiva</h1>
 				<form class="my-4" method="post" action="altaActividad" enctype="multipart/form-data">
 					<div class="form-group row">
-						<label for="institucionDeportiva" class="col-4 col-form-label">Institucion
-							Deportiva: <%= insti %></label>
+						<label  class="col-8 col-form-label">Institucion Deportiva: <%= insti %></label>
 						<div class="col-8">
 							
 						</div>
 					</div>
 					
-					<input type="hidden" id="clase" name="institucionDeportiva" value="<%= insti %>" >
+					<input type="hidden" id="institucionDeportiva" name="institucionDeportiva" value="<%= insti %>" >
 					
 					<div class="form-group row">
 						<label class="col-4 col-form-label" for="nombreActividad">Nombre</label>
