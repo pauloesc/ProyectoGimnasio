@@ -93,15 +93,19 @@ public class ctrlUsuarios implements IctrlUsuarios {
 	
 	public void seguirUsuario(String seguidor, String seguido) {
 		if ( !seguidor.equals(seguido) ) {
-			Usuario sgr = manejador.findUsuario(seguidor);
-			sgr.seguir(manejador.findUsuario(seguido));
+			if ( !usuarioSigueAUsuario(seguidor, seguido) ) {
+				Usuario sgr = manejador.findUsuario(seguidor);
+				sgr.seguir(manejador.findUsuario(seguido));
+			}
 		}
 	}
 	
 	public void dejarDeSeguirUsuario(String seguidor, String seguido) {
 		if ( !seguidor.equals(seguido) ) {
-			Usuario sgr = manejador.findUsuario(seguidor);
-			sgr.dejarDeSeguir(manejador.findUsuario(seguido));
+			if ( usuarioSigueAUsuario(seguidor, seguido) ) {
+				Usuario sgr = manejador.findUsuario(seguidor);
+				sgr.dejarDeSeguir(manejador.findUsuario(seguido));
+			}
 		}
 	}
 	
@@ -338,7 +342,7 @@ public class ctrlUsuarios implements IctrlUsuarios {
 		Iterator<String> itUserSiguiendo =  uSiguiendo.iterator();
 		
 		boolean encontrado = false;
-		while( itUserSiguiendo.hasNext() && !encontrado ) {
+		while ( itUserSiguiendo.hasNext() && !encontrado ) {
 			String auxUser = itUserSiguiendo.next();
 			
 			encontrado = auxUser.equals(usuario2);
