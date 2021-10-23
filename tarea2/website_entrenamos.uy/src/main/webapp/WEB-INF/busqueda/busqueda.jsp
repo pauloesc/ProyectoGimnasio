@@ -13,6 +13,8 @@
 	<%
 	Set<DataCuponera> cuponeras = (Set<DataCuponera>) request.getAttribute("resultCup");
 	Set<DataActividad> actividades = (Set<DataActividad>) request.getAttribute("resultAct");
+	Set<String> instituciones = (Set<String>) request.getAttribute("instituciones");
+	Set<String> categorias = (Set<String>) request.getAttribute("categorias");
 	String consulta = (String) request.getAttribute("consulta");
 	%>
 	<main role="main" class="container">
@@ -30,8 +32,8 @@
 					%>
   					<a href="consultaCuponera?cuponera=<%=cup.getNombre()%>" class="list-group-item list-group-item-action flex-column align-items-start">
     					<div class="d-flex w-100 justify-content-between">
-      					<h5 class="mb-1"><%=cup.getNombre() %></h5>
-      					<small>$<%=cup.getCosto() %></small>
+      						<h5 class="mb-1"><%=cup.getNombre() %></h5>
+      						<small>$<%=cup.getCosto() %></small>
     					</div>
     					<p class="mb-1"><%=cup.getDescripcion() %></p>
     					<%
@@ -46,7 +48,7 @@
  					<% 
 					}
 					%>
-        	</div> <br>
+        		</div> <br>
         <% 
 				}
 				if (actividades.size() != 0)
@@ -73,7 +75,7 @@
     							}
     							%>
     						</div>
-      					<img src="./resources/img/actividades/<%=act.getImagen()%>" width="75" height="75" class="rounded-circle"">
+      					<img src="./resources/img/actividades/<%=act.getImagen()%>" width="75" height="75" class="rounded-circle">
     					</div>
  						</a>
  				 	<% 
@@ -115,11 +117,11 @@
 					    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
 					        <div class="form-group">
 							    <select multiple class="form-control" id="exampleFormControlSelect2">
-							      <option>1</option>
-							      <option>2</option>
-							      <option>3</option>
-							      <option>4</option>
-							      <option>5</option>
+							    <% 
+								for(String nominst :instituciones) {
+								%>
+							      <option><%= nominst  %></option>
+							    <% } %>	
 							    </select>
 							 </div>
 					    </div>
@@ -135,11 +137,11 @@
 					    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
 					      <div class="form-group">
                                 <select multiple class="form-control" id="exampleFormControlSelect2">
-                                  <option>1</option>
-                                  <option>2</option>
-                                  <option>3</option>
-                                  <option>4</option>
-                                  <option>5</option>
+                                <% 
+								for(String nomcat :categorias) {
+								%>
+							      <option><%= nomcat  %></option>
+							    <% } %>	
                                 </select>
                              </div>
 					    </div>
