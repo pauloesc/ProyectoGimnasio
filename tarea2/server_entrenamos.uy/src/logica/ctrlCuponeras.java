@@ -40,7 +40,7 @@ public class ctrlCuponeras implements IctrlCuponeras {
 		return resu;
 	}
 	
-	public Set<String> listarActividadesfaltantes(String nomcup, String nominst) throws ActividadDeportivaNoExisteException{
+	public Set<String> listarActividadesfaltantes(String nomcup, String nominst) throws ActividadDeportivaNoExisteException {
 		manejCuponeras manejadorCuponeras = manejCuponeras.getinstance();
 		Cuponera cup = manejadorCuponeras.getCuponera(nomcup);
 		Set<String> ListAct=cup.getListaActividades();
@@ -50,9 +50,9 @@ public class ctrlCuponeras implements IctrlCuponeras {
 		if ( ListAct!=null && ListInst!=null ) 
 			ListInst.removeAll(ListAct);
 	
-		if (ListInst.size()==0) {
+		if (ListInst.size()==0) 
 			throw new ActividadDeportivaNoExisteException("Todas las actividades deportivas de la instituciòn fueron agregadas"); 
-		}
+		
 		return ListInst;
 	}
 	
@@ -62,7 +62,7 @@ public class ctrlCuponeras implements IctrlCuponeras {
 		manejADeportivas manejadorActDep = manejADeportivas.getinstance();
 		ActividadDeportiva activ = manejadorActDep .buscarActividad(act);
 		if (cup.getListaActividades().contains(act))
-			throw new ActividadDeportivaRepetidaException("La actividad deportiva ya ha sido registrada en la cuponera");
+			throw new ActividadDeportivaRepetidaException ("La actividad deportiva ya ha sido registrada en la cuponera");
 		cup.agregarActividad(activ, numclase);
 	}
 	
