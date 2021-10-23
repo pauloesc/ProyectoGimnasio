@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import excepciones.InstitucionDeportivaRepetidaException;
 import excepciones.UsuarioDisponibilidadException;
+import logica.DataCuponera;
 import logica.InfoBasicaProfesor;
 import logica.InfoBasicaSocio;
 import logica.InfoBasicaUser;
@@ -943,5 +944,27 @@ class ctrlUsuariosTest {
 		
 	}
 	
+	
+	@Test
+	void cuponeras() {
+	
+		//preparacion de datos
+		ctrlUsuarios cu = new ctrlUsuarios();
 
+		//creo socios
+		InfoBasicaSocio s1 = new InfoBasicaSocio(	"nick s1",		"nombre s1",
+													"apellido s1",	"correo s1",
+													new Date(),"0" , "");
+		
+		try {
+			cu.altaUsuario(s1);	
+		}catch(UsuarioDisponibilidadException e){
+			
+		}
+		
+		List<DataCuponera> listaCuponerasDelUsuario = cu.cuponeras("nick s1");
+		assertTrue( listaCuponerasDelUsuario.size() == 0, "problema, se supone que no tiene cuponeras" );
+	
+		cu.elimiarManjeador();
+	}
 }
