@@ -47,10 +47,8 @@ public class ComprarCuponera extends HttpServlet {
 		HttpSession sesion = req.getSession();
     	Fabrica f = Fabrica.getInstance();
 		IctrlUsuarios ICU = f.getIctrlUsuarios();
-		IctrlClases ICL = f.getIctrlClases();
 		boolean bien = false;
     	
-		String cup= (String)sesion.getAttribute("cuponera");
 		
 		if ((String)sesion.getAttribute("estado-sesion") == "logged-in") {
     		try {
@@ -60,47 +58,15 @@ public class ComprarCuponera extends HttpServlet {
     		}
     	}
 		
-		Date date = new Date();
-		if (bien) {
-			String nomP = (String) sesion.getAttribute("nickname-user");
-		try {
-			ctrlCuponeras.comprarCuponera(date, cup, nomP); 
-			req.setAttribute("msjcompra", "La cuponera se ha comprado con exito.");
-			req.setAttribute("compra", true);
-		} catch (CuponeraCompradaException e) {
-			req.setAttribute("msjcompra", e.getMessage());
-			req.setAttribute("compra", false);
-		}
-		}
+		if (bien) 
+			req.setAttribute("comprahab", true);
+		else 
+			req.setAttribute("comprahab", false);
+		
 		
 		req.getRequestDispatcher("/WEB-INF/cuponeras/consultaCuponera.jsp").forward(req, resp);
 
-    	if (bien) {
-    		
-    		
-        	String nom = req.getParameter("clase");
-        	DtClase dc = ICL.darDtClase(nom);
-        	
-        	Set<String> nomCups = ICU.mostrarCuponerasDisponibles((String) sesion.getAttribute("nickname-user"), dc.getNomAct());
-        	
-        	req.setAttribute("nomC", nom);
-        	req.setAttribute("nomCups", nomCups);
-        	
-        	Calendar c = Calendar.getInstance();
-			c.setTime(dc.getFecha());
-			String ini = Integer.toString(c.get(Calendar.DATE)) + "/" + Integer.toString(c.get(Calendar.MONTH)+1) + "/" + Integer.toString(c.get(Calendar.YEAR)) + "  " +Integer.toString(dc.getHora()) + ":" + Integer.toString(dc.getMinuto());
-			req.setAttribute("fecha",ini);
-        	
-        	RequestDispatcher md = req.getRequestDispatcher("/WEB-INF/clases/registroAClase.jsp");
-			md.forward(req, resp);
-        	
-    	} else {
-    		resp.setContentType("text/html");
-			PrintWriter salida = resp.getWriter();
-			salida.println("<html><body>");
-			salida.println("error, primero debe loguearse con un socio");
-			salida.println("</body></html>");
-    	}
+    	
 	}
 	
 	
