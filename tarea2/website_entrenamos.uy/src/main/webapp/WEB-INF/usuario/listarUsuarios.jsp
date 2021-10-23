@@ -6,11 +6,11 @@
 <%@page import="logica.InfoBasicaSocio"%>
 <%@page import="logica.InfoBasicaProfesor"%>
 <%@page import="logica.*"%>
-<%@page import="java.util.Vector"%>
+<%@page import="java.util.List"%>
 <%@page import="java.util.Iterator"%>
 
 <%
-Vector<InfoBasicaUser> infoUsarios = (Vector<InfoBasicaUser>) request.getAttribute("usuarios");
+List<InfoBasicaUser> infoUsarios = (List<InfoBasicaUser>) request.getAttribute("usuarios");
 Iterator<InfoBasicaUser> infoUsuariosI = infoUsarios.iterator();
 
 //se utiliza mas abajo

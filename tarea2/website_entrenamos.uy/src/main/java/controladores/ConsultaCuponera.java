@@ -32,6 +32,7 @@ public class ConsultaCuponera extends HttpServlet
 		HttpSession sesion = req.getSession();
     	Fabrica f = Fabrica.getInstance();
 		IctrlUsuarios ICU = f.getIctrlUsuarios();
+
 		boolean bien = false;
     	
 		if ((String)sesion.getAttribute("estado-sesion") == "logged-in") {

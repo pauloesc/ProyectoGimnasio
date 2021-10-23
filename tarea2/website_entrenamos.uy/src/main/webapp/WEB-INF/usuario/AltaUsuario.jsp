@@ -6,12 +6,12 @@
 <%@page import="logica.InfoBasicaSocio"%>
 <%@page import="logica.InfoBasicaProfesor"%>
 <%@page import="logica.*"%>
-<%@page import="java.util.Vector"%>
+<%@page import="java.util.List"%>
 <%@page import="java.util.Iterator"%>
 
 <%
 
-Vector<String> instituciones = (Vector<String>) request.getAttribute("instituciones");
+List<String> instituciones = (List<String>) request.getAttribute("instituciones");
 Iterator<String> institucionesI = instituciones.iterator();
 
 %>

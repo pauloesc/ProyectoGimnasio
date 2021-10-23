@@ -30,7 +30,7 @@ public class Registro {
 		this.costo = ((100-desc)*this.costo)/100;
 	}
 
-	public DtClase ActividadSocio() {
+	public DtClase actividadSocio() {
 		return this.clase.darDtClase();
 	}
 	

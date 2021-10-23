@@ -68,7 +68,7 @@ public class manejADeportivas {
     	return actividadesDeportivas.get(actDep).getCosto();
     }
     
-    public void EliminarManjeador() {
+    public void eliminarManjeador() {
 		instancia.actividadesDeportivas.clear();
 		instancia=null;
 	}

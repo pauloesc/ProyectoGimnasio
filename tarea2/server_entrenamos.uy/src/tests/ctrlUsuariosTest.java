@@ -93,7 +93,7 @@ class ctrlUsuariosTest {
 		assertEquals( entrada2, respuesta2, "problema2" );
 		
 		cu.elimiarManjeador();
-		manejIDeportivas.ElimiarManjeador();
+		manejIDeportivas.elimiarManjeador();
 		
 		cu = null;
 		cid = null;
@@ -218,7 +218,7 @@ class ctrlUsuariosTest {
 		
 		
 		
-		manejIDeportivas.ElimiarManjeador();
+		manejIDeportivas.elimiarManjeador();
 		cu.elimiarManjeador();
 		
 		cu=null;
@@ -264,7 +264,7 @@ class ctrlUsuariosTest {
 	    assertTrue(mismo1 & mismo2 & mismo3, "Las instituciones ingresadas y devueltas no coinciden");
 
 		
-		manejIDeportivas.ElimiarManjeador();
+		manejIDeportivas.elimiarManjeador();
 		cu.elimiarManjeador();
 		cu=null;
 		cid = null;
@@ -333,7 +333,7 @@ class ctrlUsuariosTest {
 		 assertTrue( info_s2.obtenerVector().isEmpty() );
 		 
 		
-			manejIDeportivas.ElimiarManjeador();
+			manejIDeportivas.elimiarManjeador();
 			cu.elimiarManjeador();
 			cu=null;
 			cid = null;
@@ -429,7 +429,7 @@ class ctrlUsuariosTest {
 		assertTrue( s1M.sonIguales( (InfoBasicaSocio)s1M_Respuesta  ), "Info diferente" );
 		assertTrue( s2M.sonIguales( (InfoBasicaSocio)s2M_Respuesta  ), "Info diferente" );
 		
-		manejIDeportivas.ElimiarManjeador();
+		manejIDeportivas.elimiarManjeador();
 		cu.elimiarManjeador();
 		cu=null;
 		cid = null;
@@ -502,7 +502,7 @@ class ctrlUsuariosTest {
 		assertTrue( s1.sonIguales(respuesta_s1_casteo), "No son iguales" );
 		assertTrue( s2.sonIguales(respuesta_s2_casteo), "No son iguales" );
 		
-		manejIDeportivas.ElimiarManjeador();
+		manejIDeportivas.elimiarManjeador();
 		cu.elimiarManjeador();
 		cu=null;
 		cid = null;
@@ -726,7 +726,7 @@ class ctrlUsuariosTest {
 		mismo3 = set_NicknameSiguiendo2.containsAll(set_siguiendo2);
 	    assertTrue(mismo1 & mismo2 & mismo3, "Los socios esperados no coiniden con los recibidos");
 
-		manejIDeportivas.ElimiarManjeador();
+		manejIDeportivas.elimiarManjeador();
 		cu.elimiarManjeador();
 		
 		cu=null;
@@ -807,7 +807,7 @@ class ctrlUsuariosTest {
 	    assertTrue(mismo1 & mismo2 & mismo3, "Los socios esperados no coiniden con los recibidos");
 		
 		
-		manejIDeportivas.ElimiarManjeador();
+		manejIDeportivas.elimiarManjeador();
 		cu.elimiarManjeador();
 		
 		cu=null;

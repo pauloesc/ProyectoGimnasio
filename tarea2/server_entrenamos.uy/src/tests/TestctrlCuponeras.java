@@ -21,12 +21,15 @@ import excepciones.CuponeraRepetidaException;
 import excepciones.InstitucionDeportivaRepetidaException;
 import excepciones.UsuarioDisponibilidadException;
 import logica.DataCuponera;
+import logica.EstadoActi;
 import logica.Fabrica;
 import logica.IctrlADeportivas;
 import logica.IctrlCuponeras;
 import logica.IctrlIDeportivas;
 import logica.IctrlUsuarios;
+import logica.InfoBasicaProfesor;
 import logica.InfoBasicaSocio;
+import logica.InfoBasicaUser;
 import logica.ParActividad;
 import logica.Socio;
 import logica.ctrlUsuarios;
@@ -54,15 +57,15 @@ class TestctrlCuponeras {
 		IctrlUsuarios IU = fabrica.getIctrlUsuarios();
 		IU.cargarUsuarios();
 		ctrlCuponeras.cargarDatosCuponeras();
-		manejCuponeras.getinstance().EliminarManjeador();
-		manejADeportivas.getinstance().EliminarManjeador();
+		manejCuponeras.getinstance().eliminarManjeador();
+		manejADeportivas.getinstance().eliminarManjeador();
 	
 	}
 
 	@Test
 	void testlistarCuponeraFal(){
 		
-		manejCuponeras.getinstance().EliminarManjeador();
+		manejCuponeras.getinstance().eliminarManjeador();
 		assertThrows(CuponeraNoExisteException.class, () ->{ctrlCuponeras.listarCuponeras();});
 	
 }
@@ -70,7 +73,7 @@ class TestctrlCuponeras {
 	@Test
 	void testlistarCuponeraLibresFal(){
 		
-		manejCuponeras.getinstance().EliminarManjeador();
+		manejCuponeras.getinstance().eliminarManjeador();
 		assertThrows(CuponeraNoExisteException.class, () ->{ctrlCuponeras.listarcuponeraslibres();});
 	
 }
@@ -79,7 +82,7 @@ class TestctrlCuponeras {
 	
 	@Test
 	void testregistrarCuponeraExito() {
-		manejCuponeras.getinstance().EliminarManjeador();
+		manejCuponeras.getinstance().eliminarManjeador();
 		Date fi=null;
 		Date ff=null;
 		Date fa=null;
@@ -107,17 +110,17 @@ class TestctrlCuponeras {
 			
 			assertEquals(res.getNombre(), "social", "El nombre de la cuponera no es correcto");
 			assertEquals(res.getDescripcion(), "Deportes y Socialización","Las descripción no es la correcta") ;
-			assertEquals(res.getFecha_ini(), fi, "La fecha inicial no es la correcta");
-			assertEquals(res.getFecha_fin(), ff, "La fecha final no es la correcta");
+			assertEquals(res.getFechaIni(), fi, "La fecha inicial no es la correcta");
+			assertEquals(res.getFechaFin(), ff, "La fecha final no es la correcta");
 			assertEquals(res.getDescuento(), 20f, "El descuento no es el correcto");
-			assertEquals(res.getFecha_alta(), fa, "La fecha de alta no es la correcta");
+			assertEquals(res.getFechaAlta(), fa, "La fecha de alta no es la correcta");
 			
 			
 		} 
 
 	@Test
 void testregistrarCuponeraRepite() {
-		manejCuponeras.getinstance().EliminarManjeador();
+		manejCuponeras.getinstance().eliminarManjeador();
 	Date fi=null;
 	Date ff=null;
 	Date fa=null;
@@ -140,7 +143,7 @@ void testregistrarCuponeraRepite() {
 	
 	@Test
 	void testlistarCuponerasExito() {
-		manejCuponeras.getinstance().EliminarManjeador();
+		manejCuponeras.getinstance().eliminarManjeador();
 		
 		Date fi=null;
 		Date ff=null;
@@ -178,7 +181,7 @@ void testregistrarCuponeraRepite() {
 
 	@Test
 	void testagregarActividadExito() {
-		manejCuponeras.getinstance().EliminarManjeador();Date fi=null;
+		manejCuponeras.getinstance().eliminarManjeador();Date fi=null;
 		Date ff=null;
 		Date fa=null;
 		try {
@@ -247,7 +250,7 @@ void testregistrarCuponeraRepite() {
 	}
 	@Test
 	void testagregarActividadFail() {
-		manejCuponeras.getinstance().EliminarManjeador();
+		manejCuponeras.getinstance().eliminarManjeador();
 		Date fi=null;
 		Date ff=null;
 		Date fa=null;
@@ -290,7 +293,8 @@ void testregistrarCuponeraRepite() {
 	
 	@Test
 	void testlistarActividadesfaltantesExito1() {
-		manejCuponeras.getinstance().EliminarManjeador();
+		manejCuponeras.getinstance().eliminarManjeador();
+		ctrlUsuarios ctrlUs = new ctrlUsuarios();
 		
 		Date fi=null;
 		Date ff=null;
@@ -316,16 +320,35 @@ void testregistrarCuponeraRepite() {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		
+		InfoBasicaUser l1 = new InfoBasicaProfesor(	"nick p1",		"nombre p1",
+				"apellido p1",	"correo p1",
+				new Date(),"0", "",  "Ald2",
+				"descp p1", 	"bibliog p1",
+				"url p1");
+		
 		try {
-			ctrlDeportivas.altaActividadDeportiva("Ald2", null, "Volei2", "dep", 30f, 300f, fi, new HashSet<String>(), null);
-			ctrlDeportivas.altaActividadDeportiva("Ald2", null, "Volei3", "dep", 30f, 300f, fi, new HashSet<String>(), null);
-			ctrlDeportivas.altaActividadDeportiva("Ald2", null, "Volei4", "dep", 30f, 300f, fi, new HashSet<String>(), null);
-			ctrlDeportivas.altaActividadDeportiva("Ald2", null, "Volei5", "dep", 30f, 300f, fi, new HashSet<String>(), null);
+			ctrlUs.altaUsuario(l1);
+		
+		}catch(UsuarioDisponibilidadException e){
+			
+		}
+		
+					
+		try {
+			ctrlDeportivas.altaActividadDeportiva("Ald2", "nick p1", "Volei2", "dep", 30f, 300f, fi, new HashSet<String>(), null);
+			ctrlDeportivas.altaActividadDeportiva("Ald2", "nick p1", "Volei3", "dep", 30f, 300f, fi, new HashSet<String>(), null);
+			ctrlDeportivas.altaActividadDeportiva("Ald2", "nick p1", "Volei4", "dep", 30f, 300f, fi, new HashSet<String>(), null);
+			ctrlDeportivas.altaActividadDeportiva("Ald2", "nick p1", "Volei5", "dep", 30f, 300f, fi, new HashSet<String>(), null);
 		} catch (ActividadDeportivaRepetidaException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
+		ctrlDeportivas.cambiarEstado("Volei2", EstadoActi.ACEPTADA);
+		ctrlDeportivas.cambiarEstado("Volei3", EstadoActi.ACEPTADA);
+		ctrlDeportivas.cambiarEstado("Volei4", EstadoActi.ACEPTADA);
+		ctrlDeportivas.cambiarEstado("Volei5", EstadoActi.ACEPTADA);
 		
 		try {
 			ctrlCuponeras.agregarActividad("Baile4","Volei2", 20);	
@@ -353,7 +376,8 @@ void testregistrarCuponeraRepite() {
 	 
 	@Test
 	void testlistarActividadesfaltantesExito2() {
-		manejCuponeras.getinstance().EliminarManjeador();
+		manejCuponeras.getinstance().eliminarManjeador();
+		ctrlUsuarios ctrlUs = new ctrlUsuarios();
 		
 		Date fi=null;
 		Date ff=null;
@@ -379,14 +403,32 @@ void testregistrarCuponeraRepite() {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		
+		InfoBasicaUser o1 = new InfoBasicaProfesor(	"nick o1",		"nombre o1",
+				"apellido p1",	"correo o1",
+				new Date(),"0", "",  "Ald3",
+				"descp p1", 	"bibliog p1",
+				"url p1");
+		
 		try {
-			ctrlDeportivas.altaActividadDeportiva("Ald3", null, "Volei6", "dep", 30f, 300f, fi, new HashSet<String>(), null);
-			ctrlDeportivas.altaActividadDeportiva("Ald3", null, "Volei7", "dep", 30f, 300f, fi, new HashSet<String>(), null);
+			ctrlUs.altaUsuario(o1);
+		
+		}catch(UsuarioDisponibilidadException e){
+			
+		}
+		
+		
+		
+		try {
+			ctrlDeportivas.altaActividadDeportiva("Ald3", "nick o1", "Volei6", "dep", 30f, 300f, fi, new HashSet<String>(), null);
+			ctrlDeportivas.altaActividadDeportiva("Ald3", "nick o1", "Volei7", "dep", 30f, 300f, fi, new HashSet<String>(), null);
 		} catch (ActividadDeportivaRepetidaException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
+		ctrlDeportivas.cambiarEstado("Volei6", EstadoActi.ACEPTADA);
+		ctrlDeportivas.cambiarEstado("Volei7", EstadoActi.ACEPTADA);
 		
 		Set<String> resu=new HashSet<String>();
 		try {
@@ -408,7 +450,7 @@ void testregistrarCuponeraRepite() {
 
 	@Test
 	void testlistarActividadesfaltantesFail() {
-		manejCuponeras.getinstance().EliminarManjeador();
+		manejCuponeras.getinstance().eliminarManjeador();
 		
 		Date fi=null;
 		Date ff=null;
@@ -462,7 +504,7 @@ void testregistrarCuponeraRepite() {
 
 	@Test
 	void testgetCuponeraActividadExito() {
-		manejCuponeras.getinstance().EliminarManjeador();
+		manejCuponeras.getinstance().eliminarManjeador();
 		
 		Date fi=null;
 		Date ff=null;
@@ -527,7 +569,7 @@ void testregistrarCuponeraRepite() {
 	
 	@Test
 	void testgetCuponeraActividadfail1() {
-		manejCuponeras.getinstance().EliminarManjeador();
+		manejCuponeras.getinstance().eliminarManjeador();
 		
 		Date fi=null;
 
@@ -560,7 +602,7 @@ void testregistrarCuponeraRepite() {
 	
 	@Test
 	void testgetCuponeraActividadfail2() {
-		manejCuponeras.getinstance().EliminarManjeador();
+		manejCuponeras.getinstance().eliminarManjeador();
 		
 		Date fi=null;
 		Date ff=null;
@@ -607,7 +649,7 @@ void testregistrarCuponeraRepite() {
 	
 	@Test
 	void testlistarcuponerasfail2() {
-		manejCuponeras.getinstance().EliminarManjeador();
+		manejCuponeras.getinstance().eliminarManjeador();
 		
 		Date fi=null;
 		Date ff=null;
@@ -654,7 +696,7 @@ void testregistrarCuponeraRepite() {
 	
 	@Test
 	void testlistarcuponeraspass() {
-		manejCuponeras.getinstance().EliminarManjeador();
+		manejCuponeras.getinstance().eliminarManjeador();
 		
 		Date fi=null;
 		Date ff=null;
@@ -723,9 +765,9 @@ void testregistrarCuponeraRepite() {
 		Date fcompra=null;
 		try {
 			fi = new SimpleDateFormat("dd/MM/yy").parse("05/08/21");
-			ff = new SimpleDateFormat("dd/MM/yy").parse("31/08/21");
+			ff = new SimpleDateFormat("dd/MM/yy").parse("12/12/21");
 			fa=  new SimpleDateFormat("dd/MM/yy").parse("01/07/21");
-			fcompra= new SimpleDateFormat("dd/MM/yy").parse("15/08/21");
+			fcompra= new SimpleDateFormat("dd/MM/yy").parse("22/11/21");
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -743,12 +785,33 @@ void testregistrarCuponeraRepite() {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		
+		InfoBasicaUser ll1 = new InfoBasicaProfesor(	"nick ll1",		"nombre ll1",
+				"apellido p1",	"correo ll1",
+				new Date(),"0", "",  "Ari1",
+				"descp p1", 	"bibliog p1",
+				"url p1");
+		
 		try {
-			ctrlDeportivas.altaActividadDeportiva("Ari1", null, "Vas1", "dep", 30f, 300f, fi, new HashSet<String>(), null);
+			ctrlUs.altaUsuario(ll1);
+		
+		}catch(UsuarioDisponibilidadException e){
+			
+		}
+		
+		
+		
+		
+		try {
+			ctrlDeportivas.altaActividadDeportiva("Ari1", "nick ll1", "Vas1", "dep", 30f, 300f, fi, new HashSet<String>(), null);
 		} catch (ActividadDeportivaRepetidaException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		
+		ctrlDeportivas.cambiarEstado("Vas1", EstadoActi.ACEPTADA);
+		
+		
 		
 		try {
 			ctrlCuponeras.agregarActividad("ACU1","Vas1", 20);	
@@ -794,12 +857,12 @@ void testregistrarCuponeraRepite() {
 		Date fi=null;
 		Date ff=null;
 		Date fa=null;
-		Date fcompra=null;
+		Date fcompra = null;
 		try {
 			fi = new SimpleDateFormat("dd/MM/yy").parse("05/08/21");
 			ff = new SimpleDateFormat("dd/MM/yy").parse("31/08/21");
 			fa=  new SimpleDateFormat("dd/MM/yy").parse("01/07/21");
-			fcompra= new SimpleDateFormat("dd/MM/yy").parse("15/09/21");
+			fcompra = new SimpleDateFormat("dd/MM/yy").parse("15/09/21");
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

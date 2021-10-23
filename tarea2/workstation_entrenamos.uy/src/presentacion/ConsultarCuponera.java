@@ -48,8 +48,6 @@ import javax.swing.JList;
 public class ConsultarCuponera extends JInternalFrame {
 	
 	private IctrlCuponeras controlCuponeras;
-	private IctrlIDeportivas controlIDeportivas;
-	private IctrlADeportivas controlADeportivas;
 	private JComboBox<String> comboBoxCuponeras;
 	private JTextField txtNombre;
     private JTextArea txtDescripcion;
@@ -61,7 +59,6 @@ public class ConsultarCuponera extends JInternalFrame {
     private JTextField textFechafin;
     private JScrollPane scrollPane_2;
     private JTable table;
-    private ConsultaActividadDeportiva framedeportivas;
     private JLabel lblCostoTotal;
     private JTextField textCosto;
     private JLabel lblCategorias;
@@ -80,8 +77,6 @@ public class ConsultarCuponera extends JInternalFrame {
 		});
 	
 		controlCuponeras=ICC;
-		controlIDeportivas=IID;
-		controlADeportivas=IAD;
 		
 		setTitle("Consultar Cuponera");
 		setBounds(100, 5, 487, 662);

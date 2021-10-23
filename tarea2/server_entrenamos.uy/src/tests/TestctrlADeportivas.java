@@ -103,8 +103,8 @@ class TestctrlADeportivas {
 		nomin = ctrlADeportivas.darNombresActividadesDeportivas("Instituto Natural");
 		setA = new HashSet<String>();
 		setA.add("Aeróbica");
-		setA.add("Arqueria");
-		setA.add("Pilates");
+		//setA.add("Arqueria");
+		//setA.add("Pilates");
 		
 		
 		assertEquals(setA, nomin);

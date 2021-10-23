@@ -25,7 +25,8 @@ public class Compra {
 			Set<InfoClases> inf = cupo.getInfo();
 			
 			for (Iterator<InfoClases> iter=inf.iterator(); iter.hasNext();) {
-				this.cantClases.put(iter.next().getAct().getNombre(), iter.next().getCantidad());
+				InfoClases clase=iter.next();
+				this.cantClases.put(clase.getAct().getNombre(), clase.getCantidad());
 			
 			}
 		}
@@ -46,11 +47,11 @@ public class Compra {
 		}
 		
 		public Date comienzoCuponera() {
-			return cup.getFecha_ini();
+			return cup.getFechaIni();
 		}
 		
 		public Date vencimientoCuponera() {
-			return cup.getFecha_fin();
+			return cup.getFechaFin();
 		}
 		
 		public Float getDescuento() {
@@ -76,7 +77,7 @@ public class Compra {
 			return fecha;
 		}
 		
-		public DataCuponera DarInformacionCuponera() {
+		public DataCuponera darInformacionCuponera() {
 			return cup.getDataCuponera();
 		}
 }

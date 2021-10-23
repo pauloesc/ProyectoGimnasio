@@ -110,7 +110,7 @@ public class Socio extends Usuario {
 		InformacionActividad infoAct = new InfoActividadSocio();		
 		for ( Iterator<Registro> it = regs.iterator(); it.hasNext();) { 
 			Registro aux = it.next();
-			DtClase claseInfo = aux.ActividadSocio();
+			DtClase claseInfo = aux.actividadSocio();
 			infoAct.agregarInfo(claseInfo);
 		}
 		
@@ -124,7 +124,7 @@ public class Socio extends Usuario {
 		 Map<String, Compra> map = compCup;
 		for (Map.Entry<String, Compra> entry : map.entrySet()) {
 			Compra comp = entry.getValue();
-			DataCuponera info = comp.DarInformacionCuponera();
+			DataCuponera info = comp.darInformacionCuponera();
 			vec.add(info);
 		}
 		return vec;

@@ -57,7 +57,7 @@ public class manejIDeportivas {
     	return this.institucionesDeportivas.keySet();
     }
     
-	public static void ElimiarManjeador() {
+	public static void elimiarManjeador() {
 		instancia.institucionesDeportivas.clear();
 		instancia=null;
 	}

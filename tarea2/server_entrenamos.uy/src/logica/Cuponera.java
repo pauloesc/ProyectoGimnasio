@@ -9,20 +9,20 @@ import java.util.Set;
 public class Cuponera {
 	private String nombre;
 	private String descripcion;
-	private Date fecha_ini;
-	private Date fecha_fin;
+	private Date fechaIni;
+	private Date fechaFin;
 	private Float descuento;
-	private Date fecha_alta;
+	private Date fechaAlta;
 	private boolean comprada; 
 	private Set<InfoClases> info;
 
 	public Cuponera(String nom, String des, Date ini, Date fin, Float disc, Date alta) {
 		this.nombre = nom;
 		this.descripcion = des;
-		this.fecha_ini = ini;
-		this.fecha_fin = fin;
+		this.fechaIni = ini;
+		this.fechaFin = fin;
 		this.descuento = disc;
-		this.fecha_alta = alta;
+		this.fechaAlta = alta;
 		this.info = new HashSet<InfoClases>();
 		this.comprada = false;
 	}
@@ -35,12 +35,12 @@ public class Cuponera {
 		return nombre;
 	}
 
-	public Date getFecha_ini() {
-		return fecha_ini;
+	public Date getFechaIni() {
+		return fechaIni;
 	}
 
-	public Date getFecha_fin() {
-		return fecha_fin;
+	public Date getFechaFin() {
+		return fechaFin;
 	}
 
 	public Float getDescuento() {
@@ -89,12 +89,12 @@ public class Cuponera {
 	
 	
 	
-	public Date getFecha_alta() {
-		return fecha_alta;
+	public Date getFechaAlta() {
+		return fechaAlta;
 	}
 
-	public void setFecha_alta(Date fecha_alta) {
-		this.fecha_alta = fecha_alta;
+	public void setFechaAlta(Date fechaAlta) {
+		this.fechaAlta = fechaAlta;
 	}
 
 	public void agregarActividad(ActividadDeportiva act, int numclase) {
@@ -117,7 +117,7 @@ public class Cuponera {
 		}
 		float costo= this.getCostoCuponera();
 		Set<String> cat= this.getListaCategorias();
-		DataCuponera resu= new DataCuponera(nombre, descripcion, fecha_ini, fecha_fin, descuento, fecha_alta, costo, grupo, cat);
+		DataCuponera resu= new DataCuponera(nombre, descripcion, fechaIni, fechaFin, descuento, fechaAlta, costo, grupo, cat);
 		return resu;
 	}
 
@@ -131,7 +131,7 @@ public class Cuponera {
 	
 	public boolean cuponerahabilitada(Date fecha) {
 		boolean resu=true;
-		if (fecha.after(fecha_fin))
+		if (fecha.after(fechaFin))
 			resu=false;
 		return resu;
 	}
