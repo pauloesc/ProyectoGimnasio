@@ -331,4 +331,19 @@ public class ctrlUsuarios implements IctrlUsuarios {
 		Profesor profe = (Profesor) usuario;
 		return profe.informacionActDepEstadoIngRech();
 	}
+	
+	public boolean usuarioSigueAUsuario(String usuario1, String usuario2){
+		
+		List<String> uSiguiendo = usuariosSiguiendo(usuario1);
+		Iterator<String> itUserSiguiendo =  uSiguiendo.iterator();
+		
+		boolean encontrado = false;
+		while( itUserSiguiendo.hasNext() && !encontrado ) {
+			String auxUser = itUserSiguiendo.next();
+			
+			encontrado = auxUser.equals(usuario2);
+		}
+		return encontrado;
+	}
+
 }

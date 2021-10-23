@@ -59,6 +59,7 @@ public class ConsultaUsuario extends HttpServlet {
 		*/
 		boolean usuarioPropio = false;
 		boolean haySesion = false;
+		boolean siguiendoUsuario = false;
 		String nickEnSesion = (String) request.getSession().getAttribute("nickname-user");
 
 		//si hay una sesion
@@ -69,6 +70,7 @@ public class ConsultaUsuario extends HttpServlet {
 			}
 			else {
 				usuarioPropio = false;
+				siguiendoUsuario = ICU.usuarioSigueAUsuario(nickEnSesion, user);
 			}
 			
 			//si nickEnSesion diferente de null, entonces hay sesion
@@ -266,6 +268,8 @@ public class ConsultaUsuario extends HttpServlet {
 		request.setAttribute("actDepIngRech", informacionProfesorActDepIngRech);
 		request.setAttribute("userPropio", usuarioPropio);
 		request.setAttribute("haySesion", haySesion);
+		request.setAttribute("siguiendoUsuario", siguiendoUsuario);
+		
 		
 		request.getRequestDispatcher("/WEB-INF/usuario/consultaUsuario.jsp").forward(request, response);
 

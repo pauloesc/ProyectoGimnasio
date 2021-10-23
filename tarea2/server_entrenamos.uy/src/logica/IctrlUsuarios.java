@@ -63,4 +63,6 @@ public interface IctrlUsuarios {
 	
 	public abstract List<DataCuponera> cuponeras(String nickname);
 	
+	public abstract boolean usuarioSigueAUsuario(String usuario1, String suario2);
+	
 }

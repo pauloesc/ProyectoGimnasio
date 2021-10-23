@@ -33,6 +33,8 @@ String dateString = formato.format(informacionUusario.getFechaNac());
 
 boolean haySesion = (boolean) request.getAttribute("haySesion");
 
+boolean siguiendoUsuario = (boolean) request.getAttribute("siguiendoUsuario");
+
 %>
 
 <head>
@@ -75,11 +77,28 @@ boolean haySesion = (boolean) request.getAttribute("haySesion");
                         //voy a imprimir el voton solo cuando exista una sesion y no sea la propia
                         if ( haySesion && !propioUsuario ) {
                         %>
-                        <div class="card mb-3">
-                           <div class="card-body text-center shadow">
-                           <a href="${pageContext.request.contextPath}/SeguirDejarDeSeguir?usuarioNick=<%=informacionUusario.getNickname() %> " ><button type="button" class="btn btn-success" style="font-size: smaller;"> Seguir / Dejar de seguir</button></a>
-                           </div>
-                        </div>
+                        
+                        	<% if (siguiendoUsuario){ %>
+                        
+								<div class="card mb-3">
+								<div class="card-body text-center shadow">
+								<a href="${pageContext.request.contextPath}/SeguirDejarDeSeguir?usuarioNick=<%=informacionUusario.getNickname() %> " ><button type="button" class="btn btn-warning" style="font-size: smaller;">Dejar de seguir</button></a>
+								</div>
+								</div>
+                        
+                        	<% 
+                        	}
+                        	else { 
+                        	%>
+                        	
+								<div class="card mb-3">
+								<div class="card-body text-center shadow">
+								<a href="${pageContext.request.contextPath}/SeguirDejarDeSeguir?usuarioNick=<%=informacionUusario.getNickname() %> " ><button type="button" class="btn btn-success" style="font-size: smaller;"> Seguir</button></a>
+								</div>
+								</div>
+                        	
+                        	<% } %>
+                        
                         <% } %>
                         
                      </div>
