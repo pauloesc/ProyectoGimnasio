@@ -62,7 +62,7 @@
 				</div>
 				<% if (usr instanceof InfoBasicaSocio) { %>
 				<div class="offset-3 col-8 mb-3">
-					<a  class="btn btn-primary" href="consultaCuponera1.html">Comprar Cuponera</a>
+					<a  class="btn btn-primary" href="listaCuponeras?n=<%=1 %>">Comprar Cuponera</a>
 					<a class="btn btn-primary" href="registroDictadoDeClases.html">Registrarse a Clase</a>
 				</div>
 				<% } %>
