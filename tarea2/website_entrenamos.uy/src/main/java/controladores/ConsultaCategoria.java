@@ -1,6 +1,8 @@
 package controladores;
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import javax.servlet.ServletException;
@@ -8,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import excepciones.ActividadDeportivaNoExisteException;
+import logica.Cuponera;
+import logica.EstadoActi;
 import logica.Fabrica;
 import logica.IctrlADeportivas;
 import logica.IctrlCategorias;
@@ -38,9 +43,17 @@ public class ConsultaCategoria extends HttpServlet {
 		}
 		else {
 		
-			Set<String> actividades;
+			Set<String> actividades= new HashSet<String>();
+			Set<String> resu;
 			try {
-				actividades = ConsultaCategoria.getActividadesCat(cat);
+				resu = ConsultaCategoria.getActividadesCat(cat);
+			    for (Iterator<String> iter=resu.iterator(); iter.hasNext();) {
+						String acti=iter.next();
+						if (ConsultaCategoria.getEstadoActivad(acti).toString()== "ACEPTADA") {
+							actividades.add(acti);
+						}
+			    }
+			
 			} catch (Exception ex) {
 				actividades = null;
 			}
@@ -62,6 +75,11 @@ public class ConsultaCategoria extends HttpServlet {
 	public static Set<String> getActividadesCat(String cat) {
 		return ICAD.getActividadesCategoria(cat);
 	}
+	
+	public static EstadoActi getEstadoActivad(String act) throws ActividadDeportivaNoExisteException {
+		return ICAD.getDataActividad(act).getEstado();
+	}
+	
 	
 	public static Set<String> getCuponerasCat(String cat) {
 		return ICUP.getCuponerasCategoria(cat);
