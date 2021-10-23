@@ -15,8 +15,9 @@ public class Cuponera {
 	private Date fechaAlta;
 	private boolean comprada; 
 	private Set<InfoClases> info;
+	private String imagen;
 
-	public Cuponera(String nom, String des, Date ini, Date fin, Float disc, Date alta) {
+	public Cuponera(String nom, String des, Date ini, Date fin, Float disc, Date alta, String imag) {
 		this.nombre = nom;
 		this.descripcion = des;
 		this.fechaIni = ini;
@@ -25,6 +26,7 @@ public class Cuponera {
 		this.fechaAlta = alta;
 		this.info = new HashSet<InfoClases>();
 		this.comprada = false;
+		this.imagen = imag;
 	}
 
 	public String getDescripcion() {
@@ -135,5 +137,11 @@ public class Cuponera {
 			resu=false;
 		return resu;
 	}
-	
+	public String getImagen() {
+    	return imagen;
+    }
+    
+    public void setImagen(String uri) {
+    	this.imagen = uri;
+    }
 }

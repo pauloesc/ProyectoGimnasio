@@ -21,13 +21,13 @@ public class ctrlCuponeras implements IctrlCuponeras {
 	public ctrlCuponeras() {
 	 }
 	
-	public boolean registrarCuponera(String nombre, String descrip, Date fecha_ini, Date fecha_fin, Float descuento, Date fecha_alta) throws CuponeraRepetidaException {
+	public boolean registrarCuponera(String nombre, String descrip, Date fecha_ini, Date fecha_fin, Float descuento, Date fecha_alta, String imagen) throws CuponeraRepetidaException {
 		manejCuponeras manejadorCuponeras = manejCuponeras.getinstance();
         boolean registrada = manejadorCuponeras.exiteCuponera(nombre);
         if (registrada)
             throw new CuponeraRepetidaException("La cuponera " + nombre + " ya esta registrada.");
 
-        manejadorCuponeras.agregarCuponera(nombre, descrip, fecha_ini, fecha_fin, descuento, fecha_alta);
+        manejadorCuponeras.agregarCuponera(nombre, descrip, fecha_ini, fecha_fin, descuento, fecha_alta, imagen);
         return false;
 	}
 
@@ -177,7 +177,7 @@ public class ctrlCuponeras implements IctrlCuponeras {
 		
 		//cargo cuponeras
 		try {
-			registrarCuponera("Pelota", "Deportes con pelota.", fecha1, fecha2, 20f, fecha3);
+			registrarCuponera("Pelota", "Deportes con pelota.", fecha1, fecha2, 20f, fecha3, "imagen");
 			registrarCuponera("Gimnasia", "Aeróbica y aparatos.", fecha4, fecha5, 30f, fecha6);
 			registrarCuponera("Músculos", "Pesas.", fecha7, fecha8 , 10f, fecha9 );
 		} catch (CuponeraRepetidaException e) {

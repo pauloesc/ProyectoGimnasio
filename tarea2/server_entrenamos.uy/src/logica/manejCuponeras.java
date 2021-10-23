@@ -28,9 +28,9 @@ public class manejCuponeras {
 		return cuponeras.get(nombre)!=null;
 	}
 
-	public void agregarCuponera(String nom, String des, Date ini, Date fin, Float disc, Date alta) {
+	public void agregarCuponera(String nom, String des, Date ini, Date fin, Float disc, Date alta, String imagen) {
 		Cuponera cupo; 
-		cupo = new Cuponera(nom, des, ini, fin, disc, alta);
+		cupo = new Cuponera(nom, des, ini, fin, disc, alta, imagen);
 		cuponeras.put(nom, cupo);
 	}
 	
