@@ -111,27 +111,21 @@ public class manejCuponeras {
 		instancia=null;
 	}
 	
-	public Set<DataCuponera> buscarCuponeras(String consulta)
-	{
-		if (consulta != null)
-		{
+	public Set<DataCuponera> buscarCuponeras(String consulta) {
+		if (consulta != null) {
 			Set<DataCuponera> resultado = new HashSet<DataCuponera>();
-			for ( Cuponera cup : cuponeras.values() )
-			{
+			for ( Cuponera cup : cuponeras.values() ) {
 				if ( cup.getNombre().toLowerCase().contains(consulta) ||
-						cup.getDescripcion().toLowerCase().contains(consulta) )
-				{
+						cup.getDescripcion().toLowerCase().contains(consulta) ) {
 					resultado.add(cup.getDataCuponera());
 				}
 			}
 			return resultado;
 			
-		} else
-		{
+		} else {
 			// Devolver todas las cuponeras
 			Set<DataCuponera> res = new HashSet<DataCuponera>();
-			for ( Cuponera cup : cuponeras.values() )
-			{
+			for ( Cuponera cup : cuponeras.values() ) {
 				res.add( cup.getDataCuponera() );
 			}
 			return res;

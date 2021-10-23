@@ -62,7 +62,7 @@ public class ctrlCuponeras implements IctrlCuponeras {
 		manejADeportivas manejadorActDep = manejADeportivas.getinstance();
 		ActividadDeportiva activ = manejadorActDep .buscarActividad(act);
 		if (cup.getListaActividades().contains(act))
-			throw new ActividadDeportivaRepetidaException ("La actividad deportiva ya ha sido registrada en la cuponera");
+			throw new ActividadDeportivaRepetidaException("La actividad deportiva ya ha sido registrada en la cuponera");
 		cup.agregarActividad(activ, numclase);
 	}
 	
@@ -179,7 +179,7 @@ public class ctrlCuponeras implements IctrlCuponeras {
 		try {
 			registrarCuponera("Pelota", "Deportes con pelota.", fecha1, fecha2, 20f, fecha3, "b1.jpg");
 			registrarCuponera("Gimnasia", "Aeróbica y aparatos.", fecha4, fecha5, 30f, fecha6, "b2.jpg");
-			registrarCuponera("Músculos", "Pesas.", fecha7, fecha8 , 10f, fecha9,"b3.jpg" );
+			registrarCuponera("Músculos", "Pesas.", fecha7, fecha8 , 10f, fecha9, "b3.jpg" );
 		} catch (CuponeraRepetidaException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -213,8 +213,7 @@ public class ctrlCuponeras implements IctrlCuponeras {
 	}
 	}
 	
-	public Set<DataCuponera> buscarCuponeras(String consulta)
-	{
+	public Set<DataCuponera> buscarCuponeras(String consulta) {
 		return manejCuponeras.getinstance().buscarCuponeras(consulta);
 	}
 }

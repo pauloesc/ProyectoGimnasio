@@ -271,17 +271,13 @@ public class ctrlADeportivas implements IctrlADeportivas{
 		ActividadDeportiva[] actsdeps = mAD.getActividades();
 		Set<DataActividad> results = new HashSet<DataActividad>();
 		
-		for (ActividadDeportiva act : actsdeps)
-		{
+		for (ActividadDeportiva act : actsdeps) {
 			if ( act.getNombre().toLowerCase().contains(query) ||
-					act.getDescripcion().toLowerCase().contains(query) )
-			{
-				try 
-				{
+					act.getDescripcion().toLowerCase().contains(query) ) {
+				try {
 					results.add( getDataActividad(act.getNombre()) );
 				}
-				catch (ActividadDeportivaNoExisteException e)
-				{
+				catch (ActividadDeportivaNoExisteException e) {
 					return null;
 				}
 				

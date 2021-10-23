@@ -256,13 +256,13 @@ public class ConsultarCuponera extends JInternalFrame {
 		txtNombre.setText(dat.getNombre());
 		txtDescripcion.setText(dat.getDescripcion());
 		txtDescuento.setText(dat.getDescuento().toString());
-		date = dat.getFecha_ini();
+		date = dat.getFechaIni();
         String strDateini = dateFormat.format(date);
         txtFechaIni.setText(strDateini);   
-        date = dat.getFecha_fin();
+        date = dat.getFechaFin();
         String strDatefin = dateFormat.format(date);
         textFechafin.setText(strDatefin);   
-        date = dat.getFecha_alta(); 
+        date = dat.getFechaAlta(); 
         String strDatealta = dateFormat.format(date);
         txtFechaAlta.setText(strDatealta); 
         textCosto.setText(dat.getCosto().toString());

@@ -144,7 +144,7 @@ public class CrearCuponera extends JInternalFrame {
         
         if (checkFormulario()) {
             try {
-                controlCuponeras.registrarCuponera(nombre, des, ini, fin, Float.parseFloat(desc), alta);
+                controlCuponeras.registrarCuponera(nombre, des, ini, fin, Float.parseFloat(desc), alta, "");
 
                 // Muestro éxito de la operación
                 JOptionPane.showMessageDialog(this, "La cuponera se ha registrado con éxito", "Crear Cuponera de Actividades Deportivas",
