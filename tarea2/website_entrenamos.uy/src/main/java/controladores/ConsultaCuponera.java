@@ -1,12 +1,16 @@
 package controladores;
 
 import java.io.IOException;
+import java.util.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import excepciones.CuponeraCompradaException;
 import logica.DataCuponera;
 import logica.Fabrica;
 import logica.IctrlCuponeras;
@@ -42,8 +46,8 @@ public class ConsultaCuponera extends HttpServlet
     			
     		}
     	}
-		
 		String cup = req.getParameter("cuponera");
+		
 		//verificar que cuponera existe y sino llevar a errorPage
 		DataCuponera cuponera = null;
 		try {
@@ -54,6 +58,24 @@ public class ConsultaCuponera extends HttpServlet
 		}
 		req.setAttribute("cuponera", cuponera);
 		req.setAttribute("socio", bien);
+		
+		Date date = new Date();
+		Boolean comprahab1=true;
+		
+		
+		
+		if (bien && comprahab1) {
+			String nomP = (String) sesion.getAttribute("nickname-user");
+		try {
+			ctrlCuponeras.comprarCuponera(date, cup, nomP); 
+			req.setAttribute("msjcompra", "La cuponera se ha comprado con exito.");
+			req.setAttribute("compra", true);
+		} catch (CuponeraCompradaException e) {
+			req.setAttribute("msjcompra", e.getMessage());
+			req.setAttribute("compra", false);
+		}
+		}
+		
 		req.getRequestDispatcher("/WEB-INF/cuponeras/consultaCuponera.jsp").forward(req, resp);
 	}
 	

@@ -13,6 +13,8 @@
 <html>
 <head>
 <jsp:include page="/WEB-INF/template/head.jsp" />
+<script type="text/javascript" src="../jquer.js"></script>
+
 </head>
 <%
 	DataCuponera dtcuponera = (DataCuponera) request.getAttribute("cuponera");
@@ -57,10 +59,10 @@
  						<h5 class="card-header text-primary"> <b><%= dtcuponera.getNombre() %></b></h5>
   						<div class="card-body text-dark">
     						<p class="card-text"><%= dtcuponera.getDescripcion() %></p>
-    						<p class="card-text"> Periodo de vigencia: <%= dateFormat.format(dtcuponera.getFecha_ini())%> - <%= dateFormat.format(dtcuponera.getFecha_fin())%> </p>
+    						<p class="card-text"> Periodo de vigencia: <%= dateFormat.format(dtcuponera.getFechaIni())%> - <%= dateFormat.format(dtcuponera.getFechaFin())%> </p>
     						<p class="card-text">Descuento aplicar: <%= dtcuponera.getDescuento() %>% </p>
     						<p class="card-text"> <b> Costo Total: <%= dtcuponera.getCosto() %>$</b> </p>
-    						<p class="card-text text-secondary"> Fecha de alta: <%= dateFormat.format(dtcuponera.getFecha_alta())%> </p>
+    						<p class="card-text text-secondary"> Fecha de alta: <%= dateFormat.format(dtcuponera.getFechaAlta())%> </p>
   					</div>
   						 <div class="d-md-flex justify-content-md-end col-12 mb-3">
   							<% if (socio){%>
@@ -70,7 +72,7 @@
 <div class="modal fade" id="comprar2" tabindex="-1" role="dialog" aria-labelledby="comprar2Label" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form method="post" action="ComprarCuponera"> 
+            <form method="post" > 
                 <div class="modal-header">
                     <h5 class="modal-title" id="comprarLabel">Confirmar la compra de la cuponera</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
