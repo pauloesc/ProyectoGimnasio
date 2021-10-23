@@ -164,5 +164,4 @@ public class ActividadDeportiva {
     public void setImagen(String uri) {
     	this.imagen = uri;
     }
-    
 }

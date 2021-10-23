@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="logica.DataCuponera"%>
+<%@page import="logica.DataActividad"%>
 <%@page import="java.util.Set"%>
 <!DOCTYPE html>
 <html>
@@ -11,34 +12,26 @@
 	<!-- Begin page content -->
 	<%
 	Set<DataCuponera> cuponeras = (Set<DataCuponera>) request.getAttribute("resultCup");
+	Set<DataActividad> actividades = (Set<DataActividad>) request.getAttribute("resultAct");
 	String consulta = (String) request.getAttribute("consulta");
 	%>
 	<main role="main" class="container">
 		<div class="row my-4">
 			<div class="col-12 col-md-9 my-4">
-				<h5>Resultados de la búsqueda - Cuponeras:</h5>
 				<%
-				if (cuponeras.size() == 0)
-					{
+				if (cuponeras.size() != 0)
+				{
 				%>
-				<br>
-				<div class="alert alert-warning" role="alert">
-  				No se encontrarón cuponeras que coincidan con <%=consulta %>
-				</div>
-				<br>
-				<% 
-					} else {
-				%>
+				<h5>Cuponeras</h5>
 				<div class="list-group list-group-flush">
-				<%
+					<%
 					for (DataCuponera cup : cuponeras)
 					{
-				%>
-					<!-- item -->
-  					<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+					%>
+  					<a href="consultaCuponera?cuponera=<%=cup.getNombre()%>" class="list-group-item list-group-item-action flex-column align-items-start">
     					<div class="d-flex w-100 justify-content-between">
-      						<h5 class="mb-1"><%=cup.getNombre() %></h5>
-      						<small><%=cup.getCosto() %></small>
+      					<h5 class="mb-1"><%=cup.getNombre() %></h5>
+      					<small>$<%=cup.getCosto() %></small>
     					</div>
     					<p class="mb-1"><%=cup.getDescripcion() %></p>
     					<%
@@ -50,13 +43,54 @@
     					}
     					%>
  						</a>
- 				 <% 
-					 }
-				 %>
-         </div>
-         <% 
+ 					<% 
 					}
-				 %>
+					%>
+        	</div> <br>
+        <% 
+				}
+				if (actividades.size() != 0)
+				{
+				%>
+					<h5>Actividades Deportivas</h5>
+					<div class="list-group list-group-flush">
+					<%
+					for (DataActividad act : actividades)
+					{
+					%>
+  					<a href="consultaActividad?actividad=<%=act.getNombre()%>" class="list-group-item list-group-item-action flex-column align-items-start">
+    					<div class="d-flex w-100 justify-content-between">
+    						<div>
+    							<h5 class="mb-1"><%=act.getNombre() %></h5>
+    							<span class="badge badge-dark"><%=act.getInstitucion()%></span>
+    							<br>
+    							<%
+    							for ( String ncat : act.getCategorias() )
+    							{
+    							%>
+    								<span class="badge badge-info"><%=ncat%></span>
+    							<%
+    							}
+    							%>
+    						</div>
+      					<img src="./resources/img/actividades/<%=act.getImagen()%>" width="75" height="75" class="rounded-circle"">
+    					</div>
+ 						</a>
+ 				 	<% 
+					}
+				 	%>
+         	</div>
+        <% 
+				}
+				if (actividades.size() == 0 && cuponeras.size() == 0)
+				{
+				%>
+					<div class="alert alert-danger" role="alert">
+  					No se encontraron resultados para la búsqueda <b><%=consulta%></b>
+				 	</div>
+				<%
+				}
+				%>
 			</div>
 			<div id="filtros" class="col-6 col-md-3 my-4">
 			 <div class="form-inline">
