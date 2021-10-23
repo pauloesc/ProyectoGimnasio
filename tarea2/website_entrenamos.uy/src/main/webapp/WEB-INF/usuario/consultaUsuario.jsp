@@ -31,6 +31,8 @@ boolean propioUsuario = (boolean) request.getAttribute("userPropio");
 SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 String dateString = formato.format(informacionUusario.getFechaNac());
 
+boolean haySesion = (boolean) request.getAttribute("haySesion");
+
 %>
 
 <head>
@@ -68,11 +70,18 @@ String dateString = formato.format(informacionUusario.getFechaNac());
                                  height="160" />
                            </div>
                         </div>
+                        
+                        <% 
+                        //voy a imprimir el voton solo cuando exista una sesion y no sea la propia
+                        if ( haySesion && !propioUsuario ) {
+                        %>
                         <div class="card mb-3">
                            <div class="card-body text-center shadow">
-                              <a href="${pageContext.request.contextPath}/SeguirDejarDeSeguir?usuarioNick=<%=informacionUusario.getNickname() %> " ><button type="button" class="btn btn-success" style="font-size: smaller;"> Seguir / Dejar de seguir</button></a>
+                           <a href="${pageContext.request.contextPath}/SeguirDejarDeSeguir?usuarioNick=<%=informacionUusario.getNickname() %> " ><button type="button" class="btn btn-success" style="font-size: smaller;"> Seguir / Dejar de seguir</button></a>
                            </div>
                         </div>
+                        <% } %>
+                        
                      </div>
                      <div class="col-lg-8">
                         <div class="row mb-3 d-none">

@@ -58,6 +58,7 @@ public class ConsultaUsuario extends HttpServlet {
 		*compruebo si quien esta visitando el perfil es el propio usuario
 		*/
 		boolean usuarioPropio = false;
+		boolean haySesion = false;
 		String nickEnSesion = (String) request.getSession().getAttribute("nickname-user");
 
 		//si hay una sesion
@@ -69,6 +70,13 @@ public class ConsultaUsuario extends HttpServlet {
 			else {
 				usuarioPropio = false;
 			}
+			
+			//si nickEnSesion diferente de null, entonces hay sesion
+			haySesion = true;
+		}
+		else {
+			haySesion = false;
+			usuarioPropio = false;
 		}
 		
 		
@@ -257,6 +265,8 @@ public class ConsultaUsuario extends HttpServlet {
 		request.setAttribute("cuponeras", cuponerasSocio);
 		request.setAttribute("actDepIngRech", informacionProfesorActDepIngRech);
 		request.setAttribute("userPropio", usuarioPropio);
+		request.setAttribute("haySesion", haySesion);
+		
 		request.getRequestDispatcher("/WEB-INF/usuario/consultaUsuario.jsp").forward(request, response);
 
 	}
