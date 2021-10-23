@@ -216,7 +216,28 @@ class ctrlUsuariosTest {
 		assertThrows( UsuarioDisponibilidadException.class, ()-> {cuCopia.altaUsuario(p1_2);} );
 		assertThrows( UsuarioDisponibilidadException.class, ()-> {cuCopia.altaUsuario(s1_1);} );
 		
+		//tambien testeo la funcion
+		//autenticarUsario(String nickname, String email, String contrasena)
+		//datos a utilizar
+		/**
+		 * "nick s1","nombre s1","apellido s1",	"correo s1",new Date(),"0" , "");
+		 */
+				
+		String respuestaNicknameValido = cu.autenticarUsario("nick s1", null, "0");
+		String respuestaNicknameInvalido = cu.autenticarUsario("nic", null, "0");
 		
+		String respuestaCorreoValido = cu.autenticarUsario(null, "correo s1", "0");
+		String respuestaCorreoInvalido = cu.autenticarUsario(null, "corr", "0");
+		
+		String respuestaFallida1 = cu.autenticarUsario("nick s1", null, "1");
+		String respuestaFallida2 = cu.autenticarUsario(null, "correo s1", "1");
+		
+	    assertTrue( respuestaNicknameValido == null , "la autenticacion no fue exitosa, problema");
+	    assertTrue( respuestaNicknameInvalido != null , "la autenticacion fue exitosa, problema");
+	    
+	    assertTrue( respuestaCorreoValido == null , "la autenticacion no fue exitosa, problema");
+	    assertTrue( respuestaCorreoInvalido != null , "la autenticacion fue exitosa, problema");
+
 		
 		manejIDeportivas.elimiarManjeador();
 		cu.elimiarManjeador();
