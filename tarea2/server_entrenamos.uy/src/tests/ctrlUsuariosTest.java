@@ -886,5 +886,62 @@ class ctrlUsuariosTest {
 		cu=null;
 		
 	}
+	
+	@Test
+	void getNicknameUsuario() {
+		
+		
+		//preparacion de datos
+		ctrlUsuarios cu = new ctrlUsuarios();
+		ctrlIDeportivas cid = new ctrlIDeportivas();
+		
+		//creo las instituciones
+		try {
+		cid.altaInstitucion("inst1", "desc1", "url1");
+		cid.altaInstitucion("inst2", "desc2", "url2");
+		cid.altaInstitucion("inst3", "desc3", "url3");
+		}
+		catch( InstitucionDeportivaRepetidaException e) {
+			
+		}
+		
+		//creo profes y los asocio a inst1
+		InfoBasicaUser p1 = new InfoBasicaProfesor(	"nick p1",		"nombre p1",
+													"apellido p1",	"correo p1",
+													new Date(),"0", "",  "inst1",
+													"descp p1", 	"bibliog p1",
+													"url p1");
+		
+		InfoBasicaUser p2 = new InfoBasicaProfesor(	"nick p2",		"nombre p2",
+													"apellido p2",	"correo p2",
+													new Date(),"0", "",	"inst1",
+													"descp p2", 	"bibliog p2",
+													"url p2" );
+		
+		InfoBasicaUser p3 = new InfoBasicaProfesor(	"nick p3",		"nombre p3",
+													"apellido p3",	"correo p3",
+													new Date(),"0", "",	"inst2",
+													"descp p3", 	"bibliog p3",
+													"url p3" );
+		try {
+			cu.altaUsuario(p1);
+			cu.altaUsuario(p2);
+			cu.altaUsuario(p3);
+		}catch(UsuarioDisponibilidadException e){
+			
+		}
+		
+		
+		String respuesta1 = cu.getNicknameUsuario( "correo p2" );
+		String respuesta2 = cu.getNicknameUsuario( "tiene que fallar" );
+		
+		assertTrue( respuesta1.equals("nick p2")  , "el nickname no coincide, problema");
+		assertTrue( respuesta2 == null  , "idintifico a un usuario con un correo q no exite");
+		
+		//preparacion de datos
+		cu.elimiarManjeador();
+		
+	}
+	
 
 }
