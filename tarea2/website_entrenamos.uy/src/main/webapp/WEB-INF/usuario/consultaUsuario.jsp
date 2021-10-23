@@ -285,7 +285,7 @@ String dateString = formato.format(informacionUusario.getFechaNac());
                                     <th scope="row">1</th>
                                     <td> <a href="consultaClase?clase=<%= infoCla.getNombre() %> "><%= infoCla.getNombre() %></a></td>
                                     <td><%= infoCla.getFecha() %></td>
-                                    <td><%= infoP.getNombre() %></td>
+                                    <td><a href="consultaActividad?actividad=<%= infoP.getNombre() %>" ><%= infoP.getNombre() %></a></td>
                                  </tr>
 									<% 
 									}}
@@ -327,14 +327,13 @@ String dateString = formato.format(informacionUusario.getFechaNac());
 									while( iterat3.hasNext() ) {
 										DtClase infoS = iterat3.next();
 									%>
-									
                                  <tr>
                                     <th scope="row">1</th>
                                     <td> <a href="consultaClase?clase=<%= infoS.getNombre() %>  "> <%= infoS.getNombre() %> </a></td>
                                     <td> <%= infoS.getFecha() %> </td>
-                                    <td> <%= infoS.getNomAct() %> </td>
+                                    <td><a href="consultaActividad?actividad=<%= infoS.getNomAct() %>" ><%= infoS.getNomAct() %></a></td>
                                  </tr>
-									<% } %>
+									<% }%>
                               </tbody>
                            </table>
                         </div>
