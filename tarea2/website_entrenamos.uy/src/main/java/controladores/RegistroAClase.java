@@ -14,10 +14,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import excepciones.ActividadDeportivaNoExisteException;
 import excepciones.ClaseLlenaException;
 import excepciones.ClaseYaCompradaException;
+import logica.DataActividad;
 import logica.DtClase;
 import logica.Fabrica;
+import logica.IctrlADeportivas;
 import logica.IctrlClases;
 import logica.IctrlUsuarios;
 
@@ -40,6 +43,7 @@ public class RegistroAClase extends HttpServlet {
     	Fabrica f = Fabrica.getInstance();
 		IctrlUsuarios ICU = f.getIctrlUsuarios();
 		IctrlClases ICL = f.getIctrlClases();
+		IctrlADeportivas IAD = f.getIctrlADeportivas();
 		boolean bien = false;
     	
 		if ((String)sesion.getAttribute("estado-sesion") == "logged-in") {
@@ -56,6 +60,13 @@ public class RegistroAClase extends HttpServlet {
         	String nom = req.getParameter("clase");
         	DtClase dc = ICL.darDtClase(nom);
     
+        	
+        	try {
+				DataActividad da = IAD.getDataActividad(dc.getNomAct());
+				req.setAttribute("costoClase", String.valueOf(da.getCosto()));
+			} catch (ActividadDeportivaNoExisteException a) {
+				req.setAttribute("costoClase", "error");
+			}
         	
         	Set<String> nomCups = ICU.mostrarCuponerasDisponibles((String) sesion.getAttribute("nickname-user"), dc.getNomAct());
         	
@@ -92,6 +103,7 @@ public class RegistroAClase extends HttpServlet {
     	Fabrica f = Fabrica.getInstance();
 		IctrlUsuarios ICU = f.getIctrlUsuarios();
 		IctrlClases ICL = f.getIctrlClases();
+		IctrlADeportivas IAD = f.getIctrlADeportivas();
 		boolean bien = false;
 		String nick = (String)sesion.getAttribute("nickname-user");
     	
@@ -110,6 +122,13 @@ public class RegistroAClase extends HttpServlet {
         	DtClase dc = ICL.darDtClase(nom);
         	
         	
+        	try {
+				DataActividad da = IAD.getDataActividad(dc.getNomAct());
+				req.setAttribute("costoClase", String.valueOf(da.getCosto()));
+			} catch (ActividadDeportivaNoExisteException a) {
+				req.setAttribute("costoClase", "error");
+			}
+        	
         	Set<String> nomCups = ICU.mostrarCuponerasDisponibles((String) sesion.getAttribute("nickname-user"), dc.getNomAct());
         	
         	req.setAttribute("nomC", nom);
@@ -126,8 +145,14 @@ public class RegistroAClase extends HttpServlet {
 			try {
 				Calendar fechaActual = Calendar.getInstance();  
 				Date Factual = fechaActual.getTime();
-				ICL.registrarSocioAClase(nick, dc.getNomAct(), nom, conCup, cup, Factual);
-				req.setAttribute("respuesta","se ha comprado la clase exitosamente");
+				
+				if (Factual.after(dc.getFecha())) {
+					req.setAttribute("respuesta","Error, la clase ya expiró");
+				} else {
+					ICL.registrarSocioAClase(nick, dc.getNomAct(), nom, conCup, cup, Factual);
+					req.setAttribute("respuesta","se ha comprado la clase exitosamente");
+				}
+	
 			} catch (ClaseYaCompradaException e) {
 				req.setAttribute("respuesta","Error, usted ya posee esta clase");
 			} catch (ClaseLlenaException r){
