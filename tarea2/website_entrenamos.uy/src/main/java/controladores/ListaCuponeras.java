@@ -5,7 +5,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,7 +15,6 @@ import javax.servlet.http.HttpSession;
 import excepciones.CuponeraNoExisteException;
 import logica.DataCuponera;
 import logica.Fabrica;
-import logica.IctrlClases;
 import logica.IctrlCuponeras;
 import logica.IctrlUsuarios;
 
@@ -38,7 +36,10 @@ public class ListaCuponeras extends HttpServlet
 		HttpSession sesion = req.getSession();
     	Fabrica f = Fabrica.getInstance();
 		IctrlUsuarios ICU = f.getIctrlUsuarios();
+<<<<<<< HEAD
 	
+=======
+>>>>>>> refs/heads/master
 		boolean bien = false;
     	
 		if ((String)sesion.getAttribute("estado-sesion") == "logged-in") {

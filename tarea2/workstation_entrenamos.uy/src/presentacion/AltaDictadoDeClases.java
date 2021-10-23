@@ -33,6 +33,10 @@ import javax.swing.event.InternalFrameEvent;
 import javax.swing.JFrame;
 
 public class AltaDictadoDeClases extends JInternalFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField NombreClase;
 	private JTextField Smin;
 	private JTextField Smax;

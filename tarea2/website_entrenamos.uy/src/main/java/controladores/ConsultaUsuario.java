@@ -1,9 +1,9 @@
 package controladores;
 
-import java.beans.Encoder;
 import java.io.IOException;
-import java.util.Base64;
 import java.util.Iterator;
+import java.util.Set;
+import java.util.List;
 import java.util.Vector;
 
 import javax.servlet.ServletException;
@@ -105,18 +105,18 @@ public class ConsultaUsuario extends HttpServlet {
 		*Declaro las variables de la informacion comun a ambos usuarios 
 		*/
 		InfoBasicaUser informacionUusario = null;
-		Vector<String> usuariosSeguidores = null;
-		Vector<String> usuariosSiguiendo = null;
+		List<String> usuariosSeguidores = null;
+		List<String> usuariosSiguiendo = null;
 		InformacionActividad informacioActividad = null;
 		
 
 		/**
 		*llamo a la funciones para traer la informacion
 		*/
-		informacionUusario = ICU.InformacionBasicaUsuario(user);
-		usuariosSeguidores = ICU.UsuariosSeguidores(user);
-		usuariosSiguiendo = ICU.UsuariosSiguiendo(user);
-		informacioActividad = ICU.InformacionActividad(informacionUusario.getNickname());
+		informacionUusario = ICU.informacionBasicaUsuario(user);
+		usuariosSeguidores = ICU.usuariosSeguidores(user);
+		usuariosSiguiendo = ICU.usuariosSiguiendo(user);
+		informacioActividad = ICU.informacionActividad(informacionUusario.getNickname());
 		
 		
 		if ( "denis".equals(user) ) {
@@ -131,13 +131,13 @@ public class ConsultaUsuario extends HttpServlet {
 		 * informacion dependiente del tipo de usuario
 		 * declaro las variables 
 		*/
-		Vector<DataCuponera> cuponerasSocio = null;
+		List<DataCuponera> cuponerasSocio = null;
 		InfoActividadProfe actDepsIngRech = null;
 		if(esSocio) {
-			cuponerasSocio = ICU.Cuponeras(user);			
+			cuponerasSocio = ICU.cuponeras(user);			
 		}
 		else {
-			actDepsIngRech = ICU.InformacionActDepEstadoIngRech(user);			
+			actDepsIngRech = ICU.informacionActDepEstadoIngRech(user);			
 		}
 		
 		
@@ -161,7 +161,7 @@ public class ConsultaUsuario extends HttpServlet {
 		if( informacioActividad.getClass() == InfoActividadSocio.class ) {
 			
 			InfoActividadSocio oo = (InfoActividadSocio) informacioActividad;
-			Vector<Object> vecGenerico = oo.obtenerVector();
+			List<Object> vecGenerico = oo.obtenerVector();
 			
 			Iterator<Object> iterat = vecGenerico.iterator();
 			while( iterat.hasNext() ) {
@@ -179,7 +179,7 @@ public class ConsultaUsuario extends HttpServlet {
 		*/
 		else {
 			InfoActividadProfe oo = (InfoActividadProfe) informacioActividad;
-			Vector<Object> vecGenerico = oo.obtenerVector();
+			List<Object> vecGenerico = oo.obtenerVector();
 			
 			Iterator<Object> iterat = vecGenerico.iterator();
 			while( iterat.hasNext() ) {
@@ -196,7 +196,7 @@ public class ConsultaUsuario extends HttpServlet {
 		*/
 		Vector<DtActividadesDeportivas> informacionProfesorActDepIngRech = new Vector<DtActividadesDeportivas>();
 		if( actDepsIngRech != null ) {
-			Vector<Object> vecGenerico2 = actDepsIngRech.obtenerVector();
+			List<Object> vecGenerico2 = actDepsIngRech.obtenerVector();
 			
 			Iterator<Object> iteratt = vecGenerico2.iterator();
 			while( iteratt.hasNext() ) {
@@ -246,7 +246,7 @@ public class ConsultaUsuario extends HttpServlet {
 		
 		
 		
-		Vector<String> usuariosEnSistema = ICU.UsuariosEnSistemaNickName();
+		List<String> usuariosEnSistema = ICU.usuariosEnSistemaNickName();
 
 		request.setAttribute("usuarioEnSistema", usuariosEnSistema);
 		request.setAttribute("esSocio", esSocio);

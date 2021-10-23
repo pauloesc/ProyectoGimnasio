@@ -40,6 +40,10 @@ import java.awt.event.MouseEvent;
 @SuppressWarnings({ "unused" })
 public class AceptaRechazaActividadDeportiva extends JInternalFrame {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// Controlador de Deportivas que se utilizará para las acciones del JFrame
     private IctrlIDeportivas controlIDeportivas;
     private IctrlADeportivas controlADeportivas;

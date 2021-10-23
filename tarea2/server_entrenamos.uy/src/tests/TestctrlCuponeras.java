@@ -27,10 +27,8 @@ import logica.IctrlCuponeras;
 import logica.IctrlIDeportivas;
 import logica.IctrlUsuarios;
 import logica.InfoBasicaSocio;
-import logica.InfoBasicaUser;
 import logica.ParActividad;
 import logica.Socio;
-import logica.Usuario;
 import logica.ctrlUsuarios;
 import logica.manejADeportivas;
 import logica.manejCuponeras;
@@ -785,7 +783,7 @@ void testregistrarCuponeraRepite() {
 		
 		assertEquals(resu,"ACU1", "La compra tiene la misma cuponera");
 		
-		ctrlUs.ElimiarManjeador();
+		ctrlUs.elimiarManjeador();
 	}
 	
 	@Test
@@ -847,7 +845,7 @@ void testregistrarCuponeraRepite() {
 				
 		
 		assertThrows(CuponeraCompradaException.class, () ->{ ctrlCuponeras.comprarCuponera(new SimpleDateFormat("dd/MM/yy").parse("15/09/21"), "ACU2","ab2");});
-		ctrlUs.ElimiarManjeador();
+		ctrlUs.elimiarManjeador();
 		
 	}
 	
@@ -918,7 +916,7 @@ void testregistrarCuponeraRepite() {
 		
 		assertThrows(CuponeraCompradaException.class, () ->{ ctrlCuponeras.comprarCuponera(new SimpleDateFormat("dd/MM/yy").parse("15/08/21"), "ACU3","ab3");});
 		
-		ctrlUs.ElimiarManjeador();
+		ctrlUs.elimiarManjeador();
 		
 	}
 	

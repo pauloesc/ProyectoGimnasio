@@ -11,10 +11,10 @@ public class manejCategorias {
 	
 	private static manejCategorias instance = null;
 	
-	private Map<String,Categoria> categorias;
+	private Map<String, Categoria> categorias;
 	
 	private manejCategorias() {
-		categorias = new HashMap<String,Categoria>();
+		categorias = new HashMap<String, Categoria>();
 	}
 	
 	public static manejCategorias getInstance() {
@@ -25,8 +25,8 @@ public class manejCategorias {
 	}
 	
 	public void agregarCategoria(String nom) {
-		Categoria c = new Categoria(nom);
-		categorias.put(nom, c);
+		Categoria categoria = new Categoria(nom);
+		categorias.put(nom, categoria);
 	}
 	
 	public Categoria findCategoria(String nom) {

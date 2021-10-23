@@ -2,6 +2,8 @@ package controladores;
 
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.Set;
+import java.util.List;
 import java.util.Vector;
 
 import javax.servlet.ServletException;
@@ -37,14 +39,14 @@ public class ListarUsuarios extends HttpServlet {
 		Fabrica f = Fabrica.getInstance();
 		IctrlUsuarios ICU = f.getIctrlUsuarios();
 		
-		Vector<String> usuariosEnSistema = ICU.UsuariosEnSistemaNickName();
+		List<String> usuariosEnSistema = ICU.usuariosEnSistemaNickName();
 		
 		Vector<InfoBasicaUser> infoCompletaUsuarios = new Vector<InfoBasicaUser>(); 
 		
 		Iterator<String> usuarios = usuariosEnSistema.iterator();
 		while( usuarios.hasNext() ) {
 			String user = usuarios.next();
-			infoCompletaUsuarios.add( ICU.InformacionBasicaUsuario(user) );
+			infoCompletaUsuarios.add( ICU.informacionBasicaUsuario(user) );
 		}
 		
 		request.setAttribute("usuarios", infoCompletaUsuarios);

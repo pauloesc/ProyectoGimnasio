@@ -61,23 +61,25 @@
 					
 					
 					
-					<form action="${pageContext.request.contextPath}/RegistroAClase" method="post">
+					<form action="${pageContext.request.contextPath}/RegistroAClase" method="post" >
 					
+				
 						<div class="container" style="margin-top: 14px; margin-bottom: 14px;">
 							<div class="row">
 								
 								
 								<div class="col-4">
 								
-									<% if (cups.size() == 0) { %>
-										<label><input type="checkbox" id="conCup" value="true" disabled> Cuponera</label><br>
+									<% if ((cups == null) || (cups.size() == 0)) { %>
+										<label><input type="checkbox" id="conCup" value="false" disabled> Cuponera</label><br>
 									<%} else { %>
 										<label><input type="checkbox" id="conCup" value="true"> Cuponera</label><br>
 									<%} %>
 								</div>
 								
 
-								<input type="hidden" id="clase" name="clase" value=<%=nomC%>>
+								<input type="hidden" id="clase" name="clase" value="<%= nomC %>" >
+						
 								
 								<div class="col-4">
 									<select id="cuponera" name="cuponera"

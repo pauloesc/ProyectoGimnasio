@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
@@ -13,7 +14,7 @@ import excepciones.ClaseLlenaException;
 import excepciones.ClaseYaCompradaException;
 
 public class Socio extends Usuario {
-	private Map<String,Compra> compCup;
+	private Map<String, Compra> compCup;
 	private Set<Registro> regs;
 	
 	public Socio(InfoBasicaSocio info) {
@@ -26,7 +27,7 @@ public class Socio extends Usuario {
 				info.getpass(),
 				info.getImagen());	
 		
-		compCup = new HashMap<String,Compra>();
+		compCup = new HashMap<String, Compra>();
 		regs = new HashSet<Registro>();
 	
 	}
@@ -36,42 +37,44 @@ public class Socio extends Usuario {
 		 Calendar fechaActual = Calendar.getInstance();  
 		 Date act = fechaActual.getTime();
 		
-		for(Compra c: compCup.values()) { 
-		   
-		    if ((c.clasesDisponibles(actDept) > 0) && (!c.comienzoCuponera().after(act)) && (!c.vencimientoCuponera().before(act))) {
-		    	res.add(c.getNombreCuponera());
-		    }
-
+		if (compCup.size() != 0) {
+			for (Compra c: compCup.values()) { 
+				
+			    if (c.clasesDisponibles(actDept) > 0 && !c.comienzoCuponera().after(act) && !c.vencimientoCuponera().before(act)) {
+			    	res.add(c.getNombreCuponera());
+			    }
+	
+			}
 		}
 		return res;
 	}
 	
-	public void comprarClase(String actDep, Clase c, Float precio, boolean cuponera, String nomCuponera, Date fechaReg) throws ClaseYaCompradaException, ClaseLlenaException {
+	public void comprarClase(String actDep, Clase clase, Float precio, boolean cuponera, String nomCuponera, Date fechaReg) throws ClaseYaCompradaException, ClaseLlenaException {
 		
-		for( Iterator<Registro> it = regs.iterator(); it.hasNext();) { 
-		   if (it.next().getNombreClase() == c.getNombre()) {
+		for ( Iterator<Registro> it = regs.iterator(); it.hasNext();){ 
+		   if (it.next().getNombreClase() == clase.getNombre()) {
 			   throw new ClaseYaCompradaException("Clase ya comprada");
 		   }
 		}
 	
-		if (c.getActualSocios() >= c.getMaxSocios()) {
+		if (clase.getActualSocios() >= clase.getMaxSocios()) {
 			throw new ClaseLlenaException("Clase llena");
 		}
 	
-		Registro r = new Registro(c,precio,fechaReg);
-		regs.add(r);
+		Registro registro = new Registro(clase, precio, fechaReg);
+		regs.add(registro);
 		
 		if (cuponera) {
 			Compra comp = compCup.get(nomCuponera);
 			comp.descontarClase(actDep);
-			r.aplicarDescuento(comp.getDescuento(),c);
+			registro.aplicarDescuento(comp.getDescuento(), clase);
 			
 		}
 		
 	}
 	
 	public boolean tieneCuponera(String nombre) {
-		Set <String> claves=compCup.keySet();
+		Set<String> claves = compCup.keySet();
 		return claves.contains(nombre);
 	}
 	
@@ -88,8 +91,8 @@ public class Socio extends Usuario {
 	
 	
 	@Override
-	public InfoBasicaUser Informacion() {	
-		InfoBasicaUser rt = new InfoBasicaSocio(
+	public InfoBasicaUser informacion() {	
+		InfoBasicaUser DtInfoBasicUser = new InfoBasicaSocio(
 			this.getNickname(),
 			this.getNombre(),
 			this.getApellido(),
@@ -98,28 +101,28 @@ public class Socio extends Usuario {
 			this.getContrasena(),
 			this.getImagen()
 			);
-			return rt;
+			return DtInfoBasicUser;
 	}
 	
 	@Override
-	public InformacionActividad InformacionActividad(String usuario) {
+	public InformacionActividad informacionActividad(String usuario) {
 		
-		InformacionActividad i = new InfoActividadSocio();		
-		for( Iterator<Registro> it = regs.iterator(); it.hasNext();) { 
+		InformacionActividad infoAct = new InfoActividadSocio();		
+		for ( Iterator<Registro> it = regs.iterator(); it.hasNext();) { 
 			Registro aux = it.next();
 			DtClase claseInfo = aux.ActividadSocio();
-			i.agregarInfo(claseInfo);
+			infoAct.agregarInfo(claseInfo);
 		}
 		
-		return i;
+		return infoAct;
 	}
 	
-	public Vector<DataCuponera> Cuponeras(){
+	public List<DataCuponera> cuponeras(){
 		
 		Vector<DataCuponera> vec = new Vector<DataCuponera>();
 		
-		 Map<String,Compra> map = compCup;
-		for (Map.Entry<String,Compra> entry : map.entrySet()) {
+		 Map<String, Compra> map = compCup;
+		for (Map.Entry<String, Compra> entry : map.entrySet()) {
 			Compra comp = entry.getValue();
 			DataCuponera info = comp.DarInformacionCuponera();
 			vec.add(info);

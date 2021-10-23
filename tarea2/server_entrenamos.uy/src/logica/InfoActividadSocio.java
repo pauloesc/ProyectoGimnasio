@@ -6,11 +6,11 @@ public class InfoActividadSocio extends InformacionActividad {
 	public InfoActividadSocio() {}
 	
 	
-	public boolean SonIguales( InfoBasicaSocio inf ) {
+	public boolean sonIguales( InfoBasicaSocio inf ) {
 
-		InfoBasicaUser aux = (InfoBasicaUser)inf;
+		InfoBasicaUser aux = (InfoBasicaUser) inf;
 		
-		if( (inf.SonIguales(aux))) {
+		if ( inf.sonIguales(aux)) {
 			return true;
 		}
 		else {

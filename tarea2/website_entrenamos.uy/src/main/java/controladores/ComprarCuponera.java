@@ -58,6 +58,7 @@ public class ComprarCuponera extends HttpServlet {
     			
     		}
     	}
+<<<<<<< HEAD
 		
 	
 		Date date = new Date();
@@ -74,8 +75,42 @@ public class ComprarCuponera extends HttpServlet {
 		}
 		
 		req.getRequestDispatcher("/WEB-INF/cuponeras/consultaCuponera.jsp").forward(req, resp);
+=======
+    	
+    	if (bien) {
+    		
+    		
+        	String nom = req.getParameter("clase");
+        	DtClase dc = ICL.darDtClase(nom);
+        	
+        	Set<String> nomCups = ICU.mostrarCuponerasDisponibles((String) sesion.getAttribute("nickname-user"), dc.getNomAct());
+        	
+        	req.setAttribute("nomC", nom);
+        	req.setAttribute("nomCups", nomCups);
+        	
+        	Calendar c = Calendar.getInstance();
+			c.setTime(dc.getFecha());
+			String ini = Integer.toString(c.get(Calendar.DATE)) + "/" + Integer.toString(c.get(Calendar.MONTH)+1) + "/" + Integer.toString(c.get(Calendar.YEAR)) + "  " +Integer.toString(dc.getHora()) + ":" + Integer.toString(dc.getMinuto());
+			req.setAttribute("fecha",ini);
+        	
+        	RequestDispatcher md = req.getRequestDispatcher("/WEB-INF/clases/registroAClase.jsp");
+			md.forward(req, resp);
+        	
+    	} else {
+    		resp.setContentType("text/html");
+			PrintWriter salida = resp.getWriter();
+			salida.println("<html><body>");
+			salida.println("error, primero debe loguearse con un socio");
+			salida.println("</body></html>");
+    	}
+    	
+    	
+    	
+    
+>>>>>>> refs/heads/master
 	}
 	
+<<<<<<< HEAD
 		
 	
 	
@@ -84,6 +119,68 @@ public class ComprarCuponera extends HttpServlet {
 			throws ServletException, IOException 
 	{
 		processRequest(request, response);
+=======
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		HttpSession sesion = req.getSession();
+    	Fabrica f = Fabrica.getInstance();
+		IctrlUsuarios ICU = f.getIctrlUsuarios();
+		IctrlClases ICL = f.getIctrlClases();
+		boolean bien = false;
+		String nick = (String)sesion.getAttribute("nickname-user");
+    	
+		if ((String)sesion.getAttribute("estado-sesion") == "logged-in") {
+    		try {
+    			bien = ICU.esSocio(nick);
+    		} catch (Exception e) {
+    			
+    		}
+    	}
+    	
+    	if (bien) {
+    		
+    		
+        	String nom = req.getParameter("clase");
+        	DtClase dc = ICL.darDtClase(nom);
+        	
+        	Set<String> nomCups = ICU.mostrarCuponerasDisponibles((String) sesion.getAttribute("nickname-user"), dc.getNomAct());
+        	
+        	req.setAttribute("nomC", nom);
+        	req.setAttribute("nomCups", nomCups);
+        	
+        	Calendar c = Calendar.getInstance();
+			c.setTime(dc.getFecha());
+			String ini = Integer.toString(c.get(Calendar.DATE)) + "/" + Integer.toString(c.get(Calendar.MONTH)+1) + "/" + Integer.toString(c.get(Calendar.YEAR)) + "  " +Integer.toString(dc.getHora()) + ":" + Integer.toString(dc.getMinuto());
+			req.setAttribute("fecha",ini);
+			
+			boolean conCup = (req.getParameter("conCup") == "true");
+			String cup = req.getParameter("cuponera");
+			
+			try {
+				Calendar fechaActual = Calendar.getInstance();  
+				Date Factual = fechaActual.getTime();
+				ICL.registrarSocioAClase(nick, dc.getNomAct(), nom, conCup, cup, Factual);
+				req.setAttribute("respuesta","se ha comprado la clase exitosamente");
+			} catch (ClaseYaCompradaException e) {
+				req.setAttribute("respuesta","Error, usted ya posee esta clase");
+			} catch (ClaseLlenaException r){
+				req.setAttribute("respuesta","Error, la clase está llena");
+			} catch (Exception ex){
+				req.setAttribute("respuesta","Error inesperado");
+			}
+ 		
+			
+			RequestDispatcher dispatcher =getServletContext().getRequestDispatcher("/WEB-INF/clases/registroAClase.jsp");
+			dispatcher.forward(req, resp);
+			
+        	
+    	} else {
+    		resp.setContentType("text/html");
+			PrintWriter salida = resp.getWriter();
+			salida.println("<html><body>");
+			salida.println("error, primero debe loguearse con un socio");
+			salida.println("</body></html>");
+    	}
+>>>>>>> refs/heads/master
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 

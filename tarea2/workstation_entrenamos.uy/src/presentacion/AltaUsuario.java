@@ -60,6 +60,7 @@ import java.awt.event.*;
 import java.awt.*;
 
 import javax.swing.DefaultComboBoxModel;
+import java.util.List;
 import java.util.Vector;
 
 import javax.swing.JOptionPane;
@@ -163,11 +164,12 @@ public class AltaUsuario extends JInternalFrame{
 				txtWeb.setEnabled(estado);
 				comboBox.setEditable(estado);
 				comboBox.setEnabled(estado);
-							
-				Vector<String> vector2;
-				vector2 = icu.InstitucionesEnSistema();
+
+				List<String> vector2;
+				vector2 = icu.institucionesEnSistema();
 				DefaultComboBoxModel<String> model;
-				model = new DefaultComboBoxModel<String>(vector2);
+				Vector<String> casteoVector2 = (Vector<String>) vector2;
+				model = new DefaultComboBoxModel<String>(casteoVector2);
 				model.setSelectedItem(null);
 				comboBox.setModel(model);
 				

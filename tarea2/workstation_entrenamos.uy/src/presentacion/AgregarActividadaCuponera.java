@@ -19,7 +19,6 @@ import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JTextField;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
@@ -35,7 +34,6 @@ public class AgregarActividadaCuponera extends JInternalFrame {
 
 	private IctrlCuponeras controlCuponeras;
 	private IctrlIDeportivas controlIDeportivas;
-	private IctrlADeportivas controlADeportivas;
 	private JComboBox<String> comboBoxCuponeras;
 	private JComboBox<DataInstitucion> comboBoxInstituciones;
 	private JComboBox<String> comboBoxDeportivas;
@@ -52,7 +50,6 @@ public class AgregarActividadaCuponera extends JInternalFrame {
 	
 		controlCuponeras=ICC;
 		controlIDeportivas=IID;
-		controlADeportivas=IAD;
 		
 		setTitle("Agregar Actividad Deportiva a Cuponera");
 		setClosable(true);

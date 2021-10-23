@@ -75,6 +75,7 @@ import java.awt.*;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import java.util.List;
 import java.util.Vector;
 
 import javax.swing.JOptionPane;
@@ -157,7 +158,7 @@ public class ConsultaUsuario extends JInternalFrame{
 				String nick = comboBoxNicks.getSelectedItem().toString();
 			
 				InfoBasicaUser i;
-				i = controlUsuario.InformacionBasicaUsuario(nick);
+				i = controlUsuario.informacionBasicaUsuario(nick);
 				
 				//cargo en la presentacion la info basica 
 				txtNombre.setText( i.getNombre() )  ;
@@ -194,13 +195,13 @@ public class ConsultaUsuario extends JInternalFrame{
 				
 				
 				
-				InformacionActividad infoActividad = controlUsuario.InformacionActividad(nick);
+				InformacionActividad infoActividad = controlUsuario.informacionActividad(nick);
 				
 				if( infoActividad.getClass() == InfoActividadSocio.class ) {
 					
 					InfoActividadSocio oo = (InfoActividadSocio) infoActividad;
-					Vector<DtClase> vec = new Vector<DtClase>();
-					Vector<Object> vecGenerico = oo.obtenerVector();
+					List<DtClase> vec = new Vector<DtClase>();
+					List<Object> vecGenerico = oo.obtenerVector();
 					
 					
 					Iterator<Object> iterat = vecGenerico.iterator();
@@ -225,8 +226,8 @@ public class ConsultaUsuario extends JInternalFrame{
 				//si es InfoActividadProfesor
 				else {
 					InfoActividadProfe oo = (InfoActividadProfe) infoActividad;
-					Vector<DtActividadesDeportivas> vec = new Vector<DtActividadesDeportivas>();
-					Vector<Object> vecGenerico = oo.obtenerVector();
+					List<DtActividadesDeportivas> vec = new Vector<DtActividadesDeportivas>();
+					List<Object> vecGenerico = oo.obtenerVector();
 					
 					
 					Iterator<Object> iterat = vecGenerico.iterator();
@@ -268,7 +269,7 @@ public class ConsultaUsuario extends JInternalFrame{
 			
 				DtActividadesDeportivas selected = list.getSelectedValue();
 				if (selected != null) {
-					Vector<DtClase> vec = selected.getClases();
+					List<DtClase> vec = selected.getClases();
 					DefaultListModel<DtClase> modell = new DefaultListModel<DtClase>();
 					Iterator<DtClase> i = vec.iterator();
 					while( i.hasNext() ) {
@@ -461,10 +462,11 @@ public class ConsultaUsuario extends JInternalFrame{
     
     public void CargarDatos() {
     	
-		Vector<String> vector;
-		vector = controlUsuario.UsuariosEnSistemaNickName();
+		List<String> vector;
+		vector = controlUsuario.usuariosEnSistemaNickName();
 		DefaultComboBoxModel<String> model;
-		model = new DefaultComboBoxModel<String>(vector);
+		Vector<String> casteoVector = (Vector<String>) vector;
+		model = new DefaultComboBoxModel<String>(casteoVector);
 		model.setSelectedItem(null);
 		comboBoxNicks.setModel(model);
 		

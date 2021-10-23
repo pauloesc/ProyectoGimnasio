@@ -20,6 +20,10 @@ import javax.swing.JFrame;
 
 public class AltaCategoria extends JInternalFrame {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private IctrlCategorias IC;
 	private JTextField textField;
 

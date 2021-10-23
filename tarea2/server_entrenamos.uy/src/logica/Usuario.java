@@ -2,7 +2,10 @@ package logica;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.Vector;
 
 public abstract class Usuario {
@@ -11,7 +14,7 @@ public abstract class Usuario {
 	private String apellido;
 	private String email;
 	private String contrasena;
-	private Date FNacimiento;
+	private Date fechaNacimiento;
 	private String imagen;
 	private Map<String, Usuario> seguidos;
 	private Map<String, Usuario> seguidores;
@@ -21,20 +24,18 @@ public abstract class Usuario {
 		return nickname;
 	}
 
-	public String getContrasena()
-	{
+	public String getContrasena(){
 		return contrasena;
 	}
 	
 	public Usuario(String nickname, String nombre, String apellido, String email, Date fNacimiento,
-			String contrasena, String imagen) 
-	{
+			String contrasena, String imagen){
 		this.nickname = nickname;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.email = email;
 		this.contrasena = contrasena;
-		FNacimiento = fNacimiento;
+		fechaNacimiento = fNacimiento;
 		this.imagen = imagen;
 		seguidos = new HashMap<String, Usuario>();
 		seguidores = new HashMap<String, Usuario>();
@@ -45,7 +46,7 @@ public abstract class Usuario {
 		this.nombre = info.getNombre();
 		this.apellido = info.getApellido();
 		this.email = info.getCorreo();
-		FNacimiento = info.getFechaNac();
+		fechaNacimiento = info.getFechaNac();
 		this.imagen = info.getImagen();
 		seguidos = new HashMap<String, Usuario>();
 		seguidores = new HashMap<String, Usuario>();
@@ -87,12 +88,12 @@ public abstract class Usuario {
 
 
 	public Date getFNacimiento() {
-		return FNacimiento;
+		return fechaNacimiento;
 	}
 
 
 	public void setFNacimiento(Date fNacimiento) {
-		FNacimiento = fNacimiento;
+		fechaNacimiento = fNacimiento;
 	}
 
 
@@ -100,53 +101,52 @@ public abstract class Usuario {
 		this.nickname = nickname;
 	}
 	
-	public void setContrasena(String contrasena)
-	{
+	public void setContrasena(String contrasena){
 		this.contrasena = contrasena;
 	}
 	
 	
-	public abstract InfoBasicaUser Informacion();
+	public abstract InfoBasicaUser informacion();
 	
-	public abstract InformacionActividad InformacionActividad(String usuario);
+	public abstract InformacionActividad informacionActividad(String usuario);
 	
-	public void teSigo(Usuario u) {
-		seguidores.put(u.getNickname(), u);
+	public void teSigo(Usuario usuario) {
+		seguidores.put(usuario.getNickname(), usuario);
 	}
 	
-	public void noTeSigo(Usuario u) {
-		seguidores.remove(u.getNickname());
+	public void noTeSigo(Usuario usuario) {
+		seguidores.remove(usuario.getNickname());
 	}
 	
-	public void seguir(Usuario u) {
-		seguidos.put(u.getNickname(), u);
-		u.teSigo(this);
+	public void seguir(Usuario usuario) {
+		seguidos.put(usuario.getNickname(), usuario);
+		usuario.teSigo(this);
 	}
 	
-	public void dejarDeSeguir(Usuario u) {
-		seguidos.remove(u.getNickname());
-		u.noTeSigo(this);
+	public void dejarDeSeguir(Usuario usuario) {
+		seguidos.remove(usuario.getNickname());
+		usuario.noTeSigo(this);
 	}
 	
-	public Vector<String> SeguidoresNickname(){
+	public List<String> seguidoresNickname(){
 		Vector<String> vec = new Vector<String>();
 		
 		Map<String, Usuario> map = seguidores;
 				for (Map.Entry<String, Usuario> entry : map.entrySet()) {
-					Usuario u = entry.getValue();
-					String nick = u.getNickname();
+					Usuario usuario = entry.getValue();
+					String nick = usuario.getNickname();
 					vec.add(nick);
 				}
 		return vec;
 	}
 	
-	public Vector<String> SeguidosNickname(){
+	public List<String> seguidosNickname(){
 		Vector<String> vec = new Vector<String>();
 		
 		Map<String, Usuario> map = seguidos;
 				for (Map.Entry<String, Usuario> entry : map.entrySet()) {
-					Usuario u = entry.getValue();
-					String nick = u.getNickname();
+					Usuario usuario = entry.getValue();
+					String nick = usuario.getNickname();
 					vec.add(nick);
 				}
 		return vec;

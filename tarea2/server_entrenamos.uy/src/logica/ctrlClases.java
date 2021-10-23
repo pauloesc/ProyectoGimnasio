@@ -21,77 +21,77 @@ public class ctrlClases implements IctrlClases {
 		this.manejador = manejClases.getInstance();
 	}
 	
-	public void crearClase(String nombre, Date Finicio, String prof, int Smin, int Smax, String url, Date FechaAlta, String nomAct, Integer ho, Integer mi) throws ClaseRepetidaException {
-		Clase c = manejador.findClase(nombre);
+	public void crearClase(String nombre, Date Finicio, String prof, int Smin, int Smax, String url, Date FechaAlta, String nomAct, Integer hora, Integer minuto, String img) throws ClaseRepetidaException {
+		Clase clase = manejador.findClase(nombre);
 		
-		if (c != null) {
+		if (clase != null) {
 			throw new ClaseRepetidaException("Nombre existente");
 		}
 	
-		c = new Clase(nombre, Finicio, prof, Smin, Smax, url, FechaAlta, ho, mi);
+		clase = new Clase(nombre, Finicio, prof, Smin, Smax, url, FechaAlta, hora, minuto, img);
 		
-		manejADeportivas MD = manejADeportivas.getinstance();
-		ActividadDeportiva ad = MD.buscarActividad(nomAct);
+		manejADeportivas ManejadorDep = manejADeportivas.getinstance();
+		ActividadDeportiva actividadDeportiva = ManejadorDep.buscarActividad(nomAct);
 		
-		ad.addClase(c);
-		manejador.agregarClase(c);
+		actividadDeportiva.addClase(clase);
+		manejador.agregarClase(clase);
 	}
 	
 	public Set<String> mostrarClasesDeActividadDeportiva(String nomAct) throws ClaseNoExisteException {
-		manejADeportivas md = manejADeportivas.getinstance();
-		ActividadDeportiva ad = md.buscarActividad(nomAct);
-		if (!ad.darNombreClases().isEmpty())
-			return ad.darNombreClases();
+		manejADeportivas manejadorActDep = manejADeportivas.getinstance();
+		ActividadDeportiva actividadDep = manejadorActDep.buscarActividad(nomAct);
+		if (!actividadDep.darNombreClases().isEmpty())
+			return actividadDep.darNombreClases();
 		else 
 			throw new ClaseNoExisteException("No existen Clases en el sistema para la Actividad Deportiva seleccionada.");
 	}
 	
 	public DtClase darDtClase(String nomClas) {
-		Clase c = manejador.findClase(nomClas);
-		if (c!=null) {
-			return c.darDtClase();
+		Clase clase = manejador.findClase(nomClas);
+		if (clase!=null) {
+			return clase.darDtClase();
 		} else {
 			return null;
 		}
 	}
 	
 	public void registrarSocioAClase(String nick, String actDep, String clas, boolean cuponera, String nomCuponera, Date fechaReg) throws ClaseYaCompradaException, ClaseLlenaException {
-		manejUsuarios  mu = manejUsuarios.getInstance();
-		manejClases mc = manejClases.getInstance();
+		manejUsuarios  manejadorUsuario = manejUsuarios.getInstance();
+		manejClases manejadorClases = manejClases.getInstance();
 		manejADeportivas mad = manejADeportivas.getinstance();
 		
-		Socio usr = (Socio)mu.findUsuario(nick);
-		Clase c = mc.findClase(clas);
+		Socio usr = (Socio) manejadorUsuario.findUsuario(nick);
+		Clase clase = manejadorClases.findClase(clas);
 		float precio = mad.getPrecio(actDep);
 		
-		usr.comprarClase(actDep, c, precio, cuponera, nomCuponera, fechaReg);
-		c.sumarMiembroAClase();
+		usr.comprarClase(actDep, clase, precio, cuponera, nomCuponera, fechaReg);
+		clase.sumarMiembroAClase();
 
 	}
 	
 	public void cargarDatosClases() {
 		//fechas de inicio
-		Date f1 = null, f2 = null, f3 = null, f4 = null, f5 = null, f6 = null, f7 = null, f8 = null, f9 = null, f10 = null, f11 = null, f12 = null, f13 = null, f14 = null, f15 = null, f16 = null, f17 = null;
+		Date fecha1 = null, fecha2 = null, fecha3 = null, fecha4 = null, fecha5 = null, fecha6 = null, fecha7 = null, fecha8 = null, fecha9 = null, fecha10 = null, fecha11 = null, fecha12 = null, fecha13 = null, fecha14 = null, fecha15 = null, fecha16 = null, fecha17 = null;
 		//fechas de registro
 		Date fr1 = null, fr2 = null, fr3 = null, fr4 = null, fr5 = null, fr6 = null, fr7 = null, fr8 = null, fr9 = null, fr10 = null, fr11 = null, fr12 = null, fr13 = null, fr14 = null, fr15 = null, fr16 = null, fr17 = null;
 		try {
-			f1 = new SimpleDateFormat("dd/MM/yy").parse("15/04/21");
-			f2 = new SimpleDateFormat("dd/MM/yy").parse("01/05/21");
-			f3 = new SimpleDateFormat("dd/MM/yy").parse("01/06/21");
-			f4 = new SimpleDateFormat("dd/MM/yy").parse("10/06/21");
-			f5 = new SimpleDateFormat("dd/MM/yy").parse("10/07/21");
-			f6 = new SimpleDateFormat("dd/MM/yy").parse("10/08/21");
-			f7 = new SimpleDateFormat("dd/MM/yy").parse("15/08/21");
-			f8 = new SimpleDateFormat("dd/MM/yy").parse("31/08/21");
-			f9 = new SimpleDateFormat("dd/MM/yy").parse("30/09/21");
-			f10 = new SimpleDateFormat("dd/MM/yy").parse("01/09/21");
-			f11 = new SimpleDateFormat("dd/MM/yy").parse("30/09/21");
-			f12 = new SimpleDateFormat("dd/MM/yy").parse("15/10/21");
-			f13 = new SimpleDateFormat("dd/MM/yy").parse("25/09/21");
-			f14 = new SimpleDateFormat("dd/MM/yy").parse("25/10/21");
-			f15 = new SimpleDateFormat("dd/MM/yy").parse("25/11/21");
-			f16 = new SimpleDateFormat("dd/MM/yy").parse("01/09/21");
-			f17 = new SimpleDateFormat("dd/MM/yy").parse("01/10/21");
+			fecha1 = new SimpleDateFormat("dd/MM/yy").parse("15/04/21");
+			fecha2 = new SimpleDateFormat("dd/MM/yy").parse("01/05/21");
+			fecha3 = new SimpleDateFormat("dd/MM/yy").parse("01/06/21");
+			fecha4 = new SimpleDateFormat("dd/MM/yy").parse("10/06/21");
+			fecha5 = new SimpleDateFormat("dd/MM/yy").parse("10/07/21");
+			fecha6 = new SimpleDateFormat("dd/MM/yy").parse("10/08/21");
+			fecha7 = new SimpleDateFormat("dd/MM/yy").parse("15/08/21");
+			fecha8 = new SimpleDateFormat("dd/MM/yy").parse("31/08/21");
+			fecha9 = new SimpleDateFormat("dd/MM/yy").parse("30/09/21");
+			fecha10 = new SimpleDateFormat("dd/MM/yy").parse("01/09/21");
+			fecha11 = new SimpleDateFormat("dd/MM/yy").parse("30/09/21");
+			fecha12 = new SimpleDateFormat("dd/MM/yy").parse("15/10/21");
+			fecha13 = new SimpleDateFormat("dd/MM/yy").parse("25/09/21");
+			fecha14 = new SimpleDateFormat("dd/MM/yy").parse("05/11/21");
+			fecha15 = new SimpleDateFormat("dd/MM/yy").parse("25/11/21");
+			fecha16 = new SimpleDateFormat("dd/MM/yy").parse("03/11/21");
+			fecha17 = new SimpleDateFormat("dd/MM/yy").parse("01/11/21");
 			
 			fr1 = new SimpleDateFormat("dd/MM/yy").parse("31/03/21");
 			fr2 = new SimpleDateFormat("dd/MM/yy").parse("31/03/21");
@@ -111,23 +111,23 @@ public class ctrlClases implements IctrlClases {
 			fr16 = new SimpleDateFormat("dd/MM/yy").parse("31/07/21");
 			fr17 = new SimpleDateFormat("dd/MM/yy").parse("31/07/21");
 			
-			crearClase("Calistenia",f1,"viktor",1,5,"https://www.musculos.com/Calistenia",fr1,"Aparatos y pesas",15,30);
-			crearClase("Peso libre",f2,"viktor",1,5,"https://www.musculos.com/pesolibre",fr2,"Aparatos y pesas",17,00);
-			crearClase("Aparatos",f3,"viktor",1,7,"https://www.musculos.com/aparatos",fr3,"Aparatos y pesas",18,00);
-			crearClase("Voleibol",f4,"denis",10,21,"https://telon.com.uy/voley",fr4,"Voleibol",19,00);
-			crearClase("Braza",f5,"Nelson",2,6,"https://telon.com.uy/natacionB",fr5,"Voleibol",20,00);
-			crearClase("Mariposa",f6,"Nelson",2,6,"https://telon.com.uy/natacionM",fr6,"Voleibol",17,45);
-			crearClase("Aeróbica niños",f7,"clazar",5,10,"https://www.inatural.com/aeroni",fr7,"Aeróbica",16,30);
-			crearClase("Aeróbico adulto mayor",f8,"clazar",5,12,"https://www.inatural.com/aeroam",fr8,"Aeróbica",19,30);
-			crearClase("Aeróbica",f9,"clazar",5,20,"https://www.inatural.com/aerogral",fr9,"Aeróbica",20,00);
-			crearClase("Boxeo I",f10,"TheBoss",1,4,"https://www.musculos.com/boxeo1",fr10,"Kickboxing",19,30);
-			crearClase("Boxeo II",f11,"TheBoss",2,2,"https://www.musculos.com/boxeo2",fr11,"Kickboxing",17,00);
-			crearClase("Músculos para boxeo",f12,"viktor",1,5,"https://www.musculos.com/muscbox",fr12,"Kickboxing",20,00);
-			crearClase("100 M",f13,"lale",3,10,"https://telon.com.uy/100m",fr13,"Atletismo",19,00);
-			crearClase("200 M",f14,"lale",3,10,"https://telon.com.uy/200m",fr14,"Atletismo",18,30);
-			crearClase("Posta",f15,"lale",8,16,"https://telon.com.uy/posta",fr15,"Atletismo",17,45);
-			crearClase("Basquet I",f16,"aldo",10,15,"https://telon.com.uy/bball1",fr16,"Basquetbol",21,00);
-			crearClase("Basquet II",f17,"aldo",10,10,"https://telon.com.uy/bball2",fr17,"Basquetbol",21,00);
+			crearClase("Calistenia", fecha1, "viktor", 1, 5, "https://www.musculos.com/Calistenia", fr1, "Aparatos y pesas", 15, 30, "Calistenia.jpeg");
+			crearClase("Peso libre", fecha2, "viktor", 1, 5, "https://www.musculos.com/pesolibre", fr2, "Aparatos y pesas", 17, 00, "");
+			crearClase("Aparatos", fecha3, "viktor", 1, 7, "https://www.musculos.com/aparatos", fr3, "Aparatos y pesas", 18, 00, "");
+			crearClase("Voleibol", fecha4, "denis", 10, 21, "https://telon.com.uy/voley", fr4, "Voleibol", 19, 00, "Voleibol.jpeg");
+			crearClase("Braza", fecha5, "Nelson", 2, 6, "https://telon.com.uy/natacionB", fr5, "Voleibol", 20, 00, "Braza.jpg");
+			crearClase("Mariposa", fecha6, "Nelson", 2, 6, "https://telon.com.uy/natacionM", fr6, "Voleibol", 17, 45, "Mariposa.jpeg");
+			crearClase("Aeróbica niños", fecha7, "clazar", 5, 10, "https://www.inatural.com/aeroni", fr7, "Aeróbica", 16, 30, "");
+			crearClase("Aeróbico adulto mayor", fecha8, "clazar", 5, 12, "https://www.inatural.com/aeroam", fr8, "Aeróbica", 19, 30, "");
+			crearClase("Aeróbica", fecha9, "clazar", 5, 20, "https://www.inatural.com/aerogral", fr9, "Aeróbica", 20, 00, "");
+			crearClase("Boxeo I", fecha10, "TheBoss", 1, 4, "https://www.musculos.com/boxeo1", fr10, "Kickboxing", 19, 30, "Boxeo I.jpg");
+			crearClase("Boxeo II", fecha11, "TheBoss", 2, 2, "https://www.musculos.com/boxeo2", fr11, "Kickboxing", 17, 00, "Boxeo II.jpg");
+			crearClase("Músculos para boxeo", fecha12, "viktor", 1, 5, "https://www.musculos.com/muscbox", fr12, "Kickboxing", 20, 00, "Músculos para boxeo.jpg");
+			crearClase("100 M", fecha13, "lale", 3, 10, "https://telon.com.uy/100m", fr13, "Atletismo", 19, 00, "100 M.jpg");
+			crearClase("200 M", fecha14, "lale", 3, 10, "https://telon.com.uy/200m", fr14, "Atletismo", 18, 30, "200 M.jpg");
+			crearClase("Posta", fecha15, "lale", 8, 16, "https://telon.com.uy/posta", fr15, "Atletismo", 17, 45, "Posta.jpg");
+			crearClase("Basquet I", fecha16, "aldo", 10, 15, "https://telon.com.uy/bball1", fr16, "Basquetbol", 21, 00, "");
+			crearClase("Basquet II", fecha17, "aldo", 10, 10, "https://telon.com.uy/bball2", fr17, "Basquetbol", 21, 00, "");
 			
 		} catch (Exception e) {
 			// errores al ingresar las fechas o al registrar clases
@@ -136,28 +136,28 @@ public class ctrlClases implements IctrlClases {
 	}
 	
 	public void cargarRegistroAClases() {
-		Date f1 = null, f2 = null, f3 = null, f4 = null, f5 = null, f6 = null, f7 = null, f8 = null, f9 = null, f10 = null, f11 = null, f12 = null, f13 = null, f14 = null, f15 = null, f16 = null, f17 = null;
+		Date fecha1 = null, fecha2 = null, fecha3 = null, fecha4 = null, fecha5 = null, fecha6 = null, fecha7 = null, fecha8 = null, fecha9 = null, fecha10 = null, fecha11 = null, fecha12 = null, fecha13 = null, fecha14 = null, fecha15 = null, fecha16 = null, fecha17 = null;
 		Date f18 = null, f19 = null, f20 = null, f21 = null, f22 = null, f23 = null, f24 = null, f25 = null, f26 = null, f27 = null, f28 = null, f29 = null, f30 = null, f31 = null, f32 = null, f33 = null, f34 = null;
 		Date f35 = null, f36 = null, f37 = null, f38 = null, f39 = null, f40 = null, f41 = null, f42 = null, f43 = null, f44 = null, f45 = null, f46 = null;
 		
 		try {
-			f1 = new SimpleDateFormat("dd/MM/yy").parse("09/04/21");
-			f2 = new SimpleDateFormat("dd/MM/yy").parse("10/04/21");
-			f3 = new SimpleDateFormat("dd/MM/yy").parse("12/04/21");
-			f4 = new SimpleDateFormat("dd/MM/yy").parse("15/04/21");
-			f5 = new SimpleDateFormat("dd/MM/yy").parse("20/04/21");
-			f6 = new SimpleDateFormat("dd/MM/yy").parse("25/04/21");
-			f7 = new SimpleDateFormat("dd/MM/yy").parse("28/04/21");
-			f8 = new SimpleDateFormat("dd/MM/yy").parse("16/04/21");
-			f9 = new SimpleDateFormat("dd/MM/yy").parse("15/05/21");
-			f10 = new SimpleDateFormat("dd/MM/yy").parse("20/05/21");
-			f11 = new SimpleDateFormat("dd/MM/yy").parse("05/05/21");
-			f12 = new SimpleDateFormat("dd/MM/yy").parse("10/05/21");
-			f13 = new SimpleDateFormat("dd/MM/yy").parse("15/05/21");
-			f14 = new SimpleDateFormat("dd/MM/yy").parse("20/05/21");
-			f15 = new SimpleDateFormat("dd/MM/yy").parse("08/06/21");
-			f16 = new SimpleDateFormat("dd/MM/yy").parse("13/06/21");
-			f17 = new SimpleDateFormat("dd/MM/yy").parse("25/06/21");
+			fecha1 = new SimpleDateFormat("dd/MM/yy").parse("09/04/21");
+			fecha2 = new SimpleDateFormat("dd/MM/yy").parse("10/04/21");
+			fecha3 = new SimpleDateFormat("dd/MM/yy").parse("12/04/21");
+			fecha4 = new SimpleDateFormat("dd/MM/yy").parse("15/04/21");
+			fecha5 = new SimpleDateFormat("dd/MM/yy").parse("20/04/21");
+			fecha6 = new SimpleDateFormat("dd/MM/yy").parse("25/04/21");
+			fecha7 = new SimpleDateFormat("dd/MM/yy").parse("28/04/21");
+			fecha8 = new SimpleDateFormat("dd/MM/yy").parse("16/04/21");
+			fecha9 = new SimpleDateFormat("dd/MM/yy").parse("15/05/21");
+			fecha10 = new SimpleDateFormat("dd/MM/yy").parse("20/05/21");
+			fecha11 = new SimpleDateFormat("dd/MM/yy").parse("05/05/21");
+			fecha12 = new SimpleDateFormat("dd/MM/yy").parse("10/05/21");
+			fecha13 = new SimpleDateFormat("dd/MM/yy").parse("15/05/21");
+			fecha14 = new SimpleDateFormat("dd/MM/yy").parse("20/05/21");
+			fecha15 = new SimpleDateFormat("dd/MM/yy").parse("08/06/21");
+			fecha16 = new SimpleDateFormat("dd/MM/yy").parse("13/06/21");
+			fecha17 = new SimpleDateFormat("dd/MM/yy").parse("25/06/21");
 			f18 = new SimpleDateFormat("dd/MM/yy").parse("05/07/21");
 			f19 = new SimpleDateFormat("dd/MM/yy").parse("11/07/21");
 			f20 = new SimpleDateFormat("dd/MM/yy").parse("18/07/21");
@@ -189,56 +189,57 @@ public class ctrlClases implements IctrlClases {
 			f46 = new SimpleDateFormat("dd/MM/yy").parse("02/09/21");
 			
 			
-			registrarSocioAClase("caro","Aparatos y pesas","Calistenia",false,"",f1);
-			registrarSocioAClase("sergiop","Aparatos y pesas","Calistenia",false,"",f2);
-			registrarSocioAClase("andy","Aparatos y pesas","Calistenia",false,"",f3);
-			registrarSocioAClase("andy","Aparatos y pesas","Peso libre",false,"",f4);
-			registrarSocioAClase("tonyp","Aparatos y pesas","Peso libre",false,"",f5);
-			registrarSocioAClase("caro","Aparatos y pesas","Peso libre",false,"",f6);
-			registrarSocioAClase("m1k4","Aparatos y pesas","Peso libre",false,"",f7);
-			registrarSocioAClase("charly","Aparatos y pesas","Aparatos",false,"",f8);
-			registrarSocioAClase("caro","Aparatos y pesas","Aparatos",false,"",f9);
-			registrarSocioAClase("m1k4","Aparatos y pesas","Aparatos",false,"",f10);
-			registrarSocioAClase("Emi71","Voleibol","Voleibol",false,"",f11);
-			registrarSocioAClase("euge","Voleibol","Voleibol",false,"",f12);
-			registrarSocioAClase("sergiop","Voleibol","Voleibol",false,"",f13);
-			registrarSocioAClase("tonyp","Voleibol","Voleibol",false,"",f14);
-			registrarSocioAClase("guille","Voleibol","Braza",false,"",f15);
-			registrarSocioAClase("euge","Voleibol","Braza",false,"",f16);
-			registrarSocioAClase("m1k4","Voleibol","Braza",false,"",f17);
-			registrarSocioAClase("charly","Voleibol","Mariposa",false,"",f18);
-			registrarSocioAClase("sergiop","Voleibol","Mariposa",false,"",f19);
-			registrarSocioAClase("andy","Voleibol","Mariposa",false,"",f20);
-			registrarSocioAClase("m1k4","Aeróbica","Aeróbica niños",true,"Gimnasia",f21);
-			registrarSocioAClase("Emi71","Aeróbica","Aeróbico adulto mayor",false,"",f22);
-			registrarSocioAClase("guille","Aeróbica","Aeróbico adulto mayor",false,"",f23);
-			registrarSocioAClase("andy","Aeróbica","Aeróbico adulto mayor",false,"",f24);
-			registrarSocioAClase("caro","Aeróbica","Aeróbica",true,"Gimnasia",f25);
-			registrarSocioAClase("euge","Aeróbica","Aeróbica",false,"",f26);
-			registrarSocioAClase("andy","Kickboxing","Boxeo I",true,"Músculos",f27);
-			registrarSocioAClase("tonyp","Kickboxing","Boxeo I",false,"",f28);
-			registrarSocioAClase("m1k4","Kickboxing","Boxeo I",false,"",f29);
-			registrarSocioAClase("sergiop","Kickboxing","Boxeo II",true,"Músculos",f30);
-			registrarSocioAClase("guille","Kickboxing","Boxeo II",false,"",f31);
-			registrarSocioAClase("Emi71","Kickboxing","Músculos para boxeo",false,"",f32);
-			registrarSocioAClase("caro","Kickboxing","Músculos para boxeo",false,"",f33);
-			registrarSocioAClase("euge","Kickboxing","Músculos para boxeo",false,"",f34);
-			registrarSocioAClase("sergiop","Kickboxing","Músculos para boxeo",false,"",f35);
-			registrarSocioAClase("guille","Atletismo","100 M",false,"",f36);
-			registrarSocioAClase("charly","Atletismo","100 M",false,"",f37);
-			registrarSocioAClase("Emi71","Atletismo","200 M",false,"",f38);
-			registrarSocioAClase("charly","Atletismo","200 M",false,"",f39);
-			registrarSocioAClase("caro","Atletismo","Posta",false,"",f40);
-			registrarSocioAClase("sergiop","Basquetbol","Basquet I",false,"",f41);
-			registrarSocioAClase("Emi71","Basquetbol","Basquet I",false,"",f42);
-			registrarSocioAClase("tonyp","Basquetbol","Basquet I",false,"",f43);
-			registrarSocioAClase("andy","Basquetbol","Basquet II",false,"",f44);
-			registrarSocioAClase("tonyp","Basquetbol","Basquet II",false,"",f45);
-			registrarSocioAClase("caro","Basquetbol","Basquet II",false,"",f46);
+			registrarSocioAClase("caro", "Aparatos y pesas", "Calistenia", false, "", fecha1);
+			registrarSocioAClase("sergiop", "Aparatos y pesas", "Calistenia", false, "", fecha2);
+			registrarSocioAClase("andy", "Aparatos y pesas", "Calistenia", false, "", fecha3);
+			registrarSocioAClase("andy", "Aparatos y pesas", "Peso libre", false, "", fecha4);
+			registrarSocioAClase("tonyp", "Aparatos y pesas", "Peso libre", false, "", fecha5);
+			registrarSocioAClase("caro", "Aparatos y pesas", "Peso libre", false, "", fecha6);
+			registrarSocioAClase("m1k4", "Aparatos y pesas", "Peso libre", false, "", fecha7);
+			registrarSocioAClase("charly", "Aparatos y pesas", "Aparatos", false, "", fecha8);
+			registrarSocioAClase("caro", "Aparatos y pesas", "Aparatos", false, "", fecha9);
+			registrarSocioAClase("m1k4", "Aparatos y pesas", "Aparatos", false, "", fecha10);
+			registrarSocioAClase("Emi71", "Voleibol", "Voleibol", false, "", fecha11);
+			registrarSocioAClase("euge", "Voleibol", "Voleibol", false, "", fecha12);
+			registrarSocioAClase("sergiop", "Voleibol", "Voleibol", false, "", fecha13);
+			registrarSocioAClase("tonyp", "Voleibol", "Voleibol", false, "", fecha14);
+			registrarSocioAClase("guille", "Voleibol", "Braza", false, "", fecha15);
+			registrarSocioAClase("euge", "Voleibol", "Braza", false, "", fecha16);
+			registrarSocioAClase("m1k4", "Voleibol", "Braza", false, "", fecha17);
+			registrarSocioAClase("charly", "Voleibol", "Mariposa", false, "", f18);
+			registrarSocioAClase("sergiop", "Voleibol", "Mariposa", false, "", f19);
+			registrarSocioAClase("andy", "Voleibol", "Mariposa", false, "", f20);
+			registrarSocioAClase("m1k4", "Aeróbica", "Aeróbica niños", true, "Gimnasia", f21);
+			registrarSocioAClase("Emi71", "Aeróbica", "Aeróbico adulto mayor", false, "", f22);
+			registrarSocioAClase("guille", "Aeróbica", "Aeróbico adulto mayor", false, "", f23);
+			registrarSocioAClase("andy", "Aeróbica", "Aeróbico adulto mayor", false, "", f24);
+			registrarSocioAClase("caro", "Aeróbica", "Aeróbica", true, "Gimnasia", f25);
+			registrarSocioAClase("euge", "Aeróbica", "Aeróbica", false, "", f26);
+			registrarSocioAClase("andy", "Kickboxing", "Boxeo I", true, "Músculos", f27);
+			registrarSocioAClase("tonyp", "Kickboxing", "Boxeo I", false, "", f28);
+			registrarSocioAClase("m1k4", "Kickboxing", "Boxeo I", false, "", f29);
+			registrarSocioAClase("sergiop", "Kickboxing", "Boxeo II", true, "Músculos", f30);
+			registrarSocioAClase("guille", "Kickboxing", "Boxeo II", false, "", f31);
+			registrarSocioAClase("Emi71", "Kickboxing", "Músculos para boxeo", false, "", f32);
+			registrarSocioAClase("caro", "Kickboxing", "Músculos para boxeo", false, "", f33);
+			registrarSocioAClase("euge", "Kickboxing", "Músculos para boxeo", false, "", f34);
+			registrarSocioAClase("sergiop", "Kickboxing", "Músculos para boxeo", false, "", f35);
+			registrarSocioAClase("guille", "Atletismo", "100 M", false, "", f36);
+			registrarSocioAClase("charly", "Atletismo", "100 M", false, "", f37);
+			registrarSocioAClase("Emi71", "Atletismo", "200 M", false, "", f38);
+			registrarSocioAClase("charly", "Atletismo", "200 M", false, "", f39);
+			registrarSocioAClase("caro", "Atletismo", "Posta", false, "", f40);
+			registrarSocioAClase("sergiop", "Basquetbol", "Basquet I", false, "", f41);
+			registrarSocioAClase("Emi71", "Basquetbol", "Basquet I", false, "", f42);
+			registrarSocioAClase("tonyp", "Basquetbol", "Basquet I", false, "", f43);
+			registrarSocioAClase("andy", "Basquetbol", "Basquet II", false, "", f44);
+			registrarSocioAClase("tonyp", "Basquetbol", "Basquet II", false, "", f45);
+			registrarSocioAClase("caro", "Basquetbol", "Basquet II", false, "", f46);
 			
 			
-		} catch (Exception e) {
-			
+		}
+		catch (Exception e){
+			//nada
 		}
 	
 	}

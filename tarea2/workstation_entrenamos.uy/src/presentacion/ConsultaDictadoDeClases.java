@@ -34,6 +34,10 @@ import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
 public class ConsultaDictadoDeClases extends JInternalFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField NombreClase;
 	private JTextField Smin;
 	private JTextField Smax;
