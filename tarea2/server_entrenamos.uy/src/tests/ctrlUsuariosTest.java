@@ -16,7 +16,9 @@ import org.junit.jupiter.api.Test;
 
 import excepciones.InstitucionDeportivaRepetidaException;
 import excepciones.UsuarioDisponibilidadException;
+import excepciones.UsuarioInexistenteException;
 import logica.DataCuponera;
+import logica.InfoActividadProfe;
 import logica.InfoBasicaProfesor;
 import logica.InfoBasicaSocio;
 import logica.InfoBasicaUser;
@@ -965,6 +967,103 @@ class ctrlUsuariosTest {
 		List<DataCuponera> listaCuponerasDelUsuario = cu.cuponeras("nick s1");
 		assertTrue( listaCuponerasDelUsuario.size() == 0, "problema, se supone que no tiene cuponeras" );
 	
+		cu.elimiarManjeador();
+	}
+	
+	
+	@Test
+	void testInformacionActDepEstadoIngRech() {
+		
+		//preparacion de datos
+		ctrlUsuarios cu = new ctrlUsuarios();
+		ctrlIDeportivas cid = new ctrlIDeportivas();
+		
+		//creo las instituciones
+		try {
+		cid.altaInstitucion("inst1", "desc1", "url1");
+		}
+		catch( InstitucionDeportivaRepetidaException e) {
+			
+		}
+		
+		//creo profes
+		InfoBasicaProfesor p1 = new InfoBasicaProfesor(	"nick p1",		"nombre p1",
+													"apellido p1",	"correo p1",
+													new Date(),"0", "",	"inst1",
+													"descp p1", 	"bibliog p1",
+													"url p1" );
+
+		try {
+			cu.altaUsuario(p1);
+		}catch(UsuarioDisponibilidadException e){
+		}
+	
+		InfoActividadProfe info =  cu.informacionActDepEstadoIngRech("nick p1");
+		List<Object> infoLista =   info.obtenerVector();
+		assertTrue( infoLista.size() == 0 , "problema, no hay actividades ingresadas"  );
+		
+		cu.elimiarManjeador();
+	}
+	
+	
+	@Test
+	void testEsSocio() {
+		
+		//preparacion de datos
+		ctrlUsuarios cu = new ctrlUsuarios();
+		
+		ctrlIDeportivas cid = new ctrlIDeportivas();
+		
+		//creo las instituciones
+		try {
+		cid.altaInstitucion("inst1", "desc1", "url1");
+		}
+		catch( InstitucionDeportivaRepetidaException e) {
+			
+		}
+		
+		//creo profes
+		InfoBasicaProfesor p1 = new InfoBasicaProfesor(	"nick p1",		"nombre p1",
+													"apellido p1",	"correo p1",
+													new Date(),"0", "",	"inst1",
+													"descp p1", 	"bibliog p1",
+													"url p1" );
+
+		InfoBasicaSocio s2 = new InfoBasicaSocio(	"nick s2",		"nombre s2",
+													"apellido s2",	"correo s2",
+													new Date(),"0" , "");
+		
+		try {
+			cu.altaUsuario(p1);
+			cu.altaUsuario(s2);
+
+		}catch(UsuarioDisponibilidadException e){
+		}
+	
+		
+		boolean esSocio = false;
+		try {
+			esSocio = cu.esSocio("nick s2");
+		} catch (UsuarioInexistenteException e) {
+			
+		} 
+		assertTrue( esSocio, "problema, nick s2 es un socio" );
+		
+		//testeo otro caso
+		//con un profesor
+		esSocio = true;
+		try {
+			esSocio = cu.esSocio("nick p1");
+		} catch (UsuarioInexistenteException e) {
+			
+		} 
+		assertTrue( esSocio == false, "problema, nick p1 es un profe" );
+		
+		
+		//testeo cuando no exite el usuario con el nickname
+		final ctrlUsuarios cuCopia = cu;
+		assertThrows( UsuarioInexistenteException.class, ()-> {cuCopia.esSocio("cualquierCosa");} );
+		
 		cu.elimiarManjeador();
 	}
 }
