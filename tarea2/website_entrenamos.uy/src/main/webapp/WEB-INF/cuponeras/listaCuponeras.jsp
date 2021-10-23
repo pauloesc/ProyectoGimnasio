@@ -39,9 +39,7 @@
 								<div class="d-md-flex justify-content-md-end">
 									<div class="d-flex flex-column">
 									<a href="consultaCuponera?cuponera=<%= cupsar[i-1].getNombre()%>" class="btn btn-primary">Detalles</a>
-									<% if (socio){%>
-									<a href=# class="btn btn-primary mt-2" data-toggle="modal" data-target="#comprar">Comprar</a>
-									<%}%>
+									
 									</div>
 								</div>
 							</div>
@@ -63,9 +61,7 @@
 								<div class="d-md-flex justify-content-md-end">
 									<div class="d-flex flex-column">
 									<a href="consultaCuponera?cuponera=<%= cupsar[i-1].getNombre()%>" class="btn btn-primary">Detalles</a>
-									<% if (socio){%>
-									<a href=# class="btn btn-primary mt-2" data-toggle="modal" data-target="#comprar">Comprar</a>
-									<%}%>
+									
 									</div>
 								</div>
 							</div>
@@ -87,9 +83,7 @@
 								<div class="d-md-flex justify-content-md-end">
 									<div class="d-flex flex-column">
 									<a href="consultaCuponera?cuponera=<%= cupsar[i-1].getNombre()%>" class="btn btn-primary">Detalles</a>
-									<% if (socio){%>
-									<a href=# class="btn btn-primary mt-2" data-toggle="modal" data-target="#comprar">Comprar</a>
-									<%}%>
+									
 									</div>
 								</div>
 							</div>
@@ -125,44 +119,7 @@
 			</div>
 		</div>
 
-		<!-- Modal -->
-<div class="modal fade" id="comprar" tabindex="-1" role="dialog" aria-labelledby="comprarLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <form >
-                <div class="modal-header">
-                    <h5 class="modal-title" id="comprarLabel">Confirmar la compra de la cuponera</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-              <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="button" data-dismiss="modal" class="btn btn-primary" data-toggle="modal" data-target="#exito">Confirmar</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-		<div class="modal fade" id="exito" tabindex="-1" role="dialog" aria-labelledby="exitoLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <form >
-                <div class="modal-header">
-                    <h5 class="modal-title text-success" id="comprarLabel">La compra fue exitosa</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-              <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-		
-		
+			
 		
 		
 	</main>
