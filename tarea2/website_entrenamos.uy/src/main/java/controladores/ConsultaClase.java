@@ -3,6 +3,7 @@ package controladores;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,10 +11,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import excepciones.ActividadDeportivaNoExisteException;
+import logica.DataActividad;
 import logica.DtClase;
 import logica.Fabrica;
+import logica.IctrlADeportivas;
 import logica.IctrlClases;
+import logica.IctrlUsuarios;
 
 /**
  * Servlet implementation class ConsultaClase
@@ -31,9 +37,44 @@ public class ConsultaClase extends HttpServlet {
 	private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Fabrica f = Fabrica.getInstance();
 		IctrlClases ICL = f.getIctrlClases();
+		IctrlADeportivas IAD = f.getIctrlADeportivas();
 		
+		
+		HttpSession sesion = req.getSession();
+		IctrlUsuarios ICU = f.getIctrlUsuarios();
+		boolean bien = false;
+    	
+		if ((String)sesion.getAttribute("estado-sesion") == "logged-in") {
+    		try {
+    			bien = ICU.esSocio((String)sesion.getAttribute("nickname-user"));
+    		} catch (Exception e) {
+    			
+    		}
+    	}
+    	
+		
+		
+
 		DtClase res = ICL.darDtClase((String)req.getParameter("clase"));
+		
 		if (res != null) {
+			
+			try {
+				DataActividad da = IAD.getDataActividad(res.getNomAct());
+				req.setAttribute("costoClase", String.valueOf(da.getCosto()));
+			} catch (ActividadDeportivaNoExisteException a) {
+				req.setAttribute("costoClase", "error");
+			}
+			
+			Calendar fechaActual = Calendar.getInstance();  
+			Date Factual = fechaActual.getTime();
+			
+			boolean vigente = !Factual.after(res.getFecha());
+			
+			
+			if (bien && vigente) req.setAttribute("socio", "T");
+			else req.setAttribute("socio", "F");
+			
 			req.setAttribute("nom", res.getNombre());
 			req.setAttribute("nomP",res.getNomProfesor());
 			req.setAttribute("act",res.getNomAct());

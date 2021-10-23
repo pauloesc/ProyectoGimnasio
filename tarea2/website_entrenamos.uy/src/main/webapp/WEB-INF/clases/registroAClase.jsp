@@ -28,6 +28,7 @@
 <%
 	String nomC = (String)request.getAttribute("nomC");
 	String fecha = (String)request.getAttribute("fecha");
+	String costo = (String)request.getAttribute("costoClase");
 	Set<String> cups = (Set<String>)request.getAttribute("nomCups");
 
 %>
@@ -47,6 +48,7 @@
 							<div class="col-md-8">
 								<div class="card-body">
 									<h5 class="card-title"><a href="consultaClase?clase=<%= nomC%>"><%= nomC %></a> </h5>
+									<p class="card-text"> <p class="card-text m-0"><a>Costo: <%= costo%></a></p> 
 									<p class="card-text"> <p class="card-text m-0"><a>Fecha: <%= fecha%></a></p> 
 									
 									

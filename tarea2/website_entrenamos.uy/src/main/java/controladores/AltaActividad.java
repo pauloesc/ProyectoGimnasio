@@ -96,6 +96,9 @@ public class AltaActividad extends HttpServlet {
 			usr = null;
 		}
 		if (usr instanceof InfoBasicaProfesor) {
+			InfoBasicaProfesor ibp = (InfoBasicaProfesor) usr;
+			
+			request.setAttribute("institucion", ibp.getInstitucion());
 			request.setAttribute("estadoAlta", null);
 			request.getRequestDispatcher("/WEB-INF/actividades/altaActividadDeportiva.jsp").forward(request, response);
 		}

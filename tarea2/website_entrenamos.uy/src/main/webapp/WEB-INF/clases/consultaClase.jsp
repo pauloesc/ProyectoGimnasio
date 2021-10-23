@@ -15,6 +15,8 @@
 	String min = (String)request.getAttribute("min");
 	String url = (String)request.getAttribute("url");
 	String img = (String)request.getAttribute("img");
+	String socio = (String)request.getAttribute("socio");
+	String costo = (String)request.getAttribute("costoClase");
 
 %>
 </head>
@@ -37,8 +39,10 @@
 								<div class="card-body">
 									<h5 class="card-title"><%= nom %></h5>
 									<p class="card-text"> <p class="card-text m-0"><a href="consultaActividad?actividad=<%= act%>">Ver información de la actividad deportiva</a></p> 
-									<p class="card-text"> <p class="card-text m-0"><a href="registroAClase?clase=<%= nom%>">Registrarme a la clase</a></p> 
 									
+									<% if (socio == "T") {%>
+									<p class="card-text"> <p class="card-text m-0"><a href="registroAClase?clase=<%= nom%>">Registrarme a la clase</a></p> 
+									<%}%>
 									
 									
 								</div>
@@ -57,6 +61,7 @@
 									<p class="card-text"> <p class="card-text m-0"><a href="consultaUsuario?usuarioNick=<%= nomP %> ">Dictada por: <%= nomP %></a></p> 
 									
 									<p class="card-text"> <p class="card-text m-0">Fecha y hora: <%= fecha %></p> 
+									<p class="card-text"> <p class="card-text m-0">Costo: <%= "$" + costo %></p>
 									<p class="card-text"> <p class="card-text m-0">URL:: <%= url %></p> 
 								</div>
 							</div>

@@ -23,6 +23,7 @@
 	catch(Exception ex) {
 		usr = null;
 	}
+	
 %>
 
 <body>
@@ -60,12 +61,7 @@
 						</div>
 					</div>
 				</div>
-				<% if (usr instanceof InfoBasicaSocio) { %>
-				<div class="offset-3 col-8 mb-3">
-					<a  class="btn btn-primary" href="listaCuponeras?n=<%=1 %>">Comprar Cuponera</a>
-					<a class="btn btn-primary" href="registroDictadoDeClases.html">Registrarse a Clase</a>
-				</div>
-				<% } %>
+			
 				<ul class="nav nav-tabs" id="myTab" role="tablist">
 					<li class="nav-item" role="presentation"><a
 						class="nav-link active" id="detalles-tab" data-toggle="tab"
