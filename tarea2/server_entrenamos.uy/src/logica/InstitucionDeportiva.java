@@ -76,6 +76,19 @@ public class InstitucionDeportiva {
 		return res;
     }
 	
+	public Set<String> darNombresActividadesDeportivastodas() {
+		Set<String> res = new HashSet<String>();    	
+		for ( Iterator<ActividadDeportiva> iter = this.actividadesDeportivasInst.iterator(); iter.hasNext();) { 
+			ActividadDeportiva act = iter.next();
+		    String nomact = act.getNombre();
+		    res.add(nomact);
+		}
+		return res;
+    }
+	
+	
+	
+	
 	public InformacionActividad informacionProfesor(String usuario) {
 		
 		InformacionActividad infoac = new InfoActividadProfe( this.nombre, this.descripcion, this.url );

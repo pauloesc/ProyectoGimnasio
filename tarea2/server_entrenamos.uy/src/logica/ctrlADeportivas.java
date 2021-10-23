@@ -88,7 +88,7 @@ public class ctrlADeportivas implements IctrlADeportivas{
 			
 			for (int i = 0; i < instituciones.length; i++) {
                 institucion = instituciones[i];
-                Set<String> acts = institucion.darNombresActividadesDeportivas();
+                Set<String> acts = institucion.darNombresActividadesDeportivastodas();
                 if ( acts.contains(actividad.getNombre()) ) {
                 	inst = institucion.getNombre();
                 }
