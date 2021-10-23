@@ -66,13 +66,13 @@
   					</div>
   						 <div class="d-md-flex justify-content-md-end col-12 mb-3">
   							<% if (socio){%>
-  							<a href=# class="btn btn-primary" data-toggle="modal" data-target="#comprar2">Comprar Cuponera</a>	
+  							<button class="btn btn-primary" data-toggle="modal" data-target="#comprar2">Comprar Cuponera</button>	
   							<%}%>
   						<!-- Modal -->
 <div class="modal fade" id="comprar2" tabindex="-1" role="dialog" aria-labelledby="comprar2Label" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form method="post" > 
+            <form method="post" action="consultaCuponera?cuponera=<%= dtcuponera.getNombre()%>"> 
                 <div class="modal-header">
                     <h5 class="modal-title" id="comprarLabel">Confirmar la compra de la cuponera</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -80,8 +80,9 @@
                     </button>
                 </div>
               <div class="modal-footer">
+              		<input type="hidden" id="comprahab" name="comprahab" value="true" />
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="button" name="submit" type="submit" class="btn btn-primary" data-dismiss="modal">Confirmar</button>
+                    <button name="comprahab" type="submit" class="btn btn-primary" >Confirmar</button>
                 </div>
             </form>
         </div>

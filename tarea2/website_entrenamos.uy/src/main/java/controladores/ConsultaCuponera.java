@@ -60,8 +60,14 @@ public class ConsultaCuponera extends HttpServlet
 		req.setAttribute("socio", bien);
 		
 		Date date = new Date();
-		Boolean comprahab1=true;
+		Boolean comprahab1=false;
 		
+		try {
+			String comp = req.getParameter("comprahab");
+			comprahab1= Boolean.parseBoolean(comp);
+		}catch (Exception e) {
+			comprahab1=false;
+		}
 		
 		
 		if (bien && comprahab1) {
