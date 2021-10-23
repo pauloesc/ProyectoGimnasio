@@ -4,6 +4,7 @@
 package logica;
 
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Set;
@@ -129,7 +130,7 @@ public class ctrlClases implements IctrlClases {
 			crearClase("Basquet I", fecha16, "aldo", 10, 15, "https://telon.com.uy/bball1", fr16, "Basquetbol", 21, 00, "");
 			crearClase("Basquet II", fecha17, "aldo", 10, 10, "https://telon.com.uy/bball2", fr17, "Basquetbol", 21, 00, "");
 			
-		} catch (Exception e) {
+		} catch ( ClaseRepetidaException | ParseException e) {
 			// errores al ingresar las fechas o al registrar clases
 		}
 	
@@ -238,7 +239,7 @@ public class ctrlClases implements IctrlClases {
 			
 			
 		}
-		catch (Exception e){
+		catch (ClaseYaCompradaException | ClaseLlenaException | ParseException  e){
 			//nada
 		}
 	

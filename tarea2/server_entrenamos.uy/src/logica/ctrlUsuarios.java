@@ -5,6 +5,7 @@ package logica;
 
 import java.util.Set;
 import java.util.Vector;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
@@ -158,7 +159,7 @@ public class ctrlUsuarios implements IctrlUsuarios {
 			manejador.crearUsuario(socio8);
 			manejador.crearUsuario(socio9);
 	
-		} catch(Exception e) {
+		} catch(UsuarioDisponibilidadException | ParseException e) {
 			//nada
 		}
 		
@@ -264,7 +265,7 @@ public class ctrlUsuarios implements IctrlUsuarios {
 			seguirUsuario("aldo", "prisc");
 			seguirUsuario("aldo", "dagost");
 		
-		} catch (Exception e) {
+		} catch ( UsuarioDisponibilidadException | ParseException e) {
 			System.out.print("mal!!!");
 		}
 	}

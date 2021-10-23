@@ -272,7 +272,7 @@ public class ctrlADeportivas implements IctrlADeportivas{
 		Set<DataActividad> results = new HashSet<DataActividad>();
 		
 		for (ActividadDeportiva act : actsdeps) {
-			if ( (act.getEstado() == EstadoActi.ACEPTADA) && (act.getNombre().toLowerCase().contains(query) ||
+			if ( act.getEstado() == EstadoActi.ACEPTADA && (act.getNombre().toLowerCase().contains(query) ||
 					act.getDescripcion().toLowerCase().contains(query) )) {
 				try {
 					results.add( getDataActividad(act.getNombre()) );
