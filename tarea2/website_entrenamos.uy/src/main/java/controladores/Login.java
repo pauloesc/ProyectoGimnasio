@@ -69,7 +69,6 @@ public class Login extends HttpServlet {
 	public static InfoBasicaUser getUsuarioLogueado(HttpServletRequest request)
 		throws UsuarioInexistenteException
 	{
-		String nick = (String) request.getSession().getAttribute("nickname-user");
 		InfoBasicaUser usr = Fabrica.getInstance().getIctrlUsuarios().informacionBasicaUsuario(
 				(String) request.getSession().getAttribute("nickname-user")
 			);

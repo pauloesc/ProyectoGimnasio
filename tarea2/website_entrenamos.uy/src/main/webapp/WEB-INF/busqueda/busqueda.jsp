@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="logica.DataCuponera"%>
+<%@page import="java.util.Set"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,19 +9,54 @@
 <body>
 	<jsp:include page="/WEB-INF/template/header.jsp" />
 	<!-- Begin page content -->
+	<%
+	Set<DataCuponera> cuponeras = (Set<DataCuponera>) request.getAttribute("resultCup");
+	String consulta = (String) request.getAttribute("consulta");
+	%>
 	<main role="main" class="container">
 		<div class="row my-4">
 			<div class="col-12 col-md-9 my-4">
-				<div class="list-group">
-  					<a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+				<h5>Resultados de la búsqueda - Cuponeras:</h5>
+				<%
+				if (cuponeras.size() == 0)
+					{
+				%>
+				<br>
+				<div class="alert alert-warning" role="alert">
+  				No se encontrarón cuponeras que coincidan con <%=consulta %>
+				</div>
+				<br>
+				<% 
+					} else {
+				%>
+				<div class="list-group list-group-flush">
+				<%
+					for (DataCuponera cup : cuponeras)
+					{
+				%>
+					<!-- item -->
+  					<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
     					<div class="d-flex w-100 justify-content-between">
-      						<h5 class="mb-1">List group item heading</h5>
-      						<small>3 days ago</small>
+      						<h5 class="mb-1"><%=cup.getNombre() %></h5>
+      						<small><%=cup.getCosto() %></small>
     					</div>
-    				<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-    				<small>Donec id elit non mi porta.</small>
- 					 </a>
-                </div>
+    					<p class="mb-1"><%=cup.getDescripcion() %></p>
+    					<%
+    					for ( String ncat : cup.getCategorias() )
+    					{
+    					%>
+    						<span class="badge badge-info"><%=ncat%></span>
+    					<%
+    					}
+    					%>
+ 						</a>
+ 				 <% 
+					 }
+				 %>
+         </div>
+         <% 
+					}
+				 %>
 			</div>
 			<div id="filtros" class="col-6 col-md-3 my-4">
 			 <div class="form-inline">

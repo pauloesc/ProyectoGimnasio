@@ -31,4 +31,5 @@ public interface IctrlCuponeras {
 	public abstract Set<String> getCuponerasInstitucion(String inst);
 	public abstract Set<String> getCuponerasAD(String act); 
 	
+	public abstract Set<DataCuponera> buscarCuponeras(String consulta);
 }

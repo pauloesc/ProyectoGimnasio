@@ -212,6 +212,11 @@ public class ctrlCuponeras implements IctrlCuponeras {
 		e.printStackTrace();
 	}
 	}
+	
+	public Set<DataCuponera> buscarCuponeras(String consulta)
+	{
+		return manejCuponeras.getinstance().buscarCuponeras(consulta);
+	}
 }
 	
 	
