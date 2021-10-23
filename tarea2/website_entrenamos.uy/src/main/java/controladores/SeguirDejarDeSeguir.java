@@ -48,20 +48,8 @@ public class SeguirDejarDeSeguir extends HttpServlet {
 			return;
 		}
 		
-		boolean siguendo=false;
-		List<String> usuariosSiguiendo = ICU.usuariosSiguiendo( nickEnSesion  );
-		Iterator<String> itt = usuariosSiguiendo.iterator();
-		
-		//compruebo si ya estoy siguendo a ese usuario 
-		while( itt.hasNext() & !siguendo ) {
-			
-			//nick de un usuario al que ya sigo
-			String auxNickname = itt.next();
-			
-			if ( auxNickname.equals(usuario) ) {
-				siguendo=true;
-			}
-		}
+		boolean siguendo = false;
+		siguendo = ICU.usuarioSigueAUsuario(nickEnSesion, usuario);
 		
 		if(siguendo){
 			ICU.dejarDeSeguirUsuario(nickEnSesion,usuario);
@@ -70,7 +58,7 @@ public class SeguirDejarDeSeguir extends HttpServlet {
 			ICU.seguirUsuario(nickEnSesion,usuario);
 		}
 		
-		String url = "/website_entrenamos.uy/ConsultaUsuario?usuarioNick=" + nickEnSesion;
+		String url = "/website_entrenamos.uy/ConsultaUsuario?usuarioNick=" + usuario;
 		response.sendRedirect(url);
 		
 	}
