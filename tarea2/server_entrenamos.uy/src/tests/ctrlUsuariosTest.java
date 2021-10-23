@@ -16,6 +16,9 @@ import org.junit.jupiter.api.Test;
 
 import excepciones.InstitucionDeportivaRepetidaException;
 import excepciones.UsuarioDisponibilidadException;
+import excepciones.UsuarioInexistenteException;
+import logica.DataCuponera;
+import logica.InfoActividadProfe;
 import logica.InfoBasicaProfesor;
 import logica.InfoBasicaSocio;
 import logica.InfoBasicaUser;
@@ -216,7 +219,28 @@ class ctrlUsuariosTest {
 		assertThrows( UsuarioDisponibilidadException.class, ()-> {cuCopia.altaUsuario(p1_2);} );
 		assertThrows( UsuarioDisponibilidadException.class, ()-> {cuCopia.altaUsuario(s1_1);} );
 		
+		//tambien testeo la funcion
+		//autenticarUsario(String nickname, String email, String contrasena)
+		//datos a utilizar
+		/**
+		 * "nick s1","nombre s1","apellido s1",	"correo s1",new Date(),"0" , "");
+		 */
+				
+		String respuestaNicknameValido = cu.autenticarUsario("nick s1", null, "0");
+		String respuestaNicknameInvalido = cu.autenticarUsario("nic", null, "0");
 		
+		String respuestaCorreoValido = cu.autenticarUsario(null, "correo s1", "0");
+		String respuestaCorreoInvalido = cu.autenticarUsario(null, "corr", "0");
+		
+		String respuestaFallida1 = cu.autenticarUsario("nick s1", null, "1");
+		String respuestaFallida2 = cu.autenticarUsario(null, "correo s1", "1");
+		
+	    assertTrue( respuestaNicknameValido == null , "la autenticacion no fue exitosa, problema");
+	    assertTrue( respuestaNicknameInvalido != null , "la autenticacion fue exitosa, problema");
+	    
+	    assertTrue( respuestaCorreoValido == null , "la autenticacion no fue exitosa, problema");
+	    assertTrue( respuestaCorreoInvalido != null , "la autenticacion fue exitosa, problema");
+
 		
 		manejIDeportivas.elimiarManjeador();
 		cu.elimiarManjeador();
@@ -865,5 +889,181 @@ class ctrlUsuariosTest {
 		cu=null;
 		
 	}
+	
+	@Test
+	void getNicknameUsuario() {
+		
+		
+		//preparacion de datos
+		ctrlUsuarios cu = new ctrlUsuarios();
+		ctrlIDeportivas cid = new ctrlIDeportivas();
+		
+		//creo las instituciones
+		try {
+		cid.altaInstitucion("inst1", "desc1", "url1");
+		cid.altaInstitucion("inst2", "desc2", "url2");
+		cid.altaInstitucion("inst3", "desc3", "url3");
+		}
+		catch( InstitucionDeportivaRepetidaException e) {
+			
+		}
+		
+		//creo profes y los asocio a inst1
+		InfoBasicaUser p1 = new InfoBasicaProfesor(	"nick p1",		"nombre p1",
+													"apellido p1",	"correo p1",
+													new Date(),"0", "",  "inst1",
+													"descp p1", 	"bibliog p1",
+													"url p1");
+		
+		InfoBasicaUser p2 = new InfoBasicaProfesor(	"nick p2",		"nombre p2",
+													"apellido p2",	"correo p2",
+													new Date(),"0", "",	"inst1",
+													"descp p2", 	"bibliog p2",
+													"url p2" );
+		
+		InfoBasicaUser p3 = new InfoBasicaProfesor(	"nick p3",		"nombre p3",
+													"apellido p3",	"correo p3",
+													new Date(),"0", "",	"inst2",
+													"descp p3", 	"bibliog p3",
+													"url p3" );
+		try {
+			cu.altaUsuario(p1);
+			cu.altaUsuario(p2);
+			cu.altaUsuario(p3);
+		}catch(UsuarioDisponibilidadException e){
+			
+		}
+		
+		
+		String respuesta1 = cu.getNicknameUsuario( "correo p2" );
+		String respuesta2 = cu.getNicknameUsuario( "tiene que fallar" );
+		
+		assertTrue( respuesta1.equals("nick p2")  , "el nickname no coincide, problema");
+		assertTrue( respuesta2 == null  , "idintifico a un usuario con un correo q no exite");
+		
+		//preparacion de datos
+		cu.elimiarManjeador();
+		
+	}
+	
+	
+	@Test
+	void cuponeras() {
+	
+		//preparacion de datos
+		ctrlUsuarios cu = new ctrlUsuarios();
 
+		//creo socios
+		InfoBasicaSocio s1 = new InfoBasicaSocio(	"nick s1",		"nombre s1",
+													"apellido s1",	"correo s1",
+													new Date(),"0" , "");
+		
+		try {
+			cu.altaUsuario(s1);	
+		}catch(UsuarioDisponibilidadException e){
+			
+		}
+		
+		List<DataCuponera> listaCuponerasDelUsuario = cu.cuponeras("nick s1");
+		assertTrue( listaCuponerasDelUsuario.size() == 0, "problema, se supone que no tiene cuponeras" );
+	
+		cu.elimiarManjeador();
+	}
+	
+	
+	@Test
+	void testInformacionActDepEstadoIngRech() {
+		
+		//preparacion de datos
+		ctrlUsuarios cu = new ctrlUsuarios();
+		ctrlIDeportivas cid = new ctrlIDeportivas();
+		
+		//creo las instituciones
+		try {
+		cid.altaInstitucion("inst1", "desc1", "url1");
+		}
+		catch( InstitucionDeportivaRepetidaException e) {
+			
+		}
+		
+		//creo profes
+		InfoBasicaProfesor p1 = new InfoBasicaProfesor(	"nick p1",		"nombre p1",
+													"apellido p1",	"correo p1",
+													new Date(),"0", "",	"inst1",
+													"descp p1", 	"bibliog p1",
+													"url p1" );
+
+		try {
+			cu.altaUsuario(p1);
+		}catch(UsuarioDisponibilidadException e){
+		}
+	
+		InfoActividadProfe info =  cu.informacionActDepEstadoIngRech("nick p1");
+		List<Object> infoLista =   info.obtenerVector();
+		assertTrue( infoLista.size() == 0 , "problema, no hay actividades ingresadas"  );
+		
+		cu.elimiarManjeador();
+	}
+	
+	
+	@Test
+	void testEsSocio() {
+		
+		//preparacion de datos
+		ctrlUsuarios cu = new ctrlUsuarios();
+		
+		ctrlIDeportivas cid = new ctrlIDeportivas();
+		
+		//creo las instituciones
+		try {
+		cid.altaInstitucion("inst1", "desc1", "url1");
+		}
+		catch( InstitucionDeportivaRepetidaException e) {
+			
+		}
+		
+		//creo profes
+		InfoBasicaProfesor p1 = new InfoBasicaProfesor(	"nick p1",		"nombre p1",
+													"apellido p1",	"correo p1",
+													new Date(),"0", "",	"inst1",
+													"descp p1", 	"bibliog p1",
+													"url p1" );
+
+		InfoBasicaSocio s2 = new InfoBasicaSocio(	"nick s2",		"nombre s2",
+													"apellido s2",	"correo s2",
+													new Date(),"0" , "");
+		
+		try {
+			cu.altaUsuario(p1);
+			cu.altaUsuario(s2);
+
+		}catch(UsuarioDisponibilidadException e){
+		}
+	
+		
+		boolean esSocio = false;
+		try {
+			esSocio = cu.esSocio("nick s2");
+		} catch (UsuarioInexistenteException e) {
+			
+		} 
+		assertTrue( esSocio, "problema, nick s2 es un socio" );
+		
+		//testeo otro caso
+		//con un profesor
+		esSocio = true;
+		try {
+			esSocio = cu.esSocio("nick p1");
+		} catch (UsuarioInexistenteException e) {
+			
+		} 
+		assertTrue( esSocio == false, "problema, nick p1 es un profe" );
+		
+		
+		//testeo cuando no exite el usuario con el nickname
+		final ctrlUsuarios cuCopia = cu;
+		assertThrows( UsuarioInexistenteException.class, ()-> {cuCopia.esSocio("cualquierCosa");} );
+		
+		cu.elimiarManjeador();
+	}
 }
