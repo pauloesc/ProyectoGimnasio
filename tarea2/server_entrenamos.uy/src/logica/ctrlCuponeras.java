@@ -73,7 +73,7 @@ public class ctrlCuponeras implements IctrlCuponeras {
 		Set<String> instituciones = manejadorInstituciones.darNombreInstituciones();
 		Set<String> instdata= new HashSet<String>();
 		
-		for (Iterator<String> iter=instituciones.iterator();iter.hasNext();){
+		for (Iterator<String> iter=instituciones.iterator(); iter.hasNext(); ) {
 			String inst=iter.next();
 			Set<String> resu= getCuponerasInstitucion(inst); 
 			if (resu.contains(nomCup)) {
