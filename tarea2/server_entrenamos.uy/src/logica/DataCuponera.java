@@ -20,6 +20,7 @@ public class DataCuponera {
 	
 	private Set<ParActividad> clases;
 	private Set<String> categorias;
+	private Set<String> instituciones=null;
 	
 	
 	 public DataCuponera() {
@@ -124,5 +125,13 @@ public class DataCuponera {
 
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
+	}
+
+	public Set<String> getInstituciones() {
+		return instituciones;
+	}
+
+	public void setInstituciones(Set<String> instituciones) {
+		this.instituciones = instituciones;
 	}
 }

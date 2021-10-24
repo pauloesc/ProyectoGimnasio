@@ -120,6 +120,7 @@ public class Cuponera {
 		float costo= this.getCostoCuponera();
 		Set<String> cat= this.getListaCategorias();
 		String imagen=this.getImagen();
+		
 		DataCuponera resu= new DataCuponera(nombre, descripcion, fechaIni, fechaFin, descuento, fechaAlta, costo, grupo, cat, imagen);
 		return resu;
 	}
