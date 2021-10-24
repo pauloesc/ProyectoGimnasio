@@ -255,18 +255,18 @@ boolean siguiendoUsuario = (boolean) request.getAttribute("siguiendoUsuario");
                               </thead>
                               <tbody>
                               <% 
-                              
+                              	int i=1;
 	          					Iterator<DtActividadesDeportivas> iterat2 = informacionProfesor.iterator();
 	        					while( iterat2.hasNext() ) {
 	        						DtActividadesDeportivas infoP = iterat2.next();
                               %>
                                  <tr>
-                                    <th scope="row"></th>
+                                    <th scope="row"><%=i%></th>
                                     <td> <a href="consultaActividad?actividad=<%= infoP.getNombre() %>  "><%= infoP.getNombre() %></a></td>
                                     <td><%= infoP.getDescripcion() %></td>
                                  </tr>
                                  
-                                <% } %>
+                                <% i++; } %>
                                 
                               </tbody>
                            </table>
@@ -297,7 +297,7 @@ boolean siguiendoUsuario = (boolean) request.getAttribute("siguiendoUsuario");
                                  </tr>
                               </thead>
                               <tbody>
-									<% 
+									<% int i2=1;
 									Iterator<DtActividadesDeportivas> iterat2 = informacionProfesor.iterator();
 									while( iterat2.hasNext() ) {
 										DtActividadesDeportivas infoP = iterat2.next();
@@ -312,13 +312,13 @@ boolean siguiendoUsuario = (boolean) request.getAttribute("siguiendoUsuario");
 										String fechaFormateadaClase = formato.format(infoCla.getFecha());
 									%>
                                  <tr>
-                                    <th scope="row">1</th>
+                                    <th scope="row"><%=i2%></th>
                                     <td> <a href="consultaClase?clase=<%= infoCla.getNombre() %> "><%= infoCla.getNombre() %></a></td>
                                     <td><%= fechaFormateadaClase %></td>
                                     <td><a href="consultaActividad?actividad=<%= infoP.getNombre() %>" ><%= infoP.getNombre() %></a></td>
                                  </tr>
 									<% 
-									}}
+									i2++;}}
 									%>
                               </tbody>
                            </table>
@@ -352,7 +352,7 @@ boolean siguiendoUsuario = (boolean) request.getAttribute("siguiendoUsuario");
                               </thead>
                               <tbody>
 									
-									<% 
+									<% int i3=1;
 									Iterator<DtClase> iterat3 = informacionSocio.iterator();
 									while( iterat3.hasNext() ) {
 										DtClase infoS = iterat3.next();
@@ -360,12 +360,12 @@ boolean siguiendoUsuario = (boolean) request.getAttribute("siguiendoUsuario");
 										String fechaFormateadaClase = formato.format(infoS.getFecha());
 									%>
                                  <tr>
-                                    <th scope="row">1</th>
+                                    <th scope="row"><%=i3%></th>
                                     <td> <a href="consultaClase?clase=<%= infoS.getNombre() %>  "> <%= infoS.getNombre() %> </a></td>
                                     <td> <%= fechaFormateadaClase %> </td>
                                     <td><a href="consultaActividad?actividad=<%= infoS.getNomAct() %>" ><%= infoS.getNomAct() %></a></td>
                                  </tr>
-									<% }%>
+									<% i3++;}%>
                               </tbody>
                            </table>
                         </div>
@@ -395,19 +395,19 @@ boolean siguiendoUsuario = (boolean) request.getAttribute("siguiendoUsuario");
                                  </tr>
                               </thead>
                               <tbody>
-                              <% 
+                              <% int i4=1;
                               Iterator<DtActividadesDeportivas> infoAcInRecha = actDepIR.iterator();
                               while ( infoAcInRecha.hasNext() ){
                             	  DtActividadesDeportivas ii = infoAcInRecha.next();
                               
                               %>
                                  <tr>
-                                    <th scope="row">1</th>
+                                    <th scope="row"><%=i4%></th>
                                     <td> <a href="consultaActividad?actividad=<%= ii.getNombre() %>  "><%= ii.getNombre() %></a></td>
                                     <td><%= ii.getDescripcion() %></td>
                                     <td> <%= ii.getEstado() %>	 </td>
                                  </tr>
-								<% } %>
+								<% i4++;} %>
                                  
                               </tbody>
                            </table>
