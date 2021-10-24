@@ -7,6 +7,7 @@
 <html>
 <head>
 <jsp:include page="/WEB-INF/template/head.jsp" />
+<script type="text/javascript" src="./resources/js/busqueda.js"></script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/template/header.jsp" />
@@ -17,6 +18,8 @@
 	Set<String> instituciones = (Set<String>) request.getAttribute("instituciones");
 	Set<String> categorias = (Set<String>) request.getAttribute("categorias");
 	String consulta = (String) request.getAttribute("consulta");
+	
+	String resultadosJson = "{nombre: 'Fernando', num: 89875, sexo: 'masculino', inst: 'telon', categoria: 'natacion'},;";
 	%>
 	<main role="main" class="container">
 		<div class="row my-4">
@@ -31,6 +34,7 @@
 					for (DataCuponera cup : cuponeras)
 					{
 					%>
+					<div class="resultado <% for ( String ncat : cup.getCategorias() ){ %><%=ncat + " "%><%} %>">
   					<a href="consultaCuponera?cuponera=<%=cup.getNombre()%>" class="list-group-item list-group-item-action flex-column align-items-start">
     					<div class="d-flex w-100 justify-content-between">
       						<h5 class="mb-1"><%=cup.getNombre() %></h5>
@@ -46,6 +50,7 @@
     					}
     					%>
  						</a>
+ 						</div>
  					<% 
 					}
 					%>
@@ -61,6 +66,7 @@
 					for (DataActividad act : actividades)
 					{
 					%>
+					<div class="resultado <% for ( String ncat : act.getCategorias() ){ %><%=ncat + " "%><%} %> <%=act.getInstitucion()%>">
   					<a href="consultaActividad?actividad=<%=act.getNombre()%>" class="list-group-item list-group-item-action flex-column align-items-start">
     					<div class="d-flex w-100 justify-content-between">
     						<div>
@@ -80,6 +86,7 @@
       					<img src="./resources/img/actividades/<%=act.getImagen()%>" width="75" height="75" class="rounded-circle">
     					</div>
  						</a>
+ 						</div>
  				 	<% 
 					}
 				 	%>
@@ -118,7 +125,7 @@
 					
 					    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
 					        <div class="form-group">
-							    <select multiple class="form-control" id="exampleFormControlSelect2">
+							    <select multiple class="form-control" id="institucionesFiltro" name="institucionesFiltro">
 							    <% 
 								for(String nominst :instituciones) {
 								%>
@@ -138,7 +145,7 @@
 					    </div>
 					    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
 					      <div class="form-group">
-                                <select multiple class="form-control" id="exampleFormControlSelect2">
+                                <select multiple class="form-control" id="categoriasFiltro" name="categoriasFiltro">
                                 <% 
 								for(String nomcat :categorias) {
 								%>
@@ -149,7 +156,8 @@
 					    </div>
 					  </div>
 				</div>
-				<button type="button" class="btn btn-block btn-secondary">Aplicar</button>
+				<button type="button" class="btn btn-block btn-secondary" onclick="aplicarFiltros()">Aplicar</button>
+				<button type="button" class="btn btn-block btn-secondary" onclick="removerFiltros()">Remover filtros</button>
             </div>    
 		</div>
 	</main>
