@@ -34,7 +34,7 @@
 					for (DataCuponera cup : cuponeras)
 					{
 					%>
-					<div id="<%=cup.getNombre().toLowerCase().replaceAll("\\s+","") %>" class="resultado resCup <% for ( String ncat : cup.getCategorias() ){ %><%=ncat.replaceAll("\\s+","") + " "%><%} %>">
+					<div id="<%=cup.getNombre().toLowerCase().replaceAll("\\s+","") %>" class="resultado resCup <% for ( String ncat : cup.getCategorias() ){ %><%=ncat.replaceAll("\\s+","") + " "%><%} %> <% for ( String ninsti : cup.getInstituciones() ){ %><%=ninsti.replaceAll("\\s+","") + " "%><%} %>">
   					<a href="consultaCuponera?cuponera=<%=cup.getNombre()%>" class="list-group-item list-group-item-action flex-column align-items-start">
     					<div class="d-flex w-100 justify-content-between">
       						<h5 class="mb-1"><%=cup.getNombre() %></h5>
@@ -83,7 +83,11 @@
     							}
     							%>
     						</div>
-      					<img src="./resources/img/actividades/<%=act.getImagen()%>" width="75" height="75" class="rounded-circle">
+    					<% if (act.getImagen() == null) { %>
+    						<img src="./resources/img/actividades//noimg.jpg" width="75" height="75" class="rounded-circle">
+    					<% } else {  %>
+      						<img src="./resources/img/actividades/<%=act.getImagen()%>" width="75" height="75" class="rounded-circle">
+      					<% } %>
     					</div>
  						</a>
  						</div>

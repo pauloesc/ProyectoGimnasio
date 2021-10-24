@@ -73,7 +73,7 @@ public class ctrlCuponeras implements IctrlCuponeras {
 		Set<String> instituciones = manejadorInstituciones.darNombreInstituciones();
 		Set<String> instdata= new HashSet<String>();
 		
-		for (Iterator<String> iter=instituciones.iterator();iter.hasNext();){
+		for (Iterator<String> iter=instituciones.iterator(); iter.hasNext(); ) {
 			String inst=iter.next();
 			Set<String> resu= getCuponerasInstitucion(inst); 
 			if (resu.contains(nomCup)) {
@@ -229,8 +229,18 @@ public class ctrlCuponeras implements IctrlCuponeras {
 	}
 	}
 	
-	public Set<DataCuponera> buscarCuponeras(String consulta) {
-		return manejCuponeras.getinstance().buscarCuponeras(consulta);
+	public Set<DataCuponera> buscarCuponeras(String consulta) throws CuponeraNoExisteException {
+		Set<Cuponera> resu = manejCuponeras.getinstance().buscarCuponeras(consulta);
+		Set<DataCuponera> resucupo= new HashSet<DataCuponera>();
+		for (Iterator<Cuponera> iter=resu.iterator(); iter.hasNext(); ) {
+		   Cuponera cupo=iter.next();
+		   DataCuponera cupodata;
+		   cupodata = mostrarCuponera(cupo.getNombre());
+	
+		   resucupo.add(cupodata);
+		}	
+			
+		return resucupo;
 	}
 }
 	

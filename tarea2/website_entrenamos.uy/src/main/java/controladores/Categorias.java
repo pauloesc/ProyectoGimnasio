@@ -32,6 +32,7 @@ public class Categorias extends HttpServlet
 	}
 	
 	public static Set<String> getCategorias(){
+
 		Set<String> cats = ICCA.getCategorias();
 			return cats;
 	}
