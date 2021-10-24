@@ -51,6 +51,8 @@ public class ListaCuponeras extends HttpServlet
 		Integer pagnum= Integer.parseInt(pag);
 		
 		Set<DataCuponera> cups=ListaCuponeras.getCuponeras();
+		
+		
 		Integer total= cups.size();
 		req.setAttribute("pag", pagnum);
 		req.setAttribute("cups", cups);

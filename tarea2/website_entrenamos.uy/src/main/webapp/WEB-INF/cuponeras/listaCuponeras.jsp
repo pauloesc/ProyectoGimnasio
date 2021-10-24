@@ -100,9 +100,11 @@
 								aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 							</a></li>
 							<% int i2=1; 
+							float b = (float) total/3;
+						
 							int totalpag= (total/3);
-							
-							if ((total/3) >totalpag) {
+						
+							if (b >totalpag) {
 								totalpag=totalpag+1;
 							}
 							

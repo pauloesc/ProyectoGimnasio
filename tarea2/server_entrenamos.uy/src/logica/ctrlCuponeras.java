@@ -180,6 +180,7 @@ public class ctrlCuponeras implements IctrlCuponeras {
 			registrarCuponera("Pelota", "Deportes con pelota.", fecha1, fecha2, 20f, fecha3, "b1.jpg");
 			registrarCuponera("Gimnasia", "Aeróbica y aparatos.", fecha4, fecha5, 30f, fecha6, "b2.jpg");
 			registrarCuponera("Músculos", "Pesas.", fecha7, fecha8 , 10f, fecha9, "b3.jpg" );
+			registrarCuponera("Prueba", "Pesas.", fecha7, fecha8 , 10f, fecha9, "b2.jpg" );
 		} catch (CuponeraRepetidaException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -193,6 +194,8 @@ public class ctrlCuponeras implements IctrlCuponeras {
 			agregarActividad("Gimnasia", "Aparatos y pesas", 8);
 		    agregarActividad("Músculos", "Kickboxing", 11);
 		    agregarActividad("Músculos", "Aparatos y pesas", 12);
+		    agregarActividad("Prueba", "Kickboxing", 11);
+		    agregarActividad("Prueba", "Aparatos y pesas", 12);
 		} catch (ActividadDeportivaRepetidaException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
