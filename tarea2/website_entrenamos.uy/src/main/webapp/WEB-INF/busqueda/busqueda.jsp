@@ -29,18 +29,18 @@
 				{
 				%>
 				<h5>Cuponeras</h5>
-				<div class="list-group list-group-flush" id="cuponeras-group">
+				<div  id="resultadosCuponeras" class="list-group list-group-flush">
 					<%
 					for (DataCuponera cup : cuponeras)
 					{
 					%>
-					<div class="resultado resCat <% for ( String ncat : cup.getCategorias() ){ %><%=ncat.replaceAll("\\s+","") + " "%><%} %>">
+					<div id="<%=cup.getNombre().toLowerCase().replaceAll("\\s+","") %>" class="resultado resCup <% for ( String ncat : cup.getCategorias() ){ %><%=ncat.replaceAll("\\s+","") + " "%><%} %>">
   					<a href="consultaCuponera?cuponera=<%=cup.getNombre()%>" class="list-group-item list-group-item-action flex-column align-items-start">
     					<div class="d-flex w-100 justify-content-between">
       						<h5 class="mb-1"><%=cup.getNombre() %></h5>
       						<small>$<%=cup.getCosto() %></small>
     					</div>
-    					<span>Fecha publicación: <fmt:formatDate pattern = "yyyy-MM-dd" value = "<%=cup.getFechaAlta()%>"/> </span><br>
+    					<span id="<%=cup.getFechaAlta().toInstant()%>">Fecha publicación: <fmt:formatDate pattern = "yyyy-MM-dd" value = "<%=cup.getFechaAlta()%>"/> </span><br>
     					<%
     					for ( String ncat : cup.getCategorias() )
     					{
@@ -61,17 +61,17 @@
 				{
 				%>
 					<h5>Actividades Deportivas</h5>
-					<div id="resultadosActividades" class="list-group list-group-flush" id="actividades-group">
+					<div id="resultadosActividades" class="list-group list-group-flush">
 					<%
 					for (DataActividad act : actividades)
 					{
 					%>
-					<div class="resultado resActi <% for ( String ncat : act.getCategorias() ){ %><%=ncat.replaceAll("\\s+","") + " "%><%} %> <%=act.getInstitucion().replaceAll("\\s+","")%>">
+					<div id="<%= act.getNombre().toLowerCase().replaceAll("\\s+","") %>" class="resultado resActi <% for ( String ncat : act.getCategorias() ){ %><%=ncat.replaceAll("\\s+","") + " "%><%} %> <%=act.getInstitucion().replaceAll("\\s+","")%>">
   					<a href="consultaActividad?actividad=<%=act.getNombre()%>" class="list-group-item list-group-item-action flex-column align-items-start">
     					<div class="d-flex w-100 justify-content-between">
     						<div>
     							<h5 id="nomact" class="mb-1"><%=act.getNombre() %></h5>
-    							<span>Fecha publicación: <fmt:formatDate pattern = "yyyy-MM-dd" value = "<%=act.getFechaAlta()%>"/></span> <br>
+    							<span id="<%=act.getFechaAlta().toInstant()%>">Fecha publicación: <fmt:formatDate pattern = "yyyy-MM-dd" value = "<%=act.getFechaAlta()%>"/></span> <br>
     							<span class="badge badge-dark"><%=act.getInstitucion()%></span>
     							<br>
     							<%
@@ -109,12 +109,10 @@
                         <select class="form-control-sm" id="ordenarPor">
                               <option value="az" selected="selected">Alfabeticamente (a-z)</option>
                               <option value="za">Alfabeticamente (z-a)</option>
-                              <option value="new">Fecha (mas nuevo primero)</option>
-                              <option value="old">Fecha (mas viejo primero)</option>
-                              <option value="cheap">Costo (menor precio primero])</option>
-                              <option value="expensive">Costo (mayor precio primero)</option>
+                              <option value="new">Fecha (nuevo primero)</option>
+                              <option value="old">Fecha (viejo primero)</option>
                          </select>
-                    </div>
+             </div>
 			     <div class="accordion" id="accordionExample">
 					  <div>
 					    <div id="headingOne">
