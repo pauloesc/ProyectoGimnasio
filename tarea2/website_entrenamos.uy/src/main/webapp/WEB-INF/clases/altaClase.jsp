@@ -7,6 +7,8 @@
 <jsp:include page="/WEB-INF/template/head.jsp" />
 <script type="text/javascript" src="../jquer.js"></script>
 
+
+
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
 <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
@@ -25,6 +27,13 @@
 	}
 	
 </script>
+
+
+<script>
+        $('#datepicker').datepicker({
+            uiLibrary: 'bootstrap4'
+        });
+    </script>
 
 
 <%%>
@@ -127,7 +136,8 @@
 					<div class="form-group row">
 						<label for="fecha" class="col-4 col-form-label">Fecha</label>
 						<div class="col-8">
-							<input type="date" readonly id="datepicker" name="datepicker" width="276" />
+							<input class="form-control"
+									type="date" name="datepicker" required/>
 						</div>
 					</div>
 
@@ -138,6 +148,8 @@
 							<input type="time" readonly id="timepicker" name="timepicker" width="276" />
 						</div>
 					</div>
+					
+				
 
 					<div class="form-group row">
 						<label for="imagenActividad" class="col-4 col-form-label">Imagen</label>
@@ -197,11 +209,10 @@
             uiLibrary: 'bootstrap4'
         });
     </script>
-
+  
 	<script>
         $('#timepicker').timepicker();
   </script>
-  
 	
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
