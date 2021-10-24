@@ -83,7 +83,11 @@
     							}
     							%>
     						</div>
-      					<img src="./resources/img/actividades/<%=act.getImagen()%>" width="75" height="75" class="rounded-circle">
+    					<% if (act.getImagen() == null) { %>
+    						<img src="./resources/img/actividades//noimg.jpg" width="75" height="75" class="rounded-circle">
+    					<% } else {  %>
+      						<img src="./resources/img/actividades/<%=act.getImagen()%>" width="75" height="75" class="rounded-circle">
+      					<% } %>
     					</div>
  						</a>
  						</div>
