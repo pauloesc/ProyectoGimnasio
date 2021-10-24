@@ -80,15 +80,8 @@ int cont = 0;
   								%>
    							 <tr>
      							<th scope="row"><%= cont %></th>
-     							
-     							<% 
-                              	String img = auxInfoUser.getImagen();
-			                       if (img.indexOf("://") < 0) {
-			                    	   img = "./resources/img/usuarios/" + img;
-			                       }
-			                       %>
-     							
-     							<td> <img src="<%= img %>" width="30" height="30" class="rounded-circle"> </td>
+     				
+     							<td> <img src="<%= auxInfoUser.getImagen() %>" width="30" height="30" class="rounded-circle"> </td>
       							<td> <a href="ConsultaUsuario?usuarioNick=<%= auxInfoUser.getNickname()  %>"><%= auxInfoUser.getNombre() %></a> </td>
     						</tr>
     						

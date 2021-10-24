@@ -117,7 +117,7 @@ public class AltaUsuario extends HttpServlet {
 	        ext = FilenameUtils.getExtension(nomf);
 	        Part part = request.getPart("imagenUsuario");
 	        part.write(uploadFilePath + File.separator + fileName + "." + ext);
-			img = fileName + "." + ext;
+			img = "./resources/img/usuarios/" + fileName + "." + ext;
 			System.out.println(img);
 		}
 		

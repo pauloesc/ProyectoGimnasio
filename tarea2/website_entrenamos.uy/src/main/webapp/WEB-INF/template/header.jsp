@@ -69,12 +69,6 @@
 				<a class="btn btn-dark dropdown-toggle" style="font-size: 13px; font-weight: 500" href="#"
 					id="navbarDropdownUsuario" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					
-					<% 
-                    String img = usr.getImagen();
-		            if (img.indexOf("://") < 0) {
-		            	img = "./resources/img/usuarios/" + img;
-		            }
-		            %>
 					
 					<img src="<%=usr.getImagen()%>" width="30" height="30" class="rounded-circle">
 					<span style="font-size: 13px; font-weight: 700"> &nbsp <%=usr.getNombre() + " " + usr.getApellido() %></span>

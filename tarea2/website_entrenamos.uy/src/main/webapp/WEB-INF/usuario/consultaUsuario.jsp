@@ -68,15 +68,8 @@ boolean siguiendoUsuario = (boolean) request.getAttribute("siguiendoUsuario");
                      <div class="col-lg-4">
                         <div class="card mb-3">
                            <div class="card-body text-center shadow">
-                              
-                              <% 
-                              	String img = informacionUusario.getImagen();
-		                       if (img.indexOf("://") < 0) {
-		                    	   img = "./resources/img/usuarios/" + img;
-		                       }
-		                       %>
-                              
-                              <img class="rounded-circle mb-3 mt-4" src=" <%= img %>" width="160"
+                        
+                              <img class="rounded-circle mb-3 mt-4" src=" <%= informacionUusario.getImagen() %>" width="160"
                                  height="160" />
                            </div>
                         </div>
