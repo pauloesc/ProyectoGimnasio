@@ -11,7 +11,6 @@ import javax.servlet.http.HttpSession;
 
 import logica.Fabrica;
 import logica.IctrlCategorias;
-import logica.IctrlIDeportivas;
 
 public class Categorias extends HttpServlet
 {

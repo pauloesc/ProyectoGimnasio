@@ -2,10 +2,7 @@ package controladores;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Set;
 import java.util.List;
 import java.util.Collections;
@@ -19,7 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import excepciones.CuponeraNoExisteException;
-import logica.Cuponera;
 import logica.DataCuponera;
 import logica.Fabrica;
 import logica.IctrlCuponeras;

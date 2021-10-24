@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import excepciones.ActividadDeportivaNoExisteException;
-import logica.Cuponera;
 import logica.EstadoActi;
 import logica.Fabrica;
 import logica.IctrlADeportivas;
