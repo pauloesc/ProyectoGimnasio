@@ -68,11 +68,27 @@ public class ctrlCuponeras implements IctrlCuponeras {
 	
 	public DataCuponera mostrarCuponera(String nomCup) throws CuponeraNoExisteException {
 		manejCuponeras manejadorCuponeras = manejCuponeras.getinstance();
+		manejIDeportivas manejadorInstituciones= manejIDeportivas.getinstance();
+		
+		Set<String> instituciones = manejadorInstituciones.darNombreInstituciones();
+		Set<String> instdata= new HashSet<String>();
+		
+		for (Iterator<String> iter=instituciones.iterator();iter.hasNext();){
+			String inst=iter.next();
+			Set<String> resu= getCuponerasInstitucion(inst); 
+			if (resu.contains(nomCup)) {
+			 instdata.add(inst);	
+			}
+		}
+
 		Cuponera cup=manejadorCuponeras.getCuponera(nomCup);
 		if (cup==null)
 			throw new CuponeraNoExisteException("La cuponera no se ha registrado en el sistema");
 		
-		return manejadorCuponeras.mostrarCuponera(nomCup);		
+		DataCuponera resu=manejadorCuponeras.mostrarCuponera(nomCup);
+		resu.setInstituciones(instdata);
+	
+		return resu;		
 	}
 	
 	public Set<String> getCuponerasActividad(String nac) throws CuponeraNoExisteException {
