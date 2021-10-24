@@ -31,10 +31,7 @@ public class Instituciones extends HttpServlet
 	}
 
 	public static Set<String> getInstituciones(){
-<<<<<<< HEAD
-=======
-	
->>>>>>> refs/heads/ale2
+
 		Set<String> inst = ICD.darNombreInstituciones();
 		return inst;
 	}

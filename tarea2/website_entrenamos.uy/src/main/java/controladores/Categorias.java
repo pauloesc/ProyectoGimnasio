@@ -32,10 +32,6 @@ public class Categorias extends HttpServlet
 	}
 	
 	public static Set<String> getCategorias(){
-<<<<<<< HEAD
-=======
-		
->>>>>>> refs/heads/ale2
 		Set<String> cats = ICCA.getCategorias();
 			return cats;
 	}
