@@ -34,7 +34,7 @@
 					for (DataCuponera cup : cuponeras)
 					{
 					%>
-					<div class="resultado <% for ( String ncat : cup.getCategorias() ){ %><%=ncat + " "%><%} %>">
+					<div class="resultado resCat <% for ( String ncat : cup.getCategorias() ){ %><%=ncat.replaceAll("\\s+","") + " "%><%} %>">
   					<a href="consultaCuponera?cuponera=<%=cup.getNombre()%>" class="list-group-item list-group-item-action flex-column align-items-start">
     					<div class="d-flex w-100 justify-content-between">
       						<h5 class="mb-1"><%=cup.getNombre() %></h5>
@@ -61,16 +61,16 @@
 				{
 				%>
 					<h5>Actividades Deportivas</h5>
-					<div class="list-group list-group-flush" id="actividades-group">
+					<div id="resultadosActividades" class="list-group list-group-flush" id="actividades-group">
 					<%
 					for (DataActividad act : actividades)
 					{
 					%>
-					<div class="resultado <% for ( String ncat : act.getCategorias() ){ %><%=ncat + " "%><%} %> <%=act.getInstitucion()%>">
+					<div class="resultado resActi <% for ( String ncat : act.getCategorias() ){ %><%=ncat.replaceAll("\\s+","") + " "%><%} %> <%=act.getInstitucion().replaceAll("\\s+","")%>">
   					<a href="consultaActividad?actividad=<%=act.getNombre()%>" class="list-group-item list-group-item-action flex-column align-items-start">
     					<div class="d-flex w-100 justify-content-between">
     						<div>
-    							<h5 class="mb-1"><%=act.getNombre() %></h5>
+    							<h5 id="nomact" class="mb-1"><%=act.getNombre() %></h5>
     							<span>Fecha publicación: <fmt:formatDate pattern = "yyyy-MM-dd" value = "<%=act.getFechaAlta()%>"/></span> <br>
     							<span class="badge badge-dark"><%=act.getInstitucion()%></span>
     							<br>
@@ -107,10 +107,12 @@
 			 <div class="form-inline">
                         <label for="ordenarPor">Orden:</label>
                         <select class="form-control-sm" id="ordenarPor">
-                              <option>Alfabeticamente (a-z)</option>
-                              <option>Alfabeticamente (z-a)</option>
-                              <option>Año (ascendente)</option>
-                              <option>Año (descendente)</option>
+                              <option value="az" selected="selected">Alfabeticamente (a-z)</option>
+                              <option value="za">Alfabeticamente (z-a)</option>
+                              <option value="new">Fecha (mas nuevo primero)</option>
+                              <option value="old">Fecha (mas viejo primero)</option>
+                              <option value="cheap">Costo (menor precio primero])</option>
+                              <option value="expensive">Costo (mayor precio primero)</option>
                          </select>
                     </div>
 			     <div class="accordion" id="accordionExample">
@@ -129,7 +131,7 @@
 							    <% 
 								for(String nominst :instituciones) {
 								%>
-							      <option><%= nominst  %></option>
+							      <option value="<%= nominst.replaceAll("\\s+","")  %>"><%= nominst  %></option>
 							    <% } %>	
 							    </select>
 							 </div>
@@ -149,7 +151,7 @@
                                 <% 
 								for(String nomcat :categorias) {
 								%>
-							      <option><%= nomcat  %></option>
+							      <option value="<%= nomcat.replaceAll("\\s+","")  %>"><%= nomcat  %></option>
 							    <% } %>	
                                 </select>
                              </div>
