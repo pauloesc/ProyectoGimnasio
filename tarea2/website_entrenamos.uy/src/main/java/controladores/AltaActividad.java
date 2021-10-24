@@ -119,6 +119,8 @@ public class AltaActividad extends HttpServlet {
 			usr = null;
 		}
 		if (usr instanceof InfoBasicaProfesor) {
+			InfoBasicaProfesor ibp = (InfoBasicaProfesor) usr;			
+			request.setAttribute("institucion", ibp.getInstitucion());
 			processRequest(request, response);
 		}
 		else {

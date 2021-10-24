@@ -2,7 +2,7 @@
 <%@page import="logica.DataCuponera"%>
 
 <%@page import="java.util.Set"%>
-
+<%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,8 +10,8 @@
 </head>
 <%
 	Integer total= (Integer) request.getAttribute("totalcups");
-	Set<DataCuponera> cups=(Set<DataCuponera>) request.getAttribute("cups");
-	DataCuponera[]  cupsar= cups.toArray(new DataCuponera[total]);
+	List<DataCuponera> cups=(List<DataCuponera>) request.getAttribute("cups");
+	DataCuponera[] cupsar= cups.toArray (new DataCuponera[total]);
     Integer pagnum= (Integer) request.getAttribute("pag");
     Boolean socio= (Boolean) request.getAttribute ("socio");
     
@@ -30,15 +30,15 @@
 				<div class="card mb-3" style="max-width: auto;">
 					<div class="row no-gutters">					
 						<div class="col-md-4 text-center">
-							<img src="./resources/img/cuponeras/<%= cupsar[i-1].getImagen()  %>" alt="..." width="242" height="200">
+							<img src="./resources/img/cuponeras/<%= cupsar[i+((pagnum-1)*3)-1].getImagen()  %>" alt="..." width="242" height="200">
 						</div>
 						<div class="col-md-8">
 							<div class="card-body">
-								<h5 class="card-title"><%= cupsar[i-1].getNombre()%></h5>
-								<p class="card-text"><%= cupsar[i-1].getDescripcion()%></p>
+								<h5 class="card-title"><%= cupsar[i+((pagnum-1)*3)-1].getNombre()%></h5>
+								<p class="card-text"><%= cupsar[i+((pagnum-1)*3)-1].getDescripcion()%></p>
 								<div class="d-md-flex justify-content-md-end">
 									<div class="d-flex flex-column">
-									<a href="consultaCuponera?cuponera=<%= cupsar[i-1].getNombre()%>" class="btn btn-primary">Detalles</a>
+									<a href="consultaCuponera?cuponera=<%= cupsar[i+((pagnum-1)*3)-1].getNombre()%>" class="btn btn-primary">Detalles</a>
 									
 									</div>
 								</div>
@@ -52,15 +52,15 @@
 				<div class="card mb-3" style="max-width: auto;">
 					<div class="row no-gutters">					
 						<div class="col-md-4 text-center">
-							<img src="./resources/img/cuponeras/<%= cupsar[i-1].getImagen()  %>" alt="..." width="242" height="200">
+							<img src="./resources/img/cuponeras/<%= cupsar[i+((pagnum-1)*3)-1].getImagen()  %>" alt="..." width="242" height="200">
 						</div>
 						<div class="col-md-8">
 							<div class="card-body">
-								<h5 class="card-title"><%= cupsar[i-1].getNombre()%></h5>
-								<p class="card-text"><%= cupsar[i-1].getDescripcion()%></p>
+								<h5 class="card-title"><%= cupsar[i+((pagnum-1)*3)-1].getNombre()%></h5>
+								<p class="card-text"><%= cupsar[i+((pagnum-1)*3)-1].getDescripcion()%></p>
 								<div class="d-md-flex justify-content-md-end">
 									<div class="d-flex flex-column">
-									<a href="consultaCuponera?cuponera=<%= cupsar[i-1].getNombre()%>" class="btn btn-primary">Detalles</a>
+									<a href="consultaCuponera?cuponera=<%= cupsar[i+((pagnum-1)*3)-1].getNombre()%>" class="btn btn-primary">Detalles</a>
 									
 									</div>
 								</div>
@@ -74,15 +74,15 @@
 				<div class="card mb-3" style="max-width: auto;">
 					<div class="row no-gutters">					
 						<div class="col-md-4 text-center">
-							<img src="./resources/img/cuponeras/<%= cupsar[i-1].getImagen()  %>" alt="..." width="242" height="200">
+							<img src="./resources/img/cuponeras/<%= cupsar[i+((pagnum-1)*3)-1].getImagen()  %>" alt="..." width="242" height="200">
 						</div>
 						<div class="col-md-8">
 							<div class="card-body">
-								<h5 class="card-title"><%= cupsar[i-1].getNombre()%></h5>
-								<p class="card-text"><%= cupsar[i-1].getDescripcion()%></p>
+								<h5 class="card-title"><%= cupsar[i+((pagnum-1)*3)-1].getNombre()%></h5>
+								<p class="card-text"><%= cupsar[i+((pagnum-1)*3)-1].getDescripcion()%></p>
 								<div class="d-md-flex justify-content-md-end">
 									<div class="d-flex flex-column">
-									<a href="consultaCuponera?cuponera=<%= cupsar[i-1].getNombre()%>" class="btn btn-primary">Detalles</a>
+									<a href="consultaCuponera?cuponera=<%= cupsar[i+((pagnum-1)*3)-1].getNombre()%>" class="btn btn-primary">Detalles</a>
 									
 									</div>
 								</div>
@@ -100,9 +100,11 @@
 								aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 							</a></li>
 							<% int i2=1; 
+							float b = (float) total/3;
+						
 							int totalpag= (total/3);
-							
-							if ((total/3) >totalpag) {
+						
+							if (b >totalpag) {
 								totalpag=totalpag+1;
 							}
 							

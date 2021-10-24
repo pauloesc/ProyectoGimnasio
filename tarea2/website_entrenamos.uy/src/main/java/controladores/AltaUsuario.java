@@ -1,15 +1,20 @@
 package controladores;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+
+import org.apache.commons.io.FilenameUtils;
 
 import excepciones.UsuarioDisponibilidadException;
 import logica.Fabrica;
@@ -21,6 +26,11 @@ import logica.InfoBasicaUser;
 /**
  * Servlet implementation class AltaUsuario
  */
+
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 10, 	// 10 MB 
+maxFileSize=1024*1024*50,      	// 50 MB
+maxRequestSize=1024*1024*100)
+
 @WebServlet("/AltaUsuario")
 public class AltaUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -82,6 +92,37 @@ public class AltaUsuario extends HttpServlet {
 		//auxiliares
 		InfoBasicaUser info = null;
 		String img = "";
+		
+		
+		//imagen
+		String ext = "";
+		String fileName = null;
+		
+		if ( request.getParts() != null ) {
+		
+			/*gets absolute path of the web application*/
+	        String applicationPath = request.getServletContext().getRealPath("");
+
+	        // constructs path of the directory to save uploaded file*/
+	        String uploadFilePath = applicationPath + File.separator + "resources/img/usuarios";
+
+	        // creates the save directory if it does not exists
+	        File fileSaveDir = new File(uploadFilePath);
+	        if (!fileSaveDir.exists()) {
+	            fileSaveDir.mkdirs();
+	        }
+	     
+	        fileName = nickname.toLowerCase().replaceAll("\\s", "");
+	        String nomf = request.getPart("imagenUsuario").getSubmittedFileName();
+	        ext = FilenameUtils.getExtension(nomf);
+	        Part part = request.getPart("imagenUsuario");
+	        part.write(uploadFilePath + File.separator + fileName + "." + ext);
+			img = fileName + "." + ext;
+			System.out.println(img);
+		}
+		
+		
+		
 		
 		/**
 		 *proceso la fecha en el formato que viene
