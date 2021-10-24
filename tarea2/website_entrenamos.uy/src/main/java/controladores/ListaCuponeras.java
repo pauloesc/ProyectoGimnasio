@@ -1,9 +1,15 @@
 package controladores;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
+import java.util.List;
+import java.util.Collections;
+import java.util.Comparator;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import excepciones.CuponeraNoExisteException;
+import logica.Cuponera;
 import logica.DataCuponera;
 import logica.Fabrica;
 import logica.IctrlCuponeras;
@@ -50,8 +57,9 @@ public class ListaCuponeras extends HttpServlet
 		String pag = req.getParameter("n");
 		Integer pagnum= Integer.parseInt(pag);
 		
-		Set<DataCuponera> cups=ListaCuponeras.getCuponeras();
+		List<DataCuponera> cups=ListaCuponeras.getCuponeras();
 		Integer total= cups.size();
+		
 		req.setAttribute("pag", pagnum);
 		req.setAttribute("cups", cups);
 		req.setAttribute("totalcups", total);
@@ -60,8 +68,8 @@ public class ListaCuponeras extends HttpServlet
 		
 	}
 	
-	public static Set<DataCuponera> getCuponeras(){
-		Set<DataCuponera> cuponeras= new HashSet<DataCuponera>();
+	public static List<DataCuponera> getCuponeras(){
+		List<DataCuponera> cuponeras= new ArrayList<DataCuponera>();
 		try {
 			Set<String> cups= ctrlCuponeras.listarCuponeras();
 			for (Iterator<String> iter=cups.iterator();iter.hasNext();) {
@@ -74,6 +82,13 @@ public class ListaCuponeras extends HttpServlet
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		Collections.sort(cuponeras, new Comparator<DataCuponera>(){
+		    @Override
+		    public int compare(DataCuponera o1, DataCuponera o2) {
+		        return o1.getNombre().compareToIgnoreCase(o2.getNombre());
+		    }
+		});
 		
 		return cuponeras;
 	}
