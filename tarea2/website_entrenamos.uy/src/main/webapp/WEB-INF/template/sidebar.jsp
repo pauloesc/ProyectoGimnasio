@@ -1,20 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import="controladores.Instituciones"%>
-<%@page import="controladores.Categorias"%>
 <%@page import="java.util.Set"%>
 
 
 <%
-	Set<String> instituciones;
-	Set<String> categorias;
-	try {
-		instituciones = Instituciones.getInstituciones();
-		categorias = Categorias.getCategorias();
-	} 
-	catch(Exception ex) {
-		instituciones = null;
-		categorias = null;
-	}
+	Set<String> instituciones= (Set<String>) request.getSession().getAttribute("Instituciones");
+	Set<String> categorias= (Set<String>) request.getSession().getAttribute("Categorias");
+	
 %>
 <div id="sidebar" class="col-6 col-md-4">
 	<ul id="listaInstituciones" class="list-group my-4">

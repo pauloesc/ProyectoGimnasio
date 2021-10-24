@@ -147,9 +147,14 @@
 		<servlet-name>AltaUsuario</servlet-name>
 		<url-pattern>/altaUsuario</url-pattern>
 	</servlet-mapping>
-
-	
-
+	<servlet>
+		<servlet-name>Categorias</servlet-name>
+		<servlet-class>controladores.Categorias</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>Instituciones</servlet-name>
+		<servlet-class>controladores.Instituciones</servlet-class>
+	</servlet>
 	<session-config>
 		<session-timeout>30</session-timeout>
 	</session-config>

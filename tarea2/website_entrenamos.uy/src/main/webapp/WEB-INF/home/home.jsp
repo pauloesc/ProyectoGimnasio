@@ -1,6 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import="controladores.ConsultaCuponera"%>
-<%@page import="controladores.Cuponeras"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.Date"%>
 <%@page import="logica.DataCuponera"%>
@@ -14,14 +12,8 @@
 <jsp:include page="/WEB-INF/template/head.jsp" />
 </head>
 <%
-	Set<DataCuponera> cuponeras;
-	try {
-		cuponeras = Cuponeras.getCuponeras();
-	} 
-	catch(Exception ex) {
-		cuponeras = null;
+	Set<DataCuponera> cuponeras= (Set<DataCuponera>) request.getAttribute("cuponeras");
 	
-	}
 	Set<DataActividad> actividades = (Set<DataActividad>) request.getAttribute("actividades");
 %>
 
