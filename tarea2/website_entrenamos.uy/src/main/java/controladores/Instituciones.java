@@ -31,7 +31,6 @@ public class Instituciones extends HttpServlet
 	}
 
 	public static Set<String> getInstituciones(){
-		ICD.cargarDatosIDeportivas();
 		Set<String> inst = ICD.darNombreInstituciones();
 		return inst;
 	}

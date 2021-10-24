@@ -104,7 +104,11 @@
 					DataActividad acti = iterac.next();
 				%>	
 					<div class="card">
+					<% if (acti.getImagen() == null) { %>
+						<img src="./resources/img/actividades/noimg.jpg" alt="No tiene imagen.">
+					<% } else {  %>
 						<img src="./resources/img/actividades/<%= acti.getImagen() %>" class="card-img-top" alt="<%= acti.getNombre() %>">
+					<% } %>
 						<div class="card-body">
 							<h5 class="card-title">
 								<a href="consultaActividad?actividad=<%= acti.getNombre() %>" class=""><%= acti.getNombre() %></a>
