@@ -10,10 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import logica.Fabrica;
+import logica.IctrlCategorias;
+import logica.IctrlIDeportivas;
 
 public class Categorias extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
+	private static IctrlCategorias ICCA= Fabrica.getInstance().getIctrlCategorias();
 	
 	public Categorias() 
 	{
@@ -26,14 +29,13 @@ public class Categorias extends HttpServlet
 		HttpSession sesion = req.getSession();
 		sesion.setAttribute("nickname-user", null);
 		sesion.setAttribute("estado-sesion", "no-login");
-		Set<String> cats= Categorias.getCategorias();
-		sesion.setAttribute("Categorias", cats);
 		resp.sendRedirect("/website_entrenamos.uy/home");
 	}
 	
 	public static Set<String> getCategorias(){
-		Set<String> cats = Fabrica.getInstance().getIctrlCategorias().getCategorias();
-		return cats;
+		ICCA.cargarCategorias();
+		Set<String> cats = ICCA.getCategorias();
+			return cats;
 	}
 	
 	public static void cargarCategorias()

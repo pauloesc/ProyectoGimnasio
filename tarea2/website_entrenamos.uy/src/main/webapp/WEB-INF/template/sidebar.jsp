@@ -3,8 +3,8 @@
 
 
 <%
-	Set<String> instituciones= (Set<String>) request.getAttribute("Instituciones");
-	Set<String> categorias= (Set<String>) request.getAttribute("Categorias");
+	Set<String> instituciones= (Set<String>) request.getSession().getAttribute("Instituciones");
+	Set<String> categorias= (Set<String>) request.getSession().getAttribute("Categorias");
 	
 %>
 <div id="sidebar" class="col-6 col-md-4">
