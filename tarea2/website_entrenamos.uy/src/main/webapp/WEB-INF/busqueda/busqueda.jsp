@@ -34,7 +34,7 @@
 					for (DataCuponera cup : cuponeras)
 					{
 					%>
-					<div id="<%=cup.getNombre().toLowerCase().replaceAll("\\s+","") %>" class="resultado resCup <% for ( String ncat : cup.getCategorias() ){ %><%=ncat.replaceAll("\\s+","") + " "%><%} %>">
+					<div id="<%=cup.getNombre().toLowerCase().replaceAll("\\s+","") %>" class="resultado resCup <% for ( String ncat : cup.getCategorias() ){ %><%=ncat.replaceAll("\\s+","") + " "%><%} %> <% for ( String ninsti : cup.getInstituciones() ){ %><%=ninsti.replaceAll("\\s+","") + " "%><%} %>">
   					<a href="consultaCuponera?cuponera=<%=cup.getNombre()%>" class="list-group-item list-group-item-action flex-column align-items-start">
     					<div class="d-flex w-100 justify-content-between">
       						<h5 class="mb-1"><%=cup.getNombre() %></h5>
