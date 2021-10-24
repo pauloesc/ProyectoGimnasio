@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import excepciones.CuponeraNoExisteException;
 import logica.Fabrica;
 import logica.IctrlADeportivas;
 import logica.IctrlCategorias;
@@ -34,7 +35,13 @@ public class Busqueda extends HttpServlet {
 	
 	String consulta = req.getParameter("query").toLowerCase();
 	
-	Set<DataCuponera> resultCup = ctrlCup.buscarCuponeras(consulta);
+	Set<DataCuponera> resultCup=null;
+	try {
+		resultCup = ctrlCup.buscarCuponeras(consulta);
+	} catch (CuponeraNoExisteException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 	Set<DataActividad> resultAct = ctrlAct.buscarActividades(consulta);
 	Set<String> instituciones = ctrlIns.darNombreInstituciones();
 	Set<String> categorias = ctrlCat.getCategorias();
