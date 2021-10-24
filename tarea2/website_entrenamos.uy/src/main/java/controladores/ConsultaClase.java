@@ -90,7 +90,6 @@ public class ConsultaClase extends HttpServlet {
 			String hh = h.toString();
 			String mm = m.toString();
 			
-			System.out.println(h);
 			if (m < 10) {
 				mm = "0" + mm;
 			}

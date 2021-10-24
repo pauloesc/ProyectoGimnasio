@@ -125,7 +125,9 @@ public class AltaClase extends HttpServlet {
 			Calendar fechaActual = Calendar.getInstance();  
 			Date Factual = fechaActual.getTime();
 			
-			if (Smin > Smax) {
+			if ((Smin < 0) || (Smax < 0)) {
+				req.setAttribute("respuesta","Error socios minimos y socios maximos deben ser mayor a 0");
+    		} else if (Smin > Smax) {
 				req.setAttribute("respuesta","Error socios minimos mayor que socios maximos");
 			} else if (feI.before(Factual)) {
 				req.setAttribute("respuesta","Error fecha de inicio anterior a fecha actual");

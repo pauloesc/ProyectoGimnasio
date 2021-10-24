@@ -132,11 +132,11 @@
 								for(String nomClas:clases) {
 								%>	
 	   							 <tr>
-	     						 <th scope="row"><%= ic%></th>
+	     						 <th <%= ic%> scope="row"><%= ic%></th>
 	      							<td><a href="consultaClase?clase=<%= nomClas %>"> <%= nomClas %></a></td> 
 	    						</tr>
 	    						<%
-	    						i2++;
+	    						ic++;
 									}
 								} 
 								%>	
