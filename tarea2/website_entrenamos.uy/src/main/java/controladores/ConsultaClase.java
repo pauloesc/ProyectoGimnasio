@@ -83,7 +83,21 @@ public class ConsultaClase extends HttpServlet {
 			
 			Calendar c = Calendar.getInstance();
 			c.setTime(res.getFecha());
-			String ini = Integer.toString(c.get(Calendar.DATE)) + "/" + Integer.toString(c.get(Calendar.MONTH)+1) + "/" + Integer.toString(c.get(Calendar.YEAR)) + "  " +Integer.toString(res.getHora()) + ":" + Integer.toString(res.getMinuto());
+			
+			Integer h = res.getHora();
+			Integer m = res.getMinuto();
+			
+			String hh = h.toString();
+			String mm = m.toString();
+			
+			System.out.println(h);
+			if (m < 10) {
+				mm = "0" + mm;
+			}
+			if (h < 10) {
+				hh = "0" + hh;
+			}
+			String ini = Integer.toString(c.get(Calendar.DATE)) + "/" + Integer.toString(c.get(Calendar.MONTH)+1) + "/" + Integer.toString(c.get(Calendar.YEAR)) + "    " +hh + ":" + mm;
 			req.setAttribute("fecha",ini);
 			
 			

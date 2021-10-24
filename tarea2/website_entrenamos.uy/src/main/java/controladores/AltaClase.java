@@ -104,7 +104,20 @@ public class AltaClase extends HttpServlet {
 			Date feI = null;
 			
 			try {
-				feI = new SimpleDateFormat("MM/dd/yy").parse(req.getParameter("datepicker"));
+				
+				
+				String fll = req.getParameter("datepicker");
+				String fn = req.getParameter("datepicker").replace("-","/");
+				
+				
+				
+				
+				if (fll == fn) {
+					feI = new SimpleDateFormat("MM/dd/yy").parse(fll);
+				} else {
+					feI = new SimpleDateFormat("yy/MM/dd").parse(fn);
+				}
+					
 			} catch (Exception s) {
 				
 			}
@@ -125,6 +138,7 @@ public class AltaClase extends HttpServlet {
 					String act = req.getParameter("actividadDeportiva");
 					String hora = req.getParameter("timepicker");
 					
+					
 					String h = "";
 					String m = "";
 					char dosp = ':';
@@ -140,6 +154,8 @@ public class AltaClase extends HttpServlet {
 						}
 						
 					}
+				
+					
 					
 					//imagen
 					String ext = "";
