@@ -1,8 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import="controladores.ConsultaActividad"%>
-<%@page import="controladores.ConsultaCategoria"%>
-
-
 <%@page import="logica.DataCuponera"%>
 <%@page import="logica.ParActividad"%>
 <%@page import="java.util.Set"%>

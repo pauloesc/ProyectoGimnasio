@@ -26,6 +26,8 @@ public class Categorias extends HttpServlet
 		HttpSession sesion = req.getSession();
 		sesion.setAttribute("nickname-user", null);
 		sesion.setAttribute("estado-sesion", "no-login");
+		Set<String> cats= Categorias.getCategorias();
+		sesion.setAttribute("Categorias", cats);
 		resp.sendRedirect("/website_entrenamos.uy/home");
 	}
 	

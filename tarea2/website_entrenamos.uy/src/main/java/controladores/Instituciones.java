@@ -26,6 +26,10 @@ public class Instituciones extends HttpServlet
 		HttpSession sesion = req.getSession();
 		sesion.setAttribute("nickname-user", null);
 		sesion.setAttribute("estado-sesion", "no-login");
+		Set<String> inst= Instituciones.getInstituciones();
+		sesion.setAttribute("Instituciones", inst);
+		
+		
 		resp.sendRedirect("/website_entrenamos.uy/home");
 	}
 	
