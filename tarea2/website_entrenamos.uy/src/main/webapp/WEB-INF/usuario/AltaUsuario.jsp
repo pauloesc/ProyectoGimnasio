@@ -76,7 +76,7 @@ Iterator<String> institucionesI = instituciones.iterator();
 						<div class="block-heading">
 							<h2 class="text-info">Alta Usuario</h2>
 						</div>
-						<form action="${pageContext.request.contextPath}/altaUsuario" accept-charset="character_set" method="post">
+						<form action="${pageContext.request.contextPath}/altaUsuario" accept-charset="character_set" method="post" enctype="multipart/form-data">
 							<div class="form-group">
 								<label>Nickname</label>
 								<input class="form-control item"
@@ -109,6 +109,15 @@ Iterator<String> institucionesI = instituciones.iterator();
 									name="passVerificacion" type="password" class="form-control" required minlength="1"
 									maxlength="100" />
 							</div>
+							
+							<div class="form-group">
+								
+								<label >Imagen</label>
+									<input type="file" class="form-control-file" accept="image/*" name="imagenUsuario">
+								</div>
+							
+							</div>
+							
 							<div class="form-group">
 								<div class="form-check">
 									<input type="checkbox" class="form-check-input"
