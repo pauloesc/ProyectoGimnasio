@@ -18,6 +18,12 @@
 	String socio = (String)request.getAttribute("socio");
 	String costo = (String)request.getAttribute("costoClase");
 
+	//paulo
+	int minS  = (int) request.getAttribute("minS");
+	int actS = (int) request.getAttribute("actuS");
+	int maxS = (int) request.getAttribute("maxS");
+	//paulo
+	
 %>
 </head>
 
@@ -63,6 +69,7 @@
 									<p class="card-text"> <p class="card-text m-0">Fecha y hora: <%= fecha %></p> 
 									<p class="card-text"> <p class="card-text m-0">Costo: <%= "$" + costo %></p>
 									<p class="card-text"> <p class="card-text m-0">URL:: <%= url %></p> 
+									<p class="card-text"> <p class="card-text m-0">Socios:: Min: <%=minS%>, Actual: <%=actS%>, Max: <%=maxS%> </p> 
 								</div>
 							</div>
 						</div>

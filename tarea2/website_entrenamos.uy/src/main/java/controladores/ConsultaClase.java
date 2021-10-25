@@ -81,6 +81,13 @@ public class ConsultaClase extends HttpServlet {
 			req.setAttribute("url",res.getUrl());
 			req.setAttribute("img",res.getImagen());
 			
+			//paulo
+			req.setAttribute("minS",res.getMinSocios());
+			req.setAttribute("actuS",res.getActualSocios());
+			req.setAttribute("maxS",res.getMaxSocios());
+			
+			//paulo
+			
 			Calendar c = Calendar.getInstance();
 			c.setTime(res.getFecha());
 			
