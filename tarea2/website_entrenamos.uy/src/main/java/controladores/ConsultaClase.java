@@ -2,6 +2,7 @@ package controladores;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -86,6 +87,10 @@ public class ConsultaClase extends HttpServlet {
 			req.setAttribute("actuS",res.getActualSocios());
 			req.setAttribute("maxS",res.getMaxSocios());
 			
+			Date ee = res.getFechaReg();
+			SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+			String dateString = formato.format(ee);
+			req.setAttribute("fechaReg", dateString);
 			//paulo
 			
 			Calendar c = Calendar.getInstance();
