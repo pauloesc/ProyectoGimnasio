@@ -22,6 +22,7 @@
 	int minS  = (int) request.getAttribute("minS");
 	int actS = (int) request.getAttribute("actuS");
 	int maxS = (int) request.getAttribute("maxS");
+	String fechaReg = (String) request.getAttribute("fechaReg");
 	//paulo
 	
 %>
@@ -70,6 +71,7 @@
 									<p class="card-text"> <p class="card-text m-0">Costo: <%= "$" + costo %></p>
 									<p class="card-text"> <p class="card-text m-0">URL:: <%= url %></p> 
 									<p class="card-text"> <p class="card-text m-0">Socios:: Min: <%=minS%>, Actual: <%=actS%>, Max: <%=maxS%> </p> 
+									<p class="card-text"> <p class="card-text m-0">Fecha Registro clase: <%=fechaReg%></p>
 								</div>
 							</div>
 						</div>
