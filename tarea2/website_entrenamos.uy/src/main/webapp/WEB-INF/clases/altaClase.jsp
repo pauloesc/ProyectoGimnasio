@@ -78,7 +78,7 @@
 									for(String act :acts) {
 									%>	
 				   						
-										<option value=<%= act  %>><%= act  %></option>
+										<option value="<%=act%>"><%= act  %></option>
 									<%
 									} 
 									%>
