@@ -44,10 +44,9 @@
 				</ul>
 				<form id="busqueda" class="form-inline my-2 my-md-0" action="busqueda" method="post">
 					<input name="query" class="form-control" type="text" placeholder="Buscar" aria-label="Search">
-					&nbsp
 					<button class="btn btn-secondary" type="submit">
     				<i class="fa fa-search"></i>
-  				</button>
+  					</button>
 				</form>
 			</div>
 		</div>

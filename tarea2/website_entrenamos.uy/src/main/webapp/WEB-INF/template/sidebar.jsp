@@ -7,7 +7,7 @@
 	Set<String> categorias= (Set<String>) request.getSession().getAttribute("Categorias");
 	
 %>
-<div id="sidebar" class="col-6 col-md-4">
+<div id="sidebar" class="col-12 col-md-4">
 	<ul id="listaInstituciones" class="list-group my-4">
 		<li class="list-group-item"><strong>Instituciones Deportivas</strong></li>
 		<% 

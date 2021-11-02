@@ -26,6 +26,7 @@
 			<jsp:include page="/WEB-INF/template/sidebar.jsp" />
 			<div class="col-12 col-md-8">
 				<div class="row py-4">
+				<div class="col-12 col-md-10 offset-md-1">
 					<div id="carouselExampleCaptions" class="carousel slide mx-auto"
 						data-ride="carousel">
 						<ol class="carousel-indicators">
@@ -36,14 +37,13 @@
 						</ol>
 						<div class="carousel-inner">
 							<div class="carousel-item active">
-								<img src="./resources/img/3.jpg" class="d-block" alt="...">
+								<img src="./resources/img/3.jpg" class="d-block img-responsive" alt="...">
 							</div>
 							<div class="carousel-item">
-								<img src="./resources/img/1.jpg" class="d-block"
-									alt="Jiu-Jitsu">
+								<img src="./resources/img/1.jpg" class="d-block img-responsive" alt="Jiu-Jitsu">
 							</div>
 							<div class="carousel-item">
-								<img src="./resources/img/2.jpg" class="d-block" alt="...">
+								<img src="./resources/img/2.jpg" class="d-block img-responsive" alt="...">
 							</div>
 						</div>
 						<a class="carousel-control-prev" href="#carouselExampleCaptions"
@@ -55,6 +55,7 @@
 							class="carousel-control-next-icon" aria-hidden="true"></span> <span
 							class="sr-only">Next</span>
 						</a>
+					</div>
 					</div>
 				</div>
 				<div class="row y-4">
