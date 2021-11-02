@@ -86,6 +86,9 @@
 						<% } %>
 						<p><i class="fa fa-usd"></i> &nbsp &nbsp Costo: $<%= actividad.getCosto()  %></p>
 						<p><i class="fa fa-clock-o"></i> &nbsp &nbsp Duración: <%= actividad.getDuracion()  %> minutos</p>
+						<% if (usr.getNickname() == actividad.getProfesor()) { %>
+							<button type="button" class="btn btn-danger">Finalizar Actividad Deportiva</button>
+						<% } %>
 						</div>
 					</div>
 					<div class="tab-pane fade" id="cuponeras" role="tabpanel"
