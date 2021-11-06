@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import Publicadores.WebServicesControladorUsuario;
 import excepciones.ActividadDeportivaNoExisteException;
 import logica.Fabrica;
 import logica.IctrlADeportivas;
@@ -62,6 +63,10 @@ public class Principal {
                 }
             }
         });
+        
+        WebServicesControladorUsuario wscu = new WebServicesControladorUsuario();
+        wscu.publicar();
+        
     }
 
     public static Principal getInstance() {
