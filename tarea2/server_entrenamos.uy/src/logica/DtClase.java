@@ -19,6 +19,8 @@ public class DtClase {
 	private String nomAct;
 	private String imagen;
 	
+	public DtClase() {}
+	
 	public DtClase(Date fecha, String nombre, int minSocios, int actualSocios, int maxSocios, String url, Date fechaReg, String nomProfesor, int hor, int min, String nomAct, String img) {
 		this.fecha = fecha;
 		this.nombre = nombre;
@@ -90,6 +92,73 @@ public class DtClase {
 	public String toString() {
 		return this.nombre;
 	}
+
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
+	public void setMinSocios(int minSocios) {
+		this.minSocios = minSocios;
+	}
+
+
+	public void setActualSocios(int actualSocios) {
+		this.actualSocios = actualSocios;
+	}
+
+
+	public void setMaxSocios(int maxSocios) {
+		this.maxSocios = maxSocios;
+	}
+
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+
+	public void setFechaReg(Date fechaReg) {
+		this.fechaReg = fechaReg;
+	}
+
+
+	public void setNomProfesor(String nomProfesor) {
+		this.nomProfesor = nomProfesor;
+	}
+
+
+	public void setHora(int hora) {
+		this.hora = hora;
+	}
+
+
+	public void setMinuto(int minuto) {
+		this.minuto = minuto;
+	}
+
+
+	public void setNomAct(String nomAct) {
+		this.nomAct = nomAct;
+	}
+
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+	
+	//estos son los que van
+	//estos son los que van
+	
+	//estos son los que van
+	//estos son los que van
+	
 	
 	
 }
