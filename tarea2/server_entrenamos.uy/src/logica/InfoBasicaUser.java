@@ -10,6 +10,8 @@ public abstract class InfoBasicaUser {
 	private String pass;
 	private String img;
 
+	public InfoBasicaUser() {}
+	
 	public InfoBasicaUser(String nickname, String nombre, String apellido, String correo, Date fechaNac, String pass, String img) {
 		this.nickname = nickname;
 		this.nombre = nombre;
@@ -70,6 +72,27 @@ public abstract class InfoBasicaUser {
 	}
     
 	
+	
+	public String getPass() {
+		return pass;
+	}
+
+
+	public void setPass(String pass) {
+		this.pass = pass;
+	}
+
+
+	public String getImg() {
+		return img;
+	}
+
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+
+
 	public boolean sonIguales( InfoBasicaUser parametroInfoUser ) {
 		
 		if (
