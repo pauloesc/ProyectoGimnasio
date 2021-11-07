@@ -22,6 +22,8 @@ import javax.xml.ws.Endpoint;
 
 import excepciones.UsuarioInexistenteException;
 import logica.IctrlUsuarios;
+import logica.InfoActividadProfe;
+import logica.InfoActividadSocio;
 import logica.InfoBasicaUser;
 import logica.InformacionActividad;
 import logica.WrapperListString;
@@ -108,6 +110,18 @@ public class WebServicesControladorUsuario {
     @WebMethod
     public InfoBasicaProfesor sinProposito2() {
     	InfoBasicaProfesor s = new InfoBasicaProfesor();
+    	return s;
+    }
+    
+    @WebMethod
+    public InfoActividadProfe sinProposito3() {
+    	InfoActividadProfe s = new InfoActividadProfe();
+    	return s;
+    }
+    
+    @WebMethod
+    public InfoActividadSocio sinProposito4() {
+    	InfoActividadSocio s = new InfoActividadSocio();
     	return s;
     }
     
