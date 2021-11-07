@@ -21,11 +21,13 @@ import javax.jws.soap.SOAPBinding.Style;
 import javax.xml.ws.Endpoint;
 
 import excepciones.UsuarioInexistenteException;
+import logica.DataCuponera;
 import logica.IctrlUsuarios;
 import logica.InfoActividadProfe;
 import logica.InfoActividadSocio;
 import logica.InfoBasicaUser;
 import logica.InformacionActividad;
+import logica.WrapperDataCuponera;
 import logica.WrapperListString;
 import logica.ctrlUsuarios;
 
@@ -125,6 +127,12 @@ public class WebServicesControladorUsuario {
     	return s;
     }
     
+    @WebMethod
+    public Object sinProposito5() {
+    	InfoActividadSocio s = new InfoActividadSocio();
+    	return s;
+    }
+    
     /**
      * forzar a que se incluya en el wsdl types
      */
@@ -135,6 +143,41 @@ public class WebServicesControladorUsuario {
     	IctrlUsuarios cu = new ctrlUsuarios();
     	InformacionActividad aRetornar = cu.informacionActividad(usuario);
     	return aRetornar;
+    }
+    
+    
+    @WebMethod
+    public WrapperDataCuponera cuponeras(String nickname){
+    	IctrlUsuarios cu = new ctrlUsuarios();
+    	WrapperDataCuponera envoltorio = new WrapperDataCuponera();
+    	envoltorio.setLista(cu.cuponeras(nickname));
+    	return envoltorio;    	
+    }
+    
+    
+    @WebMethod
+    public InfoActividadProfe informacionActDepEstadoIngRech(String nickname){
+    	IctrlUsuarios cu = new ctrlUsuarios();
+    	InfoActividadProfe envoltorio = cu.informacionActDepEstadoIngRech(nickname);
+    	return envoltorio;
+    	
+    }
+    
+    
+    @WebMethod
+    public WrapperListString usuariosEnSistemaNickName(){
+    	IctrlUsuarios cu = new ctrlUsuarios();
+    	WrapperListString envoltura = new WrapperListString();
+    	envoltura.setLista(cu.usuariosEnSistemaNickName());
+    	return envoltura;
+    	
+    }
+    
+    @WebMethod
+    public Object aaaaaaa(){
+    	WrapperListString a = new WrapperListString();
+    	return a;
+        
     }
     
 }
