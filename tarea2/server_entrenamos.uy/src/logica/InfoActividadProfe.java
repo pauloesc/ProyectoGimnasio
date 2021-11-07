@@ -1,10 +1,14 @@
 package logica;
 
+import java.util.List;
+
 public class InfoActividadProfe extends InformacionActividad {
 
 	private String nombre;
 	private String desc;
 	private String url;
+	
+	private List<DtActividadesDeportivas> actividadesDep = null;
 	
 	public InfoActividadProfe() {
 	}
@@ -37,6 +41,14 @@ public class InfoActividadProfe extends InformacionActividad {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public List<DtActividadesDeportivas> getActividadesDep() {
+		return actividadesDep;
+	}
+
+	public void setActividadesDep(List<DtActividadesDeportivas> actividadesDep) {
+		this.actividadesDep = actividadesDep;
 	}
 	
 	

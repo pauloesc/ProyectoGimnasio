@@ -107,12 +107,16 @@ public class Socio extends Usuario {
 	@Override
 	public InformacionActividad informacionActividad(String usuario) {
 		
-		InformacionActividad infoAct = new InfoActividadSocio();		
+		InfoActividadSocio infoAct = new InfoActividadSocio();
+		
+		List<DtClase> infoRetornar = new Vector<DtClase>();
+		
 		for ( Iterator<Registro> it = regs.iterator(); it.hasNext();) { 
 			Registro aux = it.next();
 			DtClase claseInfo = aux.actividadSocio();
-			infoAct.agregarInfo(claseInfo);
+			infoRetornar.add(claseInfo);
 		}
+		infoAct.setClases(infoRetornar);
 		
 		return infoAct;
 	}

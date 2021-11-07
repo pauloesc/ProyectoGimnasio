@@ -2,7 +2,9 @@ package logica;
 
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
+import java.util.Vector;
 
 /**
  * Representa a una Institucion Deportiva en el sistema con nombre, descripcion y url.
@@ -91,10 +93,12 @@ public class InstitucionDeportiva {
 	
 	public InformacionActividad informacionProfesor(String usuario) {
 		
-		InformacionActividad infoac = new InfoActividadProfe( this.nombre, this.descripcion, this.url );
+		InfoActividadProfe infoac = new InfoActividadProfe( this.nombre, this.descripcion, this.url );
 	
 		Iterator<ActividadDeportiva> info = this.actividadesDeportivasInst.iterator();
 	
+		List<DtActividadesDeportivas> listaAdevolver = new Vector<DtActividadesDeportivas>();
+		
 		while (info.hasNext()) {
 			
 			ActividadDeportiva aux = info.next();
@@ -102,10 +106,13 @@ public class InstitucionDeportiva {
 			
 			//si la actividad deportiva tiene clases adentro...
 			if ( ! (aux_ad.getClases().isEmpty()) ) {
-				infoac.agregarInfo(aux_ad);				
+				//infoac.agregarInfo(aux_ad);
+				listaAdevolver.add(aux_ad);
 			}
 			
 		}
+		
+		infoac.setActividadesDep(listaAdevolver);
 				
 		return infoac;		
 	}

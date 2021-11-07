@@ -200,16 +200,7 @@ public class ConsultaUsuario extends JInternalFrame{
 				if( infoActividad.getClass() == InfoActividadSocio.class ) {
 					
 					InfoActividadSocio oo = (InfoActividadSocio) infoActividad;
-					List<DtClase> vec = new Vector<DtClase>();
-					List<Object> vecGenerico = oo.obtenerVector();
-					
-					
-					Iterator<Object> iterat = vecGenerico.iterator();
-					while( iterat.hasNext() ) {
-						Object aux =  iterat.next( );
-						vec.add( (DtClase) aux );
-						
-					}
+					List<DtClase> vec = oo.getClases();
 					
 
 					DefaultListModel<DtClase> modell = new DefaultListModel<DtClase>();
@@ -226,16 +217,7 @@ public class ConsultaUsuario extends JInternalFrame{
 				//si es InfoActividadProfesor
 				else {
 					InfoActividadProfe oo = (InfoActividadProfe) infoActividad;
-					List<DtActividadesDeportivas> vec = new Vector<DtActividadesDeportivas>();
-					List<Object> vecGenerico = oo.obtenerVector();
-					
-					
-					Iterator<Object> iterat = vecGenerico.iterator();
-					while( iterat.hasNext() ) {
-						Object aux =  iterat.next( );
-						vec.add( (DtActividadesDeportivas) aux );
-					}
-					
+					List<DtActividadesDeportivas> vec = oo.getActividadesDep();
 					
 					DefaultListModel<DtActividadesDeportivas> modell = new DefaultListModel<DtActividadesDeportivas>();
 					Iterator<DtActividadesDeportivas> iterat2 = vec.iterator();

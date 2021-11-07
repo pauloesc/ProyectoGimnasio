@@ -154,12 +154,10 @@ public class ConsultaUsuario extends HttpServlet {
 		*declaro esta variable para guardar la informacion del socio
 		*/
 		Vector<DtClase> informacionSocio = null;
-		informacionSocio = new Vector<DtClase>();
 		/**
 		*declaro esta variable para guardar la informacion del profesor
 		*/
 		Vector<DtActividadesDeportivas> informacionProfesor = null;
-		informacionProfesor = new Vector<DtActividadesDeportivas>();
 		
 		
 		/**
@@ -170,13 +168,7 @@ public class ConsultaUsuario extends HttpServlet {
 		if( informacioActividad.getClass() == InfoActividadSocio.class ) {
 			
 			InfoActividadSocio oo = (InfoActividadSocio) informacioActividad;
-			List<Object> vecGenerico = oo.obtenerVector();
-			
-			Iterator<Object> iterat = vecGenerico.iterator();
-			while( iterat.hasNext() ) {
-				Object aux =  iterat.next( );
-				informacionSocio.add( (DtClase) aux );
-			}
+			informacionSocio = (Vector<DtClase>) oo.getClases();
 			
 		}
 		
@@ -188,13 +180,7 @@ public class ConsultaUsuario extends HttpServlet {
 		*/
 		else {
 			InfoActividadProfe oo = (InfoActividadProfe) informacioActividad;
-			List<Object> vecGenerico = oo.obtenerVector();
-			
-			Iterator<Object> iterat = vecGenerico.iterator();
-			while( iterat.hasNext() ) {
-				Object aux =  iterat.next( );
-				informacionProfesor.add( (DtActividadesDeportivas) aux );
-			}
+			informacionProfesor = (Vector<DtActividadesDeportivas>) oo.getActividadesDep();
 			
 		}
 		
@@ -203,17 +189,9 @@ public class ConsultaUsuario extends HttpServlet {
 		 * si es un profesor.
 		 * informacion de activiades ingresadas profesor.
 		*/
-		Vector<DtActividadesDeportivas> informacionProfesorActDepIngRech = new Vector<DtActividadesDeportivas>();
+		Vector<DtActividadesDeportivas> informacionProfesorActDepIngRech = null;
 		if( actDepsIngRech != null ) {
-			List<Object> vecGenerico2 = actDepsIngRech.obtenerVector();
-			
-			Iterator<Object> iteratt = vecGenerico2.iterator();
-			while( iteratt.hasNext() ) {
-				Object aux =  iteratt.next( );
-				informacionProfesorActDepIngRech.add( (DtActividadesDeportivas) aux );
-			}
-			
-			
+			informacionProfesorActDepIngRech = (Vector<DtActividadesDeportivas>) actDepsIngRech.getActividadesDep();
 		}  
 		
 		
