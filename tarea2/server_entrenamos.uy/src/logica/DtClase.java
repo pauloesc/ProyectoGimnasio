@@ -19,6 +19,8 @@ public class DtClase {
 	private String nomAct;
 	private String imagen;
 	
+	public DtClase() {}
+	
 	public DtClase(Date fecha, String nombre, int minSocios, int actualSocios, int maxSocios, String url, Date fechaReg, String nomProfesor, int hor, int min, String nomAct, String img) {
 		this.fecha = fecha;
 		this.nombre = nombre;
@@ -33,63 +35,106 @@ public class DtClase {
 		this.nomAct = nomAct;
 		this.imagen = img;
 	}
-
-
-		//getters
 	
-	public String getNomAct() {
-		return nomAct;
+	@Override
+	public String toString() {
+		return this.nombre;
 	}
-	
-	public String getImagen() {
-		return imagen;
-	}
-	
+
 	public Date getFecha() {
 		return fecha;
+	}
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
 	}
 
 	public String getNombre() {
 		return nombre;
 	}
 
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
 	public int getMinSocios() {
 		return minSocios;
+	}
+
+	public void setMinSocios(int minSocios) {
+		this.minSocios = minSocios;
 	}
 
 	public int getActualSocios() {
 		return actualSocios;
 	}
 
+	public void setActualSocios(int actualSocios) {
+		this.actualSocios = actualSocios;
+	}
+
 	public int getMaxSocios() {
 		return maxSocios;
+	}
+
+	public void setMaxSocios(int maxSocios) {
+		this.maxSocios = maxSocios;
 	}
 
 	public String getUrl() {
 		return url;
 	}
 
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
 	public Date getFechaReg() {
 		return fechaReg;
+	}
+
+	public void setFechaReg(Date fechaReg) {
+		this.fechaReg = fechaReg;
 	}
 
 	public String getNomProfesor() {
 		return nomProfesor;
 	}
-	
-	public Integer getHora() {
+
+	public void setNomProfesor(String nomProfesor) {
+		this.nomProfesor = nomProfesor;
+	}
+
+	public int getHora() {
 		return hora;
 	}
 
-	public Integer getMinuto() {
+	public void setHora(int hora) {
+		this.hora = hora;
+	}
+
+	public int getMinuto() {
 		return minuto;
 	}
 
-	
-	@Override
-	public String toString() {
-		return this.nombre;
+	public void setMinuto(int minuto) {
+		this.minuto = minuto;
 	}
-	
+
+	public String getNomAct() {
+		return nomAct;
+	}
+
+	public void setNomAct(String nomAct) {
+		this.nomAct = nomAct;
+	}
+
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
 	
 }

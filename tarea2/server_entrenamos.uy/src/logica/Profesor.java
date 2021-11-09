@@ -3,7 +3,9 @@ package logica;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
+import java.util.Vector;
 
 public class Profesor extends Usuario {
 	private String descripcion;
@@ -112,6 +114,8 @@ public class Profesor extends Usuario {
 											this.getDescripcion(),
 											this.getWebsite());
         
+		List<DtActividadesDeportivas> ListaDeActividades = new Vector<DtActividadesDeportivas>();
+		
 		Iterator<ActividadDeportiva> aDepInstancia = actDep.iterator();
         while (aDepInstancia.hasNext()) {
         	
@@ -119,12 +123,12 @@ public class Profesor extends Usuario {
         	if ( actDeportiva.getEstado() == EstadoActi.RECHAZADA || actDeportiva.getEstado() == EstadoActi.INGRESADA  ) {
 
         		DtActividadesDeportivas DtAD = actDeportiva.dtActividadesDeportivasSinInfoClases();
-        		infoRetorno.agregarInfo(DtAD);
+        		ListaDeActividades.add(DtAD);
         		
         	}
         	
         }
-        
+        infoRetorno.setActividadesDep(ListaDeActividades);
         return infoRetorno;
 	}
 	

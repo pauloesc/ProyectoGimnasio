@@ -69,6 +69,6 @@ public class Clase {
 
 	
 	public boolean esDeProfesor(String usuario) {
-		return usuario == this.profesor.getNickname();
+		return this.profesor.getNickname().equals(usuario);
 	}
 }
