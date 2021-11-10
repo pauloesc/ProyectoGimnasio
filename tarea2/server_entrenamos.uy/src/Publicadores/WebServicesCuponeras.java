@@ -29,6 +29,7 @@ import excepciones.CuponeraNoExisteException;
 import excepciones.CuponeraRepetidaException;
 import logica.Fabrica;
 import logica.IctrlCuponeras;
+import logica.WrapperSetDataCuponera;
 import logica.WrapperSetString;
 import logica.DataActividad;
 import logica.DataCuponera;
@@ -111,9 +112,33 @@ public class WebServicesCuponeras {
     }
    
     @WebMethod
-    public DataActividad[] getDataActividadesIngresadas() throws ActividadDeportivaNoExisteException {
-    	return ctrladep.getDataActividadesIngresadas().toArray(new DataActividad[ctrladep.getDataActividadesIngresadas().size()]); 	
+    public WrapperSetString getCuponerasCategoria(String cat) {
+    	WrapperSetString resu=new WrapperSetString();
+    	resu.setSet(ctrlcup.getCuponerasCategoria(cat));
+    	return resu;
     }
-      
+    
+    @WebMethod
+    public WrapperSetString getCuponerasInstitucion(String inst) {
+    	WrapperSetString resu=new WrapperSetString();
+    	resu.setSet(ctrlcup.getCuponerasInstitucion(inst));
+    	return resu;
+    }
+    
+    @WebMethod
+    public WrapperSetString getCuponerasAD(String act){
+    	WrapperSetString resu=new WrapperSetString();
+    	resu.setSet(ctrlcup.getCuponerasAD(act));
+    	return resu;
+    }
+    @WebMethod
+    public WrapperSetDataCuponera buscarCuponeras(String consulta)throws CuponeraNoExisteException{
+    	WrapperSetDataCuponera resu=new WrapperSetDataCuponera();
+    	resu.setLista(ctrlcup.buscarCuponeras(consulta));
+    	
+    	return resu;
+    }
+    
+    
 }
 
