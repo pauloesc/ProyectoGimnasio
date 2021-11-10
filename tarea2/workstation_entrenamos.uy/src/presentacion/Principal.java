@@ -8,6 +8,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import Publicadores.WebServicesControladorUsuario;
+import Publicadores.WebServicesCuponeras;
 import excepciones.ActividadDeportivaNoExisteException;
 import logica.Fabrica;
 import logica.IctrlADeportivas;
@@ -66,7 +67,8 @@ public class Principal {
         
         WebServicesControladorUsuario wscu = new WebServicesControladorUsuario();
         wscu.publicar();
-        
+        WebServicesCuponeras wsc = new WebServicesCuponeras();
+        wsc.publicar();
     }
 
     public static Principal getInstance() {
