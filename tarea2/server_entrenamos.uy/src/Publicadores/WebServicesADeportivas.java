@@ -1,7 +1,7 @@
 /**
  * 
  */
-package publicadores;
+package Publicadores;
 
 /**
  * @author mbarrera
