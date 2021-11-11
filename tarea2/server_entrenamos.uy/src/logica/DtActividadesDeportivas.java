@@ -30,73 +30,70 @@ public class DtActividadesDeportivas {
         this.setFechaAlta(fecha_alta);
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public Float getDuracion() {
-        return duracion;
-    }
-    
-    public Float getCosto() {
-        return costo;
-    }
-    
-    public Date getFechaAlta() {
-        return fechaAlta;
-    }
-    
-    
     /* Sirve para mostrar textualmente el nombre de la Actividad Deportiva, por ejemplo en un ComboBox
      */
     public String toString() {
         return getNombre();
     }
 
-    private void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    private void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    private void setDuracion(Float duracion) {
-        this.duracion = duracion;
-    }
-    
-    private void setCosto(Float costo) {
-        this.costo = costo;
-    }
-    
-    private void setFechaAlta(Date fecha_alta) {
-        this.fechaAlta = fecha_alta;
-    }
-
     public void agregarDtClase(DtClase dataTypePorParametro ) {
     	this.clases.add(dataTypePorParametro);
     }
 
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public Float getDuracion() {
+		return duracion;
+	}
+
+	public void setDuracion(Float duracion) {
+		this.duracion = duracion;
+	}
+
+	public Float getCosto() {
+		return costo;
+	}
+
+	public void setCosto(Float costo) {
+		this.costo = costo;
+	}
+
+	public Date getFechaAlta() {
+		return fechaAlta;
+	}
+
+	public void setFechaAlta(Date fechaAlta) {
+		this.fechaAlta = fechaAlta;
+	}
+
 	public List<DtClase> getClases() {
 		return clases;
-	}
-    
-	public EstadoActi getEstado() {
-		return this.estado;
-	}
-	
-	public void setEstado( EstadoActi estadoActiv ) {
-		this.estado = estadoActiv;
 	}
 
 	public void setClases(List<DtClase> clases) {
 		this.clases = clases;
 	}
-	
-	
+
+	public EstadoActi getEstado() {
+		return estado;
+	}
+
+	public void setEstado(EstadoActi estado) {
+		this.estado = estado;
+	}
 	
 }

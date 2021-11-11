@@ -188,8 +188,8 @@ public class Principal {
             public void actionPerformed(ActionEvent arg0) {
             	ICID.cargarDatosIDeportivas();
             	ICAT.cargarCategorias();
+            	IUSR.cargarUsuarios();
                 ICAD.cargarDatosADeportivas();
-                IUSR.cargarUsuarios();
                 ICC.cargarDatosCuponeras();
                 ICCL.cargarDatosClases();
                 ICCL.cargarRegistroAClases();
