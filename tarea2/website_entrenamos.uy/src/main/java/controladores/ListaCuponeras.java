@@ -68,7 +68,7 @@ public class ListaCuponeras extends HttpServlet
 	public static List<DataCuponera> getCuponeras(){
 		WebServicesCuponerasService serviceCUP = new WebServicesCuponerasService();
 		WebServicesCuponeras portCUP = serviceCUP.getWebServicesCuponerasPort();
-		portCUP.cargarDatosCuponeras();
+		
 		List<DataCuponera> cuponeras= new ArrayList<DataCuponera>();
 	
 			try {
