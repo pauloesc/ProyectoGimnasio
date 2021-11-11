@@ -34,6 +34,7 @@ import logica.Usuario;
 import logica.WrapperDataCuponera;
 import logica.WrapperListString;
 import logica.WrapperSetString;
+import logica.WrapperStringNull;
 import logica.ctrlUsuarios;
 
 import java.util.List;
@@ -159,9 +160,11 @@ public class WebServicesControladorUsuario {
     }
     
     @WebMethod
-    public String autenticarUsario(String nickname, String email, String contrasena){
+    public WrapperStringNull autenticarUsario(String nickname, String email, String contrasena){
     	IctrlUsuarios cu = new ctrlUsuarios();
-    	return cu.autenticarUsario(nickname, email, contrasena);
+    	WrapperStringNull envoltura = new WrapperStringNull();
+    	envoltura.setInformacion(cu.autenticarUsario(nickname, email, contrasena));
+    	return envoltura;
     }
     
     
@@ -218,7 +221,7 @@ public class WebServicesControladorUsuario {
      * forzar a que se incluya en el wsdl types el siguiente tipo
      */
     
-    /**
+    
     @WebMethod
     public InfoBasicaSocio sinProposito1() {
     	InfoBasicaSocio s = new InfoBasicaSocio();
@@ -242,7 +245,6 @@ public class WebServicesControladorUsuario {
     	InfoActividadSocio s = new InfoActividadSocio();
     	return s;
     }
-    */
     
     
     /**
