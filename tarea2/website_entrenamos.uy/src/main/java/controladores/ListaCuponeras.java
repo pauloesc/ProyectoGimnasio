@@ -26,10 +26,7 @@ public class ListaCuponeras extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
 	
-	private static WebServicesCuponerasService serviceCUP = new WebServicesCuponerasService();
-	private static WebServicesCuponeras portCUP = serviceCUP.getWebServicesCuponerasPort();
-
-   	   
+	   
 		
 	public ListaCuponeras() 
 	{
@@ -69,6 +66,9 @@ public class ListaCuponeras extends HttpServlet
 	}
 	
 	public static List<DataCuponera> getCuponeras(){
+		WebServicesCuponerasService serviceCUP = new WebServicesCuponerasService();
+		WebServicesCuponeras portCUP = serviceCUP.getWebServicesCuponerasPort();
+		portCUP.cargarDatosCuponeras();
 		List<DataCuponera> cuponeras= new ArrayList<DataCuponera>();
 	
 			try {
