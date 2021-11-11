@@ -218,7 +218,7 @@ public class WebServicesControladorUsuario {
      * forzar a que se incluya en el wsdl types el siguiente tipo
      */
     
-    /**
+    
     @WebMethod
     public InfoBasicaSocio sinProposito1() {
     	InfoBasicaSocio s = new InfoBasicaSocio();
@@ -242,7 +242,6 @@ public class WebServicesControladorUsuario {
     	InfoActividadSocio s = new InfoActividadSocio();
     	return s;
     }
-    */
     
     
     /**
