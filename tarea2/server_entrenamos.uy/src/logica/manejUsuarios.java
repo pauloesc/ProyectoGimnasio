@@ -49,7 +49,7 @@ public class manejUsuarios {
 		    
 		    if (usr.getClass() == Profesor.class) {
 		    	Profesor profe = (Profesor) usr;
-		    	if (profe.getNombreInstitucion() == inst) {
+		    	if (profe.getNombreInstitucion().equals(inst) ) {
 		    		res.add(usr.getNickname());
 		    	}
 		    }
