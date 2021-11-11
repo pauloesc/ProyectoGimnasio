@@ -131,27 +131,6 @@ public interface WebServicesCuponeras {
 
     /**
      * 
-     * @param arg2
-     * @param arg1
-     * @param arg0
-     * @throws ActividadDeportivaRepetidaException_Exception
-     */
-    @WebMethod
-    @Action(input = "http://Publicadores/WebServicesCuponeras/agregarActividadRequest", output = "http://Publicadores/WebServicesCuponeras/agregarActividadResponse", fault = {
-        @FaultAction(className = ActividadDeportivaRepetidaException_Exception.class, value = "http://Publicadores/WebServicesCuponeras/agregarActividad/Fault/ActividadDeportivaRepetidaException")
-    })
-    public void agregarActividad(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-        int arg2)
-        throws ActividadDeportivaRepetidaException_Exception
-    ;
-
-    /**
-     * 
      * @param arg1
      * @param arg0
      * @return
@@ -217,6 +196,27 @@ public interface WebServicesCuponeras {
     })
     public WrapperSetString listarCuponeras()
         throws CuponeraNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg2
+     * @param arg1
+     * @param arg0
+     * @throws ActividadDeportivaRepetidaException_Exception
+     */
+    @WebMethod
+    @Action(input = "http://Publicadores/WebServicesCuponeras/agregarActividadRequest", output = "http://Publicadores/WebServicesCuponeras/agregarActividadResponse", fault = {
+        @FaultAction(className = ActividadDeportivaRepetidaException_Exception.class, value = "http://Publicadores/WebServicesCuponeras/agregarActividad/Fault/ActividadDeportivaRepetidaException")
+    })
+    public void agregarActividad(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        int arg2)
+        throws ActividadDeportivaRepetidaException_Exception
     ;
 
     /**

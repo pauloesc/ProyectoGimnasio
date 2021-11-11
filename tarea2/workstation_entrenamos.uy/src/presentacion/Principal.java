@@ -7,10 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-import Publicadores.WebServicesADeportivas;
 import Publicadores.WebServicesControladorUsuario;
 import Publicadores.WebServicesCuponeras;
-import Publicadores.WebServicesIDeportivas;
+
 import excepciones.ActividadDeportivaNoExisteException;
 import logica.Fabrica;
 import logica.IctrlADeportivas;
@@ -71,10 +70,7 @@ public class Principal {
         wscu.publicar();
         WebServicesCuponeras wsc = new WebServicesCuponeras();
         wsc.publicar();
-        WebServicesADeportivas wsad = new WebServicesADeportivas();
-        wsad.publicar();
-        WebServicesIDeportivas wsid = new WebServicesIDeportivas();
-        wsid.publicar();
+       
         
         
     }
