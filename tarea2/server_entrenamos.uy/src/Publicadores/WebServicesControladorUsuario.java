@@ -20,6 +20,7 @@ import javax.jws.soap.SOAPBinding.ParameterStyle;
 import javax.jws.soap.SOAPBinding.Style;
 import javax.xml.ws.Endpoint;
 
+import excepciones.UsuarioDisponibilidadException;
 import excepciones.UsuarioInexistenteException;
 import logica.DataCuponera;
 import logica.IctrlUsuarios;
@@ -27,11 +28,17 @@ import logica.InfoActividadProfe;
 import logica.InfoActividadSocio;
 import logica.InfoBasicaUser;
 import logica.InformacionActividad;
+import logica.Profesor;
+import logica.Socio;
+import logica.Usuario;
 import logica.WrapperDataCuponera;
 import logica.WrapperListString;
+import logica.WrapperSetString;
+import logica.WrapperStringNull;
 import logica.ctrlUsuarios;
 
 import java.util.List;
+import java.util.Set;
 import java.util.Vector;
 
 import logica.InfoBasicaSocio;
@@ -59,22 +66,114 @@ public class WebServicesControladorUsuario {
 
     
     @WebMethod
-    public String chau(){
-        //Logica l = new Logica();
-        return "chau";
+    public WrapperSetString mostrarNombreProfesoresDeInstitucion(String inst){
+    	IctrlUsuarios cu = new ctrlUsuarios();
+    	WrapperSetString envoltura = new WrapperSetString();
+    	envoltura.setSet( cu.mostrarNombreProfesoresDeInstitucion(inst) );
+        return envoltura;
     }
     
     @WebMethod
-    public Boolean usuarioSigueAUsuario(String usuario1, String usuario2){
-        IctrlUsuarios cu = new ctrlUsuarios();
-        return cu.usuarioSigueAUsuario(usuario1, usuario2);
+    public void altaUsuario(InfoBasicaUser user) throws UsuarioDisponibilidadException{
+    	IctrlUsuarios cu = new ctrlUsuarios();
+    	cu.altaUsuario(user);
     }
+    
+    
+    @WebMethod
+    public WrapperListString institucionesEnSistema(){
+    	IctrlUsuarios cu = new ctrlUsuarios();
+    	WrapperListString envoltura = new WrapperListString();
+    	envoltura.setLista( cu.institucionesEnSistema() );
+        return envoltura;
+    }
+    
+    
+    @WebMethod
+    public InformacionActividad informacionActividad(String usuario) {
+    	IctrlUsuarios cu = new ctrlUsuarios();
+    	InformacionActividad aRetornar = cu.informacionActividad(usuario);
+    	return aRetornar;
+    }
+    
+    
+    @WebMethod
+    public void actualizarInformacionUsuario(InfoBasicaUser actualizacion) {
+    	IctrlUsuarios cu = new ctrlUsuarios();
+    	cu.actualizarInformacionUsuario(actualizacion);
+    }
+    
+    
+    @WebMethod
+    public InfoBasicaUser informacionBasicaUsuario(String usuario) {
+    	IctrlUsuarios cu = new ctrlUsuarios();
+    	return cu.informacionBasicaUsuario(usuario);
+    }
+    
+    
+    @WebMethod
+    public WrapperListString usuariosEnSistemaNickName(){
+    	IctrlUsuarios cu = new ctrlUsuarios();
+    	WrapperListString envoltura = new WrapperListString();
+    	envoltura.setLista(cu.usuariosEnSistemaNickName());
+    	return envoltura;
+    	
+    }
+    
+    
+    @WebMethod
+    public WrapperSetString  mostrarCuponerasDisponibles(String nick, String actDept){
+    	IctrlUsuarios cu = new ctrlUsuarios();
+    	WrapperSetString envoltura = new WrapperSetString();
+    	envoltura.setSet( cu.mostrarCuponerasDisponibles(nick, actDept) );
+    	return envoltura;
+    	
+    }
+    
+    @WebMethod
+	public WrapperSetString mostrarNicknameSocios() {
+    	IctrlUsuarios cu = new ctrlUsuarios();
+    	WrapperSetString envoltura = new WrapperSetString();
+    	envoltura.setSet( cu.mostrarNicknameSocios() );
+		return envoltura;
+	}
+    
+    
+    @WebMethod
+    public void seguirUsuario(String seguidor, String seguido) {
+    	IctrlUsuarios cu = new ctrlUsuarios();
+    	cu.seguirUsuario(seguidor, seguido);
+    }
+    
+    
+    @WebMethod
+    public void dejarDeSeguirUsuario(String seguidor, String seguido) {
+    	IctrlUsuarios cu = new ctrlUsuarios();
+    	cu.dejarDeSeguirUsuario(seguidor, seguido);
+    }
+    
     
     @WebMethod
     public boolean esSocio(String nick) throws UsuarioInexistenteException {
     	IctrlUsuarios cu = new ctrlUsuarios();
     	return cu.esSocio(nick);
     }
+    
+    @WebMethod
+    public WrapperStringNull autenticarUsario(String nickname, String email, String contrasena){
+    	IctrlUsuarios cu = new ctrlUsuarios();
+    	WrapperStringNull envoltura = new WrapperStringNull();
+    	envoltura.setInformacion(cu.autenticarUsario(nickname, email, contrasena));
+    	return envoltura;
+    }
+    
+    
+    @WebMethod
+    public String getNicknameUsuario(String email){
+    	IctrlUsuarios cu = new ctrlUsuarios();
+    	return cu.getNicknameUsuario(email);
+    }
+    
     
     @WebMethod
     public WrapperListString usuariosSiguiendo(String nickname){
@@ -92,16 +191,36 @@ public class WebServicesControladorUsuario {
     	return wr;
     }
     
+    
     @WebMethod
-    public InfoBasicaUser informacionBasicaUsuario(String usuario) {
+    public WrapperDataCuponera cuponeras(String nickname){
     	IctrlUsuarios cu = new ctrlUsuarios();
-    	return cu.informacionBasicaUsuario(usuario);
+    	WrapperDataCuponera envoltorio = new WrapperDataCuponera();
+    	envoltorio.setLista(cu.cuponeras(nickname));
+    	return envoltorio;    	
+    }
+	
+	
+    @WebMethod
+    public InfoActividadProfe informacionActDepEstadoIngRech(String nickname){
+    	IctrlUsuarios cu = new ctrlUsuarios();
+    	InfoActividadProfe envoltorio = cu.informacionActDepEstadoIngRech(nickname);
+    	return envoltorio;
+    	
+    }
+    
+    
+    @WebMethod
+    public Boolean usuarioSigueAUsuario(String usuario1, String usuario2){
+        IctrlUsuarios cu = new ctrlUsuarios();
+        return cu.usuarioSigueAUsuario(usuario1, usuario2);
     }
     
     
     /**
      * forzar a que se incluya en el wsdl types el siguiente tipo
      */
+    
     
     @WebMethod
     public InfoBasicaSocio sinProposito1() {
@@ -127,58 +246,11 @@ public class WebServicesControladorUsuario {
     	return s;
     }
     
-    @WebMethod
-    public Object sinProposito5() {
-    	InfoActividadSocio s = new InfoActividadSocio();
-    	return s;
-    }
     
     /**
      * forzar a que se incluya en el wsdl types
      */
-    
-    
-    @WebMethod
-    public InformacionActividad informacionActividad(String usuario) {
-    	IctrlUsuarios cu = new ctrlUsuarios();
-    	InformacionActividad aRetornar = cu.informacionActividad(usuario);
-    	return aRetornar;
-    }
-    
-    
-    @WebMethod
-    public WrapperDataCuponera cuponeras(String nickname){
-    	IctrlUsuarios cu = new ctrlUsuarios();
-    	WrapperDataCuponera envoltorio = new WrapperDataCuponera();
-    	envoltorio.setLista(cu.cuponeras(nickname));
-    	return envoltorio;    	
-    }
-    
-    
-    @WebMethod
-    public InfoActividadProfe informacionActDepEstadoIngRech(String nickname){
-    	IctrlUsuarios cu = new ctrlUsuarios();
-    	InfoActividadProfe envoltorio = cu.informacionActDepEstadoIngRech(nickname);
-    	return envoltorio;
-    	
-    }
-    
-    
-    @WebMethod
-    public WrapperListString usuariosEnSistemaNickName(){
-    	IctrlUsuarios cu = new ctrlUsuarios();
-    	WrapperListString envoltura = new WrapperListString();
-    	envoltura.setLista(cu.usuariosEnSistemaNickName());
-    	return envoltura;
-    	
-    }
-    
-    @WebMethod
-    public Object aaaaaaa(){
-    	WrapperListString a = new WrapperListString();
-    	return a;
-        
-    }
+
     
 }
 
