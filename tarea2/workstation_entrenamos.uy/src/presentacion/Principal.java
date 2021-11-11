@@ -70,7 +70,8 @@ public class Principal {
         wscu.publicar();
         WebServicesCuponeras wsc = new WebServicesCuponeras();
         wsc.publicar();
-        WebServicesIDeportivas wsi = new Web
+        WebServicesIDeportivas wsi = new WebServicesIDeportivas();
+        wsi.publicar();
     }
 
     public static Principal getInstance() {
