@@ -3,7 +3,6 @@ package controladores;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Set;
 import java.util.List;
 import java.util.Collections;
 import java.util.Comparator;
@@ -15,19 +14,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import excepciones.CuponeraNoExisteException;
-import logica.DataCuponera;
 import logica.Fabrica;
-import logica.IctrlCuponeras;
 import logica.IctrlUsuarios;
+import publicadores.CuponeraNoExisteException_Exception;
+import publicadores.DataCuponera;
+import publicadores.WebServicesCuponeras;
+import publicadores.WebServicesCuponerasService;
 
 @WebServlet("/ListaCuponeras")
 public class ListaCuponeras extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
 	
-	private static IctrlCuponeras ctrlCuponeras = Fabrica.getInstance().getIctrlCuponeras();
-	
+	private static WebServicesCuponerasService serviceCUP = new WebServicesCuponerasService();
+	private static WebServicesCuponeras portCUP = serviceCUP.getWebServicesCuponerasPort();
+
+   	   
+		
 	public ListaCuponeras() 
 	{
 		super();
@@ -53,6 +56,7 @@ public class ListaCuponeras extends HttpServlet
 		String pag = req.getParameter("n");
 		Integer pagnum= Integer.parseInt(pag);
 		
+	
 		List<DataCuponera> cups=ListaCuponeras.getCuponeras();
 		Integer total= cups.size();
 		
@@ -66,19 +70,20 @@ public class ListaCuponeras extends HttpServlet
 	
 	public static List<DataCuponera> getCuponeras(){
 		List<DataCuponera> cuponeras= new ArrayList<DataCuponera>();
-		try {
-			Set<String> cups= ctrlCuponeras.listarCuponeras();
-			for (Iterator<String> iter=cups.iterator();iter.hasNext();) {
-				String cup=iter.next();
-				DataCuponera res=ctrlCuponeras.mostrarCuponera(cup);
-				cuponeras.add(res);
+	
+			try {
+				List<String> cups = portCUP.listarCuponeras().getSet();
+				for (Iterator<String> iter=cups.iterator();iter.hasNext();) {
+					String cup=iter.next();
+					DataCuponera res = portCUP.mostrarCuponera(cup);
+					cuponeras.add(res);
+			} 
+				} catch (CuponeraNoExisteException_Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-		
-		} catch (CuponeraNoExisteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+			
+			
 		Collections.sort(cuponeras, new Comparator<DataCuponera>(){
 		    @Override
 		    public int compare(DataCuponera o1, DataCuponera o2) {
