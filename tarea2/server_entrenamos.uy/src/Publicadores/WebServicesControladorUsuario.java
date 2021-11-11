@@ -34,6 +34,7 @@ import logica.Usuario;
 import logica.WrapperDataCuponera;
 import logica.WrapperListString;
 import logica.WrapperSetString;
+import logica.WrapperStringNull;
 import logica.ctrlUsuarios;
 
 import java.util.List;
@@ -159,9 +160,11 @@ public class WebServicesControladorUsuario {
     }
     
     @WebMethod
-    public String autenticarUsario(String nickname, String email, String contrasena){
+    public WrapperStringNull autenticarUsario(String nickname, String email, String contrasena){
     	IctrlUsuarios cu = new ctrlUsuarios();
-    	return cu.autenticarUsario(nickname, email, contrasena);
+    	WrapperStringNull envoltura = new WrapperStringNull();
+    	envoltura.setInformacion(cu.autenticarUsario(nickname, email, contrasena));
+    	return envoltura;
     }
     
     
