@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="controladores.ConsultaActividad"%>
 <%@page import="java.util.Set"%>
+<%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +11,7 @@
 <%
 	String nomcat = (String) request.getAttribute("categoria");
 	Set<String> actividades = (Set<String>) request.getAttribute("actividades");
-	Set<String> cuponeras = (Set<String>) request.getAttribute("cuponeras");
+	List<String> cuponeras = (List<String>) request.getAttribute("cuponeras");
 %>
 <body>
 	<jsp:include page="/WEB-INF/template/header.jsp" />

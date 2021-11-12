@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@page import="logica.DataCuponera"%>
+<%@page import="publicadores.DataCuponera"%>
 <%@page import="logica.DataActividad"%>
 <%@page import="java.util.Set"%>
+<%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +14,7 @@
 	<jsp:include page="/WEB-INF/template/header.jsp" />
 	<!-- Begin page content -->
 	<%
-	Set<DataCuponera> cuponeras = (Set<DataCuponera>) request.getAttribute("resultCup");
+	List<DataCuponera> cuponeras = (List<DataCuponera>) request.getAttribute("resultCup");
 	Set<DataActividad> actividades = (Set<DataActividad>) request.getAttribute("resultAct");
 	Set<String> instituciones = (Set<String>) request.getAttribute("instituciones");
 	Set<String> categorias = (Set<String>) request.getAttribute("categorias");
@@ -40,7 +41,7 @@
       						<h5 class="mb-1"><%=cup.getNombre() %></h5>
       						<small>$<%=cup.getCosto() %></small>
     					</div>
-    					<span id="<%=cup.getFechaAlta().toInstant()%>">Fecha publicación: <fmt:formatDate pattern = "yyyy-MM-dd" value = "<%=cup.getFechaAlta()%>"/> </span><br>
+    					<span id="<%=cup.getFechaAlta().toGregorianCalendar().getTime().toInstant()%>">Fecha publicación: <fmt:formatDate pattern = "yyyy-MM-dd" value = "<%=cup.getFechaAlta().toGregorianCalendar().getTime()%>"/> </span><br>
     					<%
     					for ( String ncat : cup.getCategorias() )
     					{
