@@ -1,7 +1,9 @@
 package controladores;
 
+import java.util.List;
 import java.io.IOException;
 import java.util.Set;
+import java.util.HashSet;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -32,8 +34,14 @@ public class Instituciones extends HttpServlet
 
 	public static Set<String> getInstituciones(){
 
-		Set<String> inst = ICD.darNombreInstituciones();
-		return inst;
+		publicadores.WebServicesIDeportivasService service = 
+				new publicadores.WebServicesIDeportivasService();
+		
+		publicadores.WebServicesIDeportivas port = service.getWebServicesIDeportivasPort();
+		
+		List<String> nomInstituciones = port.darNombreInstituciones().getItem();
+		
+		return new HashSet<String>(nomInstituciones);
 	}
 	
 	public static void cargarInstituciones()
