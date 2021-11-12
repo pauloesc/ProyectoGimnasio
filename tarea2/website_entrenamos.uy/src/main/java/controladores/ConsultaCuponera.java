@@ -2,6 +2,7 @@ package controladores;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,19 +10,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.xml.datatype.XMLGregorianCalendar;
+import javax.xml.datatype.DatatypeFactory;
 
-import excepciones.CuponeraCompradaException;
-import logica.DataCuponera;
 import logica.Fabrica;
-import logica.IctrlCuponeras;
 import logica.IctrlUsuarios;
+import publicadores.CuponeraCompradaException_Exception;
+import publicadores.DataCuponera;
+import publicadores.WebServicesCuponeras;
+import publicadores.WebServicesCuponerasService;
 
 @WebServlet("/ConsultaCuponera")
 public class ConsultaCuponera extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
 	
-	private static IctrlCuponeras ctrlCuponeras = Fabrica.getInstance().getIctrlCuponeras();
 	
 	
 	public ConsultaCuponera() 
@@ -60,6 +63,20 @@ public class ConsultaCuponera extends HttpServlet
 		req.setAttribute("socio", bien);
 		
 		Date date = new Date();
+		
+		GregorianCalendar calendar = new GregorianCalendar();
+		calendar.setTime(date);
+		XMLGregorianCalendar xmlDate = null;
+		
+		try {
+	            xmlDate = DatatypeFactory.newInstance().newXMLGregorianCalendar(calendar);
+	        }
+	        catch (Exception e) {
+	            e.printStackTrace();
+	        }
+		
+		
+		
 		Boolean comprahab1=false;
 		
 		try {
@@ -69,17 +86,19 @@ public class ConsultaCuponera extends HttpServlet
 			comprahab1=false;
 		}
 		
+		WebServicesCuponerasService serviceCUP = new WebServicesCuponerasService();
+		WebServicesCuponeras portCUP = serviceCUP.getWebServicesCuponerasPort();
 		
 		if (bien && comprahab1) {
 			String nomP = (String) sesion.getAttribute("nickname-user");
-		try {
-			ctrlCuponeras.comprarCuponera(date, cup, nomP); 
-			req.setAttribute("msjcompra", "La cuponera se ha comprado con exito.");
-			req.setAttribute("compra", true);
-		} catch (CuponeraCompradaException e) {
-			req.setAttribute("msjcompra", e.getMessage());
-			req.setAttribute("compra", false);
-		}
+			try {
+				portCUP.comprarCuponera(xmlDate, cup, nomP);
+				req.setAttribute("msjcompra", "La cuponera se ha comprado con exito.");
+				req.setAttribute("compra", true);
+			} catch (CuponeraCompradaException_Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}  
 		}
 		
 		req.getRequestDispatcher("/WEB-INF/cuponeras/consultaCuponera.jsp").forward(req, resp);
@@ -87,9 +106,13 @@ public class ConsultaCuponera extends HttpServlet
 	
 		
 	public static DataCuponera getDataCuponera(String cup){
+		WebServicesCuponerasService serviceCUP = new WebServicesCuponerasService();
+		WebServicesCuponeras portCUP = serviceCUP.getWebServicesCuponerasPort();
+		
 		DataCuponera dtCuponera;
+		
 		try {
-			dtCuponera = ctrlCuponeras.mostrarCuponera(cup);
+			dtCuponera = portCUP.mostrarCuponera(cup);
 		} 
 		catch(Exception ex) {
 			dtCuponera = null;

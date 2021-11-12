@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import="logica.DataCuponera"%>
-<%@page import="logica.ParActividad"%>
-<%@page import="java.util.Set"%>
+<%@page import="publicadores.DataCuponera"%>
+<%@page import="publicadores.ParActividad"%>
+<%@page import="java.util.List"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.DateFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -55,10 +55,10 @@
  						<h5 class="card-header text-primary"> <b><%= dtcuponera.getNombre() %></b></h5>
   						<div class="card-body text-dark">
     						<p class="card-text"><%= dtcuponera.getDescripcion() %></p>
-    						<p class="card-text"> Periodo de vigencia: <%= dateFormat.format(dtcuponera.getFechaIni())%> - <%= dateFormat.format(dtcuponera.getFechaFin())%> </p>
+    						<p class="card-text"> Periodo de vigencia: <%= dateFormat.format(dtcuponera.getFechaIni().toGregorianCalendar().getTime())%> - <%= dateFormat.format(dtcuponera.getFechaFin().toGregorianCalendar().getTime())%> </p>
     						<p class="card-text">Descuento aplicar: <%= dtcuponera.getDescuento() %>% </p>
     						<p class="card-text"> <b> Costo Total: <%= dtcuponera.getCosto() %>$</b> </p>
-    						<p class="card-text text-secondary"> Fecha de alta: <%= dateFormat.format(dtcuponera.getFechaAlta())%> </p>
+    						<p class="card-text text-secondary"> Fecha de alta: <%= dateFormat.format(dtcuponera.getFechaAlta().toGregorianCalendar().getTime())%> </p>
   					</div>
   						 <div class="d-md-flex justify-content-md-end col-12 mb-3">
   							<% if (socio){%>
@@ -122,7 +122,7 @@
   							<tbody>
   							<% 
   							int i = 1;
-  							Set<ParActividad> act=dtcuponera.getClases();
+  							List<ParActividad> act=dtcuponera.getClases();
 							for(ParActividad paract :act) {
 								String aa=paract.getNombre();
 								int    n1=paract.getNumclase();
@@ -154,7 +154,7 @@
   							<tbody>
   							<% 
   							int i2 = 1;
-  							Set<String> cat=dtcuponera.getCategorias();
+  							List<String> cat=dtcuponera.getCategorias();
 							for(String categoria :cat) {
 							%>	
    							 <tr>
