@@ -9,32 +9,44 @@ package logica;
 public class DataInstitucion {
 
     private String nombre;
-    private String descripcion;
+	private String descripcion;
     private String url;
 
     public DataInstitucion() {
         this.setNombre(new String());
         this.setDescripcion(new String());
-        this.setURL(new String());
+        this.setUrl(new String());
     }
 
     public DataInstitucion(String nombre, String descripcion, String url) {
         this.setNombre(nombre);
         this.setDescripcion(descripcion);
-        this.setURL(url);
+        this.setUrl(url);
     }
 
     public String getNombre() {
-        return nombre;
-    }
+		return nombre;
+	}
 
-    public String getDescripcion() {
-        return descripcion;
-    }
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
-    public String getURL() {
-        return url;
-    }
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
 
     /* Sirve para mostrar textualmente el nombre de la Institución Deportiva, por ejemplo en un ComboBox
      */
@@ -42,18 +54,6 @@ public class DataInstitucion {
         return getNombre();
     }
 
-    private void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    private void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    private void setURL(String url) {
-        this.url = url;
-    }
-    
     @Override
     public boolean equals(Object obj) {
         if (obj == this) 
@@ -64,7 +64,7 @@ public class DataInstitucion {
         }
         
         DataInstitucion dataInst = (DataInstitucion) obj;
-        if (nombre == dataInst.getNombre() && descripcion == dataInst.getDescripcion() && url == dataInst.getURL())
+        if (nombre == dataInst.getNombre() && descripcion == dataInst.getDescripcion() && url == dataInst.getUrl())
         	return true;
         else
         	return false;

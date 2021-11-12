@@ -38,7 +38,7 @@ class TestctrlIDeportivas {
 			DataInstitucion dataInst = ctrlIDeportivas.getInstitucion("Instituto prueba 2");
 			assertEquals(dataInst.getNombre(), "Instituto prueba 2");
 			assertEquals(dataInst.getDescripcion(), "Es una prueba");
-			assertEquals(dataInst.getURL(), "https://test.com.uy");
+			assertEquals(dataInst.getUrl(), "https://test.com.uy");
 		}
 		catch (InstitucionDeportivaNoExisteException e)
 		{
@@ -114,7 +114,7 @@ class TestctrlIDeportivas {
 			
 			assertEquals(dataInst.getNombre(), "Fuerza Bruta");
 			assertEquals(dataInst.getDescripcion(), "Gimnasio especializado en el desarrollo de la musculatura.");
-			assertEquals(dataInst.getURL(), "https://www.musculos.com/");
+			assertEquals(dataInst.getUrl(), "https://www.musculos.com/");
 		}
 		catch (InstitucionDeportivaNoExisteException e)
 		{

@@ -24,11 +24,8 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _ActividadDeportivaNoExisteException_QNAME = new QName("http://Publicadores/", "ActividadDeportivaNoExisteException");
-    private final static QName _CuponeraNoExisteException_QNAME = new QName("http://Publicadores/", "CuponeraNoExisteException");
-    private final static QName _CuponeraCompradaException_QNAME = new QName("http://Publicadores/", "CuponeraCompradaException");
-    private final static QName _ActividadDeportivaRepetidaException_QNAME = new QName("http://Publicadores/", "ActividadDeportivaRepetidaException");
-    private final static QName _CuponeraRepetidaException_QNAME = new QName("http://Publicadores/", "CuponeraRepetidaException");
+    private final static QName _InstitucionDeportivaNoExisteException_QNAME = new QName("http://Publicadores/", "InstitucionDeportivaNoExisteException");
+    private final static QName _InstitucionDeportivaRepetidaException_QNAME = new QName("http://Publicadores/", "InstitucionDeportivaRepetidaException");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: publicadores
@@ -38,120 +35,53 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ActividadDeportivaRepetidaException }
+     * Create an instance of {@link InstitucionDeportivaRepetidaException }
      * 
      */
-    public ActividadDeportivaRepetidaException createActividadDeportivaRepetidaException() {
-        return new ActividadDeportivaRepetidaException();
+    public InstitucionDeportivaRepetidaException createInstitucionDeportivaRepetidaException() {
+        return new InstitucionDeportivaRepetidaException();
     }
 
     /**
-     * Create an instance of {@link CuponeraRepetidaException }
+     * Create an instance of {@link InstitucionDeportivaNoExisteException }
      * 
      */
-    public CuponeraRepetidaException createCuponeraRepetidaException() {
-        return new CuponeraRepetidaException();
+    public InstitucionDeportivaNoExisteException createInstitucionDeportivaNoExisteException() {
+        return new InstitucionDeportivaNoExisteException();
     }
 
     /**
-     * Create an instance of {@link CuponeraCompradaException }
+     * Create an instance of {@link DataInstitucion }
      * 
      */
-    public CuponeraCompradaException createCuponeraCompradaException() {
-        return new CuponeraCompradaException();
+    public DataInstitucion createDataInstitucion() {
+        return new DataInstitucion();
     }
 
     /**
-     * Create an instance of {@link ActividadDeportivaNoExisteException }
+     * Create an instance of {@link DataInstitucionArray }
      * 
      */
-    public ActividadDeportivaNoExisteException createActividadDeportivaNoExisteException() {
-        return new ActividadDeportivaNoExisteException();
+    public DataInstitucionArray createDataInstitucionArray() {
+        return new DataInstitucionArray();
     }
 
     /**
-     * Create an instance of {@link CuponeraNoExisteException }
+     * Create an instance of {@link JAXBElement }{@code <}{@link InstitucionDeportivaNoExisteException }{@code >}}
      * 
      */
-    public CuponeraNoExisteException createCuponeraNoExisteException() {
-        return new CuponeraNoExisteException();
+    @XmlElementDecl(namespace = "http://Publicadores/", name = "InstitucionDeportivaNoExisteException")
+    public JAXBElement<InstitucionDeportivaNoExisteException> createInstitucionDeportivaNoExisteException(InstitucionDeportivaNoExisteException value) {
+        return new JAXBElement<InstitucionDeportivaNoExisteException>(_InstitucionDeportivaNoExisteException_QNAME, InstitucionDeportivaNoExisteException.class, null, value);
     }
 
     /**
-     * Create an instance of {@link ParActividad }
+     * Create an instance of {@link JAXBElement }{@code <}{@link InstitucionDeportivaRepetidaException }{@code >}}
      * 
      */
-    public ParActividad createParActividad() {
-        return new ParActividad();
-    }
-
-    /**
-     * Create an instance of {@link DataCuponera }
-     * 
-     */
-    public DataCuponera createDataCuponera() {
-        return new DataCuponera();
-    }
-
-    /**
-     * Create an instance of {@link WrapperSetDataCuponera }
-     * 
-     */
-    public WrapperSetDataCuponera createWrapperSetDataCuponera() {
-        return new WrapperSetDataCuponera();
-    }
-
-    /**
-     * Create an instance of {@link WrapperSetString }
-     * 
-     */
-    public WrapperSetString createWrapperSetString() {
-        return new WrapperSetString();
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ActividadDeportivaNoExisteException }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://Publicadores/", name = "ActividadDeportivaNoExisteException")
-    public JAXBElement<ActividadDeportivaNoExisteException> createActividadDeportivaNoExisteException(ActividadDeportivaNoExisteException value) {
-        return new JAXBElement<ActividadDeportivaNoExisteException>(_ActividadDeportivaNoExisteException_QNAME, ActividadDeportivaNoExisteException.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CuponeraNoExisteException }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://Publicadores/", name = "CuponeraNoExisteException")
-    public JAXBElement<CuponeraNoExisteException> createCuponeraNoExisteException(CuponeraNoExisteException value) {
-        return new JAXBElement<CuponeraNoExisteException>(_CuponeraNoExisteException_QNAME, CuponeraNoExisteException.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CuponeraCompradaException }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://Publicadores/", name = "CuponeraCompradaException")
-    public JAXBElement<CuponeraCompradaException> createCuponeraCompradaException(CuponeraCompradaException value) {
-        return new JAXBElement<CuponeraCompradaException>(_CuponeraCompradaException_QNAME, CuponeraCompradaException.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ActividadDeportivaRepetidaException }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://Publicadores/", name = "ActividadDeportivaRepetidaException")
-    public JAXBElement<ActividadDeportivaRepetidaException> createActividadDeportivaRepetidaException(ActividadDeportivaRepetidaException value) {
-        return new JAXBElement<ActividadDeportivaRepetidaException>(_ActividadDeportivaRepetidaException_QNAME, ActividadDeportivaRepetidaException.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CuponeraRepetidaException }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://Publicadores/", name = "CuponeraRepetidaException")
-    public JAXBElement<CuponeraRepetidaException> createCuponeraRepetidaException(CuponeraRepetidaException value) {
-        return new JAXBElement<CuponeraRepetidaException>(_CuponeraRepetidaException_QNAME, CuponeraRepetidaException.class, null, value);
+    @XmlElementDecl(namespace = "http://Publicadores/", name = "InstitucionDeportivaRepetidaException")
+    public JAXBElement<InstitucionDeportivaRepetidaException> createInstitucionDeportivaRepetidaException(InstitucionDeportivaRepetidaException value) {
+        return new JAXBElement<InstitucionDeportivaRepetidaException>(_InstitucionDeportivaRepetidaException_QNAME, InstitucionDeportivaRepetidaException.class, null, value);
     }
 
 }
