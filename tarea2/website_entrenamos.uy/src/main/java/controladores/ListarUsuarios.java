@@ -11,9 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import logica.Fabrica;
-import logica.IctrlUsuarios;
-import logica.InfoBasicaUser;
+import publicadores.WebServicesControladorUsuarioService;
 
 /**
  * Servlet implementation class ListarUsuarios
@@ -35,17 +33,20 @@ public class ListarUsuarios extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		Fabrica f = Fabrica.getInstance();
-		IctrlUsuarios ICU = f.getIctrlUsuarios();
+		//---------------------------
+		WebServicesControladorUsuarioService serviceCUP = new WebServicesControladorUsuarioService();
+		publicadores.WebServicesControladorUsuario port = serviceCUP.getWebServicesControladorUsuarioPort();
+		//---------------------------
 		
-		List<String> usuariosEnSistema = ICU.usuariosEnSistemaNickName();
+		publicadores.WrapperListString auxUsuariosEnSistema = port.usuariosEnSistemaNickName();
+		List<String> usuariosEnSistema = auxUsuariosEnSistema.getLista();
 		
-		Vector<InfoBasicaUser> infoCompletaUsuarios = new Vector<InfoBasicaUser>(); 
+		Vector<publicadores.InfoBasicaUser> infoCompletaUsuarios = new Vector<publicadores.InfoBasicaUser>(); 
 		
 		Iterator<String> usuarios = usuariosEnSistema.iterator();
 		while( usuarios.hasNext() ) {
 			String user = usuarios.next();
-			infoCompletaUsuarios.add( ICU.informacionBasicaUsuario(user) );
+			infoCompletaUsuarios.add( port.informacionBasicaUsuario(user) );
 		}
 		
 		request.setAttribute("usuarios", infoCompletaUsuarios);
