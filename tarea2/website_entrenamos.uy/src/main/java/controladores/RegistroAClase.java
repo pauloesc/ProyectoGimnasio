@@ -23,6 +23,8 @@ import logica.Fabrica;
 import logica.IctrlADeportivas;
 import logica.IctrlClases;
 import logica.IctrlUsuarios;
+import publicadores.ClaseLlenaException_Exception;
+import publicadores.ClaseYaCompradaException_Exception;
 
 /**
  * Servlet implementation class RegistroAClase
@@ -42,10 +44,15 @@ public class RegistroAClase extends HttpServlet {
     	HttpSession sesion = req.getSession();
     	Fabrica f = Fabrica.getInstance();
 		IctrlUsuarios ICU = f.getIctrlUsuarios();
-		IctrlClases ICL = f.getIctrlClases();
 		IctrlADeportivas IAD = f.getIctrlADeportivas();
 		boolean bien = false;
     	
+		publicadores.WebServicesClasesService service = 
+				new publicadores.WebServicesClasesService();
+		
+		publicadores.WebServicesClases port = service.getWebServicesClasesPort();
+		
+		
 		if ((String)sesion.getAttribute("estado-sesion") == "logged-in") {
     		try {
     			bien = ICU.esSocio((String)sesion.getAttribute("nickname-user"));
@@ -58,7 +65,7 @@ public class RegistroAClase extends HttpServlet {
    
     		
         	String nom = req.getParameter("clase");
-        	DtClase dc = ICL.darDtClase(nom);
+        	publicadores.DtClase dc = port.darDtClase(nom);
     
         	
         	try {
@@ -102,11 +109,15 @@ public class RegistroAClase extends HttpServlet {
 		HttpSession sesion = req.getSession();
     	Fabrica f = Fabrica.getInstance();
 		IctrlUsuarios ICU = f.getIctrlUsuarios();
-		IctrlClases ICL = f.getIctrlClases();
 		IctrlADeportivas IAD = f.getIctrlADeportivas();
 		boolean bien = false;
 		String nick = (String)sesion.getAttribute("nickname-user");
     	
+		publicadores.WebServicesClasesService service = 
+				new publicadores.WebServicesClasesService();
+		
+		publicadores.WebServicesClases port = service.getWebServicesClasesPort();
+		
 		if ((String)sesion.getAttribute("estado-sesion") == "logged-in") {
     		try {
     			bien = ICU.esSocio(nick);
@@ -119,7 +130,7 @@ public class RegistroAClase extends HttpServlet {
     		
     		
         	String nom = req.getParameter("clase");
-        	DtClase dc = ICL.darDtClase(nom);
+        	publicadores.DtClase dc = port.darDtClase(nom);
         	
         	
         	try {
@@ -149,13 +160,14 @@ public class RegistroAClase extends HttpServlet {
 				if (Factual.after(dc.getFecha())) {
 					req.setAttribute("respuesta","Error, la clase ya expiró");
 				} else {
-					ICL.registrarSocioAClase(nick, dc.getNomAct(), nom, conCup, cup, Factual);
+					if (cup == null) cup = "";
+					port.registrarSocioAClase(nick, dc.getNomAct(), nom, conCup, cup, Factual);
 					req.setAttribute("respuesta","se ha comprado la clase exitosamente");
 				}
 	
-			} catch (ClaseYaCompradaException e) {
+			} catch (ClaseYaCompradaException_Exception e) {
 				req.setAttribute("respuesta","Error, usted ya posee esta clase");
-			} catch (ClaseLlenaException r){
+			} catch (ClaseLlenaException_Exception r){
 				req.setAttribute("respuesta","Error, la clase está llena");
 			} catch (Exception ex){
 				req.setAttribute("respuesta","Error inesperado");

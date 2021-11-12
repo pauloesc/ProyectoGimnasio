@@ -22,6 +22,7 @@ import logica.IctrlADeportivas;
 import logica.IctrlClases;
 import logica.IctrlUsuarios;
 import logica.InfoBasicaProfesor;
+import publicadores.ClaseRepetidaException_Exception;
 
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 10, 	// 10 MB 
@@ -45,6 +46,13 @@ public class AltaClase extends HttpServlet {
 		IctrlADeportivas ICA = f.getIctrlADeportivas();
 		
 		boolean ESocio = true;
+		
+		
+		publicadores.WebServicesClasesService service = 
+				new publicadores.WebServicesClasesService();
+		
+		publicadores.WebServicesClases port = service.getWebServicesClasesPort();
+		
     	
 		if ((String)sesion.getAttribute("estado-sesion") == "logged-in") {
     		try {
@@ -80,11 +88,16 @@ public class AltaClase extends HttpServlet {
 		HttpSession sesion = req.getSession();
     	Fabrica f = Fabrica.getInstance();
 		IctrlUsuarios ICU = f.getIctrlUsuarios();
-		IctrlClases ICL = f.getIctrlClases();
 		IctrlADeportivas ICA = f.getIctrlADeportivas();
 		
 		boolean ESocio = true;
     	
+		
+		publicadores.WebServicesClasesService service = 
+				new publicadores.WebServicesClasesService();
+		
+		publicadores.WebServicesClases port = service.getWebServicesClasesPort();
+		
 		if ((String)sesion.getAttribute("estado-sesion") == "logged-in") {
     		try {
     			ESocio = ICU.esSocio((String)sesion.getAttribute("nickname-user"));
@@ -185,9 +198,11 @@ public class AltaClase extends HttpServlet {
 						
 					}
 					
-					ICL.crearClase(nomC,feI, nomP,Smin ,Smax ,url ,Factual , act, Integer.parseInt(h), Integer.parseInt(m),fileName + "." + ext);
+					
+					port.crearClase(nomC,feI, nomP,Smin ,Smax ,url ,Factual , act, Integer.parseInt(h), Integer.parseInt(m),fileName + "." + ext);
+					
 					req.setAttribute("respuesta","La clase ha sido creada con exito");
-				} catch (ClaseRepetidaException e) {
+				} catch (ClaseRepetidaException_Exception e) {
 					req.setAttribute("respuesta","Error, ya existe una clase con ese nombre");
 				} catch (Exception s) {
 					req.setAttribute("respuesta","Error inesperado");

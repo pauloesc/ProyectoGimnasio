@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import Publicadores.WebServicesClases;
 import Publicadores.WebServicesControladorUsuario;
 import Publicadores.WebServicesCuponeras;
 import Publicadores.WebServicesIDeportivas;
@@ -74,7 +75,9 @@ public class Principal {
         wsc.publicar();
         WebServicesIDeportivas wsi = new WebServicesIDeportivas();
         wsi.publicar();
-        WebServicesCategorias wscat = new WebServicesCategorias();
+        WebServicesClases wscl = new WebServicesClases();
+        wscl.publicar();
+	WebServicesCategorias wscat = new WebServicesCategorias();
         wscat.publicar();
         
     }
