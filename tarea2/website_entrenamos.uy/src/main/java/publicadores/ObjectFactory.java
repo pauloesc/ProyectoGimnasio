@@ -25,12 +25,21 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _UsuarioInexistenteException_QNAME = new QName("http://Publicadores/", "UsuarioInexistenteException");
+    private final static QName _UsuarioDisponibilidadException_QNAME = new QName("http://Publicadores/", "UsuarioDisponibilidadException");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: publicadores
      * 
      */
     public ObjectFactory() {
+    }
+
+    /**
+     * Create an instance of {@link UsuarioDisponibilidadException }
+     * 
+     */
+    public UsuarioDisponibilidadException createUsuarioDisponibilidadException() {
+        return new UsuarioDisponibilidadException();
     }
 
     /**
@@ -71,6 +80,14 @@ public class ObjectFactory {
      */
     public WrapperListString createWrapperListString() {
         return new WrapperListString();
+    }
+
+    /**
+     * Create an instance of {@link WrapperStringNull }
+     * 
+     */
+    public WrapperStringNull createWrapperStringNull() {
+        return new WrapperStringNull();
     }
 
     /**
@@ -122,6 +139,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link WrapperSetString }
+     * 
+     */
+    public WrapperSetString createWrapperSetString() {
+        return new WrapperSetString();
+    }
+
+    /**
      * Create an instance of {@link DtClase }
      * 
      */
@@ -136,6 +161,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://Publicadores/", name = "UsuarioInexistenteException")
     public JAXBElement<UsuarioInexistenteException> createUsuarioInexistenteException(UsuarioInexistenteException value) {
         return new JAXBElement<UsuarioInexistenteException>(_UsuarioInexistenteException_QNAME, UsuarioInexistenteException.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link UsuarioDisponibilidadException }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://Publicadores/", name = "UsuarioDisponibilidadException")
+    public JAXBElement<UsuarioDisponibilidadException> createUsuarioDisponibilidadException(UsuarioDisponibilidadException value) {
+        return new JAXBElement<UsuarioDisponibilidadException>(_UsuarioDisponibilidadException_QNAME, UsuarioDisponibilidadException.class, null, value);
     }
 
 }

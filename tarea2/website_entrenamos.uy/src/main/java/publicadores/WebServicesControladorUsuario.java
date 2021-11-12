@@ -37,25 +37,125 @@ public interface WebServicesControladorUsuario {
 
     /**
      * 
+     * @param arg0
+     * @throws UsuarioDisponibilidadException_Exception
+     */
+    @WebMethod
+    @Action(input = "http://Publicadores/WebServicesControladorUsuario/altaUsuarioRequest", output = "http://Publicadores/WebServicesControladorUsuario/altaUsuarioResponse", fault = {
+        @FaultAction(className = UsuarioDisponibilidadException_Exception.class, value = "http://Publicadores/WebServicesControladorUsuario/altaUsuario/Fault/UsuarioDisponibilidadException")
+    })
+    public void altaUsuario(
+        @WebParam(name = "arg0", partName = "arg0")
+        InfoBasicaUser arg0)
+        throws UsuarioDisponibilidadException_Exception
+    ;
+
+    /**
+     * 
      * @return
-     *     returns java.lang.String
+     *     returns publicadores.WrapperSetString
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://Publicadores/WebServicesControladorUsuario/chauRequest", output = "http://Publicadores/WebServicesControladorUsuario/chauResponse")
-    public String chau();
+    @Action(input = "http://Publicadores/WebServicesControladorUsuario/mostrarNicknameSociosRequest", output = "http://Publicadores/WebServicesControladorUsuario/mostrarNicknameSociosResponse")
+    public WrapperSetString mostrarNicknameSocios();
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns publicadores.WrapperSetString
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://Publicadores/WebServicesControladorUsuario/mostrarNombreProfesoresDeInstitucionRequest", output = "http://Publicadores/WebServicesControladorUsuario/mostrarNombreProfesoresDeInstitucionResponse")
+    public WrapperSetString mostrarNombreProfesoresDeInstitucion(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @return
+     *     returns publicadores.WrapperListString
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://Publicadores/WebServicesControladorUsuario/institucionesEnSistemaRequest", output = "http://Publicadores/WebServicesControladorUsuario/institucionesEnSistemaResponse")
+    public WrapperListString institucionesEnSistema();
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns publicadores.InformacionActividad
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://Publicadores/WebServicesControladorUsuario/informacionActividadRequest", output = "http://Publicadores/WebServicesControladorUsuario/informacionActividadResponse")
+    public InformacionActividad informacionActividad(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     */
+    @WebMethod
+    @Action(input = "http://Publicadores/WebServicesControladorUsuario/actualizarInformacionUsuarioRequest", output = "http://Publicadores/WebServicesControladorUsuario/actualizarInformacionUsuarioResponse")
+    public void actualizarInformacionUsuario(
+        @WebParam(name = "arg0", partName = "arg0")
+        InfoBasicaUser arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns publicadores.InfoBasicaUser
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://Publicadores/WebServicesControladorUsuario/informacionBasicaUsuarioRequest", output = "http://Publicadores/WebServicesControladorUsuario/informacionBasicaUsuarioResponse")
+    public InfoBasicaUser informacionBasicaUsuario(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
 
     /**
      * 
      * @param arg1
      * @param arg0
      * @return
-     *     returns boolean
+     *     returns publicadores.WrapperSetString
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://Publicadores/WebServicesControladorUsuario/usuarioSigueAUsuarioRequest", output = "http://Publicadores/WebServicesControladorUsuario/usuarioSigueAUsuarioResponse")
-    public boolean usuarioSigueAUsuario(
+    @Action(input = "http://Publicadores/WebServicesControladorUsuario/mostrarCuponerasDisponiblesRequest", output = "http://Publicadores/WebServicesControladorUsuario/mostrarCuponerasDisponiblesResponse")
+    public WrapperSetString mostrarCuponerasDisponibles(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1);
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    @Action(input = "http://Publicadores/WebServicesControladorUsuario/seguirUsuarioRequest", output = "http://Publicadores/WebServicesControladorUsuario/seguirUsuarioResponse")
+    public void seguirUsuario(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1);
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    @Action(input = "http://Publicadores/WebServicesControladorUsuario/dejarDeSeguirUsuarioRequest", output = "http://Publicadores/WebServicesControladorUsuario/dejarDeSeguirUsuarioResponse")
+    public void dejarDeSeguirUsuario(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0,
         @WebParam(name = "arg1", partName = "arg1")
@@ -78,6 +178,38 @@ public interface WebServicesControladorUsuario {
         String arg0)
         throws UsuarioInexistenteException_Exception
     ;
+
+    /**
+     * 
+     * @param arg2
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns publicadores.WrapperStringNull
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://Publicadores/WebServicesControladorUsuario/autenticarUsarioRequest", output = "http://Publicadores/WebServicesControladorUsuario/autenticarUsarioResponse")
+    public WrapperStringNull autenticarUsario(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        String arg2);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://Publicadores/WebServicesControladorUsuario/getNicknameUsuarioRequest", output = "http://Publicadores/WebServicesControladorUsuario/getNicknameUsuarioResponse")
+    public String getNicknameUsuario(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
 
     /**
      * 
@@ -109,14 +241,43 @@ public interface WebServicesControladorUsuario {
      * 
      * @param arg0
      * @return
-     *     returns publicadores.InfoBasicaUser
+     *     returns publicadores.WrapperDataCuponera
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://Publicadores/WebServicesControladorUsuario/informacionBasicaUsuarioRequest", output = "http://Publicadores/WebServicesControladorUsuario/informacionBasicaUsuarioResponse")
-    public InfoBasicaUser informacionBasicaUsuario(
+    @Action(input = "http://Publicadores/WebServicesControladorUsuario/cuponerasRequest", output = "http://Publicadores/WebServicesControladorUsuario/cuponerasResponse")
+    public WrapperDataCuponera cuponeras(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns publicadores.InfoActividadProfe
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://Publicadores/WebServicesControladorUsuario/informacionActDepEstadoIngRechRequest", output = "http://Publicadores/WebServicesControladorUsuario/informacionActDepEstadoIngRechResponse")
+    public InfoActividadProfe informacionActDepEstadoIngRech(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns boolean
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://Publicadores/WebServicesControladorUsuario/usuarioSigueAUsuarioRequest", output = "http://Publicadores/WebServicesControladorUsuario/usuarioSigueAUsuarioResponse")
+    public boolean usuarioSigueAUsuario(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1);
 
     /**
      * 
@@ -157,64 +318,5 @@ public interface WebServicesControladorUsuario {
     @WebResult(partName = "return")
     @Action(input = "http://Publicadores/WebServicesControladorUsuario/sinProposito4Request", output = "http://Publicadores/WebServicesControladorUsuario/sinProposito4Response")
     public InfoActividadSocio sinProposito4();
-
-    /**
-     * 
-     * @return
-     *     returns java.lang.Object
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://Publicadores/WebServicesControladorUsuario/sinProposito5Request", output = "http://Publicadores/WebServicesControladorUsuario/sinProposito5Response")
-    public Object sinProposito5();
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns publicadores.InformacionActividad
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://Publicadores/WebServicesControladorUsuario/informacionActividadRequest", output = "http://Publicadores/WebServicesControladorUsuario/informacionActividadResponse")
-    public InformacionActividad informacionActividad(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns publicadores.WrapperDataCuponera
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://Publicadores/WebServicesControladorUsuario/cuponerasRequest", output = "http://Publicadores/WebServicesControladorUsuario/cuponerasResponse")
-    public WrapperDataCuponera cuponeras(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns publicadores.InfoActividadProfe
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://Publicadores/WebServicesControladorUsuario/informacionActDepEstadoIngRechRequest", output = "http://Publicadores/WebServicesControladorUsuario/informacionActDepEstadoIngRechResponse")
-    public InfoActividadProfe informacionActDepEstadoIngRech(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @return
-     *     returns java.lang.Object
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://Publicadores/WebServicesControladorUsuario/aaaaaaaRequest", output = "http://Publicadores/WebServicesControladorUsuario/aaaaaaaResponse")
-    public Object aaaaaaa();
 
 }

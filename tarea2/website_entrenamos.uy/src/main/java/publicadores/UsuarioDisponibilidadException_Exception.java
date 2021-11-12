@@ -10,8 +10,8 @@ import javax.xml.ws.WebFault;
  * Generated source version: 2.2
  * 
  */
-@WebFault(name = "CuponeraNoExisteException", targetNamespace = "http://Publicadores/")
-public class CuponeraNoExisteException_Exception
+@WebFault(name = "UsuarioDisponibilidadException", targetNamespace = "http://Publicadores/")
+public class UsuarioDisponibilidadException_Exception
     extends Exception
 {
 
@@ -19,14 +19,14 @@ public class CuponeraNoExisteException_Exception
      * Java type that goes as soapenv:Fault detail element.
      * 
      */
-    private CuponeraNoExisteException faultInfo;
+    private UsuarioDisponibilidadException faultInfo;
 
     /**
      * 
      * @param faultInfo
      * @param message
      */
-    public CuponeraNoExisteException_Exception(String message, CuponeraNoExisteException faultInfo) {
+    public UsuarioDisponibilidadException_Exception(String message, UsuarioDisponibilidadException faultInfo) {
         super(message);
         this.faultInfo = faultInfo;
     }
@@ -37,7 +37,7 @@ public class CuponeraNoExisteException_Exception
      * @param cause
      * @param message
      */
-    public CuponeraNoExisteException_Exception(String message, CuponeraNoExisteException faultInfo, Throwable cause) {
+    public UsuarioDisponibilidadException_Exception(String message, UsuarioDisponibilidadException faultInfo, Throwable cause) {
         super(message, cause);
         this.faultInfo = faultInfo;
     }
@@ -45,9 +45,9 @@ public class CuponeraNoExisteException_Exception
     /**
      * 
      * @return
-     *     returns fault bean: publicadores.CuponeraNoExisteException
+     *     returns fault bean: publicadores.UsuarioDisponibilidadException
      */
-    public CuponeraNoExisteException getFaultInfo() {
+    public UsuarioDisponibilidadException getFaultInfo() {
         return faultInfo;
     }
 
