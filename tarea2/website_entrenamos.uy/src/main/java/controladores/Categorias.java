@@ -1,6 +1,8 @@
 package controladores;
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.servlet.ServletException;
@@ -10,12 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import logica.Fabrica;
-import logica.IctrlCategorias;
 
 public class Categorias extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
-	private static IctrlCategorias ICCA= Fabrica.getInstance().getIctrlCategorias();
 	
 	public Categorias() 
 	{
@@ -33,8 +33,14 @@ public class Categorias extends HttpServlet
 	
 	public static Set<String> getCategorias(){
 
-		Set<String> cats = ICCA.getCategorias();
-			return cats;
+		publicadores.WebServicesCategoriasService service = 
+				new publicadores.WebServicesCategoriasService();
+		
+		publicadores.WebServicesCategorias port = service.getWebServicesCategoriasPort();
+		
+		List<String> nomInstituciones = port.getCategorias().getItem();
+		
+		return new HashSet<String>(nomInstituciones);
 	}
 	
 	public static void cargarCategorias()

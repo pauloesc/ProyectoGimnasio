@@ -11,6 +11,7 @@ import Publicadores.WebServicesClases;
 import Publicadores.WebServicesControladorUsuario;
 import Publicadores.WebServicesCuponeras;
 import Publicadores.WebServicesIDeportivas;
+import Publicadores.WebServicesCategorias;
 
 import excepciones.ActividadDeportivaNoExisteException;
 import logica.Fabrica;
@@ -76,6 +77,8 @@ public class Principal {
         wsi.publicar();
         WebServicesClases wscl = new WebServicesClases();
         wscl.publicar();
+	WebServicesCategorias wscat = new WebServicesCategorias();
+        wscat.publicar();
         
     }
 

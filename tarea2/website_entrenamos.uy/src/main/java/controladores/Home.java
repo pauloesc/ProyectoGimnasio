@@ -83,10 +83,6 @@ public class Home extends HttpServlet {
     if (session.getAttribute("estado_sesion") == null) {
       session.setAttribute("estado_sesion", "no_login");
     }
-    Set<String> inst= Instituciones.getInstituciones();
-	session.setAttribute("Instituciones", inst);
-	Set<String> cats= Categorias.getCategorias();
-	session.setAttribute("Categorias", cats);
   }
   
   /**
@@ -108,6 +104,12 @@ public class Home extends HttpServlet {
       throws ServletException, IOException {
 
     iniciarSesion(req);
+    
+    HttpSession session = req.getSession();
+    Set<String> inst= Instituciones.getInstituciones();
+	session.setAttribute("Instituciones", inst);
+	Set<String> cats= Categorias.getCategorias();
+	session.setAttribute("Categorias", cats);
     
     Set<DataActividad> acts;
 	try {

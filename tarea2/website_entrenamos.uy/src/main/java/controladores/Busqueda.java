@@ -2,19 +2,21 @@ package controladores;
 
 import java.io.IOException;
 import java.util.Set;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import excepciones.CuponeraNoExisteException;
 import logica.Fabrica;
 import logica.IctrlADeportivas;
 import logica.IctrlCategorias;
-import logica.IctrlCuponeras;
 import logica.IctrlIDeportivas;
-import logica.DataCuponera;
+import publicadores.WebServicesCuponeras;
+import publicadores.WebServicesCuponerasService;
+import publicadores.CuponeraNoExisteException_Exception;
+import publicadores.DataCuponera;
 import logica.DataActividad;
 
 public class Busqueda extends HttpServlet {
@@ -28,20 +30,26 @@ public class Busqueda extends HttpServlet {
   private void processRequest(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
 	
-	IctrlCuponeras ctrlCup = Fabrica.getInstance().getIctrlCuponeras();
+	WebServicesCuponerasService serviceCUP = new WebServicesCuponerasService();
+	WebServicesCuponeras portCUP = serviceCUP.getWebServicesCuponerasPort();
+	
+	
 	IctrlADeportivas ctrlAct = Fabrica.getInstance().getIctrlADeportivas();
 	IctrlIDeportivas ctrlIns = Fabrica.getInstance().getIctrlIDeportivas();
 	IctrlCategorias ctrlCat = Fabrica.getInstance().getIctrlCategorias();
 	
 	String consulta = req.getParameter("query").toLowerCase();
 	
-	Set<DataCuponera> resultCup=null;
-	try {
-		resultCup = ctrlCup.buscarCuponeras(consulta);
-	} catch (CuponeraNoExisteException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
+	List<DataCuponera> resultCup=null;
+
+		try {
+			resultCup = portCUP.buscarCuponeras(consulta).getLista();
+		} catch (CuponeraNoExisteException_Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+	
 	Set<DataActividad> resultAct = ctrlAct.buscarActividades(consulta);
 	Set<String> instituciones = ctrlIns.darNombreInstituciones();
 	Set<String> categorias = ctrlCat.getCategorias();

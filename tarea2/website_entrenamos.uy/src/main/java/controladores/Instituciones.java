@@ -12,12 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import logica.Fabrica;
-import logica.IctrlIDeportivas;
 
 public class Instituciones extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
-	private static IctrlIDeportivas ICD= Fabrica.getInstance().getIctrlIDeportivas();
 	public Instituciones() 
 	{
 		super();

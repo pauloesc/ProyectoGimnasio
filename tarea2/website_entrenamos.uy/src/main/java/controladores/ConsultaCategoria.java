@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,7 +16,9 @@ import logica.EstadoActi;
 import logica.Fabrica;
 import logica.IctrlADeportivas;
 import logica.IctrlCategorias;
-import logica.IctrlCuponeras;
+
+import publicadores.WebServicesCuponeras;
+import publicadores.WebServicesCuponerasService;
 
 /**
  * Consulta de Categoria
@@ -26,7 +29,7 @@ public class ConsultaCategoria extends HttpServlet {
 
 	private static Fabrica fabrica = Fabrica.getInstance();
 	private static IctrlADeportivas ICAD = fabrica.getIctrlADeportivas();
-	private static IctrlCuponeras ICUP = fabrica.getIctrlCuponeras();
+	
 	private static IctrlCategorias ICAT = fabrica.getIctrlCategorias();
 	private static final long serialVersionUID = 1L;
 
@@ -56,7 +59,7 @@ public class ConsultaCategoria extends HttpServlet {
 			} catch (Exception ex) {
 				actividades = null;
 			}
-			Set<String> cuponeras;
+			List<String> cuponeras;
 			
 			try {
 				cuponeras = ConsultaCategoria.getCuponerasCat(cat);
@@ -80,8 +83,10 @@ public class ConsultaCategoria extends HttpServlet {
 	}
 	
 	
-	public static Set<String> getCuponerasCat(String cat) {
-		return ICUP.getCuponerasCategoria(cat);
+	public static List<String> getCuponerasCat(String cat) {
+		WebServicesCuponerasService serviceCUP = new WebServicesCuponerasService();
+		WebServicesCuponeras portCUP = serviceCUP.getWebServicesCuponerasPort();
+		return portCUP.getCuponerasCategoria(cat).getSet();
 	}
 	
 	public static Boolean existeCategoria(String cat) {

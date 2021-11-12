@@ -3,6 +3,7 @@
 <%@page import="logica.InfoBasicaUser"%>
 <%@page import="logica.InfoBasicaSocio"%>
 <%@page import="java.util.Set"%>
+<%@page import="java.util.List"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="controladores.Login"%>
 <%@page import="controladores.Cuponeras"%>
@@ -14,7 +15,7 @@
 </head>
 <%
 	DataActividad actividad = (DataActividad) request.getAttribute("actividad");
-	Set<String> cup = (Set<String>) request.getAttribute("cup");
+	List<String> cup = (List<String>) request.getAttribute("cup");
 	Set<String> clases = (Set<String>) request.getAttribute("clases");
 	InfoBasicaUser usr;
 	try {

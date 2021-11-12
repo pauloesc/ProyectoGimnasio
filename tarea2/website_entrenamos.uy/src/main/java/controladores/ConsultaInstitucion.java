@@ -2,6 +2,7 @@ package controladores;
 
 import java.io.IOException;
 import java.util.Set;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,8 @@ import logica.DataActividad;
 import logica.DataInstitucion;
 import logica.Fabrica;
 import logica.IctrlADeportivas;
+import publicadores.WebServicesCuponeras;
+import publicadores.WebServicesCuponerasService;
 
 public class ConsultaInstitucion extends HttpServlet
 {
@@ -47,7 +50,7 @@ public class ConsultaInstitucion extends HttpServlet
 				actividades = null;
 	
 			}
-			Set<String> cuponeras;
+			List<String> cuponeras;
 			try {
 				cuponeras = ConsultaInstitucion.getCuponerasInst(inst);
 			} 
@@ -67,9 +70,10 @@ public class ConsultaInstitucion extends HttpServlet
 		Set<String> acts = Fabrica.getInstance().getIctrlADeportivas().darNombresActividadesDeportivas(inst);
 		return acts;
 	}	
-	public static Set<String> getCuponerasInst(String inst){
-		Set<String> cups = Fabrica.getInstance().getIctrlCuponeras().getCuponerasInstitucion(inst);
-		return cups;
+	public static List<String> getCuponerasInst(String inst){
+		WebServicesCuponerasService serviceCUP = new WebServicesCuponerasService();
+		WebServicesCuponeras portCUP = serviceCUP.getWebServicesCuponerasPort();
+		return portCUP.getCuponerasInstitucion(inst).getSet();
 	}
 	
 	public static DataInstitucion getInstitucion(String inst) throws InstitucionDeportivaNoExisteException {
