@@ -12,26 +12,19 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.jws.WebMethod;
+import javax.jws.WebParam;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.jws.soap.SOAPBinding.ParameterStyle;
 import javax.jws.soap.SOAPBinding.Style;
 import javax.xml.ws.Endpoint;
-
-import excepciones.ActividadDeportivaNoExisteException;
-import excepciones.ActividadDeportivaRepetidaException;
 import excepciones.CuponeraCompradaException;
 import excepciones.CuponeraNoExisteException;
-import excepciones.CuponeraRepetidaException;
 import logica.Fabrica;
 import logica.IctrlCuponeras;
 import logica.WrapperSetDataCuponera;
 import logica.WrapperSetString;
-import logica.DataActividad;
 import logica.DataCuponera;
 
 
@@ -58,11 +51,7 @@ public class WebServicesCuponeras {
             return endpoint;
     }
    
-    @WebMethod
-    public void registrarCuponera (String nombre, String descrip, Date fecha_ini, Date fecha_fin, Float descuento, Date fecha_alta, String imagen) throws CuponeraRepetidaException {
-           	ctrlcup.registrarCuponera (nombre, descrip, fecha_ini, fecha_fin, descuento, fecha_alta, imagen);
-    }
-    
+       
     @WebMethod
     public WrapperSetString listarCuponeras() throws CuponeraNoExisteException {
     	WrapperSetString resu=new WrapperSetString();
@@ -70,18 +59,8 @@ public class WebServicesCuponeras {
     	return resu;
     }
     
-    @WebMethod
-    public  WrapperSetString listarActividadesfaltantes(String nomcup, String nominst)throws ActividadDeportivaNoExisteException {
-    	WrapperSetString resu=new WrapperSetString();
-    	resu.setSet(ctrlcup.listarActividadesfaltantes(nomcup, nominst));
-    	return resu;
-    }
-    
-    @WebMethod
-    public void agregarActividad(String nomcup, String act, int numclase) throws ActividadDeportivaRepetidaException  {
-    	ctrlcup.agregarActividad(nomcup, act, numclase);
-    }
-    
+   
+       
     @WebMethod
     public DataCuponera mostrarCuponera(String nomCup)throws CuponeraNoExisteException {
     	return ctrlcup.mostrarCuponera(nomCup);
@@ -94,11 +73,7 @@ public class WebServicesCuponeras {
     	return resu;
     }
     
-    @WebMethod
-    public void cargarDatosCuponeras() {
-    	ctrlcup.cargarDatosCuponeras();
-    }
-
+    
     @WebMethod
     public WrapperSetString listarcuponeraslibres() throws CuponeraNoExisteException {
     	WrapperSetString resu=new WrapperSetString();
@@ -139,6 +114,20 @@ public class WebServicesCuponeras {
     	return resu;
     }
     
+    @WebMethod
+    public byte[] getFile(@WebParam(name = "fileName") String name)
+                    throws  IOException {
+        byte[] byteArray = null;
+        try {
+                File f = new File("files/" + name);
+                FileInputStream streamer = new FileInputStream(f);
+                byteArray = new byte[streamer.available()];
+                streamer.read(byteArray);
+        } catch (IOException e) {
+                throw e;
+        }
+        return byteArray;
+    }
     
 }
 

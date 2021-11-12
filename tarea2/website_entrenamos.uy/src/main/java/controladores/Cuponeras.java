@@ -57,10 +57,6 @@ public class Cuponeras extends HttpServlet
 	}
 	
 	
-	public static void cargarCuponeras()
-	{
-		Fabrica.getInstance().getIctrlCuponeras().cargarDatosCuponeras();
-	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException 
