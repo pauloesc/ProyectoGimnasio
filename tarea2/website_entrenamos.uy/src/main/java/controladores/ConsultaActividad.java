@@ -2,7 +2,7 @@ package controladores;
 
 import java.io.IOException;
 import java.util.Set;
-
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +11,8 @@ import excepciones.ActividadDeportivaNoExisteException;
 import logica.DataActividad;
 import logica.Fabrica;
 import logica.IctrlADeportivas;
+import publicadores.WebServicesCuponeras;
+import publicadores.WebServicesCuponerasService;
 
 public class ConsultaActividad extends HttpServlet
 {
@@ -39,9 +41,11 @@ public class ConsultaActividad extends HttpServlet
 			return;
 		}
 		
-		Set<String> cup;
+		WebServicesCuponerasService serviceCUP = new WebServicesCuponerasService();
+		WebServicesCuponeras portCUP = serviceCUP.getWebServicesCuponerasPort();
+		List<String> cup=null;
 		try {
-			cup = Cuponeras.getCuponerasAD(act);
+			cup = portCUP.getCuponerasAD(act).getSet();
 		} 
 		catch(Exception ex) {
 			cup  = null;
