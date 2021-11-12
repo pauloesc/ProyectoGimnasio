@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 import excepciones.ActividadDeportivaNoExisteException;
 import excepciones.CuponeraNoExisteException;
 import logica.DataActividad;
-import logica.DataCuponera;
+import publicadores.DataCuponera;
 import logica.Fabrica;
 import logica.IctrlADeportivas;
 import logica.IctrlCategorias;
@@ -18,9 +18,14 @@ import logica.IctrlClases;
 import logica.IctrlCuponeras;
 import logica.IctrlIDeportivas;
 import logica.IctrlUsuarios;
+import publicadores.CuponeraNoExisteException_Exception;
+import publicadores.WebServicesCuponeras;
+import publicadores.WebServicesCuponerasService;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -57,8 +62,8 @@ public class Home extends HttpServlet {
     
     IctrlCuponeras ctrlCuponeras = fabrica.getIctrlCuponeras();
     ctrlCuponeras.cargarDatosCuponeras();
-
-    IctrlClases ctrlClases = fabrica.getIctrlClases();
+    
+      IctrlClases ctrlClases = fabrica.getIctrlClases();
     ctrlClases.cargarDatosClases();
     ctrlClases.cargarRegistroAClases();
 
@@ -110,19 +115,23 @@ public class Home extends HttpServlet {
 	} catch (ActividadDeportivaNoExisteException e) {
 		acts = null;
 	}
+	WebServicesCuponerasService serviceCUP = new WebServicesCuponerasService();
+	WebServicesCuponeras portCUP = serviceCUP.getWebServicesCuponerasPort();
 	
-	Set<DataCuponera> cuponeras= new HashSet<DataCuponera>();
-	try {
-		Set<String> cups= ctrlCup.listarCuponeras();
-		for (Iterator<String> iter=cups.iterator();iter.hasNext();) {
-			String cup=iter.next();
-			DataCuponera res=ctrlCup.mostrarCuponera(cup);
-			cuponeras.add(res);
+	List<DataCuponera> cuponeras= new ArrayList<DataCuponera>();
+
+		try {
+			List<String> cups = portCUP.listarCuponeras().getSet();
+			for (Iterator<String> iter=cups.iterator();iter.hasNext();) {
+				String cup=iter.next();
+				DataCuponera res = portCUP.mostrarCuponera(cup);
+				cuponeras.add(res);
+		} 
+			} catch (CuponeraNoExisteException_Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-	
-	} catch (CuponeraNoExisteException e) {
 		
-	}
 	
 	req.setAttribute("cuponeras", cuponeras);	
     req.setAttribute("actividades", acts);

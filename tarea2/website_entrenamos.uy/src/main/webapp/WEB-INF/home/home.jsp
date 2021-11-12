@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="java.util.Set"%>
+<%@page import="java.util.List"%>
 <%@page import="java.util.Date"%>
-<%@page import="logica.DataCuponera"%>
+<%@page import="publicadores.DataCuponera"%>
 <%@page import="logica.DataActividad"%>
 <%@page import="java.util.Iterator"%>
 
@@ -12,7 +13,7 @@
 <jsp:include page="/WEB-INF/template/head.jsp" />
 </head>
 <%
-	Set<DataCuponera> cuponeras= (Set<DataCuponera>) request.getAttribute("cuponeras");
+	List<DataCuponera> cuponeras= (List<DataCuponera>) request.getAttribute("cuponeras");
 	
 	Set<DataActividad> actividades = (Set<DataActividad>) request.getAttribute("actividades");
 %>

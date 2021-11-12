@@ -155,6 +155,17 @@
 		<servlet-name>Instituciones</servlet-name>
 		<servlet-class>controladores.Instituciones</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>Imagenes</servlet-name>
+		<servlet-class>controladores.Imagenes</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Imagenes</servlet-name>
+		<url-pattern>/imagenes</url-pattern>
+	</servlet-mapping>
+	
+	
+	
 	<session-config>
 		<session-timeout>30</session-timeout>
 	</session-config>
