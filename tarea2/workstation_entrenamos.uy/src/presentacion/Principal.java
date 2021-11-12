@@ -10,6 +10,7 @@ import javax.swing.JMenuItem;
 import Publicadores.WebServicesControladorUsuario;
 import Publicadores.WebServicesCuponeras;
 import Publicadores.WebServicesIDeportivas;
+import Publicadores.WebServicesCategorias;
 
 import excepciones.ActividadDeportivaNoExisteException;
 import logica.Fabrica;
@@ -73,6 +74,8 @@ public class Principal {
         wsc.publicar();
         WebServicesIDeportivas wsi = new WebServicesIDeportivas();
         wsi.publicar();
+        WebServicesCategorias wscat = new WebServicesCategorias();
+        wscat.publicar();
         
     }
 
