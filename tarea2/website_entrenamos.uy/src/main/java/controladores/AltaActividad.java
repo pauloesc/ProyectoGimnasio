@@ -20,9 +20,7 @@ import logica.InfoBasicaUser;
 import publicadores.ActividadDeportivaRepetidaException_Exception;
 import publicadores.WebServicesADeportivas;
 import publicadores.WebServicesADeportivasService;
-
 import org.apache.commons.io.FilenameUtils;
-
 import net.java.dev.jaxb.array.StringArray;
 
 
@@ -89,7 +87,8 @@ public class AltaActividad extends HttpServlet {
             e.printStackTrace();
         }
 		List<String> cats = Arrays.asList(req.getParameterValues("categoriasActividad"));
-		StringArray catsenv = (StringArray) cats;
+		StringArray catsenv = new StringArray();
+		catsenv.getItem().addAll(cats);
 		
 		try {
 			portActividades.altaActividadDeportiva(ninst, nprof, nact, descrip, Float.parseFloat(dur),
