@@ -7,12 +7,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para CuponeraCompradaException complex type.
+ * <p>Clase Java para UsuarioDisponibilidadException complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
- * &lt;complexType name="CuponeraCompradaException">
+ * &lt;complexType name="UsuarioDisponibilidadException">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
@@ -26,10 +26,10 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "CuponeraCompradaException", propOrder = {
+@XmlType(name = "UsuarioDisponibilidadException", propOrder = {
     "message"
 })
-public class CuponeraCompradaException {
+public class UsuarioDisponibilidadException {
 
     protected String message;
 

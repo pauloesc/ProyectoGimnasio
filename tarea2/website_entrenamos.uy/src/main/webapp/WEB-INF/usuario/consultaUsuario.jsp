@@ -1,12 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%@page import="controladores.ConsultaUsuario"%>
-<%@page import="logica.InfoBasicaUser"%>
-<%@page import="logica.*"%>
+<%@page import="publicadores.InfoBasicaUser"%>
+<%@page import="publicadores.InfoBasicaSocio"%>
+<%@page import="publicadores.InfoBasicaProfesor"%>
+
+<%@page import="publicadores.DataCuponera"%>
+<%@page import="publicadores.DtActividadesDeportivas"%>
+<%@page import="publicadores.DtClase"%>
+
 <%@page import="java.util.List"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.text.SimpleDateFormat"%>
+
 
 
 <!doctype html>
@@ -24,12 +30,12 @@ List<DtActividadesDeportivas> actDepIR = (List<DtActividadesDeportivas>) request
 List<DtClase> informacionSocio = (List<DtClase>) request.getAttribute("infoSocio");
 List<DtActividadesDeportivas> informacionProfesor = (List<DtActividadesDeportivas>) request.getAttribute("infoProfe");
 
-List<String> usersEnSistema = (List<String>) request.getAttribute("usuariosEnSistema");
-
 boolean propioUsuario = (boolean) request.getAttribute("userPropio");
 
 SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-String dateString = formato.format(informacionUusario.getFechaNac());
+//String dateString = formato.format(informacionUusario.getFechaNac());
+String dateString = informacionUusario.getFechaNac().toString();
+
 
 boolean haySesion = (boolean) request.getAttribute("haySesion");
 
@@ -69,7 +75,7 @@ boolean siguiendoUsuario = (boolean) request.getAttribute("siguiendoUsuario");
                         <div class="card mb-3">
                            <div class="card-body text-center shadow">
                         
-                              <img class="rounded-circle mb-3 mt-4" src=" <%= informacionUusario.getImagen() %>" width="160"
+                              <img class="rounded-circle mb-3 mt-4" src=" <%= informacionUusario.getImg() %>" width="160"
                                  height="160" />
                            </div>
                         </div>
@@ -310,7 +316,8 @@ boolean siguiendoUsuario = (boolean) request.getAttribute("siguiendoUsuario");
 									while ( iterListClases.hasNext() ){
 										DtClase infoCla = iterListClases.next();
 										
-										String fechaFormateadaClase = formato.format(infoCla.getFecha());
+										//String fechaFormateadaClase = formato.format(infoCla.getFecha());
+										String fechaFormateadaClase = infoCla.getFecha().toString();
 									%>
                                  <tr>
                                     <th scope="row"><%=i2%></th>
@@ -358,7 +365,8 @@ boolean siguiendoUsuario = (boolean) request.getAttribute("siguiendoUsuario");
 									while( iterat3.hasNext() ) {
 										DtClase infoS = iterat3.next();
 										
-										String fechaFormateadaClase = formato.format(infoS.getFecha());
+										//String fechaFormateadaClase = formato.format(infoS.getFecha());
+										String fechaFormateadaClase = infoS.getFecha().toString();
 									%>
                                  <tr>
                                     <th scope="row"><%=i3%></th>

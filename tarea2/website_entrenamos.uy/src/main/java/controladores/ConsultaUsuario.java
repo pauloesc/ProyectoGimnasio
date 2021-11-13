@@ -21,6 +21,8 @@ import logica.InfoActividadProfe;
 import logica.InfoActividadSocio;
 import logica.InfoBasicaUser;
 import logica.InformacionActividad;
+import publicadores.UsuarioInexistenteException_Exception;
+import publicadores.WebServicesControladorUsuarioService;
 
 /**
  * Servlet implementation class ConsultaUsuario
@@ -48,6 +50,10 @@ public class ConsultaUsuario extends HttpServlet {
 		Fabrica f = Fabrica.getInstance();
 		IctrlUsuarios ICU = f.getIctrlUsuarios();
 		
+		//---------------------------
+		WebServicesControladorUsuarioService serviceCUP = new WebServicesControladorUsuarioService();
+		publicadores.WebServicesControladorUsuario port = serviceCUP.getWebServicesControladorUsuarioPort();
+		//---------------------------		
 		
 		/**
 		*obtengo el nickname del socio en la url
@@ -70,7 +76,7 @@ public class ConsultaUsuario extends HttpServlet {
 			}
 			else {
 				usuarioPropio = false;
-				siguiendoUsuario = ICU.usuarioSigueAUsuario(nickEnSesion, user);
+				siguiendoUsuario = port.usuarioSigueAUsuario(nickEnSesion, user);
 			}
 			
 			//si nickEnSesion diferente de null, entonces hay sesion
@@ -99,9 +105,9 @@ public class ConsultaUsuario extends HttpServlet {
 		*/
 		boolean esSocio = true;
 		try {
-			esSocio = ICU.esSocio(user);
+			esSocio = port.esSocio(user);
 		}
-		catch(UsuarioInexistenteException e) {
+		catch(UsuarioInexistenteException_Exception e) {
 			/**
 			*si hay algun problema
 			*/
@@ -109,55 +115,64 @@ public class ConsultaUsuario extends HttpServlet {
 			return;
 		}
 		
-		
 		/**
 		*Declaro las variables de la informacion comun a ambos usuarios 
 		*/
-		InfoBasicaUser informacionUusario = null;
+		publicadores.InfoBasicaUser informacionUusario = null;
 		List<String> usuariosSeguidores = null;
 		List<String> usuariosSiguiendo = null;
-		InformacionActividad informacioActividad = null;
+		publicadores.InformacionActividad informacioActividad = null;
 		
 
 		/**
 		*llamo a la funciones para traer la informacion
 		*/
-		informacionUusario = ICU.informacionBasicaUsuario(user);
-		usuariosSeguidores = ICU.usuariosSeguidores(user);
-		usuariosSiguiendo = ICU.usuariosSiguiendo(user);
-		informacioActividad = ICU.informacionActividad(informacionUusario.getNickname());
 		
-		
-		if ( "denis".equals(user) ) {
-			System.out.println("son iguales");
-		}
-		else {
-			System.out.println("son diferentes");
-		}
+						
+		// informacion el usuario---------------------------
+		informacionUusario = port.informacionBasicaUsuario(user);
+		//---------------------------
 
-	
+		
+		// seguidores del usuario---------------------------
+		publicadores.WrapperListString usuariosSres = port.usuariosSeguidores(user);
+		usuariosSeguidores = usuariosSres.getLista();
+		//---------------------------
+		
+				
+		// a quien esta siguiendo el usuario---------------------------
+		publicadores.WrapperListString usuariosSdo = port.usuariosSiguiendo(user);
+		usuariosSiguiendo = usuariosSdo.getLista();
+		//---------------------------
+		
+		
+		
+		informacioActividad = port.informacionActividad(user);
+		
+		
 		/**
 		 * informacion dependiente del tipo de usuario
 		 * declaro las variables 
 		*/
-		List<DataCuponera> cuponerasSocio = null;
-		InfoActividadProfe actDepsIngRech = null;
+		List<publicadores.DataCuponera> cuponerasSocio = null;
+		publicadores.InfoActividadProfe actDepsIngRech = null;
 		if(esSocio) {
-			cuponerasSocio = ICU.cuponeras(user);			
+			publicadores.WrapperDataCuponera informacionCuponeras = port.cuponeras(user);
+			cuponerasSocio = informacionCuponeras.getLista();			
 		}
 		else {
-			actDepsIngRech = ICU.informacionActDepEstadoIngRech(user);			
+			actDepsIngRech = port.informacionActDepEstadoIngRech(user);			
 		}
 		
 		
 		/**
 		*declaro esta variable para guardar la informacion del socio
 		*/
-		Vector<DtClase> informacionSocio = null;
+		List<publicadores.DtClase> informacionSocio = null;
 		/**
 		*declaro esta variable para guardar la informacion del profesor
 		*/
-		Vector<DtActividadesDeportivas> informacionProfesor = null;
+		List<publicadores.DtActividadesDeportivas> informacionProfesor = null;
 		
 		
 		/**
@@ -165,10 +180,10 @@ public class ConsultaUsuario extends HttpServlet {
 		 * si es un socio,
 		 * para guardar la informacion utilizamos la variable informacionSocio
 		*/
-		if( informacioActividad.getClass() == InfoActividadSocio.class ) {
+		if( informacioActividad.getClass() == publicadores.InfoActividadSocio.class ) {
 			
-			InfoActividadSocio oo = (InfoActividadSocio) informacioActividad;
-			informacionSocio = (Vector<DtClase>) oo.getClases();
+			publicadores.InfoActividadSocio oo = (publicadores.InfoActividadSocio) informacioActividad;
+			informacionSocio = oo.getClases();
 			
 		}
 		
@@ -179,8 +194,8 @@ public class ConsultaUsuario extends HttpServlet {
 		 * para guardar la informacion utilizamos la variable informacionProfesor
 		*/
 		else {
-			InfoActividadProfe oo = (InfoActividadProfe) informacioActividad;
-			informacionProfesor = (Vector<DtActividadesDeportivas>) oo.getActividadesDep();
+			publicadores.InfoActividadProfe oo = (publicadores.InfoActividadProfe) informacioActividad;
+			informacionProfesor =  oo.getActividadesDep();
 			
 		}
 		
@@ -189,53 +204,12 @@ public class ConsultaUsuario extends HttpServlet {
 		 * si es un profesor.
 		 * informacion de activiades ingresadas profesor.
 		*/
-		Vector<DtActividadesDeportivas> informacionProfesorActDepIngRech = null;
+		List<publicadores.DtActividadesDeportivas> informacionProfesorActDepIngRech = null;
 		if( actDepsIngRech != null ) {
-			informacionProfesorActDepIngRech = (Vector<DtActividadesDeportivas>) actDepsIngRech.getActividadesDep();
+			informacionProfesorActDepIngRech = actDepsIngRech.getActividadesDep();
 		}  
 		
 		
-		System.out.println("----------------------");
-		System.out.println("----------------------");
-		System.out.println("----------------------");
-		System.out.println("----------------------");
-		
-		//nickname
-		System.out.println("NICKNAE: " +user);
-		
-		//es socio
-		if(esSocio) { System.out.println("SI ES SOCIO");
-		}
-		else { System.out.println("NO ES SOCIO");
-		}
-		
-		//----------INICIO
-		//activideades dep del profesor
-		//Vector<DtActividadesDeportivas> informacionProfesor = null;
-		if( informacionProfesor.size() > 0 ) {
-			System.out.println("EL PROFESOR TIENE ACTIVIDADES DEPORTIVAS");
-		}
-		else {System.out.println("EL PROFESOR NO TIENE ACTIVIDADES DEPORTIVAS");
-		}
-		
-		Iterator<DtActividadesDeportivas> actDepDelProfe = informacionProfesor.iterator();
-		while( actDepDelProfe.hasNext() ) {
-			DtActividadesDeportivas actDepDelProfe_info = actDepDelProfe.next();
-			String abc = actDepDelProfe_info.getNombre();
-			System.out.println(abc);
-		}
-		//----------FIN
-		
-		System.out.println("----------------------");
-		System.out.println("----------------------");
-		System.out.println("----------------------");
-		System.out.println("----------------------");
-		
-		
-		
-		List<String> usuariosEnSistema = ICU.usuariosEnSistemaNickName();
-
-		request.setAttribute("usuarioEnSistema", usuariosEnSistema);
 		request.setAttribute("esSocio", esSocio);
 		request.setAttribute("infoUsuario", informacionUusario);
 		request.setAttribute("infoSocio", informacionSocio);

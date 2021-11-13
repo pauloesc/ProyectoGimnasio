@@ -7,8 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import logica.Fabrica;
-import logica.IctrlUsuarios;
+import publicadores.WebServicesControladorUsuarioService;
 
 /**
  * Servlet implementation class SeguirDejarDeSeguir
@@ -30,11 +29,11 @@ public class SeguirDejarDeSeguir extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		/**
-		*traigo el controlador de usuario
-		*/
-		Fabrica f = Fabrica.getInstance();
-		IctrlUsuarios ICU = f.getIctrlUsuarios();
+		
+		//---------------------------
+		WebServicesControladorUsuarioService serviceCUP = new WebServicesControladorUsuarioService();
+		publicadores.WebServicesControladorUsuario port = serviceCUP.getWebServicesControladorUsuarioPort();
+		//---------------------------	
 		
 		String usuario = (String) request.getParameter("usuarioNick");
 		String nickEnSesion = (String) request.getSession().getAttribute("nickname-user");
@@ -47,13 +46,13 @@ public class SeguirDejarDeSeguir extends HttpServlet {
 		}
 		
 		boolean siguendo = false;
-		siguendo = ICU.usuarioSigueAUsuario(nickEnSesion, usuario);
+		siguendo = port.usuarioSigueAUsuario(nickEnSesion, usuario);
 		
 		if(siguendo){
-			ICU.dejarDeSeguirUsuario(nickEnSesion,usuario);
+			port.dejarDeSeguirUsuario(nickEnSesion,usuario);
 		}
 		else {
-			ICU.seguirUsuario(nickEnSesion,usuario);
+			port.seguirUsuario(nickEnSesion,usuario);
 		}
 		
 		String url = "/website_entrenamos.uy/ConsultaUsuario?usuarioNick=" + usuario;

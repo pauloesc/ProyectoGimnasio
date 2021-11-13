@@ -2,10 +2,9 @@
     pageEncoding="UTF-8"%>
     
 <%@page import="controladores.ListarUsuarios"%>
-<%@page import="logica.InfoBasicaUser"%>
-<%@page import="logica.InfoBasicaSocio"%>
-<%@page import="logica.InfoBasicaProfesor"%>
-<%@page import="logica.*"%>
+<%@page import="publicadores.InfoBasicaUser"%>
+<%@page import="publicadores.InfoBasicaSocio"%>
+<%@page import="publicadores.InfoBasicaProfesor"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Iterator"%>
 
@@ -81,7 +80,7 @@ int cont = 0;
    							 <tr>
      							<th scope="row"><%= cont %></th>
      				
-     							<td> <img src="<%= auxInfoUser.getImagen() %>" width="30" height="30" class="rounded-circle"> </td>
+     							<td> <img src="<%= auxInfoUser.getImg() %>" width="30" height="30" class="rounded-circle"> </td>
       							<td> <a href="ConsultaUsuario?usuarioNick=<%= auxInfoUser.getNickname()  %>"><%= auxInfoUser.getNombre() %></a> </td>
     						</tr>
     						
@@ -119,7 +118,7 @@ int cont = 0;
   							%>
    							 <tr>
      							<th scope="row"><%= cont %></th>
-     							<td> <img src="<%= auxInfoUser.getImagen()  %>" width="30" height="30" class="rounded-circle"> </td>
+     							<td> <img src="<%= auxInfoUser.getImg()  %>" width="30" height="30" class="rounded-circle"> </td>
       							<td> <a href="ConsultaUsuario?usuarioNick=<%= auxInfoUser.getNickname()  %>"><%= auxInfoUser.getNombre() %></a> </td>
     						</tr>
     						
