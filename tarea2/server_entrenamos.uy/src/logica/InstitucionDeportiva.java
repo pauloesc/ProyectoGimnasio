@@ -57,13 +57,7 @@ public class InstitucionDeportiva {
 		if (actividadesDeportivasInst.isEmpty())
             return null;
         else {
-            Object[] obj = actividadesDeportivasInst.toArray();
-            ActividadDeportiva[] actividadesdeportivas = new ActividadDeportiva[obj.length];
-            for (int i = 0; i < obj.length; i++) {
-                actividadesdeportivas[i] = (ActividadDeportiva) obj[i];
-            }
-
-            return actividadesdeportivas;
+            return actividadesDeportivasInst.toArray(new ActividadDeportiva[0]);
         }
     }
 

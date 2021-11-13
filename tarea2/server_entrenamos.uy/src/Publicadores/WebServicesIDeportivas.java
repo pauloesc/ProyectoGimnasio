@@ -67,4 +67,10 @@ public class WebServicesIDeportivas {
     	
     	return controller.darNombreInstituciones().toArray(new String[0]);
     }
+    
+    @WebMethod
+    public DataInstitucion newDataInstitucion()
+    {
+    	return new DataInstitucion();
+    }
 }

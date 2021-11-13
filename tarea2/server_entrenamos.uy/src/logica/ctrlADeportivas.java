@@ -58,19 +58,16 @@ public class ctrlADeportivas implements IctrlADeportivas{
         ActividadDeportiva[] actsdeps = indep.getActividades();
 
         if (actsdeps != null) {
-            DataActividad[] dad = new DataActividad[actsdeps.length];
-            ActividadDeportiva actividad;
-
-            // Para separar lógica de presentación, no se deben devolver las Actividades,
-            // sino los DataActividad asociados a la Institución seleccionada.
-            for (int i = 0; i < actsdeps.length; i++) {
-                actividad = actsdeps[i];
-                if (actividad.getEstado() == EstadoActi.ACEPTADA) {
-                    dad[i] = new DataActividad(actividad.getNombre(), actividad.getDescripcion(), actividad.getDuracion(), actividad.getCosto(), actividad.getFechaAlta(), actividad.getEstado(), actividad.darCategorias(), actividad.getCreador().getNombre(), actividad.getCreador().getNombreInstitucion(), actividad.getImagen());
-                }
+        	
+            Set<DataActividad> dataActividades = new HashSet<DataActividad>();
+            
+            for (ActividadDeportiva act : actsdeps) {
+            	if (act.getEstado() == EstadoActi.ACEPTADA)
+            		dataActividades.add( getDataActividad(act.getNombre()) );
             }
-
-            return dad;
+            
+            return dataActividades.toArray( new DataActividad[0] );
+            
         } else
             throw new ActividadDeportivaNoExisteException("No existen Actividades Deportivas en el sistema para la Institucón Deportiva seleccionada.");
 

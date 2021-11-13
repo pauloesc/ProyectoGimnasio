@@ -7,12 +7,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for ActividadDeportivaRepetidaException complex type.
+ * <p>Java class for InstitucionDeportivaNoExisteException complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="ActividadDeportivaRepetidaException">
+ * &lt;complexType name="InstitucionDeportivaNoExisteException">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
@@ -26,10 +26,10 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ActividadDeportivaRepetidaException", propOrder = {
+@XmlType(name = "InstitucionDeportivaNoExisteException", propOrder = {
     "message"
 })
-public class ActividadDeportivaRepetidaException {
+public class InstitucionDeportivaNoExisteException {
 
     protected String message;
 

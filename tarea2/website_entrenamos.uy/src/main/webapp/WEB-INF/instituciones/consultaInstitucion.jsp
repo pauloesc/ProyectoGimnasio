@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import="controladores.ConsultaActividad"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.List"%>
 <!DOCTYPE html>
@@ -44,16 +43,17 @@
   						<tbody>
   						<% 
   						int i = 1;
-						for(String nomact :actividades) {
-						%>	
+  						if (actividades != null)
+								for(String nomact :actividades) {
+							%>	
    							<tr>
      						 <th scope="row"><%= i  %></th>
       							<td> <a href="consultaActividad?actividad=<%= nomact  %>"><%= nomact  %></a> </td>
     						</tr>
-    					<%
-    					i++;
-						} 
-						%>	
+    						<%
+    							i++;
+								} 
+								%>	
   						</tbody>
 					</table>
 					
@@ -72,16 +72,17 @@
   							<tbody>
   							<% 
   							int i2 = 1;
-							for(String nomcup :cuponeras) {
-							%>	
-   							 <tr>
-     						 <th scope="row"><%= i2%></th>
+  							if (cuponeras != null)
+									for(String nomcup :cuponeras) {
+									%>	
+   							 	<tr>
+     						 	<th scope="row"><%= i2%></th>
       							<td><a href="consultaCuponera?cuponera=<%= nomcup%>"> <%= nomcup%></a></td> 
-    						</tr>
-    						<%
-    						i2++;
-							} 
-							%>	
+    							</tr>
+    							<%
+    								i2++;
+									} 
+									%>	
     					</tbody>
 					</table>
 					

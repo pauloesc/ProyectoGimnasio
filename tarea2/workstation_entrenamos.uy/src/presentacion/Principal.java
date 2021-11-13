@@ -9,6 +9,7 @@ import javax.swing.JMenuItem;
 
 import Publicadores.WebServicesControladorUsuario;
 import Publicadores.WebServicesCuponeras;
+import Publicadores.WebServicesADeportivas;
 import Publicadores.WebServicesIDeportivas;
 import Publicadores.WebServicesCategorias;
 
@@ -76,6 +77,8 @@ public class Principal {
         wsi.publicar();
         WebServicesCategorias wscat = new WebServicesCategorias();
         wscat.publicar();
+        WebServicesADeportivas wsa = new WebServicesADeportivas();
+        wsa.publicar();
         
     }
 
