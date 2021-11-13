@@ -106,8 +106,6 @@ public class ConsultaActividad extends HttpServlet
 	 		throw new ActividadDeportivaNoExisteException("No existe la Actividad Deportiva.");
 	}
 	
-	
-	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException 
 	{

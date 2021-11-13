@@ -36,18 +36,19 @@
 						role="tabpanel" aria-labelledby="actividadesdeportivas-tab">
 						<div class="m-3">
 						<table class="table table-hover">
-  						<% 
-  						int i = 1;
-						for(String nomact :actividades) {
+  					<% 
+  					int i = 1;
+  					if (actividades != null)
+							for(String nomact :actividades) {
 						%>	
    							<tr>
-     						 <th scope="row"><%= i  %></th>
-      							<td> <a href="consultaActividad?actividad=<%= nomact  %>"><%= nomact  %></a> </td>
+     							<th scope="row"><%= i  %></th>
+      						<td> <a href="consultaActividad?actividad=<%= nomact  %>"><%= nomact  %></a> </td>
     						</tr>
     					<%
     					i++;
-						} 
-						%>	
+							} 
+							%>	
   						</tbody>
 					</table>
 					
@@ -66,16 +67,17 @@
   							<tbody>
   							<% 
   							int i2 = 1;
-							for(String nomcup2 :cuponeras) {
-							%>	
-   							 <tr>
-     						 <th scope="row"><%= i2  %></th>
-      							<td><a href="consultaCuponera?cuponera=<%= nomcup2 %>"> <%= nomcup2 %></a></td> 
+  							if (cuponeras != null)
+									for(String nomcup2 : cuponeras) {
+								%>	
+   							<tr>
+     							<th scope="row"><%= i2  %></th>
+      						<td><a href="consultaCuponera?cuponera=<%= nomcup2 %>"> <%= nomcup2 %></a></td> 
     						</tr>
     						<%
-    						i2++;
-							} 
-							%>	
+    							i2++;
+									} 
+								%>	
     					</tbody>
 					</table>
 					

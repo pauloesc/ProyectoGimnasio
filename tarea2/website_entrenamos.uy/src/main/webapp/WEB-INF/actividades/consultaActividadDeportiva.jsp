@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import="logica.DataActividad"%>
+<%@page import="publicadores.DataActividad"%>
 <%@page import="logica.InfoBasicaUser"%>
 <%@page import="logica.InfoBasicaSocio"%>
 <%@page import="java.util.Set"%>
@@ -80,18 +80,18 @@
 						role="tabpanel" aria-labelledby="detalles-tab">
 						<div class="m-3">
 						<p><i class="fa fa-building"></i> &nbsp &nbsp Institución Deportiva: <a href="consultaInstitucion?institucion=<%= actividad.getInstitucion() %>"><%= actividad.getInstitucion() %></a></p>
-						<% if (actividad.getProfesor() == "Sin profesor asignado.") { %>
+						<% if ( actividad.getProfesor().equals("Sin profesor asignado.") ) { %>
 							<p><i class="fa fa-user-circle-o"></i> &nbsp &nbsp Profesor: <%= actividad.getProfesor() %></p>
 						<% } else {  %>
 							<p><i class="fa fa-user-circle-o"></i> &nbsp &nbsp Profesor: <a href="consultaUsuario?usuarioNick=<%= actividad.getProfesor() %>"><%= actividad.getProfesor() %></a></p>
 						<% } %>
 						<p><i class="fa fa-usd"></i> &nbsp &nbsp Costo: $<%= actividad.getCosto()  %></p>
 						<p><i class="fa fa-clock-o"></i> &nbsp &nbsp Duración: <%= actividad.getDuracion()  %> minutos</p>
-						<% if (usr.getNickname() == actividad.getProfesor()) { %>
+						<% if (usr != null && usr.getNickname() == actividad.getProfesor()) { %>
 							<button type="button" class="btn btn-danger">Finalizar Actividad Deportiva</button>
 						<% } %>
 						</div>
-					</div>
+					</div>	
 					<div class="tab-pane fade" id="cuponeras" role="tabpanel"
 						aria-labelledby="cuponeras-tab">
 						<div class="m-3">

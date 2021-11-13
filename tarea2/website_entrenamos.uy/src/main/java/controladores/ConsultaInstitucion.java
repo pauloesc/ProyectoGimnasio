@@ -34,6 +34,7 @@ public class ConsultaInstitucion extends HttpServlet
 	private static WebServicesADeportivasService serviceActividades;
 	private static WebServicesADeportivas portActividades;
 	
+	
 	public ConsultaInstitucion() 
 	{
 		super();
