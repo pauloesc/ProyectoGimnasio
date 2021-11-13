@@ -24,8 +24,8 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _ActividadDeportivaNoExisteException_QNAME = new QName("http://Publicadores/", "ActividadDeportivaNoExisteException");
-    private final static QName _ActividadDeportivaRepetidaException_QNAME = new QName("http://Publicadores/", "ActividadDeportivaRepetidaException");
+    private final static QName _InstitucionDeportivaNoExisteException_QNAME = new QName("http://Publicadores/", "InstitucionDeportivaNoExisteException");
+    private final static QName _InstitucionDeportivaRepetidaException_QNAME = new QName("http://Publicadores/", "InstitucionDeportivaRepetidaException");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: publicadores
@@ -35,53 +35,53 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ActividadDeportivaRepetidaException }
+     * Create an instance of {@link InstitucionDeportivaRepetidaException }
      * 
      */
-    public ActividadDeportivaRepetidaException createActividadDeportivaRepetidaException() {
-        return new ActividadDeportivaRepetidaException();
+    public InstitucionDeportivaRepetidaException createInstitucionDeportivaRepetidaException() {
+        return new InstitucionDeportivaRepetidaException();
     }
 
     /**
-     * Create an instance of {@link ActividadDeportivaNoExisteException }
+     * Create an instance of {@link InstitucionDeportivaNoExisteException }
      * 
      */
-    public ActividadDeportivaNoExisteException createActividadDeportivaNoExisteException() {
-        return new ActividadDeportivaNoExisteException();
+    public InstitucionDeportivaNoExisteException createInstitucionDeportivaNoExisteException() {
+        return new InstitucionDeportivaNoExisteException();
     }
 
     /**
-     * Create an instance of {@link DataActividad }
+     * Create an instance of {@link DataInstitucion }
      * 
      */
-    public DataActividad createDataActividad() {
-        return new DataActividad();
+    public DataInstitucion createDataInstitucion() {
+        return new DataInstitucion();
     }
 
     /**
-     * Create an instance of {@link DataActividadArray }
+     * Create an instance of {@link DataInstitucionArray }
      * 
      */
-    public DataActividadArray createDataActividadArray() {
-        return new DataActividadArray();
+    public DataInstitucionArray createDataInstitucionArray() {
+        return new DataInstitucionArray();
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ActividadDeportivaNoExisteException }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link InstitucionDeportivaNoExisteException }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://Publicadores/", name = "ActividadDeportivaNoExisteException")
-    public JAXBElement<ActividadDeportivaNoExisteException> createActividadDeportivaNoExisteException(ActividadDeportivaNoExisteException value) {
-        return new JAXBElement<ActividadDeportivaNoExisteException>(_ActividadDeportivaNoExisteException_QNAME, ActividadDeportivaNoExisteException.class, null, value);
+    @XmlElementDecl(namespace = "http://Publicadores/", name = "InstitucionDeportivaNoExisteException")
+    public JAXBElement<InstitucionDeportivaNoExisteException> createInstitucionDeportivaNoExisteException(InstitucionDeportivaNoExisteException value) {
+        return new JAXBElement<InstitucionDeportivaNoExisteException>(_InstitucionDeportivaNoExisteException_QNAME, InstitucionDeportivaNoExisteException.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ActividadDeportivaRepetidaException }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link InstitucionDeportivaRepetidaException }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://Publicadores/", name = "ActividadDeportivaRepetidaException")
-    public JAXBElement<ActividadDeportivaRepetidaException> createActividadDeportivaRepetidaException(ActividadDeportivaRepetidaException value) {
-        return new JAXBElement<ActividadDeportivaRepetidaException>(_ActividadDeportivaRepetidaException_QNAME, ActividadDeportivaRepetidaException.class, null, value);
+    @XmlElementDecl(namespace = "http://Publicadores/", name = "InstitucionDeportivaRepetidaException")
+    public JAXBElement<InstitucionDeportivaRepetidaException> createInstitucionDeportivaRepetidaException(InstitucionDeportivaRepetidaException value) {
+        return new JAXBElement<InstitucionDeportivaRepetidaException>(_InstitucionDeportivaRepetidaException_QNAME, InstitucionDeportivaRepetidaException.class, null, value);
     }
 
 }

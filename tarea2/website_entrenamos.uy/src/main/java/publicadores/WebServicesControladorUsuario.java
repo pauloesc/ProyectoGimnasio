@@ -28,6 +28,16 @@ public interface WebServicesControladorUsuario {
     /**
      * 
      * @return
+     *     returns publicadores.WrapperSetString
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://Publicadores/WebServicesControladorUsuario/mostrarNicknameSociosRequest", output = "http://Publicadores/WebServicesControladorUsuario/mostrarNicknameSociosResponse")
+    public WrapperSetString mostrarNicknameSocios();
+
+    /**
+     * 
+     * @return
      *     returns publicadores.WrapperListString
      */
     @WebMethod
@@ -49,16 +59,6 @@ public interface WebServicesControladorUsuario {
         InfoBasicaUser arg0)
         throws UsuarioDisponibilidadException_Exception
     ;
-
-    /**
-     * 
-     * @return
-     *     returns publicadores.WrapperSetString
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://Publicadores/WebServicesControladorUsuario/mostrarNicknameSociosRequest", output = "http://Publicadores/WebServicesControladorUsuario/mostrarNicknameSociosResponse")
-    public WrapperSetString mostrarNicknameSocios();
 
     /**
      * 
