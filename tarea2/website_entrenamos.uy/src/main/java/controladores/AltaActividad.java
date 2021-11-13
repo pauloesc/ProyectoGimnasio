@@ -1,11 +1,11 @@
 package controladores;
-
-import excepciones.ActividadDeportivaRepetidaException;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -13,11 +13,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-import logica.Fabrica;
-import logica.IctrlADeportivas;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 import logica.InfoBasicaProfesor;
 import logica.InfoBasicaUser;
+import publicadores.ActividadDeportivaRepetidaException_Exception;
+import publicadores.WebServicesADeportivas;
+import publicadores.WebServicesADeportivasService;
+
 import org.apache.commons.io.FilenameUtils;
+
+import net.java.dev.jaxb.array.StringArray;
 
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 10, 	// 10 MB 
@@ -26,11 +32,16 @@ import org.apache.commons.io.FilenameUtils;
 public class AltaActividad extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private static IctrlADeportivas ctrlADeportivas = Fabrica.getInstance().getIctrlADeportivas();
+	private static WebServicesADeportivasService serviceActividades;
+	private static WebServicesADeportivas portActividades;
+	
 	private static final String UPLOAD_DIR = "resources/img/actividades";
 
 	public AltaActividad() {
 		super();
+		
+		serviceActividades = new WebServicesADeportivasService();
+		portActividades = serviceActividades.getWebServicesADeportivasPort();
 
 	}
 
@@ -66,21 +77,36 @@ public class AltaActividad extends HttpServlet {
 		
         
 		Date date = new Date();
-		Set<String> cats = new HashSet<>(Arrays.asList(req.getParameterValues("categoriasActividad")));
+	
+		GregorianCalendar calendar = new GregorianCalendar();
+		calendar.setTime(date);
+		XMLGregorianCalendar xmlDate = null;
+	
 		try {
-			ctrlADeportivas.altaActividadDeportiva(ninst, nprof, nact, descrip, Float.parseFloat(dur),
-					Float.parseFloat(cost), date, cats, fileName+ "." + ext);
+            xmlDate = DatatypeFactory.newInstance().newXMLGregorianCalendar(calendar);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+		List<String> cats = Arrays.asList(req.getParameterValues("categoriasActividad"));
+		StringArray catsenv = (StringArray) cats;
+		
+		try {
+			portActividades.altaActividadDeportiva(ninst, nprof, nact, descrip, Float.parseFloat(dur),
+					Float.parseFloat(cost), xmlDate, catsenv, fileName+ "." + ext);
 			req.setAttribute("msjAlta", "La Actividad Deportiva se ha registrado con éxito.");
 			req.setAttribute("estadoAlta", true);
-		} catch (ActividadDeportivaRepetidaException e) {
-			req.setAttribute("msjAlta", e.getMessage());
-			req.setAttribute("estadoAlta", false);
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		} catch (ActividadDeportivaRepetidaException_Exception e) {
+			e.printStackTrace();
 		}
 		req.getRequestDispatcher("/WEB-INF/actividades/altaActividadDeportiva.jsp").forward(req, resp);
 	}
 
 	public static Set<String> getActividadesInst(String inst) {
-		Set<String> acts = Fabrica.getInstance().getIctrlADeportivas().darNombresActividadesDeportivas(inst);
+		List<String> actsarr = portActividades.darNombresActividadesDeportivas(inst).getItem();
+		Set<String> acts = new HashSet<String>(actsarr);
 		return acts;
 	}
 

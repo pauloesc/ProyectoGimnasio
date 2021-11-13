@@ -2,6 +2,7 @@ package controladores;
 
 import java.io.IOException;
 import java.util.Set;
+import java.util.HashSet;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,18 +12,42 @@ import excepciones.ActividadDeportivaNoExisteException;
 import logica.DataActividad;
 import logica.Fabrica;
 import logica.IctrlADeportivas;
+import net.java.dev.jaxb.array.StringArray;
+import publicadores.ActividadDeportivaNoExisteException_Exception;
+import publicadores.WebServicesADeportivas;
+import publicadores.WebServicesADeportivasService;
+import publicadores.WebServicesClases;
+import publicadores.WebServicesClasesService;
 import publicadores.WebServicesCuponeras;
 import publicadores.WebServicesCuponerasService;
+import publicadores.WebServicesIDeportivas;
+import publicadores.WebServicesIDeportivasService;
 
 public class ConsultaActividad extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
 	
-	private static IctrlADeportivas ctrlADeportivas = Fabrica.getInstance().getIctrlADeportivas();
+	private static WebServicesADeportivasService serviceActividades;
+	private static WebServicesADeportivas portActividades;
+	
+	private static WebServicesCuponerasService serviceCuponeras;
+	private static WebServicesCuponeras portCuponeras;
+	
+	private static WebServicesClasesService serviceClases;
+	private static WebServicesClases portClases;
 	
 	public ConsultaActividad() 
 	{
 		super();
+		
+		serviceActividades = new WebServicesADeportivasService();
+		portActividades = serviceActividades.getWebServicesADeportivasPort();
+		
+		serviceCuponeras = new WebServicesCuponerasService();
+		portCuponeras = serviceCuponeras.getWebServicesCuponerasPort();
+		
+		serviceClases = new WebServicesClasesService();
+		portClases = serviceClases.getWebServicesClasesPort();
 		
 	}
 	
@@ -32,20 +57,20 @@ public class ConsultaActividad extends HttpServlet
 		req.setCharacterEncoding("UTF-8");
 		String act = req.getParameter("actividad");
 		//verificar que institucion existe y sino llevar a errorPage
-		DataActividad actividad = null;
+		publicadores.DataActividad actividad = null;
 		try {
 			actividad = ConsultaActividad.getDataActividad(act);
 		} catch (ActividadDeportivaNoExisteException e) {
-			//resp.sendError(404); // la actividad no existe
+			req.getRequestDispatcher("/WEB-INF/errorpages/404.jsp").include(req, resp);
+			return;
+		} catch (ActividadDeportivaNoExisteException_Exception e) {
 			req.getRequestDispatcher("/WEB-INF/errorpages/404.jsp").include(req, resp);
 			return;
 		}
 		
-		WebServicesCuponerasService serviceCUP = new WebServicesCuponerasService();
-		WebServicesCuponeras portCUP = serviceCUP.getWebServicesCuponerasPort();
 		List<String> cup=null;
 		try {
-			cup = portCUP.getCuponerasAD(act).getSet();
+			cup = portCuponeras.getCuponerasAD(act).getSet();
 		} 
 		catch(Exception ex) {
 			cup  = null;
@@ -67,13 +92,14 @@ public class ConsultaActividad extends HttpServlet
 	}
 	
 	public static Set<String> getActividadesInst(String inst){
-		Set<String> acts = Fabrica.getInstance().getIctrlADeportivas().darNombresActividadesDeportivas(inst);
+		List<String> actsarr = portActividades.darNombresActividadesDeportivas(inst).getItem();
+		Set<String> acts = new HashSet<String>(actsarr);
 		return acts;
 	}
 	
-	public static DataActividad getDataActividad(String act) throws ActividadDeportivaNoExisteException {
-		DataActividad acti;
-		acti = ctrlADeportivas.getDataActividad(act);
+	public static publicadores.DataActividad getDataActividad(String act) throws ActividadDeportivaNoExisteException, ActividadDeportivaNoExisteException_Exception {
+		publicadores.DataActividad acti;
+		acti = portActividades.getDataActividad(act);
 		if (acti != null) {
 			return acti;
 	 	} else
