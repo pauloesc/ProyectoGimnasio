@@ -7,9 +7,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for dataInstitucion complex type.
+ * <p>Clase Java para dataInstitucion complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="dataInstitucion">
@@ -40,7 +40,7 @@ public class DataInstitucion {
     protected String url;
 
     /**
-     * Gets the value of the descripcion property.
+     * Obtiene el valor de la propiedad descripcion.
      * 
      * @return
      *     possible object is
@@ -52,7 +52,7 @@ public class DataInstitucion {
     }
 
     /**
-     * Sets the value of the descripcion property.
+     * Define el valor de la propiedad descripcion.
      * 
      * @param value
      *     allowed object is
@@ -64,7 +64,7 @@ public class DataInstitucion {
     }
 
     /**
-     * Gets the value of the nombre property.
+     * Obtiene el valor de la propiedad nombre.
      * 
      * @return
      *     possible object is
@@ -76,7 +76,7 @@ public class DataInstitucion {
     }
 
     /**
-     * Sets the value of the nombre property.
+     * Define el valor de la propiedad nombre.
      * 
      * @param value
      *     allowed object is
@@ -88,7 +88,7 @@ public class DataInstitucion {
     }
 
     /**
-     * Gets the value of the url property.
+     * Obtiene el valor de la propiedad url.
      * 
      * @return
      *     possible object is
@@ -100,7 +100,7 @@ public class DataInstitucion {
     }
 
     /**
-     * Sets the value of the url property.
+     * Define el valor de la propiedad url.
      * 
      * @param value
      *     allowed object is

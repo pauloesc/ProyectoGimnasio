@@ -65,6 +65,16 @@ public interface WebServicesIDeportivas {
 
     /**
      * 
+     * @return
+     *     returns net.java.dev.jaxb.array.StringArray
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://Publicadores/WebServicesIDeportivas/darNombreInstitucionesRequest", output = "http://Publicadores/WebServicesIDeportivas/darNombreInstitucionesResponse")
+    public StringArray darNombreInstituciones();
+
+    /**
+     * 
      * @param arg0
      * @return
      *     returns publicadores.DataInstitucion
@@ -80,16 +90,6 @@ public interface WebServicesIDeportivas {
         String arg0)
         throws InstitucionDeportivaNoExisteException_Exception
     ;
-
-    /**
-     * 
-     * @return
-     *     returns net.java.dev.jaxb.array.StringArray
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://Publicadores/WebServicesIDeportivas/darNombreInstitucionesRequest", output = "http://Publicadores/WebServicesIDeportivas/darNombreInstitucionesResponse")
-    public StringArray darNombreInstituciones();
 
     /**
      * 

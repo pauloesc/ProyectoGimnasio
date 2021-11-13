@@ -187,6 +187,16 @@ public interface WebServicesADeportivas {
 
     /**
      * 
+     * @return
+     *     returns publicadores.DataActividad
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://Publicadores/WebServicesADeportivas/newDataActividadRequest", output = "http://Publicadores/WebServicesADeportivas/newDataActividadResponse")
+    public DataActividad newDataActividad();
+
+    /**
+     * 
      * @param arg0
      * @return
      *     returns net.java.dev.jaxb.array.StringArray
@@ -197,15 +207,5 @@ public interface WebServicesADeportivas {
     public StringArray mostrarClasesVigentesDeActividadDeportiva(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
-
-    /**
-     * 
-     * @return
-     *     returns publicadores.DataActividad
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://Publicadores/WebServicesADeportivas/newDataActividadRequest", output = "http://Publicadores/WebServicesADeportivas/newDataActividadResponse")
-    public DataActividad newDataActividad();
 
 }

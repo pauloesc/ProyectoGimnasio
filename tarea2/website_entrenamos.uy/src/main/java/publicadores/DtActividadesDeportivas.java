@@ -12,25 +12,22 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
- * <p>Clase Java para dataActividad complex type.
+ * <p>Clase Java para dtActividadesDeportivas complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
- * &lt;complexType name="dataActividad">
+ * &lt;complexType name="dtActividadesDeportivas">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="categorias" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="clases" type="{http://Publicadores/}dtClase" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="costo" type="{http://www.w3.org/2001/XMLSchema}float" minOccurs="0"/>
  *         &lt;element name="descripcion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="duracion" type="{http://www.w3.org/2001/XMLSchema}float" minOccurs="0"/>
  *         &lt;element name="estado" type="{http://Publicadores/}estadoActi" minOccurs="0"/>
  *         &lt;element name="fechaAlta" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
- *         &lt;element name="imagen" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="institucion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="profesor" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -40,22 +37,19 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "dataActividad", propOrder = {
-    "categorias",
+@XmlType(name = "dtActividadesDeportivas", propOrder = {
+    "clases",
     "costo",
     "descripcion",
     "duracion",
     "estado",
     "fechaAlta",
-    "imagen",
-    "institucion",
-    "nombre",
-    "profesor"
+    "nombre"
 })
-public class DataActividad {
+public class DtActividadesDeportivas {
 
     @XmlElement(nillable = true)
-    protected List<String> categorias;
+    protected List<DtClase> clases;
     protected Float costo;
     protected String descripcion;
     protected Float duracion;
@@ -63,38 +57,35 @@ public class DataActividad {
     protected EstadoActi estado;
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar fechaAlta;
-    protected String imagen;
-    protected String institucion;
     protected String nombre;
-    protected String profesor;
 
     /**
-     * Gets the value of the categorias property.
+     * Gets the value of the clases property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the categorias property.
+     * This is why there is not a <CODE>set</CODE> method for the clases property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getCategorias().add(newItem);
+     *    getClases().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link String }
+     * {@link DtClase }
      * 
      * 
      */
-    public List<String> getCategorias() {
-        if (categorias == null) {
-            categorias = new ArrayList<String>();
+    public List<DtClase> getClases() {
+        if (clases == null) {
+            clases = new ArrayList<DtClase>();
         }
-        return this.categorias;
+        return this.clases;
     }
 
     /**
@@ -218,54 +209,6 @@ public class DataActividad {
     }
 
     /**
-     * Obtiene el valor de la propiedad imagen.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getImagen() {
-        return imagen;
-    }
-
-    /**
-     * Define el valor de la propiedad imagen.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setImagen(String value) {
-        this.imagen = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad institucion.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getInstitucion() {
-        return institucion;
-    }
-
-    /**
-     * Define el valor de la propiedad institucion.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setInstitucion(String value) {
-        this.institucion = value;
-    }
-
-    /**
      * Obtiene el valor de la propiedad nombre.
      * 
      * @return
@@ -287,30 +230,6 @@ public class DataActividad {
      */
     public void setNombre(String value) {
         this.nombre = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad profesor.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getProfesor() {
-        return profesor;
-    }
-
-    /**
-     * Define el valor de la propiedad profesor.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setProfesor(String value) {
-        this.profesor = value;
     }
 
 }

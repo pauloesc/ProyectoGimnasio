@@ -10,8 +10,8 @@ import javax.xml.ws.WebFault;
  * Generated source version: 2.2
  * 
  */
-@WebFault(name = "CuponeraRepetidaException", targetNamespace = "http://Publicadores/")
-public class CuponeraRepetidaException_Exception
+@WebFault(name = "UsuarioInexistenteException", targetNamespace = "http://Publicadores/")
+public class UsuarioInexistenteException_Exception
     extends Exception
 {
 
@@ -19,14 +19,14 @@ public class CuponeraRepetidaException_Exception
      * Java type that goes as soapenv:Fault detail element.
      * 
      */
-    private CuponeraRepetidaException faultInfo;
+    private UsuarioInexistenteException faultInfo;
 
     /**
      * 
      * @param faultInfo
      * @param message
      */
-    public CuponeraRepetidaException_Exception(String message, CuponeraRepetidaException faultInfo) {
+    public UsuarioInexistenteException_Exception(String message, UsuarioInexistenteException faultInfo) {
         super(message);
         this.faultInfo = faultInfo;
     }
@@ -37,7 +37,7 @@ public class CuponeraRepetidaException_Exception
      * @param cause
      * @param message
      */
-    public CuponeraRepetidaException_Exception(String message, CuponeraRepetidaException faultInfo, Throwable cause) {
+    public UsuarioInexistenteException_Exception(String message, UsuarioInexistenteException faultInfo, Throwable cause) {
         super(message, cause);
         this.faultInfo = faultInfo;
     }
@@ -45,9 +45,9 @@ public class CuponeraRepetidaException_Exception
     /**
      * 
      * @return
-     *     returns fault bean: publicadores.CuponeraRepetidaException
+     *     returns fault bean: publicadores.UsuarioInexistenteException
      */
-    public CuponeraRepetidaException getFaultInfo() {
+    public UsuarioInexistenteException getFaultInfo() {
         return faultInfo;
     }
 

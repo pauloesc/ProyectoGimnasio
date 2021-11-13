@@ -7,12 +7,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para ActividadDeportivaRepetidaException complex type.
+ * <p>Clase Java para UsuarioInexistenteException complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
- * &lt;complexType name="ActividadDeportivaRepetidaException">
+ * &lt;complexType name="UsuarioInexistenteException">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
@@ -26,10 +26,10 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ActividadDeportivaRepetidaException", propOrder = {
+@XmlType(name = "UsuarioInexistenteException", propOrder = {
     "message"
 })
-public class ActividadDeportivaRepetidaException {
+public class UsuarioInexistenteException {
 
     protected String message;
 

@@ -10,16 +10,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para dataInstitucionArray complex type.
+ * <p>Clase Java para wrapperDataCuponera complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
- * &lt;complexType name="dataInstitucionArray">
+ * &lt;complexType name="wrapperDataCuponera">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="item" type="{http://Publicadores/}dataInstitucion" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="lista" type="{http://Publicadores/}dataCuponera" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -29,41 +29,41 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "dataInstitucionArray", propOrder = {
-    "item"
+@XmlType(name = "wrapperDataCuponera", propOrder = {
+    "lista"
 })
-public class DataInstitucionArray {
+public class WrapperDataCuponera {
 
     @XmlElement(nillable = true)
-    protected List<DataInstitucion> item;
+    protected List<DataCuponera> lista;
 
     /**
-     * Gets the value of the item property.
+     * Gets the value of the lista property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the item property.
+     * This is why there is not a <CODE>set</CODE> method for the lista property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getItem().add(newItem);
+     *    getLista().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link DataInstitucion }
+     * {@link DataCuponera }
      * 
      * 
      */
-    public List<DataInstitucion> getItem() {
-        if (item == null) {
-            item = new ArrayList<DataInstitucion>();
+    public List<DataCuponera> getLista() {
+        if (lista == null) {
+            lista = new ArrayList<DataCuponera>();
         }
-        return this.item;
+        return this.lista;
     }
 
 }

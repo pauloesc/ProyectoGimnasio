@@ -1,8 +1,6 @@
 
 package publicadores;
 
-import java.util.Date;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlSchemaType;
@@ -59,9 +57,9 @@ public class DtClase {
 
     protected int actualSocios;
     @XmlSchemaType(name = "dateTime")
-    protected Date fecha;
+    protected XMLGregorianCalendar fecha;
     @XmlSchemaType(name = "dateTime")
-    protected Date fechaReg;
+    protected XMLGregorianCalendar fechaReg;
     protected int hora;
     protected String imagen;
     protected int maxSocios;
@@ -96,7 +94,7 @@ public class DtClase {
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public Date getFecha() {
+    public XMLGregorianCalendar getFecha() {
         return fecha;
     }
 
@@ -108,7 +106,7 @@ public class DtClase {
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setFecha(Date value) {
+    public void setFecha(XMLGregorianCalendar value) {
         this.fecha = value;
     }
 
@@ -120,7 +118,7 @@ public class DtClase {
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public Date getFechaReg() {
+    public XMLGregorianCalendar getFechaReg() {
         return fechaReg;
     }
 
@@ -132,7 +130,7 @@ public class DtClase {
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setFechaReg(Date value) {
+    public void setFechaReg(XMLGregorianCalendar value) {
         this.fechaReg = value;
     }
 
