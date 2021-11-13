@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+import logica.manejADeportivas;
 /**
  * Actividad Deportiva en con nombre, descripcion, duracion, costo, fecha_alta.
 

@@ -47,89 +47,91 @@ public class DataActividad {
         this.setInstitucion(inst);
         this.setImagen(img);
     }
-
+    
     public String getNombre() {
-        return nombre;
-    }
+		return nombre;
+	}
 
-    public String getDescripcion() {
-        return descripcion;
-    }
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
-    public Float getDuracion() {
-        return duracion;
-    }
-    
-    public Float getCosto() {
-        return costo;
-    }
-    
-    public Date getFechaAlta() {
-        return fechaAlta;
-    }
-    
-    public EstadoActi getEstado() {
-    	return estado;
-    }
-    
-    public Set<String> getCategorias() {
-    	return categorias;
-    }
-    
-    public String getProfesor() {
-        return profesor;
-    }
+	public String getDescripcion() {
+		return descripcion;
+	}
 
-    public String getInstitucion() {
-        return institucion;
-    }
-    
-    public String getImagen() {
-        return imagen;
-    }
-    /* Sirve para mostrar textualmente el nombre de la Actividad Deportiva, por ejemplo en un ComboBox
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public Float getDuracion() {
+		return duracion;
+	}
+
+	public void setDuracion(Float duracion) {
+		this.duracion = duracion;
+	}
+
+	public Float getCosto() {
+		return costo;
+	}
+
+	public void setCosto(Float costo) {
+		this.costo = costo;
+	}
+
+	public Date getFechaAlta() {
+		return fechaAlta;
+	}
+
+	public void setFechaAlta(Date fechaAlta) {
+		this.fechaAlta = fechaAlta;
+	}
+
+	public EstadoActi getEstado() {
+		return estado;
+	}
+
+	public void setEstado(EstadoActi estado) {
+		this.estado = estado;
+	}
+
+	public Set<String> getCategorias() {
+		return categorias;
+	}
+
+	public void setCategorias(Set<String> categorias) {
+		this.categorias = categorias;
+	}
+
+	public String getProfesor() {
+		return profesor;
+	}
+
+	public void setProfesor(String profesor) {
+		this.profesor = profesor;
+	}
+
+	public String getInstitucion() {
+		return institucion;
+	}
+
+	public void setInstitucion(String institucion) {
+		this.institucion = institucion;
+	}
+
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+
+	/* Sirve para mostrar textualmente el nombre de la Actividad Deportiva, por ejemplo en un ComboBox
      */
     public String toString() {
         return getNombre();
     }
 
-    private void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    private void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    private void setDuracion(Float duracion) {
-        this.duracion = duracion;
-    }
-    
-    private void setCosto(Float costo) {
-        this.costo = costo;
-    }
-    
-    private void setFechaAlta(Date fecha_alta) {
-        this.fechaAlta = fecha_alta;
-    }
-    
-    private void setEstado(EstadoActi est) {
-    	this.estado = est;
-    }
-    
-    private void setCategorias(Set<String> cat) {
-    	this.categorias = cat;
-    }
-    
-    private void setProfesor(String prof) {
-    	this.profesor = prof;
-    }
-    
-    private void setInstitucion(String inst) {
-    	this.institucion = inst;
-    }
-    
-    private void setImagen(String img) {
-    	this.imagen = img;
-    }
 }

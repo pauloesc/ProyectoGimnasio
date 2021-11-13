@@ -91,4 +91,14 @@ public interface WebServicesIDeportivas {
     @Action(input = "http://Publicadores/WebServicesIDeportivas/darNombreInstitucionesRequest", output = "http://Publicadores/WebServicesIDeportivas/darNombreInstitucionesResponse")
     public StringArray darNombreInstituciones();
 
+    /**
+     * 
+     * @return
+     *     returns publicadores.DataInstitucion
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://Publicadores/WebServicesIDeportivas/newDataInstitucionRequest", output = "http://Publicadores/WebServicesIDeportivas/newDataInstitucionResponse")
+    public DataInstitucion newDataInstitucion();
+
 }

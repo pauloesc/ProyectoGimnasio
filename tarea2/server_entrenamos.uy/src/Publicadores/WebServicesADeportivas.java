@@ -8,9 +8,6 @@ package Publicadores;
  *
  */
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -73,17 +70,17 @@ public class WebServicesADeportivas {
     
     @WebMethod
     public String[] darNombresActividadesDeportivas(String inst) {
-    	return ctrladep.darNombresActividadesDeportivas(inst).toArray(new String[ctrladep.darNombresActividadesDeportivas(inst).size()]);
+    	return ctrladep.darNombresActividadesDeportivas(inst).toArray(new String[0]);
     }
     
     @WebMethod
     public String[] getActividadesCategoria(String cat) {
-    	return ctrladep.getActividadesCategoria(cat).toArray(new String[ctrladep.getActividadesCategoria(cat).size()]);
+    	return ctrladep.getActividadesCategoria(cat).toArray(new String[0]);
     }
     
     @WebMethod
     public String[] mostrarClasesVigentesDeActividadDeportiva(String nomAct) {
-    	return ctrladep.mostrarClasesVigentesDeActividadDeportiva(nomAct).toArray(new String[ctrladep.mostrarClasesVigentesDeActividadDeportiva(nomAct).size()]);
+    	return ctrladep.mostrarClasesVigentesDeActividadDeportiva(nomAct).toArray(new String[0]);
     }
     
     @WebMethod
@@ -93,17 +90,22 @@ public class WebServicesADeportivas {
 
     @WebMethod
     public String[] getActividadesIngresadas() throws ActividadDeportivaNoExisteException {
-    	return ctrladep.getActividadesIngresadas().toArray(new String[ctrladep.getActividadesIngresadas().size()]);
+    	return ctrladep.getActividadesIngresadas().toArray(new String[0]);
     }
     
     @WebMethod
     public DataActividad[] buscarActividades(String query) {
-    	return ctrladep.buscarActividades(query).toArray(new DataActividad[ctrladep.buscarActividades(query).size()]);
+    	return ctrladep.buscarActividades(query).toArray(new DataActividad[0]);
     }
    
     @WebMethod
     public DataActividad[] getDataActividadesIngresadas() throws ActividadDeportivaNoExisteException {
-    	return ctrladep.getDataActividadesIngresadas().toArray(new DataActividad[ctrladep.getDataActividadesIngresadas().size()]); 	
+    	return ctrladep.getDataActividadesIngresadas().toArray(new DataActividad[0]); 	
+    }
+    
+    @WebMethod
+    public DataActividad newDataActividad() {
+    	return new DataActividad();
     }
       
 }
