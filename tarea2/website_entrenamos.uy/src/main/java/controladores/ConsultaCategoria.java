@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import publicadores.ActividadDeportivaNoExisteException_Exception;
 
 import publicadores.EstadoActi;
-import publicadores.DataActividad;
 
 import publicadores.WebServicesADeportivas;
 import publicadores.WebServicesADeportivasService;

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page import="publicadores.DataCuponera"%>
-<%@page import="logica.DataActividad"%>
+<%@page import="publicadores.DataActividad"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.List"%>
 <!DOCTYPE html>
@@ -15,9 +15,9 @@
 	<!-- Begin page content -->
 	<%
 	List<DataCuponera> cuponeras = (List<DataCuponera>) request.getAttribute("resultCup");
-	Set<DataActividad> actividades = (Set<DataActividad>) request.getAttribute("resultAct");
-	Set<String> instituciones = (Set<String>) request.getAttribute("instituciones");
-	Set<String> categorias = (Set<String>) request.getAttribute("categorias");
+	List<DataActividad> actividades = (List<DataActividad>) request.getAttribute("resultAct");
+	List<String> instituciones = (List<String>) request.getAttribute("instituciones");
+	List<String> categorias = (List<String>) request.getAttribute("categorias");
 	String consulta = (String) request.getAttribute("consulta");
 	
 	String resultadosJson = "{nombre: 'Fernando', num: 89875, sexo: 'masculino', inst: 'telon', categoria: 'natacion'},;";
@@ -72,7 +72,7 @@
     					<div class="d-flex w-100 justify-content-between">
     						<div>
     							<h5 id="nomact" class="mb-1"><%=act.getNombre() %></h5>
-    							<span id="<%=act.getFechaAlta().toInstant()%>">Fecha publicación: <fmt:formatDate pattern = "yyyy-MM-dd" value = "<%=act.getFechaAlta()%>"/></span> <br>
+    							<span id="<%=act.getFechaAlta().toGregorianCalendar().getTime().toInstant() %>">Fecha publicación: <fmt:formatDate pattern = "yyyy-MM-dd" value = "<%=act.getFechaAlta().toGregorianCalendar().getTime()%>"/></span> <br>
     							<span class="badge badge-dark"><%=act.getInstitucion()%></span>
     							<br>
     							<%
