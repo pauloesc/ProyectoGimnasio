@@ -4,8 +4,14 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Set;
+import java.util.HashSet;
+import java.util.List;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -15,6 +21,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
+
 import org.apache.commons.io.FilenameUtils;
 import excepciones.ClaseRepetidaException;
 import logica.Fabrica;
@@ -22,6 +31,8 @@ import logica.IctrlADeportivas;
 import logica.IctrlClases;
 import logica.IctrlUsuarios;
 import logica.InfoBasicaProfesor;
+import logica.InfoBasicaUser;
+import net.java.dev.jaxb.array.StringArray;
 import publicadores.ClaseRepetidaException_Exception;
 
 
@@ -41,22 +52,25 @@ public class AltaClase extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		HttpSession sesion = req.getSession();
-    	Fabrica f = Fabrica.getInstance();
-		IctrlUsuarios ICU = f.getIctrlUsuarios();
-		IctrlADeportivas ICA = f.getIctrlADeportivas();
+		
 		
 		boolean ESocio = true;
 		
 		
-		publicadores.WebServicesClasesService service = 
-				new publicadores.WebServicesClasesService();
+		publicadores.WebServicesControladorUsuarioService service = 
+				new publicadores.WebServicesControladorUsuarioService();
 		
-		publicadores.WebServicesClases port = service.getWebServicesClasesPort();
+		publicadores.WebServicesControladorUsuario portUsr = service.getWebServicesControladorUsuarioPort();
+		
+		publicadores.WebServicesADeportivasService serviceAD = 
+				new publicadores.WebServicesADeportivasService();
+		
+		publicadores.WebServicesADeportivas portAD = serviceAD.getWebServicesADeportivasPort();
 		
     	
 		if ((String)sesion.getAttribute("estado-sesion") == "logged-in") {
     		try {
-    			ESocio = ICU.esSocio((String)sesion.getAttribute("nickname-user"));
+    			ESocio = portUsr.esSocio((String)sesion.getAttribute("nickname-user"));
     		} catch (Exception e) {
     			
     		}
@@ -65,10 +79,16 @@ public class AltaClase extends HttpServlet {
     	if (!ESocio) {
         	
 			
-			InfoBasicaProfesor infP = (InfoBasicaProfesor)ICU.informacionBasicaUsuario((String)sesion.getAttribute("nickname-user"));
+    		publicadores.InfoBasicaProfesor infP = (publicadores.InfoBasicaProfesor)portUsr.informacionBasicaUsuario((String)sesion.getAttribute("nickname-user"));
+			
+			
+			
+			
+			List<String> actsarr = portAD.darNombresActividadesDeportivas(infP.getInstitucion()).getItem();
+			Set<String> acts = new HashSet<String>(actsarr);
 			
 			req.setAttribute("institucion",infP.getInstitucion());
-			req.setAttribute("actividades",ICA.darNombresActividadesDeportivas(infP.getInstitucion()));
+			req.setAttribute("actividades",acts);
 			
         	RequestDispatcher md = req.getRequestDispatcher("/WEB-INF/clases/altaClase.jsp");
 			md.forward(req, resp);
@@ -86,9 +106,7 @@ public class AltaClase extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		HttpSession sesion = req.getSession();
-    	Fabrica f = Fabrica.getInstance();
-		IctrlUsuarios ICU = f.getIctrlUsuarios();
-		IctrlADeportivas ICA = f.getIctrlADeportivas();
+    	
 		
 		boolean ESocio = true;
     	
@@ -98,18 +116,31 @@ public class AltaClase extends HttpServlet {
 		
 		publicadores.WebServicesClases port = service.getWebServicesClasesPort();
 		
+		publicadores.WebServicesControladorUsuarioService serviceUsr = 
+				new publicadores.WebServicesControladorUsuarioService();
+		
+		publicadores.WebServicesControladorUsuario portUsr = serviceUsr.getWebServicesControladorUsuarioPort();
+		
+		publicadores.WebServicesADeportivasService serviceAD = 
+				new publicadores.WebServicesADeportivasService();
+		
+		publicadores.WebServicesADeportivas portAD = serviceAD.getWebServicesADeportivasPort();
+		
 		if ((String)sesion.getAttribute("estado-sesion") == "logged-in") {
     		try {
-    			ESocio = ICU.esSocio((String)sesion.getAttribute("nickname-user"));
+    			ESocio = portUsr.esSocio((String)sesion.getAttribute("nickname-user"));
     		} catch (Exception e) {
     			
     		}
     	}
     	
     	if (!ESocio) {
-    		InfoBasicaProfesor infP = (InfoBasicaProfesor)ICU.informacionBasicaUsuario((String)sesion.getAttribute("nickname-user"));
+    		publicadores.InfoBasicaProfesor infP = (publicadores.InfoBasicaProfesor)portUsr.informacionBasicaUsuario((String)sesion.getAttribute("nickname-user"));
+    		List<String> actsarr = portAD.darNombresActividadesDeportivas(infP.getInstitucion()).getItem();
+			Set<String> acts = new HashSet<String>(actsarr);
+			
 			req.setAttribute("institucion",infP.getInstitucion());
-			req.setAttribute("actividades",ICA.darNombresActividadesDeportivas(infP.getInstitucion()));
+			req.setAttribute("actividades",acts);
 			
 			int Smin = Integer.parseInt(req.getParameter("sociosMinimos"));
 			int Smax = Integer.parseInt(req.getParameter("sociosMaximos"));
@@ -199,7 +230,24 @@ public class AltaClase extends HttpServlet {
 					}
 					
 					
-					port.crearClase(nomC,feI, nomP,Smin ,Smax ,url ,Factual , act, Integer.parseInt(h), Integer.parseInt(m),fileName + "." + ext);
+					
+					GregorianCalendar calendarFei = new GregorianCalendar();
+					calendarFei.setTime(feI);
+					XMLGregorianCalendar xmlDateFei = null;
+				
+					GregorianCalendar calendarFact = new GregorianCalendar();
+					calendarFact.setTime(Factual);
+					XMLGregorianCalendar xmlDateFact = null;
+						
+					try {
+			            xmlDateFei = DatatypeFactory.newInstance().newXMLGregorianCalendar(calendarFei);
+			            xmlDateFact = DatatypeFactory.newInstance().newXMLGregorianCalendar(calendarFact);
+			        }
+			        catch (Exception e) {
+			            e.printStackTrace();
+			        }
+					
+					port.crearClase(nomC,xmlDateFei, nomP,Smin ,Smax ,url ,xmlDateFact , act, Integer.parseInt(h), Integer.parseInt(m),fileName + "." + ext);
 					
 					req.setAttribute("respuesta","La clase ha sido creada con exito");
 				} catch (ClaseRepetidaException_Exception e) {
