@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import="logica.InfoBasicaUser"%>
-<%@page import="logica.InfoBasicaProfesor"%>
+<%@page import="publicadores.InfoBasicaUser"%>
+<%@page import="publicadores.InfoBasicaProfesor"%>
 <%@page import="controladores.Login"%>
 <div id="header">
 	<%
-		InfoBasicaUser usr;
+		publicadores.InfoBasicaUser usr;
 		try 
 		{
 			usr = Login.getUsuarioLogueado(request);
@@ -69,7 +69,7 @@
 					id="navbarDropdownUsuario" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					
 					
-					<img src="<%=usr.getImagen()%>" width="30" height="30" class="rounded-circle">
+					<img src="<%=usr.getImg()%>" width="30" height="30" class="rounded-circle">
 					<span style="font-size: 13px; font-weight: 700"> &nbsp <%=usr.getNombre() + " " + usr.getApellido() %></span>
 				</a>
 				<div class="dropdown-menu dropdown-menu-right"

@@ -15,8 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
-import logica.InfoBasicaProfesor;
-import logica.InfoBasicaUser;
 import publicadores.ActividadDeportivaRepetidaException_Exception;
 import publicadores.WebServicesADeportivas;
 import publicadores.WebServicesADeportivasService;
@@ -113,15 +111,15 @@ public class AltaActividad extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		InfoBasicaUser usr;
+		publicadores.InfoBasicaUser usr;
 		try {
 			usr = Login.getUsuarioLogueado(request);
 		} 
 		catch(Exception ex) {
 			usr = null;
 		}
-		if (usr instanceof InfoBasicaProfesor) {
-			InfoBasicaProfesor ibp = (InfoBasicaProfesor) usr;
+		if (usr instanceof publicadores.InfoBasicaProfesor) {
+			publicadores.InfoBasicaProfesor ibp = (publicadores.InfoBasicaProfesor) usr;
 			
 			request.setAttribute("institucion", ibp.getInstitucion());
 			request.setAttribute("estadoAlta", null);
@@ -136,15 +134,15 @@ public class AltaActividad extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		InfoBasicaUser usr;
+		publicadores.InfoBasicaUser usr;
 		try {
 			usr = Login.getUsuarioLogueado(request);
 		} 
 		catch(Exception ex) {
 			usr = null;
 		}
-		if (usr instanceof InfoBasicaProfesor) {
-			InfoBasicaProfesor ibp = (InfoBasicaProfesor) usr;			
+		if (usr instanceof publicadores.InfoBasicaProfesor) {
+			publicadores.InfoBasicaProfesor ibp = (publicadores.InfoBasicaProfesor) usr;			
 			request.setAttribute("institucion", ibp.getInstitucion());
 			processRequest(request, response);
 		}

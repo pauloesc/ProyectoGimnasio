@@ -281,6 +281,20 @@ public class ctrlUsuarios implements IctrlUsuarios {
 	 */
 	@Override
 	public String autenticarUsario(String nickname, String email, String contrasena){
+		
+		if( nickname.equals("") ) {
+			nickname = null;
+		}
+		
+		if( email.equals("") ) {
+			email = null;
+		}
+		
+		if( contrasena.equals("") ) {
+			contrasena = null;
+		}
+		
+		
 		if (nickname != null){
 			// Autenticar usando nickname
 			Usuario user = manejador.findUsuario(nickname);

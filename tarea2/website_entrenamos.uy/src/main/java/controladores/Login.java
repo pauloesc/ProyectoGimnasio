@@ -8,10 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import logica.InfoBasicaUser;
-import logica.IctrlUsuarios;
-import logica.Fabrica;
-import excepciones.UsuarioInexistenteException;
+import publicadores.WebServicesControladorUsuarioService;
 
 /**
 * Servlet de Login. 
@@ -29,25 +26,32 @@ public class Login extends HttpServlet {
       throws ServletException, IOException {
   
   HttpSession sesion = req.getSession();
+  
+	//---------------------------
+	WebServicesControladorUsuarioService serviceCUP = new WebServicesControladorUsuarioService();
+	publicadores.WebServicesControladorUsuario port = serviceCUP.getWebServicesControladorUsuarioPort();
+	//---------------------------	
 		
 		if ( req.getParameter("btn_iniciarSesion") != null )
 		{
 			String user = req.getParameter("input_email");
 			String pass = req.getParameter("input_password");
-			IctrlUsuarios ctrlUsuarios = Fabrica.getInstance().getIctrlUsuarios();
 		
-			String email = null, nickname = null;
+			String email = "", nickname = "";
 			if (user.contains("@"))
 				email = user;
 			else
 				nickname = user;
 			
-			String auth = ctrlUsuarios.autenticarUsario(nickname, email, pass);
+			publicadores.WrapperStringNull auxAuth = null;
+			auxAuth = port.autenticarUsario(nickname, email, pass);
+			String auth = auxAuth.getInformacion();
+			
 			
 			if (auth == null)
 			{
-				if (nickname == null)
-					nickname = ctrlUsuarios.getNicknameUsuario(email);
+				if (nickname == null || nickname.equals("") )
+					nickname = port.getNicknameUsuario(email);
 				
 				sesion.setAttribute("nickname-user", nickname);
 				sesion.setAttribute("estado-sesion", "logged-in");
@@ -66,15 +70,21 @@ public class Login extends HttpServlet {
 		}
 	}
 	
-	public static InfoBasicaUser getUsuarioLogueado(HttpServletRequest request)
-		throws UsuarioInexistenteException
+	public static publicadores.InfoBasicaUser getUsuarioLogueado(HttpServletRequest request)
+		throws publicadores.UsuarioDisponibilidadException_Exception
 	{		
-		InfoBasicaUser usr = Fabrica.getInstance().getIctrlUsuarios().informacionBasicaUsuario(
-				(String) request.getSession().getAttribute("nickname-user")
-			);
+		
+		//---------------------------
+		WebServicesControladorUsuarioService serviceCUP = new WebServicesControladorUsuarioService();
+		publicadores.WebServicesControladorUsuario port = serviceCUP.getWebServicesControladorUsuarioPort();
+		//---------------------------
+		
+		
+		publicadores.InfoBasicaUser usr = null;
+		usr = port.informacionBasicaUsuario( (String) request.getSession().getAttribute("nickname-user") );
 		
 		if (usr == null)
-			throw new UsuarioInexistenteException();
+			throw new publicadores.UsuarioDisponibilidadException_Exception(null, null);
 		else
 			return usr;
 	}
