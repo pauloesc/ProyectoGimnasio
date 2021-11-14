@@ -17,6 +17,7 @@ import javax.servlet.http.Part;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import publicadores.ActividadDeportivaRepetidaException_Exception;
+import publicadores.IOException_Exception;
 import publicadores.WebServicesADeportivas;
 import publicadores.WebServicesADeportivasService;
 import org.apache.commons.io.FilenameUtils;
@@ -44,7 +45,7 @@ public class AltaActividad extends HttpServlet {
 
 	}
 
-	private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, IOException_Exception {
 		req.setCharacterEncoding("UTF-8");
 		String ninst = req.getParameter("institucionDeportiva");
 		String nprof = (String) req.getSession().getAttribute("nickname-user");
@@ -139,7 +140,18 @@ public class AltaActividad extends HttpServlet {
 		if (usr instanceof publicadores.InfoBasicaProfesor) {
 			publicadores.InfoBasicaProfesor ibp = (publicadores.InfoBasicaProfesor) usr;			
 			request.setAttribute("institucion", ibp.getInstitucion());
-			processRequest(request, response);
+			try {
+				processRequest(request, response);
+			} catch (ServletException e) {
+				// FIXME Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// FIXME Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException_Exception e) {
+				// FIXME Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		else {
 			response.sendRedirect(request.getContextPath() + "/home");  
