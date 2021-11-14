@@ -133,4 +133,21 @@ public class Socio extends Usuario {
 		}
 		return vec;
 	}
+
+	public boolean tineClase(String nomC) {
+		for ( Iterator<Registro> it = regs.iterator(); it.hasNext();){ 
+			   if (it.next().getNombreClase() == nomC) {
+				   return true;
+			   }
+			}
+		return false;
+	}
+	
+	public void ganePremio(String nomC) {
+		for ( Iterator<Registro> it = regs.iterator(); it.hasNext();){ 
+			   if (it.next().getNombreClase() == nomC) {
+				   it.next().setPremio();
+			   }
+			}
+	}
 }

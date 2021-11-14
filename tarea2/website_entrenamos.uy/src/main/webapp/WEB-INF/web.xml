@@ -163,6 +163,14 @@
 		<servlet-name>Imagenes</servlet-name>
 		<url-pattern>/imagenes</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>SortearPremios</servlet-name>
+		<servlet-class>controladores.SortearPremios</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SortearPremios</servlet-name>
+		<url-pattern>/sortearPremios</url-pattern>
+	</servlet-mapping>
 	
 	
 	

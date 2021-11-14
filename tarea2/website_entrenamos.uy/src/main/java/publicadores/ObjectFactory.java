@@ -24,6 +24,7 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _PremioSorteadosException_QNAME = new QName("http://Publicadores/", "PremioSorteadosException");
     private final static QName _ClaseLlenaException_QNAME = new QName("http://Publicadores/", "ClaseLlenaException");
     private final static QName _ClaseRepetidaException_QNAME = new QName("http://Publicadores/", "ClaseRepetidaException");
     private final static QName _ClaseNoExisteException_QNAME = new QName("http://Publicadores/", "ClaseNoExisteException");
@@ -69,6 +70,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link PremioSorteadosException }
+     * 
+     */
+    public PremioSorteadosException createPremioSorteadosException() {
+        return new PremioSorteadosException();
+    }
+
+    /**
      * Create an instance of {@link WrapperSetString }
      * 
      */
@@ -82,6 +91,15 @@ public class ObjectFactory {
      */
     public DtClase createDtClase() {
         return new DtClase();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link PremioSorteadosException }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://Publicadores/", name = "PremioSorteadosException")
+    public JAXBElement<PremioSorteadosException> createPremioSorteadosException(PremioSorteadosException value) {
+        return new JAXBElement<PremioSorteadosException>(_PremioSorteadosException_QNAME, PremioSorteadosException.class, null, value);
     }
 
     /**

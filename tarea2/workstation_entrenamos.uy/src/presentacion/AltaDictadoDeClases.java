@@ -52,6 +52,8 @@ public class AltaDictadoDeClases extends JInternalFrame {
 	private IctrlUsuarios IU;
 	private JComboBox<String> textFieldHora;
 	private JComboBox<String> textFieldMinuto;
+	private JTextField cantPremios;
+	private JTextField descPremios;
 
 	/**
 	 * Launch the application.
@@ -90,7 +92,7 @@ public class AltaDictadoDeClases extends JInternalFrame {
 		setClosable(true);
 		
 		setTitle("Alta dictado de clases");
-		setBounds(100, 100, 499, 546);
+		setBounds(100, 100, 499, 627);
 		
 		Fabrica fab = Fabrica.getInstance();
 		IAD = fab.getIctrlADeportivas();
@@ -226,15 +228,17 @@ public class AltaDictadoDeClases extends JInternalFrame {
 					String ur = url.getText();
 					Date Falta = dateChooserAlta.getDate();
 					String nomAct = (String) comboBoxActividadDeportiva.getSelectedItem();
+					String desc = descPremios.getText();
 					
 					Integer min = Integer.parseInt(Smin.getText());
 					Integer max = Integer.parseInt(Smax.getText());
+					Integer cantP = Integer.parseInt(cantPremios.getText());
 					Integer ho = Integer.parseInt((String) textFieldHora.getSelectedItem());
 					Integer mi = Integer.parseInt((String) textFieldMinuto.getSelectedItem());
 					
 					//comprobar que todos los campos tengan algo
 				
-					if ((nom.isEmpty()) || (Finicio == null) || (prof == null) || (ur.isEmpty()) || (Falta == null) || (nomAct == null) || (min == null) || (max == null) || (ho == null) || (mi == null)){
+					if ((nom.isEmpty()) || (Finicio == null) || (prof == null) || (ur.isEmpty()) || (Falta == null) || (nomAct == null) || (min == null) || (max == null) || (ho == null) || (mi == null) || (cantP == null) || (desc == null)){
 						JOptionPane.showMessageDialog(null, "Error, ningun campo puede quedar vacio");
 					} else {
 						
@@ -245,11 +249,13 @@ public class AltaDictadoDeClases extends JInternalFrame {
 							JOptionPane.showMessageDialog(null, "Error, socios minimos mayor que socios maximos");
 						}else if (Finicio.before(Falta)) {
 							JOptionPane.showMessageDialog(null, "Error, fecha de inicio anterior a fecha de alta");
+						}else if (cantP < 0) {
+							JOptionPane.showMessageDialog(null, "Error, cantidad de premios menor a 0");
 						} else {
 							Fabrica fab = Fabrica.getInstance();
 							IctrlClases ic = fab.getIctrlClases();
 								
-							ic.crearClase(nom, Finicio, prof, min, max, ur, Falta, nomAct, ho, mi, "");
+							ic.crearClase(nom, Finicio, prof, min, max, ur, Falta, nomAct, ho, mi, "",desc,cantP);
 							
 							limpiarFormulario();
 							setVisible(false);
@@ -266,6 +272,16 @@ public class AltaDictadoDeClases extends JInternalFrame {
 				}
 			}
 		});
+		
+		JLabel lblCantidadDePremios = new JLabel("Cantidad de Premios");
+		
+		JLabel lblDescripcionPremios = new JLabel("descripcion premios");
+		
+		cantPremios = new JTextField();
+		cantPremios.setColumns(10);
+		
+		descPremios = new JTextField();
+		descPremios.setColumns(10);
 		
 		
 		
@@ -294,7 +310,9 @@ public class AltaDictadoDeClases extends JInternalFrame {
 										.addComponent(lblUrl)
 										.addComponent(lblSociosMaximos)
 										.addComponent(lblFechaDeInicio)
-										.addComponent(lblFechaDeAlta))))))
+										.addComponent(lblFechaDeAlta)
+										.addComponent(lblCantidadDePremios)
+										.addComponent(lblDescripcionPremios))))))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
@@ -313,12 +331,14 @@ public class AltaDictadoDeClases extends JInternalFrame {
 										.addComponent(Smin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 										.addComponent(NombreClase, GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
 										.addComponent(Smax, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addComponent(url)))
+										.addComponent(url)
+										.addComponent(cantPremios, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addComponent(descPremios, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 								.addGroup(groupLayout.createSequentialGroup()
 									.addGap(43)
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
 										.addComponent(btnCancelar)
-										.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+										.addGroup(groupLayout.createSequentialGroup()
 											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 												.addComponent(lblMinuto)
 												.addComponent(lblHora))
@@ -326,8 +346,7 @@ public class AltaDictadoDeClases extends JInternalFrame {
 											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 												.addComponent(textFieldHora, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
 												.addComponent(textFieldMinuto, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE))
-											.addGap(40)))))
-							.addPreferredGap(ComponentPlacement.RELATED, 9, Short.MAX_VALUE)))
+											.addGap(40)))))))
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
@@ -379,7 +398,15 @@ public class AltaDictadoDeClases extends JInternalFrame {
 								.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 									.addComponent(lblMinuto)
 									.addComponent(textFieldMinuto, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))))
-					.addPreferredGap(ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+					.addGap(36)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(lblCantidadDePremios)
+						.addComponent(cantPremios, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblDescripcionPremios)
+						.addComponent(descPremios, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnAceptar)
 						.addComponent(btnCancelar))
@@ -428,5 +455,4 @@ public class AltaDictadoDeClases extends JInternalFrame {
 		dateChooserAlta.setCalendar(null);
 		
 	}
-	
 }

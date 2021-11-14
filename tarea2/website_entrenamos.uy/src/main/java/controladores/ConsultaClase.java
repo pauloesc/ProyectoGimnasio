@@ -40,6 +40,7 @@ public class ConsultaClase extends HttpServlet {
 		
 		HttpSession sesion = req.getSession();
 		boolean bien = false;
+		boolean esElProfe = false;
 		
 		publicadores.WebServicesClasesService service = 
 				new publicadores.WebServicesClasesService();
@@ -59,6 +60,7 @@ public class ConsultaClase extends HttpServlet {
 		if ((String)sesion.getAttribute("estado-sesion") == "logged-in") {
     		try {
     			bien = portUsr.esSocio((String)sesion.getAttribute("nickname-user"));
+    			esElProfe = port.esProfeDeClase((String)req.getParameter("clase"),(String)sesion.getAttribute("nickname-user"));
     		} catch (Exception e) {
     			
     		}
@@ -85,18 +87,25 @@ public class ConsultaClase extends HttpServlet {
 			
 			
 			if (bien && vigente) req.setAttribute("socio", "T");
-			else req.setAttribute("socio", "F");
+			else if (esElProfe && !vigente) req.setAttribute("profe", "T");
+			else {
+				req.setAttribute("socio", "F");
+				req.setAttribute("profe", "F");
+			}
 			
 			req.setAttribute("nom", res.getNombre());
 			req.setAttribute("nomP",res.getNomProfesor());
 			req.setAttribute("act",res.getNomAct());
 			req.setAttribute("url",res.getUrl());
 			req.setAttribute("img",res.getImagen());
+			req.setAttribute("cantP",res.getCantPremios());
+			req.setAttribute("sort",res.isSorteados());
 			
 			//paulo
 			req.setAttribute("minS",res.getMinSocios());
 			req.setAttribute("actuS",res.getActualSocios());
 			req.setAttribute("maxS",res.getMaxSocios());
+			
 			
 			Date ee = res.getFechaReg().toGregorianCalendar().getTime();
 			SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");

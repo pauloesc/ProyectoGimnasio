@@ -19,6 +19,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="actualSocios" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="cantPremios" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="descPremios" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="fecha" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="fechaReg" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="hora" type="{http://www.w3.org/2001/XMLSchema}int"/>
@@ -29,6 +31,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="nomAct" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="nomProfesor" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="sorteados" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *         &lt;element name="url" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -41,6 +44,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "dtClase", propOrder = {
     "actualSocios",
+    "cantPremios",
+    "descPremios",
     "fecha",
     "fechaReg",
     "hora",
@@ -51,11 +56,14 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "nomAct",
     "nomProfesor",
     "nombre",
+    "sorteados",
     "url"
 })
 public class DtClase {
 
     protected int actualSocios;
+    protected int cantPremios;
+    protected String descPremios;
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar fecha;
     @XmlSchemaType(name = "dateTime")
@@ -68,6 +76,7 @@ public class DtClase {
     protected String nomAct;
     protected String nomProfesor;
     protected String nombre;
+    protected boolean sorteados;
     protected String url;
 
     /**
@@ -84,6 +93,46 @@ public class DtClase {
      */
     public void setActualSocios(int value) {
         this.actualSocios = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad cantPremios.
+     * 
+     */
+    public int getCantPremios() {
+        return cantPremios;
+    }
+
+    /**
+     * Define el valor de la propiedad cantPremios.
+     * 
+     */
+    public void setCantPremios(int value) {
+        this.cantPremios = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad descPremios.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getDescPremios() {
+        return descPremios;
+    }
+
+    /**
+     * Define el valor de la propiedad descPremios.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setDescPremios(String value) {
+        this.descPremios = value;
     }
 
     /**
@@ -292,6 +341,22 @@ public class DtClase {
      */
     public void setNombre(String value) {
         this.nombre = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad sorteados.
+     * 
+     */
+    public boolean isSorteados() {
+        return sorteados;
+    }
+
+    /**
+     * Define el valor de la propiedad sorteados.
+     * 
+     */
+    public void setSorteados(boolean value) {
+        this.sorteados = value;
     }
 
     /**

@@ -17,7 +17,7 @@
 	DataActividad actividad = (DataActividad) request.getAttribute("actividad");
 	List<String> cup = (List<String>) request.getAttribute("cup");
 	Set<String> clases = (Set<String>) request.getAttribute("clases");
-	InfoBasicaUser usr;
+	publicadores.InfoBasicaUser usr;
 	try {
 		usr = Login.getUsuarioLogueado(request);
 	} 

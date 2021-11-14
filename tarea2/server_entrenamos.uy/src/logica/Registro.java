@@ -3,6 +3,7 @@
  */
 package logica;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class Registro {
@@ -11,12 +12,14 @@ public class Registro {
 	private float costo;
 	private Clase clase = null;
 	private Compra compra;
+	private Date fGanadoPremio;
 	
 	public Registro(Clase clase, Float precio, Date fecha) {
 		this.fecha = fecha;
 		this.costo = precio;
 		this.clase = clase;
 		this.compra = null;
+		this.fGanadoPremio = null;
 		
 	}
 	
@@ -42,5 +45,10 @@ public class Registro {
 		return compra;
 	}
 
+	public void setPremio() {
+		// registra el premio con la fecha actual del sistema
+		Calendar fechaActual = Calendar.getInstance();  
+		this.fGanadoPremio = fechaActual.getTime();
+	}
 
 }

@@ -3,6 +3,8 @@
  */
 package logica;
 
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -183,6 +185,32 @@ public class manejUsuarios {
 			}
 			
 		}
+		
+	}
+	
+	public void asignarPremios(String nomC, int cant) {
+		Set<String> socios = this.mostrarNicknameSocios();
+		ArrayList<Socio> sCnClase = new ArrayList<Socio>();
+		
+		for (String s : socios) {
+			Socio aux = (Socio)this.findUsuario(s);
+			if ((aux).tineClase(nomC)) {
+				sCnClase.add(aux);
+			}
+    	}
+		
+        Random ran = new Random();
+        
+        for (int i =0; i<cant;i++) {
+        	if (!sCnClase.isEmpty()) {
+        		int x = ran.nextInt(sCnClase.size());
+        		sCnClase.get(x).ganePremio(nomC);
+        		sCnClase.remove(x);
+        		
+        	}
+        }
+        
+       
 		
 	}
 	

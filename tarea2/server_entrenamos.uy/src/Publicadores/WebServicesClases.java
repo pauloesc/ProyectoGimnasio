@@ -14,6 +14,7 @@ import excepciones.ClaseLlenaException;
 import excepciones.ClaseNoExisteException;
 import excepciones.ClaseRepetidaException;
 import excepciones.ClaseYaCompradaException;
+import excepciones.PremioSorteadosException;
 import logica.DtClase;
 import logica.Fabrica;
 import logica.IctrlClases;
@@ -43,8 +44,8 @@ public class WebServicesClases {
     }
    
     @WebMethod
-    public void crearClase(String nombre, Date Finicio, String prof, int Smin, int Smax, String url, Date FechaAlta, String nomAct, Integer hor, Integer min, String img) throws ClaseRepetidaException {
-    	ctrl.crearClase(nombre, Finicio, prof, Smin, Smax, url, FechaAlta, nomAct, hor, min, img);
+    public void crearClase(String nombre, Date Finicio, String prof, int Smin, int Smax, String url, Date FechaAlta, String nomAct, Integer hor, Integer min, String img, String descPremios, int cantPremios) throws ClaseRepetidaException {
+    	ctrl.crearClase(nombre, Finicio, prof, Smin, Smax, url, FechaAlta, nomAct, hor, min, img,  descPremios,  cantPremios);
     }
     
     @WebMethod
@@ -63,5 +64,16 @@ public class WebServicesClases {
     	envoltura.setSet( ctrl.mostrarClasesDeActividadDeportiva(nomAct));
     	return envoltura;
     }
+    
+    @WebMethod
+    public void sortearPremios(String clase) throws PremioSorteadosException {
+    	ctrl.sortearPremios(clase);
+    }
+    
+    @WebMethod
+	public boolean esProfeDeClase(String nomC, String nomP) {
+    	return ctrl.esProfeDeClase(nomC, nomP);
+    }
+
 	
 }
