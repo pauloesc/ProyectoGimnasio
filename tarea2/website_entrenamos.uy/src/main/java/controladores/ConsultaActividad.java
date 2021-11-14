@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.List;
+
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +16,7 @@ import logica.Fabrica;
 import logica.IctrlADeportivas;
 import net.java.dev.jaxb.array.StringArray;
 import publicadores.ActividadDeportivaNoExisteException_Exception;
+import publicadores.EstadoActi;
 import publicadores.WebServicesADeportivas;
 import publicadores.WebServicesADeportivasService;
 import publicadores.WebServicesClases;
@@ -96,6 +99,10 @@ public class ConsultaActividad extends HttpServlet
 		List<String> actsarr = portActividades.darNombresActividadesDeportivas(inst).getItem();
 		Set<String> acts = new HashSet<String>(actsarr);
 		return acts;
+	}
+	
+	public static void finalizarActividad(String act) {
+		portActividades.cambiarEstado(act, EstadoActi.FINALIZADA);
 	}
 	
 	public static publicadores.DataActividad getDataActividad(String act) throws ActividadDeportivaNoExisteException, ActividadDeportivaNoExisteException_Exception {
