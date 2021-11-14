@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Set;
+import java.util.HashSet;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,6 +15,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 import excepciones.ActividadDeportivaNoExisteException;
 import excepciones.ClaseLlenaException;
@@ -23,6 +27,7 @@ import logica.Fabrica;
 import logica.IctrlADeportivas;
 import logica.IctrlClases;
 import logica.IctrlUsuarios;
+import publicadores.ActividadDeportivaNoExisteException_Exception;
 import publicadores.ClaseLlenaException_Exception;
 import publicadores.ClaseYaCompradaException_Exception;
 
@@ -42,9 +47,7 @@ public class RegistroAClase extends HttpServlet {
     
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     	HttpSession sesion = req.getSession();
-    	Fabrica f = Fabrica.getInstance();
-		IctrlUsuarios ICU = f.getIctrlUsuarios();
-		IctrlADeportivas IAD = f.getIctrlADeportivas();
+    	
 		boolean bien = false;
     	
 		publicadores.WebServicesClasesService service = 
@@ -52,10 +55,19 @@ public class RegistroAClase extends HttpServlet {
 		
 		publicadores.WebServicesClases port = service.getWebServicesClasesPort();
 		
+		publicadores.WebServicesControladorUsuarioService serviceUsr = 
+				new publicadores.WebServicesControladorUsuarioService();
+		
+		publicadores.WebServicesControladorUsuario portUsr = serviceUsr.getWebServicesControladorUsuarioPort();
+		
+		publicadores.WebServicesADeportivasService serviceAD = 
+				new publicadores.WebServicesADeportivasService();
+		
+		publicadores.WebServicesADeportivas portAD = serviceAD.getWebServicesADeportivasPort();
 		
 		if ((String)sesion.getAttribute("estado-sesion") == "logged-in") {
     		try {
-    			bien = ICU.esSocio((String)sesion.getAttribute("nickname-user"));
+    			bien = portUsr.esSocio((String)sesion.getAttribute("nickname-user"));
     		} catch (Exception e) {
     			
     		}
@@ -69,21 +81,20 @@ public class RegistroAClase extends HttpServlet {
     
         	
         	try {
-				DataActividad da = IAD.getDataActividad(dc.getNomAct());
+				publicadores.DataActividad da = portAD.getDataActividad(dc.getNomAct());
 				req.setAttribute("costoClase", String.valueOf(da.getCosto()));
-			} catch (ActividadDeportivaNoExisteException a) {
+			} catch (ActividadDeportivaNoExisteException_Exception a) {
 				req.setAttribute("costoClase", "error");
 			}
         	
-        	Set<String> nomCups = ICU.mostrarCuponerasDisponibles((String) sesion.getAttribute("nickname-user"), dc.getNomAct());
+        	Set<String> nomCups = new HashSet<String>(portUsr.mostrarCuponerasDisponibles((String) sesion.getAttribute("nickname-user"), dc.getNomAct()).getSet());
         	
-        	;
         	
         	req.setAttribute("nomC", nom);
         	req.setAttribute("nomCups", nomCups);
         	
         	Calendar c = Calendar.getInstance();
-			c.setTime(dc.getFecha());
+			c.setTime(dc.getFecha().toGregorianCalendar().getTime());
 			String ini = Integer.toString(c.get(Calendar.DATE)) + "/" + Integer.toString(c.get(Calendar.MONTH)+1) + "/" + Integer.toString(c.get(Calendar.YEAR)) + "  " +Integer.toString(dc.getHora()) + ":" + Integer.toString(dc.getMinuto());
 			req.setAttribute("fecha",ini);
         	
@@ -107,9 +118,7 @@ public class RegistroAClase extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		HttpSession sesion = req.getSession();
-    	Fabrica f = Fabrica.getInstance();
-		IctrlUsuarios ICU = f.getIctrlUsuarios();
-		IctrlADeportivas IAD = f.getIctrlADeportivas();
+    	
 		boolean bien = false;
 		String nick = (String)sesion.getAttribute("nickname-user");
     	
@@ -118,9 +127,19 @@ public class RegistroAClase extends HttpServlet {
 		
 		publicadores.WebServicesClases port = service.getWebServicesClasesPort();
 		
+		publicadores.WebServicesControladorUsuarioService serviceUsr = 
+				new publicadores.WebServicesControladorUsuarioService();
+		
+		publicadores.WebServicesControladorUsuario portUsr = serviceUsr.getWebServicesControladorUsuarioPort();
+		
+		publicadores.WebServicesADeportivasService serviceAD = 
+				new publicadores.WebServicesADeportivasService();
+		
+		publicadores.WebServicesADeportivas portAD = serviceAD.getWebServicesADeportivasPort();
+		
 		if ((String)sesion.getAttribute("estado-sesion") == "logged-in") {
     		try {
-    			bien = ICU.esSocio(nick);
+    			bien = portUsr.esSocio(nick);
     		} catch (Exception e) {
     			
     		}
@@ -134,19 +153,19 @@ public class RegistroAClase extends HttpServlet {
         	
         	
         	try {
-				DataActividad da = IAD.getDataActividad(dc.getNomAct());
+				publicadores.DataActividad da = portAD.getDataActividad(dc.getNomAct());
 				req.setAttribute("costoClase", String.valueOf(da.getCosto()));
-			} catch (ActividadDeportivaNoExisteException a) {
+			} catch (ActividadDeportivaNoExisteException_Exception a) {
 				req.setAttribute("costoClase", "error");
 			}
         	
-        	Set<String> nomCups = ICU.mostrarCuponerasDisponibles((String) sesion.getAttribute("nickname-user"), dc.getNomAct());
+        	Set<String> nomCups = new HashSet<String>(portUsr.mostrarCuponerasDisponibles((String) sesion.getAttribute("nickname-user"), dc.getNomAct()).getSet());
         	
         	req.setAttribute("nomC", nom);
         	req.setAttribute("nomCups", nomCups);
         	
         	Calendar c = Calendar.getInstance();
-			c.setTime(dc.getFecha());
+			c.setTime(dc.getFecha().toGregorianCalendar().getTime());
 			String ini = Integer.toString(c.get(Calendar.DATE)) + "/" + Integer.toString(c.get(Calendar.MONTH)+1) + "/" + Integer.toString(c.get(Calendar.YEAR)) + "  " +Integer.toString(dc.getHora()) + ":" + Integer.toString(dc.getMinuto());
 			req.setAttribute("fecha",ini);
 			
@@ -157,11 +176,18 @@ public class RegistroAClase extends HttpServlet {
 				Calendar fechaActual = Calendar.getInstance();  
 				Date Factual = fechaActual.getTime();
 				
-				if (Factual.after(dc.getFecha())) {
+			
+				GregorianCalendar calendar = new GregorianCalendar();
+				calendar.setTime(Factual);
+				XMLGregorianCalendar xmlDate = null;
+				xmlDate = DatatypeFactory.newInstance().newXMLGregorianCalendar(calendar);
+				
+				
+				if (Factual.after(dc.getFecha().toGregorianCalendar().getTime())) {
 					req.setAttribute("respuesta","Error, la clase ya expiró");
 				} else {
 					if (cup == null) cup = "";
-					port.registrarSocioAClase(nick, dc.getNomAct(), nom, conCup, cup, Factual);
+					port.registrarSocioAClase(nick, dc.getNomAct(), nom, conCup, cup, xmlDate);
 					req.setAttribute("respuesta","se ha comprado la clase exitosamente");
 				}
 	

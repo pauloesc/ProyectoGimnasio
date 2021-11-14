@@ -11,11 +11,13 @@ import javax.jws.soap.SOAPBinding.Style;
 import javax.xml.ws.Endpoint;
 
 import excepciones.ClaseLlenaException;
+import excepciones.ClaseNoExisteException;
 import excepciones.ClaseRepetidaException;
 import excepciones.ClaseYaCompradaException;
 import logica.DtClase;
 import logica.Fabrica;
 import logica.IctrlClases;
+import logica.WrapperSetString;
 
 @WebService
 @SOAPBinding(style = Style.RPC, parameterStyle = ParameterStyle.WRAPPED)
@@ -54,4 +56,12 @@ public class WebServicesClases {
     public void registrarSocioAClase(String nick, String actDep, String clas, boolean cuponera, String nomCuponera, Date fechaReg) throws ClaseYaCompradaException, ClaseLlenaException {
     	ctrl.registrarSocioAClase(nick, actDep, clas, cuponera, nomCuponera, fechaReg);
     }
+    
+    @WebMethod
+    public WrapperSetString mostrarClasesDeActividadDeportiva(String nomAct) throws ClaseNoExisteException {
+    	WrapperSetString envoltura = new WrapperSetString();
+    	envoltura.setSet( ctrl.mostrarClasesDeActividadDeportiva(nomAct));
+    	return envoltura;
+    }
+	
 }

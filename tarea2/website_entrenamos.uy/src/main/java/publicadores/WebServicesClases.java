@@ -107,6 +107,24 @@ public interface WebServicesClases {
      * 
      * @param arg0
      * @return
+     *     returns publicadores.WrapperSetString
+     * @throws ClaseNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://Publicadores/WebServicesClases/mostrarClasesDeActividadDeportivaRequest", output = "http://Publicadores/WebServicesClases/mostrarClasesDeActividadDeportivaResponse", fault = {
+        @FaultAction(className = ClaseNoExisteException_Exception.class, value = "http://Publicadores/WebServicesClases/mostrarClasesDeActividadDeportiva/Fault/ClaseNoExisteException")
+    })
+    public WrapperSetString mostrarClasesDeActividadDeportiva(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws ClaseNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
      *     returns publicadores.DtClase
      */
     @WebMethod

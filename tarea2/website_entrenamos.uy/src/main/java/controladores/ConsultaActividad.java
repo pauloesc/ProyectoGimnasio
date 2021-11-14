@@ -49,6 +49,7 @@ public class ConsultaActividad extends HttpServlet
 		serviceClases = new WebServicesClasesService();
 		portClases = serviceClases.getWebServicesClasesPort();
 		
+	
 	}
 	
 	private void processRequest(HttpServletRequest req, HttpServletResponse resp)
@@ -82,7 +83,7 @@ public class ConsultaActividad extends HttpServlet
 		
 		Set<String> clases;
 		try {
-			clases = Fabrica.getInstance().getIctrlClases().mostrarClasesDeActividadDeportiva(act);
+			clases = new HashSet<String>(portClases.mostrarClasesDeActividadDeportiva(act).getSet());
 		} catch(Exception e) {
 			clases = null;
 		}

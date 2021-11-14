@@ -21,6 +21,7 @@ import logica.Fabrica;
 import logica.IctrlADeportivas;
 import logica.IctrlClases;
 import logica.IctrlUsuarios;
+import publicadores.ActividadDeportivaNoExisteException_Exception;
 
 /**
  * Servlet implementation class ConsultaClase
@@ -36,18 +37,28 @@ public class ConsultaClase extends HttpServlet {
     }
 
 	private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Fabrica f = Fabrica.getInstance();
-		IctrlClases ICL = f.getIctrlClases();
-		IctrlADeportivas IAD = f.getIctrlADeportivas();
-		
 		
 		HttpSession sesion = req.getSession();
-		IctrlUsuarios ICU = f.getIctrlUsuarios();
 		boolean bien = false;
+		
+		publicadores.WebServicesClasesService service = 
+				new publicadores.WebServicesClasesService();
+		
+		publicadores.WebServicesClases port = service.getWebServicesClasesPort();
+		
+		publicadores.WebServicesControladorUsuarioService serviceUsr = 
+				new publicadores.WebServicesControladorUsuarioService();
+		
+		publicadores.WebServicesControladorUsuario portUsr = serviceUsr.getWebServicesControladorUsuarioPort();
+		
+		publicadores.WebServicesADeportivasService serviceAD = 
+				new publicadores.WebServicesADeportivasService();
+		
+		publicadores.WebServicesADeportivas portAD = serviceAD.getWebServicesADeportivasPort();
     	
 		if ((String)sesion.getAttribute("estado-sesion") == "logged-in") {
     		try {
-    			bien = ICU.esSocio((String)sesion.getAttribute("nickname-user"));
+    			bien = portUsr.esSocio((String)sesion.getAttribute("nickname-user"));
     		} catch (Exception e) {
     			
     		}
@@ -56,21 +67,21 @@ public class ConsultaClase extends HttpServlet {
 		
 		
 
-		DtClase res = ICL.darDtClase((String)req.getParameter("clase"));
+		publicadores.DtClase res = port.darDtClase((String)req.getParameter("clase"));
 		
 		if (res != null) {
 			
 			try {
-				DataActividad da = IAD.getDataActividad(res.getNomAct());
+				publicadores.DataActividad da = portAD.getDataActividad(res.getNomAct());
 				req.setAttribute("costoClase", String.valueOf(da.getCosto()));
-			} catch (ActividadDeportivaNoExisteException a) {
+			} catch (ActividadDeportivaNoExisteException_Exception a) {
 				req.setAttribute("costoClase", "error");
 			}
 			
 			Calendar fechaActual = Calendar.getInstance();  
 			Date Factual = fechaActual.getTime();
 			
-			boolean vigente = !Factual.after(res.getFecha());
+			boolean vigente = !Factual.after(res.getFecha().toGregorianCalendar().getTime());
 			
 			
 			if (bien && vigente) req.setAttribute("socio", "T");
@@ -87,14 +98,14 @@ public class ConsultaClase extends HttpServlet {
 			req.setAttribute("actuS",res.getActualSocios());
 			req.setAttribute("maxS",res.getMaxSocios());
 			
-			Date ee = res.getFechaReg();
+			Date ee = res.getFechaReg().toGregorianCalendar().getTime();
 			SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 			String dateString = formato.format(ee);
 			req.setAttribute("fechaReg", dateString);
 			//paulo
 			
 			Calendar c = Calendar.getInstance();
-			c.setTime(res.getFecha());
+			c.setTime(res.getFecha().toGregorianCalendar().getTime());
 			
 			Integer h = res.getHora();
 			Integer m = res.getMinuto();
