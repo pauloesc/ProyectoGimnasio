@@ -120,7 +120,7 @@ public class Profesor extends Usuario {
         while (aDepInstancia.hasNext()) {
         	
         	ActividadDeportiva actDeportiva = aDepInstancia.next(); 
-        	if ( actDeportiva.getEstado() == EstadoActi.RECHAZADA || actDeportiva.getEstado() == EstadoActi.INGRESADA  ) {
+        	if ( actDeportiva.getEstado() == EstadoActi.RECHAZADA || actDeportiva.getEstado() == EstadoActi.INGRESADA || actDeportiva.getEstado() == EstadoActi.FINALIZADA  ) {
 
         		DtActividadesDeportivas DtAD = actDeportiva.dtActividadesDeportivasSinInfoClases();
         		ListaDeActividades.add(DtAD);

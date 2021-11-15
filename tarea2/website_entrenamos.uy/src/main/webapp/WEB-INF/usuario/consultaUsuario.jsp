@@ -33,8 +33,7 @@ List<DtActividadesDeportivas> informacionProfesor = (List<DtActividadesDeportiva
 boolean propioUsuario = (boolean) request.getAttribute("userPropio");
 
 SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-//String dateString = formato.format(informacionUusario.getFechaNac());
-String dateString = informacionUusario.getFechaNac().toString();
+String dateString = formato.format(informacionUusario.getFechaNac().toGregorianCalendar().getTime());
 
 
 boolean haySesion = (boolean) request.getAttribute("haySesion");
@@ -316,8 +315,8 @@ boolean siguiendoUsuario = (boolean) request.getAttribute("siguiendoUsuario");
 									while ( iterListClases.hasNext() ){
 										DtClase infoCla = iterListClases.next();
 										
-										//String fechaFormateadaClase = formato.format(infoCla.getFecha());
-										String fechaFormateadaClase = infoCla.getFecha().toString();
+										String fechaFormateadaClase = formato.format(infoCla.getFecha().toGregorianCalendar().getTime());
+										
 									%>
                                  <tr>
                                     <th scope="row"><%=i2%></th>
@@ -365,8 +364,8 @@ boolean siguiendoUsuario = (boolean) request.getAttribute("siguiendoUsuario");
 									while( iterat3.hasNext() ) {
 										DtClase infoS = iterat3.next();
 										
-										//String fechaFormateadaClase = formato.format(infoS.getFecha());
-										String fechaFormateadaClase = infoS.getFecha().toString();
+										String fechaFormateadaClase = formato.format(infoS.getFecha().toGregorianCalendar().getTime());
+										
 									%>
                                  <tr>
                                     <th scope="row"><%=i3%></th>
