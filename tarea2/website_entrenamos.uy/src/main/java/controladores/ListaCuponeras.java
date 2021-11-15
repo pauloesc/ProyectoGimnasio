@@ -16,6 +16,8 @@ import javax.servlet.http.HttpSession;
 
 import publicadores.CuponeraNoExisteException_Exception;
 import publicadores.DataCuponera;
+import publicadores.WebServicesControladorUsuario;
+import publicadores.WebServicesControladorUsuarioService;
 import publicadores.WebServicesCuponeras;
 import publicadores.WebServicesCuponerasService;
 
@@ -24,11 +26,14 @@ public class ListaCuponeras extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
 	
-	   
+	private static WebServicesControladorUsuarioService serviceUsuarios;
+	private static WebServicesControladorUsuario portUsuarios;   
 		
 	public ListaCuponeras() 
 	{
 		super();
+		serviceUsuarios = new WebServicesControladorUsuarioService();
+		portUsuarios = serviceUsuarios.getWebServicesControladorUsuarioPort();
 	}
 	
 	private void processRequest(HttpServletRequest req, HttpServletResponse resp)
@@ -40,7 +45,7 @@ public class ListaCuponeras extends HttpServlet
     	
 		if ((String)sesion.getAttribute("estado-sesion") == "logged-in") {
     		try {
-    			bien = ICU.esSocio((String)sesion.getAttribute("nickname-user"));
+    			bien = portUsuarios.esSocio((String)sesion.getAttribute("nickname-user"));
     		} catch (Exception e) {
     			
     		}

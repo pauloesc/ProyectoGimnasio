@@ -10,13 +10,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 
-import logica.Fabrica;
-import logica.IctrlUsuarios;
 import publicadores.CuponeraCompradaException_Exception;
 import publicadores.DataCuponera;
+import publicadores.WebServicesControladorUsuario;
+import publicadores.WebServicesControladorUsuarioService;
 import publicadores.WebServicesCuponeras;
 import publicadores.WebServicesCuponerasService;
 
@@ -25,11 +25,16 @@ public class ConsultaCuponera extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
 	
+	private static WebServicesControladorUsuarioService serviceUsuarios;
+	private static WebServicesControladorUsuario portUsuarios;   
+	
 	
 	
 	public ConsultaCuponera() 
 	{
 		super();
+		serviceUsuarios = new WebServicesControladorUsuarioService();
+		portUsuarios = serviceUsuarios.getWebServicesControladorUsuarioPort();
 		
 	}
 	
@@ -37,14 +42,12 @@ public class ConsultaCuponera extends HttpServlet
 			throws ServletException, IOException 
 	{
 		HttpSession sesion = req.getSession();
-    	Fabrica f = Fabrica.getInstance();
-		IctrlUsuarios ICU = f.getIctrlUsuarios();
 
 		boolean bien = false;
     	
 		if ((String)sesion.getAttribute("estado-sesion") == "logged-in") {
     		try {
-    			bien = ICU.esSocio((String)sesion.getAttribute("nickname-user"));
+    			bien = portUsuarios.esSocio((String)sesion.getAttribute("nickname-user"));
     		} catch (Exception e) {
     			
     		}
