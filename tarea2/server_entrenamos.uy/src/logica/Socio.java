@@ -87,9 +87,6 @@ public class Socio extends Usuario {
 		this.compCup.put(cup.getNombre(), nueva);
 	}
 	
-	
-	
-	
 	@Override
 	public InfoBasicaUser informacion() {	
 		InfoBasicaUser DtInfoBasicUser = new InfoBasicaSocio(
@@ -132,5 +129,31 @@ public class Socio extends Usuario {
 			vec.add(info);
 		}
 		return vec;
+	}
+	
+	public boolean tineClase(String nomC) {
+		for ( Iterator<Registro> it = regs.iterator(); it.hasNext();){ 
+			   if (it.next().getNombreClase() == nomC) {
+				   return true;
+			   }
+			}
+		return false;
+	}
+	
+	public void setPremio(String nomC) {
+		for ( Iterator<Registro> it = regs.iterator(); it.hasNext();){ 
+			   if (it.next().getNombreClase() == nomC) {
+				   it.next().setFGanadoPremio();
+			   }
+			}
+	}
+	
+	public boolean getPremio(String nomC){
+		for ( Iterator<Registro> it = regs.iterator(); it.hasNext();){ 
+			   if (it.next().getNombreClase() == nomC && it.next().getfGanadoPremio() != null) {
+				  return true;
+			   }
+			}
+		return false;
 	}
 }

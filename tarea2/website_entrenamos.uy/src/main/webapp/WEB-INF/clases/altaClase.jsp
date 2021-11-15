@@ -150,6 +150,31 @@
 					</div>
 					
 				
+					<div class="form-group row">
+						<label for="cantPremios" class="col-4 col-form-label">Cantidad de premios a sortear</label>
+						<div class="col-8">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<div class="input-group-text">
+										<i class="fa fa-users" aria-hidden="true"></i>
+									</div>
+								</div>
+								<input id="cantPremios" name="cantPremios"
+									placeholder="Cantidad de premios a sortear" type="number"
+									class="form-control">
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group row">
+						<label for="descP" class="col-4 col-form-label">Descripcion de los premios</label>
+						<div class="col-8">
+							<input id="descP" name="descP"
+								placeholder="Descripcion de los premios" type="text"
+								class="form-control" required="required">
+						</div>
+					</div>
+				
 
 					<div class="form-group row">
 						<label for="imagenActividad" class="col-4 col-form-label">Imagen</label>

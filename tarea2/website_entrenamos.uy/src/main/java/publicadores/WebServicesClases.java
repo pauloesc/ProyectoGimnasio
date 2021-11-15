@@ -60,6 +60,10 @@ public interface WebServicesClases {
 
     /**
      * 
+     * @param arg7
+     * @param arg6
+     * @param arg9
+     * @param arg8
      * @param arg3
      * @param arg2
      * @param arg5
@@ -67,10 +71,8 @@ public interface WebServicesClases {
      * @param arg1
      * @param arg0
      * @param arg10
-     * @param arg7
-     * @param arg6
-     * @param arg9
-     * @param arg8
+     * @param arg11
+     * @param arg12
      * @throws ClaseRepetidaException_Exception
      */
     @WebMethod
@@ -99,9 +101,44 @@ public interface WebServicesClases {
         @WebParam(name = "arg9", partName = "arg9")
         int arg9,
         @WebParam(name = "arg10", partName = "arg10")
-        String arg10)
+        String arg10,
+        @WebParam(name = "arg11", partName = "arg11")
+        String arg11,
+        @WebParam(name = "arg12", partName = "arg12")
+        int arg12)
         throws ClaseRepetidaException_Exception
     ;
+
+    /**
+     * 
+     * @param arg0
+     * @throws PremioSorteadosException_Exception
+     */
+    @WebMethod
+    @Action(input = "http://Publicadores/WebServicesClases/sortearPremiosRequest", output = "http://Publicadores/WebServicesClases/sortearPremiosResponse", fault = {
+        @FaultAction(className = PremioSorteadosException_Exception.class, value = "http://Publicadores/WebServicesClases/sortearPremios/Fault/PremioSorteadosException")
+    })
+    public void sortearPremios(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws PremioSorteadosException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns boolean
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://Publicadores/WebServicesClases/esProfeDeClaseRequest", output = "http://Publicadores/WebServicesClases/esProfeDeClaseResponse")
+    public boolean esProfeDeClase(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1);
 
     /**
      * 

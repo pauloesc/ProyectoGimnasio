@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="controladores.ConsultaClase"%>
 <%@page import="java.util.Set"%>
+<%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,8 +17,12 @@
 	String url = (String)request.getAttribute("url");
 	String img = (String)request.getAttribute("img");
 	String socio = (String)request.getAttribute("socio");
+	String profe = (String)request.getAttribute("profe");
 	String costo = (String)request.getAttribute("costoClase");
-
+	int cantPremios = (int)request.getAttribute("cantP");
+	boolean sort = (boolean)request.getAttribute("sort");
+	
+	
 	//paulo
 	int minS  = (int) request.getAttribute("minS");
 	int actS = (int) request.getAttribute("actuS");
@@ -27,7 +32,21 @@
 	
 %>
 </head>
+<script type="text/javascript" src="../jquer.js"></script>
 
+<script type="text/javascript">
+	window.onload = function cargaPop() {
+		setTimeout('abrirPopUp()',0);
+	}
+	
+	function abrirPopUp() {
+		<% if ((String)request.getAttribute("respuesta") != null) {%>
+			$("#popup").modal();
+		<%}%>
+		
+	}
+	
+</script>
 <% 	%>
 <body>
 	<jsp:include page="/WEB-INF/template/header.jsp" />
@@ -52,6 +71,24 @@
 									<%}%>
 									
 									
+									<% if (profe == "T" && cantPremios>0 && !sort) {%>
+										<form action="${pageContext.request.contextPath}/SortearPremios" method="post" >
+									
+											<input type="hidden" id="clase" name="clase" value="<%= nom %>" >
+											<div class="form-group row">
+												<div class="offset-4 col-8">
+													<button name="submit" type="submit" class="btn btn-primary" >Sortear premios</button>
+												</div>
+											</div>
+											
+									
+										</form>
+									<%}%>
+										
+										
+									
+									
+									
 								</div>
 							</div>
 						</div>
@@ -72,9 +109,26 @@
 									<p class="card-text"> <p class="card-text m-0">URL:: <%= url %></p> 
 									<p class="card-text"> <p class="card-text m-0">Socios:: Min: <%=minS%>, Actual: <%=actS%>, Max: <%=maxS%> </p> 
 									<p class="card-text"> <p class="card-text m-0">Fecha Registro clase: <%=fechaReg%></p>
+									
 								</div>
 							</div>
 						</div>
+					</div>
+					
+					<div class="modal fade" id="popup" tabindex="-1" role="dialog" aria-labelledby="comprar2Label" aria-hidden="true" show="true">
+					    <div class="modal-dialog" role="document">
+					        <div class="modal-content">
+					         <a onclick="closeDialog('popup');" class="close"></a>
+					            <form >
+					                <div class="modal-header">
+					                    <h5 class="modal-title" id="comprarLabel"><%= (String)request.getAttribute("respuesta")%></h5>
+					                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					                        <span aria-hidden="true">&times;</span>
+					                    </button>
+					                </div>
+					            </form>
+					        </div>
+					    </div>
 					</div>
 
 			</div>
