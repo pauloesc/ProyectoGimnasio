@@ -2,10 +2,9 @@
     pageEncoding="UTF-8"%>
     
 <%@page import="controladores.ListarUsuarios"%>
-<%@page import="logica.InfoBasicaUser"%>
-<%@page import="logica.InfoBasicaSocio"%>
-<%@page import="logica.InfoBasicaProfesor"%>
-<%@page import="logica.*"%>
+<%@page import="publicadores.InfoBasicaUser"%>
+<%@page import="publicadores.InfoBasicaSocio"%>
+<%@page import="publicadores.InfoBasicaProfesor"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Iterator"%>
 

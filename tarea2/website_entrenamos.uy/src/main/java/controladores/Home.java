@@ -1,32 +1,28 @@
 package controladores;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import excepciones.ActividadDeportivaNoExisteException;
-import excepciones.CuponeraNoExisteException;
-import logica.DataActividad;
-import publicadores.DataCuponera;
-import logica.Fabrica;
-import logica.IctrlADeportivas;
-import logica.IctrlCategorias;
-import logica.IctrlClases;
-import logica.IctrlCuponeras;
-import logica.IctrlIDeportivas;
-import logica.IctrlUsuarios;
+import publicadores.ActividadDeportivaNoExisteException_Exception;
 import publicadores.CuponeraNoExisteException_Exception;
+import publicadores.DataActividadArray;
+import publicadores.DataCuponera;
+import publicadores.WebServicesADeportivas;
+import publicadores.WebServicesADeportivasService;
 import publicadores.WebServicesCuponeras;
 import publicadores.WebServicesCuponerasService;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import publicadores.WebServicesIDeportivas;
+import publicadores.WebServicesIDeportivasService;
 
 /**
 * Home Servlet.
@@ -36,9 +32,14 @@ import java.util.Set;
 public class Home extends HttpServlet {
   
   private static final long serialVersionUID = 1L;
-  private Fabrica fabrica = Fabrica.getInstance();
-  private IctrlADeportivas ctrlActDep = fabrica.getIctrlADeportivas();
-  private IctrlCuponeras ctrlCup = fabrica.getIctrlCuponeras();
+  
+  private static WebServicesADeportivasService serviceActividades;
+  private static WebServicesADeportivas portActividades;
+  
+  private static WebServicesIDeportivasService serviceInstituciones;
+  private static WebServicesIDeportivas portInstituciones;
+	
+
   /**
   * Constructor servlet. Carga datos si aún no fueron cargados.
   *
@@ -46,27 +47,12 @@ public class Home extends HttpServlet {
   */
   public Home() {
     super();
-    // carga de datos hardcodeados de la logica
-    
-    
-    IctrlIDeportivas ctrlInstDep = fabrica.getIctrlIDeportivas();
-    ctrlInstDep.cargarDatosIDeportivas();
-    
-    IctrlCategorias ctrlCat = fabrica.getIctrlCategorias();       
-    ctrlCat.cargarCategorias();
-    
-    IctrlUsuarios ctrlUsuarios = fabrica.getIctrlUsuarios();
-    ctrlUsuarios.cargarUsuarios();
-    
-    ctrlActDep.cargarDatosADeportivas();
-    
-    IctrlCuponeras ctrlCuponeras = fabrica.getIctrlCuponeras();
-    ctrlCuponeras.cargarDatosCuponeras();
-    
-      IctrlClases ctrlClases = fabrica.getIctrlClases();
-    ctrlClases.cargarDatosClases();
-    ctrlClases.cargarRegistroAClases();
-
+	serviceActividades = new WebServicesADeportivasService();
+	portActividades = serviceActividades.getWebServicesADeportivasPort();
+	
+	serviceInstituciones = new WebServicesIDeportivasService();
+	portInstituciones = serviceInstituciones.getWebServicesIDeportivasPort();
+	
   }
 
   /**
@@ -106,15 +92,16 @@ public class Home extends HttpServlet {
     iniciarSesion(req);
     
     HttpSession session = req.getSession();
-    Set<String> inst= Instituciones.getInstituciones();
-	session.setAttribute("Instituciones", inst);
+    Set<String> inst = new HashSet<String>(portInstituciones.darNombreInstituciones().getItem());
+    session.setAttribute("Instituciones", inst);
 	Set<String> cats= Categorias.getCategorias();
 	session.setAttribute("Categorias", cats);
     
-    Set<DataActividad> acts;
+    Set<publicadores.DataActividad> acts = new HashSet<publicadores.DataActividad>();
 	try {
-		acts = ctrlActDep.getDataActividadesIngresadas();
-	} catch (ActividadDeportivaNoExisteException e) {
+		DataActividadArray actsarr = portActividades.getDataActividadesIngresadas();
+		acts.addAll(actsarr.getItem());
+	} catch (ActividadDeportivaNoExisteException_Exception e) {
 		acts = null;
 	}
 	WebServicesCuponerasService serviceCUP = new WebServicesCuponerasService();

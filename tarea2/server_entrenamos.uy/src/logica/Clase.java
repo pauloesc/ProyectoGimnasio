@@ -15,8 +15,11 @@ public class Clase {
 	private String url;
 	private Profesor profesor;
 	private String imagen;
+	private String descPremios;
+	private int cantPremios;
+	private boolean sorteados;
 	
-	public Clase(String nombre, Date Finicio, String prof, int Smin, int Smax, String url, Date FechaAlta, int hor, int minut, String img) {
+	public Clase(String nombre, Date Finicio, String prof, int Smin, int Smax, String url, Date FechaAlta, int hor, int minut, String img, String descPremios, int cantPremios) {
 		manejUsuarios mUsr = manejUsuarios.getInstance();
 		Profesor profe = mUsr.darProfesor(prof);
 		this.profesor = profe;
@@ -31,6 +34,9 @@ public class Clase {
 		this.hora = hor;
 		this.min = minut;
 		this.imagen = img;
+		this.descPremios = descPremios;
+		this.cantPremios = cantPremios;
+		this.sorteados= false;
 	}
 
 	public String getNombre() {	
@@ -44,7 +50,8 @@ public class Clase {
 	
 	public DtClase darDtClase() {
 		Usuario prof = (Usuario) this.profesor;
-		return new DtClase(this.fechaInicio, this.nombre, this.minSocios, this.actualSocios, this.maxSocios, this.url, this.fechaReg, prof.getNickname(), this.hora, this.min, manejADeportivas.getinstance().getNombreActividadDeClase(nombre), this.imagen);
+		manejADeportivas ma = manejADeportivas.getinstance();
+		return new DtClase(this.fechaInicio, this.nombre, this.minSocios, this.actualSocios, this.maxSocios, this.url, this.fechaReg, prof.getNickname(), this.hora, this.min, ma.getNombreActividadDeClase(nombre), this.imagen, this.descPremios, this.cantPremios, this.sorteados, ma.getEstado(ma.getNombreActividadDeClase(nombre)));
 	}
 	
 	public boolean esVigente() {
@@ -70,5 +77,17 @@ public class Clase {
 	
 	public boolean esDeProfesor(String usuario) {
 		return this.profesor.getNickname().equals(usuario);
+	}
+
+	public boolean isSorteados() {
+		return sorteados;
+	}
+
+	public void setSorteados(boolean sorteados) {
+		this.sorteados = sorteados;
+	}
+
+	public int getCantPremios() {
+		return cantPremios;
 	}
 }

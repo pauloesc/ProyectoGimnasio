@@ -3,7 +3,7 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.Date"%>
 <%@page import="publicadores.DataCuponera"%>
-<%@page import="logica.DataActividad"%>
+<%@page import="publicadores.DataActividad"%>
 <%@page import="java.util.Iterator"%>
 
 

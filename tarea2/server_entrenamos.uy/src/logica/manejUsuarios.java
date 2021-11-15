@@ -3,11 +3,13 @@
  */
 package logica;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 
 import excepciones.UsuarioDisponibilidadException;
@@ -184,6 +186,46 @@ public class manejUsuarios {
 			
 		}
 		
+	}
+	
+	public ArrayList<Socio> darParticipantes(String nomC) {
+		Set<String> socios = this.mostrarNicknameSocios();
+		ArrayList<Socio> sCnClase = new ArrayList<Socio>();
+		
+		for (String s : socios) {
+			Socio aux = (Socio)this.findUsuario(s);
+			if ((aux).tineClase(nomC)) {
+				sCnClase.add(aux);
+			}
+    	}
+		return sCnClase;
+	}
+	
+	public void asignarPremios(String nomC, int cant) {
+		
+		ArrayList<Socio> sCnClase = darParticipantes(nomC);
+		
+        Random ran = new Random();
+        
+        for (int i =0; i<cant;i++) {
+        	if (!sCnClase.isEmpty()) {
+        		int x = ran.nextInt(sCnClase.size());
+        		sCnClase.get(x).setPremio(nomC);
+        		sCnClase.remove(x);
+        		
+        	}
+        }
+        	
+	}
+	
+	public Set<String> darGanadores(String nomC) {
+		Set<String> res = new HashSet<String>();
+		ArrayList<Socio> sCnClase = darParticipantes(nomC);
+		for (int i =0; i<sCnClase.size(); i++) {
+			if (sCnClase.get(i).getPremio(nomC)) 
+				res.add(sCnClase.get(i).getNickname());
+		}
+		return res;
 	}
 	
 }

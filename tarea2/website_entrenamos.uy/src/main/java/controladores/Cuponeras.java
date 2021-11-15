@@ -11,17 +11,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import excepciones.CuponeraNoExisteException;
-import logica.DataCuponera;
-import logica.Fabrica;
+import publicadores.CuponeraNoExisteException_Exception;
+import publicadores.DataCuponera;
+import publicadores.WebServicesCuponeras;
+import publicadores.WebServicesCuponerasService;
 
 public class Cuponeras extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
+	private static WebServicesCuponerasService serviceCuponeras;
+	private static WebServicesCuponeras portCuponeras;
 	
 	public Cuponeras() 
 	{
 		super();
+		serviceCuponeras = new WebServicesCuponerasService();
+		portCuponeras = serviceCuponeras.getWebServicesCuponerasPort();
 	}
 	
 	private void processRequest(HttpServletRequest req, HttpServletResponse resp)
@@ -33,27 +38,20 @@ public class Cuponeras extends HttpServlet
 		resp.sendRedirect("/website_entrenamos.uy/home");
 	}
 	
-	public static Set<DataCuponera> getCuponeras(){
-		Set<DataCuponera> cuponeras= new HashSet<DataCuponera>();
-		try {
-			Set<String> cups= Fabrica.getInstance().getIctrlCuponeras().listarCuponeras();
-			for (Iterator<String> iter=cups.iterator();iter.hasNext();) {
-				String cup=iter.next();
-				DataCuponera res=Fabrica.getInstance().getIctrlCuponeras().mostrarCuponera(cup);
-				cuponeras.add(res);
-			}
-		
-		} catch (CuponeraNoExisteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	public static Set<DataCuponera> getCuponeras() throws CuponeraNoExisteException_Exception{
+		Set<DataCuponera> cuponeras = new HashSet<DataCuponera>();
+		Set<String> cups = new HashSet<String>(portCuponeras.listarCuponeras().getSet());
+		for (Iterator<String> iter=cups.iterator();iter.hasNext();) {
+			String cup=iter.next();
+			DataCuponera res = portCuponeras.mostrarCuponera(cup);
+			cuponeras.add(res);
 		}
-		
 		return cuponeras;
 	}
 	
 	public static Set<String> getCuponerasAD(String act){
 		
-		return Fabrica.getInstance().getIctrlCuponeras().getCuponerasAD(act);
+		return new HashSet<String>(portCuponeras.getCuponerasAD(act).getSet());
 	}
 	
 	

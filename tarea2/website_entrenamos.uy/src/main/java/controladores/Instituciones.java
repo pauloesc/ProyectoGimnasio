@@ -10,15 +10,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import logica.Fabrica;
+import publicadores.WebServicesIDeportivas;
+import publicadores.WebServicesIDeportivasService;
 
 public class Instituciones extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
+	
+	private static WebServicesIDeportivasService serviceInstituciones;
+	private static WebServicesIDeportivas portInstituciones;
+	
 	public Instituciones() 
 	{
 		super();
+
+		serviceInstituciones = new WebServicesIDeportivasService();
+		portInstituciones = serviceInstituciones.getWebServicesIDeportivasPort();
+		
 	}
 	
 	private void processRequest(HttpServletRequest req, HttpServletResponse resp)
@@ -31,20 +39,10 @@ public class Instituciones extends HttpServlet
 	}
 
 	public static Set<String> getInstituciones(){
-
-		publicadores.WebServicesIDeportivasService service = 
-				new publicadores.WebServicesIDeportivasService();
 		
-		publicadores.WebServicesIDeportivas port = service.getWebServicesIDeportivasPort();
-		
-		List<String> nomInstituciones = port.darNombreInstituciones().getItem();
+		List<String> nomInstituciones = portInstituciones.darNombreInstituciones().getItem();
 		
 		return new HashSet<String>(nomInstituciones);
-	}
-	
-	public static void cargarInstituciones()
-	{
-		Fabrica.getInstance().getIctrlIDeportivas().cargarDatosIDeportivas();
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 

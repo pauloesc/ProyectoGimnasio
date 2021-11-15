@@ -2,10 +2,10 @@ package controladores;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,10 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import logica.Fabrica;
-import logica.IctrlUsuarios;
 import publicadores.CuponeraNoExisteException_Exception;
 import publicadores.DataCuponera;
+import publicadores.WebServicesControladorUsuario;
+import publicadores.WebServicesControladorUsuarioService;
 import publicadores.WebServicesCuponeras;
 import publicadores.WebServicesCuponerasService;
 
@@ -26,25 +26,26 @@ public class ListaCuponeras extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
 	
-	   
+	private static WebServicesControladorUsuarioService serviceUsuarios;
+	private static WebServicesControladorUsuario portUsuarios;   
 		
 	public ListaCuponeras() 
 	{
 		super();
+		serviceUsuarios = new WebServicesControladorUsuarioService();
+		portUsuarios = serviceUsuarios.getWebServicesControladorUsuarioPort();
 	}
 	
 	private void processRequest(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException 
 	{
 		HttpSession sesion = req.getSession();
-    	Fabrica f = Fabrica.getInstance();
-		IctrlUsuarios ICU = f.getIctrlUsuarios();
 
 		boolean bien = false;
     	
 		if ((String)sesion.getAttribute("estado-sesion") == "logged-in") {
     		try {
-    			bien = ICU.esSocio((String)sesion.getAttribute("nickname-user"));
+    			bien = portUsuarios.esSocio((String)sesion.getAttribute("nickname-user"));
     		} catch (Exception e) {
     			
     		}

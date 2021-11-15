@@ -4,14 +4,11 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import logica.Fabrica;
 
 public class Categorias extends HttpServlet
 {
@@ -41,11 +38,6 @@ public class Categorias extends HttpServlet
 		List<String> nomInstituciones = port.getCategorias().getItem();
 		
 		return new HashSet<String>(nomInstituciones);
-	}
-	
-	public static void cargarCategorias()
-	{
-		Fabrica.getInstance().getIctrlCategorias().cargarCategorias();
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 

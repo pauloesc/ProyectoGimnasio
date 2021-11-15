@@ -25,13 +25,6 @@ import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.apache.commons.io.FilenameUtils;
-import excepciones.ClaseRepetidaException;
-import logica.Fabrica;
-import logica.IctrlADeportivas;
-import logica.IctrlClases;
-import logica.IctrlUsuarios;
-import logica.InfoBasicaProfesor;
-import logica.InfoBasicaUser;
 import net.java.dev.jaxb.array.StringArray;
 import publicadores.ClaseRepetidaException_Exception;
 
@@ -144,6 +137,7 @@ public class AltaClase extends HttpServlet {
 			
 			int Smin = Integer.parseInt(req.getParameter("sociosMinimos"));
 			int Smax = Integer.parseInt(req.getParameter("sociosMaximos"));
+			int cantP = Integer.parseInt(req.getParameter("cantPremios"));
 			
 			Date feI = null;
 			
@@ -175,6 +169,8 @@ public class AltaClase extends HttpServlet {
 				req.setAttribute("respuesta","Error socios minimos mayor que socios maximos");
 			} else if (feI.before(Factual)) {
 				req.setAttribute("respuesta","Error fecha de inicio anterior a fecha actual");
+			}else if (cantP < 0) {
+				req.setAttribute("respuesta","Error, ningun socio le va a dar premios, no sea machete");
 			} else {
 				try {
 					
@@ -183,6 +179,8 @@ public class AltaClase extends HttpServlet {
 					String url = req.getParameter("urlClase");
 					String act = req.getParameter("actividadDeportiva");
 					String hora = req.getParameter("timepicker");
+					String desc = req.getParameter("descP");
+					
 					
 					
 					String h = "";
@@ -247,7 +245,7 @@ public class AltaClase extends HttpServlet {
 			            e.printStackTrace();
 			        }
 					
-					port.crearClase(nomC,xmlDateFei, nomP,Smin ,Smax ,url ,xmlDateFact , act, Integer.parseInt(h), Integer.parseInt(m),fileName + "." + ext);
+					port.crearClase(nomC,xmlDateFei, nomP,Smin ,Smax ,url ,xmlDateFact , act, Integer.parseInt(h), Integer.parseInt(m),fileName + "." + ext,desc,cantP);
 					
 					req.setAttribute("respuesta","La clase ha sido creada con exito");
 				} catch (ClaseRepetidaException_Exception e) {
