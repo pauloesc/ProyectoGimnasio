@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -13,15 +14,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.apache.commons.io.FilenameUtils;
 
-import excepciones.UsuarioDisponibilidadException;
-import logica.Fabrica;
-import logica.IctrlUsuarios;
-import logica.InfoBasicaProfesor;
-import logica.InfoBasicaSocio;
-import logica.InfoBasicaUser;
+import publicadores.WebServicesControladorUsuarioService;
 
 /**
  * Servlet implementation class AltaUsuario
@@ -50,16 +49,16 @@ public class AltaUsuario extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		
-		/**
-		*traigo el controlador de usuario
-		*/
-		Fabrica f = Fabrica.getInstance();
-		IctrlUsuarios ICU = f.getIctrlUsuarios();
+		//---------------------------
+		WebServicesControladorUsuarioService serviceCUP = new WebServicesControladorUsuarioService();
+		publicadores.WebServicesControladorUsuario port = serviceCUP.getWebServicesControladorUsuarioPort();
+		//---------------------------		
 		
 		/**
 		*traigo las instituciones
 		*/
-		List<String> instEnSistem =  ICU.institucionesEnSistema();
+		publicadores.WrapperListString auxInstEnSistem =  port.institucionesEnSistema();
+		List<String> instEnSistem = auxInstEnSistem.getLista();
 		
 		request.setAttribute("instituciones", instEnSistem);
 		request.getRequestDispatcher("/WEB-INF/usuario/AltaUsuario.jsp").forward(request, response);
@@ -90,7 +89,7 @@ public class AltaUsuario extends HttpServlet {
 		String web = request.getParameter("web");
 		
 		//auxiliares
-		InfoBasicaUser info = null;
+		publicadores.InfoBasicaUser info = null;
 		String img = "";
 		
 		
@@ -148,46 +147,55 @@ public class AltaUsuario extends HttpServlet {
 		} catch (ParseException e1) {
 		}
 		
+		GregorianCalendar c = new GregorianCalendar();
+		c.setTime( fechaFormateadaDate );
+		XMLGregorianCalendar date2 = null;
+		try {
+			date2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
+		} catch (DatatypeConfigurationException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		//si es profesor
 		if( esProfesor != null && esProfesor.equals("on") ) {
 			
-			InfoBasicaProfesor infoP = new InfoBasicaProfesor(
-																nickname,
-																nombre,
-																apellido,
-																email,
-																fechaFormateadaDate,
-																pass,
-																img,
-																institucion,
-																descripcion,
-																bibliografia,
-																web);
-			
+			publicadores.InfoBasicaProfesor infoP = new publicadores.InfoBasicaProfesor();
+			infoP.setNickname(nickname);
+			infoP.setNombre(nombre);
+			infoP.setApellido(apellido);
+			infoP.setCorreo(email);
+			infoP.setFechaNac(date2);
+			infoP.setPass(pass);
+			infoP.setImg(img);
+			infoP.setInstitucion(institucion);
+			infoP.setDesc(descripcion);
+			infoP.setBibliografia(bibliografia);
+			infoP.setUrl(web);
 			
 			info = infoP;
-			
+		
 		}
 		//si es socio
 		else {
 			
-			InfoBasicaSocio infoS = new InfoBasicaSocio(
-																nickname,
-																nombre,
-																apellido,
-																email,
-																fechaFormateadaDate,
-																pass,
-																img);
+			publicadores.InfoBasicaSocio infoS = new publicadores.InfoBasicaSocio();
+			infoS.setNickname(nickname);
+			infoS.setNombre(nombre);
+			infoS.setApellido(apellido);
+			infoS.setCorreo(email);
+			infoS.setFechaNac(date2);
+			infoS.setPass(pass);
+			infoS.setImg(img);
+			
 			info = infoS;
 			
 		}
 		
-		/**
-		*traigo el controlador de usuario
-		*/
-		Fabrica f = Fabrica.getInstance();
-		IctrlUsuarios ICU = f.getIctrlUsuarios();
+		//---------------------------
+		WebServicesControladorUsuarioService serviceCUP = new WebServicesControladorUsuarioService();
+		publicadores.WebServicesControladorUsuario port = serviceCUP.getWebServicesControladorUsuarioPort();
+		//---------------------------	
 
 		//indica si existio algun error
 		boolean altaUsuarioEstado;
@@ -196,10 +204,10 @@ public class AltaUsuario extends HttpServlet {
 		*cargo el usuario
 		*/
 		try {
-			ICU.altaUsuario(info);
+			port.altaUsuario(info);
 			altaUsuarioEstado = true;
 			MensajeRespuesta = "El usuario se ha cargado con exito";
-		} catch (UsuarioDisponibilidadException e) {
+		} catch (publicadores.UsuarioDisponibilidadException_Exception e) {
 			altaUsuarioEstado = false;
 			MensajeRespuesta = e.getMessage().toString();
 		}
@@ -223,7 +231,8 @@ public class AltaUsuario extends HttpServlet {
 		/**
 		*traigo las instituciones
 		*/
-		List<String> instEnSistem =  ICU.institucionesEnSistema();
+		publicadores.WrapperListString auxInstEnSistem = port.institucionesEnSistema();
+		List<String> instEnSistem = auxInstEnSistem.getLista();
 		request.setAttribute("instituciones", instEnSistem);
 		
 		request.setAttribute("altaUsuarioEstado", altaUsuarioEstado);
