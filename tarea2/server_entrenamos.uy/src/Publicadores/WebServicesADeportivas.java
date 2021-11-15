@@ -3,6 +3,12 @@
  */
 package Publicadores;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+
 /**
  * @author mbarrera
  *
@@ -13,6 +19,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.jws.WebMethod;
+import javax.jws.WebParam;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.jws.soap.SOAPBinding.ParameterStyle;
@@ -107,6 +114,28 @@ public class WebServicesADeportivas {
     public DataActividad newDataActividad() {
     	return new DataActividad();
     }
-      
+    
+    @WebMethod
+    public boolean saveFile(byte[] fileContent, String fileName)
+                    throws  IOException {
+       OutputStream outputStream = null;
+       try {
+    	   File file = new File("files" + File.separator + fileName);
+    	   outputStream = new FileOutputStream(file);
+    	   outputStream.write(fileContent);
+    	   return true;
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	} finally {
+    		if (outputStream != null) {
+    		try {
+    			outputStream.close();
+    		} catch (IOException e) {
+    			e.printStackTrace();
+    		}
+    	}
+    	}
+    	return false;
+    }
 }
 

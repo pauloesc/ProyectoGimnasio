@@ -123,6 +123,21 @@ public interface WebServicesADeportivas {
 
     /**
      * 
+     * @return
+     *     returns net.java.dev.jaxb.array.StringArray
+     * @throws ActividadDeportivaNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://Publicadores/WebServicesADeportivas/getActividadesIngresadasRequest", output = "http://Publicadores/WebServicesADeportivas/getActividadesIngresadasResponse", fault = {
+        @FaultAction(className = ActividadDeportivaNoExisteException_Exception.class, value = "http://Publicadores/WebServicesADeportivas/getActividadesIngresadas/Fault/ActividadDeportivaNoExisteException")
+    })
+    public StringArray getActividadesIngresadas()
+        throws ActividadDeportivaNoExisteException_Exception
+    ;
+
+    /**
+     * 
      * @param arg0
      * @return
      *     returns publicadores.DataActividadArray
@@ -172,18 +187,16 @@ public interface WebServicesADeportivas {
 
     /**
      * 
+     * @param arg0
      * @return
      *     returns net.java.dev.jaxb.array.StringArray
-     * @throws ActividadDeportivaNoExisteException_Exception
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://Publicadores/WebServicesADeportivas/getActividadesIngresadasRequest", output = "http://Publicadores/WebServicesADeportivas/getActividadesIngresadasResponse", fault = {
-        @FaultAction(className = ActividadDeportivaNoExisteException_Exception.class, value = "http://Publicadores/WebServicesADeportivas/getActividadesIngresadas/Fault/ActividadDeportivaNoExisteException")
-    })
-    public StringArray getActividadesIngresadas()
-        throws ActividadDeportivaNoExisteException_Exception
-    ;
+    @Action(input = "http://Publicadores/WebServicesADeportivas/mostrarClasesVigentesDeActividadDeportivaRequest", output = "http://Publicadores/WebServicesADeportivas/mostrarClasesVigentesDeActividadDeportivaResponse")
+    public StringArray mostrarClasesVigentesDeActividadDeportiva(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
 
     /**
      * 
@@ -197,15 +210,23 @@ public interface WebServicesADeportivas {
 
     /**
      * 
+     * @param arg1
      * @param arg0
      * @return
-     *     returns net.java.dev.jaxb.array.StringArray
+     *     returns boolean
+     * @throws IOException_Exception
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://Publicadores/WebServicesADeportivas/mostrarClasesVigentesDeActividadDeportivaRequest", output = "http://Publicadores/WebServicesADeportivas/mostrarClasesVigentesDeActividadDeportivaResponse")
-    public StringArray mostrarClasesVigentesDeActividadDeportiva(
+    @Action(input = "http://Publicadores/WebServicesADeportivas/saveFileRequest", output = "http://Publicadores/WebServicesADeportivas/saveFileResponse", fault = {
+        @FaultAction(className = IOException_Exception.class, value = "http://Publicadores/WebServicesADeportivas/saveFile/Fault/IOException")
+    })
+    public boolean saveFile(
         @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
+        byte[] arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1)
+        throws IOException_Exception
+    ;
 
 }
