@@ -2,6 +2,7 @@ package logica;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Set;
 
 public class Clase {
 	private Date fechaInicio;
@@ -51,7 +52,9 @@ public class Clase {
 	
 	public DtClase darDtClase() {
 		Usuario prof = (Usuario) this.profesor;
-		return new DtClase(this.fechaInicio, this.nombre, this.minSocios, this.actualSocios, this.maxSocios, this.url, this.fechaReg, prof.getNickname(), this.hora, this.min, manejADeportivas.getinstance().getNombreActividadDeClase(nombre), this.imagen, this.descPremios, this.cantPremios, this.sorteados);
+		
+		Set<String> premiados = manejUsuarios.getInstance().darGanadores(this.nombre);
+		return new DtClase(this.fechaInicio, this.nombre, this.minSocios, this.actualSocios, this.maxSocios, this.url, this.fechaReg, prof.getNickname(), this.hora, this.min, manejADeportivas.getinstance().getNombreActividadDeClase(nombre), this.imagen, this.descPremios, this.cantPremios, this.sorteados, premiados);
 	}
 	
 	public boolean esVigente() {

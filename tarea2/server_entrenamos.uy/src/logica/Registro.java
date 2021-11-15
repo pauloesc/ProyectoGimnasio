@@ -44,6 +44,10 @@ public class Registro {
 	public Compra getCompra() {
 		return compra;
 	}
+	
+	public Date getFGanadoPremio() {
+		return fGanadoPremio;
+	}
 
 	public void setPremio() {
 		// registra el premio con la fecha actual del sistema

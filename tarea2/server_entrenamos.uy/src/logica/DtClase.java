@@ -4,6 +4,7 @@
 package logica;
 
 import java.util.Date;
+import java.util.Set;
 
 public class DtClase {
 	private Date fecha;
@@ -21,10 +22,11 @@ public class DtClase {
 	private String descPremios;
 	private int cantPremios;
 	private boolean sorteados;
+	private Set<String> ganadores;
 	
 	public DtClase() {}
 	
-	public DtClase(Date fecha, String nombre, int minSocios, int actualSocios, int maxSocios, String url, Date fechaReg, String nomProfesor, int hor, int min, String nomAct, String img, String descPremios, int cantPremios, boolean sorteados) {
+	public DtClase(Date fecha, String nombre, int minSocios, int actualSocios, int maxSocios, String url, Date fechaReg, String nomProfesor, int hor, int min, String nomAct, String img, String descPremios, int cantPremios, boolean sorteados,Set<String> ganadores) {
 		this.fecha = fecha;
 		this.nombre = nombre;
 		this.minSocios = minSocios;
@@ -40,6 +42,7 @@ public class DtClase {
 		this.descPremios = descPremios;
 		this.cantPremios=cantPremios;
 		this.sorteados=sorteados;
+		this.ganadores = ganadores;
 		
 	}
 	
@@ -48,6 +51,8 @@ public class DtClase {
 		return this.nombre;
 	}
 
+	
+	
 	public Date getFecha() {
 		return fecha;
 	}
@@ -166,6 +171,14 @@ public class DtClase {
 
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
+	}
+
+	public Set<String> getGanadores() {
+		return ganadores;
+	}
+
+	public void setGanadores(Set<String> ganadores) {
+		this.ganadores = ganadores;
 	}
 	
 }

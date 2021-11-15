@@ -100,6 +100,7 @@ public class ConsultaClase extends HttpServlet {
 			req.setAttribute("img",res.getImagen());
 			req.setAttribute("cantP",res.getCantPremios());
 			req.setAttribute("sort",res.isSorteados());
+			req.setAttribute("ganadores",res.getGanadores());
 			
 			//paulo
 			req.setAttribute("minS",res.getMinSocios());

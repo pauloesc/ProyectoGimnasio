@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="controladores.ConsultaClase"%>
 <%@page import="java.util.Set"%>
+<%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,6 +21,7 @@
 	String costo = (String)request.getAttribute("costoClase");
 	int cantPremios = (int)request.getAttribute("cantP");
 	boolean sort = (boolean)request.getAttribute("sort");
+	List<String> ganadores = (List<String>)request.getAttribute("ganadores");
 	
 	
 	//paulo
@@ -108,6 +110,11 @@
 									<p class="card-text"> <p class="card-text m-0">URL:: <%= url %></p> 
 									<p class="card-text"> <p class="card-text m-0">Socios:: Min: <%=minS%>, Actual: <%=actS%>, Max: <%=maxS%> </p> 
 									<p class="card-text"> <p class="card-text m-0">Fecha Registro clase: <%=fechaReg%></p>
+									<%if(sort) {%>
+									
+										<p class="card-text"> <p class="card-text m-0">Ganadores del sorteo: <%= ganadores %></p>
+										
+									<%}%>
 								</div>
 							</div>
 						</div>

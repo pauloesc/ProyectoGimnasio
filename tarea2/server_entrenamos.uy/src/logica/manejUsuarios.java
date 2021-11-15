@@ -188,7 +188,7 @@ public class manejUsuarios {
 		
 	}
 	
-	public void asignarPremios(String nomC, int cant) {
+	public ArrayList<Socio> darParticipantes(String nomC) {
 		Set<String> socios = this.mostrarNicknameSocios();
 		ArrayList<Socio> sCnClase = new ArrayList<Socio>();
 		
@@ -198,20 +198,34 @@ public class manejUsuarios {
 				sCnClase.add(aux);
 			}
     	}
+		return sCnClase;
+	}
+	
+	public void asignarPremios(String nomC, int cant) {
+		
+		ArrayList<Socio> sCnClase = darParticipantes(nomC);
 		
         Random ran = new Random();
         
         for (int i =0; i<cant;i++) {
         	if (!sCnClase.isEmpty()) {
         		int x = ran.nextInt(sCnClase.size());
-        		sCnClase.get(x).ganePremio(nomC);
+        		sCnClase.get(x).setPremio(nomC);
         		sCnClase.remove(x);
         		
         	}
         }
-        
-       
-		
+        	
 	}
 	
+	
+	public Set<String> darGanadores(String nomC) {
+		Set<String> res = new HashSet<String>();
+		ArrayList<Socio> sCnClase = darParticipantes(nomC);
+		for (int i =0; i<sCnClase.size(); i++) {
+			if (sCnClase.get(i).getPremio(nomC)) 
+				res.add(sCnClase.get(i).getNickname());
+		}
+		return res;
+	}
 }
