@@ -50,7 +50,8 @@ public class Clase {
 	
 	public DtClase darDtClase() {
 		Usuario prof = (Usuario) this.profesor;
-		return new DtClase(this.fechaInicio, this.nombre, this.minSocios, this.actualSocios, this.maxSocios, this.url, this.fechaReg, prof.getNickname(), this.hora, this.min, manejADeportivas.getinstance().getNombreActividadDeClase(nombre), this.imagen, this.descPremios, this.cantPremios, this.sorteados);
+		manejADeportivas ma = manejADeportivas.getinstance();
+		return new DtClase(this.fechaInicio, this.nombre, this.minSocios, this.actualSocios, this.maxSocios, this.url, this.fechaReg, prof.getNickname(), this.hora, this.min, ma.getNombreActividadDeClase(nombre), this.imagen, this.descPremios, this.cantPremios, this.sorteados, ma.getEstado(ma.getNombreActividadDeClase(nombre)));
 	}
 	
 	public boolean esVigente() {

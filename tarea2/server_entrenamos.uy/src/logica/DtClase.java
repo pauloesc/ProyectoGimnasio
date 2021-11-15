@@ -22,9 +22,11 @@ public class DtClase {
 	private int cantPremios;
 	private boolean sorteados;
 	
+	private EstadoActi estadoActividad;
+	
 	public DtClase() {}
 	
-	public DtClase(Date fecha, String nombre, int minSocios, int actualSocios, int maxSocios, String url, Date fechaReg, String nomProfesor, int hor, int min, String nomAct, String img, String descPremios, int cantPremios, boolean sorteados) {
+	public DtClase(Date fecha, String nombre, int minSocios, int actualSocios, int maxSocios, String url, Date fechaReg, String nomProfesor, int hor, int min, String nomAct, String img, String descPremios, int cantPremios, boolean sorteados, EstadoActi estadoActividad) {
 		this.fecha = fecha;
 		this.nombre = nombre;
 		this.minSocios = minSocios;
@@ -40,6 +42,7 @@ public class DtClase {
 		this.descPremios = descPremios;
 		this.cantPremios=cantPremios;
 		this.sorteados=sorteados;
+		this.estadoActividad = estadoActividad;
 	}
 	
 	@Override
@@ -165,6 +168,14 @@ public class DtClase {
 
 	public void setSorteados(boolean sorteados) {
 		this.sorteados = sorteados;
+	}
+
+	public EstadoActi getEstadoActividad() {
+		return estadoActividad;
+	}
+
+	public void setEstadoActividad(EstadoActi estadoActividad) {
+		this.estadoActividad = estadoActividad;
 	}
 	
 }

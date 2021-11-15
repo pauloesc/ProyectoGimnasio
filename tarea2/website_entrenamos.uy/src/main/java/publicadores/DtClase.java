@@ -21,6 +21,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="actualSocios" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="cantPremios" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="descPremios" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="estadoActividad" type="{http://Publicadores/}estadoActi" minOccurs="0"/>
  *         &lt;element name="fecha" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="fechaReg" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="hora" type="{http://www.w3.org/2001/XMLSchema}int"/>
@@ -46,6 +47,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "actualSocios",
     "cantPremios",
     "descPremios",
+    "estadoActividad",
     "fecha",
     "fechaReg",
     "hora",
@@ -64,6 +66,8 @@ public class DtClase {
     protected int actualSocios;
     protected int cantPremios;
     protected String descPremios;
+    @XmlSchemaType(name = "string")
+    protected EstadoActi estadoActividad;
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar fecha;
     @XmlSchemaType(name = "dateTime")
@@ -133,6 +137,30 @@ public class DtClase {
      */
     public void setDescPremios(String value) {
         this.descPremios = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad estadoActividad.
+     * 
+     * @return
+     *     possible object is
+     *     {@link EstadoActi }
+     *     
+     */
+    public EstadoActi getEstadoActividad() {
+        return estadoActividad;
+    }
+
+    /**
+     * Define el valor de la propiedad estadoActividad.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link EstadoActi }
+     *     
+     */
+    public void setEstadoActividad(EstadoActi value) {
+        this.estadoActividad = value;
     }
 
     /**

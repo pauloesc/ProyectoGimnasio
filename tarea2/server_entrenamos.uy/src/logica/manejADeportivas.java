@@ -68,6 +68,10 @@ public class manejADeportivas {
     	return actividadesDeportivas.get(actDep).getCosto();
     }
     
+    public EstadoActi getEstado(String actDep) {
+    	return actividadesDeportivas.get(actDep).getEstado();
+    }
+    
     public void eliminarManjeador() {
 		instancia.actividadesDeportivas.clear();
 		instancia=null;
