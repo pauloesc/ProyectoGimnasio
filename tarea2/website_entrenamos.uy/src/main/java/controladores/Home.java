@@ -21,6 +21,8 @@ import publicadores.WebServicesADeportivas;
 import publicadores.WebServicesADeportivasService;
 import publicadores.WebServicesCuponeras;
 import publicadores.WebServicesCuponerasService;
+import publicadores.WebServicesIDeportivas;
+import publicadores.WebServicesIDeportivasService;
 
 /**
 * Home Servlet.
@@ -33,6 +35,10 @@ public class Home extends HttpServlet {
   
   private static WebServicesADeportivasService serviceActividades;
   private static WebServicesADeportivas portActividades;
+  
+  private static WebServicesIDeportivasService serviceInstituciones;
+  private static WebServicesIDeportivas portInstituciones;
+	
 
   /**
   * Constructor servlet. Carga datos si aún no fueron cargados.
@@ -43,6 +49,9 @@ public class Home extends HttpServlet {
     super();
 	serviceActividades = new WebServicesADeportivasService();
 	portActividades = serviceActividades.getWebServicesADeportivasPort();
+	
+	serviceInstituciones = new WebServicesIDeportivasService();
+	portInstituciones = serviceInstituciones.getWebServicesIDeportivasPort();
 	
   }
 
@@ -83,8 +92,8 @@ public class Home extends HttpServlet {
     iniciarSesion(req);
     
     HttpSession session = req.getSession();
-    Set<String> inst= Instituciones.getInstituciones();
-	session.setAttribute("Instituciones", inst);
+    Set<String> inst = new HashSet<String>(portInstituciones.darNombreInstituciones().getItem());
+    session.setAttribute("Instituciones", inst);
 	Set<String> cats= Categorias.getCategorias();
 	session.setAttribute("Categorias", cats);
     
