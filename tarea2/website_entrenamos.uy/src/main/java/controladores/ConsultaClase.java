@@ -14,13 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import excepciones.ActividadDeportivaNoExisteException;
-import logica.DataActividad;
-import logica.DtClase;
-import logica.Fabrica;
-import logica.IctrlADeportivas;
-import logica.IctrlClases;
-import logica.IctrlUsuarios;
 import publicadores.ActividadDeportivaNoExisteException_Exception;
 
 /**

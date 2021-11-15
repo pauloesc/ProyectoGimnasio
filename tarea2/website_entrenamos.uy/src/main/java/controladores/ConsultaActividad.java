@@ -4,17 +4,10 @@ import java.io.IOException;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.List;
-
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import excepciones.ActividadDeportivaNoExisteException;
-import logica.DataActividad;
-import logica.Fabrica;
-import logica.IctrlADeportivas;
-import net.java.dev.jaxb.array.StringArray;
 import publicadores.ActividadDeportivaNoExisteException_Exception;
 import publicadores.EstadoActi;
 import publicadores.WebServicesADeportivas;
@@ -23,8 +16,6 @@ import publicadores.WebServicesClases;
 import publicadores.WebServicesClasesService;
 import publicadores.WebServicesCuponeras;
 import publicadores.WebServicesCuponerasService;
-import publicadores.WebServicesIDeportivas;
-import publicadores.WebServicesIDeportivasService;
 
 public class ConsultaActividad extends HttpServlet
 {
@@ -64,9 +55,6 @@ public class ConsultaActividad extends HttpServlet
 		publicadores.DataActividad actividad = null;
 		try {
 			actividad = ConsultaActividad.getDataActividad(act);
-		} catch (ActividadDeportivaNoExisteException e) {
-			req.getRequestDispatcher("/WEB-INF/errorpages/404.jsp").include(req, resp);
-			return;
 		} catch (ActividadDeportivaNoExisteException_Exception e) {
 			req.getRequestDispatcher("/WEB-INF/errorpages/404.jsp").include(req, resp);
 			return;
@@ -105,13 +93,13 @@ public class ConsultaActividad extends HttpServlet
 		portActividades.cambiarEstado(act, EstadoActi.FINALIZADA);
 	}
 	
-	public static publicadores.DataActividad getDataActividad(String act) throws ActividadDeportivaNoExisteException, ActividadDeportivaNoExisteException_Exception {
+	public static publicadores.DataActividad getDataActividad(String act) throws ActividadDeportivaNoExisteException_Exception {
 		publicadores.DataActividad acti;
 		acti = portActividades.getDataActividad(act);
 		if (acti != null) {
 			return acti;
 	 	} else
-	 		throw new ActividadDeportivaNoExisteException("No existe la Actividad Deportiva.");
+	 		throw new ActividadDeportivaNoExisteException_Exception("No existe la Actividad Deportiva.", null);
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 

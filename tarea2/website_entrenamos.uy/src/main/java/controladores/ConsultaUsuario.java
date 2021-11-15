@@ -1,26 +1,13 @@
 package controladores;
 
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Vector;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import excepciones.UsuarioInexistenteException;
-import logica.DataCuponera;
-import logica.DtActividadesDeportivas;
-import logica.DtClase;
-import logica.Fabrica;
-import logica.IctrlUsuarios;
-import logica.InfoActividadProfe;
-import logica.InfoActividadSocio;
-import logica.InfoBasicaUser;
-import logica.InformacionActividad;
 import publicadores.UsuarioInexistenteException_Exception;
 import publicadores.WebServicesControladorUsuarioService;
 
@@ -44,11 +31,6 @@ public class ConsultaUsuario extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		/**
-		*traigo el controlador de usuario
-		*/
-		Fabrica f = Fabrica.getInstance();
-		IctrlUsuarios ICU = f.getIctrlUsuarios();
 		
 		//---------------------------
 		WebServicesControladorUsuarioService serviceCUP = new WebServicesControladorUsuarioService();

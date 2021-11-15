@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="publicadores.DataActividad"%>
-<%@page import="logica.InfoBasicaUser"%>
-<%@page import="logica.InfoBasicaSocio"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Iterator"%>

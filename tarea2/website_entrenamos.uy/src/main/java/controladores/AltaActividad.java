@@ -1,5 +1,4 @@
 package controladores;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
@@ -34,8 +33,6 @@ public class AltaActividad extends HttpServlet {
 
 	private static WebServicesADeportivasService serviceActividades;
 	private static WebServicesADeportivas portActividades;
-	
-	private static final String UPLOAD_DIR = "resources/img/actividades";
 
 	public AltaActividad() {
 		super();

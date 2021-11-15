@@ -5,8 +5,8 @@ import java.io.PrintWriter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.Set;
 import java.util.HashSet;
+import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,15 +18,6 @@ import javax.servlet.http.HttpSession;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import excepciones.ActividadDeportivaNoExisteException;
-import excepciones.ClaseLlenaException;
-import excepciones.ClaseYaCompradaException;
-import logica.DataActividad;
-import logica.DtClase;
-import logica.Fabrica;
-import logica.IctrlADeportivas;
-import logica.IctrlClases;
-import logica.IctrlUsuarios;
 import publicadores.ActividadDeportivaNoExisteException_Exception;
 import publicadores.ClaseLlenaException_Exception;
 import publicadores.ClaseYaCompradaException_Exception;

@@ -4,13 +4,12 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.Set;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,14 +24,7 @@ import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.apache.commons.io.FilenameUtils;
-import excepciones.ClaseRepetidaException;
-import logica.Fabrica;
-import logica.IctrlADeportivas;
-import logica.IctrlClases;
-import logica.IctrlUsuarios;
-import logica.InfoBasicaProfesor;
-import logica.InfoBasicaUser;
-import net.java.dev.jaxb.array.StringArray;
+
 import publicadores.ClaseRepetidaException_Exception;
 
 

@@ -11,9 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import excepciones.CuponeraNoExisteException;
-import logica.DataCuponera;
-import logica.Fabrica;
+import publicadores.CuponeraNoExisteException;
+import publicadores.DataCuponera;
 
 public class Cuponeras extends HttpServlet
 {

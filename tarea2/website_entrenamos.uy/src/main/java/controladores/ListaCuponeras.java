@@ -2,10 +2,10 @@ package controladores;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,8 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import logica.Fabrica;
-import logica.IctrlUsuarios;
 import publicadores.CuponeraNoExisteException_Exception;
 import publicadores.DataCuponera;
 import publicadores.WebServicesCuponeras;
@@ -37,8 +35,6 @@ public class ListaCuponeras extends HttpServlet
 			throws ServletException, IOException 
 	{
 		HttpSession sesion = req.getSession();
-    	Fabrica f = Fabrica.getInstance();
-		IctrlUsuarios ICU = f.getIctrlUsuarios();
 
 		boolean bien = false;
     	
