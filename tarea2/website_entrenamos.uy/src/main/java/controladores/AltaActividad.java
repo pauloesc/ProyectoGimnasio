@@ -1,6 +1,7 @@
 package controladores;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -16,9 +17,12 @@ import javax.servlet.http.Part;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import publicadores.ActividadDeportivaRepetidaException_Exception;
+import publicadores.IOException_Exception;
 import publicadores.WebServicesADeportivas;
 import publicadores.WebServicesADeportivasService;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.IOUtils;
+
 import net.java.dev.jaxb.array.StringArray;
 
 
@@ -41,7 +45,7 @@ public class AltaActividad extends HttpServlet {
 
 	}
 
-	private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, IOException_Exception {
 		req.setCharacterEncoding("UTF-8");
 		String ninst = req.getParameter("institucionDeportiva");
 		String nprof = (String) req.getSession().getAttribute("nickname-user");
@@ -52,26 +56,18 @@ public class AltaActividad extends HttpServlet {
 		String fileName = null;
 		String ext = null;
 		if ( req.getParts() != null ) {
-			/*gets absolute path of the web application*/
-	        String applicationPath = req.getServletContext().getRealPath("");
-	        // constructs path of the directory to save uploaded file*/
-	        String uploadFilePath = applicationPath + File.separator + UPLOAD_DIR;
-	        
-	        // creates the save directory if it does not exists
-	        File fileSaveDir = new File(uploadFilePath);
-	        if (!fileSaveDir.exists()) {
-	            fileSaveDir.mkdirs();
-	        }
-	        
+			
 	        fileName = nact.toLowerCase().replaceAll("\\s", "");
 	        String nomf = req.getPart("imagenActividad").getSubmittedFileName();
 	        ext = FilenameUtils.getExtension(nomf);
 	        Part part = req.getPart("imagenActividad");
-	        part.write(uploadFilePath + File.separator + fileName + "." + ext);
+	        InputStream file = part.getInputStream();
+	        byte[] bytearr = IOUtils.toByteArray(file);
 			
+	        portActividades.saveFile(bytearr, fileName + "." + ext);
 		}
 		
-        
+   
 		Date date = new Date();
 	
 		GregorianCalendar calendar = new GregorianCalendar();
@@ -90,7 +86,7 @@ public class AltaActividad extends HttpServlet {
 		
 		try {
 			portActividades.altaActividadDeportiva(ninst, nprof, nact, descrip, Float.parseFloat(dur),
-					Float.parseFloat(cost), xmlDate, catsenv, fileName+ "." + ext);
+					Float.parseFloat(cost), xmlDate, catsenv, fileName + "." + ext);
 			req.setAttribute("msjAlta", "La Actividad Deportiva se ha registrado con éxito.");
 			req.setAttribute("estadoAlta", true);
 		} catch (NumberFormatException e) {
@@ -144,7 +140,18 @@ public class AltaActividad extends HttpServlet {
 		if (usr instanceof publicadores.InfoBasicaProfesor) {
 			publicadores.InfoBasicaProfesor ibp = (publicadores.InfoBasicaProfesor) usr;			
 			request.setAttribute("institucion", ibp.getInstitucion());
-			processRequest(request, response);
+			try {
+				processRequest(request, response);
+			} catch (ServletException e) {
+				// FIXME Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// FIXME Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException_Exception e) {
+				// FIXME Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		else {
 			response.sendRedirect(request.getContextPath() + "/home");  
