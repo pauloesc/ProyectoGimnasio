@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -13,6 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.apache.commons.io.FilenameUtils;
 
@@ -22,6 +25,7 @@ import logica.IctrlUsuarios;
 import logica.InfoBasicaProfesor;
 import logica.InfoBasicaSocio;
 import logica.InfoBasicaUser;
+import publicadores.WebServicesControladorUsuarioService;
 
 /**
  * Servlet implementation class AltaUsuario
@@ -50,16 +54,16 @@ public class AltaUsuario extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		
-		/**
-		*traigo el controlador de usuario
-		*/
-		Fabrica f = Fabrica.getInstance();
-		IctrlUsuarios ICU = f.getIctrlUsuarios();
+		//---------------------------
+		WebServicesControladorUsuarioService serviceCUP = new WebServicesControladorUsuarioService();
+		publicadores.WebServicesControladorUsuario port = serviceCUP.getWebServicesControladorUsuarioPort();
+		//---------------------------		
 		
 		/**
 		*traigo las instituciones
 		*/
-		List<String> instEnSistem =  ICU.institucionesEnSistema();
+		publicadores.WrapperListString auxInstEnSistem =  port.institucionesEnSistema();
+		List<String> instEnSistem = auxInstEnSistem.getLista();
 		
 		request.setAttribute("instituciones", instEnSistem);
 		request.getRequestDispatcher("/WEB-INF/usuario/AltaUsuario.jsp").forward(request, response);
@@ -90,7 +94,7 @@ public class AltaUsuario extends HttpServlet {
 		String web = request.getParameter("web");
 		
 		//auxiliares
-		InfoBasicaUser info = null;
+		publicadores.InfoBasicaUser info = null;
 		String img = "";
 		
 		
@@ -151,7 +155,25 @@ public class AltaUsuario extends HttpServlet {
 		//si es profesor
 		if( esProfesor != null && esProfesor.equals("on") ) {
 			
-			InfoBasicaProfesor infoP = new InfoBasicaProfesor(
+			publicadores.InfoBasicaProfesor infoP = new publicadores.InfoBasicaProfesor();
+			infoP.setNickname(nickname);
+			infoP.setNombre(nombre);
+			infoP.setApellido(apellido);
+			infoP.setCorreo(email);
+			//infoP.setFechaNac(fechaFormateadaDate);
+			GregorianCalendar c = new GregorianCalendar();
+			c.setTime( new Date() );
+			XMLGregorianCalendar date2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
+			infoP.setPass(pass);
+			infoP.setImg(img);
+			infoP.setInstitucion(institucion);
+			infoP.setDesc(descripcion);
+			infoP.setBibliografia(bibliografia);
+			infoP.setUrl(web);
+			
+			
+			/**
+			publicadores.InfoBasicaProfesor infoP = new publicadores.InfoBasicaProfesor(
 																nickname,
 																nombre,
 																apellido,
@@ -166,12 +188,14 @@ public class AltaUsuario extends HttpServlet {
 			
 			
 			info = infoP;
+			*/
+			
 			
 		}
 		//si es socio
 		else {
 			
-			InfoBasicaSocio infoS = new InfoBasicaSocio(
+			publicadores.InfoBasicaSocio infoS = new publicadores.InfoBasicaSocio(
 																nickname,
 																nombre,
 																apellido,
