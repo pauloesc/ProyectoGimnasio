@@ -34,8 +34,8 @@ public interface WebServicesClases {
      * @param arg4
      * @param arg1
      * @param arg0
-     * @throws ClaseYaCompradaException_Exception
      * @throws ClaseLlenaException_Exception
+     * @throws ClaseYaCompradaException_Exception
      */
     @WebMethod
     @Action(input = "http://Publicadores/WebServicesClases/registrarSocioAClaseRequest", output = "http://Publicadores/WebServicesClases/registrarSocioAClaseResponse", fault = {
