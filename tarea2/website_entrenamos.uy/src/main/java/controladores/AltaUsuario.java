@@ -2,6 +2,7 @@ package controladores;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -19,7 +20,11 @@ import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.IOUtils;
 
+import publicadores.IOException_Exception;
+import publicadores.WebServicesADeportivas;
+import publicadores.WebServicesADeportivasService;
 import publicadores.WebServicesControladorUsuarioService;
 
 /**
@@ -33,7 +38,10 @@ maxRequestSize=1024*1024*100)
 @WebServlet("/AltaUsuario")
 public class AltaUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+      
+	private static WebServicesADeportivasService serviceActividades;
+	private static WebServicesADeportivas portActividades;
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -72,6 +80,9 @@ public class AltaUsuario extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
+		serviceActividades = new WebServicesADeportivasService();
+		portActividades = serviceActividades.getWebServicesADeportivasPort();
+		
 		//amo esta linea de codigo
 		request.setCharacterEncoding("UTF-8");
 		
@@ -98,29 +109,22 @@ public class AltaUsuario extends HttpServlet {
 		String fileName = null;
 		
 		if ( request.getParts() != null ) {
-		
-			/*gets absolute path of the web application*/
-	        String applicationPath = request.getServletContext().getRealPath("");
-
-	        // constructs path of the directory to save uploaded file*/
-	        String uploadFilePath = applicationPath + File.separator + "resources/img/usuarios";
-
-	        // creates the save directory if it does not exists
-	        File fileSaveDir = new File(uploadFilePath);
-	        if (!fileSaveDir.exists()) {
-	            fileSaveDir.mkdirs();
-	        }
-	     
+			
 	        fileName = nickname.toLowerCase().replaceAll("\\s", "");
 	        String nomf = request.getPart("imagenUsuario").getSubmittedFileName();
 	        ext = FilenameUtils.getExtension(nomf);
 	        Part part = request.getPart("imagenUsuario");
-	        part.write(uploadFilePath + File.separator + fileName + "." + ext);
-			img = "./resources/img/usuarios/" + fileName + "." + ext;
-			System.out.println(img);
+	        InputStream file = part.getInputStream();
+	        byte[] bytearr = IOUtils.toByteArray(file);
+			
+	        try {
+				portActividades.saveFile(bytearr, fileName + "." + ext);
+			} catch (IOException_Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	        img = ""+fileName+"."+ext; 
 		}
-		
-		
 		
 		
 		/**
