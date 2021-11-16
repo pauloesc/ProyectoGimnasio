@@ -69,7 +69,7 @@
 					id="navbarDropdownUsuario" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					
 					
-					<img src="<%=usr.getImg()%>" width="30" height="30" class="rounded-circle">
+					<img src="imagenes?id=<%=usr.getImg()%>" width="30" height="30" class="rounded-circle">
 					<span style="font-size: 13px; font-weight: 700"> &nbsp <%=usr.getNombre() + " " + usr.getApellido() %></span>
 				</a>
 				<div class="dropdown-menu dropdown-menu-right"

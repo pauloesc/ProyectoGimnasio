@@ -80,7 +80,7 @@ int cont = 0;
    							 <tr>
      							<th scope="row"><%= cont %></th>
      				
-     							<td> <img src="<%= auxInfoUser.getImg() %>" width="30" height="30" class="rounded-circle"> </td>
+     							<td> <img src="imagenes?id=<%= auxInfoUser.getImg() %>" width="30" height="30" class="rounded-circle"> </td>
       							<td> <a href="ConsultaUsuario?usuarioNick=<%= auxInfoUser.getNickname()  %>"><%= auxInfoUser.getNombre() %></a> </td>
     						</tr>
     						
@@ -118,7 +118,7 @@ int cont = 0;
   							%>
    							 <tr>
      							<th scope="row"><%= cont %></th>
-     							<td> <img src="<%= auxInfoUser.getImg()  %>" width="30" height="30" class="rounded-circle"> </td>
+     							<td> <img src="imagenes?id=<%=auxInfoUser.getImg()%>" width="30" height="30" class="rounded-circle"> </td>
       							<td> <a href="ConsultaUsuario?usuarioNick=<%= auxInfoUser.getNickname()  %>"><%= auxInfoUser.getNombre() %></a> </td>
     						</tr>
     						
