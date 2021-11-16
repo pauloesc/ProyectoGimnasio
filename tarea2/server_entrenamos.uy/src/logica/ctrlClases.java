@@ -257,7 +257,7 @@ public class ctrlClases implements IctrlClases {
 			registrarSocioAClase("charly", "Atletismo", "100 M", false, "", f37);
 			registrarSocioAClase("Emi71", "Atletismo", "200 M", false, "", f38);
 			registrarSocioAClase("charly", "Atletismo", "200 M", false, "", f39);
-			registrarSocioAClase("caro", "Atletismo", "Posta", false, "", f40);
+			registrarSocioAClase("caro", "Atletismo", "Posta", true, "Pista", f40);
 			registrarSocioAClase("sergiop", "Basquetbol", "Basquet I", false, "", f41);
 			registrarSocioAClase("Emi71", "Basquetbol", "Basquet I", false, "", f42);
 			registrarSocioAClase("tonyp", "Basquetbol", "Basquet I", false, "", f43);
