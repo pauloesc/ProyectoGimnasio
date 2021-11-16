@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import publicadores.IOException_Exception;
 import publicadores.WebServicesCuponeras;
 import publicadores.WebServicesCuponerasService;
 
@@ -57,7 +58,7 @@ public class Imagenes extends HttpServlet {
 		WebServicesCuponeras portCUP = serviceCUP.getWebServicesCuponerasPort();
 
         try {
-
+        	if (!(id.equals("") || id==null )) {
             img = portCUP.getFile(id);
             response.setContentType("image/jpg");
             response.setContentLength((int) img.length);
@@ -65,9 +66,18 @@ public class Imagenes extends HttpServlet {
             //ImageIO.write(img, "png", out);
             out.write(img);
             out.close();
-            
+        	} else {
+        		img = portCUP.getFile("sinimagen.jpg");
+        		response.setContentType("image/jpg");
+                response.setContentLength((int) img.length);
+                OutputStream out = response.getOutputStream();
+                //ImageIO.write(img, "png", out);
+                out.write(img);
+                out.close();
+        	}
         } catch (Exception ex) {            
-
+        	
+        	
         }
     }
 

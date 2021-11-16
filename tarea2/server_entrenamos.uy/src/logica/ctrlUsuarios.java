@@ -139,15 +139,15 @@ public class ctrlUsuarios implements IctrlUsuarios {
 			fecha8 = new SimpleDateFormat("dd/MM/yy").parse("23/02/1987");
 			fecha9 = new SimpleDateFormat("dd/MM/yy").parse("08/05/1937");
 			
-			InfoBasicaSocio socio1 = new InfoBasicaSocio("Emi71", "Emiliano", "Lucas", "emi71@gmail.com", fecha1, "asdfg456", "https://bit.ly/3lxoBvZ");
-			InfoBasicaSocio socio2 = new InfoBasicaSocio("caro", "Carolina", "Omega", "caro@gmail.com", fecha2, "123rtgfdv", "https://bit.ly/3AfcJER");
-			InfoBasicaSocio socio3 = new InfoBasicaSocio("euge", "Eugenia", "Williams", "e.will@gmail.com", fecha3, "poiuy086", "https://bit.ly/3Afz59x");
-			InfoBasicaSocio socio4 = new InfoBasicaSocio("guille", "Guillermo", "Hector", "ghector@gmail.com", fecha4, "GTO468", "https://bit.ly/2XkrKH9");
-			InfoBasicaSocio socio5 = new InfoBasicaSocio("sergiop", "Sergio", "Perez", "sergi@gmail.com.uy", fecha5, "HGF135", "https://bit.ly/3ElkVG2");
-			InfoBasicaSocio socio6 = new InfoBasicaSocio("andy", "Andrés", "Roman", "chino@gmail.org.uy", fecha6, "lkj65D", "https://bit.ly/3hDWgTD");
-			InfoBasicaSocio socio7 = new InfoBasicaSocio("tonyp", "Antonio", "Paz", "eltony@gmail.org.uy", fecha7, "jhvf395", "https://bit.ly/3Ai4jMW");
-			InfoBasicaSocio socio8 = new InfoBasicaSocio("m1k4", "Micaela", "Lopez", "mika@gmail.com.ar", fecha8, "ijngr024", "https://bit.ly/3zglsWf");
-			InfoBasicaSocio socio9 = new InfoBasicaSocio("charly", "Carlos", "Boston", "charly@gmail.com.uy", fecha9, "987mnbgh", "https://bit.ly/2YRWDTQ");
+			InfoBasicaSocio socio1 = new InfoBasicaSocio("Emi71", "Emiliano", "Lucas", "emi71@gmail.com", fecha1, "asdfg456", "u1.jpg");
+			InfoBasicaSocio socio2 = new InfoBasicaSocio("caro", "Carolina", "Omega", "caro@gmail.com", fecha2, "123rtgfdv", "u2.jpg");
+			InfoBasicaSocio socio3 = new InfoBasicaSocio("euge", "Eugenia", "Williams", "e.will@gmail.com", fecha3, "poiuy086", "u3.jpg");
+			InfoBasicaSocio socio4 = new InfoBasicaSocio("guille", "Guillermo", "Hector", "ghector@gmail.com", fecha4, "GTO468", "u4.jpg");
+			InfoBasicaSocio socio5 = new InfoBasicaSocio("sergiop", "Sergio", "Perez", "sergi@gmail.com.uy", fecha5, "HGF135", "u5.jpg");
+			InfoBasicaSocio socio6 = new InfoBasicaSocio("andy", "Andrés", "Roman", "chino@gmail.org.uy", fecha6, "lkj65D", "u6.jpg");
+			InfoBasicaSocio socio7 = new InfoBasicaSocio("tonyp", "Antonio", "Paz", "eltony@gmail.org.uy", fecha7, "jhvf395", "u7.jpg");
+			InfoBasicaSocio socio8 = new InfoBasicaSocio("m1k4", "Micaela", "Lopez", "mika@gmail.com.ar", fecha8, "ijngr024", "u8.jpg");
+			InfoBasicaSocio socio9 = new InfoBasicaSocio("charly", "Carlos", "Boston", "charly@gmail.com.uy", fecha9, "987mnbgh", "u9.jpg");
 			
 			manejador.crearUsuario(socio1);
 			manejador.crearUsuario(socio2);
@@ -177,15 +177,15 @@ public class ctrlUsuarios implements IctrlUsuarios {
 			pf8 = new SimpleDateFormat("dd/MM/yy").parse("05/03/1940");
 			pf9 = new SimpleDateFormat("dd/MM/yy").parse("17/07/1952");
 			
-			InfoBasicaProfesor prof1 = new InfoBasicaProfesor("viktor", "Victor", "Perez", "vperez@fuerza.com", pf1, "lkj34df", "https://bit.ly/3zetdMl", "Fuerza Bruta", "Victor es un apasionado de los músculos. Sus clases son organizadas en función de distintos aparatos y pesas con el objetivo de desarrollar músculos", "Victor nació en Moscow en 1977. En el año 2005 emigró a Uruguay luego de quedar encantado con el país en un viaje turístico", "www.vikgym.com");
-			InfoBasicaProfesor prof2 = new InfoBasicaProfesor("denis", "Denis", "Miguel", "den80@fuerza.com", pf2, "poke579", "https://bit.ly/3lKq8Px", "Telón", "A Denis le interesan los deportes con pelota, principalmente el voleibol y el handball", "Denis fue un jugador de voleibol profesional.", "www.depecho.com");
-			InfoBasicaProfesor prof3 = new InfoBasicaProfesor("clazar", "Carlos", "Lazaro", "claz4r0@hotmail.com", pf3, "mkji648", "https://bit.ly/2VJvT6S", "Instituto Natural", "Carlos es un profesor muy divertido cuyas clases de aeróbica están cargadas de energía.", "El interés por la actividad física llevo a Carlos a dejar su trabajo en un estudio contable y abrir su propio gimnasio.", "www.enforma.com");
-			InfoBasicaProfesor prof4 = new InfoBasicaProfesor("TheBoss", "Bruno", "Sosa", "bruceTheBoss@gmail.com", pf4, "fcku0123", "https://bit.ly/3kdT9TV", "Fuerza Bruta", "Bruno es un ex-boxeardor que busca entrenar a futuros campeones.", "Bruno, mejor conocido como Bruce en el ring, compitió como boxeador entre los años 60s y 70s.", "www.bruce.net");
-			InfoBasicaProfesor prof5 = new InfoBasicaProfesor("Nelson", "Luis", "Nelson", "nelson@hotmail.com", pf5, "vbmn4r", "https://bit.ly/3lxsDo7", "Telón", "Profesor de natación. Especializado en braza y mariposa.", "", "www.nelson.uy");
-			InfoBasicaProfesor prof6 = new InfoBasicaProfesor("lale", "Laura", "Leyes", "la_le@outlook.com", pf6, "ncnl123", "https://bit.ly/3EmlY8F", "Telón", "Luego de una exitosa carrera como jugadora de futbol profesional. Laura dedica sus clases a enseñar tácticas de futbol", "Jugadora profesional de futbol desde 2010 a 2020.", "www.laley.com");
+			InfoBasicaProfesor prof1 = new InfoBasicaProfesor("viktor", "Victor", "Perez", "vperez@fuerza.com", pf1, "lkj34df", "u10.jpg", "Fuerza Bruta", "Victor es un apasionado de los músculos. Sus clases son organizadas en función de distintos aparatos y pesas con el objetivo de desarrollar músculos", "Victor nació en Moscow en 1977. En el año 2005 emigró a Uruguay luego de quedar encantado con el país en un viaje turístico", "www.vikgym.com");
+			InfoBasicaProfesor prof2 = new InfoBasicaProfesor("denis", "Denis", "Miguel", "den80@fuerza.com", pf2, "poke579", "u11.jpg", "Telón", "A Denis le interesan los deportes con pelota, principalmente el voleibol y el handball", "Denis fue un jugador de voleibol profesional.", "www.depecho.com");
+			InfoBasicaProfesor prof3 = new InfoBasicaProfesor("clazar", "Carlos", "Lazaro", "claz4r0@hotmail.com", pf3, "mkji648", "u12.jpg", "Instituto Natural", "Carlos es un profesor muy divertido cuyas clases de aeróbica están cargadas de energía.", "El interés por la actividad física llevo a Carlos a dejar su trabajo en un estudio contable y abrir su propio gimnasio.", "www.enforma.com");
+			InfoBasicaProfesor prof4 = new InfoBasicaProfesor("TheBoss", "Bruno", "Sosa", "bruceTheBoss@gmail.com", pf4, "fcku0123", "u13.jpg", "Fuerza Bruta", "Bruno es un ex-boxeardor que busca entrenar a futuros campeones.", "Bruno, mejor conocido como Bruce en el ring, compitió como boxeador entre los años 60s y 70s.", "www.bruce.net");
+			InfoBasicaProfesor prof5 = new InfoBasicaProfesor("Nelson", "Luis", "Nelson", "nelson@hotmail.com", pf5, "vbmn4r", "u14.jpg", "Telón", "Profesor de natación. Especializado en braza y mariposa.", "", "www.nelson.uy");
+			InfoBasicaProfesor prof6 = new InfoBasicaProfesor("lale", "Laura", "Leyes", "la_le@outlook.com", pf6, "ncnl123", "u15.jpg", "Telón", "Luego de una exitosa carrera como jugadora de futbol profesional. Laura dedica sus clases a enseñar tácticas de futbol", "Jugadora profesional de futbol desde 2010 a 2020.", "www.laley.com");
 			InfoBasicaProfesor prof7 = new InfoBasicaProfesor("prisc", "Priscila", "Pappo", "pripa@gmail.com", pf7, "mny101", "", "Olympic", "Laura tiene un gran interés por los deportes olímpicos.", "", "www.pi314.net");
-			InfoBasicaProfesor prof8 = new InfoBasicaProfesor("dagost", "Daiana", "Agostini", "d_1940_ago@gmail.com", pf8, "1o1vbm", "https://bit.ly/3hB3zvo", "Olympic", "Profesora dedicada y exigente. No acepta un “no puedo” como respuesta.", "", "www.dygym.com");
-			InfoBasicaProfesor prof9 = new InfoBasicaProfesor("aldo", "Aldo", "Vivaldi", "aldo@ outlook.com", pf9, "ultraton01", "https://bit.ly/2VLnzUj", "Telón", "Dada su gran estatura Aldo siempre jugó al basquetbol, hoy se dedica a enseñarlo.", "", "www.sportsaldo.net");
+			InfoBasicaProfesor prof8 = new InfoBasicaProfesor("dagost", "Daiana", "Agostini", "d_1940_ago@gmail.com", pf8, "1o1vbm", "u17.jpg", "Olympic", "Profesora dedicada y exigente. No acepta un “no puedo” como respuesta.", "", "www.dygym.com");
+			InfoBasicaProfesor prof9 = new InfoBasicaProfesor("aldo", "Aldo", "Vivaldi", "aldo@ outlook.com", pf9, "ultraton01", "u18.jpg", "Telón", "Dada su gran estatura Aldo siempre jugó al basquetbol, hoy se dedica a enseñarlo.", "", "www.sportsaldo.net");
 			
 			
 			
