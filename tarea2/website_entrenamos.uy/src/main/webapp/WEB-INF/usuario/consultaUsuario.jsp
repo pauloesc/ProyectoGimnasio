@@ -8,6 +8,7 @@
 <%@page import="publicadores.DataCuponera"%>
 <%@page import="publicadores.DtActividadesDeportivas"%>
 <%@page import="publicadores.DtClase"%>
+<%@page import="publicadores.EstadoActi"%>
 
 <%@page import="java.util.List"%>
 <%@page import="java.util.Iterator"%>
@@ -367,12 +368,17 @@ boolean siguiendoUsuario = (boolean) request.getAttribute("siguiendoUsuario");
 										String fechaFormateadaClase = formato.format(infoS.getFecha().toGregorianCalendar().getTime());
 										
 									%>
+									
+									<% if (infoS.getEstadoActividad() != EstadoActi.FINALIZADA ){ %>
                                  <tr>
                                     <th scope="row"><%=i3%></th>
                                     <td> <a href="consultaClase?clase=<%= infoS.getNombre() %>  "> <%= infoS.getNombre() %> </a></td>
                                     <td> <%= fechaFormateadaClase %> </td>
                                     <td><a href="consultaActividad?actividad=<%= infoS.getNomAct() %>" ><%= infoS.getNomAct() %></a></td>
                                  </tr>
+                                 
+                                 	<% } %>
+                                 
 									<% i3++;}%>
                               </tbody>
                            </table>
@@ -383,6 +389,60 @@ boolean siguiendoUsuario = (boolean) request.getAttribute("siguiendoUsuario");
 					}
 					%>
                   <!-- fin bloque ** clases ** para socio -->
+                  
+                  
+                 <!-- inicio bloque ** clases con activ dep finalizada ** para socio -->
+                  	<% 
+					if( esSocio & propioUsuario ){
+					%>
+                  <div class="card shadow mb-5">
+                     <div id="clases" class="card-header py-3">
+                        <p class="text-primary m-0 font-weight-bold">Clases con Actividad Dep Finalizada</p>
+                     </div>
+                     <div id="clases-cont" class="card-body">
+                        <div class="row">
+                           <table class="table table-hover">
+                              <thead>
+                                 <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Fecha</th>
+                                    <th scope="col">Actividad deportiva</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+									
+									<% int i3=1;
+									Iterator<DtClase> iterat3 = informacionSocio.iterator();
+									while( iterat3.hasNext() ) {
+										DtClase infoS = iterat3.next();
+										
+										String fechaFormateadaClase = formato.format(infoS.getFecha().toGregorianCalendar().getTime());
+										
+									%>
+									
+									<% if (infoS.getEstadoActividad() == EstadoActi.FINALIZADA ){ %>
+                                 <tr>
+                                    <th scope="row"><%=i3%></th>
+                                    <td> <a href="consultaClase?clase=<%= infoS.getNombre() %>  "> <%= infoS.getNombre() %> </a></td>
+                                    <td> <%= fechaFormateadaClase %> </td>
+                                    <td><a href="consultaActividad?actividad=<%= infoS.getNomAct() %>" ><%= infoS.getNomAct() %></a></td>
+                                 </tr>
+                                 
+                                 	<% } %>
+                                 
+									<% i3++;}%>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                  </div>
+					<% 
+					}
+					%>
+                  <!-- fin bloque ** clases con activ dep finalizada ** para socio -->
+                  
+                  
 
 					<!-- inicio bloque ** acd dep ing rech ** para profesor -->
 					<% if(!esSocio & propioUsuario) { %>
