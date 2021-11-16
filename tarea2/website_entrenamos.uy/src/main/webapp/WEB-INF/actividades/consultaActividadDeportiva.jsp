@@ -86,7 +86,9 @@
 						<p><i class="fa fa-usd"></i> &nbsp &nbsp Costo: $<%= actividad.getCosto()  %></p>
 						<p><i class="fa fa-clock-o"></i> &nbsp &nbsp Duración: <%= actividad.getDuracion()  %> minutos</p>
 						<% if (usr != null && usr.getNickname() == actividad.getProfesor()) { %>
-							<button type="button" class="btn btn-danger">Finalizar Actividad Deportiva</button>
+						    <form method="post" action="consultaActividad?actividad=<%= actividad.getNombre()  %>">     
+							     <button type="submit" id="finact" name="finact" value="fin" class="btn btn-danger">Finalizar Actividad Deportiva</button>
+							</form>  
 						<% } %>
 						</div>
 					</div>	

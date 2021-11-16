@@ -60,6 +60,11 @@ public class ConsultaActividad extends HttpServlet
 			return;
 		}
 		
+		String botfin = req.getParameter("finact");
+		if (botfin == "fin") {
+			finalizarActividad(act);
+		}
+		
 		List<String> cup=null;
 		try {
 			cup = portCuponeras.getCuponerasAD(act).getSet();

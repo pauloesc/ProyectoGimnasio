@@ -228,7 +228,7 @@ public class ctrlADeportivas implements IctrlADeportivas{
 		ActividadDeportiva act1 = mADep.buscarActividad("Aparatos y pesas");
 		act1.setEstado(EstadoActi.ACEPTADA);
 		ActividadDeportiva act2 = mADep.buscarActividad("Voleibol");
-		act2.setEstado(EstadoActi.ACEPTADA);
+		act2.setEstado(EstadoActi.FINALIZADA);
 		ActividadDeportiva act3 = mADep.buscarActividad("Aeróbica");
 		act3.setEstado(EstadoActi.ACEPTADA);
 		ActividadDeportiva act4 = mADep.buscarActividad("Kickboxing");
