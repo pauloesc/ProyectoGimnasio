@@ -3,8 +3,6 @@
 <%@page import="java.util.Set"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Iterator"%>
-<%@page import="controladores.Login"%>
-<%@page import="controladores.Cuponeras"%>
 
 <!DOCTYPE html>
 <html>
@@ -12,17 +10,7 @@
 <jsp:include page="/WEB-INF/template/head.jsp" />
 </head>
 <%
-	DataActividad actividad = (DataActividad) request.getAttribute("actividad");
-	List<String> cup = (List<String>) request.getAttribute("cup");
-	Set<String> clases = (Set<String>) request.getAttribute("clases");
-	publicadores.InfoBasicaUser usr;
-	try {
-		usr = Login.getUsuarioLogueado(request);
-	} 
-	catch(Exception ex) {
-		usr = null;
-	}
-	
+	List<DataActividad> acts = (List<DataActividad>) request.getAttribute("actividades");
 %>
 
 <body>
@@ -31,113 +19,28 @@
 	<main role="main" class="container">
 		<div class="row">
 			<div class="col-12 col-md-8 my-4">
-				<div class="card mb-3" style="max-width: auto;">
-					<div class="row no-gutters">
-						<div class="col-md-4">
-						<% if (actividad.getImagen() != null) { %>
-							<img class="d-block w-100" src="imagenes?id=<%= actividad.getImagen()  %>" alt="<%= actividad.getImagen()  %>">
-						<% } else {  %>
-							<img class="d-block w-100" src="./resources/img/actividades/noimg.jpg" alt="No tiene imagen.">
-						<% } %>
-						</div>
-						<div class="col-md-8">
-							<div class="card-body">
-								<h1 class="card-title"><%= actividad.getNombre()  %></h1>
-								<p class="card-text"><%= actividad.getDescripcion()  %></p>
-								<div class="categorias">
-								<% 
-								Iterator<String> iter = actividad.getCategorias().iterator();
-								while (iter.hasNext()) {
-									String ncat = iter.next();
-								%>								
-									<a href="consultaCategoria?categoria=<%= ncat  %>"><span class="badge badge-info"><%= ncat  %></span></a>
-								<% 
-								}
-								%>
-								</div>
-							</div>
+				<div class="card-group">
+				<% 
+				Iterator<DataActividad> iterac = acts.iterator();
+				for (int i = 1; i < acts.size(); i++) {
+					DataActividad acti = iterac.next();
+				%>	
+					<div class="card">
+					<% if (acti.getImagen() == null) { %>
+						<img src="imagenes?id=sinimagen.jpg" alt="No tiene imagen.">
+					<% } else {  %>
+						<img src="imagenes?id=<%= acti.getImagen() %>" class="card-img-top" alt="<%= acti.getNombre() %>">
+					<% } %>
+						<div class="card-body">
+							<h5 class="card-title">
+								<a href="consultaActividad?actividad=<%= acti.getNombre() %>" class=""><%= acti.getNombre() %></a>
+							</h5>
+							<p class="card-text"><%= acti.getDescripcion() %></p>
 						</div>
 					</div>
-				</div>
-			
-				<ul class="nav nav-tabs" id="myTab" role="tablist">
-					<li class="nav-item" role="presentation"><a
-						class="nav-link active" id="detalles-tab" data-toggle="tab"
-						href="#detalles" role="tab" aria-controls="detalles"
-						aria-selected="true">Detalles</a></li>
-					<li class="nav-item" role="presentation"><a class="nav-link"
-						id="cuponeras-tab" data-toggle="tab" href="#cuponeras" role="tab"
-						aria-controls="cuponeras" aria-selected="false">Cuponeras</a></li>
-					<li class="nav-item" role="presentation"><a class="nav-link"
-						id="clases-tab" data-toggle="tab" href="#clases" role="tab"
-						aria-controls="clases" aria-selected="false">Clases</a></li>
-				</ul>
-				<div class="tab-content" id="myTabContent">
-					<div class="tab-pane fade show active" id="detalles"
-						role="tabpanel" aria-labelledby="detalles-tab">
-						<div class="m-3">
-						  <p><i class="fa fa-building"></i> &nbsp &nbsp Institución Deportiva: <a href="consultaInstitucion?institucion=<%= actividad.getInstitucion() %>"><%= actividad.getInstitucion() %></a></p>
-						  <p><i class="fa fa-user-circle-o"></i> &nbsp &nbsp Profesor: <%= actividad.getProfesor() %></p>
-						  <p><i class="fa fa-usd"></i> &nbsp &nbsp Costo: $<%= actividad.getCosto()  %></p>
-						  <p><i class="fa fa-clock-o"></i> &nbsp &nbsp Duración: <%= actividad.getDuracion()  %> minutos</p>
-						</div>
-					</div>	
-					<div class="tab-pane fade" id="cuponeras" role="tabpanel"
-						aria-labelledby="cuponeras-tab">
-						<div class="m-3">
-						<table class="table table-hover">
-						<thead>
-    							<tr>
-     							 <th scope="col">#</th>
-     							 <th scope="col">Nombre</th>
-    							</tr>
-  							</thead>
-  							<tbody>
-  							<% 
-  							int i2 = 1;
-							for(String nomcup:cup) {
-							%>	
-   							 <tr>
-     						 <th scope="row"><%= i2%></th>
-      							<td><a href="consultaCuponera?cuponera=<%= nomcup %>"> <%= nomcup %></a></td> 
-    						</tr>
-    						<%
-    						i2++;
-							} 
-							%>	
-    					</tbody>
-					</table>
-					</div>
-					</div>
-					<div class="tab-pane fade" id="clases" role="tabpanel"
-						aria-labelledby="clases-tab">
-							<div class="m-3">
-							<table class="table table-hover">
-							<thead>
-	    							<tr>
-	     							 <th scope="col">#</th>
-	     							 <th scope="col">Nombre</th>
-	    							</tr>
-	  							</thead>
-	  							<tbody>
-	  							<% 
-	  							if (clases != null) {
-	  							int ic = 1;
-								for(String nomClas:clases) {
-								%>	
-	   							 <tr>
-	     						 <th <%= ic%> scope="row"><%= ic%></th>
-	      							<td><a href="consultaClase?clase=<%= nomClas %>"> <%= nomClas %></a></td> 
-	    						</tr>
-	    						<%
-	    						ic++;
-									}
-								} 
-								%>	
-	    					</tbody>
-						</table>
-						</div>
-					</div>
+				<% 
+					}
+				%>
 				</div>
 			</div>
 		</div>
@@ -148,13 +51,6 @@
 			<span class="text-muted">Copyright 2021 - Entrenamos.uy</span>
 		</div>
 	</footer>
-
-	<script>
-	  $(function () {
-	    $('#myTab li:last-child a').tab('show')
-	  })
-	</script>
-
 
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
