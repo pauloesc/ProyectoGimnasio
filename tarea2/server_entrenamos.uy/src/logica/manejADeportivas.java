@@ -11,7 +11,9 @@ import java.util.Collection;
  */
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 
 public class manejADeportivas {
@@ -76,5 +78,21 @@ public class manejADeportivas {
 		instancia.actividadesDeportivas.clear();
 		instancia=null;
 	}
-	
+    
+    public Set<DtClase> getTodasLasClases() {
+    	Set<DtClase> res = new HashSet<DtClase>();
+    	IctrlClases ic = Fabrica.getInstance().getIctrlClases();
+    	
+    	for (ActividadDeportiva a: actividadesDeportivas.values()) {
+    		if (a.getEstado() == EstadoActi.ACEPTADA) {
+    			Set<String> inter = a.darNombreClases();
+    			
+    			for (String nomC: inter) {
+    				res.add(ic.darDtClase(nomC));
+    			}
+    		}
+    	}
+    	
+    	return res;
+    }
 }

@@ -171,6 +171,10 @@ public class ctrlADeportivas implements IctrlADeportivas{
 		actividad.setEstado(est);
 		
 	}
+	
+	public  Set<DtClase> getTodasLasClases() {
+		return manejADeportivas.getinstance().getTodasLasClases();	
+	}
 
 	public void cargarDatosADeportivas() {
 		

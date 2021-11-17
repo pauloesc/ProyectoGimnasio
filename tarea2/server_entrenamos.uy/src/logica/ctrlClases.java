@@ -266,6 +266,40 @@ public class ctrlClases implements IctrlClases {
 			registrarSocioAClase("caro", "Basquetbol", "Basquet II", false, "", f46);
 			
 			
+			manejUsuarios mu = manejUsuarios.getInstance();
+			
+			Date fg1 = null, fg2 = null, fg3 = null, fg4 = null, fg5 = null, fg6 = null, fg7 = null, fg8 = null, fg9 = null, fg10 = null;
+			fg1 = new SimpleDateFormat("dd/MM/yy").parse("02/06/21");
+			fg2 = new SimpleDateFormat("dd/MM/yy").parse("02/06/21");
+			fg3 = new SimpleDateFormat("dd/MM/yy").parse("02/06/21");
+			fg4 = new SimpleDateFormat("dd/MM/yy").parse("11/08/21");
+			fg5 = new SimpleDateFormat("dd/MM/yy").parse("11/08/21");
+			fg6 = new SimpleDateFormat("dd/MM/yy").parse("16/08/21");
+			fg7= new SimpleDateFormat("dd/MM/yy").parse("01/10/21");
+			fg8 = new SimpleDateFormat("dd/MM/yy").parse("01/10/21");
+			fg9 = new SimpleDateFormat("dd/MM/yy").parse("01/10/21");
+			fg10 = new SimpleDateFormat("dd/MM/yy").parse("01/10/21");
+			
+			mu.darPremio("charly","Aparatos",fg1);
+			mu.darPremio("caro", "Aparatos",fg2);
+			mu.darPremio("m1k4", "Aparatos",fg3);
+			mu.darPremio("charly","Mariposa",fg4);
+			mu.darPremio("sergiop", "Mariposa",fg5);
+			mu.darPremio("m1k4", "Aeróbica niños",fg6);
+			mu.darPremio("caro", "Aeróbica",fg7);
+			mu.darPremio("euge", "Aeróbica",fg8);
+			mu.darPremio("sergiop", "Boxeo II",fg9);
+			mu.darPremio("guille", "Boxeo II",fg10);
+			
+			
+			manejador.findClase("Aparatos").setSorteados(true);
+			manejador.findClase("Mariposa").setSorteados(true);
+			manejador.findClase("Aeróbica niños").setSorteados(true);
+			manejador.findClase("Aeróbica").setSorteados(true);
+			manejador.findClase("Boxeo II").setSorteados(true);
+			
+			
+			
 		}
 		catch (ClaseYaCompradaException | ClaseLlenaException | ParseException  e){
 			//nada

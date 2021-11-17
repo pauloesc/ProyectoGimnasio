@@ -54,6 +54,13 @@ public class Registro {
 		Calendar fechaActual = Calendar.getInstance();  
 		this.fGanadoPremio = fechaActual.getTime();
 	}
+	
+	public void setFGanadoPremio(Date f) {  
+		this.fGanadoPremio = f;
+	}
 
+	public DtPremio getDtPremio() {
+		return new DtPremio(clase.getNombre(),manejADeportivas.getinstance().getNombreActividadDeClase(clase.getNombre()),fGanadoPremio);
+	}
 
 }

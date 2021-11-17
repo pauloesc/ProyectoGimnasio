@@ -137,10 +137,12 @@ public class ConsultaUsuario extends HttpServlet {
 		 * declaro las variables 
 		*/
 		List<publicadores.DataCuponera> cuponerasSocio = null;
+		List<publicadores.DtPremio> premios = null;
 		publicadores.InfoActividadProfe actDepsIngRech = null;
 		if(esSocio) {
 			publicadores.WrapperDataCuponera informacionCuponeras = port.cuponeras(user);
-			cuponerasSocio = informacionCuponeras.getLista();			
+			cuponerasSocio = informacionCuponeras.getLista();
+			premios = port.getPremiosDeUsuario(nickEnSesion).getList();
 		}
 		else {
 			actDepsIngRech = port.informacionActDepEstadoIngRech(user);			
@@ -199,6 +201,7 @@ public class ConsultaUsuario extends HttpServlet {
 		request.setAttribute("usersSeguidores", usuariosSeguidores);
 		request.setAttribute("usersSiguiendo", usuariosSiguiendo);
 		request.setAttribute("cuponeras", cuponerasSocio);
+		request.setAttribute("premios", premios);
 		request.setAttribute("actDepIngRech", informacionProfesorActDepIngRech);
 		request.setAttribute("userPropio", usuarioPropio);
 		request.setAttribute("haySesion", haySesion);

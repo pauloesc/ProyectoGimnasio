@@ -1,5 +1,6 @@
 package logica;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -132,8 +133,8 @@ public class Socio extends Usuario {
 	}
 	
 	public boolean tineClase(String nomC) {
-		for ( Iterator<Registro> it = regs.iterator(); it.hasNext();){ 
-			   if (it.next().getNombreClase() == nomC) {
+		for (Registro r: regs){
+			   if (r.getNombreClase().equals(nomC)) {
 				   return true;
 			   }
 			}
@@ -141,19 +142,52 @@ public class Socio extends Usuario {
 	}
 	
 	public void setPremio(String nomC) {
-		for ( Iterator<Registro> it = regs.iterator(); it.hasNext();){ 
-			   if (it.next().getNombreClase() == nomC) {
-				   it.next().setFGanadoPremio();
+		for (Registro r: regs){ 
+			   if (r.getNombreClase().equals(nomC)) {
+				   r.setFGanadoPremio();
+			   }
+			}
+	}
+	
+	public void setPremio(String nomC, Date f) {
+		for (Registro r: regs){ 
+			   if (r.getNombreClase().equals(nomC)) {
+				   r.setFGanadoPremio(f);
 			   }
 			}
 	}
 	
 	public boolean getPremio(String nomC){
-		for ( Iterator<Registro> it = regs.iterator(); it.hasNext();){ 
-			   if (it.next().getNombreClase() == nomC && it.next().getfGanadoPremio() != null) {
+		for (Registro r: regs){ 
+			   if (r.getNombreClase().equals(nomC) && r.getfGanadoPremio() != null) {
 				  return true;
 			   }
 			}
 		return false;
+	}
+	
+	public List<DtPremio> getMisPremios() {
+		List<DtPremio> res = new ArrayList<DtPremio>();
+		
+		for (Registro r: regs){ 
+			   if (r.getfGanadoPremio() != null) {
+				   res.add(r.getDtPremio());
+			   }
+			}
+		
+		//ordenar la pinche lista por fecha
+		
+		//pinche implementacion por bubble sort
+		int n = res.size();
+	       for (int i = 0; i < n-1; i++)
+	           for (int j = 0; j < n-i-1; j++)
+	               if (res.get(j).getFecha().before(res.get(j+1).getFecha()))	{
+	            	   
+	                    // swap arr[j+1] and arr[j]
+	                    DtPremio temp = res.get(j);
+	                    res.set(j,res.get(j+1)); 
+	                    res.set(j+1,temp);
+	                }
+		return res;
 	}
 }

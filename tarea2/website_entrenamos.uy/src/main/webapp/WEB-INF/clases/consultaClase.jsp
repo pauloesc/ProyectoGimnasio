@@ -21,6 +21,9 @@
 	String costo = (String)request.getAttribute("costoClase");
 	int cantPremios = (int)request.getAttribute("cantP");
 	boolean sort = (boolean)request.getAttribute("sort");
+	List<String> ganadores = (List<String>)request.getAttribute("ganadores");
+	int cantP = (int)request.getAttribute("cantP");
+	String descP = (String)request.getAttribute("descP");
 	
 	
 	//paulo
@@ -101,7 +104,6 @@
 								<div class="card-body">
 									<h5 class="card-title">Información Adicional</h5>
 									
-									<!-- agregar que te mande a la pagina de consultar usuario con el profesor cuando este lista -->
 									<p class="card-text"> <p class="card-text m-0"><a href="consultaUsuario?usuarioNick=<%= nomP %> ">Dictada por: <%= nomP %></a></p> 
 									
 									<p class="card-text"> <p class="card-text m-0">Fecha y hora: <%= fecha %></p> 
@@ -109,6 +111,12 @@
 									<p class="card-text"> <p class="card-text m-0">URL:: <%= url %></p> 
 									<p class="card-text"> <p class="card-text m-0">Socios:: Min: <%=minS%>, Actual: <%=actS%>, Max: <%=maxS%> </p> 
 									<p class="card-text"> <p class="card-text m-0">Fecha Registro clase: <%=fechaReg%></p>
+									<p class="card-text"> <p class="card-text m-0">premios: <%=cantP%></p>
+									<p class="card-text"> <p class="card-text m-0">descripcion de los premios: <%=descP%></p>
+									
+									<% if (sort) {	%>
+									<p class="card-text"> <p class="card-text m-0">Ganadores del sorteo: <%=ganadores%></p>
+									<% }%>
 									
 								</div>
 							</div>

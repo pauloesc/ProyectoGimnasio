@@ -30,7 +30,9 @@ import excepciones.ActividadDeportivaNoExisteException;
 import excepciones.ActividadDeportivaRepetidaException;
 import logica.Fabrica;
 import logica.IctrlADeportivas;
+import logica.WrapperSetDtClase;
 import logica.DataActividad;
+import logica.DtClase;
 import logica.EstadoActi;
 
 @WebService
@@ -113,6 +115,14 @@ public class WebServicesADeportivas {
     @WebMethod
     public DataActividad newDataActividad() {
     	return new DataActividad();
+    }
+    
+    @WebMethod
+    public WrapperSetDtClase getTodasLasClases() {
+    	WrapperSetDtClase c = new WrapperSetDtClase();
+    	c.setList(ctrladep.getTodasLasClases());
+    	return c;
+    	
     }
     
     @WebMethod

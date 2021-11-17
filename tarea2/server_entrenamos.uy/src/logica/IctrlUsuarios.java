@@ -66,4 +66,8 @@ public interface IctrlUsuarios {
 	
 	public abstract boolean usuarioSigueAUsuario(String usuario1, String suario2);
 	
+	public abstract List<String> getGanadoresDeClase(String nomC);
+	
+	public abstract List<DtPremio> getPremiosDeUsuario(String nomU);
+	
 }

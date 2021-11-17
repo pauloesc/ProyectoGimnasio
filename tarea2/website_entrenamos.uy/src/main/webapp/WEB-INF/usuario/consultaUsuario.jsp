@@ -8,6 +8,7 @@
 <%@page import="publicadores.DataCuponera"%>
 <%@page import="publicadores.DtActividadesDeportivas"%>
 <%@page import="publicadores.DtClase"%>
+<%@page import="publicadores.DtPremio"%>
 <%@page import="publicadores.EstadoActi"%>
 
 <%@page import="java.util.List"%>
@@ -26,6 +27,7 @@ InfoBasicaUser informacionUusario = (InfoBasicaUser) request.getAttribute("infoU
 List<String> usuariosSeguidores = (List<String>) request.getAttribute("usersSeguidores");
 List<String> usuariosSiguiendo = (List<String>) request.getAttribute("usersSiguiendo");
 List<DataCuponera> cuponerasSocio = (List<DataCuponera>) request.getAttribute("cuponeras");
+List<DtPremio> premios = (List<DtPremio>) request.getAttribute("premios");
 List<DtActividadesDeportivas> actDepIR = (List<DtActividadesDeportivas>) request.getAttribute("actDepIngRech");
 
 List<DtClase> informacionSocio = (List<DtClase>) request.getAttribute("infoSocio");
@@ -525,8 +527,55 @@ boolean siguiendoUsuario = (boolean) request.getAttribute("siguiendoUsuario");
 								</div>
 							</div>
 						</div>
-						<% } %>
 						<!-- fin bloque ** cuponeras ** para socio -->
+						
+						
+						<!-- inicio pinche bloque ** premios ** para socio -->
+						
+						<div class="card shadow mb-5">
+							<div id="premios" class="card-header py-3">
+								<p class="text-primary m-0 font-weight-bold">Premios</p>
+							</div>
+							<div id="cuponeras-cont" class="card-body">
+								<div class="row">
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th scope="col">#</th>
+												<th scope="col">Nombre clase</th>
+												<th scope="col">Nombre actividad</th>
+												<th scope="col">Fecha ganado</th>
+											</tr>
+										</thead>
+										<tbody>
+										
+										<%
+										Iterator<DtPremio> prems =  premios.iterator();
+										int contt = 1;
+										while( prems.hasNext() ){
+											DtPremio p = prems.next();
+											String fprem = formato.format(p.getFecha().toGregorianCalendar().getTime());
+										%>
+											<tr>
+												<th scope="row"> <%= contt %> </th>
+												<td><a> <%= p.getNomC()  %> </a></td>
+												<td><a> <%= p.getNomA()  %> </a></td>
+												<td> <%= fprem %> </td>
+											</tr>
+										<% 
+										contt=contt+1;
+										} %>	
+										
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<!-- fin bloque ** cuponeras ** para socio -->
+						
+						<% } %>
+						
+						
 
 					<!-- inicio bloque ** seguidores sigue -->
                   <div class="card shadow mb-5">
