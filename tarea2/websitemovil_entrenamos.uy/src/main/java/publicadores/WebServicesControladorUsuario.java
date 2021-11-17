@@ -27,6 +27,21 @@ public interface WebServicesControladorUsuario {
 
     /**
      * 
+     * @param arg0
+     * @throws UsuarioDisponibilidadException_Exception
+     */
+    @WebMethod
+    @Action(input = "http://Publicadores/WebServicesControladorUsuario/altaUsuarioRequest", output = "http://Publicadores/WebServicesControladorUsuario/altaUsuarioResponse", fault = {
+        @FaultAction(className = UsuarioDisponibilidadException_Exception.class, value = "http://Publicadores/WebServicesControladorUsuario/altaUsuario/Fault/UsuarioDisponibilidadException")
+    })
+    public void altaUsuario(
+        @WebParam(name = "arg0", partName = "arg0")
+        InfoBasicaUser arg0)
+        throws UsuarioDisponibilidadException_Exception
+    ;
+
+    /**
+     * 
      * @return
      *     returns publicadores.WrapperSetString
      */
@@ -44,21 +59,6 @@ public interface WebServicesControladorUsuario {
     @WebResult(partName = "return")
     @Action(input = "http://Publicadores/WebServicesControladorUsuario/usuariosEnSistemaNickNameRequest", output = "http://Publicadores/WebServicesControladorUsuario/usuariosEnSistemaNickNameResponse")
     public WrapperListString usuariosEnSistemaNickName();
-
-    /**
-     * 
-     * @param arg0
-     * @throws UsuarioDisponibilidadException_Exception
-     */
-    @WebMethod
-    @Action(input = "http://Publicadores/WebServicesControladorUsuario/altaUsuarioRequest", output = "http://Publicadores/WebServicesControladorUsuario/altaUsuarioResponse", fault = {
-        @FaultAction(className = UsuarioDisponibilidadException_Exception.class, value = "http://Publicadores/WebServicesControladorUsuario/altaUsuario/Fault/UsuarioDisponibilidadException")
-    })
-    public void altaUsuario(
-        @WebParam(name = "arg0", partName = "arg0")
-        InfoBasicaUser arg0)
-        throws UsuarioDisponibilidadException_Exception
-    ;
 
     /**
      * 
@@ -297,6 +297,32 @@ public interface WebServicesControladorUsuario {
         String arg0,
         @WebParam(name = "arg1", partName = "arg1")
         String arg1);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns publicadores.WrapperListString
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://Publicadores/WebServicesControladorUsuario/getGanadoresDeClaseRequest", output = "http://Publicadores/WebServicesControladorUsuario/getGanadoresDeClaseResponse")
+    public WrapperListString getGanadoresDeClase(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns publicadores.WrapperListDtPremio
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://Publicadores/WebServicesControladorUsuario/getPremiosDeUsuarioRequest", output = "http://Publicadores/WebServicesControladorUsuario/getPremiosDeUsuarioResponse")
+    public WrapperListDtPremio getPremiosDeUsuario(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
 
     /**
      * 

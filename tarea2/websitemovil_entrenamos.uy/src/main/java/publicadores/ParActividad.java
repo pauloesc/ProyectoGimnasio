@@ -7,9 +7,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para parActividad complex type.
+ * <p>Java class for parActividad complex type.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="parActividad">
@@ -37,7 +37,7 @@ public class ParActividad {
     protected int numclase;
 
     /**
-     * Obtiene el valor de la propiedad nombre.
+     * Gets the value of the nombre property.
      * 
      * @return
      *     possible object is
@@ -49,7 +49,7 @@ public class ParActividad {
     }
 
     /**
-     * Define el valor de la propiedad nombre.
+     * Sets the value of the nombre property.
      * 
      * @param value
      *     allowed object is
@@ -61,7 +61,7 @@ public class ParActividad {
     }
 
     /**
-     * Obtiene el valor de la propiedad numclase.
+     * Gets the value of the numclase property.
      * 
      */
     public int getNumclase() {
@@ -69,7 +69,7 @@ public class ParActividad {
     }
 
     /**
-     * Define el valor de la propiedad numclase.
+     * Sets the value of the numclase property.
      * 
      */
     public void setNumclase(int value) {

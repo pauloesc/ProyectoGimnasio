@@ -24,8 +24,11 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _UsuarioInexistenteException_QNAME = new QName("http://Publicadores/", "UsuarioInexistenteException");
-    private final static QName _UsuarioDisponibilidadException_QNAME = new QName("http://Publicadores/", "UsuarioDisponibilidadException");
+    private final static QName _PremioSorteadosException_QNAME = new QName("http://Publicadores/", "PremioSorteadosException");
+    private final static QName _ClaseLlenaException_QNAME = new QName("http://Publicadores/", "ClaseLlenaException");
+    private final static QName _ClaseRepetidaException_QNAME = new QName("http://Publicadores/", "ClaseRepetidaException");
+    private final static QName _ClaseNoExisteException_QNAME = new QName("http://Publicadores/", "ClaseNoExisteException");
+    private final static QName _ClaseYaCompradaException_QNAME = new QName("http://Publicadores/", "ClaseYaCompradaException");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: publicadores
@@ -35,107 +38,43 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link UsuarioDisponibilidadException }
+     * Create an instance of {@link ClaseNoExisteException }
      * 
      */
-    public UsuarioDisponibilidadException createUsuarioDisponibilidadException() {
-        return new UsuarioDisponibilidadException();
+    public ClaseNoExisteException createClaseNoExisteException() {
+        return new ClaseNoExisteException();
     }
 
     /**
-     * Create an instance of {@link UsuarioInexistenteException }
+     * Create an instance of {@link ClaseYaCompradaException }
      * 
      */
-    public UsuarioInexistenteException createUsuarioInexistenteException() {
-        return new UsuarioInexistenteException();
+    public ClaseYaCompradaException createClaseYaCompradaException() {
+        return new ClaseYaCompradaException();
     }
 
     /**
-     * Create an instance of {@link ParActividad }
+     * Create an instance of {@link ClaseLlenaException }
      * 
      */
-    public ParActividad createParActividad() {
-        return new ParActividad();
+    public ClaseLlenaException createClaseLlenaException() {
+        return new ClaseLlenaException();
     }
 
     /**
-     * Create an instance of {@link InfoActividadProfe }
+     * Create an instance of {@link ClaseRepetidaException }
      * 
      */
-    public InfoActividadProfe createInfoActividadProfe() {
-        return new InfoActividadProfe();
+    public ClaseRepetidaException createClaseRepetidaException() {
+        return new ClaseRepetidaException();
     }
 
     /**
-     * Create an instance of {@link WrapperDataCuponera }
+     * Create an instance of {@link PremioSorteadosException }
      * 
      */
-    public WrapperDataCuponera createWrapperDataCuponera() {
-        return new WrapperDataCuponera();
-    }
-
-    /**
-     * Create an instance of {@link WrapperListString }
-     * 
-     */
-    public WrapperListString createWrapperListString() {
-        return new WrapperListString();
-    }
-
-    /**
-     * Create an instance of {@link WrapperStringNull }
-     * 
-     */
-    public WrapperStringNull createWrapperStringNull() {
-        return new WrapperStringNull();
-    }
-
-    /**
-     * Create an instance of {@link InformacionActividad }
-     * 
-     */
-    public InformacionActividad createInformacionActividad() {
-        return new InformacionActividad();
-    }
-
-    /**
-     * Create an instance of {@link InfoBasicaSocio }
-     * 
-     */
-    public InfoBasicaSocio createInfoBasicaSocio() {
-        return new InfoBasicaSocio();
-    }
-
-    /**
-     * Create an instance of {@link DataCuponera }
-     * 
-     */
-    public DataCuponera createDataCuponera() {
-        return new DataCuponera();
-    }
-
-    /**
-     * Create an instance of {@link DtActividadesDeportivas }
-     * 
-     */
-    public DtActividadesDeportivas createDtActividadesDeportivas() {
-        return new DtActividadesDeportivas();
-    }
-
-    /**
-     * Create an instance of {@link InfoBasicaProfesor }
-     * 
-     */
-    public InfoBasicaProfesor createInfoBasicaProfesor() {
-        return new InfoBasicaProfesor();
-    }
-
-    /**
-     * Create an instance of {@link InfoActividadSocio }
-     * 
-     */
-    public InfoActividadSocio createInfoActividadSocio() {
-        return new InfoActividadSocio();
+    public PremioSorteadosException createPremioSorteadosException() {
+        return new PremioSorteadosException();
     }
 
     /**
@@ -155,21 +94,48 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link UsuarioInexistenteException }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link PremioSorteadosException }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://Publicadores/", name = "UsuarioInexistenteException")
-    public JAXBElement<UsuarioInexistenteException> createUsuarioInexistenteException(UsuarioInexistenteException value) {
-        return new JAXBElement<UsuarioInexistenteException>(_UsuarioInexistenteException_QNAME, UsuarioInexistenteException.class, null, value);
+    @XmlElementDecl(namespace = "http://Publicadores/", name = "PremioSorteadosException")
+    public JAXBElement<PremioSorteadosException> createPremioSorteadosException(PremioSorteadosException value) {
+        return new JAXBElement<PremioSorteadosException>(_PremioSorteadosException_QNAME, PremioSorteadosException.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link UsuarioDisponibilidadException }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ClaseLlenaException }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://Publicadores/", name = "UsuarioDisponibilidadException")
-    public JAXBElement<UsuarioDisponibilidadException> createUsuarioDisponibilidadException(UsuarioDisponibilidadException value) {
-        return new JAXBElement<UsuarioDisponibilidadException>(_UsuarioDisponibilidadException_QNAME, UsuarioDisponibilidadException.class, null, value);
+    @XmlElementDecl(namespace = "http://Publicadores/", name = "ClaseLlenaException")
+    public JAXBElement<ClaseLlenaException> createClaseLlenaException(ClaseLlenaException value) {
+        return new JAXBElement<ClaseLlenaException>(_ClaseLlenaException_QNAME, ClaseLlenaException.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ClaseRepetidaException }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://Publicadores/", name = "ClaseRepetidaException")
+    public JAXBElement<ClaseRepetidaException> createClaseRepetidaException(ClaseRepetidaException value) {
+        return new JAXBElement<ClaseRepetidaException>(_ClaseRepetidaException_QNAME, ClaseRepetidaException.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ClaseNoExisteException }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://Publicadores/", name = "ClaseNoExisteException")
+    public JAXBElement<ClaseNoExisteException> createClaseNoExisteException(ClaseNoExisteException value) {
+        return new JAXBElement<ClaseNoExisteException>(_ClaseNoExisteException_QNAME, ClaseNoExisteException.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ClaseYaCompradaException }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://Publicadores/", name = "ClaseYaCompradaException")
+    public JAXBElement<ClaseYaCompradaException> createClaseYaCompradaException(ClaseYaCompradaException value) {
+        return new JAXBElement<ClaseYaCompradaException>(_ClaseYaCompradaException_QNAME, ClaseYaCompradaException.class, null, value);
     }
 
 }

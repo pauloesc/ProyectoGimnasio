@@ -10,16 +10,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for wrapperDataCuponera complex type.
+ * <p>Java class for wrapperListDtPremio complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="wrapperDataCuponera">
+ * &lt;complexType name="wrapperListDtPremio">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="lista" type="{http://Publicadores/}dataCuponera" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="list" type="{http://Publicadores/}dtPremio" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -29,41 +29,41 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "wrapperDataCuponera", propOrder = {
-    "lista"
+@XmlType(name = "wrapperListDtPremio", propOrder = {
+    "list"
 })
-public class WrapperDataCuponera {
+public class WrapperListDtPremio {
 
     @XmlElement(nillable = true)
-    protected List<DataCuponera> lista;
+    protected List<DtPremio> list;
 
     /**
-     * Gets the value of the lista property.
+     * Gets the value of the list property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the lista property.
+     * This is why there is not a <CODE>set</CODE> method for the list property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getLista().add(newItem);
+     *    getList().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link DataCuponera }
+     * {@link DtPremio }
      * 
      * 
      */
-    public List<DataCuponera> getLista() {
-        if (lista == null) {
-            lista = new ArrayList<DataCuponera>();
+    public List<DtPremio> getList() {
+        if (list == null) {
+            list = new ArrayList<DtPremio>();
         }
-        return this.lista;
+        return this.list;
     }
 
 }

@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -86,6 +87,8 @@ public class ConsultaClase extends HttpServlet {
 				req.setAttribute("profe", "F");
 			}
 			
+			List<String> ganadores = portUsr.getGanadoresDeClase(res.getNombre()).getLista();
+			
 			req.setAttribute("nom", res.getNombre());
 			req.setAttribute("nomP",res.getNomProfesor());
 			req.setAttribute("act",res.getNomAct());
@@ -93,6 +96,9 @@ public class ConsultaClase extends HttpServlet {
 			req.setAttribute("img",res.getImagen());
 			req.setAttribute("cantP",res.getCantPremios());
 			req.setAttribute("sort",res.isSorteados());
+			req.setAttribute("ganadores", ganadores);
+			req.setAttribute("cantP", res.getCantPremios());
+			req.setAttribute("descP", res.getDescPremios());
 			
 			//paulo
 			req.setAttribute("minS",res.getMinSocios());

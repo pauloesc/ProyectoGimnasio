@@ -7,9 +7,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para infoBasicaProfesor complex type.
+ * <p>Java class for infoBasicaProfesor complex type.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="infoBasicaProfesor">
@@ -45,7 +45,7 @@ public class InfoBasicaProfesor
     protected String url;
 
     /**
-     * Obtiene el valor de la propiedad bibliografia.
+     * Gets the value of the bibliografia property.
      * 
      * @return
      *     possible object is
@@ -57,7 +57,7 @@ public class InfoBasicaProfesor
     }
 
     /**
-     * Define el valor de la propiedad bibliografia.
+     * Sets the value of the bibliografia property.
      * 
      * @param value
      *     allowed object is
@@ -69,7 +69,7 @@ public class InfoBasicaProfesor
     }
 
     /**
-     * Obtiene el valor de la propiedad desc.
+     * Gets the value of the desc property.
      * 
      * @return
      *     possible object is
@@ -81,7 +81,7 @@ public class InfoBasicaProfesor
     }
 
     /**
-     * Define el valor de la propiedad desc.
+     * Sets the value of the desc property.
      * 
      * @param value
      *     allowed object is
@@ -93,7 +93,7 @@ public class InfoBasicaProfesor
     }
 
     /**
-     * Obtiene el valor de la propiedad institucion.
+     * Gets the value of the institucion property.
      * 
      * @return
      *     possible object is
@@ -105,7 +105,7 @@ public class InfoBasicaProfesor
     }
 
     /**
-     * Define el valor de la propiedad institucion.
+     * Sets the value of the institucion property.
      * 
      * @param value
      *     allowed object is
@@ -117,7 +117,7 @@ public class InfoBasicaProfesor
     }
 
     /**
-     * Obtiene el valor de la propiedad url.
+     * Gets the value of the url property.
      * 
      * @return
      *     possible object is
@@ -129,7 +129,7 @@ public class InfoBasicaProfesor
     }
 
     /**
-     * Define el valor de la propiedad url.
+     * Sets the value of the url property.
      * 
      * @param value
      *     allowed object is
