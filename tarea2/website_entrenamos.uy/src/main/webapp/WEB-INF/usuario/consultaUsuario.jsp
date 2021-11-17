@@ -369,7 +369,7 @@ boolean siguiendoUsuario = (boolean) request.getAttribute("siguiendoUsuario");
 										
 									%>
 									
-									<% if (infoS.getEstadoActividad() != EstadoActi.FINALIZADA ){ %>
+									<% if (infoS.getEstadoActividad() == EstadoActi.ACEPTADA ){ %>
                                  <tr>
                                     <th scope="row"><%=i3%></th>
                                     <td> <a href="consultaClase?clase=<%= infoS.getNombre() %>  "> <%= infoS.getNombre() %> </a></td>

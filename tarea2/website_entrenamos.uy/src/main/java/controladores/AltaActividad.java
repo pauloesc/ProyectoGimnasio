@@ -91,6 +91,14 @@ public class AltaActividad extends HttpServlet {
 		} catch (ActividadDeportivaRepetidaException_Exception e) {
 			e.printStackTrace();
 		}
+		
+		//-------------------
+		publicadores.WebServicesCategoriasService service = new publicadores.WebServicesCategoriasService();
+		publicadores.WebServicesCategorias port = service.getWebServicesCategoriasPort();
+		List<String> nomInstituciones = port.getCategorias().getItem();
+		req.setAttribute("categorias", nomInstituciones);
+		//-------------------
+		
 		req.getRequestDispatcher("/WEB-INF/actividades/altaActividadDeportiva.jsp").forward(req, resp);
 	}
 
@@ -103,6 +111,13 @@ public class AltaActividad extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		//-------------------
+		publicadores.WebServicesCategoriasService service = new publicadores.WebServicesCategoriasService();
+		publicadores.WebServicesCategorias port = service.getWebServicesCategoriasPort();
+		List<String> nomInstituciones = port.getCategorias().getItem();
+		request.setAttribute("categorias", nomInstituciones);
+		//-------------------
 		
 		publicadores.InfoBasicaUser usr;
 		try {

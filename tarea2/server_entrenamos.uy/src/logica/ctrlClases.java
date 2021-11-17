@@ -90,9 +90,9 @@ public class ctrlClases implements IctrlClases {
 	
 	public void cargarDatosClases() {
 		//fechas de inicio
-		Date fecha1 = null, fecha2 = null, fecha3 = null, fecha4 = null, fecha5 = null, fecha6 = null, fecha7 = null, fecha8 = null, fecha9 = null, fecha10 = null, fecha11 = null, fecha12 = null, fecha13 = null, fecha14 = null, fecha15 = null, fecha16 = null, fecha17 = null;
+		Date fecha1 = null, fecha2 = null, fecha3 = null, fecha4 = null, fecha5 = null, fecha6 = null, fecha7 = null, fecha8 = null, fecha9 = null, fecha10 = null, fecha11 = null, fecha12 = null, fecha13 = null, fecha14 = null, fecha15 = null, fecha16 = null, fecha17 = null, fecha18 = null,fecha19 = null;
 		//fechas de registro
-		Date fr1 = null, fr2 = null, fr3 = null, fr4 = null, fr5 = null, fr6 = null, fr7 = null, fr8 = null, fr9 = null, fr10 = null, fr11 = null, fr12 = null, fr13 = null, fr14 = null, fr15 = null, fr16 = null, fr17 = null;
+		Date fr1 = null, fr2 = null, fr3 = null, fr4 = null, fr5 = null, fr6 = null, fr7 = null, fr8 = null, fr9 = null, fr10 = null, fr11 = null, fr12 = null, fr13 = null, fr14 = null, fr15 = null, fr16 = null, fr17 = null, fr18 = null, fr19 = null;
 		try {
 			fecha1 = new SimpleDateFormat("dd/MM/yy").parse("15/04/21");
 			fecha2 = new SimpleDateFormat("dd/MM/yy").parse("01/05/21");
@@ -108,9 +108,12 @@ public class ctrlClases implements IctrlClases {
 			fecha12 = new SimpleDateFormat("dd/MM/yy").parse("15/10/21");
 			fecha13 = new SimpleDateFormat("dd/MM/yy").parse("25/09/21");
 			fecha14 = new SimpleDateFormat("dd/MM/yy").parse("05/11/21");
-			fecha15 = new SimpleDateFormat("dd/MM/yy").parse("25/11/21");
+			fecha15 = new SimpleDateFormat("dd/MM/yy").parse("29/11/21");
 			fecha16 = new SimpleDateFormat("dd/MM/yy").parse("03/11/21");
-			fecha17 = new SimpleDateFormat("dd/MM/yy").parse("01/11/21");
+			fecha17 = new SimpleDateFormat("dd/MM/yy").parse("27/11/21");
+			fecha18 = new SimpleDateFormat("dd/MM/yy").parse("30/11/21");
+			fecha19 = new SimpleDateFormat("dd/MM/yy").parse("01/12/21");
+			
 			
 			fr1 = new SimpleDateFormat("dd/MM/yy").parse("31/03/21");
 			fr2 = new SimpleDateFormat("dd/MM/yy").parse("31/03/21");
@@ -129,24 +132,31 @@ public class ctrlClases implements IctrlClases {
 			fr15 = new SimpleDateFormat("dd/MM/yy").parse("08/07/21");
 			fr16 = new SimpleDateFormat("dd/MM/yy").parse("31/07/21");
 			fr17 = new SimpleDateFormat("dd/MM/yy").parse("31/07/21");
+			fr18 = new SimpleDateFormat("dd/MM/yy").parse("15/11/21");
+			fr19 = new SimpleDateFormat("dd/MM/yy").parse("10/11/21");
 			
-			crearClase("Calistenia", fecha1, "viktor", 1, 5, "https://www.musculos.com/Calistenia", fr1, "Aparatos y pesas", 15, 30, "Calistenia.jpeg", "", 0);
-			crearClase("Peso libre", fecha2, "viktor", 1, 5, "https://www.musculos.com/pesolibre", fr2, "Aparatos y pesas", 17, 00, "", "", 0);
-			crearClase("Aparatos", fecha3, "viktor", 1, 7, "https://www.musculos.com/aparatos", fr3, "Aparatos y pesas", 18, 00, "", "", 0);
-			crearClase("Voleibol", fecha4, "denis", 10, 21, "https://telon.com.uy/voley", fr4, "Voleibol", 19, 00, "Voleibol.jpeg", "", 0);
-			crearClase("Braza", fecha5, "Nelson", 2, 6, "https://telon.com.uy/natacionB", fr5, "Voleibol", 20, 00, "Braza.jpg", "", 0);
-			crearClase("Mariposa", fecha6, "Nelson", 2, 6, "https://telon.com.uy/natacionM", fr6, "Voleibol", 17, 45, "Mariposa.jpeg", "", 0);
-			crearClase("Aeróbica niños", fecha7, "clazar", 5, 10, "https://www.inatural.com/aeroni", fr7, "Aeróbica", 16, 30, "", "", 0);
-			crearClase("Aeróbico adulto mayor", fecha8, "clazar", 5, 12, "https://www.inatural.com/aeroam", fr8, "Aeróbica", 19, 30, "", "", 0);
-			crearClase("Aeróbica", fecha9, "clazar", 5, 20, "https://www.inatural.com/aerogral", fr9, "Aeróbica", 20, 00, "", "", 0);
+			
+			
+			crearClase("Calistenia", fecha1, "viktor", 1, 5, "https://www.musculos.com/Calistenia", fr1, "Aparatos y pesas", 15, 30, "Calistenia.jpeg", "no hay", 0);
+			crearClase("Peso libre", fecha2, "viktor", 1, 5, "https://www.musculos.com/pesolibre", fr2, "Aparatos y pesas", 17, 00, "", "no hay", 0);
+			crearClase("Aparatos", fecha3, "viktor", 1, 7, "https://www.musculos.com/aparatos", fr3, "Aparatos y pesas", 18, 00, "", "Rueda de Abdominales", 3);
+			crearClase("Voleibol", fecha4, "denis", 10, 21, "https://telon.com.uy/voley", fr4, "Voleibol", 19, 00, "Voleibol.jpeg", "no hay", 0);
+			crearClase("Braza", fecha5, "Nelson", 2, 6, "https://telon.com.uy/natacionB", fr5, "Voleibol", 20, 00, "Braza.jpg", "no hay", 0);
+			crearClase("Mariposa", fecha6, "Nelson", 2, 6, "https://telon.com.uy/natacionM", fr6, "Voleibol", 17, 45, "Mariposa.jpeg", "lentes natación", 2);
+			crearClase("Aeróbica niños", fecha7, "clazar", 5, 10, "https://www.inatural.com/aeroni", fr7, "Aeróbica", 16, 30, "", "caramañola infantil", 3);
+			crearClase("Aeróbico adulto mayor", fecha8, "clazar", 5, 12, "https://www.inatural.com/aeroam", fr8, "Aeróbica", 19, 30, "", "no hay", 0);
+			crearClase("Aeróbica", fecha9, "clazar", 5, 20, "https://www.inatural.com/aerogral", fr9, "Aeróbica", 20, 00, "", "caramañola", 2);
 			crearClase("Boxeo I", fecha10, "TheBoss", 1, 4, "https://www.musculos.com/boxeo1", fr10, "Kickboxing", 19, 30, "Boxeo I.jpg", "", 0);
-			crearClase("Boxeo II", fecha11, "TheBoss", 2, 2, "https://www.musculos.com/boxeo2", fr11, "Kickboxing", 17, 00, "Boxeo II.jpg", "", 0);
-			crearClase("Músculos para boxeo", fecha12, "viktor", 1, 5, "https://www.musculos.com/muscbox", fr12, "Kickboxing", 20, 00, "Músculos para boxeo.jpg", "", 0);
-			crearClase("100 M", fecha13, "lale", 3, 10, "https://telon.com.uy/100m", fr13, "Atletismo", 19, 00, "100 M.jpg", "", 0);
-			crearClase("200 M", fecha14, "lale", 3, 10, "https://telon.com.uy/200m", fr14, "Atletismo", 18, 30, "200 M.jpg", "", 0);
-			crearClase("Posta", fecha15, "lale", 8, 16, "https://telon.com.uy/posta", fr15, "Atletismo", 17, 45, "Posta.jpg", "", 0);
-			crearClase("Basquet I", fecha16, "aldo", 10, 15, "https://telon.com.uy/bball1", fr16, "Basquetbol", 21, 00, "", "", 0);
-			crearClase("Basquet II", fecha17, "aldo", 10, 10, "https://telon.com.uy/bball2", fr17, "Basquetbol", 21, 00, "", "", 0);
+			crearClase("Boxeo II", fecha11, "TheBoss", 2, 2, "https://www.musculos.com/boxeo2", fr11, "Kickboxing", 17, 00, "Boxeo II.jpg", "guantillas", 2);
+			crearClase("Músculos para boxeo", fecha12, "viktor", 1, 5, "https://www.musculos.com/muscbox", fr12, "Kickboxing", 20, 00, "Músculos para boxeo.jpg", "no hay", 0);
+			crearClase("100 M", fecha13, "lale", 3, 10, "https://telon.com.uy/100m", fr13, "Atletismo", 19, 00, "100 M.jpg", "no hay", 0);
+			crearClase("200 M", fecha14, "lale", 3, 10, "https://telon.com.uy/200m", fr14, "Atletismo", 18, 30, "200 M.jpg", "no hay", 0);
+			crearClase("Posta", fecha15, "lale", 8, 16, "https://telon.com.uy/posta", fr15, "Atletismo", 17, 45, "Posta.jpg", "no hay", 0);
+			crearClase("Basquet I", fecha16, "aldo", 10, 15, "https://telon.com.uy/bball1", fr16, "Basquetbol", 21, 00, "", "no hay", 0);
+			crearClase("Basquet II", fecha17, "aldo", 10, 10, "https://telon.com.uy/bball2", fr17, "Basquetbol", 21, 00, "", "juego de muñequeras", 5);
+			crearClase("Aparatos II", fecha18, "viktor", 1, 5, "https://www.musculos.com/aparatos", fr18, "Aparatos y pesas", 20, 00, "", "pesa rusa 5K", 2);
+			crearClase("Boxeo III", fecha19, "TheBoss", 2, 6, "https://www.musculos.com/boxeo2", fr19, "Kickboxing", 19, 00, "", "guantillas", 2);
+			
 
 		} catch ( ClaseRepetidaException | ParseException e) {
 			// errores al ingresar las fechas o al registrar clases
@@ -247,7 +257,7 @@ public class ctrlClases implements IctrlClases {
 			registrarSocioAClase("charly", "Atletismo", "100 M", false, "", f37);
 			registrarSocioAClase("Emi71", "Atletismo", "200 M", false, "", f38);
 			registrarSocioAClase("charly", "Atletismo", "200 M", false, "", f39);
-			registrarSocioAClase("caro", "Atletismo", "Posta", false, "", f40);
+			registrarSocioAClase("caro", "Atletismo", "Posta", true, "Pista", f40);
 			registrarSocioAClase("sergiop", "Basquetbol", "Basquet I", false, "", f41);
 			registrarSocioAClase("Emi71", "Basquetbol", "Basquet I", false, "", f42);
 			registrarSocioAClase("tonyp", "Basquetbol", "Basquet I", false, "", f43);

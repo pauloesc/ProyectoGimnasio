@@ -2,6 +2,7 @@ package controladores;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -25,8 +26,13 @@ import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.IOUtils;
+
 import net.java.dev.jaxb.array.StringArray;
 import publicadores.ClaseRepetidaException_Exception;
+import publicadores.IOException_Exception;
+import publicadores.WebServicesADeportivas;
+import publicadores.WebServicesADeportivasService;
 
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 10, 	// 10 MB 
@@ -37,6 +43,8 @@ maxRequestSize=1024*1024*100)
 public class AltaClase extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	private static WebServicesADeportivasService serviceActividades;
+	private static WebServicesADeportivas portActividades;
     
     public AltaClase() {
         super();
@@ -199,34 +207,29 @@ public class AltaClase extends HttpServlet {
 						
 					}
 				
+					serviceActividades = new WebServicesADeportivasService();
+					portActividades = serviceActividades.getWebServicesADeportivasPort();
 					
-					
-					//imagen
 					String ext = "";
 					String fileName = null;
-					
+					String img = "";
 					if ( req.getParts() != null ) {
-					
-						/*gets absolute path of the web application*/
-				        String applicationPath = req.getServletContext().getRealPath("");
-			
-				        // constructs path of the directory to save uploaded file*/
-				        String uploadFilePath = applicationPath + File.separator + "resources/img/clases";
-		
-				        // creates the save directory if it does not exists
-				        File fileSaveDir = new File(uploadFilePath);
-				        if (!fileSaveDir.exists()) {
-				            fileSaveDir.mkdirs();
-				        }
-				     
+						
 				        fileName = nomC.toLowerCase().replaceAll("\\s", "");
 				        String nomf = req.getPart("imagenClase").getSubmittedFileName();
 				        ext = FilenameUtils.getExtension(nomf);
 				        Part part = req.getPart("imagenClase");
-				        part.write(uploadFilePath + File.separator + fileName + "." + ext);
+				        InputStream file = part.getInputStream();
+				        byte[] bytearr = IOUtils.toByteArray(file);
 						
+				        try {
+							portActividades.saveFile(bytearr, fileName + "." + ext);
+						} catch (IOException_Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+				        img = ""+fileName+"."+ext; 
 					}
-					
 					
 					
 					GregorianCalendar calendarFei = new GregorianCalendar();
@@ -245,7 +248,7 @@ public class AltaClase extends HttpServlet {
 			            e.printStackTrace();
 			        }
 					
-					port.crearClase(nomC,xmlDateFei, nomP,Smin ,Smax ,url ,xmlDateFact , act, Integer.parseInt(h), Integer.parseInt(m),fileName + "." + ext,desc,cantP);
+					port.crearClase(nomC,xmlDateFei, nomP,Smin ,Smax ,url ,xmlDateFact , act, Integer.parseInt(h), Integer.parseInt(m),img,desc,cantP);
 					
 					req.setAttribute("respuesta","La clase ha sido creada con exito");
 				} catch (ClaseRepetidaException_Exception e) {

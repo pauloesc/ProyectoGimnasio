@@ -113,8 +113,12 @@ public class Cuponera {
 			InfoClases iterador = iter.next();
 			String nom = iterador.getNombreActividadDeportiva();
 			int numeroCantidad = iterador.getCantidad();
-			ParActividad nuevo = new ParActividad(nom, numeroCantidad);
-			grupo.add(nuevo);
+			
+			if ( iterador.getAct().getEstado() == EstadoActi.ACEPTADA ) {
+				ParActividad nuevo = new ParActividad(nom, numeroCantidad);
+				grupo.add(nuevo);				
+			}
+			
 		}
 		}
 		float costo= this.getCostoCuponera();

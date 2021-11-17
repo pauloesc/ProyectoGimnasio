@@ -172,19 +172,25 @@ public class ctrlCuponeras implements IctrlCuponeras {
 	
 	public void cargarDatosCuponeras() {
 		
-		Date fecha1 = null, fecha2 = null, fecha3 = null, fecha4 = null, fecha5 = null, fecha6 = null, fecha7 = null, fecha8 = null, fecha9 = null, fecha10 = null;
+		Date fecha1 = null, fecha2 = null, fecha3 = null, fecha4 = null, fecha5 = null, fecha6 = null, fecha7 = null, fecha8 = null, fecha9 = null, fecha10 = null, fecha11 = null, fecha12 = null;
 		
 		try {
 			fecha1 = new SimpleDateFormat("dd/MM/yy").parse("01/05/21");
 			fecha2 = new SimpleDateFormat("dd/MM/yy").parse("31/07/21");
 			fecha3 = new SimpleDateFormat("dd/MM/yy").parse("30/04/21");
+			
 			fecha4 = new SimpleDateFormat("dd/MM/yy").parse("01/08/21");
 			fecha5 = new SimpleDateFormat("dd/MM/yy").parse("30/09/21");
 			fecha6 = new SimpleDateFormat("dd/MM/yy").parse("15/07/21");
+			
 			fecha7 = new SimpleDateFormat("dd/MM/yy").parse("15/08/21");
-			fecha8  = new SimpleDateFormat("dd/MM/yy").parse("15/11/21");
-			fecha9  = new SimpleDateFormat("dd/MM/yy").parse("01/08/21");
-			fecha10 = new SimpleDateFormat("dd/MM/yy").parse("30/07/21");
+			fecha8  = new SimpleDateFormat("dd/MM/yy").parse("15/12/21");
+			fecha9  = new SimpleDateFormat("dd/MM/yy").parse("18/07/21");
+			
+			fecha10 = new SimpleDateFormat("dd/MM/yy").parse("01/10/21");
+			fecha11 = new SimpleDateFormat("dd/MM/yy").parse("31/12/21");
+			fecha12 = new SimpleDateFormat("dd/MM/yy").parse("01/09/21");
+			
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -196,6 +202,7 @@ public class ctrlCuponeras implements IctrlCuponeras {
 			registrarCuponera("Pelota", "Deportes con pelota.", fecha1, fecha2, 20f, fecha3, "b1.jpg");
 			registrarCuponera("Gimnasia", "Aeróbica y aparatos.", fecha4, fecha5, 30f, fecha6, "b2.jpg");
 			registrarCuponera("Músculos", "Pesas.", fecha7, fecha8 , 10f, fecha9, "b3.jpg" );
+			registrarCuponera("Pista", "Entrenamiento de Atletismo", fecha10, fecha11 , 15f, fecha12, "b4.jpg" );
 		} catch (CuponeraRepetidaException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -209,19 +216,31 @@ public class ctrlCuponeras implements IctrlCuponeras {
 			agregarActividad("Gimnasia", "Aparatos y pesas", 8);
 		    agregarActividad("Músculos", "Kickboxing", 11);
 		    agregarActividad("Músculos", "Aparatos y pesas", 12);
+		    agregarActividad("Pista", "Atletismo", 20);
 		} catch (ActividadDeportivaRepetidaException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
-	try {
-		comprarCuponera(fecha10 , "Pelota", "guille");
-		comprarCuponera(fecha10 , "Gimnasia", "m1k4");
-		comprarCuponera(fecha10 , "Gimnasia", "caro");
-		comprarCuponera(fecha10 , "Músculos", "sergiop");
-		comprarCuponera(fecha10 , "Músculos", "andy");
-		comprarCuponera(fecha10 , "Pelota", "Emi71");
 		
+		Date fechaCompra = null;
+		Date fechaCompra2 = null;
+		try {
+			fechaCompra = new SimpleDateFormat("dd/MM/yy").parse("30/07/21");
+			fechaCompra2 = new SimpleDateFormat("dd/MM/yy").parse("02/10/21");
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+	try {
+		comprarCuponera(fechaCompra , "Pelota", "guille");
+		comprarCuponera(fechaCompra , "Gimnasia", "m1k4");
+		comprarCuponera(fechaCompra , "Gimnasia", "caro");
+		comprarCuponera(fechaCompra , "Músculos", "sergiop");
+		comprarCuponera(fechaCompra , "Músculos", "andy");
+		comprarCuponera(fechaCompra , "Pelota", "Emi71");
+		
+		comprarCuponera(fechaCompra2 , "Pista", "caro");
 		
 	} catch (CuponeraCompradaException e) {
 		// TODO Auto-generated catch block
