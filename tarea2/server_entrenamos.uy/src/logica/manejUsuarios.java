@@ -4,6 +4,7 @@
 package logica;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -15,6 +16,8 @@ import java.util.Set;
 import excepciones.UsuarioDisponibilidadException;
 
 import java.util.Vector;
+
+import org.eclipse.persistence.annotations.ReturnInsert;
 
 
 public class manejUsuarios {
@@ -193,6 +196,7 @@ public class manejUsuarios {
 		ArrayList<Socio> sCnClase = new ArrayList<Socio>();
 		
 		for (String s : socios) {
+			
 			Socio aux = (Socio)this.findUsuario(s);
 			if ((aux).tineClase(nomC)) {
 				sCnClase.add(aux);
@@ -218,14 +222,28 @@ public class manejUsuarios {
         	
 	}
 	
-	public Set<String> darGanadores(String nomC) {
-		Set<String> res = new HashSet<String>();
-		ArrayList<Socio> sCnClase = darParticipantes(nomC);
-		for (int i =0; i<sCnClase.size(); i++) {
-			if (sCnClase.get(i).getPremio(nomC)) 
-				res.add(sCnClase.get(i).getNickname());
+	public void darPremio(String nomU,String nomC,Date f) {
+		Socio s = (Socio)usuarios.get(nomU);
+		s.setPremio(nomC,f);
+	}
+	
+	
+	public List<String> getGanadoresDeClase(String nomC) {
+		List<String> res = new ArrayList<String>();
+		
+		
+		ArrayList<Socio> parti = darParticipantes(nomC);
+		for (int i =0; i<parti.size(); i++) {
+			if (parti.get(i).getPremio(nomC)) 
+				res.add(parti.get(i).getNickname());
 		}
+		
 		return res;
+	}
+	
+	public List<DtPremio> getPremiosDeUsuario(String nomU) {
+		Socio s = (Socio)usuarios.get(nomU);
+		return s.getMisPremios();
 	}
 	
 }

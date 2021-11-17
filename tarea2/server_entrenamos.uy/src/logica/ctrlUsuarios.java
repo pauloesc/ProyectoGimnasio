@@ -125,6 +125,14 @@ public class ctrlUsuarios implements IctrlUsuarios {
 	
 	}
 	
+	public List<String> getGanadoresDeClase(String nomC) {
+		return manejador.getGanadoresDeClase(nomC);
+	}
+	
+	public List<DtPremio> getPremiosDeUsuario(String nomU) {
+		return manejador.getPremiosDeUsuario(nomU);
+	}
+	
 	public void cargarUsuarios() {
 		//socios
 		Date fecha1 = null, fecha2 = null, fecha3 = null, fecha4 = null, fecha5 = null, fecha6 = null, fecha7 = null, fecha8 = null, fecha9 = null;

@@ -23,6 +23,7 @@ import javax.xml.ws.Endpoint;
 import excepciones.UsuarioDisponibilidadException;
 import excepciones.UsuarioInexistenteException;
 import logica.DataCuponera;
+import logica.DtPremio;
 import logica.IctrlUsuarios;
 import logica.InfoActividadProfe;
 import logica.InfoActividadSocio;
@@ -32,6 +33,7 @@ import logica.Profesor;
 import logica.Socio;
 import logica.Usuario;
 import logica.WrapperDataCuponera;
+import logica.WrapperListDtPremio;
 import logica.WrapperListString;
 import logica.WrapperSetString;
 import logica.WrapperStringNull;
@@ -223,6 +225,25 @@ public class WebServicesControladorUsuario {
         return cu.usuarioSigueAUsuario(usuario1, usuario2);
     }
     
+    
+    @WebMethod
+    public  WrapperListString getGanadoresDeClase(String nomC){
+    	WrapperListString envoltura = new WrapperListString();
+    	IctrlUsuarios cu = new ctrlUsuarios();
+    	envoltura.setLista(cu.getGanadoresDeClase(nomC));
+    	
+    	return envoltura;
+    	
+    }
+    
+    
+    @WebMethod
+    public WrapperListDtPremio getPremiosDeUsuario(String nomU) {
+    	IctrlUsuarios cu = new ctrlUsuarios();
+    	WrapperListDtPremio w = new WrapperListDtPremio();
+    	w.setList(cu.getPremiosDeUsuario(nomU));
+    	return w;
+    }
     
     /**
      * forzar a que se incluya en el wsdl types el siguiente tipo
