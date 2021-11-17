@@ -24,8 +24,7 @@
 	<main role="main" class="container">
 	   <div class="row">
 			<div class="col-12 col-md-8">
-				<h2 class="text-dark mb-4">Consulta Cuponeras de Actividad Deportiva</h2>
-					<div class="row no-gutters">
+					<div class="row">
 						<div class="col-md-5 text-center">
 							<img src="imagenes?id=<%= dtcuponera.getImagen() %>" class="img-fluid" alt="...">
 						</div>

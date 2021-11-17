@@ -32,22 +32,6 @@
 	
 %>
 </head>
-<script type="text/javascript" src="../jquer.js"></script>
-
-<script type="text/javascript">
-	window.onload = function cargaPop() {
-		setTimeout('abrirPopUp()',0);
-	}
-	
-	function abrirPopUp() {
-		<% if ((String)request.getAttribute("respuesta") != null) {%>
-			$("#popup").modal();
-		<%}%>
-		
-	}
-	
-</script>
-<% 	%>
 <body>
 	<jsp:include page="/WEB-INF/template/header.jsp" />
 	<!-- Begin page content -->
@@ -57,8 +41,7 @@
 					<div class="card mb-3" style="max-width: auto;">
 						<div class="row no-gutters">
 							<div class="col-md-4">
-								<img src="imagenes?id=<%=img%>" width="240"
-									height="160" alt="...">
+								<img  class="img-fluid" src="imagenes?id=<%=img%>" alt="...">
 							</div>
 							<div class="col-md-8">
 								<div class="card-body">
