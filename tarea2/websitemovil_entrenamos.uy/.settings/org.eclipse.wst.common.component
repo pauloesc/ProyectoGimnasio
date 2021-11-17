@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-                                        
+                                            
+    
     
     
     
@@ -9,29 +10,22 @@
     
     
     <wb-module deploy-name="website_entrenamos.uy">
-                                                
+                                                        
+        
         
         
         
         
         <wb-resource deploy-path="/" source-path="/src/main/webapp"/>
-                                                
+                                                        
+        
         
         
         
         
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
-                                                                                
+                                                                                        
         
-        
-        
-        
-        
-        
-        
-        
-        <property name="context-root" value="website_entrenamos.uy"/>
-                                                                                
         
         
         
@@ -41,7 +35,9 @@
         
         
         <property name="java-output-path" value="/website_entrenamos.uy/build/classes"/>
-                                                                            
+        <property name="context-root" value="websitemovil_entrenamos.uy"/>
+                                                                                    
+    
     
     
     
@@ -51,7 +47,8 @@
     
     
     </wb-module>
-                                    
+                                        
+
 
 
 

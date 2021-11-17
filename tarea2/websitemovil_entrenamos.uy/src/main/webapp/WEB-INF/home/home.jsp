@@ -37,13 +37,13 @@
 						</ol>
 						<div class="carousel-inner">
 							<div class="carousel-item active">
-								<img src="./resources/img/3.jpg" class="d-block img-responsive" alt="...">
+								<img src="imagenes?id=3.jpg" class="d-block img-responsive" alt="...">
 							</div>
 							<div class="carousel-item">
-								<img src="./resources/img/1.jpg" class="d-block img-responsive" alt="Jiu-Jitsu">
+								<img src="imagenes?id=1.jpg" class="d-block img-responsive" alt="Jiu-Jitsu">
 							</div>
 							<div class="carousel-item">
-								<img src="./resources/img/2.jpg" class="d-block img-responsive" alt="...">
+								<img src="imagenes?id=2.jpg" class="d-block img-responsive" alt="...">
 							</div>
 						</div>
 						<a class="carousel-control-prev" href="#carouselExampleCaptions"
@@ -67,9 +67,9 @@
 				%>	
 					<div class="card">
 					<% if (acti.getImagen() == null) { %>
-						<img src="./resources/img/actividades/noimg.jpg" alt="No tiene imagen.">
+						<img src="imagenes?id=sinimagen.jpg" alt="No tiene imagen.">
 					<% } else {  %>
-						<img src="./resources/img/actividades/<%= acti.getImagen() %>" class="card-img-top" alt="<%= acti.getNombre() %>">
+						<img src="imagenes?id=<%= acti.getImagen() %>" class="card-img-top" alt="<%= acti.getNombre() %>">
 					<% } %>
 						<div class="card-body">
 							<h5 class="card-title">

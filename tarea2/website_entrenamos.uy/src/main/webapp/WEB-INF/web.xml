@@ -171,7 +171,14 @@
 		<servlet-name>SortearPremios</servlet-name>
 		<url-pattern>/sortearPremios</url-pattern>
 	</servlet-mapping>
-	
+	<servlet>
+		<servlet-name>GenerarPDF</servlet-name>
+		<servlet-class>controladores.GenerarPDF</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GenerarPDF</servlet-name>
+		<url-pattern>/generarPDF</url-pattern>
+	</servlet-mapping>
 	
 	
 	<session-config>

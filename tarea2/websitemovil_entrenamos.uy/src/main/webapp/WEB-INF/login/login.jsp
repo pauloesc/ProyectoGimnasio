@@ -6,8 +6,9 @@
 <title>entrenamos.uy</title>
 <!-- Bootstrap CSS -->
 <link href="./resources/css/bootstrap.min.css" rel="stylesheet">
-<link href="./resources/css/signin.css" rel="stylesheet">
 
+<link href="./resources/css/signin.css" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body class="text-center">
 	<%
@@ -16,7 +17,7 @@
       %>
 	<form class="form-signin" method="post" action="login">
 	   <h1 class="h3 mb-3 font-weight-normal">entrenamos.uy</h1>
-		<img class="mb-4" src="./resources/img/login.png" alt="" width="72"
+		<img class="mb-4" src="imagenes?id=login.png" alt="" width="72"
 			height="72">
 		<h1 class="h3 mb-3 font-weight-normal">Iniciar Sesion</h1>
 		<label for="inputEmail" class="sr-only">Email o Nickname</label> <input

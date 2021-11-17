@@ -39,6 +39,14 @@
 		<url-pattern>/consultaActividad</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<servlet-name>ListarActividades</servlet-name>
+		<servlet-class>controladores.ListarActividades</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ListarActividades</servlet-name>
+		<url-pattern>/listarActividades</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>ConsultaInstitucion</servlet-name>
 		<servlet-class>controladores.ConsultaInstitucion</servlet-class>
 	</servlet>
