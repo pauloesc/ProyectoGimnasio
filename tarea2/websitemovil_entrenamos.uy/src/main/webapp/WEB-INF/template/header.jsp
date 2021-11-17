@@ -38,7 +38,7 @@
 						<div class="dropdown-menu"
 							aria-labelledby="navbarDropdownMenu">
 							<a class="dropdown-item" href="listarActividades">Ver Actividades Deportivas</a>
-							<a class="dropdown-item" href="ListarUsuarios">Ver Clases</a>
+							<a class="dropdown-item" href="listarClases">Ver Clases</a>
 						</div>
 					</li>
 					<li class="nav-item dropdown"><a

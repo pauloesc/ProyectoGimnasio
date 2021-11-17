@@ -30,6 +30,19 @@ public interface WebServicesADeportivas {
 
     /**
      * 
+     * @param arg0
+     * @return
+     *     returns net.java.dev.jaxb.array.StringArray
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://Publicadores/WebServicesADeportivas/mostrarClasesVigentesDeActividadDeportivaRequest", output = "http://Publicadores/WebServicesADeportivas/mostrarClasesVigentesDeActividadDeportivaResponse")
+    public StringArray mostrarClasesVigentesDeActividadDeportiva(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
      * @param arg1
      * @param arg0
      */
@@ -84,6 +97,16 @@ public interface WebServicesADeportivas {
 
     /**
      * 
+     * @return
+     *     returns publicadores.WrapperSetDtClase
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://Publicadores/WebServicesADeportivas/getTodasLasClasesRequest", output = "http://Publicadores/WebServicesADeportivas/getTodasLasClasesResponse")
+    public WrapperSetDtClase getTodasLasClases();
+
+    /**
+     * 
      * @param arg3
      * @param arg2
      * @param arg5
@@ -119,21 +142,6 @@ public interface WebServicesADeportivas {
         @WebParam(name = "arg8", partName = "arg8")
         String arg8)
         throws ActividadDeportivaRepetidaException_Exception
-    ;
-
-    /**
-     * 
-     * @return
-     *     returns net.java.dev.jaxb.array.StringArray
-     * @throws ActividadDeportivaNoExisteException_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://Publicadores/WebServicesADeportivas/getActividadesIngresadasRequest", output = "http://Publicadores/WebServicesADeportivas/getActividadesIngresadasResponse", fault = {
-        @FaultAction(className = ActividadDeportivaNoExisteException_Exception.class, value = "http://Publicadores/WebServicesADeportivas/getActividadesIngresadas/Fault/ActividadDeportivaNoExisteException")
-    })
-    public StringArray getActividadesIngresadas()
-        throws ActividadDeportivaNoExisteException_Exception
     ;
 
     /**
@@ -187,26 +195,18 @@ public interface WebServicesADeportivas {
 
     /**
      * 
-     * @param arg0
      * @return
      *     returns net.java.dev.jaxb.array.StringArray
+     * @throws ActividadDeportivaNoExisteException_Exception
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://Publicadores/WebServicesADeportivas/mostrarClasesVigentesDeActividadDeportivaRequest", output = "http://Publicadores/WebServicesADeportivas/mostrarClasesVigentesDeActividadDeportivaResponse")
-    public StringArray mostrarClasesVigentesDeActividadDeportiva(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @return
-     *     returns publicadores.DataActividad
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://Publicadores/WebServicesADeportivas/newDataActividadRequest", output = "http://Publicadores/WebServicesADeportivas/newDataActividadResponse")
-    public DataActividad newDataActividad();
+    @Action(input = "http://Publicadores/WebServicesADeportivas/getActividadesIngresadasRequest", output = "http://Publicadores/WebServicesADeportivas/getActividadesIngresadasResponse", fault = {
+        @FaultAction(className = ActividadDeportivaNoExisteException_Exception.class, value = "http://Publicadores/WebServicesADeportivas/getActividadesIngresadas/Fault/ActividadDeportivaNoExisteException")
+    })
+    public StringArray getActividadesIngresadas()
+        throws ActividadDeportivaNoExisteException_Exception
+    ;
 
     /**
      * 
@@ -228,5 +228,15 @@ public interface WebServicesADeportivas {
         String arg1)
         throws IOException_Exception
     ;
+
+    /**
+     * 
+     * @return
+     *     returns publicadores.DataActividad
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://Publicadores/WebServicesADeportivas/newDataActividadRequest", output = "http://Publicadores/WebServicesADeportivas/newDataActividadResponse")
+    public DataActividad newDataActividad();
 
 }
