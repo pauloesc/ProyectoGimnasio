@@ -52,7 +52,18 @@ public class AltaActividad extends HttpServlet {
 		String cost = req.getParameter("costoActividad");
 		String fileName = null;
 		String ext = null;
-		if ( req.getParts() != null ) {
+		
+		/**
+		 * if ( req.getParts() != null )
+		 * 
+		 * no es util para comprobar que viene la imagen porque 
+		 * vienen las categorias, entonces, da diferente de null aunque no venga una imagen 
+		 */
+		
+		//impoortante que sea vacia.
+		String NombreImagen = "";
+		
+		if ( !req.getPart("imagenActividad").getSubmittedFileName().equals("") ) {
 			
 	        fileName = nact.toLowerCase().replaceAll("\\s", "");
 	        String nomf = req.getPart("imagenActividad").getSubmittedFileName();
@@ -61,7 +72,8 @@ public class AltaActividad extends HttpServlet {
 	        InputStream file = part.getInputStream();
 	        byte[] bytearr = IOUtils.toByteArray(file);
 			
-	        portActividades.saveFile(bytearr, fileName + "." + ext);
+	        NombreImagen = "ActividadDep-"+fileName+"."+ext; 
+	        portActividades.saveFile(bytearr,NombreImagen);
 		}
 		
    
@@ -83,7 +95,7 @@ public class AltaActividad extends HttpServlet {
 		
 		try {
 			portActividades.altaActividadDeportiva(ninst, nprof, nact, descrip, Float.parseFloat(dur),
-					Float.parseFloat(cost), xmlDate, catsenv, fileName + "." + ext);
+					Float.parseFloat(cost), xmlDate, catsenv, NombreImagen);
 			req.setAttribute("msjAlta", "La Actividad Deportiva se ha registrado con éxito.");
 			req.setAttribute("estadoAlta", true);
 		} catch (NumberFormatException e) {
