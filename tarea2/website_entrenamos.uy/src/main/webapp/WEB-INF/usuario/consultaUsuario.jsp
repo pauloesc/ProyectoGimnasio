@@ -371,7 +371,7 @@ boolean siguiendoUsuario = (boolean) request.getAttribute("siguiendoUsuario");
 										
 									%>
 									
-									<% if (infoS.getEstadoActividad() == EstadoActi.ACEPTADA ){ %>
+									<% if (infoS.getEstadoActividad().equals(EstadoActi.ACEPTADA)   ){ %>
                                  <tr>
                                     <th scope="row"><%=i3%></th>
                                     <td> <a href="consultaClase?clase=<%= infoS.getNombre() %>  "> <%= infoS.getNombre() %> </a></td>
@@ -423,7 +423,7 @@ boolean siguiendoUsuario = (boolean) request.getAttribute("siguiendoUsuario");
 										
 									%>
 									
-									<% if (infoS.getEstadoActividad() == EstadoActi.FINALIZADA ){ %>
+									<% if (infoS.getEstadoActividad().equals(EstadoActi.FINALIZADA) ){ %>
                                  <tr>
                                     <th scope="row"><%=i3%></th>
                                     <td> <a href="consultaClase?clase=<%= infoS.getNombre() %>  "> <%= infoS.getNombre() %> </a></td>
@@ -451,7 +451,7 @@ boolean siguiendoUsuario = (boolean) request.getAttribute("siguiendoUsuario");
                   <div class="card shadow mb-5 soloProfesor propioProfesor">
                      <div id="act-dep-ing" class="card-header py-3">
                         <p class="text-primary m-0 font-weight-bold">Actividades deportivas ingresadas (Ingresada,
-                           Rechazada)</p>
+                           Rechazada, Finalizada)</p>
                      </div>
                      <div id="act-dep-ing-cont" class="card-body">
                         <div class="row">
