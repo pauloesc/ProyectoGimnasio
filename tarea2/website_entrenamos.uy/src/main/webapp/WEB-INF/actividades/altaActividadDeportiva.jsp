@@ -1,25 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import="controladores.Instituciones"%>
-<%@page import="controladores.Categorias"%>
-<%@page import="java.util.Set"%>
+<%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html>
 <head>
 <jsp:include page="/WEB-INF/template/head.jsp" />
 </head>
 <%
-	Set<String> instituciones;
-	Set<String> categorias;
-	try {
-		instituciones = Instituciones.getInstituciones();
-		categorias = Categorias.getCategorias();
-	} 
-	catch(Exception ex) {
-		instituciones = null;
-		categorias = null;
-	}
+
 
 	String insti = (String) request.getAttribute("institucion");
+
+	List<String> listCat = (List<String>) request.getAttribute("categorias");
 	
 	String msjAlta = (String) request.getAttribute("msjAlta");
 	Boolean estadoAlta = (Boolean) request.getAttribute("estadoAlta");
@@ -116,7 +107,7 @@
 							<select id="categoriasActividad" name="categoriasActividad"
 								class="custom-select" required="required" multiple="multiple">
 								<% 
-								for(String nomcat :categorias) {
+								for(String nomcat :listCat) {
 								%>
 								<option value="<%= nomcat  %>"><%= nomcat  %></option>
 								<% } %>	
