@@ -167,6 +167,13 @@ public class WebServicesControladorUsuario {
     	return envoltura;
     }
     
+    @WebMethod
+    public WrapperStringNull autenticarUsarioMovil(String nickname, String email, String contrasena){
+    	IctrlUsuarios cu = new ctrlUsuarios();
+    	WrapperStringNull envoltura = new WrapperStringNull();
+    	envoltura.setInformacion(cu.autenticarUsarioMovil(nickname, email, contrasena));
+    	return envoltura;
+    }
     
     @WebMethod
     public String getNicknameUsuario(String email){

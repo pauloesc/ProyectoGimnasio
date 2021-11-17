@@ -299,9 +299,9 @@ public class ctrlUsuarios implements IctrlUsuarios {
 			// Autenticar usando nickname
 			Usuario user = manejador.findUsuario(nickname);
 			if (user == null)
-				return "Nickname " + nickname + " no corresponde a ningun usuario registrado.";
+				return "Datos incorrectos.";
 			if (!user.getContrasena().equals(contrasena))
-				return "Contrasena incorrecta";
+				return "Datos incorrectos.";
 			else
 				return null;
 		}
@@ -309,14 +309,55 @@ public class ctrlUsuarios implements IctrlUsuarios {
 			// Autenticar usando email
 			Usuario user = manejador.findUsuarioPorEmail(email);
 			if (user == null)
-				return "El correo " + email + " no corresponde a ningun usuario registrado.";
+				return "Datos incorrectos.";
 			if (!user.getContrasena().equals(contrasena))
-				return "Contrasena incorrecta";
+				return "Datos incorrectos.";
 			else
 				return null;
 		}
 	}
 	
+	public String autenticarUsarioMovil(String nickname, String email, String contrasena) { 
+		
+		if( nickname.equals("") ) {
+			nickname = null;
+		}
+		
+		if( email.equals("") ) {
+			email = null;
+		}
+		
+		if( contrasena.equals("") ) {
+			contrasena = null;
+		}
+		
+		
+		if (nickname != null){
+			// Autenticar usando nickname
+			Usuario user = manejador.findUsuario(nickname);
+			if (user == null)
+				return "Datos incorrectos.";
+			if (!user.getContrasena().equals(contrasena))
+				return "Datos incorrectos.";
+			if (user instanceof Profesor)
+				return "Datos incorrectos.";
+			else
+				return null;
+		}
+		else {
+			// Autenticar usando email
+			Usuario user = manejador.findUsuarioPorEmail(email);
+			if (user == null)
+				return "Datos incorrectos.";
+			if (!user.getContrasena().equals(contrasena))
+				return "Datos incorrectos.";
+			if (user instanceof Profesor)
+				return "Datos incorrectos.";
+			else
+				return null;
+		}
+	}
+
 	/*
 	 * Si no existe usuario con ese email devuelve null.
 	 */

@@ -49,6 +49,7 @@ public interface IctrlUsuarios {
 	public abstract Set<String> mostrarNicknameSocios();
 	
 	public abstract String autenticarUsario(String nickname, String email, String contrasena);
+	public abstract String autenticarUsarioMovil(String nickname, String email, String contrasena);
 	public abstract String getNicknameUsuario(String email);
 
 	
