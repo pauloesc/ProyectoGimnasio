@@ -213,7 +213,7 @@ public class AltaClase extends HttpServlet {
 					String ext = "";
 					String fileName = null;
 					String img = "";
-					if ( req.getParts() != null ) {
+					if ( ! req.getPart("imagenClase").getSubmittedFileName().equals("") ) {
 						
 				        fileName = nomC.toLowerCase().replaceAll("\\s", "");
 				        String nomf = req.getPart("imagenClase").getSubmittedFileName();
