@@ -2,6 +2,8 @@ package logica;
 import java.util.List;
 import java.util.Set;
 
+import javax.jws.WebMethod;
+
 import excepciones.UsuarioDisponibilidadException;
 import excepciones.UsuarioInexistenteException;
 
@@ -69,5 +71,8 @@ public interface IctrlUsuarios {
 	public abstract List<String> getGanadoresDeClase(String nomC);
 	
 	public abstract List<DtPremio> getPremiosDeUsuario(String nomU);
+	
+    public abstract InfoActividadProfe todasLasActividadesDeUnProfesor(String usuario);
+  
 	
 }

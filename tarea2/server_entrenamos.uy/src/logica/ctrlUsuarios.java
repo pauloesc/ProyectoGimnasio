@@ -414,4 +414,13 @@ public class ctrlUsuarios implements IctrlUsuarios {
 		return encontrado;
 	}
 
+	
+	public InfoActividadProfe todasLasActividadesDeUnProfesor(String nick) {
+		Usuario usuario = this.manejador.findUsuario(nick);
+		Profesor profe = (Profesor) usuario;
+		return profe.todasLasActividadesDeUnProfesor();
+		
+		
+	}
+	
 }

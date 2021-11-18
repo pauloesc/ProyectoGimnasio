@@ -278,6 +278,14 @@ public class WebServicesControladorUsuario {
     /**
      * forzar a que se incluya en el wsdl types
      */
+    
+    
+    @WebMethod
+    public InfoActividadProfe todasLasActividadesDeUnProfesor(String usuario) {
+    	IctrlUsuarios cu = new ctrlUsuarios();
+    	InfoActividadProfe aRetornar = cu.todasLasActividadesDeUnProfesor(usuario);
+    	return aRetornar;
+    }
 
     
 }
