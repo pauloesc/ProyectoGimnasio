@@ -33,7 +33,7 @@
 					<% } %>
 						<div class="card-body">
 							<h5 class="card-title">
-								<a href="consultaActividad?actividad=<%= clase.getNombre() %>" class=""><%= clase.getNombre() %></a>
+								<a href="consultaClase?clase=<%= clase.getNombre() %>" class=""><%= clase.getNombre() %></a>
 							</h5>
 						</div>
 					</div>
