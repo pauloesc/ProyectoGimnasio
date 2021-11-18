@@ -17,33 +17,20 @@ import publicadores.WebServicesClasesService;
 import publicadores.WebServicesCuponeras;
 import publicadores.WebServicesCuponerasService;
 
-public class ConsultaActividad extends HttpServlet
+public class FinalizarActividad extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
 	
 	private static WebServicesADeportivasService serviceActividades;
 	private static WebServicesADeportivas portActividades;
 	
-	private static WebServicesCuponerasService serviceCuponeras;
-	private static WebServicesCuponeras portCuponeras;
-	
-	private static WebServicesClasesService serviceClases;
-	private static WebServicesClases portClases;
-	
-	public ConsultaActividad() 
+	public FinalizarActividad() 
 	{
 		super();
 		
 		serviceActividades = new WebServicesADeportivasService();
 		portActividades = serviceActividades.getWebServicesADeportivasPort();
 		
-		serviceCuponeras = new WebServicesCuponerasService();
-		portCuponeras = serviceCuponeras.getWebServicesCuponerasPort();
-		
-		serviceClases = new WebServicesClasesService();
-		portClases = serviceClases.getWebServicesClasesPort();
-		
-	
 	}
 	
 	private void processRequest(HttpServletRequest req, HttpServletResponse resp)
@@ -51,42 +38,27 @@ public class ConsultaActividad extends HttpServlet
 	{
 		req.setCharacterEncoding("UTF-8");
 		String act = req.getParameter("actividad");
-		//verificar que institucion existe y sino llevar a errorPage
 		publicadores.DataActividad actividad = null;
 		try {
-			actividad = ConsultaActividad.getDataActividad(act);
+			actividad = FinalizarActividad.getDataActividad(act);
 		} catch (ActividadDeportivaNoExisteException_Exception e) {
 			req.getRequestDispatcher("/WEB-INF/errorpages/404.jsp").include(req, resp);
 			return;
 		}
 				
-		List<String> cup=null;
-		try {
-			cup = portCuponeras.getCuponerasAD(act).getSet();
-		} 
-		catch(Exception ex) {
-			cup  = null;
+		String botfin = req.getParameter("finact");
+		if ((botfin != null) && (botfin.equals("fin"))) {
+			finalizarActividad(act);
+			req.setAttribute("msjFin", "La actividad deportiva se ha finalizado.");
+			req.setAttribute("estadoFinalizada", true);
+			req.setAttribute("actividad", actividad);
 		}
 		
-		req.setAttribute("actividad", actividad);
-		req.setAttribute("cup", cup);
-		
-		
-		Set<String> clases;
-		try {
-			clases = new HashSet<String>(portClases.mostrarClasesDeActividadDeportiva(act).getSet());
-		} catch(Exception e) {
-			clases = null;
-		}
-		
-		req.setAttribute("clases", clases);
-		req.getRequestDispatcher("/WEB-INF/actividades/consultaActividadDeportiva.jsp").forward(req, resp);
+		req.getRequestDispatcher("/consultaActividad?actividad="+act).forward(req, resp);
 	}
 	
-	public static Set<String> getActividadesInst(String inst){
-		List<String> actsarr = portActividades.darNombresActividadesDeportivas(inst).getItem();
-		Set<String> acts = new HashSet<String>(actsarr);
-		return acts;
+	public static void finalizarActividad(String act) {
+		portActividades.cambiarEstado(act, EstadoActi.FINALIZADA);
 	}
 	
 	public static publicadores.DataActividad getDataActividad(String act) throws ActividadDeportivaNoExisteException_Exception {

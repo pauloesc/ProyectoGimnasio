@@ -47,6 +47,14 @@
 		<url-pattern>/consultaActividad</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<servlet-name>FinalizarActividad</servlet-name>
+		<servlet-class>controladores.FinalizarActividad</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FinalizarActividad</servlet-name>
+		<url-pattern>/finalizarActividad</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>ConsultaInstitucion</servlet-name>
 		<servlet-class>controladores.ConsultaInstitucion</servlet-class>
 	</servlet>

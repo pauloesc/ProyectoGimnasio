@@ -44,7 +44,7 @@
         <% } %>
         <% if (estadoFinalizada == true) { %>
         <div class="alert alert-success alert-dismissible fade show  my-4" role="alert">
-         <p><%= msjFin %></p>
+         <%= msjFin %>
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -108,10 +108,14 @@
 						<p><i class="fa fa-usd"></i> &nbsp &nbsp Costo: $<%= actividad.getCosto()  %></p>
 						<p><i class="fa fa-clock-o"></i> &nbsp &nbsp Duración: <%= actividad.getDuracion()  %> minutos</p>
 						<% if ((usr != null && usr.getNickname().equals( actividad.getProfesor() ) ) && (actividad.getEstado() != EstadoActi.FINALIZADA) ) { %>
-						    <form method="post" action="consultaActividad?actividad=<%= actividad.getNombre()  %>">     
+						    <form method="post" action="finalizarActividad?actividad=<%= actividad.getNombre()  %>">     
 							     <button type="submit" id="finact" name="finact" value="fin" class="btn btn-danger">Finalizar Actividad Deportiva</button>
 							</form>  
 						<% } %>
+						<% if (request.getAttribute("estadoFinalizada") != null) { %>
+						<% if ((estadoFinalizada == true) || (actividad.getEstado() == EstadoActi.FINALIZADA)) { %>     
+							     <button  class="btn btn-danger">Actividad Deportiva Finalizada</button>
+						<% }} %>
 						</div>
 					</div>	
 					<div class="tab-pane fade" id="cuponeras" role="tabpanel"
