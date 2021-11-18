@@ -12,4 +12,4 @@ public class ActividadDeportivaNoExisteException extends Exception {
     public ActividadDeportivaNoExisteException(String string) {
         super(string);
     }
-}
+ }

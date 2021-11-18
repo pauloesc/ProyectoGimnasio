@@ -1,6 +1,7 @@
 package controladores;
 
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -8,6 +9,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import publicadores.DtActividadesDeportivas;
 import publicadores.UsuarioInexistenteException_Exception;
 import publicadores.WebServicesControladorUsuarioService;
 
@@ -153,6 +156,39 @@ public class ConsultaUsuario extends HttpServlet {
 		if ( esSocio && usuarioPropio ) {
 			premios = port.getPremiosDeUsuario(nickEnSesion).getList();
 		}
+		
+		
+		//--------------
+		List<publicadores.DtActividadesDeportivas> todasLasActivDepDeProfesor = null;
+		if(! esSocio) {
+			todasLasActivDepDeProfesor = port.todasLasActividadesDeUnProfesor(user).getActividadesDep();
+		}
+		request.setAttribute("infoActivvProfe", todasLasActivDepDeProfesor);
+		//--------------
+		
+		
+		System.out.println("****--*-*-*-*-*");
+		
+		if( todasLasActivDepDeProfesor != null ) {
+			
+			Iterator<DtActividadesDeportivas> ititit = todasLasActivDepDeProfesor.iterator();
+			
+			while( ititit.hasNext() ) {
+				
+				DtActividadesDeportivas auxx = ititit.next();
+				
+				
+				
+				System.out.println(auxx.getNombre());
+				System.out.println(auxx.getEstado());
+				System.out.println(auxx.getDescripcion());
+				System.out.println("****--*-*-*-*-*");
+				
+			}
+			
+			
+		}
+		
 		
 		
 		/**

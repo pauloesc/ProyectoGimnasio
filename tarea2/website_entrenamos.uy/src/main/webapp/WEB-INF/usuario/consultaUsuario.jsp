@@ -43,6 +43,8 @@ boolean haySesion = (boolean) request.getAttribute("haySesion");
 
 boolean siguiendoUsuario = (boolean) request.getAttribute("siguiendoUsuario");
 
+List<DtActividadesDeportivas> ListaActividadesDepProfesor = (List<DtActividadesDeportivas>) request.getAttribute("infoActivvProfe");
+
 %>
 
 <head>
@@ -265,15 +267,18 @@ boolean siguiendoUsuario = (boolean) request.getAttribute("siguiendoUsuario");
                               <tbody>
                               <% 
                               	int i=1;
-	          					Iterator<DtActividadesDeportivas> iterat2 = informacionProfesor.iterator();
+	          					Iterator<DtActividadesDeportivas> iterat2 = ListaActividadesDepProfesor.iterator();
 	        					while( iterat2.hasNext() ) {
 	        						DtActividadesDeportivas infoP = iterat2.next();
                               %>
+                              
+                              	<% if ( infoP.getEstado().equals(EstadoActi.ACEPTADA) ){ %>
                                  <tr>
                                     <th scope="row"><%=i%></th>
                                     <td> <a href="consultaActividad?actividad=<%= infoP.getNombre() %>  "><%= infoP.getNombre() %></a></td>
                                     <td><%= infoP.getDescripcion() %></td>
                                  </tr>
+                              <% } %>
                                  
                                 <% i++; } %>
                                 
@@ -466,17 +471,19 @@ boolean siguiendoUsuario = (boolean) request.getAttribute("siguiendoUsuario");
                               </thead>
                               <tbody>
                               <% int i4=1;
-                              Iterator<DtActividadesDeportivas> infoAcInRecha = actDepIR.iterator();
+                              Iterator<DtActividadesDeportivas> infoAcInRecha = ListaActividadesDepProfesor.iterator();
                               while ( infoAcInRecha.hasNext() ){
                             	  DtActividadesDeportivas ii = infoAcInRecha.next();
                               
                               %>
+                              <% if ( ! ii.getEstado().equals(EstadoActi.ACEPTADA) ){ %>
                                  <tr>
                                     <th scope="row"><%=i4%></th>
                                     <td> <a href="consultaActividad?actividad=<%= ii.getNombre() %>  "><%= ii.getNombre() %></a></td>
                                     <td><%= ii.getDescripcion() %></td>
                                     <td> <%= ii.getEstado() %>	 </td>
                                  </tr>
+								<% } %>
 								<% i4++;} %>
                                  
                               </tbody>
@@ -558,8 +565,8 @@ boolean siguiendoUsuario = (boolean) request.getAttribute("siguiendoUsuario");
 										%>
 											<tr>
 												<th scope="row"> <%= contt %> </th>
-												<td><a> <%= p.getNomC()  %> </a></td>
-												<td><a> <%= p.getNomA()  %> </a></td>
+												<td><a href="consultaClase?clase=<%= p.getNomC() %>" > <%= p.getNomC()  %> </a></td>
+												<td><a href="consultaActividad?actividad=<%= p.getNomA()  %>" > <%= p.getNomA() %> </a></td>
 												<td> <%= fprem %> </td>
 											</tr>
 										<% 

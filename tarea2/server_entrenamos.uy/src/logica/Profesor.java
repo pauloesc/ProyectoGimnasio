@@ -132,4 +132,39 @@ public class Profesor extends Usuario {
         return infoRetorno;
 	}
 	
+	
+	public InfoActividadProfe todasLasActividadesDeUnProfesor() {
+	
+		Iterator<ActividadDeportiva> itActividadesProfe = this.actDep.iterator();
+		
+		List<DtActividadesDeportivas> listaConTodasLasActividadesARetornar = new Vector<DtActividadesDeportivas>();
+		
+		while( itActividadesProfe.hasNext() ) {
+			
+			ActividadDeportiva activDepEspecifica = itActividadesProfe.next();
+			
+			
+			//creo un DtActividadesDeportivas y lo meto en la lista a retornar
+			DtActividadesDeportivas nuevo = new DtActividadesDeportivas();
+			nuevo.setNombre( activDepEspecifica.getNombre() );
+			nuevo.setDescripcion( activDepEspecifica.getDescripcion() );
+			nuevo.setDuracion( activDepEspecifica.getDuracion() );
+			nuevo.setCosto( activDepEspecifica.getCosto() );
+			nuevo.setFechaAlta( activDepEspecifica.getFechaAlta() );
+			nuevo.setEstado( activDepEspecifica.getEstado() );
+			//el vector de clases queda vacio
+			
+			listaConTodasLasActividadesARetornar.add(nuevo);
+			
+		}
+		
+		InfoActividadProfe InfoRetornada = new InfoActividadProfe();
+		InfoRetornada.setNombre("-");
+		InfoRetornada.setDesc("--");
+		InfoRetornada.setUrl("---");
+		InfoRetornada.setActividadesDep(listaConTodasLasActividadesARetornar);
+		
+		return InfoRetornada;
+	}
+	
 }
