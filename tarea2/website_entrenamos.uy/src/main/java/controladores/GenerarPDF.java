@@ -47,12 +47,12 @@ public class GenerarPDF extends HttpServlet {
   Font bfBold12 = new Font(FontFamily.TIMES_ROMAN, 12, Font.BOLDITALIC, new BaseColor(0, 0, 0)); 
   Font bf12 = new Font(FontFamily.TIMES_ROMAN, 12); 
 
-  String nombreSocio = "Emiliano Lucas (Emi71)";
-  String nombreProfe = "Denis Miguel (denis)";
-  String clase = "Barra";
-  String actividad = "Aerobica";
-  String descrPremio = "Caramaniola";
-  String fechaClase = "02/02/1994";
+  String nombreSocio = (String) request.getAttribute("nombreSocio");
+  String nombreProfe = (String) request.getAttribute("nombreProfe");
+  String clase = (String) request.getAttribute("nombreClase");
+  String actividad = (String) request.getAttribute("nombreActividad");
+  String descrPremio = (String) request.getAttribute("fechaPremio");
+  String fechaClase = (String) request.getAttribute("fechaClase");
   String fechaCertificado = "02/02/2021";
   
   

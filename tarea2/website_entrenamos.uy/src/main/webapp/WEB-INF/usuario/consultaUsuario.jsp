@@ -552,6 +552,7 @@ List<DtActividadesDeportivas> ListaActividadesDepProfesor = (List<DtActividadesD
 												<th scope="col">Nombre clase</th>
 												<th scope="col">Nombre actividad</th>
 												<th scope="col">Fecha ganado</th>
+												<th scope="col">Certificado</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -568,6 +569,18 @@ List<DtActividadesDeportivas> ListaActividadesDepProfesor = (List<DtActividadesD
 												<td><a href="consultaClase?clase=<%= p.getNomC() %>" > <%= p.getNomC()  %> </a></td>
 												<td><a href="consultaActividad?actividad=<%= p.getNomA()  %>" > <%= p.getNomA() %> </a></td>
 												<td> <%= fprem %> </td>
+												<td> 
+													<form method="post" action="generarPDF">
+														<input type="hidden" id="nombreClase" name="nombreClase" value="<%= p.getNomC() %>">
+														<input type="hidden" id="nombreSocio" name="nombreSocio" value="<%= informacionUusario.getNombre() %> <%= informacionUusario.getApellido() %> (<%= informacionUusario.getNickname() %>)">
+														<input type="hidden" id="nombreActividad" name="nombreActividad" value="<%= p.getNomA() %>">
+														<input type="hidden" id="fechaPremio" name="fechaPremio" value="<%= fprem %>"> 
+														<input type="hidden" id="descrPremio" name="descrPremio" value="falta"> 
+														<input type="hidden" id="nombreProfe" name="nombreProfe" value="falta">  
+														<input type="hidden" id="fechaClase" name="fechaClase" value="falta">  
+							     						<button type="submit" id="certificado" name="certificado" value="" class="btn">Descargar</button>
+													</form>  
+												</td>
 											</tr>
 										<% 
 										contt=contt+1;
