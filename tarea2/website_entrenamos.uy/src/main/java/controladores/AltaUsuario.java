@@ -108,7 +108,7 @@ public class AltaUsuario extends HttpServlet {
 		String ext = "";
 		String fileName = null;
 		
-		if ( request.getParts() != null ) {
+		if ( !request.getPart("imagenUsuario").getSubmittedFileName().equals("") ) {
 			
 	        fileName = nickname.toLowerCase().replaceAll("\\s", "");
 	        String nomf = request.getPart("imagenUsuario").getSubmittedFileName();
