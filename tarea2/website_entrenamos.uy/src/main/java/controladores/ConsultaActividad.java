@@ -60,9 +60,14 @@ public class ConsultaActividad extends HttpServlet
 			return;
 		}
 		
+		
 		String botfin = req.getParameter("finact");
-		if (botfin == "fin") {
+		if ((botfin != null) && (botfin.equals("fin"))) {
 			finalizarActividad(act);
+			req.setAttribute("msjFin", "La Actividad Deportiva se ha finalizado con éxito.");
+			req.setAttribute("estadoFinalizada", true);
+			req.setAttribute("finact", null);
+			req.getRequestDispatcher("/WEB-INF/actividades/consultaActividadDeportiva.jsp").include(req, resp);
 		}
 		
 		List<String> cup=null;

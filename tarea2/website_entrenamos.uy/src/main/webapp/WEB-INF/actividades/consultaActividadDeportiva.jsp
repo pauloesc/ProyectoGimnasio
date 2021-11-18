@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="publicadores.DataActividad"%>
+<%@page import="publicadores.EstadoActi"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Iterator"%>
@@ -23,12 +24,33 @@
 		usr = null;
 	}
 	
+	String msjFin = (String) request.getAttribute("msjFin");
+	Boolean estadoFinalizada = (Boolean) request.getAttribute("estadoFinalizada");
+	
 %>
 
 <body>
 	<jsp:include page="/WEB-INF/template/header.jsp" />
 	<!-- Begin page content -->
 	<main role="main" class="container">
+	<% if (request.getAttribute("estadoFinalizada") != null) { %>
+        <% if (estadoFinalizada == false) { %>
+        <div class="alert alert-danger alert-dismissible fade show  my-4" role="alert">
+          <p>Ocurrio un error.</p>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <% } %>
+        <% if (estadoFinalizada == true) { %>
+        <div class="alert alert-success alert-dismissible fade show  my-4" role="alert">
+         <p><%= msjFin %></p>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <% } %>
+        <% } %>
 		<div class="row my-4">
 			<jsp:include page="/WEB-INF/template/sidebar.jsp" />
 			<div class="col-12 col-md-8 my-4">
@@ -85,7 +107,7 @@
 						<% } %>
 						<p><i class="fa fa-usd"></i> &nbsp &nbsp Costo: $<%= actividad.getCosto()  %></p>
 						<p><i class="fa fa-clock-o"></i> &nbsp &nbsp Duración: <%= actividad.getDuracion()  %> minutos</p>
-						<% if (usr != null && usr.getNickname().equals( actividad.getProfesor() )) { %>
+						<% if ((usr != null && usr.getNickname().equals( actividad.getProfesor() ) ) && (actividad.getEstado() != EstadoActi.FINALIZADA) ) { %>
 						    <form method="post" action="consultaActividad?actividad=<%= actividad.getNombre()  %>">     
 							     <button type="submit" id="finact" name="finact" value="fin" class="btn btn-danger">Finalizar Actividad Deportiva</button>
 							</form>  

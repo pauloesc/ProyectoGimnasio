@@ -60,11 +60,6 @@ public class ConsultaActividad extends HttpServlet
 			return;
 		}
 		
-		String botfin = req.getParameter("finact");
-		if (botfin == "fin") {
-			finalizarActividad(act);
-		}
-		
 		List<String> cup=null;
 		try {
 			cup = portCuponeras.getCuponerasAD(act).getSet();
@@ -92,10 +87,6 @@ public class ConsultaActividad extends HttpServlet
 		List<String> actsarr = portActividades.darNombresActividadesDeportivas(inst).getItem();
 		Set<String> acts = new HashSet<String>(actsarr);
 		return acts;
-	}
-	
-	public static void finalizarActividad(String act) {
-		portActividades.cambiarEstado(act, EstadoActi.FINALIZADA);
 	}
 	
 	public static publicadores.DataActividad getDataActividad(String act) throws ActividadDeportivaNoExisteException_Exception {
