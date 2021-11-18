@@ -137,15 +137,21 @@ public class ConsultaUsuario extends HttpServlet {
 		 * declaro las variables 
 		*/
 		List<publicadores.DataCuponera> cuponerasSocio = null;
-		List<publicadores.DtPremio> premios = null;
+		
 		publicadores.InfoActividadProfe actDepsIngRech = null;
+		
 		if(esSocio) {
 			publicadores.WrapperDataCuponera informacionCuponeras = port.cuponeras(user);
 			cuponerasSocio = informacionCuponeras.getLista();
-			premios = port.getPremiosDeUsuario(nickEnSesion).getList();
+			
 		}
 		else {
 			actDepsIngRech = port.informacionActDepEstadoIngRech(user);			
+		}
+		
+		List<publicadores.DtPremio> premios = null;
+		if ( esSocio && usuarioPropio ) {
+			premios = port.getPremiosDeUsuario(nickEnSesion).getList();
 		}
 		
 		
