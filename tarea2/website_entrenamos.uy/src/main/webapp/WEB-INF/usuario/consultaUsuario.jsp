@@ -543,7 +543,7 @@ List<DtActividadesDeportivas> ListaActividadesDepProfesor = (List<DtActividadesD
 							<div id="premios" class="card-header py-3">
 								<p class="text-primary m-0 font-weight-bold">Premios</p>
 							</div>
-							<div id="cuponeras-cont" class="card-body">
+							<div id="premios-cont" class="card-body">
 								<div class="row">
 									<table class="table table-hover">
 										<thead>
@@ -758,6 +758,22 @@ List<DtActividadesDeportivas> ListaActividadesDepProfesor = (List<DtActividadesD
       }
    });
 </script>
+
+
+<script>
+   var visible = true;
+   $("#premios").click(function () {
+
+      if (visible) {
+         $("#premios-cont").hide();
+         visible = false;
+      } else {
+         $("#premios-cont").show();
+         visible = true;
+      }
+   });
+</script>
+
 
 <script>
    var visible = true;
