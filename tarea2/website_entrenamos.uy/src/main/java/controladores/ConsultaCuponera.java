@@ -99,8 +99,8 @@ public class ConsultaCuponera extends HttpServlet
 				req.setAttribute("msjcompra", "La cuponera se ha comprado con exito.");
 				req.setAttribute("compra", true);
 			} catch (CuponeraCompradaException_Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				req.setAttribute("msjcompra", e.getMessage());
+				req.setAttribute("compra", false);
 			}  
 		}
 		
