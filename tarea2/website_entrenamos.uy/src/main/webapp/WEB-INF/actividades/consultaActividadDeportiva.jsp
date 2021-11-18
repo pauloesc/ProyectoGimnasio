@@ -38,7 +38,7 @@
 						<% if (actividad.getImagen() != null) { %>
 							<img class="d-block w-100" src="imagenes?id=<%= actividad.getImagen()  %>" alt="<%= actividad.getImagen()  %>">
 						<% } else {  %>
-							<img class="d-block w-100" src="./resources/img/actividades/noimg.jpg" alt="No tiene imagen.">
+							<img class="d-block w-100" src="imagenes?id=" alt="No tiene imagen.">
 						<% } %>
 						</div>
 						<div class="col-md-8">
