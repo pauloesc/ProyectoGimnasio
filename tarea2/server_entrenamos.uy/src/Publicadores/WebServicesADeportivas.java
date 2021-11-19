@@ -60,7 +60,6 @@ public class WebServicesADeportivas {
     	} catch (Exception e) {}
     		
     		String url = p.getProperty("urlADeportivas");
-    		System.out.println(url);
     		endpoint = Endpoint.publish(url, this);
     }
 

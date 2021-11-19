@@ -45,7 +45,6 @@ public class WebServicesClases {
     	} catch (Exception e) {}
     		
     		String url = p.getProperty("urlClases");
-    		System.out.println(url);
     		endpoint = Endpoint.publish(url, this);
     }
 

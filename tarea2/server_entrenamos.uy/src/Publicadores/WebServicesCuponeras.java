@@ -54,7 +54,6 @@ public class WebServicesCuponeras {
     	} catch (Exception e) {}
     		
     		String url = p.getProperty("urlCuponeras");
-    		System.out.println(url);
     		endpoint = Endpoint.publish(url, this);
     }
 

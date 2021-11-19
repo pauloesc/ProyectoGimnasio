@@ -68,7 +68,6 @@ public class WebServicesControladorUsuario {
     	} catch (Exception e) {}
     		
     		String url = p.getProperty("urlUsuario");
-    		System.out.println(url);
     		endpoint = Endpoint.publish(url, this);
     }
 
