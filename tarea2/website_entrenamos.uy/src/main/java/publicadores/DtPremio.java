@@ -9,9 +9,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
- * <p>Java class for dtPremio complex type.
+ * <p>Clase Java para dtPremio complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="dtPremio">
@@ -50,7 +50,7 @@ public class DtPremio {
     protected String nomC;
 
     /**
-     * Gets the value of the descrPremio property.
+     * Obtiene el valor de la propiedad descrPremio.
      * 
      * @return
      *     possible object is
@@ -62,7 +62,7 @@ public class DtPremio {
     }
 
     /**
-     * Sets the value of the descrPremio property.
+     * Define el valor de la propiedad descrPremio.
      * 
      * @param value
      *     allowed object is
@@ -74,7 +74,7 @@ public class DtPremio {
     }
 
     /**
-     * Gets the value of the fecha property.
+     * Obtiene el valor de la propiedad fecha.
      * 
      * @return
      *     possible object is
@@ -86,7 +86,7 @@ public class DtPremio {
     }
 
     /**
-     * Sets the value of the fecha property.
+     * Define el valor de la propiedad fecha.
      * 
      * @param value
      *     allowed object is
@@ -98,7 +98,7 @@ public class DtPremio {
     }
 
     /**
-     * Gets the value of the fechaClase property.
+     * Obtiene el valor de la propiedad fechaClase.
      * 
      * @return
      *     possible object is
@@ -110,7 +110,7 @@ public class DtPremio {
     }
 
     /**
-     * Sets the value of the fechaClase property.
+     * Define el valor de la propiedad fechaClase.
      * 
      * @param value
      *     allowed object is
@@ -122,7 +122,7 @@ public class DtPremio {
     }
 
     /**
-     * Gets the value of the nomA property.
+     * Obtiene el valor de la propiedad nomA.
      * 
      * @return
      *     possible object is
@@ -134,7 +134,7 @@ public class DtPremio {
     }
 
     /**
-     * Sets the value of the nomA property.
+     * Define el valor de la propiedad nomA.
      * 
      * @param value
      *     allowed object is
@@ -146,7 +146,7 @@ public class DtPremio {
     }
 
     /**
-     * Gets the value of the nomC property.
+     * Obtiene el valor de la propiedad nomC.
      * 
      * @return
      *     possible object is
@@ -158,7 +158,7 @@ public class DtPremio {
     }
 
     /**
-     * Sets the value of the nomC property.
+     * Define el valor de la propiedad nomC.
      * 
      * @param value
      *     allowed object is

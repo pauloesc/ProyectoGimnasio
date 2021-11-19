@@ -27,16 +27,6 @@ public interface WebServicesControladorUsuario {
 
     /**
      * 
-     * @return
-     *     returns publicadores.WrapperListString
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://Publicadores/WebServicesControladorUsuario/usuariosEnSistemaNickNameRequest", output = "http://Publicadores/WebServicesControladorUsuario/usuariosEnSistemaNickNameResponse")
-    public WrapperListString usuariosEnSistemaNickName();
-
-    /**
-     * 
      * @param arg0
      * @throws UsuarioDisponibilidadException_Exception
      */
@@ -59,6 +49,16 @@ public interface WebServicesControladorUsuario {
     @WebResult(partName = "return")
     @Action(input = "http://Publicadores/WebServicesControladorUsuario/mostrarNicknameSociosRequest", output = "http://Publicadores/WebServicesControladorUsuario/mostrarNicknameSociosResponse")
     public WrapperSetString mostrarNicknameSocios();
+
+    /**
+     * 
+     * @return
+     *     returns publicadores.WrapperListString
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://Publicadores/WebServicesControladorUsuario/usuariosEnSistemaNickNameRequest", output = "http://Publicadores/WebServicesControladorUsuario/usuariosEnSistemaNickNameResponse")
+    public WrapperListString usuariosEnSistemaNickName();
 
     /**
      * 
@@ -374,6 +374,19 @@ public interface WebServicesControladorUsuario {
     @WebResult(partName = "return")
     @Action(input = "http://Publicadores/WebServicesControladorUsuario/todasLasActividadesDeUnProfesorRequest", output = "http://Publicadores/WebServicesControladorUsuario/todasLasActividadesDeUnProfesorResponse")
     public InfoActividadProfe todasLasActividadesDeUnProfesor(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns publicadores.WrapperListaUsuarios
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://Publicadores/WebServicesControladorUsuario/darParticipantesRequest", output = "http://Publicadores/WebServicesControladorUsuario/darParticipantesResponse")
+    public WrapperListaUsuarios darParticipantes(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
 
