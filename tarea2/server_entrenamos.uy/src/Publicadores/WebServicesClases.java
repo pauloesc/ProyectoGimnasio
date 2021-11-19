@@ -1,7 +1,9 @@
 package Publicadores;
 
 
+import java.io.FileReader;
 import java.util.Date;
+import java.util.Properties;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
@@ -35,7 +37,16 @@ public class WebServicesClases {
 
     @WebMethod(exclude = true)
     public void publicar(){
-         endpoint = Endpoint.publish("http://localhost:9128/CtrlClases", this);
+    	Properties p = null;
+    	try {
+	    	FileReader reader=new FileReader("conf.properties");  
+	    	p=new Properties();  
+	    	p.load(reader); 
+    	} catch (Exception e) {}
+    		
+    		String url = p.getProperty("urlClases");
+    		System.out.println(url);
+    		endpoint = Endpoint.publish(url, this);
     }
 
     @WebMethod(exclude = true)

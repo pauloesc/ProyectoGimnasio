@@ -10,6 +10,7 @@ package Publicadores;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.IOException;
 
 import javax.jws.WebMethod;
@@ -40,6 +41,7 @@ import logica.WrapperStringNull;
 import logica.ctrlUsuarios;
 
 import java.util.List;
+import java.util.Properties;
 import java.util.Set;
 import java.util.Vector;
 
@@ -58,7 +60,16 @@ public class WebServicesControladorUsuario {
 
     @WebMethod(exclude = true)
     public void publicar(){
-         endpoint = Endpoint.publish("http://localhost:9128/ControladorUsuario", this);
+    	Properties p = null;
+    	try {
+	    	FileReader reader=new FileReader("conf.properties");  
+	    	p=new Properties();  
+	    	p.load(reader); 
+    	} catch (Exception e) {}
+    		
+    		String url = p.getProperty("urlUsuario");
+    		System.out.println(url);
+    		endpoint = Endpoint.publish(url, this);
     }
 
     @WebMethod(exclude = true)
