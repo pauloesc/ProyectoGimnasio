@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Vector;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -94,6 +95,19 @@ public class ConsultaClase extends HttpServlet {
 			publicadores.WrapperListaUsuarios WrapperlistaDeParticipantesClase = portUsr.darParticipantes( res.getNombre() );
 			
 			List<publicadores.InfoBasicaSocio> listaSociosEnClase = WrapperlistaDeParticipantesClase.getListaUsuarioss();
+			
+			
+			
+			List<publicadores.InfoBasicaSocio> paraGanadores = new Vector<publicadores.InfoBasicaSocio>();
+			
+			
+			for( publicadores.InfoBasicaSocio xx : listaSociosEnClase ) {
+				if( ganadores.contains( xx.getNickname() ) ) {
+					paraGanadores.add(xx);
+				}
+			}
+			
+			req.setAttribute("ganadoresPorOtroMetodo", paraGanadores);
 			
 			
 			req.setAttribute("sociosEnClase", listaSociosEnClase);

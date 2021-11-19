@@ -34,6 +34,9 @@
 	String fechaReg = (String) request.getAttribute("fechaReg");
 	//paulo
 	
+	List<publicadores.InfoBasicaSocio> ganadoresPorOtroMetodo = (List<publicadores.InfoBasicaSocio>)request.getAttribute("ganadoresPorOtroMetodo");
+	
+	
 %>
 </head>
 <script type="text/javascript" src="../jquer.js"></script>
@@ -97,8 +100,15 @@
 									<p class="card-text"> <p class="card-text m-0">premios: <%=cantP%></p>
 									<p class="card-text"> <p class="card-text m-0">descripcion de los premios: <%=descP%></p>
 									
-									<% if (sort) {	%>
-									<p class="card-text"> <p class="card-text m-0">Ganadores del sorteo: <%=ganadores%></p>
+									<% if (sort) {
+									
+										for( publicadores.InfoBasicaSocio infoS : ganadoresPorOtroMetodo ){
+											publicadores.InfoBasicaSocio auxInfoS = infoS;
+									%>
+									
+									<a href="ConsultaUsuario?usuarioNick=<%= auxInfoS.getNickname()  %>"><%= auxInfoS.getNombre() %>,</a>
+									
+									<% }%>
 									<% }%>
 									
 								</div>
