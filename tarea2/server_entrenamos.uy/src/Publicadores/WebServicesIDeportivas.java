@@ -1,5 +1,8 @@
 package Publicadores;
 
+import java.io.FileReader;
+import java.util.Properties;
+
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
@@ -17,6 +20,8 @@ import logica.IctrlIDeportivas;
 @SOAPBinding(style = Style.RPC, parameterStyle = ParameterStyle.WRAPPED)
 public class WebServicesIDeportivas {
 	
+	  
+	    
 	private IctrlIDeportivas controller = Fabrica.getInstance()
 			.getIctrlIDeportivas();
 	
@@ -27,8 +32,16 @@ public class WebServicesIDeportivas {
     
     @WebMethod(exclude = true)
     public void publicar(){
-    	endpoint = Endpoint
-    			.publish("http://localhost:9129/ctrlInstituciones", this);
+    	
+    	Properties p = null;
+    	try {
+	    	FileReader reader=new FileReader("conf.properties");  
+	    	p=new Properties();  
+	    	p.load(reader); 
+    	} catch (Exception e) {}
+    		
+    		String url = p.getProperty("urlIDeportivas");
+    		endpoint = Endpoint.publish(url, this);
     }
     
     @WebMethod(exclude = true)

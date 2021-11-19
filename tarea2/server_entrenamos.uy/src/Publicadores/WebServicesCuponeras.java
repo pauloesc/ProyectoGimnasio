@@ -10,8 +10,11 @@ package Publicadores;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.Date;
+import java.util.Properties;
+
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
@@ -43,7 +46,15 @@ public class WebServicesCuponeras {
 
     @WebMethod(exclude = true)
     public void publicar(){
-         endpoint = Endpoint.publish("http://localhost:9128/CtrlCuponeras", this);
+    	Properties p = null;
+    	try {
+	    	FileReader reader=new FileReader("conf.properties");  
+	    	p=new Properties();  
+	    	p.load(reader); 
+    	} catch (Exception e) {}
+    		
+    		String url = p.getProperty("urlCuponeras");
+    		endpoint = Endpoint.publish(url, this);
     }
 
     @WebMethod(exclude = true)

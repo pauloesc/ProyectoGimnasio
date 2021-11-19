@@ -6,6 +6,7 @@ import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.xml.ws.Endpoint;
 
 import Publicadores.WebServicesClases;
 import Publicadores.WebServicesControladorUsuario;
@@ -26,6 +27,10 @@ import logica.IctrlUsuarios;
 import javax.swing.JMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileReader;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Properties;
 
 
 public class Principal {
@@ -172,6 +177,8 @@ public class Principal {
         desktopPane.add(ModificarUsuarioInternalFrame);
         desktopPane.add(AltaCategoriaFrame);
         desktopPane.add(AceptaRechazaADInternalFrame);
+    		
+    		
     }
 
     /**

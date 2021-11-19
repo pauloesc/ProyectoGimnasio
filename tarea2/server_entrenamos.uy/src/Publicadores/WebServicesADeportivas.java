@@ -6,6 +6,7 @@ package Publicadores;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStream;
 
@@ -16,6 +17,7 @@ import java.io.OutputStream;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Properties;
 import java.util.Set;
 
 import javax.jws.WebMethod;
@@ -50,7 +52,15 @@ public class WebServicesADeportivas {
 
     @WebMethod(exclude = true)
     public void publicar(){
-         endpoint = Endpoint.publish("http://localhost:9128/CtrlActDeportivas", this);
+    	Properties p = null;
+    	try {
+	    	FileReader reader=new FileReader("conf.properties");  
+	    	p=new Properties();  
+	    	p.load(reader); 
+    	} catch (Exception e) {}
+    		
+    		String url = p.getProperty("urlADeportivas");
+    		endpoint = Endpoint.publish(url, this);
     }
 
     @WebMethod(exclude = true)
