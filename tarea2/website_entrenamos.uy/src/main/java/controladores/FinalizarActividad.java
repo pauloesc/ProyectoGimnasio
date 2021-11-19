@@ -48,10 +48,21 @@ public class FinalizarActividad extends HttpServlet
 				
 		String botfin = req.getParameter("finact");
 		if ((botfin != null) && (botfin.equals("fin"))) {
-			finalizarActividad(act);
-			req.setAttribute("msjFin", "La actividad deportiva se ha finalizado.");
-			req.setAttribute("estadoFinalizada", true);
-			req.setAttribute("actividad", actividad);
+			
+			List<String> clasesVigenteDeLaActividad = portActividades.mostrarClasesVigentesDeActividadDeportiva(act).getItem();
+			
+			if ( clasesVigenteDeLaActividad.isEmpty() ) {
+			
+				finalizarActividad(act);
+				req.setAttribute("msjFin", "La actividad deportiva se ha finalizado.");
+				req.setAttribute("estadoFinalizada", true);
+				req.setAttribute("actividad", actividad);
+			}
+			else {
+				req.setAttribute("estadoFinalizada", false);
+				req.setAttribute("msjFin", "La actividad deportiva tiene clases vigentes");
+			}
+			
 		}
 		
 		req.getRequestDispatcher("/consultaActividad?actividad="+act).forward(req, resp);

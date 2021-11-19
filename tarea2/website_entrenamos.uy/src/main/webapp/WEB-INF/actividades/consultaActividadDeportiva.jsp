@@ -36,7 +36,7 @@
 	<% if (request.getAttribute("estadoFinalizada") != null) { %>
         <% if (estadoFinalizada == false) { %>
         <div class="alert alert-danger alert-dismissible fade show  my-4" role="alert">
-          <p>Ocurrio un error.</p>
+          <%= msjFin %>
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
