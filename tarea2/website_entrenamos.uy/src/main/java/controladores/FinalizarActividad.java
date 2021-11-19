@@ -45,6 +45,8 @@ public class FinalizarActividad extends HttpServlet
 			req.getRequestDispatcher("/WEB-INF/errorpages/404.jsp").include(req, resp);
 			return;
 		}
+		
+		// verificar que no tenga clases vigentes con la funcion del controlador de actividad
 				
 		String botfin = req.getParameter("finact");
 		if ((botfin != null) && (botfin.equals("fin"))) {

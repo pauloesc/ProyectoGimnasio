@@ -9,9 +9,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
- * <p>Clase Java para dtClase complex type.
+ * <p>Java class for dtClase complex type.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="dtClase">
@@ -84,7 +84,7 @@ public class DtClase {
     protected String url;
 
     /**
-     * Obtiene el valor de la propiedad actualSocios.
+     * Gets the value of the actualSocios property.
      * 
      */
     public int getActualSocios() {
@@ -92,7 +92,7 @@ public class DtClase {
     }
 
     /**
-     * Define el valor de la propiedad actualSocios.
+     * Sets the value of the actualSocios property.
      * 
      */
     public void setActualSocios(int value) {
@@ -100,7 +100,7 @@ public class DtClase {
     }
 
     /**
-     * Obtiene el valor de la propiedad cantPremios.
+     * Gets the value of the cantPremios property.
      * 
      */
     public int getCantPremios() {
@@ -108,7 +108,7 @@ public class DtClase {
     }
 
     /**
-     * Define el valor de la propiedad cantPremios.
+     * Sets the value of the cantPremios property.
      * 
      */
     public void setCantPremios(int value) {
@@ -116,7 +116,7 @@ public class DtClase {
     }
 
     /**
-     * Obtiene el valor de la propiedad descPremios.
+     * Gets the value of the descPremios property.
      * 
      * @return
      *     possible object is
@@ -128,7 +128,7 @@ public class DtClase {
     }
 
     /**
-     * Define el valor de la propiedad descPremios.
+     * Sets the value of the descPremios property.
      * 
      * @param value
      *     allowed object is
@@ -140,7 +140,7 @@ public class DtClase {
     }
 
     /**
-     * Obtiene el valor de la propiedad estadoActividad.
+     * Gets the value of the estadoActividad property.
      * 
      * @return
      *     possible object is
@@ -152,7 +152,7 @@ public class DtClase {
     }
 
     /**
-     * Define el valor de la propiedad estadoActividad.
+     * Sets the value of the estadoActividad property.
      * 
      * @param value
      *     allowed object is
@@ -164,7 +164,7 @@ public class DtClase {
     }
 
     /**
-     * Obtiene el valor de la propiedad fecha.
+     * Gets the value of the fecha property.
      * 
      * @return
      *     possible object is
@@ -176,7 +176,7 @@ public class DtClase {
     }
 
     /**
-     * Define el valor de la propiedad fecha.
+     * Sets the value of the fecha property.
      * 
      * @param value
      *     allowed object is
@@ -188,7 +188,7 @@ public class DtClase {
     }
 
     /**
-     * Obtiene el valor de la propiedad fechaReg.
+     * Gets the value of the fechaReg property.
      * 
      * @return
      *     possible object is
@@ -200,7 +200,7 @@ public class DtClase {
     }
 
     /**
-     * Define el valor de la propiedad fechaReg.
+     * Sets the value of the fechaReg property.
      * 
      * @param value
      *     allowed object is
@@ -212,7 +212,7 @@ public class DtClase {
     }
 
     /**
-     * Obtiene el valor de la propiedad hora.
+     * Gets the value of the hora property.
      * 
      */
     public int getHora() {
@@ -220,7 +220,7 @@ public class DtClase {
     }
 
     /**
-     * Define el valor de la propiedad hora.
+     * Sets the value of the hora property.
      * 
      */
     public void setHora(int value) {
@@ -228,7 +228,7 @@ public class DtClase {
     }
 
     /**
-     * Obtiene el valor de la propiedad imagen.
+     * Gets the value of the imagen property.
      * 
      * @return
      *     possible object is
@@ -240,7 +240,7 @@ public class DtClase {
     }
 
     /**
-     * Define el valor de la propiedad imagen.
+     * Sets the value of the imagen property.
      * 
      * @param value
      *     allowed object is
@@ -252,7 +252,7 @@ public class DtClase {
     }
 
     /**
-     * Obtiene el valor de la propiedad maxSocios.
+     * Gets the value of the maxSocios property.
      * 
      */
     public int getMaxSocios() {
@@ -260,7 +260,7 @@ public class DtClase {
     }
 
     /**
-     * Define el valor de la propiedad maxSocios.
+     * Sets the value of the maxSocios property.
      * 
      */
     public void setMaxSocios(int value) {
@@ -268,7 +268,7 @@ public class DtClase {
     }
 
     /**
-     * Obtiene el valor de la propiedad minSocios.
+     * Gets the value of the minSocios property.
      * 
      */
     public int getMinSocios() {
@@ -276,7 +276,7 @@ public class DtClase {
     }
 
     /**
-     * Define el valor de la propiedad minSocios.
+     * Sets the value of the minSocios property.
      * 
      */
     public void setMinSocios(int value) {
@@ -284,7 +284,7 @@ public class DtClase {
     }
 
     /**
-     * Obtiene el valor de la propiedad minuto.
+     * Gets the value of the minuto property.
      * 
      */
     public int getMinuto() {
@@ -292,7 +292,7 @@ public class DtClase {
     }
 
     /**
-     * Define el valor de la propiedad minuto.
+     * Sets the value of the minuto property.
      * 
      */
     public void setMinuto(int value) {
@@ -300,7 +300,7 @@ public class DtClase {
     }
 
     /**
-     * Obtiene el valor de la propiedad nomAct.
+     * Gets the value of the nomAct property.
      * 
      * @return
      *     possible object is
@@ -312,7 +312,7 @@ public class DtClase {
     }
 
     /**
-     * Define el valor de la propiedad nomAct.
+     * Sets the value of the nomAct property.
      * 
      * @param value
      *     allowed object is
@@ -324,7 +324,7 @@ public class DtClase {
     }
 
     /**
-     * Obtiene el valor de la propiedad nomProfesor.
+     * Gets the value of the nomProfesor property.
      * 
      * @return
      *     possible object is
@@ -336,7 +336,7 @@ public class DtClase {
     }
 
     /**
-     * Define el valor de la propiedad nomProfesor.
+     * Sets the value of the nomProfesor property.
      * 
      * @param value
      *     allowed object is
@@ -348,7 +348,7 @@ public class DtClase {
     }
 
     /**
-     * Obtiene el valor de la propiedad nombre.
+     * Gets the value of the nombre property.
      * 
      * @return
      *     possible object is
@@ -360,7 +360,7 @@ public class DtClase {
     }
 
     /**
-     * Define el valor de la propiedad nombre.
+     * Sets the value of the nombre property.
      * 
      * @param value
      *     allowed object is
@@ -372,7 +372,7 @@ public class DtClase {
     }
 
     /**
-     * Obtiene el valor de la propiedad sorteados.
+     * Gets the value of the sorteados property.
      * 
      */
     public boolean isSorteados() {
@@ -380,7 +380,7 @@ public class DtClase {
     }
 
     /**
-     * Define el valor de la propiedad sorteados.
+     * Sets the value of the sorteados property.
      * 
      */
     public void setSorteados(boolean value) {
@@ -388,7 +388,7 @@ public class DtClase {
     }
 
     /**
-     * Obtiene el valor de la propiedad url.
+     * Gets the value of the url property.
      * 
      * @return
      *     possible object is
@@ -400,7 +400,7 @@ public class DtClase {
     }
 
     /**
-     * Define el valor de la propiedad url.
+     * Sets the value of the url property.
      * 
      * @param value
      *     allowed object is

@@ -60,7 +60,7 @@ public class Registro {
 	}
 
 	public DtPremio getDtPremio() {
-		return new DtPremio(clase.getNombre(),manejADeportivas.getinstance().getNombreActividadDeClase(clase.getNombre()),fGanadoPremio);
+		return new DtPremio(clase.getNombre(),manejADeportivas.getinstance().getNombreActividadDeClase(clase.getNombre()),clase.getDescPremios(),fGanadoPremio, clase.getFechaInicio());
 	}
 
 }

@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -34,7 +36,7 @@ public class GenerarPDF extends HttpServlet {
  }
 
  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+  request.setCharacterEncoding("UTF-8");
   //get the output stream for writing binary data in the response.
   ServletOutputStream os = response.getOutputStream();
   //set the response content type to PDF
@@ -47,13 +49,13 @@ public class GenerarPDF extends HttpServlet {
   Font bfBold12 = new Font(FontFamily.TIMES_ROMAN, 12, Font.BOLDITALIC, new BaseColor(0, 0, 0)); 
   Font bf12 = new Font(FontFamily.TIMES_ROMAN, 12); 
 
-  String nombreSocio = (String) request.getAttribute("nombreSocio");
-  String nombreProfe = (String) request.getAttribute("nombreProfe");
-  String clase = (String) request.getAttribute("nombreClase");
-  String actividad = (String) request.getAttribute("nombreActividad");
-  String descrPremio = (String) request.getAttribute("fechaPremio");
-  String fechaClase = (String) request.getAttribute("fechaClase");
-  String fechaCertificado = "02/02/2021";
+  String nombreSocio = (String) request.getParameter("nombreSocio");
+  String clase = (String) request.getParameter("nombreClase");
+  String actividad = (String) request.getParameter("nombreActividad");
+  String descrPremio = (String) request.getParameter("descrPremio");
+  String fechaClase = (String) request.getParameter("fechaClase");
+  SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+  String fechaCertificado = formato.format( new Date() );
   
   
   try{
@@ -84,7 +86,7 @@ public class GenerarPDF extends HttpServlet {
    centro.setAlignment(Paragraph.ALIGN_JUSTIFIED);
    doc.add(centro);
    
-   Paragraph footer = new Paragraph("La clase fue dictada el " + fechaClase + " por el profesor " + nombreProfe + ".", bf12);
+   Paragraph footer = new Paragraph("La clase fue dictada el " + fechaClase + ".", bf12);
    footer.setSpacingBefore(50);
    footer.setSpacingAfter(20);
    doc.add(footer);

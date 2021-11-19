@@ -34,8 +34,8 @@ public interface WebServicesClases {
      * @param arg4
      * @param arg1
      * @param arg0
-     * @throws ClaseLlenaException_Exception
      * @throws ClaseYaCompradaException_Exception
+     * @throws ClaseLlenaException_Exception
      */
     @WebMethod
     @Action(input = "http://Publicadores/WebServicesClases/registrarSocioAClaseRequest", output = "http://Publicadores/WebServicesClases/registrarSocioAClaseResponse", fault = {
@@ -170,5 +170,15 @@ public interface WebServicesClases {
     public DtClase darDtClase(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
+
+    /**
+     * 
+     * @return
+     *     returns publicadores.DtPremio
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://Publicadores/WebServicesClases/sinProposito1Request", output = "http://Publicadores/WebServicesClases/sinProposito1Response")
+    public DtPremio sinProposito1();
 
 }

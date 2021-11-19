@@ -16,8 +16,10 @@ import excepciones.ClaseRepetidaException;
 import excepciones.ClaseYaCompradaException;
 import excepciones.PremioSorteadosException;
 import logica.DtClase;
+import logica.DtPremio;
 import logica.Fabrica;
 import logica.IctrlClases;
+import logica.InfoBasicaSocio;
 import logica.WrapperSetString;
 
 @WebService
@@ -73,6 +75,12 @@ public class WebServicesClases {
     @WebMethod
 	public boolean esProfeDeClase(String nomC, String nomP) {
     	return ctrl.esProfeDeClase(nomC, nomP);
+    }
+    
+    @WebMethod
+    public DtPremio sinProposito1() {
+    	DtPremio s = new DtPremio();
+    	return s;
     }
 	
 }

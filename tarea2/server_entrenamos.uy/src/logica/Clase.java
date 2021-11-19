@@ -90,4 +90,8 @@ public class Clase {
 	public int getCantPremios() {
 		return cantPremios;
 	}
+	
+	public String getDescPremios() {
+		return descPremios;
+	}
 }

@@ -58,7 +58,6 @@ List<DtActividadesDeportivas> ListaActividadesDepProfesor = (List<DtActividadesD
    <link href="./resources/css/sticky-footer-navbar.css" rel="stylesheet">
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
    <title>entrenamos.uy</title>
-   
 </head>
 
 <body>
@@ -563,6 +562,7 @@ List<DtActividadesDeportivas> ListaActividadesDepProfesor = (List<DtActividadesD
 										while( prems.hasNext() ){
 											DtPremio p = prems.next();
 											String fprem = formato.format(p.getFecha().toGregorianCalendar().getTime());
+											String fclas = formato.format(p.getFechaClase().toGregorianCalendar().getTime());
 										%>
 											<tr>
 												<th scope="row"> <%= contt %> </th>
@@ -575,9 +575,8 @@ List<DtActividadesDeportivas> ListaActividadesDepProfesor = (List<DtActividadesD
 														<input type="hidden" id="nombreSocio" name="nombreSocio" value="<%= informacionUusario.getNombre() %> <%= informacionUusario.getApellido() %> (<%= informacionUusario.getNickname() %>)">
 														<input type="hidden" id="nombreActividad" name="nombreActividad" value="<%= p.getNomA() %>">
 														<input type="hidden" id="fechaPremio" name="fechaPremio" value="<%= fprem %>"> 
-														<input type="hidden" id="descrPremio" name="descrPremio" value="falta"> 
-														<input type="hidden" id="nombreProfe" name="nombreProfe" value="falta">  
-														<input type="hidden" id="fechaClase" name="fechaClase" value="falta">  
+														<input type="hidden" id="descrPremio" name="descrPremio" value="<%= p.getDescrPremio() %>">   
+														<input type="hidden" id="fechaClase" name="fechaClase" value="<%= fclas %>">  
 							     						<button type="submit" id="certificado" name="certificado" value="" class="btn">Descargar</button>
 													</form>  
 												</td>
