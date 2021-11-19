@@ -110,7 +110,7 @@
 							<div class="col-md-5">
 								<div class="card-body">
 								
-								<% if (true) {%>
+								<% if (profe == "T" && cantPremios>0 && !sort) {%>
 										<form action="${pageContext.request.contextPath}/SortearPremios" method="post" >
 									
 											<input type="hidden" id="clase" name="clase" value="<%= nom %>" >
@@ -122,16 +122,22 @@
 										</form>
 									<%}%>
 								
-								<h5 class="card-title">Socios en clase</h5>
+
 								
-								<table class="table table-hover">
-								<tbody>
-								
-									<% if (true) {
+									<% if (profe == "T" && cantPremios>0 && !sort) {
 									List<publicadores.InfoBasicaSocio> listaParticipantes = (List<publicadores.InfoBasicaSocio>)request.getAttribute("sociosEnClase");
+									%>
+									
+									<h5 class="card-title">Socios en clase</h5>
+									<table class="table table-hover">
+									<tbody>
+									
+									<%
 									for( publicadores.InfoBasicaSocio NomVar: listaParticipantes ){
 										publicadores.InfoBasicaSocio aux = NomVar;
 									%>
+									
+									
 									
 									<tr>
 		     							<th scope="row"></th>
@@ -140,12 +146,12 @@
 		    						</tr>
 									
 									<% }%>
-
+									</tbody>
+									</table>
 									<% }%>
 									
 									
-									</tbody>
-									</table>
+
 									
 								</div>
 							</div>
