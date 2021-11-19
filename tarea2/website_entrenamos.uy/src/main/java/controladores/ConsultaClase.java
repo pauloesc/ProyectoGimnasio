@@ -89,6 +89,17 @@ public class ConsultaClase extends HttpServlet {
 			
 			List<String> ganadores = portUsr.getGanadoresDeClase(res.getNombre()).getLista();
 			
+			
+			
+			publicadores.WrapperListaUsuarios WrapperlistaDeParticipantesClase = portUsr.darParticipantes( res.getNombre() );
+			
+			List<publicadores.InfoBasicaSocio> listaSociosEnClase = WrapperlistaDeParticipantesClase.getListaUsuarioss();
+			
+			
+			req.setAttribute("sociosEnClase", listaSociosEnClase);
+			
+			
+			
 			req.setAttribute("nom", res.getNombre());
 			req.setAttribute("nomP",res.getNomProfesor());
 			req.setAttribute("act",res.getNomAct());

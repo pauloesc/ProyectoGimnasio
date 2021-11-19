@@ -7,6 +7,7 @@ import java.util.Set;
 import java.util.Vector;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -420,6 +421,27 @@ public class ctrlUsuarios implements IctrlUsuarios {
 		Profesor profe = (Profesor) usuario;
 		return profe.todasLasActividadesDeUnProfesor();
 		
+		
+	}
+	
+	
+	public List<InfoBasicaSocio> darParticipantes(String nomC){
+
+		List<InfoBasicaSocio> listaARetornar = new Vector<InfoBasicaSocio>();
+		
+		ArrayList<Socio> aaa = this.manejador.darParticipantes(nomC);
+		
+		Iterator<Socio> sociosIter = aaa.iterator();
+		
+		while( sociosIter.hasNext() ) {
+			
+			Socio auxiliarSocio = sociosIter.next();
+			InfoBasicaSocio informacionAAlmacenar = (InfoBasicaSocio) auxiliarSocio.informacion();
+			listaARetornar.add(informacionAAlmacenar);
+			
+		}
+		
+		return listaARetornar;
 		
 	}
 	

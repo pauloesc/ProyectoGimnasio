@@ -1,4 +1,5 @@
 package logica;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -74,5 +75,6 @@ public interface IctrlUsuarios {
 	
     public abstract InfoActividadProfe todasLasActividadesDeUnProfesor(String usuario);
   
-	
+    public abstract List<InfoBasicaSocio> darParticipantes(String nomC);
+    
 }

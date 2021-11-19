@@ -74,25 +74,7 @@
 									<p class="card-text"> <p class="card-text m-0"><a href="registroAClase?clase=<%= nom%>">Registrarme a la clase</a></p> 
 									<%}%>
 									
-									
-									<% if (profe == "T" && cantPremios>0 && !sort) {%>
-										<form action="${pageContext.request.contextPath}/SortearPremios" method="post" >
-									
-											<input type="hidden" id="clase" name="clase" value="<%= nom %>" >
-											<div class="form-group row">
-												<div class="offset-4 col-8">
-													<button name="submit" type="submit" class="btn btn-primary" >Sortear premios</button>
-												</div>
-											</div>
-											
-									
-										</form>
-									<%}%>
-										
-										
-									
-									
-									
+
 								</div>
 							</div>
 						</div>
@@ -101,7 +83,7 @@
 					<div class="card mb-3" style="max-width: auto;">
 						<div class="row no-gutters">
 							
-							<div class="col-md-8">
+							<div class="col-md-7">
 								<div class="card-body">
 									<h5 class="card-title">Información Adicional</h5>
 									
@@ -121,6 +103,55 @@
 									
 								</div>
 							</div>
+							
+
+
+
+							<div class="col-md-5">
+								<div class="card-body">
+								
+								<% if (true) {%>
+										<form action="${pageContext.request.contextPath}/SortearPremios" method="post" >
+									
+											<input type="hidden" id="clase" name="clase" value="<%= nom %>" >
+											<div class="form-group row">
+												<div class="offset-12 col-12">
+													<button name="submit" type="submit" class="btn btn-primary" >Sortear premios</button>
+												</div>
+											</div>
+										</form>
+									<%}%>
+								
+								<h5 class="card-title">Socios en clase</h5>
+								
+								<table class="table table-hover">
+								<tbody>
+								
+									<% if (true) {
+									List<publicadores.InfoBasicaSocio> listaParticipantes = (List<publicadores.InfoBasicaSocio>)request.getAttribute("sociosEnClase");
+									for( publicadores.InfoBasicaSocio NomVar: listaParticipantes ){
+										publicadores.InfoBasicaSocio aux = NomVar;
+									%>
+									
+									<tr>
+		     							<th scope="row"></th>
+		     							<td> <img src="imagenes?id=<%= aux.getImg() %>" width="30" height="30" class="rounded-circle"> </td>
+		      							<td> <a href="ConsultaUsuario?usuarioNick=<%= aux.getNickname()  %>"><%= aux.getNombre() %></a> </td>
+		    						</tr>
+									
+									<% }%>
+
+									<% }%>
+									
+									
+									</tbody>
+									</table>
+									
+								</div>
+							</div>
+
+
+
 						</div>
 					</div>
 					
