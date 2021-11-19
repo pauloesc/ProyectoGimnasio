@@ -35,6 +35,7 @@ import logica.Usuario;
 import logica.WrapperDataCuponera;
 import logica.WrapperListDtPremio;
 import logica.WrapperListString;
+import logica.WrapperListaUsuarios;
 import logica.WrapperSetString;
 import logica.WrapperStringNull;
 import logica.ctrlUsuarios;
@@ -285,6 +286,16 @@ public class WebServicesControladorUsuario {
     	IctrlUsuarios cu = new ctrlUsuarios();
     	InfoActividadProfe aRetornar = cu.todasLasActividadesDeUnProfesor(usuario);
     	return aRetornar;
+    }
+    
+    
+    @WebMethod
+    public WrapperListaUsuarios darParticipantes(String nomClase) {
+    	IctrlUsuarios cu = new ctrlUsuarios();
+    	List<InfoBasicaSocio> info = cu.darParticipantes( nomClase );
+    	WrapperListaUsuarios retornar = new WrapperListaUsuarios();
+    	retornar.setListaUsuarioss(info);
+    	return retornar;
     }
 
     
