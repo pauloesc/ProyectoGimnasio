@@ -15,7 +15,7 @@
 	String hor = (String)request.getAttribute("hor");
 	String min = (String)request.getAttribute("min");
 	String url = (String)request.getAttribute("url");
-	String urlvide = (String)request.getAttribute("urlvid");
+	String urlvideo = (String)request.getAttribute("urlvid");
 	String img = (String)request.getAttribute("img");
 	String socio = (String)request.getAttribute("socio");
 	String profe = (String)request.getAttribute("profe");
@@ -171,6 +171,7 @@
 						</div>
 					</div>
 					
+					<% if (!urlvideo.equals("")) {%>
 					<div class="card mb-3" style="max-width: auto;">
 						<div class="row no-gutters">
 							
@@ -178,11 +179,12 @@
 								<div class="card-body">
 									<h5 class="card-title">Video de la clase</h5>							
 									<iframe id="player" type="text/html" width="640" height="390"
- 									 src=" <%= urlvide %>" frameborder="0"></iframe>
+ 									 src=" <%= urlvideo %>" frameborder="0"></iframe>
 								</div>
 							</div>
 						</div>
 					</div>
+					<%}%>
 					
 					<div class="modal fade" id="popup" tabindex="-1" role="dialog" aria-labelledby="comprar2Label" aria-hidden="true" show="true">
 					    <div class="modal-dialog" role="document">
