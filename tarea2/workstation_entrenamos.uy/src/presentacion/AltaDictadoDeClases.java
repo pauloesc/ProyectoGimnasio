@@ -41,6 +41,7 @@ public class AltaDictadoDeClases extends JInternalFrame {
 	private JTextField Smin;
 	private JTextField Smax;
 	private JTextField url;
+	private JTextField urlvid;
 	private JComboBox<String> comboBoxInstituciones;
 	private JComboBox<String> comboBoxProfesor;
 	JComboBox<String> comboBoxActividadDeportiva;
@@ -178,6 +179,8 @@ public class AltaDictadoDeClases extends JInternalFrame {
 		
 		JLabel lblUrl = new JLabel("url");
 		
+		JLabel lblUrlVid = new JLabel("url video");
+		
 		JLabel lblFechaDeInicio = new JLabel("Fecha de inicio");
 		
 		JLabel lblFechaDeAlta = new JLabel("Fecha de alta");
@@ -193,6 +196,9 @@ public class AltaDictadoDeClases extends JInternalFrame {
 		
 		url = new JTextField();
 		url.setColumns(10);
+		
+		urlvid = new JTextField();
+		urlvid.setColumns(10);
 		
 		
 		
@@ -224,6 +230,7 @@ public class AltaDictadoDeClases extends JInternalFrame {
 					Date Finicio = dateChooserInicio.getDate();
 					String prof = (String) comboBoxProfesor.getSelectedItem();
 					String ur = url.getText();
+					String urv = urlvid.getText();
 					Date Falta = dateChooserAlta.getDate();
 					String nomAct = (String) comboBoxActividadDeportiva.getSelectedItem();
 					
@@ -249,7 +256,7 @@ public class AltaDictadoDeClases extends JInternalFrame {
 							Fabrica fab = Fabrica.getInstance();
 							IctrlClases ic = fab.getIctrlClases();
 								
-							ic.crearClase(nom, Finicio, prof, min, max, ur, Falta, nomAct, ho, mi, "","",0);
+							ic.crearClase(nom, Finicio, prof, min, max, ur, urv, Falta, nomAct, ho, mi, "","",0);
 							
 							limpiarFormulario();
 							setVisible(false);
@@ -420,6 +427,7 @@ public class AltaDictadoDeClases extends JInternalFrame {
 		Smin.setText("");
 		Smax.setText("");
 		url.setText("");
+		urlvid.setText("");
 		
 		textFieldHora.setSelectedItem(null);
 		textFieldMinuto.setSelectedItem(null);

@@ -102,6 +102,14 @@
 						</div>
 					</div>
 					<div class="form-group row">
+						<label for="urlVideo" class="col-4 col-form-label">url video</label>
+						<div class="col-8">
+							<input id="urlVideo" name="urlVideo"
+								placeholder="Ingrese la url del video de YouTube" type="text"
+								class="form-control" required="required">
+						</div>
+					</div>
+					<div class="form-group row">
 						<label for="sociosMinimos" class="col-4 col-form-label">Socios
 							mínimos</label>
 						<div class="col-8">

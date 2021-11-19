@@ -15,6 +15,7 @@
 	String hor = (String)request.getAttribute("hor");
 	String min = (String)request.getAttribute("min");
 	String url = (String)request.getAttribute("url");
+	String urlvide = (String)request.getAttribute("urlvid");
 	String img = (String)request.getAttribute("img");
 	String socio = (String)request.getAttribute("socio");
 	String profe = (String)request.getAttribute("profe");
@@ -118,6 +119,19 @@
 									<p class="card-text"> <p class="card-text m-0">Ganadores del sorteo: <%=ganadores%></p>
 									<% }%>
 									
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="card mb-3" style="max-width: auto;">
+						<div class="row no-gutters">
+							
+							<div class="col-md-8">
+								<div class="card-body">
+									<h5 class="card-title">Video de la clase</h5>							
+									<iframe id="player" type="text/html" width="640" height="390"
+ 									 src=" <%= urlvide %>" frameborder="0"></iframe>
 								</div>
 							</div>
 						</div>

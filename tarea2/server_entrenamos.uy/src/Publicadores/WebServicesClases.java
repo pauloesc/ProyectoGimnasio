@@ -21,7 +21,6 @@ import logica.DtClase;
 import logica.DtPremio;
 import logica.Fabrica;
 import logica.IctrlClases;
-import logica.InfoBasicaSocio;
 import logica.WrapperSetString;
 
 @WebService
@@ -56,8 +55,8 @@ public class WebServicesClases {
     }
    
     @WebMethod
-    public void crearClase(String nombre, Date Finicio, String prof, int Smin, int Smax, String url, Date FechaAlta, String nomAct, Integer hora, Integer minuto, String img, String descPremios, int cantPremios) throws ClaseRepetidaException {
-    	ctrl.crearClase(nombre, Finicio, prof, Smin, Smax, url, FechaAlta, nomAct, hora, minuto, img, descPremios, cantPremios);
+    public void crearClase(String nombre, Date Finicio, String prof, int Smin, int Smax, String url, String urlVid, Date FechaAlta, String nomAct, Integer hora, Integer minuto, String img, String descPremios, int cantPremios) throws ClaseRepetidaException {
+    	ctrl.crearClase(nombre, Finicio, prof, Smin, Smax, url, urlVid, FechaAlta, nomAct, hora, minuto, img, descPremios, cantPremios);
     }
     
     @WebMethod
@@ -90,6 +89,12 @@ public class WebServicesClases {
     @WebMethod
     public DtPremio sinProposito1() {
     	DtPremio s = new DtPremio();
+    	return s;
+    }
+    
+    @WebMethod
+    public DtClase sinProposito2() {
+    	DtClase s = new DtClase();
     	return s;
     }
 	

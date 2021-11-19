@@ -185,6 +185,7 @@ public class AltaClase extends HttpServlet {
 					String nomC = req.getParameter("nombreClase");
 					String nomP = (String) sesion.getAttribute("nickname-user");
 					String url = req.getParameter("urlClase");
+					String urlvideo = req.getParameter("urlVideo");
 					String act = req.getParameter("actividadDeportiva");
 					String hora = req.getParameter("timepicker");
 					String desc = req.getParameter("descP");
@@ -248,7 +249,7 @@ public class AltaClase extends HttpServlet {
 			            e.printStackTrace();
 			        }
 					
-					port.crearClase(nomC,xmlDateFei, nomP,Smin ,Smax ,url ,xmlDateFact , act, Integer.parseInt(h), Integer.parseInt(m),img,desc,cantP);
+					port.crearClase(nomC,xmlDateFei, nomP,Smin ,Smax ,url , urlvideo ,xmlDateFact , act, Integer.parseInt(h), Integer.parseInt(m),img,desc,cantP);
 					
 					req.setAttribute("respuesta","La clase ha sido creada con exito");
 				} catch (ClaseRepetidaException_Exception e) {

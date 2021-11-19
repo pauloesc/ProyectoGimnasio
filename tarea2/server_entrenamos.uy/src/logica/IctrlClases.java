@@ -18,7 +18,7 @@ import excepciones.PremioSorteadosException;
  */
 public interface IctrlClases {
  
-	public abstract void crearClase(String nombre, Date Finicio, String prof, int Smin, int Smax, String url, Date FechaAlta, String nomAct, Integer hora, Integer minuto, String img, String descPremios, int cantPremios) throws ClaseRepetidaException;
+	public abstract void crearClase(String nombre, Date Finicio, String prof, int Smin, int Smax, String url, String urlvideo, Date FechaAlta, String nomAct, Integer hora, Integer minuto, String img, String descPremios, int cantPremios) throws ClaseRepetidaException;
 
 	public abstract Set<String> mostrarClasesDeActividadDeportiva(String nomAct) throws ClaseNoExisteException;
 	

@@ -34,6 +34,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="sorteados" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *         &lt;element name="url" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="urlVideo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -59,7 +60,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "nomProfesor",
     "nombre",
     "sorteados",
-    "url"
+    "url",
+    "urlVideo"
 })
 public class DtClase {
 
@@ -82,6 +84,7 @@ public class DtClase {
     protected String nombre;
     protected boolean sorteados;
     protected String url;
+    protected String urlVideo;
 
     /**
      * Gets the value of the actualSocios property.
@@ -409,6 +412,30 @@ public class DtClase {
      */
     public void setUrl(String value) {
         this.url = value;
+    }
+
+    /**
+     * Gets the value of the urlVideo property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getUrlVideo() {
+        return urlVideo;
+    }
+
+    /**
+     * Sets the value of the urlVideo property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setUrlVideo(String value) {
+        this.urlVideo = value;
     }
 
 }

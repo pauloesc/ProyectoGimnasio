@@ -12,6 +12,7 @@ public class DtClase {
 	private int actualSocios;
 	private int maxSocios;
 	private String url;
+	private String urlVideo;
 	private Date fechaReg;
 	private String nomProfesor;
 	private int hora;
@@ -26,13 +27,14 @@ public class DtClase {
 	
 	public DtClase() {}
 	
-	public DtClase(Date fecha, String nombre, int minSocios, int actualSocios, int maxSocios, String url, Date fechaReg, String nomProfesor, int hor, int min, String nomAct, String img, String descPremios, int cantPremios, boolean sorteados, EstadoActi estadoActividad) {
+	public DtClase(Date fecha, String nombre, int minSocios, int actualSocios, int maxSocios, String url, String urlvideo, Date fechaReg, String nomProfesor, int hor, int min, String nomAct, String img, String descPremios, int cantPremios, boolean sorteados, EstadoActi estadoActividad) {
 		this.fecha = fecha;
 		this.nombre = nombre;
 		this.minSocios = minSocios;
 		this.actualSocios = actualSocios;
 		this.maxSocios = maxSocios;
 		this.url = url;
+		this.urlVideo = urlvideo;
 		this.fechaReg = fechaReg;
 		this.nomProfesor = nomProfesor;
 		this.hora = hor;
@@ -176,6 +178,14 @@ public class DtClase {
 
 	public void setEstadoActividad(EstadoActi estadoActividad) {
 		this.estadoActividad = estadoActividad;
+	}
+
+	public String getUrlVideo() {
+		return urlVideo;
+	}
+
+	public void setUrlVideo(String urlVideo) {
+		this.urlVideo = urlVideo;
 	}
 	
 }
