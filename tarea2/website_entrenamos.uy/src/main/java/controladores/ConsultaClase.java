@@ -119,8 +119,8 @@ public class ConsultaClase extends HttpServlet {
 			req.setAttribute("act",res.getNomAct());
 			req.setAttribute("url",res.getUrl());
 			String urlvideo = res.getUrlVideo();
-			urlvideo.replaceAll("watch?v=", "embed/");
-			urlvideo.concat("?enablejsapi=1&origin=http://example.com");
+			urlvideo = urlvideo.replace("watch?v=", "embed/");
+
 			req.setAttribute("urlvid", urlvideo);
 			req.setAttribute("img",res.getImagen());
 			req.setAttribute("cantP",res.getCantPremios());
