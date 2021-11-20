@@ -2,6 +2,7 @@ package controladores;
 
 import java.io.IOException;
 import java.util.Set;
+import java.util.Vector;
 import java.util.HashSet;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -84,6 +85,25 @@ public class ConsultaInstitucion extends HttpServlet
 				cuponeras = null;
 			}
 			
+			
+			//paulo
+			List<DataActividad> acts = portActividades.buscarActividades("").getItem();
+			//paulo
+			
+			//listadeActividadesAdebolver
+			List<DataActividad> actRetornar = new Vector<DataActividad>();
+			
+			
+			for( DataActividad varActi : acts ) {
+				
+				if( actividades.contains(varActi.getNombre())  ) {
+					actRetornar.add(varActi);
+				}
+				
+			}
+			
+			
+			req.setAttribute("actividadesConInfo", actRetornar);
 			
 			req.setAttribute("actividades", actividades);
 			req.setAttribute("institucion", dataInst.getNombre());

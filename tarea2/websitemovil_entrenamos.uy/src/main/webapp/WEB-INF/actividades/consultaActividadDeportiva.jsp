@@ -31,34 +31,35 @@
 	<main role="main" class="container">
 		<div class="row">
 			<div class="col-12 col-md-8 my-4">
-				<div class="card mb-3" style="max-width: auto;">
-					<div class="row no-gutters">
-						<div class="col-md-4">
-						<% if (actividad.getImagen() != null) { %>
-							<img class="d-block w-100" src="imagenes?id=<%= actividad.getImagen()  %>" alt="<%= actividad.getImagen()  %>">
-						<% } else {  %>
-							<img class="d-block w-100" src="imagenes?id=sinimagen.jpg" alt="No tiene imagen.">
-						<% } %>
-						</div>
-						<div class="col-md-8">
-							<div class="card-body">
-								<h1 class="card-title"><%= actividad.getNombre()  %></h1>
-								<p class="card-text"><%= actividad.getDescripcion()  %></p>
-								<div class="categorias">
-								<% 
-								Iterator<String> iter = actividad.getCategorias().iterator();
-								while (iter.hasNext()) {
-									String ncat = iter.next();
+			
+			
+							<div class="card" style="max-width: auto;">
+    <div class="row g-0">
+        <div class="col-sm-5">
+            <img src="imagenes?id=<%= actividad.getImagen()  %>" class="card-img-top h-100" alt="...">
+        </div>
+        <div class="col-sm-7">
+            <div class="card-body">
+                <h2 class="card-title"><%= actividad.getNombre()  %></h2>
+                <p class="card-text"><%= actividad.getDescripcion()  %></p>
+                
+                
+                
+                								<% 
+								Iterator<String> iter2 = actividad.getCategorias().iterator();
+								while (iter2.hasNext()) {
+									String ncat = iter2.next();
 								%>								
 									<a href="consultaCategoria?categoria=<%= ncat  %>"><span class="badge badge-info"><%= ncat  %></span></a>
 								<% 
 								}
 								%>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+            </div>
+        </div>
+    </div>
+</div>
+			
+			<br>
 			
 				<ul class="nav nav-tabs" id="myTab" role="tablist">
 					<li class="nav-item" role="presentation"><a
@@ -99,7 +100,7 @@
 							%>	
    							 <tr>
      						 <th scope="row"><%= i2%></th>
-      							<td><a href="consultaCuponera?cuponera=<%= nomcup %>"> <%= nomcup %></a></td> 
+      							<td><%= nomcup %></td> 
     						</tr>
     						<%
     						i2++;
@@ -142,6 +143,8 @@
 			</div>
 		</div>
 	</main>
+	
+	
 
 	<footer class="footer">
 		<div class="container">

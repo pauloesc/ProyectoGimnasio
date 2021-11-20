@@ -2,6 +2,7 @@
 <%@page import="controladores.ConsultaActividad"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.List"%>
+<%@page import="publicadores.DataActividad"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,74 +20,53 @@
 	<main role="main" class="container">
 		<div class="row">
 			<div class="col-12 col-md-8 my-4">
-				<h1><%= nomcat  %></h1>
-				<ul class="nav nav-tabs" id="myTab" role="tablist">
-					<li class="nav-item" role="presentation"><a
-						class="nav-link active" id="actividadesdeportivas-tab" data-toggle="tab"
-						href="#actividadesdeportivas" role="tab" aria-controls="actividadesdeportivas"
-						aria-selected="true">Actividades Deportivas</a></li>
-					<li class="nav-item" role="presentation"><a class="nav-link"
-						id="cuponeras-tab" data-toggle="tab" href="#cuponeras" role="tab"
-						aria-controls="cuponeras" aria-selected="false">Cuponeras</a></li>
-					
-				</ul>
-				<div class="tab-content" id="myTabContent">
-					<div class="tab-pane fade show active" id="actividadesdeportivas"
-						role="tabpanel" aria-labelledby="actividadesdeportivas-tab">
-						<div class="m-3">
-						<table class="table table-hover">
-  					<% 
-  					int i = 1;
-  					if (actividades != null)
-							for(String nomact :actividades) {
-						%>	
-   							<tr>
-     							<th scope="row"><%= i  %></th>
-      						<td> <a href="consultaActividad?actividad=<%= nomact  %>"><%= nomact  %></a> </td>
-    						</tr>
-    					<%
-    					i++;
-							} 
-							%>	
-  						</tbody>
-					</table>
-					
-					</div>
-					</div>
-					<div class="tab-pane fade" id="cuponeras" role="tabpanel"
-						aria-labelledby="cuponeras-tab">
-						<div class="m-3">
-						<table class="table table-hover">
-  							<thead>
-    							<tr>
-     							 <th scope="col">#</th>
-     							 <th scope="col">Nombre</th>
-    							</tr>
-  							</thead>
-  							<tbody>
-  							<% 
-  							int i2 = 1;
-  							if (cuponeras != null)
-									for(String nomcup2 : cuponeras) {
-								%>	
-   							<tr>
-     							<th scope="row"><%= i2  %></th>
-      						<td><a href="consultaCuponera?cuponera=<%= nomcup2 %>"> <%= nomcup2 %></a></td> 
-    						</tr>
-    						<%
-    							i2++;
-									} 
-								%>	
-    					</tbody>
-					</table>
-					
-					</div>
-						
-					</div>
-					
-				</div>
+				<h1>Actividades con categoria: <i><%= nomcat  %></i> </h1>
+
 			</div>
 		</div>
+		
+		
+<%
+List<DataActividad> actividadesConInfo = (List<DataActividad>) request.getAttribute("actividadesConInfo");
+
+%>	
+		
+<section id="gallery">
+<div class="container">
+<div class="row">
+  
+ <% 
+for( DataActividad varActivv : actividadesConInfo  ){
+	DataActividad auxiliarActividad =  varActivv;
+%>
+
+<div class="col-lg-4 col-md-6 col-sm-6">
+<div class="card">
+<% if (auxiliarActividad.getImagen() == null) { %>
+<a class="" href="consultaActividad?actividad=<%= auxiliarActividad.getNombre()  %>">
+<img src="imagenes?id=" alt="" class="card-img-top">
+</a>
+<% } else { %>
+<a class="" href="consultaActividad?actividad=<%= auxiliarActividad.getNombre()  %>">
+<img src="imagenes?id=<%= auxiliarActividad.getImagen() %>" alt="" class="card-img-top">
+</a>
+<% } %>
+<div class="card-body">
+<h5 class="card-title"><a class="" href="consultaActividad?actividad=<%= auxiliarActividad.getNombre()  %>"><%= auxiliarActividad.getNombre()  %></a></h5>
+</div>
+</div>
+</div>
+
+<% } %>
+
+</div>
+</div>
+</section>
+		
+		
+		
+		
+		
 	</main>
 
 	<footer class="footer">
