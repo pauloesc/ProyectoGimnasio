@@ -3,6 +3,7 @@ package controladores;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -51,6 +52,16 @@ public class Login extends HttpServlet {
 				sesion.setAttribute("nickname-user", nickname);
 				sesion.setAttribute("estado-sesion", "logged-in");
 				sesion.setAttribute("login-error", null);
+				
+				if ( req.getParameter("recordarme").equals("1") ) {
+			        //Creating two cookies
+			        Cookie c1=new Cookie("userName", nickname);
+			        Cookie c2=new Cookie("userPassword",pass);
+			        c1.setMaxAge(3600);
+			        c2.setMaxAge(3600);
+					resp.addCookie(c1);
+					resp.addCookie(c2);
+				}
 				resp.sendRedirect("/websitemovil_entrenamos.uy/home");
 			} else
 			{
