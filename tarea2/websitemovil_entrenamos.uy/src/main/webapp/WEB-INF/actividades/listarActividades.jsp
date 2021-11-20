@@ -19,31 +19,51 @@
 	<main role="main" class="container">
 		<div class="row">
 			<div class="col-12 col-md-8 my-4">
-				<div class="card-group">
-				<% 
-				Iterator<DataActividad> iterac = acts.iterator();
-				for (int i = 1; i < acts.size(); i++) {
-					DataActividad acti = iterac.next();
-				%>	
-					<div class="card">
-					<% if (acti.getImagen() == null) { %>
-						<img src="imagenes?id=sinimagen.jpg" alt="No tiene imagen.">
-					<% } else {  %>
-						<img src="imagenes?id=<%= acti.getImagen() %>" class="card-img-top" alt="<%= acti.getNombre() %>">
-					<% } %>
-						<div class="card-body">
-							<h5 class="card-title">
-								<a href="consultaActividad?actividad=<%= acti.getNombre() %>" class=""><%= acti.getNombre() %></a>
-							</h5>
-							<p class="card-text"><%= acti.getDescripcion() %></p>
-						</div>
-					</div>
-				<% 
-					}
-				%>
-				</div>
+			<h3> <i>Actividades deportivas</i></h3>
 			</div>
 		</div>
+		
+		
+		<section id="gallery">
+<div class="container">
+<div class="row">
+  
+ <% 
+for( DataActividad varActivv : acts  ){
+	DataActividad auxiliarActividad =  varActivv;
+%>
+
+<div class="col-lg-4 col-md-6 col-sm-6">
+<div class="card">
+<% if (auxiliarActividad.getImagen() == null) { %>
+<a class="" href="consultaActividad?actividad=<%= auxiliarActividad.getNombre()  %>">
+<img src="imagenes?id=" alt="" class="card-img-top">
+</a>
+<% } else { %>
+<a class="" href="consultaActividad?actividad=<%= auxiliarActividad.getNombre()  %>">
+<img src="imagenes?id=<%= auxiliarActividad.getImagen() %>" alt="" class="card-img-top">
+</a>
+<% } %>
+<div class="card-body">
+<h5 class="card-title"><a class="" href="consultaActividad?actividad=<%= auxiliarActividad.getNombre()  %>"><%= auxiliarActividad.getNombre()  %></a></h5>
+</div>
+</div>
+</div>
+
+<% } %>
+
+</div>
+</div>
+</section>
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	</main>
 
 	<footer class="footer">

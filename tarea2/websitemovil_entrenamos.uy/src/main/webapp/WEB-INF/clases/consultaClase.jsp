@@ -41,21 +41,24 @@
 	<main role="main" class="container">
 		<div class="row">
 			<div class="col-12 col-md-8 my-4">
-					<div class="card mb-3" style="max-width: auto;">
-						<div class="row no-gutters">
-							<div class="col-md-4">
-								<img  class="img-fluid" src="imagenes?id=<%=img%>" alt="...">
-							</div>
-							<div class="col-md-8">
-								<div class="card-body">
-									<h5 class="card-title"><%= nom %></h5>
-									<p class="card-text"> <p class="card-text m-0"><a href="consultaActividad?actividad=<%= act%>">Ver información de la actividad deportiva</a></p> 
-								
-								</div>
-							</div>
-						</div>
-					</div>
-					
+			
+			
+<div class="card" style="max-width: auto;">
+    <div class="row g-0">
+        <div class="col-sm-5">
+            <img src="imagenes?id=<%= img  %>" class="card-img-top h-100" alt="...">
+        </div>
+        <div class="col-sm-7">
+            <div class="card-body">
+                <h2 class="card-title"><%= nom %></h2>
+                <p class="card-text"> <p class="card-text m-0"><a href="consultaActividad?actividad=<%= act%>">Ver información de la actividad deportiva</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+			
+			<br>
+
 					<div class="card mb-3" style="max-width: auto;">
 						<div class="row no-gutters">
 							

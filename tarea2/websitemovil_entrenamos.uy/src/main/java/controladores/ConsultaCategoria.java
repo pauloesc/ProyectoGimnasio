@@ -3,6 +3,7 @@ package controladores;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Vector;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import publicadores.ActividadDeportivaNoExisteException_Exception;
-
+import publicadores.DataActividad;
 import publicadores.EstadoActi;
 
 import publicadores.WebServicesADeportivas;
@@ -95,6 +96,31 @@ public class ConsultaCategoria extends HttpServlet
 			{
 				cuponeras = null;
 			}
+			
+			
+			
+			//paulo
+			
+			//paulo
+			List<DataActividad> acts = portActividades.buscarActividades("").getItem();
+			//paulo
+			
+			//listadeActividadesAdebolver
+			List<DataActividad> actRetornar = new Vector<DataActividad>();
+			
+			
+			for( DataActividad varActi : acts ) {
+				
+				if( actividadesAceptadas.contains(varActi.getNombre())  ) {
+					actRetornar.add(varActi);
+				}
+				
+			}
+			
+			
+			req.setAttribute("actividadesConInfo", actRetornar);
+			//paulo
+			
 			
 			req.setAttribute("actividades", actividadesAceptadas);
 			req.setAttribute("categoria", cat);
