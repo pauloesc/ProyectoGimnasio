@@ -16,34 +16,63 @@
 <body>
 	<jsp:include page="/WEB-INF/template/header.jsp" />
 	<!-- Begin page content -->
-	<main role="main" class="container">
-		<div class="row">
-			<div class="col-12 col-md-8 my-4">
-				<div class="card-group">
-				<% 
-				Iterator<DtClase> iterac = clases.iterator();
-				for (int i = 1; i < clases.size(); i++) {
-					DtClase clase = iterac.next();
-				%>	
-					<div class="card">
-					<% if (clase.getImagen() == null) { %>
-						<img src="imagenes?id=sinimagen.jpg" alt="No tiene imagen.">
-					<% } else {  %>
-						<img src="imagenes?id=<%= clase.getImagen() %>" class="card-img-top" alt="<%= clase.getNombre() %>">
-					<% } %>
-						<div class="card-body">
-							<h5 class="card-title">
-								<a href="consultaClase?clase=<%= clase.getNombre() %>" class=""><%= clase.getNombre() %></a>
-							</h5>
-						</div>
-					</div>
-				<% 
-					}
-				%>
-				</div>
-			</div>
-		</div>
+	
+<main role="main" class="container">
+<div class="row">
+	<div class="col-12 col-md-8 my-4">
+	<h3> <i>Clses</i></h3>
+	</div>
+</div>
+
+		
+		<section id="gallery">
+<div class="container">
+<div class="row">
+  
+ <% 
+for( DtClase varActivv : clases  ){
+	DtClase auxiliarActividad =  varActivv;
+%>
+
+<div class="col-lg-4 col-md-6 col-sm-6">
+<div class="card">
+<% if (auxiliarActividad.getImagen() == null) { %>
+<a class="" href="consultaClase?clase=<%= auxiliarActividad.getNombre()  %>">
+<img src="imagenes?id=" alt="" class="card-img-top">
+</a>
+<% } else { %>
+<a class="" href="consultaClase?clase=<%= auxiliarActividad.getNombre()  %>">
+<img src="imagenes?id=<%= auxiliarActividad.getImagen() %>" alt="" class="card-img-top">
+</a>
+<% } %>
+<div class="card-body">
+<h5 class="card-title"><a class="" href="consultaClase?clase=<%= auxiliarActividad.getNombre()  %>"><%= auxiliarActividad.getNombre()  %></a></h5>
+</div>
+</div>
+</div>
+
+<% } %>
+
+</div>
+</div>
+</section>
+		
+		
 	</main>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	<footer class="footer">
 		<div class="container">

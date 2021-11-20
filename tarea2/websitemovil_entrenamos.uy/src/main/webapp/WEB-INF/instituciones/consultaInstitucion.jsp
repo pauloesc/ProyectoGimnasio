@@ -60,25 +60,14 @@ for( DataActividad varActivv : actividadesConInfo  ){
 
 <% } %>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </div>
 </div>
 </section>
+		
+		
+		
+		
+		
 		
 	</main>
 
