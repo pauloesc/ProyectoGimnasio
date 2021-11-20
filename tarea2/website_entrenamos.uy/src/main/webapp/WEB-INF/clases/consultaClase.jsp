@@ -71,7 +71,7 @@
 							<div class="col-md-8">
 								<div class="card-body">
 									<h5 class="card-title"><%= nom %></h5>
-									<p class="card-text"> <p class="card-text m-0"><a href="consultaActividad?actividad=<%= act%>">Ver información de la actividad deportiva</a></p> 
+									<p class="card-text"> <p class="card-text m-0"><a href="/website_entrenamos.uy/consultaActividad?actividad=<%= act%>">Ver información de la actividad deportiva</a></p> 
 									
 									<% if (socio == "T") {%>
 									<p class="card-text"> <p class="card-text m-0"><a href="registroAClase?clase=<%= nom%>">Registrarme a la clase</a></p> 
