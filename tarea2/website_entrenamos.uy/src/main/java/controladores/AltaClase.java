@@ -91,7 +91,7 @@ public class AltaClase extends HttpServlet {
 			req.setAttribute("institucion",infP.getInstitucion());
 			req.setAttribute("actividades",acts);
 			
-        	RequestDispatcher md = req.getRequestDispatcher("/WEB-INF/clases/altaClase.jsp");
+        	RequestDispatcher md = req.getRequestDispatcher("/WEB-INF/clasDict/altaClase.jsp");
 			md.forward(req, resp);
         	
     	} else {
@@ -259,7 +259,7 @@ public class AltaClase extends HttpServlet {
 				}
 			}
 			
-			RequestDispatcher dispatcher =req.getRequestDispatcher("/WEB-INF/clases/altaClase.jsp");
+			RequestDispatcher dispatcher =req.getRequestDispatcher("/WEB-INF/clasDict/altaClase.jsp");
 			dispatcher.forward(req, resp);
 			
         	

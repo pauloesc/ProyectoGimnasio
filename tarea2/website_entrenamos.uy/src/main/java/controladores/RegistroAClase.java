@@ -90,7 +90,7 @@ public class RegistroAClase extends HttpServlet {
 			req.setAttribute("fecha",ini);
         	
 			
-        	RequestDispatcher md = req.getRequestDispatcher("/WEB-INF/clases/registroAClase.jsp");
+        	RequestDispatcher md = req.getRequestDispatcher("/WEB-INF/clasDict/registroAClase.jsp");
 			md.forward(req, resp);
         	
     	} else {
@@ -191,7 +191,7 @@ public class RegistroAClase extends HttpServlet {
 			}
  		
 			
-			RequestDispatcher dispatcher =getServletContext().getRequestDispatcher("/WEB-INF/clases/registroAClase.jsp");
+			RequestDispatcher dispatcher =getServletContext().getRequestDispatcher("/WEB-INF/clasDict/registroAClase.jsp");
 			dispatcher.forward(req, resp);
 			
         	

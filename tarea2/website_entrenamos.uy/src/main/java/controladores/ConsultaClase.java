@@ -159,7 +159,7 @@ public class ConsultaClase extends HttpServlet {
 			req.setAttribute("fecha",ini);
 			
 			
-			RequestDispatcher md = req.getRequestDispatcher("/WEB-INF/clases/consultaClase.jsp");
+			RequestDispatcher md = req.getRequestDispatcher("/WEB-INF/clasDict/consultaClase.jsp");
 			md.forward(req, resp);
 		} else {
 			resp.setContentType("text/html");
