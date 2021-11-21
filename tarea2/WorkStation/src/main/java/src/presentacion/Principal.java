@@ -8,12 +8,12 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.xml.ws.Endpoint;
 
-import src.Publicadores.WebServicesClases;
-import src.Publicadores.WebServicesControladorUsuario;
-import src.Publicadores.WebServicesCuponeras;
-import src.Publicadores.WebServicesADeportivas;
-import src.Publicadores.WebServicesIDeportivas;
-import src.Publicadores.WebServicesCategorias;
+import Publicadores.WebServicesClases;
+import Publicadores.WebServicesControladorUsuario;
+import Publicadores.WebServicesCuponeras;
+import Publicadores.WebServicesADeportivas;
+import Publicadores.WebServicesIDeportivas;
+import Publicadores.WebServicesCategorias;
 
 import src.excepciones.ActividadDeportivaNoExisteException;
 import src.logica.Fabrica;

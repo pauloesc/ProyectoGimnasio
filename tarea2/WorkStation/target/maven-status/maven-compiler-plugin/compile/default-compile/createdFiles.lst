@@ -15,6 +15,7 @@ src/presentacion/ConsultaActividadDeportiva$3.class
 src/logica/ctrlClases.class
 src/presentacion/AltaUsuario.class
 src/presentacion/AgregarActividadaCuponera$3.class
+Publicadores/WebServicesControladorUsuario.class
 src/presentacion/AltaCategoria$4.class
 src/logica/WrapperListString.class
 src/logica/Cuponera.class
@@ -56,6 +57,7 @@ src/logica/DtActividadesDeportivas.class
 src/presentacion/Principal$9.class
 src/excepciones/ActividadDeportivaNoExisteException.class
 src/excepciones/ActividadDeportivaRepetidaException.class
+Publicadores/WebServicesCuponeras.class
 src/excepciones/ClaseLlenaException.class
 src/excepciones/ClaseYaCompradaException.class
 src/presentacion/Principal$5.class
@@ -96,6 +98,7 @@ src/presentacion/Principal$10.class
 src/presentacion/ConsultaActividadDeportiva$4.class
 src/presentacion/RegistroDictadoDeClases.class
 src/Publicadores/WebServicesClases.class
+Publicadores/WebServicesIDeportivas.class
 src/presentacion/RegistroDictadoDeClases$6.class
 src/logica/InfoClases.class
 src/presentacion/ModificarUsuario.class
@@ -120,6 +123,7 @@ src/presentacion/ConsultaUsuario$6.class
 src/presentacion/RegistroDictadoDeClases$4.class
 src/presentacion/ModificarUsuario$4.class
 src/presentacion/ConsultaUsuario.class
+Publicadores/WebServicesClases.class
 src/presentacion/ConsultarCuponera$4.class
 src/logica/WrapperSetString.class
 src/presentacion/Principal$14.class
@@ -133,7 +137,9 @@ src/presentacion/RegistroDictadoDeClases$1.class
 src/presentacion/Principal.class
 src/logica/IctrlClases.class
 src/logica/InfoActividadProfe.class
+Publicadores/WebServicesADeportivas.class
 src/presentacion/AltaDictadoDeClases.class
+Publicadores/WebServicesCategorias.class
 src/presentacion/CrearCuponera.class
 src/logica/DtClase.class
 src/presentacion/AltaActividadDeportiva$1.class
