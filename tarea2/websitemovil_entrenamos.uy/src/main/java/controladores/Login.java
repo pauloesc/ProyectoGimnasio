@@ -53,7 +53,10 @@ public class Login extends HttpServlet {
 				sesion.setAttribute("estado-sesion", "logged-in");
 				sesion.setAttribute("login-error", null);
 				
-				if ( req.getParameter("recordarme").equals("1") ) {
+				String chk = req.getParameter("recordarme");
+				if (chk==null) chk="off";
+				
+				if ( chk.equals("on") ) {
 			        //Creating two cookies
 			        Cookie c1=new Cookie("userName", nickname);
 			        Cookie c2=new Cookie("userPassword",pass);

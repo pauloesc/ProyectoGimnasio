@@ -27,7 +27,7 @@
 			type="password" name="input_password" class="form-control"
 			placeholder="Contraseña" value="" required>
 		<div class="checkbox mb-3">
-			<label> <input type="checkbox" name="recordarme" value="1" />
+			<label> <input type="checkbox" name="recordarme" />
 				Recordarme
 			</label>
 		</div>
