@@ -1,8 +1,11 @@
 
 package publicadores;
 
+import java.io.FileReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Properties;
+
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 import javax.xml.ws.WebEndpoint;
@@ -30,7 +33,15 @@ public class WebServicesCategoriasService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://localhost:9129/ctrlCategorias?wsdl");
+        	Properties p = null;
+        	String valUrl = "";
+        	try {
+    	    	FileReader reader=new FileReader("/entrenamosUy/conf.properties");  
+    	    	p=new Properties();  
+    	    	p.load(reader); 
+    	    	valUrl = p.getProperty("urlCategoriasWeb");
+        	} catch (Exception ex) {}
+            url = new URL(valUrl);
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

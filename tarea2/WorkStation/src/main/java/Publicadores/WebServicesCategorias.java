@@ -30,12 +30,12 @@ public class WebServicesCategorias {
     public void publicar(){
     	Properties p = null;
     	try {
-	    	FileReader reader=new FileReader("conf.properties");  
+	    	FileReader reader=new FileReader("/entrenamosUy/conf.properties");  
 	    	p=new Properties();  
 	    	p.load(reader); 
     	} catch (Exception e) {}
     		
-    		String url = p.getProperty("urlCategorias");
+    		String url = p.getProperty("urlCategoriasWorkStation");
     		endpoint = Endpoint.publish(url, this);
     }
     

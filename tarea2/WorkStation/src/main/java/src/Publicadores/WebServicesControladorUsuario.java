@@ -47,11 +47,18 @@ public class WebServicesControladorUsuario {
     public void publicar(){
     	Properties p = null;
     	try {
-	    	FileReader reader=new FileReader("conf.properties");  
+    		System.out.println("fileRead");
+	    	FileReader reader=new FileReader("/entrenamosUy/conf.properties");
+	    	System.out.println("Fin fileRead");
+	    	File myObj = new File("/entrenamosUy/conf.properties");
+	    	System.out.println("LLEGAAAAAA");
+	    	if (myObj.exists()) {
+	    		System.out.println(myObj.getAbsolutePath());
+	    	}
 	    	p=new Properties();  
 	    	p.load(reader); 
     	} catch (Exception e) {}
-    		
+    		System.out.println("PUBLICOO");
     		String url = p.getProperty("urlUsuario");
     		endpoint = Endpoint.publish(url, this);
     }

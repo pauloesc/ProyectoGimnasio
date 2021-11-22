@@ -35,12 +35,12 @@ public class WebServicesIDeportivas {
     	
     	Properties p = null;
     	try {
-	    	FileReader reader=new FileReader("conf.properties");  
+	    	FileReader reader=new FileReader("/entrenamosUy/conf.properties");  
 	    	p=new Properties();  
 	    	p.load(reader); 
     	} catch (Exception e) {}
     		
-    		String url = p.getProperty("urlIDeportivas");
+    		String url = p.getProperty("urlIDeportivasWorkStation");
     		endpoint = Endpoint.publish(url, this);
     }
     

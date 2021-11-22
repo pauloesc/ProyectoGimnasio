@@ -48,12 +48,12 @@ public class WebServicesCuponeras {
     public void publicar(){
     	Properties p = null;
     	try {
-	    	FileReader reader=new FileReader("conf.properties");  
+	    	FileReader reader=new FileReader("/entrenamosUy/conf.properties");  
 	    	p=new Properties();  
 	    	p.load(reader); 
     	} catch (Exception e) {}
     		
-    		String url = p.getProperty("urlCuponeras");
+    		String url = p.getProperty("urlCuponerasWorkStation");
     		endpoint = Endpoint.publish(url, this);
     }
 

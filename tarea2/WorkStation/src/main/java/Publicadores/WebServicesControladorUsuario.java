@@ -47,12 +47,12 @@ public class WebServicesControladorUsuario {
     public void publicar(){
     	Properties p = null;
     	try {
-	    	FileReader reader=new FileReader("conf.properties");  
+	    	FileReader reader=new FileReader("/entrenamosUy/conf.properties");  
 	    	p=new Properties();  
 	    	p.load(reader); 
     	} catch (Exception e) {}
     		
-    		String url = p.getProperty("urlUsuario");
+    		String url = p.getProperty("urlUsuarioWorkStation");
     		endpoint = Endpoint.publish(url, this);
     }
 
