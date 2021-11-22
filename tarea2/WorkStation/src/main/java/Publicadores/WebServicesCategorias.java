@@ -35,7 +35,7 @@ public class WebServicesCategorias {
 	    	p.load(reader); 
     	} catch (Exception e) {}
     		
-    		String url = p.getProperty("urlCategorias");
+    		String url = p.getProperty("urlCategoriasWorkStation");
     		endpoint = Endpoint.publish(url, this);
     }
     

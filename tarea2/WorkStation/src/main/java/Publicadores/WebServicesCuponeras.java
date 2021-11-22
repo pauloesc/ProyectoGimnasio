@@ -53,7 +53,7 @@ public class WebServicesCuponeras {
 	    	p.load(reader); 
     	} catch (Exception e) {}
     		
-    		String url = p.getProperty("urlCuponeras");
+    		String url = p.getProperty("urlCuponerasWorkStation");
     		endpoint = Endpoint.publish(url, this);
     }
 

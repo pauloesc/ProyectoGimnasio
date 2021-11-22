@@ -52,7 +52,7 @@ public class WebServicesControladorUsuario {
 	    	p.load(reader); 
     	} catch (Exception e) {}
     		
-    		String url = p.getProperty("urlUsuario");
+    		String url = p.getProperty("urlUsuarioWorkStation");
     		endpoint = Endpoint.publish(url, this);
     }
 

@@ -59,7 +59,7 @@ public class WebServicesADeportivas {
 	    	p.load(reader); 
     	} catch (Exception e) {}
     		
-    		String url = p.getProperty("urlADeportivas");
+    		String url = p.getProperty("urlADeportivasWorkStation");
     		endpoint = Endpoint.publish(url, this);
     }
 

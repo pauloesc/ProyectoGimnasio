@@ -40,7 +40,7 @@ public class WebServicesIDeportivas {
 	    	p.load(reader); 
     	} catch (Exception e) {}
     		
-    		String url = p.getProperty("urlIDeportivas");
+    		String url = p.getProperty("urlIDeportivasWorkStation");
     		endpoint = Endpoint.publish(url, this);
     }
     
