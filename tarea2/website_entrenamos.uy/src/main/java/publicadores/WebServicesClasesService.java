@@ -1,8 +1,11 @@
 
 package publicadores;
 
+import java.io.FileReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Properties;
+
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 import javax.xml.ws.WebEndpoint;
@@ -17,7 +20,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "WebServicesClasesService", targetNamespace = "http://Publicadores/", wsdlLocation = "http://localhost:9128/CtrlClases?wsdl")
+@WebServiceClient(name = "WebServicesClasesService", targetNamespace = "http://Publicadores/", wsdlLocation = "http://localhost:9177/CtrlCACAAAAA?wsdl")
 public class WebServicesClasesService
     extends Service
 {
@@ -27,10 +30,18 @@ public class WebServicesClasesService
     private final static QName WEBSERVICESCLASESSERVICE_QNAME = new QName("http://Publicadores/", "WebServicesClasesService");
 
     static {
-        URL url = null;
+    	URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://localhost:9128/CtrlClases?wsdl");
+        	Properties p = null;
+        	String valUrl = "";
+        	try {
+    	    	FileReader reader=new FileReader("/entrenamosUy/conf.properties");  
+    	    	p=new Properties();  
+    	    	p.load(reader); 
+    	    	valUrl = p.getProperty("urlClases");
+        	} catch (Exception ex) {}
+            url = new URL(valUrl);
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

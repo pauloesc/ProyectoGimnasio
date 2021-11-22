@@ -40,7 +40,7 @@ public class WebServicesClases {
     public void publicar(){
     	Properties p = null;
     	try {
-	    	FileReader reader=new FileReader("conf.properties");  
+	    	FileReader reader=new FileReader("/entrenamosUy/conf.properties");  
 	    	p=new Properties();  
 	    	p.load(reader); 
     	} catch (Exception e) {}
