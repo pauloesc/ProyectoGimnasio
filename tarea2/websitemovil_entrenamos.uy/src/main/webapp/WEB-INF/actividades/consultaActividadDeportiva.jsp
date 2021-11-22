@@ -4,7 +4,6 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="controladores.Login"%>
-<%@page import="controladores.Cuponeras"%>
 
 <!DOCTYPE html>
 <html>
