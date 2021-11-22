@@ -14,6 +14,10 @@
 	<%
       	Boolean errorLogin = request.getSession().getAttribute("login-error") != null ? true : false;
       	String errorMsje = errorLogin == true ? (String)request.getSession().getAttribute("login-error") : "";
+      	
+      	String valoNickOEmail = (String) request.getAttribute("valoNickOEmail");
+      	
+      	String valorPass = (String) request.getAttribute("valorPass");
       %>
 	<form class="form-signin" method="post" action="login">
 	   <h1 class="h3 mb-3 font-weight-normal">entrenamos.uy</h1>
@@ -22,14 +26,15 @@
 		<h1 class="h3 mb-3 font-weight-normal">Iniciar Sesion</h1>
 		<label for="inputEmail" class="sr-only">Email o Nickname</label> <input
 			type="text" name="input_email" class="form-control"
-			placeholder="Email o nickname" value="" required autofocus> <label
+			placeholder="Email o nickname" value="<%=valoNickOEmail%>" required autofocus> <label
 			for="inputPassword" class="sr-only">Contraseña</label> <input
 			type="password" name="input_password" class="form-control"
-			placeholder="Contraseña" value="" required>
+			placeholder="Contraseña" value="<%=valorPass%>" required>
 		<div class="checkbox mb-3">
-			<label> <input type="checkbox" name="recordarme" />
-				Recordarme
-			</label>
+			<input type="checkbox" class="form-check-input"
+										name="rec" id="formCheck-1" />
+										<label class="form-check-label"
+										for="formCheck-1">Recordarme</label>
 		</div>
 		<%= errorLogin ? 
 	  		"<div class=\"alert alert-danger\" role=\"alert\">"
