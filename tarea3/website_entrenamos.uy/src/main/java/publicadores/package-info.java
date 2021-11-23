@@ -1,2 +1,2 @@
-@javax.xml.bind.annotation.XmlSchema(namespace = "http://Publicadores/")
+@javax.xml.bind.annotation.XmlSchema(namespace = "http://publicadores/")
 package publicadores;

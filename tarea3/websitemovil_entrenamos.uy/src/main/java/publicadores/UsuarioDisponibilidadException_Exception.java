@@ -10,7 +10,7 @@ import javax.xml.ws.WebFault;
  * Generated source version: 2.2
  * 
  */
-@WebFault(name = "UsuarioDisponibilidadException", targetNamespace = "http://Publicadores/")
+@WebFault(name = "UsuarioDisponibilidadException", targetNamespace = "http://publicadores/")
 public class UsuarioDisponibilidadException_Exception
     extends Exception
 {

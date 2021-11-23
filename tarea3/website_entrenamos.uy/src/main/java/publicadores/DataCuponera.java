@@ -22,7 +22,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="categorias" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="clases" type="{http://Publicadores/}parActividad" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="clases" type="{http://publicadores/}parActividad" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="costo" type="{http://www.w3.org/2001/XMLSchema}float" minOccurs="0"/>
  *         &lt;element name="descripcion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="descuento" type="{http://www.w3.org/2001/XMLSchema}float" minOccurs="0"/>

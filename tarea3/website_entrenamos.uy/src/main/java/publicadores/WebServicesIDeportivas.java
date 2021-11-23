@@ -18,7 +18,7 @@ import net.java.dev.jaxb.array.StringArray;
  * Generated source version: 2.2
  * 
  */
-@WebService(name = "WebServicesIDeportivas", targetNamespace = "http://Publicadores/")
+@WebService(name = "WebServicesIDeportivas", targetNamespace = "http://publicadores/")
 @SOAPBinding(style = SOAPBinding.Style.RPC)
 @XmlSeeAlso({
     net.java.dev.jaxb.array.ObjectFactory.class,
@@ -35,8 +35,8 @@ public interface WebServicesIDeportivas {
      * @throws InstitucionDeportivaRepetidaException_Exception
      */
     @WebMethod
-    @Action(input = "http://Publicadores/WebServicesIDeportivas/altaInstitucionRequest", output = "http://Publicadores/WebServicesIDeportivas/altaInstitucionResponse", fault = {
-        @FaultAction(className = InstitucionDeportivaRepetidaException_Exception.class, value = "http://Publicadores/WebServicesIDeportivas/altaInstitucion/Fault/InstitucionDeportivaRepetidaException")
+    @Action(input = "http://publicadores/WebServicesIDeportivas/altaInstitucionRequest", output = "http://publicadores/WebServicesIDeportivas/altaInstitucionResponse", fault = {
+        @FaultAction(className = InstitucionDeportivaRepetidaException_Exception.class, value = "http://publicadores/WebServicesIDeportivas/altaInstitucion/Fault/InstitucionDeportivaRepetidaException")
     })
     public void altaInstitucion(
         @WebParam(name = "arg0", partName = "arg0")
@@ -50,14 +50,32 @@ public interface WebServicesIDeportivas {
 
     /**
      * 
+     * @param arg0
+     * @return
+     *     returns publicadores.DataInstitucion
+     * @throws InstitucionDeportivaNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicadores/WebServicesIDeportivas/getInstitucionRequest", output = "http://publicadores/WebServicesIDeportivas/getInstitucionResponse", fault = {
+        @FaultAction(className = InstitucionDeportivaNoExisteException_Exception.class, value = "http://publicadores/WebServicesIDeportivas/getInstitucion/Fault/InstitucionDeportivaNoExisteException")
+    })
+    public DataInstitucion getInstitucion(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws InstitucionDeportivaNoExisteException_Exception
+    ;
+
+    /**
+     * 
      * @return
      *     returns publicadores.DataInstitucionArray
      * @throws InstitucionDeportivaNoExisteException_Exception
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://Publicadores/WebServicesIDeportivas/getInstitucionesRequest", output = "http://Publicadores/WebServicesIDeportivas/getInstitucionesResponse", fault = {
-        @FaultAction(className = InstitucionDeportivaNoExisteException_Exception.class, value = "http://Publicadores/WebServicesIDeportivas/getInstituciones/Fault/InstitucionDeportivaNoExisteException")
+    @Action(input = "http://publicadores/WebServicesIDeportivas/getInstitucionesRequest", output = "http://publicadores/WebServicesIDeportivas/getInstitucionesResponse", fault = {
+        @FaultAction(className = InstitucionDeportivaNoExisteException_Exception.class, value = "http://publicadores/WebServicesIDeportivas/getInstituciones/Fault/InstitucionDeportivaNoExisteException")
     })
     public DataInstitucionArray getInstituciones()
         throws InstitucionDeportivaNoExisteException_Exception
@@ -70,35 +88,17 @@ public interface WebServicesIDeportivas {
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://Publicadores/WebServicesIDeportivas/darNombreInstitucionesRequest", output = "http://Publicadores/WebServicesIDeportivas/darNombreInstitucionesResponse")
+    @Action(input = "http://publicadores/WebServicesIDeportivas/darNombreInstitucionesRequest", output = "http://publicadores/WebServicesIDeportivas/darNombreInstitucionesResponse")
     public StringArray darNombreInstituciones();
 
     /**
      * 
-     * @param arg0
-     * @return
-     *     returns publicadores.DataInstitucion
-     * @throws InstitucionDeportivaNoExisteException_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://Publicadores/WebServicesIDeportivas/getInstitucionRequest", output = "http://Publicadores/WebServicesIDeportivas/getInstitucionResponse", fault = {
-        @FaultAction(className = InstitucionDeportivaNoExisteException_Exception.class, value = "http://Publicadores/WebServicesIDeportivas/getInstitucion/Fault/InstitucionDeportivaNoExisteException")
-    })
-    public DataInstitucion getInstitucion(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws InstitucionDeportivaNoExisteException_Exception
-    ;
-
-    /**
-     * 
      * @return
      *     returns publicadores.DataInstitucion
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://Publicadores/WebServicesIDeportivas/newDataInstitucionRequest", output = "http://Publicadores/WebServicesIDeportivas/newDataInstitucionResponse")
+    @Action(input = "http://publicadores/WebServicesIDeportivas/newDataInstitucionRequest", output = "http://publicadores/WebServicesIDeportivas/newDataInstitucionResponse")
     public DataInstitucion newDataInstitucion();
 
 }

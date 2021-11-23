@@ -10,7 +10,7 @@ import javax.xml.ws.WebFault;
  * Generated source version: 2.2
  * 
  */
-@WebFault(name = "ClaseNoExisteException", targetNamespace = "http://Publicadores/")
+@WebFault(name = "ClaseNoExisteException", targetNamespace = "http://publicadores/")
 public class ClaseNoExisteException_Exception
     extends Exception
 {

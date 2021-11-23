@@ -12,9 +12,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
- * <p>Java class for dataCuponera complex type.
+ * <p>Clase Java para dataCuponera complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="dataCuponera">
@@ -22,7 +22,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="categorias" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="clases" type="{http://Publicadores/}parActividad" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="clases" type="{http://publicadores/}parActividad" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="costo" type="{http://www.w3.org/2001/XMLSchema}float" minOccurs="0"/>
  *         &lt;element name="descripcion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="descuento" type="{http://www.w3.org/2001/XMLSchema}float" minOccurs="0"/>
@@ -133,7 +133,7 @@ public class DataCuponera {
     }
 
     /**
-     * Gets the value of the costo property.
+     * Obtiene el valor de la propiedad costo.
      * 
      * @return
      *     possible object is
@@ -145,7 +145,7 @@ public class DataCuponera {
     }
 
     /**
-     * Sets the value of the costo property.
+     * Define el valor de la propiedad costo.
      * 
      * @param value
      *     allowed object is
@@ -157,7 +157,7 @@ public class DataCuponera {
     }
 
     /**
-     * Gets the value of the descripcion property.
+     * Obtiene el valor de la propiedad descripcion.
      * 
      * @return
      *     possible object is
@@ -169,7 +169,7 @@ public class DataCuponera {
     }
 
     /**
-     * Sets the value of the descripcion property.
+     * Define el valor de la propiedad descripcion.
      * 
      * @param value
      *     allowed object is
@@ -181,7 +181,7 @@ public class DataCuponera {
     }
 
     /**
-     * Gets the value of the descuento property.
+     * Obtiene el valor de la propiedad descuento.
      * 
      * @return
      *     possible object is
@@ -193,7 +193,7 @@ public class DataCuponera {
     }
 
     /**
-     * Sets the value of the descuento property.
+     * Define el valor de la propiedad descuento.
      * 
      * @param value
      *     allowed object is
@@ -205,7 +205,7 @@ public class DataCuponera {
     }
 
     /**
-     * Gets the value of the fechaAlta property.
+     * Obtiene el valor de la propiedad fechaAlta.
      * 
      * @return
      *     possible object is
@@ -217,7 +217,7 @@ public class DataCuponera {
     }
 
     /**
-     * Sets the value of the fechaAlta property.
+     * Define el valor de la propiedad fechaAlta.
      * 
      * @param value
      *     allowed object is
@@ -229,7 +229,7 @@ public class DataCuponera {
     }
 
     /**
-     * Gets the value of the fechaFin property.
+     * Obtiene el valor de la propiedad fechaFin.
      * 
      * @return
      *     possible object is
@@ -241,7 +241,7 @@ public class DataCuponera {
     }
 
     /**
-     * Sets the value of the fechaFin property.
+     * Define el valor de la propiedad fechaFin.
      * 
      * @param value
      *     allowed object is
@@ -253,7 +253,7 @@ public class DataCuponera {
     }
 
     /**
-     * Gets the value of the fechaIni property.
+     * Obtiene el valor de la propiedad fechaIni.
      * 
      * @return
      *     possible object is
@@ -265,7 +265,7 @@ public class DataCuponera {
     }
 
     /**
-     * Sets the value of the fechaIni property.
+     * Define el valor de la propiedad fechaIni.
      * 
      * @param value
      *     allowed object is
@@ -277,7 +277,7 @@ public class DataCuponera {
     }
 
     /**
-     * Gets the value of the imagen property.
+     * Obtiene el valor de la propiedad imagen.
      * 
      * @return
      *     possible object is
@@ -289,7 +289,7 @@ public class DataCuponera {
     }
 
     /**
-     * Sets the value of the imagen property.
+     * Define el valor de la propiedad imagen.
      * 
      * @param value
      *     allowed object is
@@ -330,7 +330,7 @@ public class DataCuponera {
     }
 
     /**
-     * Gets the value of the nombre property.
+     * Obtiene el valor de la propiedad nombre.
      * 
      * @return
      *     possible object is
@@ -342,7 +342,7 @@ public class DataCuponera {
     }
 
     /**
-     * Sets the value of the nombre property.
+     * Define el valor de la propiedad nombre.
      * 
      * @param value
      *     allowed object is

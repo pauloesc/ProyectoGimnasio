@@ -21,7 +21,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="actualSocios" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="cantPremios" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="descPremios" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="estadoActividad" type="{http://Publicadores/}estadoActi" minOccurs="0"/>
+ *         &lt;element name="estadoActividad" type="{http://publicadores/}estadoActi" minOccurs="0"/>
  *         &lt;element name="fecha" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="fechaReg" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="hora" type="{http://www.w3.org/2001/XMLSchema}int"/>

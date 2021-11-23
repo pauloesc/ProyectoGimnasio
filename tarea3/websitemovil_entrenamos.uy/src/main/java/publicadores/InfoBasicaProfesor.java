@@ -7,14 +7,14 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for infoBasicaProfesor complex type.
+ * <p>Clase Java para infoBasicaProfesor complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="infoBasicaProfesor">
  *   &lt;complexContent>
- *     &lt;extension base="{http://Publicadores/}infoBasicaUser">
+ *     &lt;extension base="{http://publicadores/}infoBasicaUser">
  *       &lt;sequence>
  *         &lt;element name="bibliografia" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="desc" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -45,7 +45,7 @@ public class InfoBasicaProfesor
     protected String url;
 
     /**
-     * Gets the value of the bibliografia property.
+     * Obtiene el valor de la propiedad bibliografia.
      * 
      * @return
      *     possible object is
@@ -57,7 +57,7 @@ public class InfoBasicaProfesor
     }
 
     /**
-     * Sets the value of the bibliografia property.
+     * Define el valor de la propiedad bibliografia.
      * 
      * @param value
      *     allowed object is
@@ -69,7 +69,7 @@ public class InfoBasicaProfesor
     }
 
     /**
-     * Gets the value of the desc property.
+     * Obtiene el valor de la propiedad desc.
      * 
      * @return
      *     possible object is
@@ -81,7 +81,7 @@ public class InfoBasicaProfesor
     }
 
     /**
-     * Sets the value of the desc property.
+     * Define el valor de la propiedad desc.
      * 
      * @param value
      *     allowed object is
@@ -93,7 +93,7 @@ public class InfoBasicaProfesor
     }
 
     /**
-     * Gets the value of the institucion property.
+     * Obtiene el valor de la propiedad institucion.
      * 
      * @return
      *     possible object is
@@ -105,7 +105,7 @@ public class InfoBasicaProfesor
     }
 
     /**
-     * Sets the value of the institucion property.
+     * Define el valor de la propiedad institucion.
      * 
      * @param value
      *     allowed object is
@@ -117,7 +117,7 @@ public class InfoBasicaProfesor
     }
 
     /**
-     * Gets the value of the url property.
+     * Obtiene el valor de la propiedad url.
      * 
      * @return
      *     possible object is
@@ -129,7 +129,7 @@ public class InfoBasicaProfesor
     }
 
     /**
-     * Sets the value of the url property.
+     * Define el valor de la propiedad url.
      * 
      * @param value
      *     allowed object is

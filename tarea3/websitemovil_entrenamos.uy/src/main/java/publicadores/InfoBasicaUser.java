@@ -10,9 +10,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
- * <p>Java class for infoBasicaUser complex type.
+ * <p>Clase Java para infoBasicaUser complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="infoBasicaUser">
@@ -60,7 +60,7 @@ public abstract class InfoBasicaUser {
     protected String pass;
 
     /**
-     * Gets the value of the apellido property.
+     * Obtiene el valor de la propiedad apellido.
      * 
      * @return
      *     possible object is
@@ -72,7 +72,7 @@ public abstract class InfoBasicaUser {
     }
 
     /**
-     * Sets the value of the apellido property.
+     * Define el valor de la propiedad apellido.
      * 
      * @param value
      *     allowed object is
@@ -84,7 +84,7 @@ public abstract class InfoBasicaUser {
     }
 
     /**
-     * Gets the value of the correo property.
+     * Obtiene el valor de la propiedad correo.
      * 
      * @return
      *     possible object is
@@ -96,7 +96,7 @@ public abstract class InfoBasicaUser {
     }
 
     /**
-     * Sets the value of the correo property.
+     * Define el valor de la propiedad correo.
      * 
      * @param value
      *     allowed object is
@@ -108,7 +108,7 @@ public abstract class InfoBasicaUser {
     }
 
     /**
-     * Gets the value of the fechaNac property.
+     * Obtiene el valor de la propiedad fechaNac.
      * 
      * @return
      *     possible object is
@@ -120,7 +120,7 @@ public abstract class InfoBasicaUser {
     }
 
     /**
-     * Sets the value of the fechaNac property.
+     * Define el valor de la propiedad fechaNac.
      * 
      * @param value
      *     allowed object is
@@ -132,7 +132,7 @@ public abstract class InfoBasicaUser {
     }
 
     /**
-     * Gets the value of the img property.
+     * Obtiene el valor de la propiedad img.
      * 
      * @return
      *     possible object is
@@ -144,7 +144,7 @@ public abstract class InfoBasicaUser {
     }
 
     /**
-     * Sets the value of the img property.
+     * Define el valor de la propiedad img.
      * 
      * @param value
      *     allowed object is
@@ -156,7 +156,7 @@ public abstract class InfoBasicaUser {
     }
 
     /**
-     * Gets the value of the nickname property.
+     * Obtiene el valor de la propiedad nickname.
      * 
      * @return
      *     possible object is
@@ -168,7 +168,7 @@ public abstract class InfoBasicaUser {
     }
 
     /**
-     * Sets the value of the nickname property.
+     * Define el valor de la propiedad nickname.
      * 
      * @param value
      *     allowed object is
@@ -180,7 +180,7 @@ public abstract class InfoBasicaUser {
     }
 
     /**
-     * Gets the value of the nombre property.
+     * Obtiene el valor de la propiedad nombre.
      * 
      * @return
      *     possible object is
@@ -192,7 +192,7 @@ public abstract class InfoBasicaUser {
     }
 
     /**
-     * Sets the value of the nombre property.
+     * Define el valor de la propiedad nombre.
      * 
      * @param value
      *     allowed object is
@@ -204,7 +204,7 @@ public abstract class InfoBasicaUser {
     }
 
     /**
-     * Gets the value of the pass property.
+     * Obtiene el valor de la propiedad pass.
      * 
      * @return
      *     possible object is
@@ -216,7 +216,7 @@ public abstract class InfoBasicaUser {
     }
 
     /**
-     * Sets the value of the pass property.
+     * Define el valor de la propiedad pass.
      * 
      * @param value
      *     allowed object is
