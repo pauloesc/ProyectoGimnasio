@@ -36,7 +36,8 @@ public class WebServicesADeportivasService
         	Properties p = null;
         	String valUrl = "";
         	try {
-    	    	FileReader reader=new FileReader("/entrenamosUy/conf.properties");  
+        		String home = System.getProperty("user.home");
+    	    	FileReader reader = new FileReader( home + "/.entrenamosUy/conf.properties");   
     	    	p=new Properties();  
     	    	p.load(reader); 
     	    	valUrl = p.getProperty("urlADeportivasWeb");
