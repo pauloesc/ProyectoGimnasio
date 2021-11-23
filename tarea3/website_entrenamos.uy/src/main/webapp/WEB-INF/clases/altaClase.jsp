@@ -106,7 +106,7 @@
 						<div class="col-8">
 							<input id="urlVideo" name="urlVideo"
 								placeholder="Ingrese la url del video de YouTube" type="text"
-								class="form-control" required="required">
+								class="form-control">
 						</div>
 					</div>
 					<div class="form-group row">
@@ -250,5 +250,21 @@
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
+	
+	
+<script>
+$("form").submit(function(e){
+//compruebo que las password sean iguales
+var catPremioss = $("#cantPremios").val();
+var sociosMaximoss = $("#sociosMaximos").val();
+if ( catPremioss > sociosMaximoss ){
+
+   alert ("No puede asignar mas premios que socios.");
+   e.preventDefault(e);
+}
+});
+  </script>
+	
+	
 </body>
 </html>
