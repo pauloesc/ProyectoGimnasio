@@ -35,7 +35,9 @@ public class WebServicesIDeportivas {
     	
     	Properties p = null;
     	try {
-	    	FileReader reader=new FileReader("/entrenamosUy/conf.properties");  
+    		String home = System.getProperty("user.home");
+	    	FileReader reader = new FileReader( home + "/.entrenamosUy/conf.properties");
+  
 	    	p=new Properties();  
 	    	p.load(reader); 
     	} catch (Exception e) {}
