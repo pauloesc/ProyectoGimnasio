@@ -23,7 +23,7 @@ public class Logout extends HttpServlet
 		HttpSession sesion = req.getSession();
 		sesion.setAttribute("nickname-user", null);
 		sesion.setAttribute("estado-sesion", "no-login");
-		resp.sendRedirect("/websitemovil_entrenamos.uy/login");
+		resp.sendRedirect("login");
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
