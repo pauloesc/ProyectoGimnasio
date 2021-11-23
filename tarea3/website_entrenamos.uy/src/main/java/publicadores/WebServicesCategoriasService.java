@@ -1,8 +1,11 @@
 
 package publicadores;
 
+import java.io.FileReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Properties;
+
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 import javax.xml.ws.WebEndpoint;
@@ -17,20 +20,28 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "WebServicesCategoriasService", targetNamespace = "http://publicadores/", wsdlLocation = "http://172.16.0.160:9128/ctrlCategorias?wsdl")
+@WebServiceClient(name = "WebServicesCategoriasService", targetNamespace = "http://Publicadores/", wsdlLocation = "http://localhost:9129/ctrlCategorias?wsdl")
 public class WebServicesCategoriasService
     extends Service
 {
 
     private final static URL WEBSERVICESCATEGORIASSERVICE_WSDL_LOCATION;
     private final static WebServiceException WEBSERVICESCATEGORIASSERVICE_EXCEPTION;
-    private final static QName WEBSERVICESCATEGORIASSERVICE_QNAME = new QName("http://publicadores/", "WebServicesCategoriasService");
+    private final static QName WEBSERVICESCATEGORIASSERVICE_QNAME = new QName("http://Publicadores/", "WebServicesCategoriasService");
 
     static {
-        URL url = null;
+    	URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://172.16.0.160:9128/ctrlCategorias?wsdl");
+        	Properties p = null;
+        	String valUrl = "";
+        	try {
+    	    	FileReader reader=new FileReader("/entrenamosUy/conf.properties");  
+    	    	p=new Properties();  
+    	    	p.load(reader); 
+    	    	valUrl = p.getProperty("urlCategorias");
+        	} catch (Exception ex) {}
+            url = new URL(valUrl);
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }
@@ -69,7 +80,7 @@ public class WebServicesCategoriasService
      */
     @WebEndpoint(name = "WebServicesCategoriasPort")
     public WebServicesCategorias getWebServicesCategoriasPort() {
-        return super.getPort(new QName("http://publicadores/", "WebServicesCategoriasPort"), WebServicesCategorias.class);
+        return super.getPort(new QName("http://Publicadores/", "WebServicesCategoriasPort"), WebServicesCategorias.class);
     }
 
     /**
@@ -81,7 +92,7 @@ public class WebServicesCategoriasService
      */
     @WebEndpoint(name = "WebServicesCategoriasPort")
     public WebServicesCategorias getWebServicesCategoriasPort(WebServiceFeature... features) {
-        return super.getPort(new QName("http://publicadores/", "WebServicesCategoriasPort"), WebServicesCategorias.class, features);
+        return super.getPort(new QName("http://Publicadores/", "WebServicesCategoriasPort"), WebServicesCategorias.class, features);
     }
 
     private static URL __getWsdlLocation() {

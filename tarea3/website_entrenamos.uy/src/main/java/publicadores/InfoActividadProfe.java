@@ -17,9 +17,9 @@ import javax.xml.bind.annotation.XmlType;
  * <pre>
  * &lt;complexType name="infoActividadProfe">
  *   &lt;complexContent>
- *     &lt;extension base="{http://publicadores/}informacionActividad">
+ *     &lt;extension base="{http://Publicadores/}informacionActividad">
  *       &lt;sequence>
- *         &lt;element name="actividadesDep" type="{http://publicadores/}dtActividadesDeportivas" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="actividadesDep" type="{http://Publicadores/}dtActividadesDeportivas" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="desc" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="url" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>

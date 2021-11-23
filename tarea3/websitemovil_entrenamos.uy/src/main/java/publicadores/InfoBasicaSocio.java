@@ -7,14 +7,14 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para infoBasicaSocio complex type.
+ * <p>Java class for infoBasicaSocio complex type.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="infoBasicaSocio">
  *   &lt;complexContent>
- *     &lt;extension base="{http://publicadores/}infoBasicaUser">
+ *     &lt;extension base="{http://Publicadores/}infoBasicaUser">
  *       &lt;sequence>
  *       &lt;/sequence>
  *     &lt;/extension>

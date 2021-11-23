@@ -10,7 +10,7 @@ import javax.xml.ws.WebFault;
  * Generated source version: 2.2
  * 
  */
-@WebFault(name = "UsuarioInexistenteException", targetNamespace = "http://publicadores/")
+@WebFault(name = "UsuarioInexistenteException", targetNamespace = "http://Publicadores/")
 public class UsuarioInexistenteException_Exception
     extends Exception
 {

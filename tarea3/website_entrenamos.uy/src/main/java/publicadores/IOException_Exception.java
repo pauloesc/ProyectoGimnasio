@@ -10,7 +10,7 @@ import javax.xml.ws.WebFault;
  * Generated source version: 2.2
  * 
  */
-@WebFault(name = "IOException", targetNamespace = "http://publicadores/")
+@WebFault(name = "IOException", targetNamespace = "http://Publicadores/")
 public class IOException_Exception
     extends Exception
 {

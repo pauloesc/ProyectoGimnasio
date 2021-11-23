@@ -10,16 +10,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para infoActividadSocio complex type.
+ * <p>Java class for infoActividadSocio complex type.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="infoActividadSocio">
  *   &lt;complexContent>
- *     &lt;extension base="{http://publicadores/}informacionActividad">
+ *     &lt;extension base="{http://Publicadores/}informacionActividad">
  *       &lt;sequence>
- *         &lt;element name="clases" type="{http://publicadores/}dtClase" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="clases" type="{http://Publicadores/}dtClase" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/extension>
  *   &lt;/complexContent>

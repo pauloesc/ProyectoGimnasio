@@ -1,8 +1,11 @@
 
 package publicadores;
 
+import java.io.FileReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Properties;
+
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 import javax.xml.ws.WebEndpoint;
@@ -17,20 +20,28 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "WebServicesADeportivasService", targetNamespace = "http://publicadores/", wsdlLocation = "http://172.16.0.160:9128/CtrlActDeportivas?wsdl")
+@WebServiceClient(name = "WebServicesADeportivasService", targetNamespace = "http://Publicadores/", wsdlLocation = "http://localhost:9128/CtrlActDeportivas?wsdl")
 public class WebServicesADeportivasService
     extends Service
 {
 
     private final static URL WEBSERVICESADEPORTIVASSERVICE_WSDL_LOCATION;
     private final static WebServiceException WEBSERVICESADEPORTIVASSERVICE_EXCEPTION;
-    private final static QName WEBSERVICESADEPORTIVASSERVICE_QNAME = new QName("http://publicadores/", "WebServicesADeportivasService");
+    private final static QName WEBSERVICESADEPORTIVASSERVICE_QNAME = new QName("http://Publicadores/", "WebServicesADeportivasService");
 
     static {
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://172.16.0.160:9128/CtrlActDeportivas?wsdl");
+        	Properties p = null;
+        	String valUrl = "";
+        	try {
+    	    	FileReader reader=new FileReader("/entrenamosUy/conf.properties");  
+    	    	p=new Properties();  
+    	    	p.load(reader); 
+    	    	valUrl = p.getProperty("urlADeportivasWeb");
+        	} catch (Exception ex) {}
+            url = new URL(valUrl);
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }
@@ -69,7 +80,7 @@ public class WebServicesADeportivasService
      */
     @WebEndpoint(name = "WebServicesADeportivasPort")
     public WebServicesADeportivas getWebServicesADeportivasPort() {
-        return super.getPort(new QName("http://publicadores/", "WebServicesADeportivasPort"), WebServicesADeportivas.class);
+        return super.getPort(new QName("http://Publicadores/", "WebServicesADeportivasPort"), WebServicesADeportivas.class);
     }
 
     /**
@@ -81,7 +92,7 @@ public class WebServicesADeportivasService
      */
     @WebEndpoint(name = "WebServicesADeportivasPort")
     public WebServicesADeportivas getWebServicesADeportivasPort(WebServiceFeature... features) {
-        return super.getPort(new QName("http://publicadores/", "WebServicesADeportivasPort"), WebServicesADeportivas.class, features);
+        return super.getPort(new QName("http://Publicadores/", "WebServicesADeportivasPort"), WebServicesADeportivas.class, features);
     }
 
     private static URL __getWsdlLocation() {

@@ -10,16 +10,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para infoActividadProfe complex type.
+ * <p>Java class for infoActividadProfe complex type.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="infoActividadProfe">
  *   &lt;complexContent>
- *     &lt;extension base="{http://publicadores/}informacionActividad">
+ *     &lt;extension base="{http://Publicadores/}informacionActividad">
  *       &lt;sequence>
- *         &lt;element name="actividadesDep" type="{http://publicadores/}dtActividadesDeportivas" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="actividadesDep" type="{http://Publicadores/}dtActividadesDeportivas" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="desc" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="url" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -78,7 +78,7 @@ public class InfoActividadProfe
     }
 
     /**
-     * Obtiene el valor de la propiedad desc.
+     * Gets the value of the desc property.
      * 
      * @return
      *     possible object is
@@ -90,7 +90,7 @@ public class InfoActividadProfe
     }
 
     /**
-     * Define el valor de la propiedad desc.
+     * Sets the value of the desc property.
      * 
      * @param value
      *     allowed object is
@@ -102,7 +102,7 @@ public class InfoActividadProfe
     }
 
     /**
-     * Obtiene el valor de la propiedad nombre.
+     * Gets the value of the nombre property.
      * 
      * @return
      *     possible object is
@@ -114,7 +114,7 @@ public class InfoActividadProfe
     }
 
     /**
-     * Define el valor de la propiedad nombre.
+     * Sets the value of the nombre property.
      * 
      * @param value
      *     allowed object is
@@ -126,7 +126,7 @@ public class InfoActividadProfe
     }
 
     /**
-     * Obtiene el valor de la propiedad url.
+     * Gets the value of the url property.
      * 
      * @return
      *     possible object is
@@ -138,7 +138,7 @@ public class InfoActividadProfe
     }
 
     /**
-     * Define el valor de la propiedad url.
+     * Sets the value of the url property.
      * 
      * @param value
      *     allowed object is

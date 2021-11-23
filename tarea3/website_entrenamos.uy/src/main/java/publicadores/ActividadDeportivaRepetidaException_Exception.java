@@ -10,7 +10,7 @@ import javax.xml.ws.WebFault;
  * Generated source version: 2.2
  * 
  */
-@WebFault(name = "ActividadDeportivaRepetidaException", targetNamespace = "http://publicadores/")
+@WebFault(name = "ActividadDeportivaRepetidaException", targetNamespace = "http://Publicadores/")
 public class ActividadDeportivaRepetidaException_Exception
     extends Exception
 {

@@ -12,9 +12,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
- * <p>Clase Java para dataActividad complex type.
+ * <p>Java class for dataActividad complex type.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="dataActividad">
@@ -25,7 +25,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="costo" type="{http://www.w3.org/2001/XMLSchema}float" minOccurs="0"/>
  *         &lt;element name="descripcion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="duracion" type="{http://www.w3.org/2001/XMLSchema}float" minOccurs="0"/>
- *         &lt;element name="estado" type="{http://publicadores/}estadoActi" minOccurs="0"/>
+ *         &lt;element name="estado" type="{http://Publicadores/}estadoActi" minOccurs="0"/>
  *         &lt;element name="fechaAlta" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="imagen" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="institucion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -98,7 +98,7 @@ public class DataActividad {
     }
 
     /**
-     * Obtiene el valor de la propiedad costo.
+     * Gets the value of the costo property.
      * 
      * @return
      *     possible object is
@@ -110,7 +110,7 @@ public class DataActividad {
     }
 
     /**
-     * Define el valor de la propiedad costo.
+     * Sets the value of the costo property.
      * 
      * @param value
      *     allowed object is
@@ -122,7 +122,7 @@ public class DataActividad {
     }
 
     /**
-     * Obtiene el valor de la propiedad descripcion.
+     * Gets the value of the descripcion property.
      * 
      * @return
      *     possible object is
@@ -134,7 +134,7 @@ public class DataActividad {
     }
 
     /**
-     * Define el valor de la propiedad descripcion.
+     * Sets the value of the descripcion property.
      * 
      * @param value
      *     allowed object is
@@ -146,7 +146,7 @@ public class DataActividad {
     }
 
     /**
-     * Obtiene el valor de la propiedad duracion.
+     * Gets the value of the duracion property.
      * 
      * @return
      *     possible object is
@@ -158,7 +158,7 @@ public class DataActividad {
     }
 
     /**
-     * Define el valor de la propiedad duracion.
+     * Sets the value of the duracion property.
      * 
      * @param value
      *     allowed object is
@@ -170,7 +170,7 @@ public class DataActividad {
     }
 
     /**
-     * Obtiene el valor de la propiedad estado.
+     * Gets the value of the estado property.
      * 
      * @return
      *     possible object is
@@ -182,7 +182,7 @@ public class DataActividad {
     }
 
     /**
-     * Define el valor de la propiedad estado.
+     * Sets the value of the estado property.
      * 
      * @param value
      *     allowed object is
@@ -194,7 +194,7 @@ public class DataActividad {
     }
 
     /**
-     * Obtiene el valor de la propiedad fechaAlta.
+     * Gets the value of the fechaAlta property.
      * 
      * @return
      *     possible object is
@@ -206,7 +206,7 @@ public class DataActividad {
     }
 
     /**
-     * Define el valor de la propiedad fechaAlta.
+     * Sets the value of the fechaAlta property.
      * 
      * @param value
      *     allowed object is
@@ -218,7 +218,7 @@ public class DataActividad {
     }
 
     /**
-     * Obtiene el valor de la propiedad imagen.
+     * Gets the value of the imagen property.
      * 
      * @return
      *     possible object is
@@ -230,7 +230,7 @@ public class DataActividad {
     }
 
     /**
-     * Define el valor de la propiedad imagen.
+     * Sets the value of the imagen property.
      * 
      * @param value
      *     allowed object is
@@ -242,7 +242,7 @@ public class DataActividad {
     }
 
     /**
-     * Obtiene el valor de la propiedad institucion.
+     * Gets the value of the institucion property.
      * 
      * @return
      *     possible object is
@@ -254,7 +254,7 @@ public class DataActividad {
     }
 
     /**
-     * Define el valor de la propiedad institucion.
+     * Sets the value of the institucion property.
      * 
      * @param value
      *     allowed object is
@@ -266,7 +266,7 @@ public class DataActividad {
     }
 
     /**
-     * Obtiene el valor de la propiedad nombre.
+     * Gets the value of the nombre property.
      * 
      * @return
      *     possible object is
@@ -278,7 +278,7 @@ public class DataActividad {
     }
 
     /**
-     * Define el valor de la propiedad nombre.
+     * Sets the value of the nombre property.
      * 
      * @param value
      *     allowed object is
@@ -290,7 +290,7 @@ public class DataActividad {
     }
 
     /**
-     * Obtiene el valor de la propiedad profesor.
+     * Gets the value of the profesor property.
      * 
      * @return
      *     possible object is
@@ -302,7 +302,7 @@ public class DataActividad {
     }
 
     /**
-     * Define el valor de la propiedad profesor.
+     * Sets the value of the profesor property.
      * 
      * @param value
      *     allowed object is

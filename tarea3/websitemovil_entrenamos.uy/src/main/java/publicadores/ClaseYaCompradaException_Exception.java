@@ -10,7 +10,7 @@ import javax.xml.ws.WebFault;
  * Generated source version: 2.2
  * 
  */
-@WebFault(name = "ClaseYaCompradaException", targetNamespace = "http://publicadores/")
+@WebFault(name = "ClaseYaCompradaException", targetNamespace = "http://Publicadores/")
 public class ClaseYaCompradaException_Exception
     extends Exception
 {

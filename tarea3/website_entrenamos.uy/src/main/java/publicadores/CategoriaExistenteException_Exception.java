@@ -10,7 +10,7 @@ import javax.xml.ws.WebFault;
  * Generated source version: 2.2
  * 
  */
-@WebFault(name = "CategoriaExistenteException", targetNamespace = "http://publicadores/")
+@WebFault(name = "CategoriaExistenteException", targetNamespace = "http://Publicadores/")
 public class CategoriaExistenteException_Exception
     extends Exception
 {

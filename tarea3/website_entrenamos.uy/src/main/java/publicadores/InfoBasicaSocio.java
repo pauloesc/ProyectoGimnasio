@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlType;
  * <pre>
  * &lt;complexType name="infoBasicaSocio">
  *   &lt;complexContent>
- *     &lt;extension base="{http://publicadores/}infoBasicaUser">
+ *     &lt;extension base="{http://Publicadores/}infoBasicaUser">
  *       &lt;sequence>
  *       &lt;/sequence>
  *     &lt;/extension>

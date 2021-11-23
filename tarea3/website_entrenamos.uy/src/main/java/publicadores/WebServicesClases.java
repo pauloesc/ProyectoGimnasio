@@ -18,7 +18,7 @@ import javax.xml.ws.FaultAction;
  * Generated source version: 2.2
  * 
  */
-@WebService(name = "WebServicesClases", targetNamespace = "http://publicadores/")
+@WebService(name = "WebServicesClases", targetNamespace = "http://Publicadores/")
 @SOAPBinding(style = SOAPBinding.Style.RPC)
 @XmlSeeAlso({
     ObjectFactory.class
@@ -34,13 +34,13 @@ public interface WebServicesClases {
      * @param arg4
      * @param arg1
      * @param arg0
-     * @throws ClaseYaCompradaException_Exception
      * @throws ClaseLlenaException_Exception
+     * @throws ClaseYaCompradaException_Exception
      */
     @WebMethod
-    @Action(input = "http://publicadores/WebServicesClases/registrarSocioAClaseRequest", output = "http://publicadores/WebServicesClases/registrarSocioAClaseResponse", fault = {
-        @FaultAction(className = ClaseYaCompradaException_Exception.class, value = "http://publicadores/WebServicesClases/registrarSocioAClase/Fault/ClaseYaCompradaException"),
-        @FaultAction(className = ClaseLlenaException_Exception.class, value = "http://publicadores/WebServicesClases/registrarSocioAClase/Fault/ClaseLlenaException")
+    @Action(input = "http://Publicadores/WebServicesClases/registrarSocioAClaseRequest", output = "http://Publicadores/WebServicesClases/registrarSocioAClaseResponse", fault = {
+        @FaultAction(className = ClaseYaCompradaException_Exception.class, value = "http://Publicadores/WebServicesClases/registrarSocioAClase/Fault/ClaseYaCompradaException"),
+        @FaultAction(className = ClaseLlenaException_Exception.class, value = "http://Publicadores/WebServicesClases/registrarSocioAClase/Fault/ClaseLlenaException")
     })
     public void registrarSocioAClase(
         @WebParam(name = "arg0", partName = "arg0")
@@ -56,6 +56,21 @@ public interface WebServicesClases {
         @WebParam(name = "arg5", partName = "arg5")
         XMLGregorianCalendar arg5)
         throws ClaseLlenaException_Exception, ClaseYaCompradaException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @throws PremioSorteadosException_Exception
+     */
+    @WebMethod
+    @Action(input = "http://Publicadores/WebServicesClases/sortearPremiosRequest", output = "http://Publicadores/WebServicesClases/sortearPremiosResponse", fault = {
+        @FaultAction(className = PremioSorteadosException_Exception.class, value = "http://Publicadores/WebServicesClases/sortearPremios/Fault/PremioSorteadosException")
+    })
+    public void sortearPremios(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws PremioSorteadosException_Exception
     ;
 
     /**
@@ -77,8 +92,8 @@ public interface WebServicesClases {
      * @throws ClaseRepetidaException_Exception
      */
     @WebMethod
-    @Action(input = "http://publicadores/WebServicesClases/crearClaseRequest", output = "http://publicadores/WebServicesClases/crearClaseResponse", fault = {
-        @FaultAction(className = ClaseRepetidaException_Exception.class, value = "http://publicadores/WebServicesClases/crearClase/Fault/ClaseRepetidaException")
+    @Action(input = "http://Publicadores/WebServicesClases/crearClaseRequest", output = "http://Publicadores/WebServicesClases/crearClaseResponse", fault = {
+        @FaultAction(className = ClaseRepetidaException_Exception.class, value = "http://Publicadores/WebServicesClases/crearClase/Fault/ClaseRepetidaException")
     })
     public void crearClase(
         @WebParam(name = "arg0", partName = "arg0")
@@ -114,21 +129,6 @@ public interface WebServicesClases {
 
     /**
      * 
-     * @param arg0
-     * @throws PremioSorteadosException_Exception
-     */
-    @WebMethod
-    @Action(input = "http://publicadores/WebServicesClases/sortearPremiosRequest", output = "http://publicadores/WebServicesClases/sortearPremiosResponse", fault = {
-        @FaultAction(className = PremioSorteadosException_Exception.class, value = "http://publicadores/WebServicesClases/sortearPremios/Fault/PremioSorteadosException")
-    })
-    public void sortearPremios(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws PremioSorteadosException_Exception
-    ;
-
-    /**
-     * 
      * @param arg1
      * @param arg0
      * @return
@@ -136,7 +136,7 @@ public interface WebServicesClases {
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://publicadores/WebServicesClases/esProfeDeClaseRequest", output = "http://publicadores/WebServicesClases/esProfeDeClaseResponse")
+    @Action(input = "http://Publicadores/WebServicesClases/esProfeDeClaseRequest", output = "http://Publicadores/WebServicesClases/esProfeDeClaseResponse")
     public boolean esProfeDeClase(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0,
@@ -152,8 +152,8 @@ public interface WebServicesClases {
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://publicadores/WebServicesClases/mostrarClasesDeActividadDeportivaRequest", output = "http://publicadores/WebServicesClases/mostrarClasesDeActividadDeportivaResponse", fault = {
-        @FaultAction(className = ClaseNoExisteException_Exception.class, value = "http://publicadores/WebServicesClases/mostrarClasesDeActividadDeportiva/Fault/ClaseNoExisteException")
+    @Action(input = "http://Publicadores/WebServicesClases/mostrarClasesDeActividadDeportivaRequest", output = "http://Publicadores/WebServicesClases/mostrarClasesDeActividadDeportivaResponse", fault = {
+        @FaultAction(className = ClaseNoExisteException_Exception.class, value = "http://Publicadores/WebServicesClases/mostrarClasesDeActividadDeportiva/Fault/ClaseNoExisteException")
     })
     public WrapperSetString mostrarClasesDeActividadDeportiva(
         @WebParam(name = "arg0", partName = "arg0")
@@ -169,7 +169,7 @@ public interface WebServicesClases {
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://publicadores/WebServicesClases/darDtClaseRequest", output = "http://publicadores/WebServicesClases/darDtClaseResponse")
+    @Action(input = "http://Publicadores/WebServicesClases/darDtClaseRequest", output = "http://Publicadores/WebServicesClases/darDtClaseResponse")
     public DtClase darDtClase(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
@@ -181,7 +181,7 @@ public interface WebServicesClases {
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://publicadores/WebServicesClases/sinProposito1Request", output = "http://publicadores/WebServicesClases/sinProposito1Response")
+    @Action(input = "http://Publicadores/WebServicesClases/sinProposito1Request", output = "http://Publicadores/WebServicesClases/sinProposito1Response")
     public DtPremio sinProposito1();
 
     /**
@@ -191,7 +191,7 @@ public interface WebServicesClases {
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://publicadores/WebServicesClases/sinProposito2Request", output = "http://publicadores/WebServicesClases/sinProposito2Response")
+    @Action(input = "http://Publicadores/WebServicesClases/sinProposito2Request", output = "http://Publicadores/WebServicesClases/sinProposito2Response")
     public DtClase sinProposito2();
 
 }

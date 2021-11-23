@@ -1,8 +1,11 @@
 
 package publicadores;
 
+import java.io.FileReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Properties;
+
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 import javax.xml.ws.WebEndpoint;
@@ -17,20 +20,28 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "WebServicesCuponerasService", targetNamespace = "http://publicadores/", wsdlLocation = "http://172.16.0.160:9128/CtrlCuponeras?wsdl")
+@WebServiceClient(name = "WebServicesCuponerasService", targetNamespace = "http://Publicadores/", wsdlLocation = "http://localhost:9128/CtrlCuponeras?wsdl")
 public class WebServicesCuponerasService
     extends Service
 {
 
     private final static URL WEBSERVICESCUPONERASSERVICE_WSDL_LOCATION;
     private final static WebServiceException WEBSERVICESCUPONERASSERVICE_EXCEPTION;
-    private final static QName WEBSERVICESCUPONERASSERVICE_QNAME = new QName("http://publicadores/", "WebServicesCuponerasService");
+    private final static QName WEBSERVICESCUPONERASSERVICE_QNAME = new QName("http://Publicadores/", "WebServicesCuponerasService");
 
     static {
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://172.16.0.160:9128/CtrlCuponeras?wsdl");
+        	Properties p = null;
+        	String valUrl = "";
+        	try {
+    	    	FileReader reader=new FileReader("/entrenamosUy/conf.properties");  
+    	    	p=new Properties();  
+    	    	p.load(reader); 
+    	    	valUrl = p.getProperty("urlCuponerasWeb");
+        	} catch (Exception ex) {}
+            url = new URL(valUrl);
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }
@@ -69,7 +80,7 @@ public class WebServicesCuponerasService
      */
     @WebEndpoint(name = "WebServicesCuponerasPort")
     public WebServicesCuponeras getWebServicesCuponerasPort() {
-        return super.getPort(new QName("http://publicadores/", "WebServicesCuponerasPort"), WebServicesCuponeras.class);
+        return super.getPort(new QName("http://Publicadores/", "WebServicesCuponerasPort"), WebServicesCuponeras.class);
     }
 
     /**
@@ -81,7 +92,7 @@ public class WebServicesCuponerasService
      */
     @WebEndpoint(name = "WebServicesCuponerasPort")
     public WebServicesCuponeras getWebServicesCuponerasPort(WebServiceFeature... features) {
-        return super.getPort(new QName("http://publicadores/", "WebServicesCuponerasPort"), WebServicesCuponeras.class, features);
+        return super.getPort(new QName("http://Publicadores/", "WebServicesCuponerasPort"), WebServicesCuponeras.class, features);
     }
 
     private static URL __getWsdlLocation() {

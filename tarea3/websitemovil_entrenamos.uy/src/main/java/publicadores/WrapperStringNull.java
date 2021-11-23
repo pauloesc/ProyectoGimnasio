@@ -7,9 +7,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para wrapperStringNull complex type.
+ * <p>Java class for wrapperStringNull complex type.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="wrapperStringNull">
@@ -34,7 +34,7 @@ public class WrapperStringNull {
     protected String informacion;
 
     /**
-     * Obtiene el valor de la propiedad informacion.
+     * Gets the value of the informacion property.
      * 
      * @return
      *     possible object is
@@ -46,7 +46,7 @@ public class WrapperStringNull {
     }
 
     /**
-     * Define el valor de la propiedad informacion.
+     * Sets the value of the informacion property.
      * 
      * @param value
      *     allowed object is

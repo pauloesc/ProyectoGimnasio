@@ -10,7 +10,7 @@ import javax.xml.ws.WebFault;
  * Generated source version: 2.2
  * 
  */
-@WebFault(name = "CuponeraCompradaException", targetNamespace = "http://publicadores/")
+@WebFault(name = "CuponeraCompradaException", targetNamespace = "http://Publicadores/")
 public class CuponeraCompradaException_Exception
     extends Exception
 {

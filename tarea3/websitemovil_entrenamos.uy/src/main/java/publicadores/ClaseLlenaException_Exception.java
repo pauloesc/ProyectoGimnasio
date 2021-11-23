@@ -10,7 +10,7 @@ import javax.xml.ws.WebFault;
  * Generated source version: 2.2
  * 
  */
-@WebFault(name = "ClaseLlenaException", targetNamespace = "http://publicadores/")
+@WebFault(name = "ClaseLlenaException", targetNamespace = "http://Publicadores/")
 public class ClaseLlenaException_Exception
     extends Exception
 {
