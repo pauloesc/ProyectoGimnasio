@@ -38,7 +38,7 @@
 	  %>
 		<button class="btn btn-lg btn-primary btn-block"
 			name="btn_iniciarSesion" type="submit">Iniciar Sesion</button>
-		<a href="index.html" class="btn btn-lg btn-secondary btn-block">Volver</a>
+		<a href="home" class="btn btn-lg btn-secondary btn-block">Volver</a>
 		<p class="mt-5 mb-3 text-muted">&copy; 2021 - entrenamos.uy</p>
 	</form>
 </body>
