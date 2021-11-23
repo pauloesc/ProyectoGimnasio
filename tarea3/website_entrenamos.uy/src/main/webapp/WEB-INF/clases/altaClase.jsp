@@ -137,7 +137,7 @@
 								</div>
 								<input id="sociosMaximos" name="sociosMaximos"
 									placeholder="Ingrese la cantidad máxima de socios." type="number"
-									class="form-control">
+									required="required" class="form-control">
 							</div>
 						</div>
 					</div>
