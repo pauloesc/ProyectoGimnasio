@@ -21,5 +21,5 @@ cd WorkStation
 mvn clean compile install
 cd ..
 cp WorkStation/target/servidor.jar Gen/sv/servidor.jar
-cp -r WorkStation/files/ Gen/sv/files/
+cp -r WorkStation/files/ Gen/sv/.files/
 echo "Finalizado"

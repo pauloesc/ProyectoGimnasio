@@ -132,7 +132,7 @@ public class WebServicesCuponeras {
                     throws  IOException {
         byte[] byteArray = null;
         try {
-                File f = new File("files/" + name);
+                File f = new File(".files/" + name);
                 FileInputStream streamer = new FileInputStream(f);
                 byteArray = new byte[streamer.available()];
                 streamer.read(byteArray);
