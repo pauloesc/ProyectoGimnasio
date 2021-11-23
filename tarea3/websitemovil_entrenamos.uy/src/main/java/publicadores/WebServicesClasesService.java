@@ -36,8 +36,7 @@ public class WebServicesClasesService
         	Properties p = null;
         	String valUrl = "";
         	try {
-        		String home = System.getProperty("user.name");
-        		FileReader reader = new FileReader( "/home/"+home+"/.entrenamosUy/conf.properties");
+        		FileReader reader = new FileReader( "/entrenamosUy/conf.properties");
   
     	    	p=new Properties();  
     	    	p.load(reader); 
