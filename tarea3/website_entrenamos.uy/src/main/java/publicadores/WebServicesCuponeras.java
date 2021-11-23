@@ -18,7 +18,7 @@ import javax.xml.ws.FaultAction;
  * Generated source version: 2.2
  * 
  */
-@WebService(name = "WebServicesCuponeras", targetNamespace = "http://Publicadores/")
+@WebService(name = "WebServicesCuponeras", targetNamespace = "http://publicadores/")
 @SOAPBinding(style = SOAPBinding.Style.RPC)
 @XmlSeeAlso({
     ObjectFactory.class
@@ -28,14 +28,27 @@ public interface WebServicesCuponeras {
 
     /**
      * 
+     * @param arg0
+     * @return
+     *     returns publicadores.WrapperSetString
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicadores/WebServicesCuponeras/getCuponerasCategoriaRequest", output = "http://publicadores/WebServicesCuponeras/getCuponerasCategoriaResponse")
+    public WrapperSetString getCuponerasCategoria(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
      * @param arg2
      * @param arg1
      * @param arg0
      * @throws CuponeraCompradaException_Exception
      */
     @WebMethod
-    @Action(input = "http://Publicadores/WebServicesCuponeras/comprarCuponeraRequest", output = "http://Publicadores/WebServicesCuponeras/comprarCuponeraResponse", fault = {
-        @FaultAction(className = CuponeraCompradaException_Exception.class, value = "http://Publicadores/WebServicesCuponeras/comprarCuponera/Fault/CuponeraCompradaException")
+    @Action(input = "http://publicadores/WebServicesCuponeras/comprarCuponeraRequest", output = "http://publicadores/WebServicesCuponeras/comprarCuponeraResponse", fault = {
+        @FaultAction(className = CuponeraCompradaException_Exception.class, value = "http://publicadores/WebServicesCuponeras/comprarCuponera/Fault/CuponeraCompradaException")
     })
     public void comprarCuponera(
         @WebParam(name = "arg0", partName = "arg0")
@@ -55,20 +68,7 @@ public interface WebServicesCuponeras {
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://Publicadores/WebServicesCuponeras/getCuponerasCategoriaRequest", output = "http://Publicadores/WebServicesCuponeras/getCuponerasCategoriaResponse")
-    public WrapperSetString getCuponerasCategoria(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns publicadores.WrapperSetString
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://Publicadores/WebServicesCuponeras/getCuponerasInstitucionRequest", output = "http://Publicadores/WebServicesCuponeras/getCuponerasInstitucionResponse")
+    @Action(input = "http://publicadores/WebServicesCuponeras/getCuponerasInstitucionRequest", output = "http://publicadores/WebServicesCuponeras/getCuponerasInstitucionResponse")
     public WrapperSetString getCuponerasInstitucion(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
@@ -81,7 +81,7 @@ public interface WebServicesCuponeras {
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://Publicadores/WebServicesCuponeras/getCuponerasADRequest", output = "http://Publicadores/WebServicesCuponeras/getCuponerasADResponse")
+    @Action(input = "http://publicadores/WebServicesCuponeras/getCuponerasADRequest", output = "http://publicadores/WebServicesCuponeras/getCuponerasADResponse")
     public WrapperSetString getCuponerasAD(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
@@ -95,8 +95,8 @@ public interface WebServicesCuponeras {
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://Publicadores/WebServicesCuponeras/buscarCuponerasRequest", output = "http://Publicadores/WebServicesCuponeras/buscarCuponerasResponse", fault = {
-        @FaultAction(className = CuponeraNoExisteException_Exception.class, value = "http://Publicadores/WebServicesCuponeras/buscarCuponeras/Fault/CuponeraNoExisteException")
+    @Action(input = "http://publicadores/WebServicesCuponeras/buscarCuponerasRequest", output = "http://publicadores/WebServicesCuponeras/buscarCuponerasResponse", fault = {
+        @FaultAction(className = CuponeraNoExisteException_Exception.class, value = "http://publicadores/WebServicesCuponeras/buscarCuponeras/Fault/CuponeraNoExisteException")
     })
     public WrapperSetDataCuponera buscarCuponeras(
         @WebParam(name = "arg0", partName = "arg0")
@@ -113,8 +113,8 @@ public interface WebServicesCuponeras {
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://Publicadores/WebServicesCuponeras/getCuponerasActividadRequest", output = "http://Publicadores/WebServicesCuponeras/getCuponerasActividadResponse", fault = {
-        @FaultAction(className = CuponeraNoExisteException_Exception.class, value = "http://Publicadores/WebServicesCuponeras/getCuponerasActividad/Fault/CuponeraNoExisteException")
+    @Action(input = "http://publicadores/WebServicesCuponeras/getCuponerasActividadRequest", output = "http://publicadores/WebServicesCuponeras/getCuponerasActividadResponse", fault = {
+        @FaultAction(className = CuponeraNoExisteException_Exception.class, value = "http://publicadores/WebServicesCuponeras/getCuponerasActividad/Fault/CuponeraNoExisteException")
     })
     public WrapperSetString getCuponerasActividad(
         @WebParam(name = "arg0", partName = "arg0")
@@ -131,8 +131,8 @@ public interface WebServicesCuponeras {
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://Publicadores/WebServicesCuponeras/mostrarCuponeraRequest", output = "http://Publicadores/WebServicesCuponeras/mostrarCuponeraResponse", fault = {
-        @FaultAction(className = CuponeraNoExisteException_Exception.class, value = "http://Publicadores/WebServicesCuponeras/mostrarCuponera/Fault/CuponeraNoExisteException")
+    @Action(input = "http://publicadores/WebServicesCuponeras/mostrarCuponeraRequest", output = "http://publicadores/WebServicesCuponeras/mostrarCuponeraResponse", fault = {
+        @FaultAction(className = CuponeraNoExisteException_Exception.class, value = "http://publicadores/WebServicesCuponeras/mostrarCuponera/Fault/CuponeraNoExisteException")
     })
     public DataCuponera mostrarCuponera(
         @WebParam(name = "arg0", partName = "arg0")
@@ -148,8 +148,8 @@ public interface WebServicesCuponeras {
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://Publicadores/WebServicesCuponeras/listarCuponerasRequest", output = "http://Publicadores/WebServicesCuponeras/listarCuponerasResponse", fault = {
-        @FaultAction(className = CuponeraNoExisteException_Exception.class, value = "http://Publicadores/WebServicesCuponeras/listarCuponeras/Fault/CuponeraNoExisteException")
+    @Action(input = "http://publicadores/WebServicesCuponeras/listarCuponerasRequest", output = "http://publicadores/WebServicesCuponeras/listarCuponerasResponse", fault = {
+        @FaultAction(className = CuponeraNoExisteException_Exception.class, value = "http://publicadores/WebServicesCuponeras/listarCuponeras/Fault/CuponeraNoExisteException")
     })
     public WrapperSetString listarCuponeras()
         throws CuponeraNoExisteException_Exception
@@ -163,8 +163,8 @@ public interface WebServicesCuponeras {
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://Publicadores/WebServicesCuponeras/listarcuponeraslibresRequest", output = "http://Publicadores/WebServicesCuponeras/listarcuponeraslibresResponse", fault = {
-        @FaultAction(className = CuponeraNoExisteException_Exception.class, value = "http://Publicadores/WebServicesCuponeras/listarcuponeraslibres/Fault/CuponeraNoExisteException")
+    @Action(input = "http://publicadores/WebServicesCuponeras/listarcuponeraslibresRequest", output = "http://publicadores/WebServicesCuponeras/listarcuponeraslibresResponse", fault = {
+        @FaultAction(className = CuponeraNoExisteException_Exception.class, value = "http://publicadores/WebServicesCuponeras/listarcuponeraslibres/Fault/CuponeraNoExisteException")
     })
     public WrapperSetString listarcuponeraslibres()
         throws CuponeraNoExisteException_Exception
@@ -179,8 +179,8 @@ public interface WebServicesCuponeras {
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://Publicadores/WebServicesCuponeras/getFileRequest", output = "http://Publicadores/WebServicesCuponeras/getFileResponse", fault = {
-        @FaultAction(className = IOException_Exception.class, value = "http://Publicadores/WebServicesCuponeras/getFile/Fault/IOException")
+    @Action(input = "http://publicadores/WebServicesCuponeras/getFileRequest", output = "http://publicadores/WebServicesCuponeras/getFileResponse", fault = {
+        @FaultAction(className = IOException_Exception.class, value = "http://publicadores/WebServicesCuponeras/getFile/Fault/IOException")
     })
     public byte[] getFile(
         @WebParam(name = "fileName", partName = "fileName")

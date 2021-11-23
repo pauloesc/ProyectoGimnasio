@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlType;
  * <pre>
  * &lt;complexType name="infoBasicaProfesor">
  *   &lt;complexContent>
- *     &lt;extension base="{http://Publicadores/}infoBasicaUser">
+ *     &lt;extension base="{http://publicadores/}infoBasicaUser">
  *       &lt;sequence>
  *         &lt;element name="bibliografia" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="desc" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>

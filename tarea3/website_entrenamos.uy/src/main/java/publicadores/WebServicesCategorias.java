@@ -18,7 +18,7 @@ import net.java.dev.jaxb.array.StringArray;
  * Generated source version: 2.2
  * 
  */
-@WebService(name = "WebServicesCategorias", targetNamespace = "http://Publicadores/")
+@WebService(name = "WebServicesCategorias", targetNamespace = "http://publicadores/")
 @SOAPBinding(style = SOAPBinding.Style.RPC)
 @XmlSeeAlso({
     net.java.dev.jaxb.array.ObjectFactory.class,
@@ -33,8 +33,8 @@ public interface WebServicesCategorias {
      * @throws CategoriaExistenteException_Exception
      */
     @WebMethod
-    @Action(input = "http://Publicadores/WebServicesCategorias/altaCategoriaRequest", output = "http://Publicadores/WebServicesCategorias/altaCategoriaResponse", fault = {
-        @FaultAction(className = CategoriaExistenteException_Exception.class, value = "http://Publicadores/WebServicesCategorias/altaCategoria/Fault/CategoriaExistenteException")
+    @Action(input = "http://publicadores/WebServicesCategorias/altaCategoriaRequest", output = "http://publicadores/WebServicesCategorias/altaCategoriaResponse", fault = {
+        @FaultAction(className = CategoriaExistenteException_Exception.class, value = "http://publicadores/WebServicesCategorias/altaCategoria/Fault/CategoriaExistenteException")
     })
     public void altaCategoria(
         @WebParam(name = "arg0", partName = "arg0")
@@ -49,7 +49,7 @@ public interface WebServicesCategorias {
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://Publicadores/WebServicesCategorias/getCategoriasRequest", output = "http://Publicadores/WebServicesCategorias/getCategoriasResponse")
+    @Action(input = "http://publicadores/WebServicesCategorias/getCategoriasRequest", output = "http://publicadores/WebServicesCategorias/getCategoriasResponse")
     public StringArray getCategorias();
 
 }

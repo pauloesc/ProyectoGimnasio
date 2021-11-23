@@ -9,9 +9,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
- * <p>Java class for dtClase complex type.
+ * <p>Clase Java para dtClase complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="dtClase">
@@ -21,7 +21,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="actualSocios" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="cantPremios" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="descPremios" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="estadoActividad" type="{http://Publicadores/}estadoActi" minOccurs="0"/>
+ *         &lt;element name="estadoActividad" type="{http://publicadores/}estadoActi" minOccurs="0"/>
  *         &lt;element name="fecha" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="fechaReg" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="hora" type="{http://www.w3.org/2001/XMLSchema}int"/>
@@ -34,6 +34,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="sorteados" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *         &lt;element name="url" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="urlVideo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -59,7 +60,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "nomProfesor",
     "nombre",
     "sorteados",
-    "url"
+    "url",
+    "urlVideo"
 })
 public class DtClase {
 
@@ -82,9 +84,10 @@ public class DtClase {
     protected String nombre;
     protected boolean sorteados;
     protected String url;
+    protected String urlVideo;
 
     /**
-     * Gets the value of the actualSocios property.
+     * Obtiene el valor de la propiedad actualSocios.
      * 
      */
     public int getActualSocios() {
@@ -92,7 +95,7 @@ public class DtClase {
     }
 
     /**
-     * Sets the value of the actualSocios property.
+     * Define el valor de la propiedad actualSocios.
      * 
      */
     public void setActualSocios(int value) {
@@ -100,7 +103,7 @@ public class DtClase {
     }
 
     /**
-     * Gets the value of the cantPremios property.
+     * Obtiene el valor de la propiedad cantPremios.
      * 
      */
     public int getCantPremios() {
@@ -108,7 +111,7 @@ public class DtClase {
     }
 
     /**
-     * Sets the value of the cantPremios property.
+     * Define el valor de la propiedad cantPremios.
      * 
      */
     public void setCantPremios(int value) {
@@ -116,7 +119,7 @@ public class DtClase {
     }
 
     /**
-     * Gets the value of the descPremios property.
+     * Obtiene el valor de la propiedad descPremios.
      * 
      * @return
      *     possible object is
@@ -128,7 +131,7 @@ public class DtClase {
     }
 
     /**
-     * Sets the value of the descPremios property.
+     * Define el valor de la propiedad descPremios.
      * 
      * @param value
      *     allowed object is
@@ -140,7 +143,7 @@ public class DtClase {
     }
 
     /**
-     * Gets the value of the estadoActividad property.
+     * Obtiene el valor de la propiedad estadoActividad.
      * 
      * @return
      *     possible object is
@@ -152,7 +155,7 @@ public class DtClase {
     }
 
     /**
-     * Sets the value of the estadoActividad property.
+     * Define el valor de la propiedad estadoActividad.
      * 
      * @param value
      *     allowed object is
@@ -164,7 +167,7 @@ public class DtClase {
     }
 
     /**
-     * Gets the value of the fecha property.
+     * Obtiene el valor de la propiedad fecha.
      * 
      * @return
      *     possible object is
@@ -176,7 +179,7 @@ public class DtClase {
     }
 
     /**
-     * Sets the value of the fecha property.
+     * Define el valor de la propiedad fecha.
      * 
      * @param value
      *     allowed object is
@@ -188,7 +191,7 @@ public class DtClase {
     }
 
     /**
-     * Gets the value of the fechaReg property.
+     * Obtiene el valor de la propiedad fechaReg.
      * 
      * @return
      *     possible object is
@@ -200,7 +203,7 @@ public class DtClase {
     }
 
     /**
-     * Sets the value of the fechaReg property.
+     * Define el valor de la propiedad fechaReg.
      * 
      * @param value
      *     allowed object is
@@ -212,7 +215,7 @@ public class DtClase {
     }
 
     /**
-     * Gets the value of the hora property.
+     * Obtiene el valor de la propiedad hora.
      * 
      */
     public int getHora() {
@@ -220,7 +223,7 @@ public class DtClase {
     }
 
     /**
-     * Sets the value of the hora property.
+     * Define el valor de la propiedad hora.
      * 
      */
     public void setHora(int value) {
@@ -228,7 +231,7 @@ public class DtClase {
     }
 
     /**
-     * Gets the value of the imagen property.
+     * Obtiene el valor de la propiedad imagen.
      * 
      * @return
      *     possible object is
@@ -240,7 +243,7 @@ public class DtClase {
     }
 
     /**
-     * Sets the value of the imagen property.
+     * Define el valor de la propiedad imagen.
      * 
      * @param value
      *     allowed object is
@@ -252,7 +255,7 @@ public class DtClase {
     }
 
     /**
-     * Gets the value of the maxSocios property.
+     * Obtiene el valor de la propiedad maxSocios.
      * 
      */
     public int getMaxSocios() {
@@ -260,7 +263,7 @@ public class DtClase {
     }
 
     /**
-     * Sets the value of the maxSocios property.
+     * Define el valor de la propiedad maxSocios.
      * 
      */
     public void setMaxSocios(int value) {
@@ -268,7 +271,7 @@ public class DtClase {
     }
 
     /**
-     * Gets the value of the minSocios property.
+     * Obtiene el valor de la propiedad minSocios.
      * 
      */
     public int getMinSocios() {
@@ -276,7 +279,7 @@ public class DtClase {
     }
 
     /**
-     * Sets the value of the minSocios property.
+     * Define el valor de la propiedad minSocios.
      * 
      */
     public void setMinSocios(int value) {
@@ -284,7 +287,7 @@ public class DtClase {
     }
 
     /**
-     * Gets the value of the minuto property.
+     * Obtiene el valor de la propiedad minuto.
      * 
      */
     public int getMinuto() {
@@ -292,7 +295,7 @@ public class DtClase {
     }
 
     /**
-     * Sets the value of the minuto property.
+     * Define el valor de la propiedad minuto.
      * 
      */
     public void setMinuto(int value) {
@@ -300,7 +303,7 @@ public class DtClase {
     }
 
     /**
-     * Gets the value of the nomAct property.
+     * Obtiene el valor de la propiedad nomAct.
      * 
      * @return
      *     possible object is
@@ -312,7 +315,7 @@ public class DtClase {
     }
 
     /**
-     * Sets the value of the nomAct property.
+     * Define el valor de la propiedad nomAct.
      * 
      * @param value
      *     allowed object is
@@ -324,7 +327,7 @@ public class DtClase {
     }
 
     /**
-     * Gets the value of the nomProfesor property.
+     * Obtiene el valor de la propiedad nomProfesor.
      * 
      * @return
      *     possible object is
@@ -336,7 +339,7 @@ public class DtClase {
     }
 
     /**
-     * Sets the value of the nomProfesor property.
+     * Define el valor de la propiedad nomProfesor.
      * 
      * @param value
      *     allowed object is
@@ -348,7 +351,7 @@ public class DtClase {
     }
 
     /**
-     * Gets the value of the nombre property.
+     * Obtiene el valor de la propiedad nombre.
      * 
      * @return
      *     possible object is
@@ -360,7 +363,7 @@ public class DtClase {
     }
 
     /**
-     * Sets the value of the nombre property.
+     * Define el valor de la propiedad nombre.
      * 
      * @param value
      *     allowed object is
@@ -372,7 +375,7 @@ public class DtClase {
     }
 
     /**
-     * Gets the value of the sorteados property.
+     * Obtiene el valor de la propiedad sorteados.
      * 
      */
     public boolean isSorteados() {
@@ -380,7 +383,7 @@ public class DtClase {
     }
 
     /**
-     * Sets the value of the sorteados property.
+     * Define el valor de la propiedad sorteados.
      * 
      */
     public void setSorteados(boolean value) {
@@ -388,7 +391,7 @@ public class DtClase {
     }
 
     /**
-     * Gets the value of the url property.
+     * Obtiene el valor de la propiedad url.
      * 
      * @return
      *     possible object is
@@ -400,7 +403,7 @@ public class DtClase {
     }
 
     /**
-     * Sets the value of the url property.
+     * Define el valor de la propiedad url.
      * 
      * @param value
      *     allowed object is
@@ -409,6 +412,30 @@ public class DtClase {
      */
     public void setUrl(String value) {
         this.url = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad urlVideo.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getUrlVideo() {
+        return urlVideo;
+    }
+
+    /**
+     * Define el valor de la propiedad urlVideo.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setUrlVideo(String value) {
+        this.urlVideo = value;
     }
 
 }

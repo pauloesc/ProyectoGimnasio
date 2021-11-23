@@ -10,7 +10,7 @@ import javax.xml.ws.WebFault;
  * Generated source version: 2.2
  * 
  */
-@WebFault(name = "PremioSorteadosException", targetNamespace = "http://Publicadores/")
+@WebFault(name = "PremioSorteadosException", targetNamespace = "http://publicadores/")
 public class PremioSorteadosException_Exception
     extends Exception
 {
