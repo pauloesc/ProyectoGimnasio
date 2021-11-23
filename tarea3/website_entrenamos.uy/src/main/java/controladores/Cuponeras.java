@@ -35,7 +35,7 @@ public class Cuponeras extends HttpServlet
 		HttpSession sesion = req.getSession();
 		sesion.setAttribute("nickname-user", null);
 		sesion.setAttribute("estado-sesion", "no-login");
-		resp.sendRedirect("/website_entrenamos.uy/home");
+		resp.sendRedirect("home");
 	}
 	
 	public static Set<DataCuponera> getCuponeras() throws CuponeraNoExisteException_Exception{

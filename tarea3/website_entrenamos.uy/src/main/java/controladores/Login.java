@@ -56,7 +56,7 @@ public class Login extends HttpServlet {
 				sesion.setAttribute("nickname-user", nickname);
 				sesion.setAttribute("estado-sesion", "logged-in");
 				sesion.setAttribute("login-error", null);
-				resp.sendRedirect("/website_entrenamos.uy/home");
+				resp.sendRedirect("home");
 			} else
 			{
 				sesion.setAttribute("login-error", auth);
