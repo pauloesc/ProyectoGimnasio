@@ -112,7 +112,7 @@ public class Login extends HttpServlet {
 			}
 			
 			System.out.println("como socio");
-			resp.sendRedirect("/websitemovil_entrenamos.uy/home");
+			resp.sendRedirect("home");
 		}
 		
 		//si no hay usuario
