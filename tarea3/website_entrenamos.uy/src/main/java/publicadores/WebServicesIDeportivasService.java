@@ -21,7 +21,7 @@ import javax.xml.ws.WebServiceFeature;
  * 
  */
 
-@WebServiceClient(name = "WebServicesIDeportivasService", targetNamespace = "http://Publicadores/", wsdlLocation = "http://localhost:9129/ctrlInstituciones?wsdl")
+@WebServiceClient(name = "WebServicesIDeportivasService", targetNamespace = "http://Publicadores/", wsdlLocation = "")
 public class WebServicesIDeportivasService
     extends Service
 {
@@ -37,7 +37,9 @@ public class WebServicesIDeportivasService
         	Properties p = null;
         	String valUrl = "";
         	try {
-    	    	FileReader reader=new FileReader("/entrenamosUy/conf.properties");  
+        		String home = System.getProperty("user.home");
+    	    	FileReader reader = new FileReader( home + "/.entrenamosUy/conf.properties");
+  
     	    	p=new Properties();  
     	    	p.load(reader); 
     	    	valUrl = p.getProperty("urlIDeportivas");

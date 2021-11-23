@@ -20,7 +20,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "WebServicesControladorUsuarioService", targetNamespace = "http://Publicadores/", wsdlLocation = "http://localhost:9128/ControladorUsuario?wsdl")
+@WebServiceClient(name = "WebServicesControladorUsuarioService", targetNamespace = "http://Publicadores/", wsdlLocation = "")
 public class WebServicesControladorUsuarioService
     extends Service
 {
@@ -36,7 +36,9 @@ public class WebServicesControladorUsuarioService
         	Properties p = null;
         	String valUrl = "";
         	try {
-    	    	FileReader reader=new FileReader("/entrenamosUy/conf.properties");  
+        		String home = System.getProperty("user.home");
+    	    	FileReader reader = new FileReader( home + "/.entrenamosUy/conf.properties");
+  
     	    	p=new Properties();  
     	    	p.load(reader); 
     	    	valUrl = p.getProperty("urlUsuario");

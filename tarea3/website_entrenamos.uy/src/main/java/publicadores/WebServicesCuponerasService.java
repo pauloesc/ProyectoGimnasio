@@ -20,7 +20,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "WebServicesCuponerasService", targetNamespace = "http://Publicadores/", wsdlLocation = "http://localhost:9128/CtrlCuponeras?wsdl")
+@WebServiceClient(name = "WebServicesCuponerasService", targetNamespace = "http://Publicadores/", wsdlLocation = "")
 public class WebServicesCuponerasService
     extends Service
 {
@@ -36,7 +36,9 @@ public class WebServicesCuponerasService
         	Properties p = null;
         	String valUrl = "";
         	try {
-    	    	FileReader reader=new FileReader("/entrenamosUy/conf.properties");  
+        		String home = System.getProperty("user.home");
+    	    	FileReader reader = new FileReader( home + "/.entrenamosUy/conf.properties");
+  
     	    	p=new Properties();  
     	    	p.load(reader); 
     	    	valUrl = p.getProperty("urlCuponeras");
