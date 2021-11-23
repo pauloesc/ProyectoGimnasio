@@ -47,7 +47,7 @@ public class WebServicesControladorUsuario {
     public void publicar(){
     	Properties p = null;
     	try {
-    		String home = System.getProperty("user.home");
+    		String home = System.getProperty("user.name");
     		FileReader reader = new FileReader( "/home/"+home+"/.entrenamosUy/conf.properties");
   
 	    	p=new Properties();  
