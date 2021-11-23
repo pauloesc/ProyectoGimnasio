@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+.card img {
+	border-top-right-radius: 0;
+	border-top-left-radius: calc(0.25rem - 1px);
+	border-bottom-left-radius: calc(0.25rem - 1px);
+}
+
+.card-title {
+	font-weight: bold;
+}
