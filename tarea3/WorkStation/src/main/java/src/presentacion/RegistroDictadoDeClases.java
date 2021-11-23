@@ -13,7 +13,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-
 import src.logica.DtClase;
 import src.logica.Fabrica;
 import src.logica.IctrlADeportivas;
