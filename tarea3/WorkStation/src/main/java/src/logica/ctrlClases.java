@@ -107,7 +107,7 @@ public class ctrlClases implements IctrlClases {
 			fecha14 = new SimpleDateFormat("dd/MM/yy").parse("05/11/21");
 			fecha15 = new SimpleDateFormat("dd/MM/yy").parse("29/11/21");
 			fecha16 = new SimpleDateFormat("dd/MM/yy").parse("03/11/21");
-			fecha17 = new SimpleDateFormat("dd/MM/yy").parse("27/11/21");
+			fecha17 = new SimpleDateFormat("dd/MM/yy").parse("20/11/21");
 			fecha18 = new SimpleDateFormat("dd/MM/yy").parse("30/11/21");
 			fecha19 = new SimpleDateFormat("dd/MM/yy").parse("01/12/21");
 			
@@ -190,7 +190,7 @@ public class ctrlClases implements IctrlClases {
 			f18 = new SimpleDateFormat("dd/MM/yy").parse("05/07/21");
 			f19 = new SimpleDateFormat("dd/MM/yy").parse("11/07/21");
 			f20 = new SimpleDateFormat("dd/MM/yy").parse("18/07/21");
-			f21 = new SimpleDateFormat("dd/MM/yy").parse("19/07/21");
+			f21 = new SimpleDateFormat("dd/MM/yy").parse("01/08/21");
 			f22 = new SimpleDateFormat("dd/MM/yy").parse("17/08/21");
 			f23 = new SimpleDateFormat("dd/MM/yy").parse("20/08/21");
 			f24 = new SimpleDateFormat("dd/MM/yy").parse("23/08/21");
