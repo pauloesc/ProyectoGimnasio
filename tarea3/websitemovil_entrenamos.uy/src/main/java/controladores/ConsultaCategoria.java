@@ -166,7 +166,18 @@ public class ConsultaCategoria extends HttpServlet
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException 
 	{
-		processRequest(request, response);
+		
+		String nickEnSesion = (String) request.getSession().getAttribute("nickname-user");
+
+		//si hay una sesion
+		if( nickEnSesion != null ) {
+			processRequest(request, response);
+		}
+		
+		else {
+			response.sendRedirect(request.getContextPath() + "/login");
+		}
+		
 	}
 
 	@Override
