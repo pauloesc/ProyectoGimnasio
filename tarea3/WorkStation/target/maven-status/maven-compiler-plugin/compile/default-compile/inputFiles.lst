@@ -1,6 +1,5 @@
 /home/lucas/Documentos/Facultad/TProg/TareaGit/tpgr03/tarea3/WorkStation/src/main/java/src/logica/WrapperSetDtClase.java
 /home/lucas/Documentos/Facultad/TProg/TareaGit/tpgr03/tarea3/WorkStation/src/main/java/src/presentacion/CrearCuponera.java
-/home/lucas/Documentos/Facultad/TProg/TareaGit/tpgr03/tarea3/WorkStation/src/main/java/src/tests/TestctrlCuponeras.java
 /home/lucas/Documentos/Facultad/TProg/TareaGit/tpgr03/tarea3/WorkStation/src/main/java/src/excepciones/ActividadDeportivaNoExisteException.java
 /home/lucas/Documentos/Facultad/TProg/TareaGit/tpgr03/tarea3/WorkStation/src/main/java/src/presentacion/ModificarUsuario.java
 /home/lucas/Documentos/Facultad/TProg/TareaGit/tpgr03/tarea3/WorkStation/src/main/java/src/presentacion/ConsultaUsuario.java
@@ -22,7 +21,6 @@
 /home/lucas/Documentos/Facultad/TProg/TareaGit/tpgr03/tarea3/WorkStation/src/main/java/src/excepciones/UsuarioInexistenteException.java
 /home/lucas/Documentos/Facultad/TProg/TareaGit/tpgr03/tarea3/WorkStation/src/main/java/src/presentacion/AltaDictadoDeClases.java
 /home/lucas/Documentos/Facultad/TProg/TareaGit/tpgr03/tarea3/WorkStation/src/main/java/src/logica/Registro.java
-/home/lucas/Documentos/Facultad/TProg/TareaGit/tpgr03/tarea3/WorkStation/src/main/java/src/tests/TestctrlClases.java
 /home/lucas/Documentos/Facultad/TProg/TareaGit/tpgr03/tarea3/WorkStation/src/main/java/src/logica/Fabrica.java
 /home/lucas/Documentos/Facultad/TProg/TareaGit/tpgr03/tarea3/WorkStation/src/main/java/src/presentacion/ConsultaDictadoDeClases.java
 /home/lucas/Documentos/Facultad/TProg/TareaGit/tpgr03/tarea3/WorkStation/src/main/java/src/logica/manejCategorias.java
@@ -67,14 +65,12 @@
 /home/lucas/Documentos/Facultad/TProg/TareaGit/tpgr03/tarea3/WorkStation/src/main/java/src/presentacion/AltaCategoria.java
 /home/lucas/Documentos/Facultad/TProg/TareaGit/tpgr03/tarea3/WorkStation/src/main/java/src/WorkStation/App.java
 /home/lucas/Documentos/Facultad/TProg/TareaGit/tpgr03/tarea3/WorkStation/src/main/java/src/logica/DtPremio.java
-/home/lucas/Documentos/Facultad/TProg/TareaGit/tpgr03/tarea3/WorkStation/src/main/java/src/tests/TestctrlIDeportivas.java
 /home/lucas/Documentos/Facultad/TProg/TareaGit/tpgr03/tarea3/WorkStation/src/main/java/src/excepciones/ClaseRepetidaException.java
 /home/lucas/Documentos/Facultad/TProg/TareaGit/tpgr03/tarea3/WorkStation/src/main/java/src/logica/ctrlClases.java
 /home/lucas/Documentos/Facultad/TProg/TareaGit/tpgr03/tarea3/WorkStation/src/main/java/src/logica/Usuario.java
 /home/lucas/Documentos/Facultad/TProg/TareaGit/tpgr03/tarea3/WorkStation/src/main/java/src/logica/InfoActividadProfe.java
 /home/lucas/Documentos/Facultad/TProg/TareaGit/tpgr03/tarea3/WorkStation/src/main/java/src/presentacion/AltaUsuario.java
 /home/lucas/Documentos/Facultad/TProg/TareaGit/tpgr03/tarea3/WorkStation/src/main/java/src/presentacion/AltaInstitucionDeportiva.java
-/home/lucas/Documentos/Facultad/TProg/TareaGit/tpgr03/tarea3/WorkStation/src/main/java/src/tests/TestctrlADeportivas.java
 /home/lucas/Documentos/Facultad/TProg/TareaGit/tpgr03/tarea3/WorkStation/src/main/java/src/logica/InstitucionDeportiva.java
 /home/lucas/Documentos/Facultad/TProg/TareaGit/tpgr03/tarea3/WorkStation/src/main/java/src/logica/IctrlUsuarios.java
 /home/lucas/Documentos/Facultad/TProg/TareaGit/tpgr03/tarea3/WorkStation/src/main/java/src/logica/ctrlCuponeras.java
@@ -87,7 +83,6 @@
 /home/lucas/Documentos/Facultad/TProg/TareaGit/tpgr03/tarea3/WorkStation/src/main/java/src/excepciones/CuponeraRepetidaException.java
 /home/lucas/Documentos/Facultad/TProg/TareaGit/tpgr03/tarea3/WorkStation/src/main/java/src/excepciones/ClaseYaCompradaException.java
 /home/lucas/Documentos/Facultad/TProg/TareaGit/tpgr03/tarea3/WorkStation/src/main/java/src/presentacion/AceptaRechazaActividadDeportiva.java
-/home/lucas/Documentos/Facultad/TProg/TareaGit/tpgr03/tarea3/WorkStation/src/main/java/src/tests/ctrlUsuariosTest.java
 /home/lucas/Documentos/Facultad/TProg/TareaGit/tpgr03/tarea3/WorkStation/src/main/java/src/presentacion/RegistroDictadoDeClases.java
 /home/lucas/Documentos/Facultad/TProg/TareaGit/tpgr03/tarea3/WorkStation/src/main/java/src/excepciones/ActividadDeportivaRepetidaException.java
 /home/lucas/Documentos/Facultad/TProg/TareaGit/tpgr03/tarea3/WorkStation/src/main/java/src/excepciones/InstitucionDeportivaRepetidaException.java

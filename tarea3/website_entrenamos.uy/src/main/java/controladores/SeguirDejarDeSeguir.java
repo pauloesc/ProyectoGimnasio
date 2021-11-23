@@ -40,7 +40,7 @@ public class SeguirDejarDeSeguir extends HttpServlet {
 		
 		//si no hay usuario en sesion
 		if(nickEnSesion == null) {
-			String url = "/website_entrenamos.uy/ConsultaUsuario?usuarioNick=" + usuario;
+			String url = "ConsultaUsuario?usuarioNick=" + usuario;
 			response.sendRedirect(url);
 			return;
 		}
@@ -55,7 +55,7 @@ public class SeguirDejarDeSeguir extends HttpServlet {
 			port.seguirUsuario(nickEnSesion,usuario);
 		}
 		
-		String url = "/website_entrenamos.uy/ConsultaUsuario?usuarioNick=" + usuario;
+		String url = "ConsultaUsuario?usuarioNick=" + usuario;
 		response.sendRedirect(url);
 		
 	}
