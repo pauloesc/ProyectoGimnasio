@@ -1,2 +1,2 @@
 # ProyectoGimnasio
-Proyecto de la materia taller de programacion 2020.
+Laboratorio de Taller de Programacion 2021, Facultad de Ingenieria, Universidad de la Republica, Uruguay.
