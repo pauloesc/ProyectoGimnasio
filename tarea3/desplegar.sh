@@ -1,8 +1,8 @@
 #!/bin/bash
-
-echo "Desplegando sitios web..."
-sudo systemctl stop tomcat
-cp Gen/web/web.war /opt/tomcat/webapps/web.war
-cp Gen/web/movil.war /opt/tomcat/webapps/movil.war
-sudo systemctl start tomcat
+echo "Por favor, ingresa la ruta (con / al final) donde esta el servidor Tomcat"
+read destino
+sudo "${destino}bin/shutdown.sh"
+cp Gen/web/web.war "${destino}webapps/"
+cp Gen/web/movil.war "${destino}webapps/"
+sudo "${destino}bin/startup.sh"
 echo "Finalizado"
